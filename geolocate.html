@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geolocation Prototype</title>
+    <script src="geolocate.js"></script>
 </head>
 <body>
     <button onclick="getLocation()">Try It</button>
@@ -19,8 +20,17 @@
         }
 
         function showPosition(position) {
-        x.innerHTML = "Latitude: " + position.coords.latitude +
-        "<br>Longitude: " + position.coords.longitude;
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longitude;
+            var here_get = new XMLHttpRequest();
+            here_get.open("GET", `https://transit.hereapi.com/v8/departures?apikey=YiFSWQU08S1mIS5DnEw6gOOSO4Fy_z3lNhT9kEFZ6Vo&in=${position.coords.latitude},${position.coords.longitude};r=500`);
+            here_get.onreadystatechange = function() {
+                if (here_get.readyState == 4 && here_get.status == 200) {
+                    var here_loc = JSON.parse(here_get.responseText);
+                    console.log(here_loc);
+                }
+            }
+            here_get.send();
         }
     </script>
 </body>
