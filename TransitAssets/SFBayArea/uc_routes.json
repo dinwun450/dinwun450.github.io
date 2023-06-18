@@ -1,0 +1,57 @@
+{
+    "1": {
+        "route_id": "1",
+        "agency_id": "UC",
+        "route_short_name": "1",
+        "route_long_name": "Delores",
+        "route_desc": "Union Landing, Four Corners, Dyer & Union City Blvd, and Union City BART",
+        "route_type": "3",
+        "route_url": "",
+        "route_color": "3ab859",
+        "route_text_color": "ffffff"
+    },
+    "3": {
+        "route_id": "3",
+        "agency_id": "UC",
+        "route_short_name": "3",
+        "route_long_name": "Almaden",
+        "route_desc": "Tropics, Union Landing, Continues as Route 4 to Calaveras Landing, Whipple Rd, Seven Hills, and Union City BART",
+        "route_type": "3",
+        "route_url": "",
+        "route_color": "43afff",
+        "route_text_color": "ffffff"
+    },
+    "4": {
+        "route_id": "4",
+        "agency_id": "UC",
+        "route_short_name": "4",
+        "route_long_name": "Tamarack",
+        "route_desc": "Seven Hills, Whipple Rd, Calaveras Landing, Union Landing, Continues as Route 3 to Tropics and Union City BART",
+        "route_type": "3",
+        "route_url": "",
+        "route_color": "f99523",
+        "route_text_color": "ffffff"
+    },
+    "5": {
+        "route_id": "5",
+        "agency_id": "UC",
+        "route_short_name": "5",
+        "route_long_name": "Dyer",
+        "route_desc": "Union Landing, Four Corners, Dyer & Union City Blvd, and Union City BART",
+        "route_type": "3",
+        "route_url": "",
+        "route_color": "fd00a6",
+        "route_text_color": "ffffff"
+    },
+    "2": {
+        "route_id": "2",
+        "agency_id": "UC",
+        "route_short_name": "2",
+        "route_long_name": "Whipple",
+        "route_desc": "Decoto District, Whipple Rd, Kaiser, Continues as Route 8 to Union Landing, Perry Rd, and Union City BART",
+        "route_type": "3",
+        "route_url": "",
+        "route_color": "7235f9",
+        "route_text_color": "ffffff"
+    }
+}
