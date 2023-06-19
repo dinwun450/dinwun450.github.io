@@ -91,7 +91,7 @@ window.onload = function() {
                 var here_response = JSON.parse(here_get.responseText);
                 var boards = here_response.boards;
 
-                while (counter_ab < departuresOverall.length) {
+                while (counter_ab < 3) {
                     var departures = boards[counter_ab].departures;
                     var counter_bb = 0;
 
