@@ -92,7 +92,7 @@ window.onload = function() {
                 var boards = here_response.boards;
 
                 while (counter_ab < departuresOverall.length) {
-                    var departures = boards[counter_a].departures;
+                    var departures = boards[counter_ab].departures;
                     var counter_bb = 0;
 
                     while (counter_bb < 3) {
