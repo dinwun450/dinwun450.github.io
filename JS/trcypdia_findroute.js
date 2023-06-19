@@ -1,6 +1,6 @@
 function routeFetchColor(agency, route) {
     var routeColorCall = new XMLHttpRequest();
-    if (agency === "AC Transit") {
+    if (agency === "AC TRANSIT") {
         routeColorCall.open("GET", "https://dinwun450.github.io/TransitAssets/SFBayArea/ac_routes.json");
         routeColorCall.onreadystatechange = function() {
             if (routeColorCall.status === 200 && routeColorCall.readyState === 4) {
