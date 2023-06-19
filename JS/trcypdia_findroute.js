@@ -7,9 +7,6 @@ function routeFetchColor(agency, route) {
                 var lineStat = JSON.parse(routeColorCall.responseText);
                 var colorStat = "#" + lineStat[route].route_color;
                 console.log(colorStat);
-                
-                document.getElementById("para").innerHTML = colorStat;
-                document.getElementById("para").style.color = colorStat;
             }
         }
         routeColorCall.send();
@@ -21,9 +18,6 @@ function routeFetchColor(agency, route) {
                 var lineStat = JSON.parse(routeColorCall.responseText);
                 var colorStat = "#" + lineStat[route].route_color;
                 console.log(colorStat);
-                
-                document.getElementById("para").innerHTML = colorStat;
-                document.getElementById("para").style.color = colorStat;
             }
         }
         routeColorCall.send();
