@@ -7,6 +7,8 @@ function routeFetchColor(agency, route) {
                 var lineStat = JSON.parse(routeColorCall.responseText);
                 var colorStat = "#" + lineStat[route].route_color;
                 console.log(colorStat);
+
+                return colorStat;
             }
         }
         routeColorCall.send();
@@ -18,6 +20,8 @@ function routeFetchColor(agency, route) {
                 var lineStat = JSON.parse(routeColorCall.responseText);
                 var colorStat = "#" + lineStat[route].route_color;
                 console.log(colorStat);
+
+                return colorStat;
             }
         }
         routeColorCall.send();
