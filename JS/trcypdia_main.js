@@ -100,11 +100,13 @@ window.onload = function() {
                         var agency = departures[counter_bb].agency.name;
                         console.log(route);
 
-                        var enough = document.getElementById("route" + route_color_counter);
+                        var enough = document.querySelectorAll("#route" + route_color_counter);
                         console.log(enough);
 
-                        enough.style.color = routeFetchColor(agency, route);
-                        enough.style.border = `1px solid ${routeFetchColor(agency, route)}`
+                        for (var lister = 0; lister < enough.length; lister++) {
+                            enough[lister].style.color = routeFetchColor(agency, route);
+                            enough[lister].style.border = `1px solid ${routeFetchColor(agency, route)}`   
+                        }
                         // console.log(colorStat);
 
                         counter_bb += 1;
