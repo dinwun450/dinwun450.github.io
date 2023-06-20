@@ -26,6 +26,19 @@ function routeFetchColor(agency, route) {
         }
         routeColorCall.send();
     }
+    else if (agency === "VTA") {
+        routeColorCall.open("GET", "https://dinwun450.github.io/TransitAssets/SFBayArea/sc_routes.json");
+        routeColorCall.onreadystatechange = function() {
+            if (routeColorCall.status === 200 && routeColorCall.readyState === 4) {
+                var lineStat = JSON.parse(routeColorCall.responseText);
+                var colorStat = "#" + lineStat[route].route_color;
+                console.log(colorStat);
+
+                return colorStat;
+            }
+        }
+        routeColorCall.send();
+    }
     else {
         alert("That agency probably wasn't the best fit of one of the routes...");
     }
