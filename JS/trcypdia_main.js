@@ -99,10 +99,12 @@ window.onload = function() {
                         var route = departures[counter_bb].transport.name;
                         var agency = departures[counter_bb].agency.name;
                         console.log(route);
-                        routeFetchColor(agency, route);
 
                         var enough = document.getElementById("route" + route_color_counter);
                         console.log(enough);
+
+                        enough.style.color = routeFetchColor(agency, route);
+                        enough.style.border = `1px solid ${routeFetchColor(agency, route)}`
                         // console.log(colorStat);
 
                         counter_bb += 1;
