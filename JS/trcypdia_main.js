@@ -101,7 +101,7 @@ window.onload = function() {
                         console.log(route);
                         routeFetchColor(agency, route);
 
-                        var enough = document.getElementById("departures" + route_color_counter);
+                        var enough = document.getElementById("route" + route_color_counter);
                         console.log(enough);
                         // console.log(colorStat);
 
