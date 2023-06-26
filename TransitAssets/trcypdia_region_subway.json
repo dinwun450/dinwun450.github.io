@@ -1,0 +1,53 @@
+{
+    "San Francisco": [
+        {"BART": "Bay Area Rapid Transit"}
+    ],
+    "Los Angeles": [
+        {"Metro Rail": "LA Metro Rail"}
+    ],
+    "San Diego": [
+        {"SDTI": "MTS Trolley"}
+    ],
+    "Portland": [
+        {"MAX Rail": "Trimet (MAX Rail)"}
+    ],
+    "Las Vegas": [
+        {"RTC Monorail": "Las Vegas Monorail"}
+    ],
+    "Denver": [
+        {"RTD Rail": "RTD Rail"}
+    ],
+    "Seattle": [
+        {"Link Rail": "Sound Transit Link"}
+    ],
+    "Chicago": [
+        {"CTA 'L'": "Chicago 'L'"}
+    ],
+    "New York": [
+        {"MTA Subway": "NYC Subway"}
+    ],
+    "Miami": [
+        {"Metrorail": "Miami-Dade Transit Metrorail"}
+    ],
+    "Atlanta": [
+        {"MARTA Rail": "MARTA Rail"}
+    ],
+    "Dallas": [
+        {"DART Rail": "Dallas Area Rapid Transit Rail"}
+    ],
+    "Austin": [
+        {"Capital MetroRail": "Capital Metro Rail"}
+    ],
+    "Washington D.C.": [
+        {"WMATA": "WMATA Metrorail"}
+    ],
+    "Raleigh": [
+        {"Raleigh City Subway": "Raleigh City Subway"}
+    ],
+    "Boston": [
+        {"MBTA Subway": "MBTA Subway"}
+    ],
+    "Phoenix": [
+        {"Valley Metro Rail": "Valley Metro Rail"}
+    ]
+}
