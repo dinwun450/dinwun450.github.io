@@ -1,53 +1,50 @@
 {
-    "San Francisco": [
-        {"BART": "Bay Area Rapid Transit"}
+    "sfbayarea": [
+        {"rail_subway": "<a href='bart.html' style='color: #009ad9';>Bay Area Rapid Transit</a>"}
     ],
-    "Los Angeles": [
-        {"Metro Rail": "LA Metro Rail"}
+    "losangeles": [
+        {"rail_subway": "<a href='lacmta_rail.html' style='color: #333;'>LA Metro Rail</a>"}
     ],
-    "San Diego": [
-        {"SDTI": "MTS Trolley"}
+    "sand": [
+        {"rail_subway": "<a href='mts_trolley.html' style='color: #ed2621;'>MTS Trolley</a>"}
     ],
-    "Portland": [
-        {"MAX Rail": "Trimet (MAX Rail)"}
+    "port": [
+        {"rail_subway": "<a href='trimet_rail.html' style='color: #d34726;'>Trimet (MAX Rail)</a>"}
     ],
-    "Las Vegas": [
-        {"RTC Monorail": "Las Vegas Monorail"}
+    "vegas": [
+        {"rail_subway": "<a href='lv_monorail.html' style='color: #133c8b;'>Las Vegas Monorail</a>"}
     ],
-    "Denver": [
-        {"RTD Rail": "RTD Rail"}
+    "denver": [
+        {"rail_subway": "<a href='rtd_rail.html' style='color: #e31836;'>RTD Rail</a>"}
     ],
-    "Seattle": [
-        {"Link Rail": "Sound Transit Link"}
+    "seattle": [
+        {"rail_subway": "<a href='sound_trans_rail.html' style='color: #013e7d;'>Sound Transit Link</a>"}
     ],
-    "Chicago": [
-        {"CTA 'L'": "Chicago 'L'"}
+    "chicago": [
+        {"rail_subway": "<a href='chicago_l.html' style='color: #0078c1;'>Chicago 'L'</a>"}
     ],
-    "New York": [
-        {"MTA Subway": "NYC Subway"}
+    "ny": [
+        {"rail_subway": "<a href='nyc_sub.html' style='color: #010093;'>NYC Subway</a>"}
     ],
-    "Miami": [
-        {"Metrorail": "Miami-Dade Transit Metrorail"}
+    "miami": [
+        {"rail_subway": "<a href='mdt_metrorail.html' style='color: #8dc73f;'>Miami-Dade Transit Metrorail</a>"}
     ],
-    "Atlanta": [
-        {"MARTA Rail": "MARTA Rail"}
+    "atlanta": [
+        {"rail_subway": "<a href='marta_rail.html' style='color: #ea7c09;'>MARTA Rail</a>"}
     ],
-    "Dallas": [
-        {"DART Rail": "Dallas Area Rapid Transit Rail"}
+    "dallas": [
+        {"rail_subway": "<a href='dart_rail.html' style='color: #163c79;'>Dallas Area Rapid Transit Rail</a>"}
     ],
-    "Austin": [
-        {"Capital MetroRail": "Capital Metro Rail"}
+    "aus": [
+        {"rail_subway": "<a href='cap_metrail.html' style='color: #006aa6;'>Capital Metro Rail</a>"}
     ],
-    "Washington D.C.": [
-        {"WMATA": "WMATA Metrorail"}
+    "dc": [
+        {"rail_subway": "<a href='wmata_rail.html' style='color: #333;'>WMATA Metrorail</a>"}
     ],
-    "Raleigh": [
-        {"Raleigh City Subway": "Raleigh City Subway"}
+    "boston": [
+        {"rail_subway": "<a href='mbta_subway.html' style='color: #333;'>MBTA Subway</a>"}
     ],
-    "Boston": [
-        {"MBTA Subway": "MBTA Subway"}
-    ],
-    "Phoenix": [
-        {"Valley Metro Rail": "Valley Metro Rail"}
+    "phoenix": [
+        {"rail_subway": "<a href='vallmtro_rail.html' style='color: #522f61;'>Valley Metro Rail</a>"}
     ]
 }
