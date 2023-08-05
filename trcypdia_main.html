@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcyclopedia Main Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="trcypdia_main.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <script src="trcypdia_main.js"></script>
+    <script src="js_assets/region_finder.js"></script>
+</head>
+<body>
+    <nav id="navbar">
+        <a href="#" class="brand">
+            <span id="globe"><i class="fa-solid fa-earth-americas"></i></span>
+            <span>Transcyclopedia</span>
+        </a>
+        <ul class="nav-links">
+            <input type="checkbox" id="checkbox_toggle" />
+            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+            <div class="menu">
+                <li style="--i:0;">
+                    <a href="#">
+                        <span>Menu</span>
+                        <span><ion-icon name="home-outline"></ion-icon></span>
+                    </a>
+                </li>
+                <li style="--i:1;">
+                    <a href="#">
+                        <span>Agency</span>
+                        <span><ion-icon name="business-outline"></ion-icon></span>
+                    </a>
+                </li>
+                <li style="--i:2;">
+                    <a href="#">
+                        <span>Alerts</span>
+                        <span><ion-icon name="warning-outline"></ion-icon></span>
+                    </a>
+                </li>
+                <li style="--i:3;">
+                    <a href="#">
+                        <span>Lines</span>
+                        <span><ion-icon name="map-outline"></ion-icon></span>
+                    </a>
+                </li>
+                <li style="--i:4;">
+                    <a href="#">
+                        <span>About</span>
+                        <span><ion-icon name="information-circle-outline"></ion-icon></span>
+                    </a>
+                </li>
+            </div>
+        </ul>
+    </nav>
+    <div class="main">
+        <div class="scroller"><h1 style="color: white;" id="top_info">Welcome to Transcyclopedia! Today is XX/XX/XXXX, XX:XX:XX.</h1></div>
+        <div class="location">
+            <h3 style="color: white;">Nearby Departures</h3>
+            <ul class="stopsnearby">
+                <li id="locstop1">
+                    <div id="stop1"><p id="scroll_stop1">None</p></div>
+                    <p id="departures1">
+                        <span id="route1">-</span> <span id="departure1">???</span><br>
+                    </p>
+                </li>
+                <li id="locstop2">
+                    <div id="stop2"><p id="scroll_stop2">None</p></div>
+                    <p id="departures2">
+                        <span id="route2">-</span> <span id="departure2">???</span><br>
+                    </p>
+                </li>
+                <li id="locstop3">
+                    <div id="stop3"><p id="scroll_stop3">None</p></div>
+                    <p id="departures3">
+                        <span id="route3">-</span> <span id="departure3">???</span><br>
+                    </p>
+                </li>
+                <li id="locstop4">
+                    <div id="stop4"><p id="scroll_stop4">None</p></div>
+                    <p id="departures4">
+                        <span id="route4">-</span> <span id="departure4">???</span><br>
+                    </p>
+                </li>
+                <li id="locstop5">
+                    <div id="stop5"><p id="scroll_stop5" title="There are no stop given in this box.">None</p></div>
+                    <p id="departures5">
+                        <span id="route5" title="No route given.">-</span> <span id="departure5" title="There's no departure at this moment.">???</span><br>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div class="encyclopedia_menu" style="color: white;">
+            <h3>Select a transit option:</h3>
+            <div class="optionsandregion">
+                <select name="" id="region" onchange="changeSwitch(value);">
+                    <option value="prompt">Select Region</option>
+                    <option value="sfbayarea">San Francisco</option>
+                    <option value="losangeles">Los Angeles</option>
+                    <option value="sand">San Diego</option>
+                    <option value="yosenmerced">Yosemite Valley / Merced</option>
+                    <option value="hawaii">Hawaii</option>
+                    <option value="port">Portland</option>
+                    <option value="vegas">Las Vegas</option>
+                    <option value="denver">Denver</option>
+                    <option value="seattletacoma">Seattle / Tacoma</option>
+                    <option value="chicago">Chicago</option>
+                    <option value="ny">New York</option>
+                    <option value="miami">Miami</option>
+                    <option value="orland">Orlando</option>
+                    <option value="indianapolis">Indianapolis</option>
+                    <option value="atlanta">Atlanta</option>
+                    <option value="dallasworth">Dallas / Fort Worth</option>
+                    <option value="aus">Austin</option>
+                    <option value="sanant">San Antonio</option>
+                    <option value="dcbalti">Washington D.C. / Baltimore</option>
+                    <option value="raleigh">Raleigh</option>
+                    <option value="boston">Boston</option>
+                    <option value="charle">Charleston</option>
+                    <option value="phoenix">Phoenix</option>
+                </select>
+                <ul class="optionsfortransit">
+                    <!-- <li><a href="#" id="bart"><img src="img_assets/bart_logo.svg" style="width: 50px; height: auto;"></a></li>
+                    <li><a href="#" id="muni"><img src="img_assets/muni_logo.svg" style="width: 50px; height: auto;"></a></li>
+                    <li><a href="#" id="vta"><img src="img_assets/vta_logo.png" style="width: 50px; height: auto;"></a></li>
+                    <li><a href="#" id="ferry"><i class="fa-solid fa-ferry" style="font-size: 35px;"></i></a></li>
+                    <li><a href="#" id="bus"><i class="fa-solid fa-bus" style="font-size: 35px;"></i></a></li>
+                    <li><a href="#" id="train"><i class="fa-solid fa-train" style="font-size: 35px;"></i></a></li> -->
+                </ul>
+                <div class="moreoptions"><a href="#" style="color: white;" title="Coming soon!">Other</a></div>
+            </div>
+        </div>
+        <div class="alerts">
+            <h3 style="color: white;">Alerts Nearby</h3>
+            <ul class="alertlist">
+                <li class="alertdesc">
+                    <p id="detail">Loading...</p>
+                </li>
+            </ul>
+            <a href="#" title="Coming soon!">More Alerts</a>
+        </div>
+        <div id="map">
+            <h3 style="color: white;">Map</h3>
+        </div>
+        <div class="lines">
+            <h3 style="color: white;">Lines Nearby</h3>
+            <ul class="routelist">
+                <li class="routedesc">
+                    <p id="fullroute"><span id="routeno">-</span> <span id="fullnameofroute">Loading...</span></p>
+                </li>
+            </ul>
+            <!-- <a href="#">Find More Routes</a> -->
+        </div>
+    </div>
+    <div class="copyright"><p>&copy; 2023 Transcyclopedia. Created by Dino Wun.</p></div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        let lastScrollTop = 0;
+        navbar = document.getElementById("navbar"); 
+        window.addEventListener("scroll", function(){
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop){
+                navbar.classList.add("icon");
+            } else {
+                navbar.classList.remove("icon");
+            }
+            lastScrollTop = scrollTop;
+        })
+    </script>
+</body>
+</html>
