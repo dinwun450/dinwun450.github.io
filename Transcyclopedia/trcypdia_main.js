@@ -1,4 +1,5 @@
 window.onload = function() {
+    alert("Welcome to Transcyclopedia! This site is under construction and may be subject to break or show other anomalies. Enjoy!");
     function getcountry() {
         var country_loc_get = new XMLHttpRequest();
         country_loc_get.open("GET", "https://ipinfo.io/?token=9d7b10f946e6fa");
