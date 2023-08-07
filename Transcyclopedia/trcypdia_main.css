@@ -273,6 +273,7 @@ input[type=checkbox] {
 
 #locstop1, #locstop2, #locstop3, #locstop4, #locstop5 {
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .stopsnearby {
