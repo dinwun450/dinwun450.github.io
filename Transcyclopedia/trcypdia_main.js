@@ -272,7 +272,17 @@ window.onload = function() {
                         var routeTextColor = outputCall.routes[r].route_text_color;
                         var routeColor = outputCall.routes[r].route_color;
 
-                        document.getElementById("routeno").innerHTML = routeNo;
+                        if (routeNo.length > 9) {
+                            document.getElementById("routefull").innerHTML = routeNo;
+                            document.getElementById("routefull").style.transform = "translateX(100%)";
+                            document.getElementById("routefull").style.animation = "my-animation 10s linear infinite";
+                        }
+                        else {
+                            document.getElementById("routefull").innerHTML = routeNo;
+                            document.getElementById("routefull").style.transform = "none";
+                            document.getElementById("routefull").style.animation = "none";
+                        }
+                        
                         document.getElementById("fullnameofroute").innerHTML = routeFullName;
                         document.getElementById("routeno").style.backgroundColor = `#${routeColor}40`;
                         document.getElementById("routeno").style.color = `#${routeTextColor}`;
