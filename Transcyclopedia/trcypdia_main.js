@@ -26,7 +26,7 @@ window.onload = function() {
     function getDateNTime() {
         var date = new Date();
         var getMonthNumber = date.getMonth() + 1;
-        var getDayNumber = date.getDay() - 1;
+        var getDayNumber = date.getDate();
         var getYearNumber = date.getFullYear();
         var getHour = date.getHours();
         var getMinute = date.getMinutes();
