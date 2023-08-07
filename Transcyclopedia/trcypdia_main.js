@@ -32,7 +32,23 @@ window.onload = function() {
         var getMinute = date.getMinutes();
         var getSeconds = date.getSeconds();
 
-        document.getElementById("top_info").innerHTML = `Welcome to Transcyclopedia! Today is ${getMonthNumber}/${getDayNumber}/${getYearNumber}, ${getHour}:${getMinute}:${getSeconds}.`
+        var am_or_pm = "AM";
+
+        if (getHour >= 12) {
+            if (getHour > 12) getHour -= 12;
+            am_or_pm = "PM";
+        }
+        else if (getHour == 0) {
+            getHour = 12;
+            am_or_pm = "AM";
+        }
+
+        getHour = getHour < 10 ? "0" + getHour : getHour;
+        getMinute = getMinute < 10 ? "0" + getMinute : getMinute;
+        getSeconds = getSeconds < 10 ? "0" + getSeconds : getSeconds;
+        currentTime = getHour + ":" + getMinute + ":" + getSeconds + am_or_pm;
+
+        document.getElementById("top_info").innerHTML = `Welcome to Transcyclopedia! Today is ${getMonthNumber}/${getDayNumber}/${getYearNumber}, ${currentTime}.`
     }
     setInterval(getDateNTime, 1000);
 
@@ -165,6 +181,8 @@ window.onload = function() {
                         document.getElementById("route" + counter).style.backgroundColor = `#${departureColor}40`;
                         document.getElementById("route" + counter).style.color = `#${departureColorInText}`;
                         document.getElementById("route" + counter).style.border = `1px solid #${departureColor}`;
+                        document.getElementById("route" + counter).setAttribute("title", compiledDepartures.stops[0].departures[while_counter].trip.trip_headsign);
+
                         
                         if (departuredTime === null) {
                             document.getElementById("departure" + counter).innerHTML = ` ${scheduledTime}`;
