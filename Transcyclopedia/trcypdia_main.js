@@ -177,7 +177,7 @@ window.onload = function() {
                         console.log(departureRoute);
                         console.log(compiledDepartures.stops[0].stop_name)
 
-                        document.getElementById("routeandterminus" + counter).innerHTML = `${departureRoute} ${compiledDepartures.stops[0].departures[while_counter].trip.trip_headsign}`;
+                        document.getElementById("route" + counter).innerHTML = departureRoute;
                         document.getElementById("route" + counter).style.backgroundColor = `#${departureColor}40`;
                         document.getElementById("route" + counter).style.color = `#${departureColorInText}`;
                         document.getElementById("route" + counter).style.border = `1px solid #${departureColor}`;
