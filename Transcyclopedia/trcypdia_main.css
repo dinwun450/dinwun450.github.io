@@ -307,22 +307,20 @@ input[type=checkbox] {
 }
 
 #departures1, #departures2, #departures3, #departures4, #departures5 {
-    width: 30%; /*45% */
+    width: 45%;
     /* height: 100px; */
     float: right;
     position: relative;
-    bottom: 35px;
+    bottom: 30px;
     text-align: right;
-    right: 30px;
+    right: 50px;
 }
 
 #route1, #route2, #route3, #route4, #route5 {
     display: inline-block;
-    /* width: fit-content; */
+    width: fit-content;
     padding-left: 5px;
     padding-right: 5px;
-    white-space: nowrap;
-    width: 40px;
     height: 23px;
     background: #33333340;
     /* backdrop-filter: blur( 2px );
@@ -332,16 +330,12 @@ input[type=checkbox] {
     font-size: 1em;
     color: white;
     text-align: center;
-    overflow: hidden;
 }
 
-#departure1, #departure2, #departure3, #departure4, #departure5 {
-    width: 200px;
+/* #departure {
     position: relative;
-    text-align: left;
-    bottom: 5px;
-    left: 10px;
-}
+    top: 10px;
+} */
 
 .encyclopedia_menu {
     justify-content: space-between;
@@ -688,8 +682,6 @@ input[type=checkbox] {
     align-items: center;
     font-size: 30px;
     font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
 }
 
 .routelist #fullnameofroute {
@@ -725,16 +717,6 @@ input[type=checkbox] {
     text-align: center;
     position: relative;
     top: 10px;
-}
-
-#routeandterminus1, #routeandterminus2, #routeandterminus3, #routeandterminus4, #routeandterminus5 {
-    transform: translateX(40vw);
-    animation: my-animation-2 10s linear infinite;
-}
-
-@keyframes my-animation-2 {
-    from { -webkit-transform: translateX(40vw); }
-    to { -webkit-transform: translateX(-40vw); }
 }
 
 @media (max-width: 800px) {
