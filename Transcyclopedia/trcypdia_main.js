@@ -1,5 +1,6 @@
 window.onload = function() {
-    alert("Welcome to Transcyclopedia! This site is under construction and may be subject to break or show other anomalies. Enjoy!");
+    document.getElementById("popup_departure").style.display = "none";
+
     function getcountry() {
         var country_loc_get = new XMLHttpRequest();
         country_loc_get.open("GET", "https://ipinfo.io/?token=9d7b10f946e6fa");
@@ -28,10 +29,10 @@ window.onload = function() {
         var getMonthNumber = date.getMonth() + 1;
         var getDayNumber = date.getDate();
         var getYearNumber = date.getFullYear();
+
         var getHour = date.getHours();
         var getMinute = date.getMinutes();
         var getSeconds = date.getSeconds();
-
         var am_or_pm = "AM";
 
         if (getHour >= 12) {
@@ -52,6 +53,7 @@ window.onload = function() {
     }
     setInterval(getDateNTime, 1000);
 
+    var emp_id_stop = [];
     function stopSearch(position) {
         var transitland_stops = new XMLHttpRequest();
         console.log(position.coords.latitude, position.coords.longitude)
@@ -73,7 +75,7 @@ window.onload = function() {
                 
                 var compiledStops = JSON.parse(transitland_stops.responseText);
                 console.log(compiledStops);
-                var fullGeoJson = []
+                var fullGeoJson = [];
 
                 for (var j=0; j<5; j++) {
                     try {
@@ -149,7 +151,7 @@ window.onload = function() {
         transitland_stops.send();
     }
 
-    counter = 1
+    counter = 1;
     function showNearbyStops(stopId) {
         var transitland_departures = new XMLHttpRequest();
         transitland_departures.open("GET", `https://transit.land/api/v2/rest/stops/${stopId}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
@@ -161,7 +163,8 @@ window.onload = function() {
                     console.log(compiledDepartures);
                     var stopSpecific = compiledDepartures.stops[0].stop_name;
                     console.log(stopSpecific, stopSpecific.length);
-                    document.getElementById("stop" + counter).innerHTML = `<p id="scroll_stop${counter}">${stopSpecific}</p>`;
+                    document.getElementById("stop" + counter).innerHTML = `<p id="scroll_stop${counter}"><a onclick="disableScrolling()" href="#popup_departure" class="nothing">${stopSpecific}</a></p>`;
+                    emp_id_stop.push(compiledDepartures.stops[0].onestop_id);
 
                     if (compiledDepartures.stops[0].alerts.length === 0) {
                         console.log("There are no alerts at this time...");
@@ -182,7 +185,6 @@ window.onload = function() {
                         document.getElementById("route" + counter).style.color = `#${departureColorInText}`;
                         document.getElementById("route" + counter).style.border = `1px solid #${departureColor}`;
                         document.getElementById("route" + counter).setAttribute("title", compiledDepartures.stops[0].departures[while_counter].trip.trip_headsign);
-
                         
                         if (departuredTime === null) {
                             document.getElementById("departure" + counter).innerHTML = ` ${scheduledTime}`;
@@ -238,8 +240,8 @@ window.onload = function() {
                     }
 
                     if (stopSpecific.length > 10) {
-                        document.getElementById("scroll_stop" + counter).style.transform = "translateX(100%)";
-                        document.getElementById("scroll_stop" + counter).style.animation = "my-animation 10s linear infinite";
+                        document.getElementById("scroll_stop" + counter).style.transform = "translateX(100vw)";
+                        document.getElementById("scroll_stop" + counter).style.animation = "my-animation-2 15s linear infinite";
                     }
 
                     console.log(counter)
@@ -252,6 +254,7 @@ window.onload = function() {
         }
         transitland_departures.send();
     }
+    stopFinder(emp_id_stop)
 
     function routeSearch(position) {
         var routeApiToCall = new XMLHttpRequest();
@@ -272,6 +275,9 @@ window.onload = function() {
                         var routeTextColor = outputCall.routes[r].route_text_color;
                         var routeColor = outputCall.routes[r].route_color;
 
+                        
+                        console.log(routeNo, routeNo.length);
+
                         if (routeNo.length > 9) {
                             document.getElementById("routefull").innerHTML = routeNo;
                             document.getElementById("routefull").style.transform = "translateX(100%)";
@@ -282,7 +288,7 @@ window.onload = function() {
                             document.getElementById("routefull").style.transform = "none";
                             document.getElementById("routefull").style.animation = "none";
                         }
-                        
+
                         document.getElementById("fullnameofroute").innerHTML = routeFullName;
                         document.getElementById("routeno").style.backgroundColor = `#${routeColor}40`;
                         document.getElementById("routeno").style.color = `#${routeTextColor}`;
@@ -298,5 +304,289 @@ window.onload = function() {
             }
         }
         routeApiToCall.send();
+    }
+}
+
+function stopFinder(array_of_stops) {
+    console.log(document.querySelector(".stopsnearby").children, array_of_stops);
+    document.getElementById("locstop1").onclick = function() {
+        document.getElementById("overall_departures").innerHTML = `
+        <li id="each_departure">
+            <div id="routeandname"><span id="colorofroute">-</span> <span id="destination">(insertterminushere)</span></div> <p id="departureForEachRoute">(departurehere)</p>
+        </li>
+        `
+        var index = array_of_stops[0];
+        var indexOneCall = new XMLHttpRequest();
+        indexOneCall.open("GET", `https://transit.land/api/v2/rest/stops/${index}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+        indexOneCall.onreadystatechange = function() {
+            if (indexOneCall.readyState === 4 && indexOneCall.status === 200) {
+                var IndexOneStop = JSON.parse(indexOneCall.responseText);
+                var stopName = IndexOneStop.stops[0].stop_name;
+                var stopCode = IndexOneStop.stops[0].stop_code;
+
+                document.getElementById("stop_id").innerHTML = `Stop ID: ${stopCode}`;
+                document.getElementById("stop_name").innerHTML = stopName;
+
+                if (stopName.length > 22) {
+                    document.getElementById("stop_name").style.transform = "translateX(100%)";
+                    document.getElementById("stop_name").style.animation = "my-animation 15s linear infinite";
+                } 
+
+                for (var i = 0; i < IndexOneStop.stops[0].departures.length; i++) {
+                    var departuredTime = IndexOneStop.stops[0].departures[i].arrival.estimated;
+                    var scheduledTime = IndexOneStop.stops[0].departures[i].arrival.scheduled;
+                    var departureRoute = IndexOneStop.stops[0].departures[i].trip.route.route_short_name;
+                    var departureColor = IndexOneStop.stops[0].departures[i].trip.route.route_color;
+                    var departureColorInText = IndexOneStop.stops[0].departures[i].trip.route.route_text_color;
+                    var routeTerminus = IndexOneStop.stops[0].departures[i].trip.trip_headsign;
+
+                    document.getElementById("colorofroute").innerHTML = departureRoute;
+                    document.getElementById("colorofroute").style.backgroundColor = `#${departureColor}40`;
+                    document.getElementById("colorofroute").style.color = `#${departureColorInText}`;
+                    document.getElementById("colorofroute").style.border = `1px solid #${departureColor}`;
+                    document.getElementById("destination").innerHTML = routeTerminus;
+                    
+                    if (departuredTime === null) {
+                        document.getElementById("departureForEachRoute").innerHTML = ` ${scheduledTime}`;
+                    }
+                    else if (scheduledTime === null) {
+                        continue
+                    }
+                    else {
+                        document.getElementById("departureForEachRoute").innerHTML = ` ${departuredTime}`;
+                        document.getElementById("departureForEachRoute").style.color = "green";
+                    }
+
+                    var overallDepartures = document.getElementById("each_departure");
+                    var cloneDepartures = overallDepartures.cloneNode(true);
+                    document.getElementById("overall_departures").appendChild(cloneDepartures);
+                }
+                var Alldepartures = document.querySelector("#overall_departures").children;
+                console.log(Alldepartures);
+                document.querySelector("#overall_departures").removeChild(Alldepartures[0]);
+            }
+        }
+        indexOneCall.send();
+    }
+    document.getElementById("locstop2").onclick = function() {
+        var index = array_of_stops[1];
+        var indexTwoCall = new XMLHttpRequest();
+        indexTwoCall.open("GET", `https://transit.land/api/v2/rest/stops/${index}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+        indexTwoCall.onreadystatechange = function() {
+            if (indexTwoCall.readyState === 4 && indexTwoCall.status === 200) {
+                var IndexOneStop = JSON.parse(indexTwoCall.responseText);
+                var stopName = IndexOneStop.stops[0].stop_name;
+                var stopCode = IndexOneStop.stops[0].stop_code;
+
+                document.getElementById("stop_id").innerHTML = `Stop ID: ${stopCode}`;
+                document.getElementById("stop_name").innerHTML = stopName;
+
+                if (stopName.length > 22) {
+                    document.getElementById("stop_name").style.transform = "translateX(100%)";
+                    document.getElementById("stop_name").style.animation = "my-animation 15s linear infinite";
+                } 
+
+                for (var i = 0; i < IndexOneStop.stops[0].departures.length; i++) {
+                    var departuredTime = IndexOneStop.stops[0].departures[i].arrival.estimated;
+                    var scheduledTime = IndexOneStop.stops[0].departures[i].arrival.scheduled;
+                    var departureRoute = IndexOneStop.stops[0].departures[i].trip.route.route_short_name;
+                    var departureColor = IndexOneStop.stops[0].departures[i].trip.route.route_color;
+                    var departureColorInText = IndexOneStop.stops[0].departures[i].trip.route.route_text_color;
+                    var routeTerminus = IndexOneStop.stops[0].departures[i].trip.trip_headsign;
+
+                    document.getElementById("colorofroute").innerHTML = departureRoute;
+                    document.getElementById("colorofroute").style.backgroundColor = `#${departureColor}40`;
+                    document.getElementById("colorofroute").style.color = `#${departureColorInText}`;
+                    document.getElementById("colorofroute").style.border = `1px solid #${departureColor}`;
+                    document.getElementById("destination").innerHTML = routeTerminus;
+                    
+                    if (departuredTime === null) {
+                        document.getElementById("departureForEachRoute").innerHTML = ` ${scheduledTime}`;
+                    }
+                    else if (scheduledTime === null) {
+                        continue
+                    }
+                    else {
+                        document.getElementById("departureForEachRoute").innerHTML = ` ${departuredTime}`;
+                        document.getElementById("departureForEachRoute").style.color = "green";
+                    }
+
+                    var overallDepartures = document.getElementById("each_departure");
+                    var cloneDepartures = overallDepartures.cloneNode(true);
+                    document.getElementById("overall_departures").appendChild(cloneDepartures);
+                }
+                var Alldepartures = document.querySelector("#overall_departures").children;
+                console.log(Alldepartures);
+                document.querySelector("#overall_departures").removeChild(Alldepartures[0]);
+            }
+        }
+        indexTwoCall.send();
+    }
+    document.getElementById("locstop3").onclick = function() {
+        var index = array_of_stops[2];
+        var indexThreeCall = new XMLHttpRequest();
+        indexThreeCall.open("GET", `https://transit.land/api/v2/rest/stops/${index}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+        indexThreeCall.onreadystatechange = function() {
+            if (indexThreeCall.readyState === 4 && indexThreeCall.status === 200) {
+                var IndexOneStop = JSON.parse(indexThreeCall.responseText);
+                var stopName = IndexOneStop.stops[0].stop_name;
+                var stopCode = IndexOneStop.stops[0].stop_code;
+
+                document.getElementById("stop_id").innerHTML = `Stop ID: ${stopCode}`;
+                document.getElementById("stop_name").innerHTML = stopName;
+
+                if (stopName.length > 22) {
+                    document.getElementById("stop_name").style.transform = "translateX(100%)";
+                    document.getElementById("stop_name").style.animation = "my-animation 15s linear infinite";
+                } 
+
+                for (var i = 0; i < IndexOneStop.stops[0].departures.length; i++) {
+                    var departuredTime = IndexOneStop.stops[0].departures[i].arrival.estimated;
+                    var scheduledTime = IndexOneStop.stops[0].departures[i].arrival.scheduled;
+                    var departureRoute = IndexOneStop.stops[0].departures[i].trip.route.route_short_name;
+                    var departureColor = IndexOneStop.stops[0].departures[i].trip.route.route_color;
+                    var departureColorInText = IndexOneStop.stops[0].departures[i].trip.route.route_text_color;
+                    var routeTerminus = IndexOneStop.stops[0].departures[i].trip.trip_headsign;
+
+                    document.getElementById("colorofroute").innerHTML = departureRoute;
+                    document.getElementById("colorofroute").style.backgroundColor = `#${departureColor}40`;
+                    document.getElementById("colorofroute").style.color = `#${departureColorInText}`;
+                    document.getElementById("colorofroute").style.border = `1px solid #${departureColor}`;
+                    document.getElementById("destination").innerHTML = routeTerminus;
+                    
+                    if (departuredTime === null) {
+                        document.getElementById("departureForEachRoute").innerHTML = ` ${scheduledTime}`;
+                    }
+                    else if (scheduledTime === null) {
+                        continue
+                    }
+                    else {
+                        document.getElementById("departureForEachRoute").innerHTML = ` ${departuredTime}`;
+                        document.getElementById("departureForEachRoute").style.color = "green";
+                    }
+
+                    var overallDepartures = document.getElementById("each_departure");
+                    var cloneDepartures = overallDepartures.cloneNode(true);
+                    document.getElementById("overall_departures").appendChild(cloneDepartures);
+                }
+                var Alldepartures = document.querySelector("#overall_departures").children;
+                console.log(Alldepartures);
+                document.querySelector("#overall_departures").removeChild(Alldepartures[0]);
+            }
+        }
+        indexThreeCall.send();
+    }
+    document.getElementById("locstop4").onclick = function() {
+        var index = array_of_stops[3];
+        var indexFourCall = new XMLHttpRequest();
+        indexFourCall.open("GET", `https://transit.land/api/v2/rest/stops/${index}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+        indexFourCall.onreadystatechange = function() {
+            if (indexFourCall.readyState === 4 && indexFourCall.status === 200) {
+                var IndexOneStop = JSON.parse(indexFourCall.responseText);
+                var stopName = IndexOneStop.stops[0].stop_name;
+                var stopCode = IndexOneStop.stops[0].stop_code;
+
+                document.getElementById("stop_id").innerHTML = `Stop ID: ${stopCode}`;
+                document.getElementById("stop_name").innerHTML = stopName;
+
+                if (stopName.length > 22) {
+                    document.getElementById("stop_name").style.transform = "translateX(100%)";
+                    document.getElementById("stop_name").style.animation = "my-animation 15s linear infinite";
+                } 
+
+                for (var i = 0; i < IndexOneStop.stops[0].departures.length; i++) {
+                    var departuredTime = IndexOneStop.stops[0].departures[i].arrival.estimated;
+                    var scheduledTime = IndexOneStop.stops[0].departures[i].arrival.scheduled;
+                    var departureRoute = IndexOneStop.stops[0].departures[i].trip.route.route_short_name;
+                    var departureColor = IndexOneStop.stops[0].departures[i].trip.route.route_color;
+                    var departureColorInText = IndexOneStop.stops[0].departures[i].trip.route.route_text_color;
+                    var routeTerminus = IndexOneStop.stops[0].departures[i].trip.trip_headsign;
+
+                    document.getElementById("colorofroute").innerHTML = departureRoute;
+                    document.getElementById("colorofroute").style.backgroundColor = `#${departureColor}40`;
+                    document.getElementById("colorofroute").style.color = `#${departureColorInText}`;
+                    document.getElementById("colorofroute").style.border = `1px solid #${departureColor}`;
+                    document.getElementById("destination").innerHTML = routeTerminus;
+                    
+                    if (departuredTime === null) {
+                        document.getElementById("departureForEachRoute").innerHTML = ` ${scheduledTime}`;
+                    }
+                    else if (scheduledTime === null) {
+                        continue
+                    }
+                    else {
+                        document.getElementById("departureForEachRoute").innerHTML = ` ${departuredTime}`;
+                        document.getElementById("departureForEachRoute").style.color = "green";
+                    }
+
+                    var overallDepartures = document.getElementById("each_departure");
+                    var cloneDepartures = overallDepartures.cloneNode(true);
+                    document.getElementById("overall_departures").appendChild(cloneDepartures);
+                }
+                var Alldepartures = document.querySelector("#overall_departures").children;
+                console.log(Alldepartures);
+                document.querySelector("#overall_departures").removeChild(Alldepartures[0]);
+            }
+        }
+        indexFourCall.send();
+    }
+    document.getElementById("locstop5").onclick = function() {
+        try {
+            var index = array_of_stops[4];
+            var indexFiveCall = new XMLHttpRequest();
+            indexFiveCall.open("GET", `https://transit.land/api/v2/rest/stops/${index}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            indexFiveCall.onreadystatechange = function() {
+                if (indexFiveCall.readyState === 4 && indexFiveCall.status === 200) {
+                    var IndexOneStop = JSON.parse(indexFiveCall.responseText);
+                    var stopName = IndexOneStop.stops[0].stop_name;
+                    var stopCode = IndexOneStop.stops[0].stop_code;
+
+                    document.getElementById("stop_id").innerHTML = `Stop ID: ${stopCode}`;
+                    document.getElementById("stop_name").innerHTML = stopName;
+
+                    if (stopName.length > 22) {
+                        document.getElementById("stop_name").style.transform = "translateX(100%)";
+                        document.getElementById("stop_name").style.animation = "my-animation 15s linear infinite";
+                    } 
+
+                    for (var i = 0; i < IndexOneStop.stops[0].departures.length; i++) {
+                        var departuredTime = IndexOneStop.stops[0].departures[i].arrival.estimated;
+                        var scheduledTime = IndexOneStop.stops[0].departures[i].arrival.scheduled;
+                        var departureRoute = IndexOneStop.stops[0].departures[i].trip.route.route_short_name;
+                        var departureColor = IndexOneStop.stops[0].departures[i].trip.route.route_color;
+                        var departureColorInText = IndexOneStop.stops[0].departures[i].trip.route.route_text_color;
+                        var routeTerminus = IndexOneStop.stops[0].departures[i].trip.trip_headsign;
+
+                        document.getElementById("colorofroute").innerHTML = departureRoute;
+                        document.getElementById("colorofroute").style.backgroundColor = `#${departureColor}40`;
+                        document.getElementById("colorofroute").style.color = `#${departureColorInText}`;
+                        document.getElementById("colorofroute").style.border = `1px solid #${departureColor}`;
+                        document.getElementById("destination").innerHTML = routeTerminus;
+                        
+                        if (departuredTime === null) {
+                            document.getElementById("departureForEachRoute").innerHTML = ` ${scheduledTime}`;
+                        }
+                        else if (scheduledTime === null) {
+                            continue
+                        }
+                        else {
+                            document.getElementById("departureForEachRoute").innerHTML = ` ${departuredTime}`;
+                            document.getElementById("departureForEachRoute").style.color = "green";
+                        }
+
+                        var overallDepartures = document.getElementById("each_departure");
+                        var cloneDepartures = overallDepartures.cloneNode(true);
+                        document.getElementById("overall_departures").appendChild(cloneDepartures);
+                    }
+                    var Alldepartures = document.querySelector("#overall_departures").children;
+                    console.log(Alldepartures);
+                    document.querySelector("#overall_departures").removeChild(Alldepartures[0]);
+                }
+            }
+            indexFiveCall.send();
+        }
+        catch (TypeError) {
+            console.log("You're not that guy, pal.")
+        }
     }
 }
