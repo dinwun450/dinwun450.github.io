@@ -72,14 +72,12 @@
     color: white;
 }
 
-#each_departure {
-    display: flex;
+#overall_departures {
+    display: block;
 }
 
 #departureForEachRoute {
-    padding-right: 25px;
-    position: absolute;
-    right: 0;
+    float: right;
 }
 
 .close-box {
