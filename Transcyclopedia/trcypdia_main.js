@@ -312,7 +312,7 @@ function stopFinder(array_of_stops) {
     document.getElementById("locstop1").onclick = function() {
         document.getElementById("overall_departures").innerHTML = `
         <li id="each_departure">
-            <div id="routeandname"><span id="colorofroute">-</span> <span id="destination">(insertterminushere)</span></div> <p id="departureForEachRoute">(departurehere)</p>
+            <div id="routeandname"><span id="colorofroute">-</span> <span id="destination">(insertterminushere)</span> <span id="departureForEachRoute">(departurehere)</span></div> 
         </li>
         `
         var index = array_of_stops[0];
