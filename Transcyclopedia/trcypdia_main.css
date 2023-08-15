@@ -88,7 +88,7 @@ ul {
     list-style: none;
 }
 
-ul li a {
+.nav-links li a {
     position: relative;
     color: #0398fc;
     padding: 5px 20px;
@@ -211,12 +211,12 @@ input[type=checkbox] {
 
 #top_info {
     transform: translateX(100%);
-    animation: my-animation 10s linear infinite;
+    animation: my-animation-3 10s linear infinite;
 }
 
-@keyframes my-animation {
-    from { -webkit-transform: translateX(100%); }
-    to { -webkit-transform: translateX(-150%); }
+@keyframes my-animation-3 {
+    from { -webkit-transform: translateX(130vw); }
+    to { -webkit-transform: translateX(-160vw); }
 }
 
 .location {
@@ -304,6 +304,11 @@ input[type=checkbox] {
     padding: 10px 20px; 
     position: relative;
     top: 25px;
+}
+
+@keyframes my-animation-2 {
+    from { -webkit-transform: translateX(40vw); }
+    to { -webkit-transform: translateX(-40vw); }
 }
 
 #departures1, #departures2, #departures3, #departures4, #departures5 {
@@ -731,31 +736,22 @@ input[type=checkbox] {
 
     .brand span:nth-child(2) {
         /* animation properties */
-        -moz-transform: translateX(100%);
-        -webkit-transform: translateX(100%);
-        transform: translateX(100%);
-        
-        -moz-animation: my-animation 15s linear infinite;
-        -webkit-animation: my-animation 15s linear infinite;
-        animation: my-animation 15s linear infinite;
-    }
-
-    @-webkit-keyframes my-animation {
-        from { -webkit-transform: translateX(100%); }
-        to { -webkit-transform: translateX(-100%); }
+        transform: translateX(120vw);
+        animation: my-animation-4 7s linear infinite;
     }
       
-    @keyframes my-animation {
+    @keyframes my-animation-4 {
         from {
-            -moz-transform: translateX(100%);
-            -webkit-transform: translateX(100%);
-            transform: translateX(100%);
+            transform: translateX(35vw);
         }
         to {
-            -moz-transform: translateX(-100%);
-            -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
+            transform: translateX(-35vw);
         }
+    }
+
+    @keyframes my-animation-2 {
+        from { -webkit-transform: translateX(45vw); }
+        to { -webkit-transform: translateX(-45vw); }
     }
 
     .brand span:nth-child(1) {
@@ -788,7 +784,7 @@ input[type=checkbox] {
 
 @media (max-width: 520px) {
     body {
-        min-height: 270vh;
+        min-height: 311vh;
     }
 
     .menu {
@@ -806,6 +802,12 @@ input[type=checkbox] {
         border-radius: 10px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
         border-radius: 10px;
+    }
+
+    .brand span:nth-child(2) {
+        /* animation properties */
+        transform: none;
+        animation: none;
     }
 
     .menu li:hover {
@@ -862,5 +864,10 @@ input[type=checkbox] {
 
     .routelist #fullnameofroute {
         width: 70%;
+    }
+
+    @keyframes my-animation-2 {
+        from { -webkit-transform: translateX(50vw); }
+        to { -webkit-transform: translateX(-50vw); }
     }
 }
