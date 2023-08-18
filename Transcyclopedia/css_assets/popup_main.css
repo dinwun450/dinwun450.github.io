@@ -25,6 +25,7 @@
     width: 400px;
     height: 250px;
     border-radius: 4px;
+    overflow-y: scroll;
 }
 
 .model:target {
@@ -82,9 +83,13 @@
 
 .close-box {
     position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #333333;
     top: 0;
     right: 15px;
     color: #fe0606;
+    text-align: center;
     text-decoration: none;
     font-size: 30px;
     z-index: 3;
