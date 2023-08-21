@@ -49,6 +49,7 @@ window.onload = function() {
         getSeconds = getSeconds < 10 ? "0" + getSeconds : getSeconds;
         currentTime = getHour + ":" + getMinute + ":" + getSeconds + am_or_pm;
 
+        //`Welcome to Transcyclopedia! Today is ${getMonthNumber}/${getDayNumber}/${getYearNumber}, ${currentTime}.`
         document.getElementById("top_info").innerHTML = `Welcome to Transcyclopedia! Today is ${getMonthNumber}/${getDayNumber}/${getYearNumber}, ${currentTime}.`
     }
     setInterval(getDateNTime, 1000);
@@ -369,6 +370,11 @@ function stopFinder(array_of_stops) {
         indexOneCall.send();
     }
     document.getElementById("locstop2").onclick = function() {
+        document.getElementById("overall_departures").innerHTML = `
+        <li id="each_departure">
+            <div id="routeandname"><span id="colorofroute">-</span> <span id="destination">(insertterminushere)</span> <span id="departureForEachRoute">(departurehere)</span></div> 
+        </li>
+        `
         var index = array_of_stops[1];
         var indexTwoCall = new XMLHttpRequest();
         indexTwoCall.open("GET", `https://transit.land/api/v2/rest/stops/${index}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
@@ -423,6 +429,11 @@ function stopFinder(array_of_stops) {
         indexTwoCall.send();
     }
     document.getElementById("locstop3").onclick = function() {
+        document.getElementById("overall_departures").innerHTML = `
+        <li id="each_departure">
+            <div id="routeandname"><span id="colorofroute">-</span> <span id="destination">(insertterminushere)</span> <span id="departureForEachRoute">(departurehere)</span></div> 
+        </li>
+        `
         var index = array_of_stops[2];
         var indexThreeCall = new XMLHttpRequest();
         indexThreeCall.open("GET", `https://transit.land/api/v2/rest/stops/${index}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
@@ -477,6 +488,11 @@ function stopFinder(array_of_stops) {
         indexThreeCall.send();
     }
     document.getElementById("locstop4").onclick = function() {
+        document.getElementById("overall_departures").innerHTML = `
+        <li id="each_departure">
+            <div id="routeandname"><span id="colorofroute">-</span> <span id="destination">(insertterminushere)</span> <span id="departureForEachRoute">(departurehere)</span></div> 
+        </li>
+        `
         var index = array_of_stops[3];
         var indexFourCall = new XMLHttpRequest();
         indexFourCall.open("GET", `https://transit.land/api/v2/rest/stops/${index}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
@@ -532,6 +548,11 @@ function stopFinder(array_of_stops) {
     }
     document.getElementById("locstop5").onclick = function() {
         try {
+            document.getElementById("overall_departures").innerHTML = `
+            <li id="each_departure">
+                <div id="routeandname"><span id="colorofroute">-</span> <span id="destination">(insertterminushere)</span> <span id="departureForEachRoute">(departurehere)</span></div> 
+            </li>
+            `
             var index = array_of_stops[4];
             var indexFiveCall = new XMLHttpRequest();
             indexFiveCall.open("GET", `https://transit.land/api/v2/rest/stops/${index}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
