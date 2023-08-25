@@ -6,7 +6,7 @@ function changeSwitch(c) {
         case "sfbayarea":
             console.log("Golden State!")
             document.querySelector(".optionsfortransit").innerHTML = `
-            <li><a href="#" id="bart"><img src="img_assets/bart_logo.svg" style="width: 50px; height: auto;"></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/sanfrancisco/bart/bart.html" id="bart"><img src="img_assets/bart_logo.svg" style="width: 50px; height: auto;"></a></li>
             <li><a href="#" id="muni"><img src="img_assets/muni_logo.svg" style="width: 50px; height: auto;"></a></li>
             <li><a href="#" id="vta"><img src="img_assets/vta_logo.png" style="width: 50px; height: auto;"></a></li>
             <li><a href="#" id="ferry"><i class="fa-solid fa-ferry" style="font-size: 35px;"></i></a></li>
