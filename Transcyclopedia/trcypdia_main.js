@@ -189,6 +189,7 @@ window.onload = function() {
                         
                         if (departuredTime === null) {
                             document.getElementById("departure" + counter).innerHTML = ` ${scheduledTime}`;
+                            document.getElementById("departure" + counter).setAttribute("title", "Scheduled departure");
                         }
                         else if (scheduledTime === null) {
                             continue
@@ -196,6 +197,7 @@ window.onload = function() {
                         else {
                             document.getElementById("departure" + counter).innerHTML = ` ${departuredTime}`;
                             document.getElementById("departure" + counter).style.color = "green";
+                            document.getElementById("departure" + counter).setAttribute("title", "Realtime Departure");
                         }
 
                         var routeNode = document.getElementById("route" + counter);
