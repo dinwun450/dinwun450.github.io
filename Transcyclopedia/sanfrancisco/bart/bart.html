@@ -20,7 +20,7 @@
             <label for="checkbox_toggle" class="hamburger">&#9776;</label>
             <div class="menu">
                 <li style="--i:0;">
-                    <a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html#">
+                    <a href="#">
                         <span>Menu</span>
                         <span><ion-icon name="home-outline"></ion-icon></span>
                     </a>
@@ -94,6 +94,8 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script>
         let lastScrollTop = 0;
+        var counter = 0;
+
         navbar = document.getElementById("navbar"); 
         window.addEventListener("scroll", function(){
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -205,15 +207,25 @@
 
                         var alertList_byAgency = compileDepartures.stops[0].departures[i].trip.route.agency.alerts;
                         for (var j = 0; j < alertList_byAgency.length; j++) {
-                            if (document.getElementById("alert_entity").textContent === compileDepartures.stops[0].departures[i].trip.route.agency.alerts[j].description_text[0].text) {
-                                continue;
+                            if (counter === alertList_byAgency.length) {
+                                break;
                             }
-                            document.getElementById("alert_entity").innerHTML = `<p>${alertList_byAgency[j].description_text[0].text}</p>`
+                            document.getElementById("alert_entity").innerHTML = `<p>${alertList_byAgency[j].description_text[0].text}</p>`;
+                            console.log(document.getElementById("alert_entity").textContent);
+
+                            var alertClone = document.getElementById("alert_entity");
+                            var listToInsertAlertClone = alertClone.cloneNode(true);
+                            document.getElementById("list_of_alerts").appendChild(listToInsertAlertClone);
+                            console.log(counter);
+                            counter += 1
                         }
                     }
 
                     var departuresAll = document.getElementById("list_of_departures").children;
                     document.querySelector("#list_of_departures").removeChild(departuresAll[0]);
+
+                    var alertsAll = document.getElementById("list_of_alerts").children;
+                    document.querySelector("#list_of_alerts").removeChild(alertsAll[0]);
                 }
             }
             secondDepartureRequest.send();
@@ -224,6 +236,7 @@
             <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure">-</div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
             `
             document.getElementById("stationname").innerHTML = "---";
+            document.getElementById("list_of_alerts").innerHTML = "<li id='alert_entity'></li>"
             document.getElementById("alert_entity").innerHTML = `<p>Once you typed down the station by their ID, the advisories will display here.</p>`
         }
     </script>
