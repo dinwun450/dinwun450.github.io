@@ -434,6 +434,10 @@ h3 {
     white-space: nowrap;
 }
 
+#list_of_alerts {
+    display: block;
+}
+
 #alert_entity {
     width: 100%;
     height: fit-content;
