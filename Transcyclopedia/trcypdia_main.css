@@ -79,6 +79,7 @@ nav {
     display: flex;
 }
 
+/* #0398fc, default */
 .icon {
     background: #0398fc;
 }
@@ -117,8 +118,9 @@ ul li a span:nth-child(2) {
     font-size: 1.3em;
 }
 
+/* #39bf59, default*/
 ul li:hover a span:nth-child(2) {
-    color: #39bf59;
+    color: white;
 }
 
 .icon ul li a span:nth-child(2) {
@@ -866,8 +868,18 @@ input[type=checkbox] {
         width: 70%;
     }
 
-    @keyframes my-animation-2 {
-        from { -webkit-transform: translateX(50vw); }
-        to { -webkit-transform: translateX(-50vw); }
+    #top_info {
+        transform: translateX(130vw);
+        animation: my-animation-6 10s linear infinite;
+    }
+
+    @keyframes my-animation-6 {
+        from { -webkit-transform: translateX(120vw); }
+        to { -webkit-transform: translateX(-220vw); }
+    }
+
+    @keyframes my-animation-7 {
+        from { -webkit-transform: translateX(120vw); }
+        to { -webkit-transform: translateX(-100vw); }
     }
 }
