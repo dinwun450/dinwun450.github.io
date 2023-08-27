@@ -1,5 +1,6 @@
 window.onload = function() {
     document.getElementById("popup_departure").style.display = "none";
+    var w = window.innerWidth;
 
     function getcountry() {
         var country_loc_get = new XMLHttpRequest();
@@ -189,7 +190,7 @@ window.onload = function() {
                         
                         if (departuredTime === null) {
                             document.getElementById("departure" + counter).innerHTML = ` ${scheduledTime}`;
-                            document.getElementById("departure" + counter).setAttribute("title", "Scheduled departure");
+                            document.getElementById("departure" + counter).setAttribute("title", "scheduled")
                         }
                         else if (scheduledTime === null) {
                             continue
@@ -197,7 +198,8 @@ window.onload = function() {
                         else {
                             document.getElementById("departure" + counter).innerHTML = ` ${departuredTime}`;
                             document.getElementById("departure" + counter).style.color = "green";
-                            document.getElementById("departure" + counter).setAttribute("title", "Realtime Departure");
+                            // var timeLeft =  new Date(compiledDepartures.stops[0].departures[while_counter].arrival.estimated_utc).getMinutes() - new Date().getMinutes();
+                            document.getElementById("departure" + counter).setAttribute("title", `real-time`)
                         }
 
                         var routeNode = document.getElementById("route" + counter);
@@ -242,7 +244,11 @@ window.onload = function() {
                         }
                     }
 
-                    if (stopSpecific.length > 10) {
+                    if (w <= 520 && stopSpecific.length > 10) {
+                        document.getElementById("scroll_stop" + counter).style.transform = "translateX(200vw)";
+                        document.getElementById("scroll_stop" + counter).style.animation = "my-animation-7 10s linear infinite";
+                    }
+                    else if (stopSpecific.length > 10) {
                         document.getElementById("scroll_stop" + counter).style.transform = "translateX(100vw)";
                         document.getElementById("scroll_stop" + counter).style.animation = "my-animation-2 15s linear infinite";
                     }
@@ -261,6 +267,7 @@ window.onload = function() {
 
     function routeSearch(position) {
         var routeApiToCall = new XMLHttpRequest();
+        console.log("overall-width:", w);
         routeApiToCall.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&lat=${position.coords.latitude}&lon=${position.coords.longitude}&radius=500`);
         routeApiToCall.onreadystatechange = function() {
             if (routeApiToCall.status === 200 && routeApiToCall.readyState === 4) {
@@ -277,9 +284,6 @@ window.onload = function() {
                         var routeFullName = outputCall.routes[r].route_long_name;
                         var routeTextColor = outputCall.routes[r].route_text_color;
                         var routeColor = outputCall.routes[r].route_color;
-
-                        
-                        console.log(routeNo, routeNo.length);
 
                         if (routeNo.length > 9) {
                             document.getElementById("routefull").innerHTML = routeNo;
