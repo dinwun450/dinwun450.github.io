@@ -6,7 +6,7 @@ function changeSwitch(c) {
         case "sfbayarea":
             console.log("Golden State!");
             if (new Date().getDate() === 30) {
-                document.getElementById("top_info").innerHTML = `Spare the Air (SF Bay Area)! Today is ${getMonthNumber}/${getDayNumber}/${getYearNumber}, ${currentTime}.`
+                document.getElementById("top_info").innerHTML = `Spare the Air (SF Bay Area)!`
             }
             document.querySelector(".optionsfortransit").innerHTML = `
             <li><a href="https://dinwun450.github.io/Transcyclopedia/sanfrancisco/bart/bart.html" id="bart"><img src="img_assets/bart_logo.svg" style="width: 50px; height: auto;"></a></li>
