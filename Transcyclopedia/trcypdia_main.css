@@ -689,6 +689,11 @@ input[type=checkbox] {
     align-items: center;
     font-size: 30px;
     font-weight: bold;
+    overflow: hidden;
+}
+
+#routefull {
+    white-space: nowrap;
 }
 
 .routelist #fullnameofroute {
