@@ -1,1 +1,1 @@
-Welcome to Transcyclopedia! It's under construction!
+Welcome to Transcyclopedia! It's under construction! Can you go to the main page, please? Thank you.
