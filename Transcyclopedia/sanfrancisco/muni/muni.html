@@ -63,6 +63,7 @@
             <button class="tablinks" onclick="openTab(event, 'lines')">Lines</button>
             <button class="tablinks" onclick="openTab(event, 'departures_metro')">Muni Metro</button>
             <button class="tablinks" onclick="openTab(event, 'departures_bus')">Bus</button>
+            <button class="tablinks" onclick="openTab(event, 'departures_cable')">Cable Car</button>
         </div>
 
         <div id="info" class="tabcontent">
@@ -143,6 +144,25 @@
             </ul>
             <button id="clearall2" onclick="clearAll2()">Clear</button>
         </div>
+        <div id="departures_cable" class="tabcontent">
+            <h2>Cable Car</h2>
+            <input type="text" placeholder="Search for a stop.. " onkeydown="keyDownThree()" id="cablegetter" autocomplete="off">
+            <p class="headerforstop3">Departures for &nbsp;<span id="stopname3">---</span></p>
+            <ul id="list_of_departures3">
+                <li id="line_for_departure3">
+                    <div class="wrapper_for_departure3">
+                        <div id="line_for_each_departure3">-</div> <div id="route_headsign3"><p id="isscroll3">(None)</p></div> <span id="route_depart3">Enter a specific station by their stop ID</span>
+                    </div>
+                </li>
+            </ul>
+            <h3>Alerts Today</h3>
+            <ul id="list_of_alerts3">
+                <li id="alert_entity3">
+                    <p>Once you typed down the station by their ID, the advisories will display here.</p>
+                </li>
+            </ul>
+            <button id="clearall3" onclick="clearAll3()">Clear</button>
+        </div>
     </div>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -193,6 +213,13 @@
             }
         }
 
+        function keyDownThree(e) {
+            e = e || window.event;
+            if (e.keyCode === 13) {
+                callOverCable();
+            }
+        }
+
         function callOver() {
             getValue = document.getElementById("stationgetter").value;
             var departureCall = new XMLHttpRequest();
@@ -239,6 +266,30 @@
                 }
             }
             departureCallByBus.send();
+        }
+
+        function callOverCable() {
+            getValueForCable = document.getElementById("cablegetter").value;
+            var departureCallByCable = new XMLHttpRequest();
+            departureCallByCable.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q8y-sfmta&served_by_route_type=5&stop_id=${getValueForCable}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+            departureCallByCable.onreadystatechange = function() {
+                if (departureCallByCable.readyState === 4 && departureCallByCable.status === 200) {
+                    var stopIdExtraction = JSON.parse(departureCallByCable.responseText);
+                    console.log(stopIdExtraction);
+
+                    if (stopIdExtraction.stops.length === 0) {
+                        console.log("Nothing to do about it...")
+                    }
+                    else {
+                        var stopCodeSpecifiedByBus = stopIdExtraction.stops[0].stop_code;
+                        var stopName = stopIdExtraction.stops[0].stop_name;
+                        console.log(stopCodeSpecifiedByBus);
+                        document.getElementById("stopname3").innerHTML = stopName;
+                        gatherDeparturesForCable(stopCodeSpecifiedByBus);
+                    }
+                }
+            }
+            departureCallByCable.send();
         }
 
         function gatherDeparturesForBus(stopCodeBus) {
@@ -342,6 +393,109 @@
                 }
             }
             secondDepartureRequest.send();
+        }
+
+        function gatherDeparturesForCable(stopCodeCable) {
+            var thirdDepartureRequest = new XMLHttpRequest();
+            thirdDepartureRequest.open("GET", `https://transit.land/api/v2/rest/stops/f-sf~bay~area~rg:${stopCodeCable}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            thirdDepartureRequest.onreadystatechange = function () {
+                if (thirdDepartureRequest.readyState === 4 && thirdDepartureRequest.status === 200) {
+                    var compileDepartures = JSON.parse(thirdDepartureRequest.responseText);
+                    console.log(compileDepartures);
+
+                    for (var i = 0; i < compileDepartures.stops[0].departures.length; i++) {
+                        var routeColor = compileDepartures.stops[0].departures[i].trip.route.route_color;
+                        var routeColorInText = compileDepartures.stops[0].departures[i].trip.route.route_text_color;
+                        var routeShort = compileDepartures.stops[0].departures[i].trip.route.route_short_name;
+                        var routeLong = compileDepartures.stops[0].departures[i].trip.trip_headsign;
+                        var routeFullName = compileDepartures.stops[0].departures[i].trip.route.route_long_name;
+                        var departuredTime = compileDepartures.stops[0].departures[i].arrival.estimated;
+                        var scheduledTime = compileDepartures.stops[0].departures[i].arrival.scheduled;
+
+                        if (departuredTime === null) {
+                            document.getElementById("route_depart3").innerHTML = ` ${scheduledTime} (scheduled)`;
+                            document.getElementById("route_depart3").style.color = "black";
+                        }
+                        else if (scheduledTime === null) {
+                            continue
+                        }
+                        else {
+                            document.getElementById("route_depart3").innerHTML = ` ${departuredTime} <span id="delay3">()</span>`;
+                            document.getElementById("route_depart3").style.color = "darkgreen";
+
+                            if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay >= 60) {
+                                document.getElementById("delay3").innerHTML = `(${Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60)} min late)`;
+                                document.getElementById("delay3").style.color = "crimson";
+                            }
+                            else if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay === 0) {
+                                document.getElementById("delay3").innerHTML = `(on time)`;
+                                document.getElementById("delay3").style.color = "green";
+                            }
+                            else if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay <= 0) {
+                                document.getElementById("delay3").innerHTML = `(${Math.abs(Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60))} min early)`;
+                                document.getElementById("delay3").style.color = "skyblue";
+                            }
+                            else {
+                                document.getElementById("delay3").innerHTML = "(no data)";
+                                document.getElementById("delay3").style.color = "black";
+                            }
+                        }
+
+                        document.getElementById("line_for_each_departure3").innerHTML = routeShort;
+                        document.getElementById("line_for_each_departure3").style.backgroundColor = `#${routeColor}40`;
+                        document.getElementById("line_for_each_departure3").style.border = `1px solid #${routeColor}`;
+                        document.getElementById("line_for_each_departure3").style.color = `#${routeColorInText}`;
+                        document.getElementById("route_headsign3").innerHTML = `<p id="isscroll3">${routeFullName} ${routeLong}</p>`;
+
+                        if (deviceWidth <= 520 && document.getElementById("route_headsign2").innerText.length > 35) {
+                            console.log("Scroll?")
+                            document.getElementById("isscroll3").style.transform = "translateX(200vw)";
+                            document.getElementById("isscroll3").style.animation = "my-animation-6 10s linear infinite";
+                        }
+
+                        var departureClone = document.getElementById("line_for_departure3");
+                        var listToInsertClone = departureClone.cloneNode(true);
+                        document.getElementById("list_of_departures3").appendChild(listToInsertClone);
+
+                        var alertList_byAgency = compileDepartures.stops[0].departures[i].trip.route.agency.alerts;
+                        var alertList_byStop = compileDepartures.stops[0].alerts;
+                        
+                        for (var j = 0; j < alertList_byAgency.length; j++) {
+                            if (counter_b === alertList_byAgency.length) {
+                                break;
+                            }
+                            document.getElementById("alert_entity3").innerHTML = `<p>${alertList_byAgency[j].description_text[0].text}</p>`;
+                            console.log(document.getElementById("alert_entity3").textContent);
+
+                            var alertClone = document.getElementById("alert_entity3");
+                            var listToInsertAlertClone = alertClone.cloneNode(true);
+                            document.getElementById("list_of_alerts3").appendChild(listToInsertAlertClone);
+                            console.log(counter);
+                            counter_b += 1
+                        }
+
+                        for (var k = 0; k < alertList_byStop.length; k++) {
+                            if (counter === alertList_byStop.length) {
+                                break;
+                            }
+                            document.getElementById("alert_entity3").innerHTML = `<p>${alertList_byStop[k].description_text[0].text}</p>`;
+
+                            var alertClone = document.getElementById("alert_entity3");
+                            var listToInsertAlertClone = alertClone.cloneNode(true);
+                            document.getElementById("list_of_alerts3").appendChild(listToInsertAlertClone);
+                            console.log(counter);
+                            counter += 1
+                        }
+                    }
+
+                    var departuresAll = document.getElementById("list_of_departures3").children;
+                    document.querySelector("#list_of_departures3").removeChild(departuresAll[0]);
+
+                    var alertsAll = document.getElementById("list_of_alerts3").children;
+                    document.querySelector("#list_of_alerts3").removeChild(alertsAll[0]);
+                }
+            }
+            thirdDepartureRequest.send();
         }
 
         function gatherDepartures(stopCode) {
@@ -465,6 +619,17 @@
             document.getElementById("stopname").innerHTML = "---";
             document.getElementById("list_of_alerts2").innerHTML = "<li id='alert_entity2'></li>"
             document.getElementById("alert_entity2").innerHTML = `<p>Once you typed down the station by their ID, the advisories will display here.</p>`
+            counter = 0;
+            counter_b = 0;
+        }
+
+        function clearAll3() {
+            document.getElementById("list_of_departures3").innerHTML = `
+            <li id="line_for_departure3"><div class="wrapper_for_departure3"><div id="line_for_each_departure3">-</div> <span id="route_headsign3">(None)</span> <span id="route_depart3">Enter a specific station by their stop ID</span></div></li>
+            `
+            document.getElementById("stopname3").innerHTML = "---";
+            document.getElementById("list_of_alerts3").innerHTML = "<li id='alert_entity3'></li>"
+            document.getElementById("alert_entity3").innerHTML = `<p>Once you typed down the station by their ID, the advisories will display here.</p>`
             counter = 0;
             counter_b = 0;
         }
