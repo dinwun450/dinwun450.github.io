@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcyclopedia San Francisco: Santa Clara Valley Transportation Authority</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="vta.css">
+    <script src="vta.js"></script>
+</head>
+
+<body>
+    <nav id="navbar">
+        <a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html" class="brand">
+            <!--<i class="fa-solid fa-earth-americas"></i>-->
+            <span id="globe"><i class="fa-solid fa-earth-americas"></i></span>
+            <span>Transcyclopedia</span>
+        </a>
+        <ul class="nav-links">
+            <input type="checkbox" id="checkbox_toggle" />
+            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+            <div class="menu">
+                <li style="--i:0;">
+                    <a href="#">
+                        <span>Menu</span>
+                        <span><ion-icon name="home-outline"></ion-icon></span>
+                    </a>
+                </li>
+                <li style="--i:1;">
+                    <a href="#">
+                        <span>Agency</span>
+                        <span><ion-icon name="business-outline"></ion-icon></span>
+                    </a>
+                </li>
+                <li style="--i:2;">
+                    <a href="#">
+                        <span>Alerts</span>
+                        <span><ion-icon name="warning-outline"></ion-icon></span>
+                    </a>
+                </li>
+                <li style="--i:3;">
+                    <a href="#">
+                        <span>Lines</span>
+                        <span><ion-icon name="map-outline"></ion-icon></span>
+                    </a>
+                </li>
+                <li style="--i:4;">
+                    <a href="#">
+                        <span>About</span>
+                        <span><ion-icon name="information-circle-outline"></ion-icon></span>
+                    </a>
+                </li>
+            </div>
+        </ul>
+    </nav>
+    <div class="main">
+        <div class="topfooter">
+            <h1 style="color: white;" id="titleofsection">Santa Clara Valley Transportation Authority</h1>
+        </div>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'info')" id="defaulttab">About VTA</button>
+            <button class="tablinks" onclick="openTab(event, 'lines')">Lines</button>
+            <button class="tablinks" onclick="openTab(event, 'departures_lr')">VTA Light Rail</button>
+            <button class="tablinks" onclick="openTab(event, 'departures_bus')">Bus</button>
+        </div>
+
+        <div id="info" class="tabcontent">
+            <h2>About VTA</h2>
+            <p id="about_content">
+                The Santa Clara Valley Transportation Authority, more commonly known simply as the Valley Transportation Authority (VTA), 
+                is a special district responsible for public transit services, congestion management, specific highway improvement projects, 
+                and countywide transportation planning for Santa Clara County, California. It serves San Jose, California, and the surrounding 
+                Silicon Valley. It is one of the governing parties for the Caltrain commuter rail line that serves the county. In 2022, the 
+                VTA's public transportation services had a combined ridership of 21,381,600, or about 85,800 per weekday as of the second quarter of 2023.
+                <a href="https://en.wikipedia.org/wiki/Santa_Clara_Valley_Transportation_Authority">Wikipedia</a>
+            </p>
+        </div>
+        <div id="lines" class="tabcontent">
+            <h2>Lines</h2>
+            <h4 class="buslines">Bus</h3>
+            <ul id="vta_lines">
+                <li id="each_line">
+                    <div id="line">-</div>
+                    <div id="route_desc">(Loading)</div>
+                </li>
+            </ul>
+            <h4 class="lrlines">Light Rail</h4>
+            <ul id="vta_lr_lines">
+                <li id="each_line_lr">
+                    <div id="line_lr">-</div>
+                    <div id="route_desc_lr">(Loading)</div>
+                </li>
+            </ul>
+        </div>
+        <div id="departures_lr" class="tabcontent">
+            <h2>VTA Light Rail</h2>
+            <input type="text" placeholder="Search for a station.." onkeydown="" id="stationgetter"
+                autocomplete="off">
+            <p class="headerforstop">Departures for &nbsp;<span id="stationname">---</span></p>
+            <ul id="list_of_departures">
+                <li id="line_for_departure">
+                    <div class="wrapper_for_departure">
+                        <div id="line_for_each_departure">-</div> <div id="route_headsign"><p id="isscroll">(None)</p></div> <span id="route_depart">Enter a specific station by their number ID</span>
+                    </div>
+                </li>
+            </ul>
+            <h3>Alerts Today</h3>
+            <ul id="list_of_alerts">
+                <li id="alert_entity">
+                    <p>Once you typed down the station by their ID, the advisories will display here.</p>
+                </li>
+            </ul>
+            <button id="clearall" onclick="">Clear</button>
+        </div>
+        <div id="departures_bus" class="tabcontent">
+            <h2>Bus</h2>
+            <input type="text" placeholder="Search for a station.." onkeydown="" id="busgetter"
+                autocomplete="off">
+            <p class="headerforstop2">Departures for &nbsp;<span id="stopname">---</span></p>
+            <ul id="list_of_departures2">
+                <li id="line_for_departure2">
+                    <div class="wrapper_for_departure2">
+                        <div id="line_for_each_departure2">-</div> <div id="route_headsign2"><p id="isscroll2">(None)</p></div> <span id="route_depart2">Enter a specific station by their stop ID</span>
+                    </div>
+                </li>
+            </ul>
+            <h3>Alerts Today</h3>
+            <ul id="list_of_alerts2">
+                <li id="alert_entity2">
+                    <p>Once you typed down the station by their ID, the advisories will display here.</p>
+                </li>
+            </ul>
+            <button id="clearall2" onclick="">Clear</button>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        let lastScrollTop = 0;
+        var deviceWidth = window.innerWidth;
+        var counter = 0;
+        var counter_b = 0;
+
+        navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                navbar.classList.add("icon");
+            } else {
+                navbar.classList.remove("icon");
+            }
+            lastScrollTop = scrollTop;
+        })
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("defaulttab").click();
+    </script>
+</body>
+
+</html>
