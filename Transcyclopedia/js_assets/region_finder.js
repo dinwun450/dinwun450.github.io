@@ -8,7 +8,7 @@ function changeSwitch(c) {
             document.querySelector(".optionsfortransit").innerHTML = `
             <li><a href="https://dinwun450.github.io/Transcyclopedia/sanfrancisco/bart/bart.html" id="bart"><img src="img_assets/bart_logo.svg" style="width: 50px; height: auto;"></a></li>
             <li><a href="https://dinwun450.github.io/Transcyclopedia/sanfrancisco/muni/muni.html" id="muni"><img src="img_assets/muni_logo.svg" style="width: 50px; height: auto;"></a></li>
-            <li><a href="#" id="vta"><img src="img_assets/vta_logo.png" style="width: 50px; height: auto;"></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/sanfrancisco/vta/vta.html" id="vta"><img src="img_assets/vta_logo.png" style="width: 50px; height: auto;"></a></li>
             <li><a href="#" id="ferry"><i class="fa-solid fa-ferry" style="font-size: 35px;"></i></a></li>
             <li><a href="#" id="bus"><i class="fa-solid fa-bus" style="font-size: 35px;"></i></a></li>
             <li><a href="#" id="train"><i class="fa-solid fa-train" style="font-size: 35px;"></i></a></li>
