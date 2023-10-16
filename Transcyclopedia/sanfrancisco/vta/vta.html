@@ -115,7 +115,7 @@
         </div>
         <div id="departures_bus" class="tabcontent">
             <h2>Bus</h2>
-            <input type="text" placeholder="Search for a station.." onkeydown="" id="busgetter"
+            <input type="text" placeholder="Search for a station.." onkeydown="keydownbus()" id="busgetter"
                 autocomplete="off">
             <p class="headerforstop2">Departures for &nbsp;<span id="stopname">---</span></p>
             <ul id="list_of_departures2">
@@ -131,7 +131,7 @@
                     <p>Once you typed down the station by their ID, the advisories will display here.</p>
                 </li>
             </ul>
-            <button id="clearall2" onclick="">Clear</button>
+            <button id="clearall2" onclick="clearAllDepartures2()">Clear</button>
         </div>
     </div>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -209,7 +209,6 @@
                         var route_color = compileDepartures.stops[0].departures[i].trip.route.route_color;
                         var route_text_color = compileDepartures.stops[0].departures[i].trip.route.route_text_color;
                         var route_desc_short = compileDepartures.stops[0].departures[i].trip.route.route_short_name;
-                        var route_desc_long = compileDepartures.stops[0].departures[i].trip.route.route_headsign;
                         var time_realtime = compileDepartures.stops[0].departures[i].arrival.estimated;
                         var time_scheduled = compileDepartures.stops[0].departures[i].arrival.scheduled;
                         var headsign_route = compileDepartures.stops[0].departures[i].trip.trip_headsign;
@@ -247,7 +246,7 @@
                         document.getElementById("line_for_each_departure").style.backgroundColor = `#${route_color}40`;
                         document.getElementById("line_for_each_departure").style.border = `1px solid #${route_color}`;
                         document.getElementById("line_for_each_departure").style.color = `#${route_text_color}`;
-                        document.getElementById("route_headsign").innerHTML = `<p id="isscroll">${headsign_route} ${route_desc_long}</p>`;
+                        document.getElementById("route_headsign").innerHTML = `<p id="isscroll">${headsign_route}</p>`;
 
                         if (deviceWidth <= 520 && document.getElementById("route_headsign").innerText.length > 35) {
                             console.log("Scroll?")
@@ -307,6 +306,149 @@
             document.getElementById("stationname").innerHTML = "---";
             document.getElementById("list_of_alerts").innerHTML = "<li id='alert_entity'></li>"
             document.getElementById("alert_entity").innerHTML = `<p>Once you typed down the station by their ID, the advisories will display here.</p>`
+            counter = 0;
+            counter_b = 0;
+        }
+
+        function keydownbus(e) {
+            e = e || window.event;
+            if (e.keyCode === 13) {
+                callStopBus();
+            }
+        }
+
+        function callStopBus() {
+            var obtainValue = document.getElementById("busgetter").value;
+            var stopCall = new XMLHttpRequest();
+            stopCall.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q9-vta&served_by_route_type=3&stop_id=${obtainValue}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+            stopCall.onreadystatechange = function() {
+                if (stopCall.readyState === 4 && stopCall.status === 200) {
+                    var stopId = JSON.parse(stopCall.responseText);
+                    
+                    if (stopId.stops.length === 0) {
+                        document.getElementById("route_depart2").innerHTML = "There's no stop departures at this moment.";
+                    }
+                    else {
+                        var stopIdSpecified = stopId.stops[0].stop_code;
+                        var stopName = stopId.stops[0].stop_name;
+                        
+                        document.getElementById("stopname").innerHTML = stopName;
+                        gatherDeparturesBus(stopIdSpecified);
+                    }
+                }
+            }
+            stopCall.send();
+        }
+
+        function gatherDeparturesBus(stopID_businput) {
+            var departureRequest = new XMLHttpRequest();
+            departureRequest.open("GET", `https://transit.land/api/v2/rest/stops/f-sf~bay~area~rg:${stopID_businput}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            departureRequest.onreadystatechange = function() {
+                if (departureRequest.readyState === 4 && departureRequest.status === 200) {
+                    var compileDepartures = JSON.parse(departureRequest.responseText);
+
+                    for (var i = 0; i < compileDepartures.stops[0].departures.length; i++) {
+                        var route_color = compileDepartures.stops[0].departures[i].trip.route.route_color;
+                        var route_text_color = compileDepartures.stops[0].departures[i].trip.route.route_text_color;
+                        var route_desc_short = compileDepartures.stops[0].departures[i].trip.route.route_short_name;
+                        // var route_desc_long = compileDepartures.stops[0].departures[i].trip.route.route_long_name;
+                        var time_realtime = compileDepartures.stops[0].departures[i].arrival.estimated;
+                        var time_scheduled = compileDepartures.stops[0].departures[i].arrival.scheduled;
+                        var headsign_route = compileDepartures.stops[0].departures[i].trip.trip_headsign;
+
+                        if (time_realtime === null) {
+                            document.getElementById("route_depart2").innerHTML = ` ${time_scheduled} (scheduled)`;
+                            document.getElementById("route_depart2").style.color = "black";
+                        }
+                        else if (time_scheduled === null) {
+                            continue;
+                        }
+                        else {
+                            document.getElementById("route_depart2").innerHTML = ` ${time_realtime} <span id="delay2">()</span>`;
+                            document.getElementById("route_depart2").style.color = "darkgreen";
+
+                            if (time_realtime = compileDepartures.stops[0].departures[i].arrival.delay >= 60) {
+                                document.getElementById("delay2").innerHTML = `(${Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60)} min late)`;
+                                document.getElementById("delay2").style.color = "crimson";
+                            }
+                            else if (time_realtime = compileDepartures.stops[0].departures[i].arrival.delay === 0) {
+                                document.getElementById("delay2").innerHTML = `(on time)`;
+                                document.getElementById("delay2").style.color = "green";
+                            }
+                            else if (time_realtime = compileDepartures.stops[0].departures[i].arrival.delay <= 0) {
+                                document.getElementById("delay2").innerHTML = `(${Math.abs(Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60))} min early)`;
+                                document.getElementById("delay2").style.color = "skyblue";
+                            }
+                            else {
+                                document.getElementById("delay2").innerHTML = "(no data)";
+                                document.getElementById("delay2").style.color = "black";
+                            }
+                        }
+
+                        document.getElementById("line_for_each_departure2").innerHTML = route_desc_short;
+                        document.getElementById("line_for_each_departure2").style.backgroundColor = `#${route_color}40`;
+                        document.getElementById("line_for_each_departure2").style.border = `1px solid #${route_color}`;
+                        document.getElementById("line_for_each_departure2").style.color = `#${route_text_color}`;
+                        document.getElementById("route_headsign2").innerHTML = `<p id="isscroll2">${headsign_route}</p>`;
+
+                        if (deviceWidth <= 520 && document.getElementById("route_headsign2").innerText.length > 35) {
+                            console.log("Scroll?")
+                            document.getElementById("isscroll2").style.transform = "translateX(200vw)";
+                            document.getElementById("isscroll2").style.animation = "my-animation-6 10s linear infinite";
+                        }
+
+                        var departureClone = document.getElementById("line_for_departure2");
+                        var listToInsertClone = departureClone.cloneNode(true);
+                        document.getElementById("list_of_departures2").appendChild(listToInsertClone);
+
+                        var alertList_byAgency = compileDepartures.stops[0].departures[i].trip.route.agency.alerts;
+                        var alertList_byStop = compileDepartures.stops[0].alerts;
+
+                        for (var j = 0; j < alertList_byAgency.length; j++) {
+                            if (counter_b === alertList_byAgency.length) {
+                                break;
+                            }
+                            document.getElementById("alert_entity2").innerHTML = `<p>${alertList_byAgency[j].description_text[0].text}</p>`;
+                            console.log(document.getElementById("alert_entity2").textContent);
+
+                            var alertClone = document.getElementById("alert_entity2");
+                            var listToInsertAlertClone = alertClone.cloneNode(true);
+                            document.getElementById("list_of_alerts2").appendChild(listToInsertAlertClone);
+                            console.log(counter);
+                            counter_b += 1
+                        }
+
+                        for (var k = 0; k < alertList_byStop.length; k++) {
+                            if (counter === alertList_byStop.length) {
+                                break;
+                            }
+                            document.getElementById("alert_entity2").innerHTML = `<p>${alertList_byStop[k].description_text[0].text}</p>`;
+
+                            var alertClone = document.getElementById("alert_entity2");
+                            var listToInsertAlertClone = alertClone.cloneNode(true);
+                            document.getElementById("list_of_alerts2").appendChild(listToInsertAlertClone);
+                            console.log(counter);
+                            counter += 1
+                        }
+                    }
+
+                    var departuresAll = document.getElementById("list_of_departures2").children;
+                    document.querySelector("#list_of_departures2").removeChild(departuresAll[0]);
+
+                    var alertsAll = document.getElementById("list_of_alerts2").children;
+                    document.querySelector("#list_of_alerts2").removeChild(alertsAll[0]);
+                }
+            }
+            departureRequest.send();
+        }
+
+        function clearAllDepartures2() {
+            document.getElementById("list_of_departures2").innerHTML = `
+                <li id="line_for_departure2"><div class="wrapper_for_departure2"><div id="line_for_each_departure2">-</div> <span id="route_headsign2">(None)</span> <span id="route_depart2">Enter a specific station by their stop ID</span></div></li>
+            `
+            document.getElementById("stopname").innerHTML = "---";
+            document.getElementById("list_of_alerts2").innerHTML = "<li id='alert_entity2'></li>"
+            document.getElementById("alert_entity2").innerHTML = `<p>Once you typed down the station by their ID, the advisories will display here.</p>`
             counter = 0;
             counter_b = 0;
         }
