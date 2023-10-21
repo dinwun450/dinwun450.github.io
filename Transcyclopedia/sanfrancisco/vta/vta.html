@@ -141,6 +141,7 @@
         var deviceWidth = window.innerWidth;
         var counter = 0;
         var counter_b = 0;
+        var counter_c = 0;
 
         navbar = document.getElementById("navbar");
         window.addEventListener("scroll", function () {
@@ -340,12 +341,19 @@
             stopCall.send();
         }
 
+        function removeDuplicates(arr) {
+            return arr.filter((item,
+                index) => arr.indexOf(item) === index);
+        }
+
+        var alertList_bySpecificRoute = [];
         function gatherDeparturesBus(stopID_businput) {
             var departureRequest = new XMLHttpRequest();
             departureRequest.open("GET", `https://transit.land/api/v2/rest/stops/f-sf~bay~area~rg:${stopID_businput}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
             departureRequest.onreadystatechange = function() {
                 if (departureRequest.readyState === 4 && departureRequest.status === 200) {
                     var compileDepartures = JSON.parse(departureRequest.responseText);
+                    console.log(compileDepartures);
 
                     for (var i = 0; i < compileDepartures.stops[0].departures.length; i++) {
                         var route_color = compileDepartures.stops[0].departures[i].trip.route.route_color;
@@ -404,6 +412,13 @@
                         var alertList_byAgency = compileDepartures.stops[0].departures[i].trip.route.agency.alerts;
                         var alertList_byStop = compileDepartures.stops[0].alerts;
 
+                        for (var alr = 0; alr < compileDepartures.stops[0].departures[i].trip.route.alerts.length; alr++) {
+                            var alertList_bySpecificRouteHeadText = `<b>${compileDepartures.stops[0].departures[i].trip.route.alerts[alr].header_text[0].text}</b> <br> ${compileDepartures.stops[0].departures[i].trip.route.alerts[alr].description_text[0].text}`
+
+                            alertList_bySpecificRoute.push(alertList_bySpecificRouteHeadText);
+                            console.log(alertList_bySpecificRoute);
+                        }
+
                         for (var j = 0; j < alertList_byAgency.length; j++) {
                             if (counter_b === alertList_byAgency.length) {
                                 break;
@@ -432,6 +447,22 @@
                         }
                     }
 
+                    alertList_bySpecificRoute = removeDuplicates(alertList_bySpecificRoute)
+                    console.log("Modified: ", alertList_bySpecificRoute)
+
+                    for (var l = 0; l < alertList_bySpecificRoute.length; l++) {
+                        if (counter_c === alertList_bySpecificRoute.length) {
+                            break;
+                        }
+                        document.getElementById("alert_entity2").innerHTML = `<p>${alertList_bySpecificRoute[l]}</p>`;
+
+                        var alertClone = document.getElementById("alert_entity2");
+                        var listToInsertAlertClone = alertClone.cloneNode(true);
+                        document.getElementById("list_of_alerts2").appendChild(listToInsertAlertClone);
+                        console.log(counter_c);
+                        counter_c += 1
+                    }
+
                     var departuresAll = document.getElementById("list_of_departures2").children;
                     document.querySelector("#list_of_departures2").removeChild(departuresAll[0]);
 
@@ -451,6 +482,8 @@
             document.getElementById("alert_entity2").innerHTML = `<p>Once you typed down the station by their ID, the advisories will display here.</p>`
             counter = 0;
             counter_b = 0;
+            counter_c = 0;
+            alertList_bySpecificRoute = [];
         }
     </script>
 </body>
