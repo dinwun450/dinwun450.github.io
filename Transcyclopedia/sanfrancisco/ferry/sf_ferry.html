@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcyclopedia San Francisco: San Francisco Ferries</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="sf_ferry.css">
+    <script src="js_assets/sf_ferry_agency.js"></script>
+</head>
+<body>
+    <nav id="navbar">
+        <a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html" class="brand">
+            <!--<i class="fa-solid fa-earth-americas"></i>-->
+            <span id="globe"><i class="fa-solid fa-earth-americas"></i></span>
+            <span>Transcyclopedia</span>
+        </a>
+        <ul class="nav-links">
+            <input type="checkbox" id="checkbox_toggle" />
+            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+            <div class="menu">
+                <li style="--i:0;">
+                    <a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html">
+                        <span>Menu</span>
+                        <span><ion-icon name="home-outline"></ion-icon></span>
+                    </a>
+                </li>
+                <li style="--i:1;">
+                    <a href="#">
+                        <span>Agency</span>
+                        <span><ion-icon name="business-outline"></ion-icon></span>
+                    </a>
+                </li>
+                <li style="--i:2;">
+                    <a href="#">
+                        <span>Alerts</span>
+                        <span><ion-icon name="warning-outline"></ion-icon></span>
+                    </a>
+                </li>
+                <li style="--i:3;">
+                    <a href="#">
+                        <span>Lines</span>
+                        <span><ion-icon name="map-outline"></ion-icon></span>
+                    </a>
+                </li>
+                <li style="--i:4;">
+                    <a href="#">
+                        <span>About</span>
+                        <span><ion-icon name="information-circle-outline"></ion-icon></span>
+                    </a>
+                </li>
+            </div>
+        </ul>
+    </nav>
+    <div class="main">
+        <div class="topfooter">
+            <h1 style="color: white;" id="titleofsection">SF Ferries</h1>
+        </div>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'info')" id="defaulttab">Ferry Info</button>
+            <button class="tablinks" onclick="openTab(event, 'lines')">Routes</button>
+            <button class="tablinks" onclick="openTab(event, 'departures')">Departures</button>
+        </div>
+        <div id="info" class="tabcontent">
+            <h2>Ferry Info</h2>
+            <div class="ferryagencies">
+                <select name="" id="ferry_agency" onchange="changeAgency(value);">
+                    <option value="prompt">Select Ferry Agency</option>
+                    <option value="sfbayferry">SF Bay Ferry</option>
+                    <option value="ggf">Golden Gate Ferry</option>
+                </select>
+                <div class="about_agency">
+                    
+                </div>
+            </div>
+        </div>
+        <div id="lines" class="tabcontent">
+            <h2>Ferry Routes</h2>
+            div.
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        let lastScrollTop = 0;
+        var deviceWidth = window.innerWidth;
+        var counter = 0;
+        var counter_b = 0;
+        var counter_c = 0;
+
+        navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                navbar.classList.add("icon");
+            } else {
+                navbar.classList.remove("icon");
+            }
+            lastScrollTop = scrollTop;
+        })
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("defaulttab").click();
+    </script>
+</body>
+</html>
