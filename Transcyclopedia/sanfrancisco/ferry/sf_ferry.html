@@ -70,13 +70,25 @@
                     <option value="ggf">Golden Gate Ferry</option>
                 </select>
                 <div class="about_agency">
-                    
+                    <p style="text-align: center; color: white; margin-top: 10px;">Select an Agency from the dropdown menu above.</p>
                 </div>
             </div>
         </div>
         <div id="lines" class="tabcontent">
             <h2>Ferry Routes</h2>
-            div.
+            <div class="ferry_agency_routes">
+                <select name="" id="ferry_routes" onchange="changeRouteByAgency(value);">
+                    <option value="prompt">Select Ferry Agency</option>
+                    <option value="sfbayferry">SF Bay Ferry</option>
+                    <option value="ggf">Golden Gate Ferry</option>
+                </select>
+                <ul class="lines">
+                    <li id="each_line">
+                        <div id="line">-</div>
+                        <div id="route_desc">Select a Ferry Agency</div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

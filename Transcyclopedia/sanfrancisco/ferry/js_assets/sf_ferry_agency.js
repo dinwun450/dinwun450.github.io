@@ -16,6 +16,99 @@ function changeAgency(a) {
             `
             break;
         default:
-            document.querySelector(".about_agency").innerHTML = "";
+            document.querySelector(".about_agency").innerHTML = "<p style='text-align: center; color: white; margin-top: 10px;'>Select an Agency from the dropdown menu above.</p>";
+    }
+}
+
+function changeRouteByAgency(r) {
+    var agency_by_route = r;
+    console.log(agency_by_route);
+
+    switch (agency_by_route) {
+        case "sfbayferry":
+            document.querySelector(".lines").innerHTML = `
+                <li id="each_line">
+                    <div id="line">-</div>
+                    <div id="route_desc">Select a Ferry Agency</div>
+                </li>
+            `
+            function showRoutes() {
+                var routeCall = new XMLHttpRequest();
+                routeCall.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p-sanfranciscobayferry&limit=700");
+                routeCall.onreadystatechange = function() {
+                    if (routeCall.readyState === 4 && routeCall.status === 200) {
+                        var routeResult = JSON.parse(routeCall.responseText);
+                
+                        for (var i=0; i<routeResult.routes.length; i++) {
+                            var route_short_name = routeResult.routes[i].route_short_name;
+                            var route_long_name = routeResult.routes[i].route_long_name;
+                            var route_color = routeResult.routes[i].route_color;
+                            var route_color_text = routeResult.routes[i].route_text_color;
+
+                            document.getElementById("line").innerHTML = route_short_name;
+                            document.getElementById("route_desc").innerHTML = route_long_name;
+                            document.getElementById("line").style.backgroundColor = `#${route_color}40`;
+                            document.getElementById("line").style.border = `1px solid #${route_color}`;
+                            document.getElementById("line").style.color = `#${route_color_text}`;
+
+                            var listToClone = document.getElementById("each_line");
+                            var listCloned = listToClone.cloneNode(true);
+                            document.querySelector(".lines").append(listCloned);
+                        }
+
+                        var allLines = document.querySelector(".lines").children;
+                        document.querySelector(".lines").removeChild(allLines[0]);
+                    }
+                }
+                routeCall.send();
+            }
+            showRoutes();
+            break;
+        case "ggf":
+            document.querySelector(".lines").innerHTML = `
+                <li id="each_line">
+                    <div id="line">-</div>
+                    <div id="route_desc">Select a Ferry Agency</div>
+                </li>
+            `
+            function showRoutesGGF() {
+                var routeCall = new XMLHttpRequest();
+                routeCall.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8z-goldengateferry&limit=700");
+                routeCall.onreadystatechange = function() {
+                    if (routeCall.readyState === 4 && routeCall.status === 200) {
+                        var routeResult = JSON.parse(routeCall.responseText);
+                
+                        for (var i=0; i<routeResult.routes.length; i++) {
+                            var route_short_name = routeResult.routes[i].route_short_name;
+                            var route_long_name = routeResult.routes[i].route_long_name;
+                            var route_color = routeResult.routes[i].route_color;
+                            var route_color_text = routeResult.routes[i].route_text_color;
+
+                            document.getElementById("line").innerHTML = route_short_name;
+                            document.getElementById("route_desc").innerHTML = route_long_name;
+                            document.getElementById("line").style.backgroundColor = `#${route_color}40`;
+                            document.getElementById("line").style.border = `1px solid #${route_color}`;
+                            document.getElementById("line").style.color = `#${route_color_text}`;
+
+                            var listToClone = document.getElementById("each_line");
+                            var listCloned = listToClone.cloneNode(true);
+                            document.querySelector(".lines").append(listCloned);
+                        }
+
+                        var allLines = document.querySelector(".lines").children;
+                        document.querySelector(".lines").removeChild(allLines[0]);
+                    }
+                }
+                routeCall.send();
+            }
+            showRoutesGGF();
+            break;
+        default:
+            document.querySelector(".lines").innerHTML = `
+            <li id="each_line">
+                <div id="line">-</div>
+                <div id="route_desc">Select a Ferry Agency</div>
+            </li>
+            `
     }
 }
