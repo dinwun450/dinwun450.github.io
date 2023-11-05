@@ -296,13 +296,13 @@ h2 {
     overflow-y: scroll;
 }
 
-#info::-webkit-scrollbar, #lines::-webkit-scrollbar, #departures::-webkit-scrollbar {
+#info::-webkit-scrollbar, #lines::-webkit-scrollbar, #departures::-webkit-scrollbar, #list_of_departures::-webkit-scrollbar {
     width: 5px;
     position: relative;
     right: 20px;
 }
 
-#info::-webkit-scrollbar-track, #lines::-webkit-scrollbar-track, #departures::-webkit-scrollbar-track {
+#info::-webkit-scrollbar-track, #lines::-webkit-scrollbar-track, #departures::-webkit-scrollbar-track, #list_of_departures::-webkit-scrollbar-track {
     border-radius: 10px;
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -310,7 +310,7 @@ h2 {
     right: 2px;
 }
 
-#info::-webkit-scrollbar-thumb, #lines::-webkit-scrollbar-thumb, #departures::-webkit-scrollbar-thumb {
+#info::-webkit-scrollbar-thumb, #lines::-webkit-scrollbar-thumb, #departures::-webkit-scrollbar-thumb, #list_of_departures::-webkit-scrollbar-thumb {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     background: rgba( 255, 255, 255, 0.25 );
     border-radius: 10px;
@@ -366,7 +366,7 @@ h3 {
     margin-top: 10px;
 }
 
-#line {
+#line, #line_for_each_departure {
     display: inline-block;
     width: fit-content;
     padding-left: 5px;
@@ -385,6 +385,100 @@ h3 {
     float: right;
     position: relative;
     left: 10px;
+}
+
+#departures input {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: #33333340;
+    border: 1px solid #33333340;
+    color: white;
+    padding-left: 10px;
+}
+
+#departures input::placeholder {
+    color: white;
+}
+
+#departures input:active {
+    outline: none;
+}
+
+.headerforstop {
+    width: 100%;
+    height: 50px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-top: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 10px;
+}
+
+#list_of_departures {
+    width: 100%;
+    height: 300px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-bottom: 10px;
+    overflow-y: scroll;
+    display: inline-block;
+}
+
+#line_for_departure {
+    width: 96%;
+    height: fit-content;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 10px;
+}
+
+#route_headsign {
+    position: relative;
+    display: inline-block;
+}
+
+#route_depart {
+    float: right;
+    position: relative;
+    right: 3px;
+}
+
+#list_of_alerts {
+    display: block;
+}
+
+#alert_entity {
+    width: 100%;
+    height: fit-content;
+    padding: 20px;
+    margin-top: 10px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#clearall {
+    width: 100%;
+    height: 30px;
+    border-radius: 15px;
+    background: #333333f7;
+    font-size: 1.5em;
+    border: none;
+    color: white;
+    margin-bottom: 25px;
 }
 
 @media (max-width: 800px) {

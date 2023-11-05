@@ -92,6 +92,22 @@
         </div>
         <div id="departures" class="tabcontent">
             <h2>Departures</h2>
+            <input type="text" placeholder="Search for a ferry terminal..." onkeydown="" id="terminalgetter" autocomplete="off">
+            <p class="headerforstop">Departures for&nbsp;<span id="terminalname">---</span></p>
+            <ul id="list_of_departures">
+                <li id="line_for_departure">
+                    <div class="wrapper_for_departure">
+                        <div id="line_for_each_departure">-</div> <div id="route_headsign"><p id="isscroll">(None)</p></div> <span id="route_depart">Enter a specific station by their station ID</span>
+                    </div>
+                </li>
+            </ul>
+            <h3>Alerts Today</h3>
+            <ul id="list_of_alerts">
+                <li id="alert_entity">
+                    <p>Once you typed down the station by their ID, the advisories will display here.</p>
+                </li>
+            </ul>
+            <button id="clearall" onclick="clearAllDepartures()">Clear</button>
         </div>
     </div>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
