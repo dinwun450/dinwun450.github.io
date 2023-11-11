@@ -316,7 +316,7 @@ h2 {
     border-radius: 10px;
 }
 
-#ferry_agency, #ferry_routes {
+#ferry_agency, #ferry_routes, #ferry_departures {
     margin-top: 10px;
     width: 100%;
     height: 30px;
