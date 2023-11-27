@@ -1,0 +1,87 @@
+@media (max-width: 988px) {
+    .left_navbar {
+        display: none;
+        width: 35%;
+        background-color: #666;
+        z-index: 2;
+    }
+
+    .light_mode .left_navbar {
+        background-color: #aaa;
+    }
+
+    .left_navbar li {
+        width: 97%;
+    }
+
+    .left_navbar li a.closebtn {
+        display: block;
+    }
+
+    .main {
+        width: 100%;
+    }
+
+    .show_and_hide_info {
+        width: 43vw;
+    }
+
+    .moreoptions {
+        display: flex;
+    }
+}
+
+@media (max-width: 784px) {
+    .time_date_weather, .routes, .transit_selection {
+        margin-left: 10px;
+    }
+
+    .toggle_light_dark, .stops_nearby {
+        margin-right: 10px;
+    }
+    .show_and_hide_info {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .toggle_light_dark {
+        display: none;
+    }
+
+    .time_date_weather, .routes, .transit_selection {
+        width: 95%;
+    }
+
+    .stops_nearby {
+        position: relative;
+        top: 63px;
+        float: none;
+        width: 95%;
+        height: 40vh;
+        margin-left: 10px;
+    }
+
+    .left_navbar {
+        width: 100%;
+    }
+
+    .light_dark_responsive {
+        display: block;
+        width: 95%;
+        text-align: center;
+        background: rgba( 255, 255, 255, 0.25 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        margin-left: 10px;
+        position: relative;
+        top: 80px;
+    }
+
+    #clickable_element {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}

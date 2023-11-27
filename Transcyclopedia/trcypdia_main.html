@@ -3,116 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transcyclopedia Main Menu</title>
+    <title>Transcyclopedia Remake</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="trcypdia_main.css">
-    <link rel="stylesheet" href="css_assets/popup_main.css">
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-    <script src="trcypdia_main.js"></script>
+    <link rel="stylesheet" href="css_assets/trcypdia_remake.css">
+    <link rel="stylesheet" href="css_assets/responsive_function.css">
     <script src="js_assets/region_finder.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css">
+    <script src="js_assets/time_date_weather_transit.js"></script>
 </head>
 <body>
-    <nav id="navbar">
-        <a href="#" class="brand">
-            <!--<i class="fa-solid fa-earth-americas"></i>-->
-            <span id="globe"><i class="fa-solid fa-earth-americas"></i></span>
-            <span>Transcyclopedia</span>
-        </a>
-        <ul class="nav-links">
-            <input type="checkbox" id="checkbox_toggle" />
-            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
-            <div class="menu">
-                <li style="--i:0;">
-                    <a href="#">
-                        <span>Menu</span>
-                        <span><ion-icon name="home-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:1;">
-                    <a href="#">
-                        <span>Agency</span>
-                        <span><ion-icon name="business-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:2;">
-                    <a href="#">
-                        <span>Alerts</span>
-                        <span><ion-icon name="warning-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:3;">
-                    <a href="#">
-                        <span>Lines</span>
-                        <span><ion-icon name="map-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:4;">
-                    <a href="#">
-                        <span>About</span>
-                        <span><ion-icon name="information-circle-outline"></ion-icon></span>
-                    </a>
-                </li>
-            </div>
-        </ul>
-    </nav>
+    <ul class="left_navbar">
+        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia</h1>
+        <li class="active"><a href="#"><i class="fa-solid fa-table-cells-large"></i>&nbsp;&nbsp;Overview</a></li>
+        <li><a href="#"><i class="fa-regular fa-map"></i>&nbsp;&nbsp;Map</a></li>
+        <li><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li><a href="#"><i class="fa-regular fa-user"></i>&nbsp;&nbsp;Agency</a></li>
+        <li><a href="#"><i class="fa-solid fa-ellipsis"></i>&nbsp;&nbsp;Other</a></li>
+        <li><a href="#"><i class="fa-solid fa-circle-info"></i>&nbsp;&nbsp;About</a></li>
+        <li><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
+        <p class="copyright">&copy; 2023 Transcyclopedia. Created by Dino Wun.</p>
+    </ul>
     <div class="main">
-        <!-- Welcome to Transcyclopedia! -->
-        <div class="scroller"><h1 style="color: white;" id="top_info">Welcome to Transcyclopedia! Today is XX/XX/XXXX, XX:XX:XX.</h1></div>
-        <div class="location">
-            <h3 style="color: white;">Nearby Departures</h3>
-            <ul class="stopsnearby">
-                <li id="locstop1">
-                    <div id="stop1"><p id="scroll_stop1"><a onclick="disableScrolling()" class="nothing" href="#popup_departure">None</a></p></div>
-                    <p id="departures1">
-                        <span id="route1" title="No route given.">-</span> <span id="departure1" title="There's no departure at this moment.">???</span><br>
-                    </p>
-                </li>
-                <li id="locstop2">
-                    <div id="stop2"><p id="scroll_stop2">None</p></div>
-                    <p id="departures2">
-                        <span id="route2" title="No route given.">-</span> <span id="departure2" title="There's no departure at this moment.">???</span><br>
-                    </p>
-                </li>
-                <li id="locstop3">
-                    <div id="stop3"><p id="scroll_stop3">None</p></div>
-                    <p id="departures3">
-                        <span id="route3" title="No route given.">-</span> <span id="departure3" title="There's no departure at this moment.">???</span><br>
-                    </p>
-                </li>
-                <li id="locstop4">
-                    <div id="stop4"><p id="scroll_stop4">None</p></div>
-                    <p id="departures4">
-                        <span id="route4" title="No route given.">-</span> <span id="departure4" title="There's no departure at this moment.">???</span><br>
-                    </p>
-                </li>
-                <li id="locstop5">
-                    <div id="stop5"><p id="scroll_stop5" title="There are no stop given in this box.">None</p></div>
-                    <p id="departures5">
-                        <span id="route5" title="No route given.">-</span> <span id="departure5" title="There's no departure at this moment.">???</span><br>
-                    </p>
-                </li>
-            </ul>
-            <div id="popup_departure" class="model">
-                <div class="content">
-                    <div class="isscroll"><h4 id="stop_name">Stop</h4></div>
-                    <div class="innerinfo">
-                        <p id="stop_id">Stop ID: ()</p>
-                        <div class="route_departures">
-                            <p style="font-weight: bold;">Route Departures</p>
-                            <ul id="overall_departures">
-                                <li id="each_departure">
-                                    <div id="routeandname"><span id="colorofroute">-</span> <span id="destination">(insertterminushere)</span> <span id="departureForEachRoute">(departurehere)</span></div> 
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <a href="#" class="close-box" onclick="enableScrolling()">×</a>
-                </div>
-            </div>
+        <div class="time_date_weather">
+            <p id="date">Day, Month DayNumber, <br> Year, ##:##:## PM</p>
+            <p id="weather"><i class="wi wi-day-sunny"></i> | ##&deg;F</p>
         </div>
-        <div class="encyclopedia_menu" style="color: white;">
-            <h3>Select a transit option:</h3>
+        <label class="toggle_light_dark">
+            <input type="checkbox" onclick="dark_or_light()">
+            <span class="slider"></span>
+        </label>
+        <div class="routes">
+            <h2>Routes Nearby <button onclick="reloader()"><i class="fa-solid fa-rotate-right"></i></button></h2>
+            <ul class="routes_near_you">
+                <li id="route_entity"><span id="route" title="No route given.">-</span> &nbsp; <span id="description" title="There's no route description.">Loading</span><br></li>
+            </ul>
+        </div>
+        <div class="transit_selection">
+            <h2>Select a Transit Mode</h2>
             <div class="optionsandregion">
                 <select name="" id="region" onchange="changeSwitch(value);">
                     <option value="prompt">Select Region</option>
@@ -148,56 +75,55 @@
                     <li><a href="#" id="bus"><i class="fa-solid fa-bus" style="font-size: 35px;"></i></a></li>
                     <li><a href="#" id="train"><i class="fa-solid fa-train" style="font-size: 35px;"></i></a></li> -->
                 </ul>
-                <div class="moreoptions"><a href="#" style="color: white;" title="Coming soon!">Other</a></div>
+                <div class="moreoptions"><a href="#" onclick="openNav()">Sidebar</a></div>
             </div>
         </div>
-        <div class="alerts">
-            <h3 style="color: white;">Alerts Nearby</h3>
-            <ul class="alertlist">
-                <li class="alertdesc">
-                    <p id="detail">Loading...</p>
-                </li>
-            </ul>
-            <a href="#" title="Coming soon!">More Alerts</a>
+        <div class="stops_nearby">
+            <h2>Stops Nearby</h2>
+            <div class="stop_info">
+                <p id="stop_name" class="stop_header">Stop Name</p>
+                <p id="distance" class="distance_sub">## km away</p>
+                <button id="detail" class="chev_detail"><i class="fa-solid fa-chevron-down"></i></button>
+                <div id="stop_description" class="show_and_hide_info">
+                    <p id="stop_id">Stop ID: </p>
+                </div>
+            </div>
         </div>
-        <div id="map">
-            <h3 style="color: white;">Map</h3>
-        </div>
-        <div class="lines">
-            <h3 style="color: white;">Lines Nearby</h3>
-            <ul class="routelist">
-                <li class="routedesc">
-                    <div id="fullroute"><div id="routeno"><p id="routefull">-</p></div> <span id="fullnameofroute">Loading...</span></div>
-                </li>
-            </ul>
-            <!-- <a href="#">Find More Routes</a> -->
+        <div class="light_dark_responsive">
+            <span id="clickable_element" onclick="dark_or_light()">Light/Dark Mode</span>
         </div>
     </div>
-    <div class="copyright"><p>&copy; 2023 Transcyclopedia. Created by Dino Wun.</p></div>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script>
-        let lastScrollTop = 0;
-        navbar = document.getElementById("navbar"); 
-        window.addEventListener("scroll", function(){
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop){
-                navbar.classList.add("icon");
-            } else {
-                navbar.classList.remove("icon");
-            }
-            lastScrollTop = scrollTop;
-        })
+        var v = null;
+    
+        function updateSize() {
+            v = window.innerWidth;
 
-        function disableScrolling() {
-            console.log("Disabled!");
-            document.querySelector(".location").style.overflowY = "hidden";
-            document.getElementById("popup_departure").style.display = "flex";
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
+            }
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
+
+        function dark_or_light() {
+            var element = document.body;
+            element.classList.toggle("light_mode");
         }
 
-        function enableScrolling() {
-            document.querySelector(".location").style.overflowY = "scroll";
-            console.log("Enabled!")
+        function reloader() {
+            location.reload();
+        }
+        
+        /* Open the sidenav */
+        function openNav() {
+            document.querySelector(".left_navbar").style.display = "block";
+        }
+
+        /* Close/hide the sidenav */
+        function closeNav() {
+            document.querySelector(".left_navbar").style.display = "none";
+            console.log(document.querySelector(".left_navbar").getAttribute("style"))
         }
     </script>
 </body>

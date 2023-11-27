@@ -1,0 +1,556 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Geologica", sans-serif;
+}
+
+body {
+    background-color: #2e2e2e;
+    /* background-color: #dedede; */
+    color: white;
+    transition: 0.4s;
+}
+
+.light_mode {
+    background-color: #dedede;
+    color: black;
+    transition: 0.4s;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient( #0398fc, #dedede);
+    z-index: -1;
+    clip-path: circle(22% at 30% 20%);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient( #dedede, #39bf59);
+    z-index: -1;
+    clip-path: circle(22% at 70% 80%);
+}
+
+.left_navbar {
+    width: 22%;
+    height: 100vh;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 16px;
+    position: sticky;
+    padding: 10px;
+    font-size: 18px;
+    list-style-type: none;
+}
+
+.left_navbar li {
+    width: 20vw;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.left_navbar li.active {
+    background-color: #0398fc98;
+}
+
+.left_navbar li.active a {
+    color: white;
+}
+
+.left_navbar li:hover:not(.active) {
+    background-color: #39bf5898;
+    transition: 0.5s;
+}
+
+.left_navbar li a.closebtn {
+    display: none;
+}
+
+.left_navbar li a {
+    display: block;
+    width: 250px;
+    text-decoration: none;
+    color: white;
+}
+
+.light_mode .left_navbar li a {
+    color: black;
+}
+
+.logo {
+    font-size: 25px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    /* color: white; */
+}
+
+.globe {
+    color: rgb(10, 161, 45);
+    font-size: 15px;
+}
+
+.copyright {
+    /* color: white; */
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.main {
+    float: right;
+    width: 78%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow-y: scroll;
+}
+
+.main::-webkit-scrollbar {
+    width: 5px;
+    position: relative;
+    right: 20px;
+}
+
+.main::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    position: relative;
+    right: 2px;
+}
+
+.main::-webkit-scrollbar-thumb {
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    background: rgba( 255, 255, 255, 0.25 );
+    border-radius: 10px;
+}
+
+.time_date_weather {
+    width: 47%;
+    margin-left: 20px;
+}
+
+#date {
+    font-size: 25px;
+    /* color: white; */
+    position: relative;
+    top: 30px;
+}
+
+#weather {
+    float: right;
+    /* color: white; */
+    font-size: 25px;
+    position: relative;
+    bottom: 10px;
+}
+
+.routes {
+    width: 47%;
+    height: 350px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    position: relative;
+    top: 20px;
+    margin-left: 20px;
+    overflow-y: scroll;
+}
+
+.routes::-webkit-scrollbar {
+    width: 5px;
+    position: relative;
+    right: 20px;
+}
+
+.routes::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    position: relative;
+    right: 2px;
+}
+
+.routes::-webkit-scrollbar-thumb {
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    background: rgba( 255, 255, 255, 0.25 );
+    border-radius: 10px;
+}
+
+.routes h2 {
+    /* color: white; */
+    padding: 10px;
+}
+
+.routes h2 button {
+    float: right;
+    font-size: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+}
+
+.light_mode .routes h2 button {
+    color: black;
+}
+
+.light_dark_responsive {
+    display: none;
+}
+
+.routes_near_you {
+    position: relative;
+    /* top: 100px; */
+    margin-left: 20px;
+    list-style-type: none;
+}
+
+.routes_near_you li {
+    margin-bottom: 10px;
+}
+
+#route {
+    display: inline-block;
+    width: fit-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 23px;
+    background: #33333340;
+    /* backdrop-filter: blur( 2px );
+    -webkit-backdrop-filter: blur( 15px ); */
+    border-radius: 5px;
+    border: 1px solid black;
+    font-size: 1em;
+    color: white;
+    text-align: center;
+}
+
+#description {
+    width: 65%;
+    /* height: 100px; */
+    /* float: right; */
+    text-align: right;
+    margin-right: 10px;
+    right: 50px;
+}
+
+.transit_selection {
+    width: 47%;
+    height: 350px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    position: relative;
+    top: 40px;
+    margin-left: 20px;
+    overflow-y: auto;
+}
+
+.transit_selection::-webkit-scrollbar {
+    width: 5px;
+    position: relative;
+    right: 20px;
+}
+
+.transit_selection::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    position: relative;
+    right: 2px;
+}
+
+.transit_selection::-webkit-scrollbar-thumb {
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    background: rgba( 255, 255, 255, 0.25 );
+    border-radius: 10px;
+}
+
+.transit_selection h2 {
+    /* color: white; */
+    padding: 10px;
+}
+
+#region {
+    width: 100%;
+    height: 30px;
+    margin: 0 auto;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: #4f39bf;
+}
+
+.optionsfortransit {
+    margin: 0 auto;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.optionsfortransit::-webkit-scrollbar {
+    display: none;
+}
+
+.optionsfortransit li {
+    width: 150px;
+    height: 100px;
+    list-style: none;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.optionsfortransit li a {
+    position: relative;
+    top: 3px;
+    text-decoration: none;
+    height: 80px;
+    display: inline-block;
+    color: #fff;
+    padding: 20px 30px;
+    z-index: 1;
+    opacity: 0.25;
+    align-items: center;
+    justify-content: center;
+}
+
+.optionsfortransit li:hover a {
+    opacity: 1;
+    color: #0398fc;
+    transition: 0.5s;
+}
+
+.optionsfortransit li:hover {
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 50px 5px #0398fc;
+    transition: 0.5s;
+}
+
+.moreoptions {
+    width: 100%;
+    height: 50px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 15px;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.moreoptions a {
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: white;
+}
+
+.light_mode .moreoptions a {
+    color: black;
+}
+
+.stops_nearby {
+    width: 47%;
+    height: 720.5px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    float: right;
+    position: absolute;
+    top: 113px;
+    right: 0;
+    margin-right: 20px;
+    overflow-y: auto;
+}
+
+.stops_nearby::-webkit-scrollbar {
+    width: 5px;
+    position: relative;
+    right: 20px;
+}
+
+.stops_nearby::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    position: relative;
+    right: 2px;
+}
+
+.stops_nearby::-webkit-scrollbar-thumb {
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    background: rgba( 255, 255, 255, 0.25 );
+    border-radius: 10px;
+}
+
+.stops_nearby h2 {
+    /* color: white; */
+    padding: 13px;
+    display: flex;
+    text-align: left;
+}
+
+.stop_info {
+    width: 100%;
+    height: fit-content;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-bottom: 10px;
+}
+
+.stop_header {
+    font-size: 20px;
+    padding-left: 20px;
+    padding-top: 15px;
+}
+
+.distance_sub {
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-bottom: 25px;
+}
+
+.show_and_hide_info {
+    width: 33vw;
+    height: fit-content;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.toggle_light_dark {
+    width: 60px;
+    height: 34px;
+    /* background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 20px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 ); */
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+}
+
+.toggle_light_dark input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.chev_detail {
+    float: right;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    bottom: 20px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 5px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.chev_detail i {
+    color: white;
+}
+
+.light_mode .chev_detail i {
+    color: #000000;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #cecece;
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 2.5px;
+    bottom: 2.5px;
+    background: rgba(255, 255, 255, 0.586);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 20px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #0000008a;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #bbbbbb11;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
