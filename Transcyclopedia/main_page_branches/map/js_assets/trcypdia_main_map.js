@@ -1,6 +1,7 @@
 window.onload = function() {
     var fullGeoJson = [];
     var fullGeoJsonRoutes = [];
+    console.log("This is the map area! We'll connect to the main page soon!")
 
     function getLocation() {
         if (navigator.geolocation) {
