@@ -451,7 +451,7 @@ body::after {
 .show_and_hide_info {
     width: 33vw;
     height: fit-content;
-    background: rgba( 255, 255, 255, 0.25 );
+    background: rgba( 255, 255, 255, 0.05 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
