@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Geologica", sans-serif;
+}
+
+body {
+    background-color: #2e2e2e;
+    /* background-color: #dedede; */
+    color: white;
+    transition: 0.4s;
+}
+
+.light_mode {
+    background-color: #dedede;
+    color: black;
+    transition: 0.4s;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient( #34bceb, #dedede);
+    z-index: -1;
+    clip-path: circle(22% at 30% 20%);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient( #dedede, #666);
+    z-index: -1;
+    clip-path: circle(22% at 70% 80%);
+}
+
+.left_navbar {
+    width: 22%;
+    height: 100vh;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 16px;
+    position: sticky;
+    padding: 10px;
+    font-size: 18px;
+    list-style-type: none;
+}
+
+.left_navbar li {
+    width: 20vw;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.left_navbar li.active {
+    background-color: #34bceb98;
+}
+
+.left_navbar li.active a {
+    color: white;
+}
+
+.left_navbar li:hover:not(.active, .x) {
+    background-color: #bbbbbb98;
+    transition: 0.5s;
+}
+
+.left_navbar li a.closebtn {
+    display: none;
+}
+
+.left_navbar li a {
+    display: block;
+    width: 250px;
+    text-decoration: none;
+    color: white;
+}
+
+.light_mode .left_navbar li a {
+    color: black;
+}
+
+.logo {
+    font-size: 25px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    /* color: white; */
+}
+
+.globe {
+    color: rgb(10, 161, 45);
+    font-size: 15px;
+}
+
+.copyright {
+    /* color: white; */
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.main {
+    float: right;
+    width: 78%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow-y: hidden;
+}
+
+.window {
+    float: right;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+#nameswitch {
+    font-size: 40px;
+    margin-left: 20px;
+    margin-top: 55px;
+}
+
+#nameswitch i {
+    display: none;
+}
+
+.info {
+    width: 50%;
+    height: 100%;
+}
+
+.info #desc {
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.info #desc a {
+    outline: none;
+    color: #34bceb;
+}
+
+.stats {
+    float: right;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.began_operation {
+    width: 96%;
+    height: 40%;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-top: 55px;
+}
+
+.began_operation h2 {
+    font-weight: normal;
+    margin-top: 60px;
+    margin-left: 20px;
+}
+
+.began_operation p {
+    margin-left: 20px;
+    font-size: 50px;
+}
+
+.no_of_lines {
+    width: 96%;
+    height: 40%;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-top: 25px;
+}
+
+.no_of_lines h2 {
+    font-weight: normal;
+    margin-top: 60px;
+    margin-left: 20px;
+}
+
+.no_of_lines p {
+    margin-left: 20px;
+    font-size: 28px;
+}
+
+.bart_lines {
+    position: relative;
+    /* top: 100px; */
+    margin-left: 20px;
+    list-style-type: none;
+    padding-top: 20px;
+}
+
+.bart_lines li {
+    margin-top: 10px;
+}
+
+#route, #line_for_each_departure {
+    display: inline-block;
+    width: fit-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 23px;
+    background: #33333340;
+    /* backdrop-filter: blur( 2px );
+    -webkit-backdrop-filter: blur( 15px ); */
+    border-radius: 5px;
+    border: 1px solid black;
+    font-size: 1em;
+    text-align: center;
+}
+
+#description {
+    width: 65%;
+    /* height: 100px; */
+    /* float: right; */
+    text-align: right;
+    margin-right: 10px;
+    right: 50px;
+}
+
+#departures input {
+    width: 95%;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 20px;
+    background-color: #eeeeee40;
+    border: 1px solid #eeeeee40;
+    color: white;
+    padding-left: 10px;
+}
+
+.light_mode #departures input {
+    color: black;
+}
+
+#departures input:active {
+    outline: none;
+}
+
+.headerforstop {
+    width: 95%;
+    height: 50px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px 10px 0 0;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-top: 10px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 10px;
+}
+
+#list_of_departures {
+    width: 95%;
+    height: 400px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 0 0 10px 10px;
+    margin-left: 20px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-bottom: 10px;
+    overflow-y: auto;
+}
+
+#list_of_departures::-webkit-scrollbar {
+    width: 5px;
+    position: relative;
+    right: 20px;
+}
+
+#list_of_departures::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    position: relative;
+    right: 2px;
+}
+
+#list_of_departures::-webkit-scrollbar-thumb {
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    background: rgba( 255, 255, 255, 0.25 );
+    border-radius: 10px;
+}
+
+#clearall {
+    width: 95%;
+    height: 30px;
+    border-radius: 5px;
+    background: rgba( 255, 255, 255, 0.25 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    font-size: 1.5em;
+    color: white;
+    margin-bottom: 25px;
+    margin-left: 20px;
+}
+
+#line_for_departure {
+    margin: 10px;
+}
+
+#route_headsign {
+    position: relative;
+    left: 5px;
+}
+
+#route_depart {
+    float: right;
+    position: relative;
+    right: 3px;
+}
+
+.alert_entity, .alert_entity_elev {
+    width: 65%;
+    height: 200px;
+    margin-left: 20px;
+    background: rgba( 255, 255, 255, 0.25 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#alert_desc, #alert_desc_elev {
+    padding: 10px;
+}
+
+#map {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    margin-top: 20px;
+}

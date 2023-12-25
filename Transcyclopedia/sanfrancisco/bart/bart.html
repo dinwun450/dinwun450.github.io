@@ -3,124 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transcyclopedia San Francisco: Bay Area Rapid Transit</title>
-    <link rel="stylesheet" href="bart.css">
-    <script src="bart.js"></script>
+    <title>Transcyclopedia {Region}: Bay Area Rapid Transit</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="css_assets/bart.css">
+    <link rel="stylesheet" href="css_assets/responsive_page.css">
+    <script src="js_assets/bart.js"></script>
 </head>
 <body>
-    <nav id="navbar">
-        <a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html" class="brand">
-            <!--<i class="fa-solid fa-earth-americas"></i>-->
-            <span id="globe"><i class="fa-solid fa-earth-americas"></i></span>
-            <span>Transcyclopedia</span>
-        </a>
-        <ul class="nav-links">
-            <input type="checkbox" id="checkbox_toggle" />
-            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
-            <div class="menu">
-                <li style="--i:0;">
-                    <a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html">
-                        <span>Menu</span>
-                        <span><ion-icon name="home-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:1;">
-                    <a href="#">
-                        <span>Agency</span>
-                        <span><ion-icon name="business-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:2;">
-                    <a href="#">
-                        <span>Alerts</span>
-                        <span><ion-icon name="warning-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:3;">
-                    <a href="#">
-                        <span>Lines</span>
-                        <span><ion-icon name="map-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:4;">
-                    <a href="#">
-                        <span>About</span>
-                        <span><ion-icon name="information-circle-outline"></ion-icon></span>
-                    </a>
-                </li>
-            </div>
-        </ul>
-    </nav>
+    <ul class="left_navbar">
+        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia SF:<br> Bay Area Rapid Transit</h1>
+        <li><a href="#"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
+        <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_bart')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About BART</a></li>
+        <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-train-subway"></i>&nbsp;&nbsp;Lines</a></li>
+        <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-clock"></i>&nbsp;&nbsp;Departures</a></li>
+        <li class="tablinks header3" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li class="tablinks header4" onclick="openTab(event, 'elevator')"><a href="#"><i class="fa-solid fa-elevator"></i>&nbsp;&nbsp;Elevator Updates</a></li>
+        <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
+        <li><a href="#" onclick="dark_or_light()"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light/Dark Mode</a></li>
+        <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
+        <p class="copyright">&copy; 2023 Transcyclopedia. Created by Dino Wun.</p>
+    </ul>
     <div class="main">
-        <div class="topfooter"><h1 style="color: white;" id="titleofsection">Bay Area Rapid Transit</h1></div>
-        <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'info')" id="defaulttab">About BART</button>
-            <button class="tablinks" onclick="openTab(event, 'lines')">Lines</button>
-            <button class="tablinks" onclick="openTab(event, 'departures')">Departures</button>
+        <div class="window" id="about_bart">
+            <div class="info">
+                <p id="nameswitch">About BART <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+                <p id="desc"></p>
+            </div>
+            <div class="stats">
+                <div class="began_operation">
+                    <h2>Began Operation:</h2>
+                    <p><b>September 11, 1972</b></p>
+                </div>
+                <div class="no_of_lines">
+                    <h2>Number of Lines:</h2>
+                    <p><b>5 Rapid Transit Lines (1 with Diesel LR Extension) <br> 1 AGT Line</b></p>
+                </div>
+            </div>
         </div>
-
-        <div id="info" class="tabcontent">
-            <h2>About BART</h2>
-            <p id="about_content">
-                Bay Area Rapid Transit (BART) is a rapid transit system serving the San Francisco Bay Area in California. BART serves 50 stations along six routes and 131 miles (211 kilometers) of track, including a 9-mile (14 km) spur line running to Antioch, which uses diesel multiple unit vehicles, and a 3-mile (4.8 km) automated guideway transit line serving Oakland International Airport. With an average of 145,900 weekday passengers as of the first quarter of 2023 and 41,286,400 annual passengers in 2022, BART is the fifth-busiest heavy rail rapid transit system in the United States.<br>
-                BART is operated by the San Francisco Bay Area Rapid Transit District which formed in 1957. The initial system opened in stages from 1972 to 1974. The system has been extended several times, most recently in 2020, when Milpitas and Berryessa/North San Jose stations opened as part of the under construction Silicon Valley BART extension in partnership with the Santa Clara Valley Transportation Authority (VTA).
-                <a href="https://en.wikipedia.org/wiki/Bay_Area_Rapid_Transit">Wikipedia</a>
-            </p>
-        </div>
-        <div id="lines" class="tabcontent">
-            <h2>Lines</h2>
-            <ul id="bart_lines">
-                <li id="each_line"><div id="line">-</div> <div id="route_desc">(Loading)</div></li>
+        <div class="window" id="lines">
+            <p id="nameswitch">Lines <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <ul class="bart_lines">
+                <li id="route_entity"><span id="route" title="Loading...">-</span> &nbsp; <span id="description" title="Please wait">Loading...</span><br></li>
             </ul>
         </div>
-        <div id="departures" class="tabcontent">
-            <h2>Departures</h2>
+        <div class="window" id="departures">
+            <p id="nameswitch">Departures <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a station.." onkeydown="keyDown()" id="stationgetter" autocomplete="off">
             <p class="headerforstop">Departures for &nbsp;<span id="stationname">---</span></p>
             <ul id="list_of_departures">
                 <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure">-</div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
             </ul>
-            <h3>Alerts Today</h3>
-            <ul id="list_of_alerts">
-                <li id="alert_entity">
-                    <p>Once you typed down the station by their ID, the advisories will display here.</p>
-                </li>
-            </ul>
             <button id="clearall" onclick="clearAll()">Clear</button>
         </div>
+        <div class="window" id="alerts">
+            <p id="nameswitch">Alerts <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="alert_entity">
+                <p id="alert_desc"></p>
+            </div>
+        </div>
+        <div class="window" id="elevator">
+            <p id="nameswitch">Elevator Status <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="alert_entity_elev">
+                <p id="alert_desc_elev">Loading...</p>
+            </div>
+        </div>
+        <div class="window" id="map_inter">
+            <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div id="map"></div>
+            <nav id="filter-group" class="filter-group"></nav>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
+        </div>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script>
-        let lastScrollTop = 0;
-        var counter = 0;
+        var v = null;
+        var fullGeoJsonRoutes = [];
+    
+        function updateSize() {
+            v = window.innerWidth;
 
-        navbar = document.getElementById("navbar"); 
-        window.addEventListener("scroll", function(){
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop){
-                navbar.classList.add("icon");
-            } else {
-                navbar.classList.remove("icon");
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
             }
-            lastScrollTop = scrollTop;
-        })
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
+
+        var caller = new XMLHttpRequest();
+        caller.open("GET", "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=Bay%20Area%20Rapid%20Transit&origin=*");
+        caller.onreadystatechange = function() {
+            if (caller.readyState === 4 && caller.status === 200) {
+                var article_summary = JSON.parse(caller.responseText);
+                var desc = article_summary.query.pages[60340].extract;
+
+                document.getElementById("desc").innerHTML = `${desc} <br> <a href="https://en.wikipedia.org/wiki/Bay_Area_Rapid_Transit">Wikipedia</a>`;
+            }
+        }
+        caller.send();
 
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
+            var list_of_headers = ["About BART", "Lines", "Departures", "Alerts", "Elevator Updates", "Interactive Map"]
+            tabcontent = document.getElementsByClassName("window");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
             }
+
             tablinks = document.getElementsByClassName("tablinks");
             for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+                // document.getElementById()
             }
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.className += " active";
         }
         document.getElementById("defaulttab").click();
+
+        /* Open the sidenav */
+        function openNav() {
+            document.querySelector(".left_navbar").style.display = "block";
+        }
+
+        /* Close/hide the sidenav */
+        function closeNav() {
+            document.querySelector(".left_navbar").style.display = "none";
+            console.log(document.querySelector(".left_navbar").getAttribute("style"))
+        }
 
         function keyDown(e) {
             e = e || window.event;
@@ -129,7 +138,7 @@
                 callOver();
             }
         }
-        
+
         function callOver() {
             getValue = document.getElementById("stationgetter").value;
             var departureCall = new XMLHttpRequest();
@@ -204,28 +213,10 @@
                         var departureClone = document.getElementById("line_for_departure");
                         var listToInsertClone = departureClone.cloneNode(true);
                         document.getElementById("list_of_departures").appendChild(listToInsertClone);
-
-                        var alertList_byAgency = compileDepartures.stops[0].departures[i].trip.route.agency.alerts;
-                        for (var j = 0; j < alertList_byAgency.length; j++) {
-                            if (counter === alertList_byAgency.length) {
-                                break;
-                            }
-                            document.getElementById("alert_entity").innerHTML = `<p>${alertList_byAgency[j].description_text[0].text}</p>`;
-                            console.log(document.getElementById("alert_entity").textContent);
-
-                            var alertClone = document.getElementById("alert_entity");
-                            var listToInsertAlertClone = alertClone.cloneNode(true);
-                            document.getElementById("list_of_alerts").appendChild(listToInsertAlertClone);
-                            console.log(counter);
-                            counter += 1
-                        }
                     }
 
                     var departuresAll = document.getElementById("list_of_departures").children;
                     document.querySelector("#list_of_departures").removeChild(departuresAll[0]);
-
-                    var alertsAll = document.getElementById("list_of_alerts").children;
-                    document.querySelector("#list_of_alerts").removeChild(alertsAll[0]);
                 }
             }
             secondDepartureRequest.send();
@@ -236,9 +227,71 @@
             <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure">-</div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
             `
             document.getElementById("stationname").innerHTML = "---";
-            document.getElementById("list_of_alerts").innerHTML = "<li id='alert_entity'></li>"
-            document.getElementById("alert_entity").innerHTML = `<p>Once you typed down the station by their ID, the advisories will display here.</p>`
-            counter = 0;
+        }
+
+        function mapbox() {
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZGlud3VuNDUwIiwiYSI6ImNsaTR4c253bTAzNnIzcnF1aTh0eTN2a3kifQ.fjcqiGi68hyGpUAKAo9Tcw';
+            map = new mapboxgl.Map({
+                container: 'map', // container ID
+                // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+                style: 'mapbox://styles/mapbox/streets-v12', // style URL
+                center: [-122.3108, 37.6910], // starting position [lng, lat]
+                zoom: 8 // starting zoom
+            });
+
+            map.addControl(new mapboxgl.NavigationControl());
+            map.scrollZoom.disable();
+        }
+        mapbox();
+
+        function plotBartLines() {
+            var bartLineCall = new XMLHttpRequest();
+            bartLineCall.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-bart&include_geometry=true");
+            bartLineCall.onreadystatechange = function() {
+                if (bartLineCall.readyState === 4 && bartLineCall.status === 200) {
+                    var bartCallOutputs = JSON.parse(bartLineCall.responseText);
+                    console.log(bartCallOutputs);
+
+                    for (var b=0; b<bartCallOutputs.routes.length; b++) {
+                        var detailedBartLines = bartCallOutputs.routes[b].route_short_name;
+                        var bartLinesGeo = bartCallOutputs.routes[b].geometry;
+                        fullGeoJsonRoutes.push({'type': 'Feature', 'geometry': bartLinesGeo, 'properties': {"color": `#${bartCallOutputs.routes[b].route_color}`}})
+
+                        console.log(detailedBartLines);
+                        console.log(fullGeoJsonRoutes);
+                    }
+
+                    map.addSource('route', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': fullGeoJsonRoutes
+                        }
+                    });
+
+                    map.addLayer({
+                        'id': 'route',
+                        'type': 'line',
+                        'source': 'route',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-width': 4,
+                            'line-color': ['get', 'color']
+                        }
+                    });
+                }
+            }
+            bartLineCall.send();
+        }
+        plotBartLines();
+
+
+        function dark_or_light() {
+            var element = document.body;
+            element.classList.toggle("light_mode");
         }
     </script>
 </body>
