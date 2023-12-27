@@ -60,6 +60,14 @@ window.onload = function() {
                 if (alerts_today.length === 0) {
                     document.getElementById("alert_desc").innerHTML = "There are no alerts at this time. Please check again shortly."
                 }
+                else {
+                    console.log(alerts_today);
+                    for (var a=0; a<alerts_today.length; a++) {
+                        var desc_text = alerts_today[a].description_text[0].text;
+                        console.log(desc_text);
+                        document.getElementById("alert_desc").innerHTML = desc_text;
+                    }
+                }
             }
         }
         alertCall.send();
