@@ -66,7 +66,14 @@ window.onload = function() {
                         var desc_text = alerts_today[a].description_text[0].text;
                         console.log(desc_text);
                         document.getElementById("alert_desc").innerHTML = desc_text;
+
+                        var cloneTheList = document.querySelector(".alert_entity");
+                        var listTBC = cloneTheList.cloneNode(true);
+                        document.querySelector("#alerts").appendChild(listTBC);
                     }
+
+                    var alertsAll = document.querySelector("#alerts").children;
+                    document.querySelector("#alerts").removeChild(alertsAll[1]);
                 }
             }
         }
