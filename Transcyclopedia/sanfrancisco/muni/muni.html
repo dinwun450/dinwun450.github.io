@@ -1,639 +1,557 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transcyclopedia San Francisco: San Francisco Municipal Transportation Agency (SFMTA)</title>
+    <title>Transcyclopedia San Francisco: San Francisco Muni</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="muni.css">
-    <script src="muni.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="css_assets/muni.css">
+    <link rel="stylesheet" href="css_assets/muni_responsive.css">
+    <script src="js_assets/muni.js"></script>
 </head>
-
 <body>
-    <nav id="navbar">
-        <a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html" class="brand">
-            <!--<i class="fa-solid fa-earth-americas"></i>-->
-            <span id="globe"><i class="fa-solid fa-earth-americas"></i></span>
-            <span>Transcyclopedia</span>
-        </a>
-        <ul class="nav-links">
-            <input type="checkbox" id="checkbox_toggle" />
-            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
-            <div class="menu">
-                <li style="--i:0;">
-                    <a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html">
-                        <span>Menu</span>
-                        <span><ion-icon name="home-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:1;">
-                    <a href="#">
-                        <span>Agency</span>
-                        <span><ion-icon name="business-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:2;">
-                    <a href="#">
-                        <span>Alerts</span>
-                        <span><ion-icon name="warning-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:3;">
-                    <a href="#">
-                        <span>Lines</span>
-                        <span><ion-icon name="map-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:4;">
-                    <a href="#">
-                        <span>About</span>
-                        <span><ion-icon name="information-circle-outline"></ion-icon></span>
-                    </a>
-                </li>
-            </div>
-        </ul>
-    </nav>
+    <ul class="left_navbar">
+        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia SF:<br> San Francisco Muni</h1>
+        <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
+        <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_muni')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About Muni</a></li>
+        <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
+        <li class="tablinks header2" onclick="openTab(event, 'departures_metro')"><a href="#"><i class="fa-solid fa-train-subway"></i>&nbsp;&nbsp;Departures (Muni Metro)</a></li>
+        <li class="tablinks header3" onclick="openTab(event, 'departures_cable')"><a href="#"><i class="fa-solid fa-cable-car"></i>&nbsp;&nbsp;Departures (Cable/Streetcar)</a></li>
+        <li class="tablinks header4" onclick="openTab(event, 'departures_bus')"><a href="#"><i class="fa-solid fa-bus"></i>&nbsp;&nbsp;Departures (Bus)</a></li>
+        <li class="tablinks header5" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li class="tablinks header6" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
+        <li><a href="#" onclick="dark_or_light()"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light/Dark Mode</a></li>
+        <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
+        <p class="copyright">&copy; 2023 Transcyclopedia. Created by Dino Wun.</p>
+    </ul>
     <div class="main">
-        <div class="topfooter">
-            <h1 style="color: white;" id="titleofsection">San Francisco Muni</h1>
+        <div class="window" id="about_muni">
+            <div class="info">
+                <p id="nameswitch">About Muni <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+                <p id="desc"></p>
+            </div>
+            <div class="stats">
+                <div class="began_operation">
+                    <h2>Founded:</h2>
+                    <p><b>December 28, 1912</b></p>
+                </div>
+                <div class="no_of_lines">
+                    <h2>Number of Lines:</h2>
+                    <p><b>83</b></p>
+                </div>
+                <div class="contact">
+                    <h2>Contact:</h2>
+                    <ul>
+                        <li><p><b>munifeedback@sfmta.com</b> (Email)</p></li>
+                        <li><p><b>311</b> (Phone)</p></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'info')" id="defaulttab">About Muni</button>
-            <button class="tablinks" onclick="openTab(event, 'lines')">Lines</button>
-            <button class="tablinks" onclick="openTab(event, 'departures_metro')">Muni Metro</button>
-            <button class="tablinks" onclick="openTab(event, 'departures_bus')">Bus</button>
-            <button class="tablinks" onclick="openTab(event, 'departures_cable')">Cable Car</button>
+        <div class="window" id="lines">
+            <p id="nameswitch">Lines <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="lines_metro">
+                <h3>Muni Metro</h3>
+                <ul class="muni_metro_lines">
+                    <li id="route_entity_metro"><span id="route_metro" title="Loading...">-</span> &nbsp; <span id="desc_metro" title="Please wait">Loading...</span><br></li>
+                </ul>
+            </div>
+            <div class="lines_cablestreet">
+                <h3>Cablecar</h3>
+                <ul class="muni_cablestreetcar_lines">
+                    <li id="route_entity_cable"><span id="route_cablestreetcar" title="Loading...">-</span> &nbsp; <span id="desc_cablestreetcar" title="Please wait">Loading...</span><br></li>
+                </ul>
+            </div>
+            <div class="lines_bus">
+                <h3>Bus</h3>
+                <ul class="muni_bus_lines">
+                    <li id="route_entity_bus"><span id="route_bus" title="Loading...">-</span> &nbsp; <span id="desc_bus" title="Please wait">Loading...</span><br></li>
+                </ul>
+            </div>
         </div>
-
-        <div id="info" class="tabcontent">
-            <h2>About Muni</h2>
-            <p id="about_content">
-                The San Francisco Municipal Railway (SF Muni or Muni), is the public transit system for the City and
-                County of San Francisco. It operates a system of bus routes (including trolleybuses), the Muni Metro
-                light rail system, three historic cable car lines, and two historic streetcar lines. Previously an
-                independent agency, the San Francisco Municipal Railway merged with two other agencies in 1999 to become
-                the San Francisco Municipal Transportation Agency (SFMTA). In 2018, Muni served 46.7 square miles (121
-                km2) with an operating budget of about $1.2 billion. Muni is the seventh-highest-ridership transit
-                system in the United States, with 114,721,200 rides in 2022, and the second-highest in California after
-                the Los Angeles County Metropolitan Transportation Authority.
-                <a href="https://en.wikipedia.org/wiki/San_Francisco_Municipal_Railway">Wikipedia</a>
-            </p>
+        <div class="window" id="departures_metro">
+            <p id="nameswitch">Departures (Muni Metro) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a station.." onkeydown="keyDownMuniMetro()" id="muni_metro_stationgetter" autocomplete="off">
+            <p class="headerformunimetro">Departures for &nbsp;<span id="muni_metro_stationname">---</span></p>
+            <ul id="list_of_departures_muni_metro">
+                <li id="line_for_departure_muni_metro"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro">-</div> <span id="route_headsign_muni_metro">(None)</span> <span id="route_depart_muni_metro">Enter a specific station by their station ID</span></div></li>
+            </ul>
+            <button id="clearall_muni_metro" onclick="clearAllMuniMetro()">Clear</button>
         </div>
-        <div id="lines" class="tabcontent">
-            <h2>Lines</h2>
-            <h4 class="buslines">Bus</h3>
-            <ul id="muni_lines">
-                <li id="each_line">
-                    <div id="line">-</div>
-                    <div id="route_desc">(Loading)</div>
-                </li>
+        <div class="window" id="departures_cable">
+            <p id="nameswitch">Departures (Cable Car) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a stop.." onkeydown="keyDownCableCar()" id="cable_stopgetter" autocomplete="off">
+            <p class="headerforcable">Departures for &nbsp;<span id="cable_stopname">---</span></p>
+            <ul id="list_of_departures_cable">
+                <li id="line_for_departure_cable"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable">-</div> <span id="route_headsign_cable">(None)</span> <span id="route_depart_cable">Enter a specific stop by their stop ID</span></div></li>
             </ul>
-            <h4 class="metrolines">Metro</h4>
-            <ul id="munimetrolines">
-                <li id="each_line_metro">
-                    <div id="line_metro">-</div>
-                    <div id="route_desc_metro">(Loading)</div>
-                </li>
-            </ul>
-            <h4 class="cablelines">Cable Car</h4>
-            <ul id="municablelines">
-                <li id="each_line_cable">
-                    <div id="line_cable">-</div>
-                    <div id="route_desc_cable">(Loading)</div>
-                </li>
-            </ul>
+            <button id="clearall_cable" onclick="clearAllCable()">Clear</button>
         </div>
-        <div id="departures_metro" class="tabcontent">
-            <h2>Muni Metro</h2>
-            <input type="text" placeholder="Search for a station.." onkeydown="keyDown()" id="stationgetter"
-                autocomplete="off">
-            <p class="headerforstop">Departures for &nbsp;<span id="stationname">---</span></p>
-            <ul id="list_of_departures">
-                <li id="line_for_departure">
-                    <div class="wrapper_for_departure">
-                        <div id="line_for_each_departure">-</div> <div id="route_headsign"><p id="isscroll">(None)</p></div> <span id="route_depart">Enter a specific station by their number ID</span>
-                    </div>
-                </li>
+        <div class="window" id="departures_bus">
+            <p id="nameswitch">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a stop.." onkeydown="keyDownBus()" id="bus_stopgetter" autocomplete="off">
+            <p class="headerforbus">Departures for &nbsp;<span id="bus_stopname">---</span></p>
+            <ul id="list_of_departures_bus">
+                <li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="route_headsign_bus">(None)</span> <span id="route_depart_bus">Enter a specific stop by their stop ID</span></div></li>
             </ul>
-            <h3>Alerts Today</h3>
-            <ul id="list_of_alerts">
-                <li id="alert_entity">
-                    <p>Once you typed down the station by their ID, the advisories will display here.</p>
-                </li>
-            </ul>
-            <button id="clearall" onclick="clearAll()">Clear</button>
+            <button id="clearall_bus" onclick="clearAllBus()">Clear</button>
         </div>
-        <div id="departures_bus" class="tabcontent">
-            <h2>Bus</h2>
-            <input type="text" placeholder="Search for a station.." onkeydown="keyDownTwo()" id="busgetter"
-                autocomplete="off">
-            <p class="headerforstop2">Departures for &nbsp;<span id="stopname">---</span></p>
-            <ul id="list_of_departures2">
-                <li id="line_for_departure2">
-                    <div class="wrapper_for_departure2">
-                        <div id="line_for_each_departure2">-</div> <div id="route_headsign2"><p id="isscroll2">(None)</p></div> <span id="route_depart2">Enter a specific station by their stop ID</span>
-                    </div>
-                </li>
-            </ul>
-            <h3>Alerts Today</h3>
-            <ul id="list_of_alerts2">
-                <li id="alert_entity2">
-                    <p>Once you typed down the station by their ID, the advisories will display here.</p>
-                </li>
-            </ul>
-            <button id="clearall2" onclick="clearAll2()">Clear</button>
+        <div class="window" id="alerts">
+            <p id="nameswitch">Alerts <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="alert_entity_agency">
+                <h3>Muni Agency</h3>
+                <ul id="muni_agency_alerts">
+                    <li id="alert_desc_agency">
+                        <p>Loading...</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="alert_entity_routes">
+                <h3>Muni Routes</h3>
+                <ul id="muni_routes_alerts">
+                    <li id="alert_desc_routes">
+                        <p>
+                            <span id="affectedroutes">-</span><br>
+                            <span id="alert_for_specific_route">Loading...</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div id="departures_cable" class="tabcontent">
-            <h2>Cable Car</h2>
-            <input type="text" placeholder="Search for a stop.. " onkeydown="keyDownThree()" id="cablegetter" autocomplete="off">
-            <p class="headerforstop3">Departures for &nbsp;<span id="stopname3">---</span></p>
-            <ul id="list_of_departures3">
-                <li id="line_for_departure3">
-                    <div class="wrapper_for_departure3">
-                        <div id="line_for_each_departure3">-</div> <div id="route_headsign3"><p id="isscroll3">(None)</p></div> <span id="route_depart3">Enter a specific station by their stop ID</span>
-                    </div>
-                </li>
-            </ul>
-            <h3>Alerts Today</h3>
-            <ul id="list_of_alerts3">
-                <li id="alert_entity3">
-                    <p>Once you typed down the station by their ID, the advisories will display here.</p>
-                </li>
-            </ul>
-            <button id="clearall3" onclick="clearAll3()">Clear</button>
+        <div class="window" id="map_inter">
+            <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div id="map"></div>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script>
-        let lastScrollTop = 0;
-        var deviceWidth = window.innerWidth;
-        var counter = 0;
-        var counter_b = 0;
+        var v = null;
+        var fullGeoJsonRoutes = [];
+    
+        function updateSize() {
+            v = window.innerWidth;
 
-        navbar = document.getElementById("navbar");
-        window.addEventListener("scroll", function () {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop) {
-                navbar.classList.add("icon");
-            } else {
-                navbar.classList.remove("icon");
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
             }
-            lastScrollTop = scrollTop;
-        })
-
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
+        
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
+            tabcontent = document.getElementsByClassName("window");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
             }
+
             tablinks = document.getElementsByClassName("tablinks");
             for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+                // document.getElementById()
             }
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.className += " active";
         }
         document.getElementById("defaulttab").click();
 
-        function keyDown(e) {
+        var caller = new XMLHttpRequest();
+        caller.open("GET", "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=San_Francisco_Municipal_Railway&origin=*");
+        caller.onreadystatechange = function() {
+            if (caller.readyState === 4 && caller.status === 200) {
+                var article_summary = JSON.parse(caller.responseText);
+                var desc = article_summary.query.pages[253116].extract;
+
+                document.getElementById("desc").innerHTML = `${desc} <br> <a href="https://en.wikipedia.org/wiki/Bay_Area_Rapid_Transit">Wikipedia</a>`;
+            }
+        }
+        caller.send();
+
+        function keyDownMuniMetro(e) {
             e = e || window.event;
             if (e.keyCode === 13) {
-                console.log("Here we go!");
-                callOver();
+                console.log("Here we go Muni Metro!");
+                callOverStopMuniMetro();
             }
         }
 
-        function keyDownTwo(e) {
-            e = e || window.event;
-            if (e.keyCode === 13) {
-                callOverBus();
-            }
-        }
+        function callOverStopMuniMetro() {
+            getValue = document.getElementById("muni_metro_stationgetter").value;
+            var stopCall  = new XMLHttpRequest();
+            stopCall.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q8y-sfmta&served_by_route_type=0&stop_id=${getValue}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+            stopCall.onreadystatechange = function() {
+                if (stopCall.readyState === 4 && stopCall.status === 200) {
+                    var muni_metro_stops = JSON.parse(stopCall.responseText);
 
-        function keyDownThree(e) {
-            e = e || window.event;
-            if (e.keyCode === 13) {
-                callOverCable();
-            }
-        }
-
-        function callOver() {
-            getValue = document.getElementById("stationgetter").value;
-            var departureCall = new XMLHttpRequest();
-            departureCall.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q8y-sfmta&served_by_route_type=0&stop_id=${getValue}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
-            departureCall.onreadystatechange = function () {
-                if (departureCall.readyState === 4 && departureCall.status === 200) {
-                    var stopIdExtraction = JSON.parse(departureCall.responseText);
-                    console.log(stopIdExtraction);
-
-                    if (stopIdExtraction.stops.length === 0) {
-                        console.log("Nothing to do about it...")
+                    if (muni_metro_stops.stops.length === 0) {
+                        console.log("There's nothing to do about it...");
+                        document.querySelector(".headerformunimetro").innerHTML = "The station you typed in is not valid or doesn't exist."
                     }
                     else {
-                        var stopCodeSpecified = stopIdExtraction.stops[0].stop_code;
-                        var stopName = stopIdExtraction.stops[0].stop_name;
-                        console.log(stopCodeSpecified);
-                        document.getElementById("stationname").innerHTML = stopName;
-                        gatherDepartures(stopCodeSpecified);
+                        var stop_code_metro = muni_metro_stops.stops[0].stop_code;
+                        var stop_name = muni_metro_stops.stops[0].stop_name;
+                        document.getElementById("muni_metro_stationname").innerHTML = stop_name;
+                        muniMetroDepartures(stop_code_metro);
                     }
                 }
             }
-            departureCall.send();
+            stopCall.send();
         }
 
-        function callOverBus() {
-            getValueForBus = document.getElementById("busgetter").value;
-            var departureCallByBus = new XMLHttpRequest();
-            departureCallByBus.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q8y-sfmta&served_by_route_type=3&stop_id=${getValueForBus}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
-            departureCallByBus.onreadystatechange = function () {
-                if (departureCallByBus.readyState === 4 && departureCallByBus.status === 200) {
-                    var stopIdExtraction = JSON.parse(departureCallByBus.responseText);
-                    console.log(stopIdExtraction);
+        function muniMetroDepartures(station_id) {
+            var departure_request = new XMLHttpRequest();
+            departure_request.open("GET", `https://transit.land/api/v2/rest/stops/f-sf~bay~area~rg:${station_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            departure_request.onreadystatechange = function() {
+                if (departure_request.readyState === 4 && departure_request.status === 200) {
+                    var departures_muni_metro = JSON.parse(departure_request.responseText);
 
-                    if (stopIdExtraction.stops.length === 0) {
-                        console.log("Nothing to do about it...")
-                    }
-                    else {
-                        var stopCodeSpecifiedByBus = stopIdExtraction.stops[0].stop_code;
-                        var stopName = stopIdExtraction.stops[0].stop_name;
-                        console.log(stopCodeSpecifiedByBus);
-                        document.getElementById("stopname").innerHTML = stopName;
-                        gatherDeparturesForBus(stopCodeSpecifiedByBus);
-                    }
-                }
-            }
-            departureCallByBus.send();
-        }
-
-        function callOverCable() {
-            getValueForCable = document.getElementById("cablegetter").value;
-            var departureCallByCable = new XMLHttpRequest();
-            departureCallByCable.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q8y-sfmta&served_by_route_type=5&stop_id=${getValueForCable}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
-            departureCallByCable.onreadystatechange = function() {
-                if (departureCallByCable.readyState === 4 && departureCallByCable.status === 200) {
-                    var stopIdExtraction = JSON.parse(departureCallByCable.responseText);
-                    console.log(stopIdExtraction);
-
-                    if (stopIdExtraction.stops.length === 0) {
-                        console.log("Nothing to do about it...")
-                    }
-                    else {
-                        var stopCodeSpecifiedByBus = stopIdExtraction.stops[0].stop_code;
-                        var stopName = stopIdExtraction.stops[0].stop_name;
-                        console.log(stopCodeSpecifiedByBus);
-                        document.getElementById("stopname3").innerHTML = stopName;
-                        gatherDeparturesForCable(stopCodeSpecifiedByBus);
-                    }
-                }
-            }
-            departureCallByCable.send();
-        }
-
-        function gatherDeparturesForBus(stopCodeBus) {
-            var secondDepartureRequest = new XMLHttpRequest();
-            secondDepartureRequest.open("GET", `https://transit.land/api/v2/rest/stops/f-sf~bay~area~rg:${stopCodeBus}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
-            secondDepartureRequest.onreadystatechange = function () {
-                if (secondDepartureRequest.readyState === 4 && secondDepartureRequest.status === 200) {
-                    var compileDepartures = JSON.parse(secondDepartureRequest.responseText);
-                    console.log(compileDepartures);
-
-                    for (var i = 0; i < compileDepartures.stops[0].departures.length; i++) {
-                        var routeColor = compileDepartures.stops[0].departures[i].trip.route.route_color;
-                        var routeColorInText = compileDepartures.stops[0].departures[i].trip.route.route_text_color;
-                        var routeShort = compileDepartures.stops[0].departures[i].trip.route.route_short_name;
-                        var routeLong = compileDepartures.stops[0].departures[i].trip.trip_headsign;
-                        var routeFullName = compileDepartures.stops[0].departures[i].trip.route.route_long_name;
-                        var departuredTime = compileDepartures.stops[0].departures[i].arrival.estimated;
-                        var scheduledTime = compileDepartures.stops[0].departures[i].arrival.scheduled;
+                    for (var i = 0; i < departures_muni_metro.stops[0].departures.length; i++) {
+                        var routeColor = departures_muni_metro.stops[0].departures[i].trip.route.route_color;
+                        var routeColorInText = departures_muni_metro.stops[0].departures[i].trip.route.route_text_color;
+                        var routeShort = departures_muni_metro.stops[0].departures[i].trip.route.route_short_name;
+                        var routeLong = departures_muni_metro.stops[0].departures[i].trip.trip_headsign;
+                        var routeFullName = departures_muni_metro.stops[0].departures[i].trip.route.route_long_name;
+                        var departuredTime = departures_muni_metro.stops[0].departures[i].arrival.estimated;
+                        var scheduledTime = departures_muni_metro.stops[0].departures[i].arrival.scheduled;
 
                         if (departuredTime === null) {
-                            document.getElementById("route_depart2").innerHTML = ` ${scheduledTime} (scheduled)`;
-                            document.getElementById("route_depart2").style.color = "black";
+                            document.getElementById("route_depart_muni_metro").innerHTML = ` ${scheduledTime} (scheduled)`;
+                            document.getElementById("route_depart_muni_metro").style.color = "black";
                         }
                         else if (scheduledTime === null) {
                             continue
                         }
                         else {
-                            document.getElementById("route_depart2").innerHTML = ` ${departuredTime} <span id="delay2">()</span>`;
-                            document.getElementById("route_depart2").style.color = "darkgreen";
+                            document.getElementById("route_depart_muni_metro").innerHTML = ` ${departuredTime} <span id="delay_muni_metro">()</span>`;
+                            document.getElementById("route_depart_muni_metro").style.color = "darkgreen";
 
-                            if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay >= 60) {
-                                document.getElementById("delay2").innerHTML = `(${Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60)} min late)`;
-                                document.getElementById("delay2").style.color = "crimson";
+                            if (departuredTime = departures_muni_metro.stops[0].departures[i].arrival.delay >= 60) {
+                                document.getElementById("delay_muni_metro").innerHTML = `(${Math.floor(departures_muni_metro.stops[0].departures[i].arrival.delay / 60)} min late)`;
+                                document.getElementById("delay_muni_metro").style.color = "crimson";
                             }
-                            else if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay === 0) {
-                                document.getElementById("delay2").innerHTML = `(on time)`;
-                                document.getElementById("delay2").style.color = "green";
+                            else if (departuredTime = departures_muni_metro.stops[0].departures[i].arrival.delay === 0) {
+                                document.getElementById("delay_muni_metro").innerHTML = `(on time)`;
+                                document.getElementById("delay_muni_metro").style.color = "green";
                             }
-                            else if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay <= 0) {
-                                document.getElementById("delay2").innerHTML = `(${Math.abs(Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60))} min early)`;
-                                document.getElementById("delay2").style.color = "skyblue";
+                            else if (departuredTime = departures_muni_metro.stops[0].departures[i].arrival.delay <= 0) {
+                                document.getElementById("delay_muni_metro").innerHTML = `(${Math.abs(Math.floor(departures_muni_metro.stops[0].departures[i].arrival.delay / 60))} min early)`;
+                                document.getElementById("delay_muni_metro").style.color = "skyblue";
                             }
                             else {
-                                document.getElementById("delay2").innerHTML = "(no data)";
-                                document.getElementById("delay2").style.color = "black";
+                                document.getElementById("delay_muni_metro").innerHTML = "(no data)";
+                                document.getElementById("delay_muni_metro").style.color = "black";
                             }
                         }
 
-                        document.getElementById("line_for_each_departure2").innerHTML = routeShort;
-                        document.getElementById("line_for_each_departure2").style.backgroundColor = `#${routeColor}40`;
-                        document.getElementById("line_for_each_departure2").style.border = `1px solid #${routeColor}`;
-                        document.getElementById("line_for_each_departure2").style.color = `#${routeColorInText}`;
-                        document.getElementById("route_headsign2").innerHTML = `<p id="isscroll2">${routeFullName} ${routeLong}</p>`;
+                        document.getElementById("line_for_each_departure_muni_metro").innerHTML = routeShort;
+                        document.getElementById("line_for_each_departure_muni_metro").style.backgroundColor = `#${routeColor}40`;
+                        document.getElementById("line_for_each_departure_muni_metro").style.border = `1px solid #${routeColor}`;
+                        document.getElementById("line_for_each_departure_muni_metro").style.color = `#${routeColorInText}`;
+                        document.getElementById("route_headsign_muni_metro").innerHTML = `${routeFullName} ${routeLong}`;
 
-                        if (deviceWidth <= 520 && document.getElementById("route_headsign2").innerText.length > 35) {
-                            console.log("Scroll?")
-                            document.getElementById("isscroll2").style.transform = "translateX(200vw)";
-                            document.getElementById("isscroll2").style.animation = "my-animation-6 10s linear infinite";
-                        }
-
-                        var departureClone = document.getElementById("line_for_departure2");
+                        var departureClone = document.getElementById("line_for_departure_muni_metro");
                         var listToInsertClone = departureClone.cloneNode(true);
-                        document.getElementById("list_of_departures2").appendChild(listToInsertClone);
-
-                        var alertList_byAgency = compileDepartures.stops[0].departures[i].trip.route.agency.alerts;
-                        var alertList_byStop = compileDepartures.stops[0].alerts;
-
-                        for (var j = 0; j < alertList_byAgency.length; j++) {
-                            if (counter_b === alertList_byAgency.length) {
-                                break;
-                            }
-                            document.getElementById("alert_entity2").innerHTML = `<p>${alertList_byAgency[j].description_text[0].text}</p>`;
-                            console.log(document.getElementById("alert_entity2").textContent);
-
-                            var alertClone = document.getElementById("alert_entity2");
-                            var listToInsertAlertClone = alertClone.cloneNode(true);
-                            document.getElementById("list_of_alerts2").appendChild(listToInsertAlertClone);
-                            console.log(counter);
-                            counter_b += 1
-                        }
-
-                        for (var k = 0; k < alertList_byStop.length; k++) {
-                            if (counter === alertList_byStop.length) {
-                                break;
-                            }
-                            document.getElementById("alert_entity2").innerHTML = `<p>${alertList_byStop[k].description_text[0].text}</p>`;
-
-                            var alertClone = document.getElementById("alert_entity2");
-                            var listToInsertAlertClone = alertClone.cloneNode(true);
-                            document.getElementById("list_of_alerts2").appendChild(listToInsertAlertClone);
-                            console.log(counter);
-                            counter += 1
-                        }
+                        document.getElementById("list_of_departures_muni_metro").appendChild(listToInsertClone);
                     }
 
-                    var departuresAll = document.getElementById("list_of_departures2").children;
-                    document.querySelector("#list_of_departures2").removeChild(departuresAll[0]);
-
-                    var alertsAll = document.getElementById("list_of_alerts2").children;
-                    document.querySelector("#list_of_alerts2").removeChild(alertsAll[0]);
+                    var departuresAll = document.getElementById("list_of_departures_muni_metro").children;
+                    document.querySelector("#list_of_departures_muni_metro").removeChild(departuresAll[0]);
                 }
             }
-            secondDepartureRequest.send();
+            departure_request.send();
         }
 
-        function gatherDeparturesForCable(stopCodeCable) {
-            var thirdDepartureRequest = new XMLHttpRequest();
-            thirdDepartureRequest.open("GET", `https://transit.land/api/v2/rest/stops/f-sf~bay~area~rg:${stopCodeCable}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
-            thirdDepartureRequest.onreadystatechange = function () {
-                if (thirdDepartureRequest.readyState === 4 && thirdDepartureRequest.status === 200) {
-                    var compileDepartures = JSON.parse(thirdDepartureRequest.responseText);
-                    console.log(compileDepartures);
+        function clearAllMuniMetro() {
+            document.querySelector(".headerformunimetro").innerHTML = `
+            Departures for &nbsp;<span id="muni_metro_stationname">---</span>
+            `
+            document.getElementById("list_of_departures_muni_metro").innerHTML = `
+            <li id="line_for_departure_muni_metro"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro">-</div> <span id="route_headsign_muni_metro">(None)</span> <span id="route_depart_muni_metro">Enter a specific station by their station ID</span></div></li>
+            `
+            document.getElementById("muni_metro_stationname").innerHTML = "---";
+        }
 
-                    for (var i = 0; i < compileDepartures.stops[0].departures.length; i++) {
-                        var routeColor = compileDepartures.stops[0].departures[i].trip.route.route_color;
-                        var routeColorInText = compileDepartures.stops[0].departures[i].trip.route.route_text_color;
-                        var routeShort = compileDepartures.stops[0].departures[i].trip.route.route_short_name;
-                        var routeLong = compileDepartures.stops[0].departures[i].trip.trip_headsign;
-                        var routeFullName = compileDepartures.stops[0].departures[i].trip.route.route_long_name;
-                        var departuredTime = compileDepartures.stops[0].departures[i].arrival.estimated;
-                        var scheduledTime = compileDepartures.stops[0].departures[i].arrival.scheduled;
+        function keyDownCableCar(e) {
+            e = e || window.event;
+            if (e.keyCode === 13) {
+                callOverStopCableCar();
+            }
+        }
+
+        function callOverStopCableCar() {
+            getValue = document.getElementById("cable_stopgetter").value;
+            var stopCall  = new XMLHttpRequest();
+            stopCall.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q8y-sfmta&served_by_route_type=5&stop_id=${getValue}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+            stopCall.onreadystatechange = function() {
+                if (stopCall.readyState === 4 && stopCall.status === 200) {
+                    var cable_car_stops = JSON.parse(stopCall.responseText);
+
+                    if (cable_car_stops.stops.length === 0) {
+                        console.log("There's nothing to do about it...");
+                        document.querySelector(".headerforcable").innerHTML = "The stop you typed in is not valid or doesn't exist."
+                    }
+                    else {
+                        var stop_code_cable = cable_car_stops.stops[0].stop_code;
+                        var stop_name = cable_car_stops.stops[0].stop_name;
+                        document.getElementById("cable_stopname").innerHTML = stop_name;
+                        cableCarDepartures(stop_code_cable);
+                    }
+                }
+            }
+            stopCall.send();
+        }
+
+        function cableCarDepartures(stop_id) {
+            var departure_request = new XMLHttpRequest();
+            departure_request.open("GET", `https://transit.land/api/v2/rest/stops/f-sf~bay~area~rg:${stop_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            departure_request.onreadystatechange = function() {
+                if (departure_request.readyState === 4 && departure_request.status === 200) {
+                    var departures_cable_car = JSON.parse(departure_request.responseText);
+
+                    for (var i = 0; i < departures_cable_car.stops[0].departures.length; i++) {
+                        var routeColor = departures_cable_car.stops[0].departures[i].trip.route.route_color;
+                        var routeColorInText = departures_cable_car.stops[0].departures[i].trip.route.route_text_color;
+                        var routeShort = departures_cable_car.stops[0].departures[i].trip.route.route_short_name;
+                        var routeLong = departures_cable_car.stops[0].departures[i].trip.trip_headsign;
+                        var routeFullName = departures_cable_car.stops[0].departures[i].trip.route.route_long_name;
+                        var departuredTime = departures_cable_car.stops[0].departures[i].arrival.estimated;
+                        var scheduledTime = departures_cable_car.stops[0].departures[i].arrival.scheduled;
 
                         if (departuredTime === null) {
-                            document.getElementById("route_depart3").innerHTML = ` ${scheduledTime} (scheduled)`;
-                            document.getElementById("route_depart3").style.color = "black";
+                            document.getElementById("route_depart_cable").innerHTML = ` ${scheduledTime} (scheduled)`;
+                            document.getElementById("route_depart_cable").style.color = "black";
                         }
                         else if (scheduledTime === null) {
                             continue
                         }
                         else {
-                            document.getElementById("route_depart3").innerHTML = ` ${departuredTime} <span id="delay3">()</span>`;
-                            document.getElementById("route_depart3").style.color = "darkgreen";
+                            document.getElementById("route_depart_cable").innerHTML = ` ${departuredTime} <span id="delay_cable_car">()</span>`;
+                            document.getElementById("route_depart_cable").style.color = "darkgreen";
 
-                            if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay >= 60) {
-                                document.getElementById("delay3").innerHTML = `(${Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60)} min late)`;
-                                document.getElementById("delay3").style.color = "crimson";
+                            if (departuredTime = departures_cable_car.stops[0].departures[i].arrival.delay >= 60) {
+                                document.getElementById("delay_cable_car").innerHTML = `(${Math.floor(departures_cable_car.stops[0].departures[i].arrival.delay / 60)} min late)`;
+                                document.getElementById("delay_cable_car").style.color = "crimson";
                             }
-                            else if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay === 0) {
-                                document.getElementById("delay3").innerHTML = `(on time)`;
-                                document.getElementById("delay3").style.color = "green";
+                            else if (departuredTime = departures_cable_car.stops[0].departures[i].arrival.delay === 0) {
+                                document.getElementById("delay_cable_car").innerHTML = `(on time)`;
+                                document.getElementById("delay_cable_car").style.color = "green";
                             }
-                            else if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay <= 0) {
-                                document.getElementById("delay3").innerHTML = `(${Math.abs(Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60))} min early)`;
-                                document.getElementById("delay3").style.color = "skyblue";
+                            else if (departuredTime = departures_cable_car.stops[0].departures[i].arrival.delay <= 0) {
+                                document.getElementById("delay_cable_car").innerHTML = `(${Math.abs(Math.floor(departures_cable_car.stops[0].departures[i].arrival.delay / 60))} min early)`;
+                                document.getElementById("delay_cable_car").style.color = "skyblue";
                             }
                             else {
-                                document.getElementById("delay3").innerHTML = "(no data)";
-                                document.getElementById("delay3").style.color = "black";
+                                document.getElementById("delay_cable_car").innerHTML = "(no data)";
+                                document.getElementById("delay_cable_car").style.color = "black";
                             }
                         }
 
-                        document.getElementById("line_for_each_departure3").innerHTML = routeShort;
-                        document.getElementById("line_for_each_departure3").style.backgroundColor = `#${routeColor}40`;
-                        document.getElementById("line_for_each_departure3").style.border = `1px solid #${routeColor}`;
-                        document.getElementById("line_for_each_departure3").style.color = `#${routeColorInText}`;
-                        document.getElementById("route_headsign3").innerHTML = `<p id="isscroll3">${routeFullName} ${routeLong}</p>`;
+                        document.getElementById("line_for_each_departure_cable").innerHTML = routeShort;
+                        document.getElementById("line_for_each_departure_cable").style.backgroundColor = `#${routeColor}40`;
+                        document.getElementById("line_for_each_departure_cable").style.border = `1px solid #${routeColor}`;
+                        document.getElementById("line_for_each_departure_cable").style.color = `#${routeColorInText}`;
+                        document.getElementById("route_headsign_cable").innerHTML = `${routeFullName} ${routeLong}`;
 
-                        if (deviceWidth <= 520 && document.getElementById("route_headsign2").innerText.length > 35) {
-                            console.log("Scroll?")
-                            document.getElementById("isscroll3").style.transform = "translateX(200vw)";
-                            document.getElementById("isscroll3").style.animation = "my-animation-6 10s linear infinite";
-                        }
-
-                        var departureClone = document.getElementById("line_for_departure3");
+                        var departureClone = document.getElementById("line_for_departure_cable");
                         var listToInsertClone = departureClone.cloneNode(true);
-                        document.getElementById("list_of_departures3").appendChild(listToInsertClone);
-
-                        var alertList_byAgency = compileDepartures.stops[0].departures[i].trip.route.agency.alerts;
-                        var alertList_byStop = compileDepartures.stops[0].alerts;
-                        
-                        for (var j = 0; j < alertList_byAgency.length; j++) {
-                            if (counter_b === alertList_byAgency.length) {
-                                break;
-                            }
-                            document.getElementById("alert_entity3").innerHTML = `<p>${alertList_byAgency[j].description_text[0].text}</p>`;
-                            console.log(document.getElementById("alert_entity3").textContent);
-
-                            var alertClone = document.getElementById("alert_entity3");
-                            var listToInsertAlertClone = alertClone.cloneNode(true);
-                            document.getElementById("list_of_alerts3").appendChild(listToInsertAlertClone);
-                            console.log(counter);
-                            counter_b += 1
-                        }
-
-                        for (var k = 0; k < alertList_byStop.length; k++) {
-                            if (counter === alertList_byStop.length) {
-                                break;
-                            }
-                            document.getElementById("alert_entity3").innerHTML = `<p>${alertList_byStop[k].description_text[0].text}</p>`;
-
-                            var alertClone = document.getElementById("alert_entity3");
-                            var listToInsertAlertClone = alertClone.cloneNode(true);
-                            document.getElementById("list_of_alerts3").appendChild(listToInsertAlertClone);
-                            console.log(counter);
-                            counter += 1
-                        }
+                        document.getElementById("list_of_departures_cable").appendChild(listToInsertClone);
                     }
 
-                    var departuresAll = document.getElementById("list_of_departures3").children;
-                    document.querySelector("#list_of_departures3").removeChild(departuresAll[0]);
-
-                    var alertsAll = document.getElementById("list_of_alerts3").children;
-                    document.querySelector("#list_of_alerts3").removeChild(alertsAll[0]);
+                    var departuresAll = document.getElementById("list_of_departures_cable").children;
+                    document.querySelector("#list_of_departures_cable").removeChild(departuresAll[0]);
                 }
             }
-            thirdDepartureRequest.send();
+            departure_request.send();
         }
 
-        function gatherDepartures(stopCode) {
-            var secondDepartureRequest = new XMLHttpRequest();
-            secondDepartureRequest.open("GET", `https://transit.land/api/v2/rest/stops/f-sf~bay~area~rg:${stopCode}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
-            secondDepartureRequest.onreadystatechange = function () {
-                if (secondDepartureRequest.readyState === 4 && secondDepartureRequest.status === 200) {
-                    var compileDepartures = JSON.parse(secondDepartureRequest.responseText);
-                    console.log(compileDepartures);
+        function clearAllCable() {
+            document.querySelector(".headerforcable").innerHTML = `
+            Departures for &nbsp;<span id="cable_stopname">---</span>
+            `
+            document.getElementById("list_of_departures_cable").innerHTML = `
+            <li id="line_for_departure_cable"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable">-</div> <span id="route_headsign_cable">(None)</span> <span id="route_depart_cable">Enter a specific stop by their stop ID</span></div></li>
+            `
+            document.getElementById("cable_stopname").innerHTML = "---";
+        }
 
-                    for (var i = 0; i < compileDepartures.stops[0].departures.length; i++) {
-                        var routeColor = compileDepartures.stops[0].departures[i].trip.route.route_color;
-                        var routeColorInText = compileDepartures.stops[0].departures[i].trip.route.route_text_color;
-                        var routeShort = compileDepartures.stops[0].departures[i].trip.route.route_short_name;
-                        var routeLong = compileDepartures.stops[0].departures[i].trip.trip_headsign;
-                        var routeFullName = compileDepartures.stops[0].departures[i].trip.route.route_long_name;
-                        var departuredTime = compileDepartures.stops[0].departures[i].arrival.estimated;
-                        var scheduledTime = compileDepartures.stops[0].departures[i].arrival.scheduled;
+        function openNav() {
+            document.querySelector(".left_navbar").style.display = "block";
+        }
 
-                        if (departuredTime === null) {
-                            document.getElementById("route_depart").innerHTML = ` ${scheduledTime} (scheduled)`;
-                            document.getElementById("route_depart").style.color = "black";
+        /* Close/hide the sidenav */
+        function closeNav() {
+            document.querySelector(".left_navbar").style.display = "none";
+            console.log(document.querySelector(".left_navbar").getAttribute("style"))
+        }
+
+        function keyDownBus(e) {
+            e = e || window.event;
+            if (e.keyCode === 13) {
+                console.log("Bus Time!")
+                callOverStopBus();
+            }
+        }
+
+        function callOverStopBus() {
+            getValue = document.getElementById("bus_stopgetter").value;
+            var stopCall  = new XMLHttpRequest();
+            stopCall.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q8y-sfmta&served_by_route_type=3&stop_id=${getValue}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+            stopCall.onreadystatechange = function() {
+                if (stopCall.readyState === 4 && stopCall.status === 200) {
+                    var bus_stops = JSON.parse(stopCall.responseText);
+
+                    if (bus_stops.stops.length === 0) {
+                        console.log("There's nothing to do about it...");
+                        document.querySelector(".headerforbus").innerHTML = "The stop you typed in is not valid or doesn't exist."
+                    }
+                    else {
+                        var stop_code_bus = bus_stops.stops[0].stop_code;
+                        var stop_name = bus_stops.stops[0].stop_name;
+                        document.getElementById("bus_stopname").innerHTML = stop_name;
+                        busDepartures(stop_code_bus);
+                    }
+                }
+            }
+            stopCall.send();
+        }
+
+        function busDepartures(stop_id) {
+            var departures_bus = new XMLHttpRequest();
+            departures_bus.open("GET", `https://transit.land/api/v2/rest/stops/f-sf~bay~area~rg:${stop_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            departures_bus.onreadystatechange = function() {
+                if (departures_bus.readyState === 4 && departures_bus.status === 200) {
+                    var bus_departures = JSON.parse(departures_bus.responseText);
+
+                    for (var i = 0; i < bus_departures.stops[0].departures.length; i++) {
+                        var route_color = bus_departures.stops[0].departures[i].trip.route.route_color;
+                        var route_text_color = bus_departures.stops[0].departures[i].trip.route.route_text_color;
+                        var route_short_desc = bus_departures.stops[0].departures[i].trip.route.route_short_name;
+                        var route_long_desc = bus_departures.stops[0].departures[i].trip.route.route_long_name;
+                        var route_headsign = bus_departures.stops[0].departures[i].trip.trip_headsign;
+                        var scheduled_time = bus_departures.stops[0].departures[i].arrival.scheduled;
+                        var real_time = bus_departures.stops[0].departures[i].arrival.estimated;
+
+                        if (real_time === null) {
+                            document.getElementById("route_depart_bus").innerHTML = ` ${scheduled_time} (scheduled)`;
+                            document.getElementById("route_depart_bus").style.color = "black";
                         }
-                        else if (scheduledTime === null) {
-                            continue
+                        else if (scheduled_time === null) {
+                            continue;
                         }
                         else {
-                            document.getElementById("route_depart").innerHTML = ` ${departuredTime} <span id="delay">()</span>`;
-                            document.getElementById("route_depart").style.color = "darkgreen";
+                            document.getElementById("route_depart_bus").innerHTML = ` ${real_time} <span id="delay_bus">()</span>`;
+                            document.getElementById("route_depart_bus").style.color = "darkgreen";
 
-                            if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay >= 60) {
-                                document.getElementById("delay").innerHTML = `(${Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60)} min late)`;
-                                document.getElementById("delay").style.color = "crimson";
+                            if (real_time = bus_departures.stops[0].departures[i].arrival.delay >= 60) {
+                                document.getElementById("delay_bus").innerHTML = `(${Math.floor(bus_departures.stops[0].departures[i].arrival.delay / 60)} min late)`;
+                                document.getElementById("delay_bus").style.color = "crimson";
                             }
-                            else if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay === 0) {
-                                document.getElementById("delay").innerHTML = `(on time)`;
-                                document.getElementById("delay").style.color = "green";
+                            else if (real_time = bus_departures.stops[0].departures[i].arrival.delay === 0) {
+                                document.getElementById("delay_bus").innerHTML = "(on time)";
+                                document.getElementById("delay_bus").style.color = "green";
                             }
-                            else if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay <= 0) {
-                                document.getElementById("delay").innerHTML = `(${Math.abs(Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60))} min early)`;
-                                document.getElementById("delay").style.color = "skyblue";
+                            else if (real_time = bus_departures.stops[0].departures[i].arrival.delay <= 0) {
+                                document.getElementById("delay_bus").innerHTML = `(${Math.abs(Math.floor(bus_departures.stops[0].departures[i].arrival.delay / 60))} min early)`;
+                                document.getElementById("delay_bus").style.color = "skyblue";
                             }
                             else {
-                                document.getElementById("delay").innerHTML = "(no data)";
-                                document.getElementById("delay").style.color = "black";
+                                document.getElementById("delay_bus").innerHTML = "(no data)";
+                                document.getElementById("delay_bus").style.color = "black";
                             }
                         }
 
-                        document.getElementById("line_for_each_departure").innerHTML = routeShort;
-                        document.getElementById("line_for_each_departure").style.backgroundColor = `#${routeColor}40`;
-                        document.getElementById("line_for_each_departure").style.border = `1px solid #${routeColor}`;
-                        document.getElementById("line_for_each_departure").style.color = `#${routeColorInText}`;
-                        document.getElementById("route_headsign").innerHTML = `<p id="isscroll">${routeFullName} ${routeLong}</p>`;
+                        document.getElementById("line_for_each_departure_bus").innerHTML = route_short_desc;
+                        document.getElementById("line_for_each_departure_bus").style.backgroundColor = `#${route_color}40`;
+                        document.getElementById("line_for_each_departure_bus").style.border = `1px solid #${route_color}`;
+                        document.getElementById("line_for_each_departure_bus").style.color = `#${route_text_color}`;
+                        document.getElementById("route_headsign_bus").innerHTML = `${route_long_desc} ${route_headsign}`;
 
-                        if (deviceWidth <= 520 && document.getElementById("route_headsign").innerText.length > 35) {
-                            console.log("Scroll?")
-                            document.getElementById("isscroll").style.transform = "translateX(200vw)";
-                            document.getElementById("isscroll").style.animation = "my-animation-6 10s linear infinite";
-                        }
-
-                        var departureClone = document.getElementById("line_for_departure");
+                        var departureClone = document.getElementById("line_for_departure_bus");
                         var listToInsertClone = departureClone.cloneNode(true);
-                        document.getElementById("list_of_departures").appendChild(listToInsertClone);
-
-                        var alertList_byAgency = compileDepartures.stops[0].departures[i].trip.route.agency.alerts;
-                        var alertList_byStop = compileDepartures.stops[0].alerts;
-
-                        for (var j = 0; j < alertList_byAgency.length; j++) {
-                            if (counter_b === alertList_byAgency.length) {
-                                break;
-                            }
-                            document.getElementById("alert_entity").innerHTML = `<p>${alertList_byAgency[j].description_text[0].text}</p>`;
-                            console.log(document.getElementById("alert_entity").textContent);
-
-                            var alertClone = document.getElementById("alert_entity");
-                            var listToInsertAlertClone = alertClone.cloneNode(true);
-                            document.getElementById("list_of_alerts").appendChild(listToInsertAlertClone);
-                            console.log(counter);
-                            counter_b += 1
-                        }
-
-                        for (var k = 0; k < alertList_byStop.length; k++) {
-                            if (counter === alertList_byStop.length) {
-                                break;
-                            }
-                            document.getElementById("alert_entity").innerHTML = `<p>${alertList_byStop[k].description_text[0].text}</p>`;
-
-                            var alertClone = document.getElementById("alert_entity");
-                            var listToInsertAlertClone = alertClone.cloneNode(true);
-                            document.getElementById("list_of_alerts").appendChild(listToInsertAlertClone);
-                            console.log(counter);
-                            counter += 1
-                        }
+                        document.getElementById("list_of_departures_bus").appendChild(listToInsertClone);
                     }
 
-                    var departuresAll = document.getElementById("list_of_departures").children;
-                    document.querySelector("#list_of_departures").removeChild(departuresAll[0]);
-
-                    var alertsAll = document.getElementById("list_of_alerts").children;
-                    document.querySelector("#list_of_alerts").removeChild(alertsAll[0]);
+                    var departuresAll = document.getElementById("list_of_departures_bus").children;
+                    document.querySelector("#list_of_departures_bus").removeChild(departuresAll[0]);
                 }
             }
-            secondDepartureRequest.send();
+            departures_bus.send();
         }
 
-        function clearAll() {
-            document.getElementById("list_of_departures").innerHTML = `
-            <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure">-</div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
+        function clearAllBus() {
+            document.querySelector(".headerforbus").innerHTML = `
+            Departures for &nbsp;<span id="bus_stopname">---</span>
             `
-            document.getElementById("stationname").innerHTML = "---";
-            document.getElementById("list_of_alerts").innerHTML = "<li id='alert_entity'></li>"
-            document.getElementById("alert_entity").innerHTML = `<p>Once you typed down the station by their ID, the advisories will display here.</p>`
-            counter = 0;
-            counter_b = 0;
+            document.getElementById("list_of_departures_bus").innerHTML = `
+            <li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="route_headsign_bus">(None)</span> <span id="route_depart_bus">Enter a specific stop by their stop ID</span></div></li>
+            `
+            document.getElementById("bus_stopname").innerHTML = "---";
         }
 
-        function clearAll2() {
-            document.getElementById("list_of_departures2").innerHTML = `
-            <li id="line_for_departure2"><div class="wrapper_for_departure2"><div id="line_for_each_departure2">-</div> <span id="route_headsign2">(None)</span> <span id="route_depart2">Enter a specific station by their stop ID</span></div></li>
-            `
-            document.getElementById("stopname").innerHTML = "---";
-            document.getElementById("list_of_alerts2").innerHTML = "<li id='alert_entity2'></li>"
-            document.getElementById("alert_entity2").innerHTML = `<p>Once you typed down the station by their ID, the advisories will display here.</p>`
-            counter = 0;
-            counter_b = 0;
-        }
+        function mapbox() {
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZGlud3VuNDUwIiwiYSI6ImNsaTR4c253bTAzNnIzcnF1aTh0eTN2a3kifQ.fjcqiGi68hyGpUAKAo9Tcw';
+            map = new mapboxgl.Map({
+                container: 'map', // container ID
+                // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+                style: 'mapbox://styles/mapbox/streets-v12', // style URL
+                center: [-122.431297, 37.773972], // starting position [lng, lat]
+                zoom: 11 // starting zoom
+            });
 
-        function clearAll3() {
-            document.getElementById("list_of_departures3").innerHTML = `
-            <li id="line_for_departure3"><div class="wrapper_for_departure3"><div id="line_for_each_departure3">-</div> <span id="route_headsign3">(None)</span> <span id="route_depart3">Enter a specific station by their stop ID</span></div></li>
-            `
-            document.getElementById("stopname3").innerHTML = "---";
-            document.getElementById("list_of_alerts3").innerHTML = "<li id='alert_entity3'></li>"
-            document.getElementById("alert_entity3").innerHTML = `<p>Once you typed down the station by their ID, the advisories will display here.</p>`
-            counter = 0;
-            counter_b = 0;
+            map.addControl(new mapboxgl.NavigationControl());
+            map.scrollZoom.disable();
+        }
+        mapbox();
+
+        function plotMuniLines() {
+            var muniCall = new XMLHttpRequest();
+            muniCall.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8y-sfmta&include_geometry=true&limit=700");
+            muniCall.onreadystatechange = function() {
+                if (muniCall.readyState === 4 && muniCall.status === 200) {
+                    var muniOutputs = JSON.parse(muniCall.responseText);
+
+                    for (var b=0; b<muniOutputs.routes.length; b++) {
+                        var muniLines = muniOutputs.routes[b].route_short_name;
+                        var muniLinesGeo = muniOutputs.routes[b].geometry;
+                        fullGeoJsonRoutes.push({'type': 'Feature', 'geometry': muniLinesGeo, 'properties': {"color": `#${muniOutputs.routes[b].route_color}`}})
+
+                        console.log(muniLines);
+                        console.log(fullGeoJsonRoutes);
+                    }
+
+                    map.addSource('route', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': fullGeoJsonRoutes
+                        }
+                    });
+
+                    map.addLayer({
+                        'id': 'route',
+                        'type': 'line',
+                        'source': 'route',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-width': 4,
+                            'line-color': ['get', 'color']
+                        }
+                    });
+                }
+            }
+            muniCall.send();
+        }
+        plotMuniLines();
+
+        function dark_or_light() {
+            var element = document.body;
+            element.classList.toggle("light_mode");
         }
     </script>
 </body>
-
 </html>
