@@ -54,6 +54,7 @@ window.onload = function() {
         var getDayNumber = date.getDate();
         var getDayName = days[date.getDay()];
         var getYearNumber = date.getFullYear();
+        document.querySelector(".copyright").innerHTML = `&copy; ${getYearNumber} Transcyclopedia. Created by Dino Wun.`
 
         var getHour = date.getHours();
         var getMinute = date.getMinutes();
