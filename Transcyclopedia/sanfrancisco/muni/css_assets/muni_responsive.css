@@ -14,10 +14,6 @@
         width: 97%;
     }
 
-    .left_navbar li a {
-        font-size: 16px;
-    }
-
     .left_navbar li a.closebtn {
         display: block;
     }
@@ -48,10 +44,6 @@
     .left_navbar {
         width: 100%;
         z-index: 3;
-    }
-
-    .left_navbar li a {
-        font-size: 18px;
     }
 
     .window {
