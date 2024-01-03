@@ -123,6 +123,9 @@
         <div class="window" id="map_inter">
             <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
             <div id="map"></div>
+            <ul id="range_of_routes">
+                <li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>
+            </ul>
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
@@ -541,6 +544,67 @@
                             'line-width': 4,
                             'line-color': ['get', 'color']
                         }
+                    });
+
+                    map.on('movestart', () => {
+                        map.setFilter('routes', ['has', 'name']);
+                        console.log("Move it!");
+                        document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+                    });
+
+                    map.on('moveend', () => {
+                        const features = map.queryRenderedFeatures({
+                            layers: ['routes']
+                        });
+
+                        if (features) {
+                            const uniqueFeatures = getUniqueFeatures(features, 'name');
+                            for (var f = 0; f < uniqueFeatures.length; f ++) {
+                                var name_of_route = uniqueFeatures[f].properties.name;
+                                var color_of_route = uniqueFeatures[f].properties.color;
+                                var text_color_of_route = uniqueFeatures[f].properties.label;
+                                var desc_of_route = uniqueFeatures[f].properties.title;
+
+                                document.getElementById("route_short").innerHTML = name_of_route;
+                                document.getElementById("route_short").style.color = `#${text_color_of_route}`;
+                                document.getElementById("route_short").style.backgroundColor = `${color_of_route}40`;
+                                document.getElementById("route_short").style.border = `1px solid ${color_of_route}40`;
+                                document.getElementById("detailed_route").innerHTML = desc_of_route;
+
+                                var routeClone = document.querySelector(".route_radius");
+                                var listToInsertClone = routeClone.cloneNode(true);
+                                document.getElementById("range_of_routes").appendChild(listToInsertClone);
+                            }
+                        }
+                    });
+
+                    let routeId = [];
+
+                    const popup = new mapboxgl.Popup({
+                        closeButton: false,
+                        closeOnClick: false
+                    });
+
+                    map.on('mouseenter', 'routes', function(e) {
+                        var fs = map.queryRenderedFeatures(e.point, { layers: ['routes']});
+                        console.log(fs)
+
+                        if (fs.length > 0) {
+                            for (var f = 0; f < fs.length; f ++) {
+                                var name_of_route = fs[f].properties.name;
+                                routeId.push(name_of_route)
+                            }
+                            
+                            // Populate the popup and set its coordinates
+                            // based on the feature found.
+                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
+                        }
+                    });
+
+                    map.on('mouseleave', 'routes', () => {
+                        if (routeId.length > 0) {routeId = []}
+                        popup.remove();
+                        // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
                     });
                 }
             }

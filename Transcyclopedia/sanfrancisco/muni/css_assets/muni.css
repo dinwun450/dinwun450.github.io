@@ -240,7 +240,7 @@ body::after {
     margin-bottom: 5px;
 }
 
-#route_metro, #route_cablestreetcar, #route_bus, #line_for_each_departure_muni_metro, #line_for_each_departure_cable, #line_for_each_departure_bus, #affectedroutes {
+#route_metro, #route_cablestreetcar, #route_bus, #line_for_each_departure_muni_metro, #line_for_each_departure_cable, #line_for_each_departure_bus, #affectedroutes, #route_short {
     display: inline-block;
     width: fit-content;
     padding-left: 5px;
@@ -388,9 +388,53 @@ body::after {
     list-style-type: none;
 }
 
+#map_inter {
+    overflow-y: auto;
+}
+
+#map_inter::-webkit-scrollbar {
+    width: 5px;
+    position: relative;
+    right: 20px;
+}
+
+#map_inter::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    position: relative;
+    right: 2px;
+}
+
+#map_inter::-webkit-scrollbar-thumb {
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    background: rgba( 255, 255, 255, 0.25 );
+    border-radius: 10px;
+}
+
 #map {
     width: 100%;
     height: 500px;
     border-radius: 10px;
     margin-top: 20px;
+}
+
+#range_of_routes {
+    width: 100%;
+    height: 300px;
+    background: rgba( 255, 255, 255, 0.25 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 10px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.route_radius {
+    list-style-type: none;
+    margin-bottom: 5px;
+}
+
+.mapboxgl-popup-content {
+    color: black;
+    width: fit-content;
 }
