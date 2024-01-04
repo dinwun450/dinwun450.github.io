@@ -6,6 +6,7 @@ window.onload = function() {
         var getYearNo = date.getFullYear();
         document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
     }
+    getCopyrightYear();
 
     function loadMuniMetroLines() {
         var caller_metro = new XMLHttpRequest();
