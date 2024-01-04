@@ -270,10 +270,10 @@
                     for (var b=0; b<bartCallOutputs.routes.length; b++) {
                         var detailedBartLines = bartCallOutputs.routes[b].route_short_name;
                         var bartLinesGeo = bartCallOutputs.routes[b].geometry;
-                        fullGeoJsonRoutes.push({'type': 'Feature', 'geometry': bartLinesGeo, 'properties': {"color": `#${bartCallOutputs.routes[b].route_color}`}})
+                        fullGeoJsonRoutes.push({'type': 'Feature', 'geometry': bartLinesGeo, 'properties': {"color": `#${bartCallOutputs.routes[b].route_color}`, "name": `${detailedBartLines}`, "label": `${bartCallOutputs.routes[b].route_text_color}`, title: `${bartCallOutputs.routes[b].route_long_name}`}})
 
-                        console.log(detailedBartLines);
-                        console.log(fullGeoJsonRoutes);
+                        // console.log(detailedBartLines);
+                        // console.log(fullGeoJsonRoutes);
                     }
 
                     map.addSource('route', {
