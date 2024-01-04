@@ -22,6 +22,11 @@
         width: 100%;
     }
 
+    .left_navbar .x:hover {
+        background-color: #39bf5898;
+        transition: 0.5s;
+    }
+
     .show_and_hide_info {
         width: 43vw;
     }

@@ -72,7 +72,7 @@ body::after {
     color: white;
 }
 
-.left_navbar li:hover:not(.active) {
+.left_navbar li:hover:not(.active, .x) {
     background-color: #39bf5898;
     transition: 0.5s;
 }
