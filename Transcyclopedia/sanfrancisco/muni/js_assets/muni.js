@@ -1,5 +1,12 @@
 window.onload = function() {
     counter = 0;
+
+    function getCopyrightYear() {
+        var date = new Date();
+        var getYearNo = date.getFullYear();
+        document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
+    }
+
     function loadMuniMetroLines() {
         var caller_metro = new XMLHttpRequest();
         caller_metro.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8y-sfmta&limit=700&route_type=0&include_alerts=true");
