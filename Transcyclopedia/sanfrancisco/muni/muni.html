@@ -7,21 +7,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-    <link rel="stylesheet" href="css_assets/muni.css">
+    <link rel="stylesheet" href="css_assets/muni_remake.css">
     <link rel="stylesheet" href="css_assets/muni_responsive.css">
-    <script src="js_assets/muni.js"></script>
+    <script src="js_assets/muni_remake.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
         <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia SF:<br> San Francisco Muni</h1>
         <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
-        <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_muni')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About Muni</a></li>
-        <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
-        <li class="tablinks header2" onclick="openTab(event, 'departures_metro')"><a href="#"><i class="fa-solid fa-train-subway"></i>&nbsp;&nbsp;Departures (Muni Metro)</a></li>
-        <li class="tablinks header3" onclick="openTab(event, 'departures_cable')"><a href="#"><i class="fa-solid fa-cable-car"></i>&nbsp;&nbsp;Departures (Cable Car)</a></li>
-        <li class="tablinks header4" onclick="openTab(event, 'departures_bus')"><a href="#"><i class="fa-solid fa-bus"></i>&nbsp;&nbsp;Departures (Bus)</a></li>
-        <li class="tablinks header5" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
-        <li class="tablinks header6" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
+        <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_muni')"><a href="#about_muni"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About Muni</a></li>
+        <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#lines"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
+        <li class="tablinks header2" onclick="openTab(event, 'departures_metro')"><a href="#departures_metro"><i class="fa-solid fa-train-subway"></i>&nbsp;&nbsp;Departures (Muni Metro)</a></li>
+        <li class="tablinks header3" onclick="openTab(event, 'departures_cable')"><a href="#departures_cable"><i class="fa-solid fa-cable-car"></i>&nbsp;&nbsp;Departures (Cable/Streetcar)</a></li>
+        <li class="tablinks header4" onclick="openTab(event, 'departures_bus')"><a href="#departures_bus"><i class="fa-solid fa-bus"></i>&nbsp;&nbsp;Departures (Bus)</a></li>
+        <li class="tablinks header5" onclick="openTab(event, 'alerts')"><a href="#alerts"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li class="tablinks header6" onclick="openTab(event, 'map_inter')"><a href="#map_inter"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
         <li><a href="#" onclick="dark_or_light()"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light/Dark Mode</a></li>
         <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
         <p class="copyright">&copy; 2023 Transcyclopedia. Created by Dino Wun.</p>
@@ -508,6 +508,19 @@
         }
         mapbox();
 
+        function getUniqueFeatures(features, comparatorProperty) {
+            const uniqueIds = new Set();
+            const uniqueFeatures = [];
+            for (const feature of features) {
+                const id = feature.properties[comparatorProperty];
+                if (!uniqueIds.has(id)) {
+                    uniqueIds.add(id);
+                    uniqueFeatures.push(feature);
+                }
+            }
+            return uniqueFeatures;
+        }
+
         function plotMuniLines() {
             var muniCall = new XMLHttpRequest();
             muniCall.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8y-sfmta&include_geometry=true&limit=700");
@@ -518,10 +531,10 @@
                     for (var b=0; b<muniOutputs.routes.length; b++) {
                         var muniLines = muniOutputs.routes[b].route_short_name;
                         var muniLinesGeo = muniOutputs.routes[b].geometry;
-                        fullGeoJsonRoutes.push({'type': 'Feature', 'geometry': muniLinesGeo, 'properties': {"color": `#${muniOutputs.routes[b].route_color}`}})
+                        fullGeoJsonRoutes.push({'type': 'Feature', 'geometry': muniLinesGeo, 'properties': {"color": `#${muniOutputs.routes[b].route_color}`, "name": `${muniLines}`, "label": `${muniOutputs.routes[b].route_text_color}`, title: `${muniOutputs.routes[b].route_long_name}`}})
 
-                        console.log(muniLines);
-                        console.log(fullGeoJsonRoutes);
+                        // console.log(muniLines);
+                        // console.log(fullGeoJsonRoutes);
                     }
 
                     map.addSource('route', {
@@ -533,7 +546,7 @@
                     });
 
                     map.addLayer({
-                        'id': 'route',
+                        'id': 'routes',
                         'type': 'line',
                         'source': 'route',
                         'layout': {
