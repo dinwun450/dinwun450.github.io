@@ -3,6 +3,13 @@ window.onload = function() {
     var fullGeoJsonRoutes = [];
     console.log("This is the map area! We'll connect to the main page soon!")
 
+    function getCopyrightYear() {
+        var date = new Date();
+        var getYearNo = date.getFullYear();
+        document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
+    }
+    getCopyrightYear();
+
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(routeMapper);
