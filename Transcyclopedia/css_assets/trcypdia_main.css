@@ -345,6 +345,10 @@ body::after {
     justify-content: center;
 }
 
+.light_mode .optionsfortransit li a {
+    color: #333333;
+}
+
 .optionsfortransit li:hover a {
     opacity: 1;
     color: #0398fc;
