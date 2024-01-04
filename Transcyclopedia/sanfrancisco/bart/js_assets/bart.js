@@ -1,4 +1,11 @@
 window.onload = function() {
+    function getCopyrightYear() {
+        var date = new Date();
+        var getYearNo = date.getFullYear();
+        document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
+    }
+    getCopyrightYear();
+    
     function loadBartRoutes() {
         var routeCall = new XMLHttpRequest();
         routeCall.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-bart")
