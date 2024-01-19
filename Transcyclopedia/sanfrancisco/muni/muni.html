@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transcyclopedia San Francisco: San Francisco Muni</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="css_assets/muni.css">
     <link rel="stylesheet" href="css_assets/muni_responsive.css">
     <script src="js_assets/muni.js"></script>
@@ -494,17 +494,75 @@
         }
 
         function mapbox() {
+            document.getElementById("map").style.width = "100%";
+            document.getElementById("map").style.height = "500px";
+
+            const mapDiv = document.getElementById('map');
+            console.log("Shucks! We can't size up!");
+
+            if (mapDiv.style.visibility === false) { 
+                map.resize();
+            }
+            
             mapboxgl.accessToken = 'pk.eyJ1IjoiZGlud3VuNDUwIiwiYSI6ImNsaTR4c253bTAzNnIzcnF1aTh0eTN2a3kifQ.fjcqiGi68hyGpUAKAo9Tcw';
             map = new mapboxgl.Map({
                 container: 'map', // container ID
                 // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-                style: 'mapbox://styles/mapbox/streets-v12', // style URL
+                style: 'mapbox://styles/mapbox/light-v11', // style URL
                 center: [-122.431297, 37.773972], // starting position [lng, lat]
                 zoom: 11 // starting zoom
             });
 
             map.addControl(new mapboxgl.NavigationControl());
             map.scrollZoom.disable();
+
+            map.on('style.load', () => {
+                // Insert the layer beneath any symbol layer.
+                const layers = map.getStyle().layers;
+                const labelLayerId = layers.find(
+                    (layer) => layer.type === 'symbol' && layer.layout['text-field']
+                ).id;
+                
+                // The 'building' layer in the Mapbox Streets
+                // vector tileset contains building height data
+                // from OpenStreetMap.
+                map.addLayer({
+                            'id': 'add-3d-buildings',
+                            'source': 'composite',
+                            'source-layer': 'building',
+                            'filter': ['==', 'extrude', 'true'],
+                            'type': 'fill-extrusion',
+                            'minzoom': 15,
+                            'paint': {
+                            'fill-extrusion-color': '#aaa',
+                            
+                            // Use an 'interpolate' expression to
+                            // add a smooth transition effect to
+                            // the buildings as the user zooms in.
+                            'fill-extrusion-height': [
+                                'interpolate',
+                                ['linear'],
+                                ['zoom'],
+                                15,
+                                0,
+                                15.05,
+                                ['get', 'height']
+                            ],
+                            'fill-extrusion-base': [
+                                'interpolate',
+                                ['linear'],
+                                ['zoom'],
+                                15,
+                                0,
+                                15.05,
+                                ['get', 'min_height']
+                            ],
+                            'fill-extrusion-opacity': 0.6
+                        }
+                    },
+                    labelLayerId
+                );
+            });
         }
         mapbox();
 
