@@ -1,0 +1,445 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Geologica", sans-serif;
+}
+
+body {
+    background-color: #2e2e2e;
+    color: white;
+    transition: 0.4s;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(#214e8d, #dedede);
+    z-index: -1;
+    clip-path: circle(22% at 30% 20%);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(#dedede, #5db9e8);
+    z-index: -1;
+    clip-path: circle(22% at 70% 80%);
+}
+
+.left_navbar {
+    width: 22%;
+    height: 100vh;
+    background: rgba(255,255,255,0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 10px;
+    position: sticky;
+    padding: 10px;
+    font-size: 18px;
+    list-style-type: none;
+}
+
+.left_navbar li {
+    width: 20vw;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.left_navbar li.active {
+    background-color: #214e8d98;
+}
+
+.left_navbar li:hover:not(.active, .x) {
+    background-color: #5db9e898;
+    transition: 0.5s;
+}
+
+.left_navbar li a.closebtn {
+    display: none;
+}
+
+.left_navbar li a {
+    display: block;
+    width: 250px;
+    text-decoration: none;
+    color: white;
+}
+
+.logo {
+    font-size: 25px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.globe {
+    color: rgb(10, 161, 45);
+    font-size: 15px;
+}
+
+.copyright {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.main {
+    float: right;
+    width: 78%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow-y: hidden;
+}
+
+.window {
+    float: right;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#nameswitch {
+    font-size: 40px;
+    margin-left: 20px;
+    margin-top: 55px;
+}
+
+#nameswitch i {
+    display: none;
+}
+
+.info {
+    width: 50%;
+    height: 100%;
+}
+
+.info #desc {
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.info #desc a {
+    outline: none;
+    color: #214e8d;
+}
+
+.stats {
+    float: right;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow-y: scroll;
+}
+
+.began_operation, .no_of_lines, .contact {
+    width: 96%;
+    height: 40%;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin-top: 25px;
+    word-wrap: break-word;
+}
+
+.began_operation h2, .no_of_lines h2, .contact h2 {
+    font-weight: normal;
+    margin-top: 60px;
+    margin-left: 20px;
+}
+
+.began_operation p, .no_of_lines p {
+    margin-left: 20px;
+    font-size: 50px;
+}
+
+.contact p {
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+#lines {
+    overflow-y: auto;
+}
+
+.lines_lr, .lines_bus {
+    width: 90%;
+    height: fit-content;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin-left: 20px;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.lines_lr h3, .lines_bus h3 {
+    margin-left: 5px;
+}
+
+.vta_lr_lines, .vta_bus_lines {
+    position: relative;
+    margin-left: 20px;
+    list-style-type: none;
+    padding-top: 10px;
+}
+
+.vta_lr_lines li, .vta_bus_lines li {
+    margin-bottom: 5px;
+}
+
+#route_lr, #route_bus,
+#line_for_each_departure_vta_lr, #line_for_each_departure_vta_bus,
+#affectedroutes, #route_short {
+    display: inline-block;
+    width: fit-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 23px;
+    background: #33333340;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: white;
+    font-size: 1em;
+    text-align: center;
+}
+
+#desc_lr, #desc_bus {
+    width: 65%;
+    text-align: right;
+    margin-right: 10px;
+    right: 50px;
+}
+
+#departures_lr input, #departures_bus input {
+    width: 95%;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 20px;
+    background-color: #eeeeee40;
+    border: 1px solid #eeeeee40;
+    color: white;
+    padding-left: 10px;
+}
+
+#alerts input {
+    width: 95%;
+    height: 30px;
+    border-radius: 5px;
+    margin-left: 20px;
+    background-color: #eeeeee40;
+    border: 1px solid #eeeeee40;
+    color: white;
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#departures_lr input:active, #departures_bus input:active, #alerts input:active {
+    outline: none;
+}
+
+.headerforvtalr, .headerforvtabus, .headerforvtaalerts {
+    width: 95%;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 10px 10px 0 0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin-top: 10px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.headerforvtaalerts {
+    height: fit-content;
+    border-radius: 10px;
+    text-wrap: nowrap;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+#list_of_departures_vta_bus, #list_of_departures_vta_lr {
+    width: 95%;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 0 0 10px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin-left: 20px;
+    margin-bottom: 10px;
+    overflow-y: auto;
+}
+
+.stats::-webkit-scrollbar, #lines::-webkit-scrollbar, #list_of_departures_vta_lr::-webkit-scrollbar, #list_of_departures_vta_bus::-webkit-scrollbar,
+#map_inter::-webkit-scrollbar, #range_of_routes::-webkit-scrollbar, .alert_entity_routes::-webkit-scrollbar {
+    width: 5px;
+    position: relative;
+    right: 20px;
+}
+
+.headerforvtaalerts::-webkit-scrollbar {
+    height: 5px;
+}
+
+.stats::-webkit-scrollbar-track, #lines::-webkit-scrollbar-track, #list_of_departures_vta_lr::-webkit-scrollbar-track, #list_of_departures_vta_bus::-webkit-scrollbar-track,
+#map_inter::-webkit-scrollbar-track, #range_of_routes::-webkit-scrollbar-track, .headerforvtaalerts::-webkit-scrollbar-track, .alert_entity_routes::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+.stats::-webkit-scrollbar-thumb, #lines::-webkit-scrollbar-thumb, #list_of_departures_vta_lr::-webkit-scrollbar-thumb, #list_of_departures_vta_bus::-webkit-scrollbar-thumb,
+#map_inter::-webkit-scrollbar-thumb, #range_of_routes::-webkit-scrollbar-thumb, .headerforvtaalerts::-webkit-scrollbar-thumb, .alert_entity_routes::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+}
+
+#line_for_departure_vta_lr, #line_for_departure_vta_bus {
+    margin: 10px;
+}
+
+#route_headsign_vta_lr, #route_headsign_vta_bus {
+    position: relative;
+    left: 5px;
+}
+
+#route_depart_vta_lr, #route_depart_vta_bus {
+    float: right;
+    position: relative;
+    right: 3px;
+}
+
+#clearall_vta_lr, #clearall_vta_bus, #clearall_vta_alerts {
+    width: 95%;
+    height: 30px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 1.5em;
+    margin-bottom: 25px;
+    margin-left: 20px;
+    color: white;
+}
+
+#clearall_vta_alerts {
+    margin-top: 20px;
+}
+
+#alerts {
+    overflow-y: auto;
+}
+
+.alert_entity_agency, .alert_entity_routes {
+    width: 92%;
+    height: 200px;
+    margin-left: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.alert_entity_routes {
+    height: 400px;
+}
+
+.alert_entity_agency h3, .alert_entity_routes h3 {
+    margin-left: 5px;
+}
+
+#alert_desc_routes {
+    width: 95%;
+    height: fit-content;
+    margin-left: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 10px;
+    list-style-type: none;
+}
+
+#alert_desc_agency {
+    width: 95%;
+    height: 100px;
+    margin-left: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    padding: 10px;
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+#map_inter {
+    overflow-y: auto;
+}
+
+.map_box_container{
+    position: relative;
+    height: 500px !important;
+    width: 100% !important;
+}
+
+.mapboxgl-canvas-container { height: 100vh; }
+  
+#map {
+    border-radius: 10px;
+    margin-top: 20px;
+    z-index: 1;
+    width: 100%;
+    height: 500px;
+}
+
+#range_of_routes {
+    width: 100%;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.route_radius {
+    list-style-type: none;
+    margin-bottom: 5px;
+}
+
+.mapboxgl-popup-content {
+    color: black;
+    width: fit-content;
+}

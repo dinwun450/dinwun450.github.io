@@ -1,0 +1,48 @@
+.light_mode {
+    background-color: #dedede;
+    color: black;
+    transition: 0.4s;
+}
+
+.light_mode .left_navbar li a,
+.light_mode #clearall_vta_lr, .light_mode #clearall_vta_bus, 
+.light_mode #clearall_vta_alerts {
+    color: black;
+    transition: 0.4s;
+}
+
+.light_mode .stats::-webkit-scrollbar-track, .light_mode #lines::-webkit-scrollbar-track, .light_mode #list_of_departures_vta_lr::-webkit-scrollbar-track, .light_mode #list_of_departures_vta_bus::-webkit-scrollbar-track,
+.light_mode #map_inter::-webkit-scrollbar-track, .light_mode #range_of_routes::-webkit-scrollbar-track, .light_mode .headerforvtaalerts::-webkit-scrollbar-track, .light_mode .alert_entity_routes::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+.light_mode .stats::-webkit-scrollbar-thumb, .light_mode #lines::-webkit-scrollbar-thumb, .light_mode #list_of_departures_vta_lr::-webkit-scrollbar-thumb, .light_mode #list_of_departures_vta_bus::-webkit-scrollbar-thumb,
+.light_mode #map_inter::-webkit-scrollbar-thumb, .light_mode #range_of_routes::-webkit-scrollbar-thumb, .light_mode .headerforvtaalerts::-webkit-scrollbar-thumb, .light_mode .alert_entity_routes::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.light_mode #alerts input {
+    width: 95%;
+    height: 30px;
+    border-radius: 5px;
+    margin-left: 20px;
+    background-color: #dedede94;
+    border: 1px solid #dedede94;
+    /* color: white; */
+    color: black;
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 600px) { 
+    .light_mode #alerts input {
+        margin-left: 5px;
+    }
+}

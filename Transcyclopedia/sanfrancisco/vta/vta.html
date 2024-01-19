@@ -1,491 +1,760 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transcyclopedia San Francisco: Santa Clara Valley Transportation Authority</title>
+    <title>Transcyclopedia San Francisco: Santa Clara VTA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="vta.css">
-    <script src="vta.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="css_assets/vta.css">
+    <link rel="stylesheet" href="css_assets/vta_responsive.css">
+    <link rel="stylesheet" href="css_assets/light_dark_mode.css">
+    <script src="js_assets/vta.js"></script>
 </head>
-
 <body>
-    <nav id="navbar">
-        <a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html" class="brand">
-            <!--<i class="fa-solid fa-earth-americas"></i>-->
-            <span id="globe"><i class="fa-solid fa-earth-americas"></i></span>
-            <span>Transcyclopedia</span>
-        </a>
-        <ul class="nav-links">
-            <input type="checkbox" id="checkbox_toggle" />
-            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
-            <div class="menu">
-                <li style="--i:0;">
-                    <a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html">
-                        <span>Menu</span>
-                        <span><ion-icon name="home-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:1;">
-                    <a href="#">
-                        <span>Agency</span>
-                        <span><ion-icon name="business-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:2;">
-                    <a href="#">
-                        <span>Alerts</span>
-                        <span><ion-icon name="warning-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:3;">
-                    <a href="#">
-                        <span>Lines</span>
-                        <span><ion-icon name="map-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:4;">
-                    <a href="#">
-                        <span>About</span>
-                        <span><ion-icon name="information-circle-outline"></ion-icon></span>
-                    </a>
-                </li>
-            </div>
-        </ul>
-    </nav>
+    <ul class="left_navbar">
+        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia SF:<br> Santa Clara VTA</h1>
+        <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
+        <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_vta')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About VTA</a></li>
+        <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
+        <li class="tablinks header2" onclick="openTab(event, 'departures_lr')"><a href="#"><i class="fa-solid fa-train-tram"></i>&nbsp;&nbsp;Departures (Light Rail)</a></li>
+        <li class="tablinks header3" onclick="openTab(event, 'departures_bus')"><a href="#"><i class="fa-solid fa-bus"></i>&nbsp;&nbsp;Departures (Bus)</a></li>
+        <li class="tablinks header4" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
+        <li><a href="#" onclick="dark_or_light()"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light/Dark Mode</a></li>
+        <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
+        <p class="copyright">&copy; 2024 Transcyclopedia. Created by Dino Wun.</p>
+    </ul>
     <div class="main">
-        <div class="topfooter">
-            <h1 style="color: white;" id="titleofsection">Santa Clara Valley Transportation Authority</h1>
+        <div class="window" id="about_vta">
+            <div class="info">
+                <p id="nameswitch">About VTA <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+                <p id="desc">Loading Content...</p>
+            </div>
+            <div class="stats">
+                <div class="began_operation">
+                    <h2>Founded:</h2>
+                    <p><b>January 1st, 1973</b></p>
+                </div>
+                <div class="no_of_lines">
+                    <h2>Number of Lines:</h2>
+                    <p><b>70 Bus Lines</b><br><b>3 Light Rail Lines</b></p>
+                </div>
+                <div class="contact">
+                    <h2>Contact:</h2>
+                    <ul>
+                        <li><p><b>customer.service@vta.org</b> (Email)</p></li>
+                        <li><p><b>408-321-2300</b> (Phone)</p></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'info')" id="defaulttab">About VTA</button>
-            <button class="tablinks" onclick="openTab(event, 'lines')">Lines</button>
-            <button class="tablinks" onclick="openTab(event, 'departures_lr')">VTA Light Rail</button>
-            <button class="tablinks" onclick="openTab(event, 'departures_bus')">Bus</button>
+        <div class="window" id="lines">
+            <p id="nameswitch">Lines <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="lines_lr">
+                <h3>VTA Light Rail</h3>
+                <ul class="vta_lr_lines">
+                    <li id="route_entity_lr"><span id="route_lr" title="Loading...">-</span> &nbsp; <span id="desc_lr" title="Please wait...">Loading...</span> <span id="no_of_alerts_lr"></span><br></li>
+                </ul>
+            </div>
+            <div class="lines_bus">
+                <h3>Bus</h3>
+                <ul class="vta_bus_lines">
+                    <li id="route_entity_bus"><span id="route_bus" title="Loading...">-</span> &nbsp; <span id="desc_bus" title="Please wait...">Loading...</span> <span id="no_of_alerts_bus"></span><br></li>
+                </ul>
+            </div>
         </div>
-
-        <div id="info" class="tabcontent">
-            <h2>About VTA</h2>
-            <p id="about_content">
-                The Santa Clara Valley Transportation Authority, more commonly known simply as the Valley Transportation Authority (VTA), 
-                is a special district responsible for public transit services, congestion management, specific highway improvement projects, 
-                and countywide transportation planning for Santa Clara County, California. It serves San Jose, California, and the surrounding 
-                Silicon Valley. It is one of the governing parties for the Caltrain commuter rail line that serves the county. In 2022, the 
-                VTA's public transportation services had a combined ridership of 21,381,600, or about 85,800 per weekday as of the second quarter of 2023.
-                <a href="https://en.wikipedia.org/wiki/Santa_Clara_Valley_Transportation_Authority">Wikipedia</a>
-            </p>
+        <div class="window" id="departures_lr">
+            <p id="nameswitch">Departures (Light Rail) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a station..." onkeydown="keyDownLR()" id="vta_lr_stationgetter" autocomplete="off">
+            <p class="headerforvtalr">Departures for &nbsp;<span id="vta_lr_stationname">---</span></p>
+            <ul id="list_of_departures_vta_lr">
+                <li id="line_for_departure_vta_lr"><div class="wrapper_for_departure_vta_lr"><div id="line_for_each_departure_vta_lr">-</div> <span id="alerts_lr"></span> <span id="route_headsign_vta_lr">(None)</span><span id="route_depart_vta_lr">Enter a specific station by their station ID</span></div></li>
+            </ul>
+            <button id="clearall_vta_lr" onclick="clearAllVtaLR()">Clear</button>
         </div>
-        <div id="lines" class="tabcontent">
-            <h2>Lines</h2>
-            <h4 class="buslines">Bus</h4>
-            <ul id="vta_lines">
-                <li id="each_line">
-                    <div id="line">-</div>
-                    <div id="route_desc">(Loading)</div>
-                </li>
+        <div class="window" id="departures_bus">
+            <p id="nameswitch">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a stop..." onkeydown="keyDownBus()" id="vta_bus_stopgetter" autocomplete="off">
+            <p class="headerforvtabus">Departures for &nbsp;<span id="vta_bus_stopname">---</span></p>
+            <ul id="list_of_departures_vta_bus">
+                <li id="line_for_departure_vta_bus"><div class="wrapper_for_departure_vta_bus"><div id="line_for_each_departure_vta_bus">-</div> <span id="alerts_bus"></span> <span id="route_headsign_vta_bus">(None)</span><span id="route_depart_vta_bus">Enter a specific stop by their stop ID</span> <span id="delay_bus"></span></div></li>
             </ul>
-            <h4 class="lrlines">Light Rail</h4>
-            <ul id="vta_lr_lines">
-                <li id="each_line_lr">
-                    <div id="line_lr">-</div>
-                    <div id="route_desc_lr">(Loading)</div>
-                </li>
-            </ul>
+            <button id="clearall_vta_bus" onclick="clearAllVtaBus()">Clear</button>
         </div>
-        <div id="departures_lr" class="tabcontent">
-            <h2>VTA Light Rail</h2>
-            <input type="text" placeholder="Search for a station.." onkeydown="keydownlr()" id="stationgetter"
-                autocomplete="off">
-            <p class="headerforstop">Departures for &nbsp;<span id="stationname">---</span></p>
-            <ul id="list_of_departures">
-                <li id="line_for_departure">
-                    <div class="wrapper_for_departure">
-                        <div id="line_for_each_departure">-</div> <div id="route_headsign"><p id="isscroll">(None)</p></div> <span id="route_depart">Enter a specific station by their station ID</span>
-                    </div>
-                </li>
-            </ul>
-            <h3>Alerts Today</h3>
-            <ul id="list_of_alerts">
-                <li id="alert_entity">
-                    <p>Once you typed down the station by their ID, the advisories will display here.</p>
-                </li>
-            </ul>
-            <button id="clearall" onclick="clearAllDepartures()">Clear</button>
+        <div class="window" id="alerts">
+            <p id="nameswitch">Alerts <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="alert_entity_agency">
+                <h3>VTA Agency</h3>
+                <ul id="vta_agency_alerts">
+                    <li id="alert_desc_agency">
+                        <p>Loading...</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="alert_entity_routes">
+                <h3>VTA Routes</h3>
+                <input type="text" placeholder="Search for a route..." onkeydown="keyDownAlerts()" id="vta_routegetter" autocomplete="off">
+                <p class="headerforvtaalerts">Alerts for &nbsp; <span id="affectedroutes">-</span><br></p>
+                <ul id="vta_routes_alerts">
+                    <li id="alert_desc_routes">
+                        <p>
+                            <span id="alert_for_specific_route">Enter a specific route by their route name.</span>
+                        </p>
+                    </li>
+                </ul>
+                <button id="clearall_vta_alerts" onclick="clearAllAlerts()">Clear</button>
+            </div>
         </div>
-        <div id="departures_bus" class="tabcontent">
-            <h2>Bus</h2>
-            <input type="text" placeholder="Search for a station.." onkeydown="keydownbus()" id="busgetter"
-                autocomplete="off">
-            <p class="headerforstop2">Departures for &nbsp;<span id="stopname">---</span></p>
-            <ul id="list_of_departures2">
-                <li id="line_for_departure2">
-                    <div class="wrapper_for_departure2">
-                        <div id="line_for_each_departure2">-</div> <div id="route_headsign2"><p id="isscroll2">(None)</p></div> <span id="route_depart2">Enter a specific stop by their stop ID</span>
-                    </div>
-                </li>
+        <div class="window" id="map_inter">
+            <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <section class="map_box_container">
+                <!--MAP-->
+              <div id='map' style="width: 100%; height: 500px;"></div>
+            </section>
+            <ul id="range_of_routes">
+                <li class="route_radius"><span id="route_short">-</span>&nbsp;&nbsp;<span id="detailed_route">Drag the map to filter nearby routes</span></li>
             </ul>
-            <h3>Alerts Today</h3>
-            <ul id="list_of_alerts2">
-                <li id="alert_entity2">
-                    <p>Once you typed down the station by their ID, the advisories will display here.</p>
-                </li>
-            </ul>
-            <button id="clearall2" onclick="clearAllDepartures2()">Clear</button>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script>
-        let lastScrollTop = 0;
-        var deviceWidth = window.innerWidth;
-        var counter = 0;
-        var counter_b = 0;
-        var counter_c = 0;
+        var v = null;
+        var full_vta_geojson_routes = [];
 
-        navbar = document.getElementById("navbar");
-        window.addEventListener("scroll", function () {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop) {
-                navbar.classList.add("icon");
-            } else {
-                navbar.classList.remove("icon");
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
             }
-            lastScrollTop = scrollTop;
-        })
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
+
+        function openNav() {
+            document.querySelector(".left_navbar").style.display = "block";
+        }
+
+        /* Close/hide the sidenav */
+        function closeNav() {
+            document.querySelector(".left_navbar").style.display = "none";
+            console.log(document.querySelector(".left_navbar").getAttribute("style"))
+        }
+
+        function dark_or_light() {
+            var element = document.body;
+            element.classList.toggle("light_mode");
+        }
+
+        function createMapboxMap() {
+            document.getElementById("map").style.width = "100%";
+            document.getElementById("map").style.height = "500px";
+
+            const mapDiv = document.getElementById('map');
+            console.log("Shucks! We can't size up!");
+
+            if (mapDiv.style.visibility === false) { 
+                map.resize();
+            }
+
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZGlud3VuNDUwIiwiYSI6ImNsaTR4c253bTAzNnIzcnF1aTh0eTN2a3kifQ.fjcqiGi68hyGpUAKAo9Tcw';
+            map = new mapboxgl.Map({
+                container: "map",
+                style: "mapbox://styles/mapbox/light-v11",
+                center: [-121.893028,37.335480],
+                zoom: 8.5
+            });
+            
+            map.on('load', function (){
+                map.addControl(new mapboxgl.NavigationControl());
+                map.scrollZoom.disable();
+            });
+
+            map.on('style.load', () => {
+                // Insert the layer beneath any symbol layer.
+                const layers = map.getStyle().layers;
+                const labelLayerId = layers.find(
+                    (layer) => layer.type === 'symbol' && layer.layout['text-field']
+                ).id;
+                
+                // The 'building' layer in the Mapbox Streets
+                // vector tileset contains building height data
+                // from OpenStreetMap.
+                map.addLayer({
+                            'id': 'add-3d-buildings',
+                            'source': 'composite',
+                            'source-layer': 'building',
+                            'filter': ['==', 'extrude', 'true'],
+                            'type': 'fill-extrusion',
+                            'minzoom': 15,
+                            'paint': {
+                            'fill-extrusion-color': '#aaa',
+                            
+                            // Use an 'interpolate' expression to
+                            // add a smooth transition effect to
+                            // the buildings as the user zooms in.
+                            'fill-extrusion-height': [
+                                'interpolate',
+                                ['linear'],
+                                ['zoom'],
+                                15,
+                                0,
+                                15.05,
+                                ['get', 'height']
+                            ],
+                            'fill-extrusion-base': [
+                                'interpolate',
+                                ['linear'],
+                                ['zoom'],
+                                15,
+                                0,
+                                15.05,
+                                ['get', 'min_height']
+                            ],
+                            'fill-extrusion-opacity': 0.6
+                        }
+                    },
+                    labelLayerId
+                );
+            });
+        }
+        createMapboxMap();
 
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
+            tabcontent = document.getElementsByClassName("window");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
             }
+
             tablinks = document.getElementsByClassName("tablinks");
             for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                tablinks[i].className = tablinks[i].className.replace("active", "");
             }
+
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.className += " active";
         }
         document.getElementById("defaulttab").click();
 
-        function keydownlr(e) {
+        function aboutVTA() {
+            var info_caller = new XMLHttpRequest();
+            info_caller.open("GET", "https://en.wikipedia.org/w/api.php?action=query&exintro=&explaintext=&origin=%2A&prop=extracts&redirects=1&titles=Santa+Clara+Valley+Transportation+Authority&format=json&origin=*");
+            info_caller.onreadystatechange = function() {
+                if (info_caller.readyState === 4 && info_caller.status === 200) {
+                    var article_summary = JSON.parse(info_caller.responseText);
+                    var description = article_summary.query.pages[729906].extract;
+
+                    document.getElementById("desc").innerHTML = `${description} <br> <a href="https://en.wikipedia.org/wiki/Santa_Clara_Valley_Transportation_Authority">Wikipedia</a>`
+                }
+            }
+            info_caller.send();
+        }
+        aboutVTA();
+
+        function keyDownLR(e) {
             e = e || window.event;
             if (e.keyCode === 13) {
-                callStopLR();
+                callOverVTALR();
             }
         }
 
-        function callStopLR() {
-            var obtainValue = document.getElementById("stationgetter").value;
-            var stopCall = new XMLHttpRequest();
-            stopCall.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q9-vta&served_by_route_type=0&stop_id=${obtainValue}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
-            stopCall.onreadystatechange = function() {
-                if (stopCall.readyState === 4 && stopCall.status === 200) {
-                    var stopId = JSON.parse(stopCall.responseText);
+        function callOverVTALR() {
+            getValue = document.getElementById("vta_lr_stationgetter").value;
+            var stationCall = new XMLHttpRequest();
+            stationCall.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q9-vta&served_by_route_type=0&stop_id=${getValue}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+            stationCall.onreadystatechange = function() {
+                if (stationCall.status === 200 && stationCall.readyState === 4) {
+                    var station_info = JSON.parse(stationCall.responseText);
+                    var station_id = station_info.stops[0].onestop_id;
+                    var station_name = station_info.stops[0].stop_name;
+
+                    document.getElementById("vta_lr_stationname").innerHTML = station_name;
+                    compileDeparturesLR(station_id);
+                }
+            }
+            stationCall.send();
+        }
+
+        function compileDeparturesLR(onestop_station) {
+            var departure_lr_call = new XMLHttpRequest();
+            departure_lr_call.open("GET", `https://transit.land/api/v2/rest/stops/${onestop_station}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            departure_lr_call.onreadystatechange = function() {
+                if (departure_lr_call.status === 200 && departure_lr_call.readyState === 4) {
+                    var departure_lr_outputs_base = JSON.parse(departure_lr_call.responseText).stops[0];
                     
-                    if (stopId.stops.length === 0) {
-                        document.getElementById("route_depart").innerHTML = "There's no stop departures at this moment.";
+                    for (var i = 0; i < departure_lr_outputs_base.departures.length; i++) {
+                        var route_color = departure_lr_outputs_base.departures[i].trip.route.route_color;
+                        var route_text_color = departure_lr_outputs_base.departures[i].trip.route.route_text_color;
+                        var route_short_name = departure_lr_outputs_base.departures[i].trip.route.route_short_name;
+                        var route_headsign = departure_lr_outputs_base.departures[i].trip.trip_headsign;
+                        var arrival_time = departure_lr_outputs_base.departures[i].arrival.estimated;
+                        var delay = departure_lr_outputs_base.departures[i].arrival.delay / 60;
+
+                        if (arrival_time === null) {
+                            var arrival_scheduled = departure_lr_outputs_base.departures[i].arrival.scheduled;
+                            document.getElementById("route_depart_vta_lr").innerHTML = `${arrival_scheduled} <span id="delay_lr"></span>`;
+                            document.getElementById("delay_lr").innerHTML = "(scheduled)";
+
+                            document.getElementById("route_depart_vta_lr").style.color = "black";
+                            document.getElementById("delay_lr").style.color = "black";
+                        }
+                        else {
+                            document.getElementById("route_depart_vta_lr").innerHTML = `${arrival_time} <span id="delay_lr"></span>`;
+                            document.getElementById("route_depart_vta_lr").style.color = "green";
+                            var delay_in_min = Math.round(departure_lr_outputs_base.departures[i].arrival.delay / 60);
+
+                            if (delay === null) {
+                                document.getElementById("delay_lr").innerHTML = "(no data)";
+                                document.getElementById("delay_lr").style.color = "black";
+                            }
+                            else if (delay > 60) {
+                                document.getElementById("delay_lr").innerHTML = `(${delay_in_min} min late)`;
+                                document.getElementById("delay_lr").style.color = "orange";
+                            }
+                            else if (delay < 0) {
+                                document.getElementById("delay_lr").innerHTML = `(${delay_in_min} min early)`;
+                                document.getElementById("delay_lr").style.color = "skyblue";
+                            }
+                            else {
+                                document.getElementById("delay_lr").innerHTML = `(on time)`;
+                                document.getElementById("delay_lr").style.color = "green";
+                            }
+                        }
+
+                        document.getElementById("line_for_each_departure_vta_lr").innerHTML = route_short_name;
+                        document.getElementById("line_for_each_departure_vta_lr").style.color = route_text_color;
+                        document.getElementById("line_for_each_departure_vta_lr").style.backgroundColor = `#${route_color}40`;
+                        document.getElementById("line_for_each_departure_vta_lr").style.border = `1px solid #${route_color}`;
+                        document.getElementById("route_headsign_vta_lr").innerHTML = route_headsign;
+
+                        if (departure_lr_outputs_base.departures[i].trip.route.alerts.length === 0) {
+                            console.log("No route alerts in sight...")
+                        }
+                        else {
+                            document.getElementById("alerts_lr").innerHTML = `(<i class="fa-solid fa-triangle-exclamation alert_triangle"></i> ${departure_lr_outputs_base.departures[i].trip.route.alerts.length})`;
+                            document.querySelector(".alert_triangle").style.color = "#FFD580";
+                        }
+
+                        var departure_list_entity = document.getElementById("line_for_departure_vta_lr");
+                        var clone_departure = departure_list_entity.cloneNode(true);
+                        document.getElementById("list_of_departures_vta_lr").appendChild(clone_departure);
                     }
-                    else {
-                        var stopIdSpecified = stopId.stops[0].stop_code;
-                        var stopName = stopId.stops[0].stop_name;
-                        
-                        document.getElementById("stationname").innerHTML = stopName;
-                        gatherDeparturesLR(stopIdSpecified);
-                    }
+
+                    var total_departures = document.getElementById("list_of_departures_vta_lr").children;
+                    document.getElementById("list_of_departures_vta_lr").removeChild(total_departures[0]);
+                }
+            }
+            departure_lr_call.send();
+        }
+
+        function clearAllVtaLR() {
+            document.getElementById("vta_lr_stationname").innerHTML = "---";
+            document.getElementById("list_of_departures_vta_lr").innerHTML = `
+                <li id="line_for_departure_vta_lr"><div class="wrapper_for_departure_vta_lr"><div id="line_for_each_departure_vta_lr">-</div> <span id="alerts_lr"></span> <span id="route_headsign_vta_lr">(None)</span><span id="route_depart_vta_lr">Enter a specific station by their station ID</span></div></li>
+            `;
+        }
+
+        function keyDownBus(e) {
+            e = e || window.event;
+            if (e.keyCode === 13) {
+                callOverVTABus();
+            }
+        }
+
+        function callOverVTABus() {
+            getValue = document.getElementById("vta_bus_stopgetter").value;
+            var stopCall = new XMLHttpRequest();
+            stopCall.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q9-vta&served_by_route_type=3&stop_id=${getValue}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+            stopCall.onreadystatechange = function() {
+                if (stopCall.status === 200 && stopCall.readyState === 4) {
+                    var stop_info = JSON.parse(stopCall.responseText);
+                    var stop_id = stop_info.stops[0].onestop_id;
+                    var stop_name = stop_info.stops[0].stop_name;
+
+                    document.getElementById("vta_bus_stopname").innerHTML = stop_name;
+                    compileDeparturesBus(stop_id);
                 }
             }
             stopCall.send();
         }
 
-        function gatherDeparturesLR(stopID_input) {
-            var departureRequest = new XMLHttpRequest();
-            departureRequest.open("GET", `https://transit.land/api/v2/rest/stops/f-sf~bay~area~rg:${stopID_input}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
-            departureRequest.onreadystatechange = function() {
-                if (departureRequest.readyState === 4 && departureRequest.status === 200) {
-                    var compileDepartures = JSON.parse(departureRequest.responseText);
+        function compileDeparturesBus(onestop_stop) {
+            var departure_bus_call = new XMLHttpRequest();
+            departure_bus_call.open("GET", `https://transit.land/api/v2/rest/stops/${onestop_stop}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            departure_bus_call.onreadystatechange = function() {
+                if (departure_bus_call.status === 200 && departure_bus_call.readyState === 4) {
+                    var departure_bus_outputs_base = JSON.parse(departure_bus_call.responseText).stops[0];
+                    
+                    for (var i = 0; i < departure_bus_outputs_base.departures.length; i++) {
+                        var route_color = departure_bus_outputs_base.departures[i].trip.route.route_color;
+                        var route_text_color = departure_bus_outputs_base.departures[i].trip.route.route_text_color;
+                        var route_short_name = departure_bus_outputs_base.departures[i].trip.route.route_short_name;
+                        var route_headsign = departure_bus_outputs_base.departures[i].trip.trip_headsign;
+                        var arrival_time = departure_bus_outputs_base.departures[i].arrival.estimated;
+                        var delay = departure_bus_outputs_base.departures[i].arrival.delay / 60;
 
-                    for (var i = 0; i < compileDepartures.stops[0].departures.length; i++) {
-                        var route_color = compileDepartures.stops[0].departures[i].trip.route.route_color;
-                        var route_text_color = compileDepartures.stops[0].departures[i].trip.route.route_text_color;
-                        var route_desc_short = compileDepartures.stops[0].departures[i].trip.route.route_short_name;
-                        var time_realtime = compileDepartures.stops[0].departures[i].arrival.estimated;
-                        var time_scheduled = compileDepartures.stops[0].departures[i].arrival.scheduled;
-                        var headsign_route = compileDepartures.stops[0].departures[i].trip.trip_headsign;
+                        if (arrival_time === null) {
+                            var arrival_scheduled = departure_bus_outputs_base.departures[i].arrival.scheduled;
+                            document.getElementById("route_depart_vta_bus").innerHTML = `${arrival_scheduled} <span id="delay_bus"></span>`;
+                            document.getElementById("delay_bus").innerHTML = "(scheduled)";
 
-                        if (time_realtime === null) {
-                            document.getElementById("route_depart").innerHTML = ` ${time_scheduled} (scheduled)`;
-                            document.getElementById("route_depart").style.color = "black";
-                        }
-                        else if (time_scheduled === null) {
-                            continue;
+                            document.getElementById("route_depart_vta_bus").style.color = "black";
+                            document.getElementById("delay_bus").style.color = "black";
                         }
                         else {
-                            document.getElementById("route_depart").innerHTML = ` ${time_realtime} <span id="delay">()</span>`;
-                            document.getElementById("route_depart").style.color = "darkgreen";
+                            document.getElementById("route_depart_vta_bus").innerHTML = `${arrival_time} <span id="delay_bus"></span>`;
+                            document.getElementById("route_depart_vta_bus").style.color = "green";
+                            var delay_in_min = Math.round(departure_bus_outputs_base.departures[i].arrival.delay / 60);
 
-                            if (time_realtime = compileDepartures.stops[0].departures[i].arrival.delay >= 60) {
-                                document.getElementById("delay").innerHTML = `(${Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60)} min late)`;
-                                document.getElementById("delay").style.color = "crimson";
+                            if (delay === null) {
+                                document.getElementById("delay_bus").innerHTML = "(no data)";
+                                document.getElementById("delay_bus").style.color = "black";
                             }
-                            else if (time_realtime = compileDepartures.stops[0].departures[i].arrival.delay === 0) {
-                                document.getElementById("delay").innerHTML = `(on time)`;
-                                document.getElementById("delay").style.color = "green";
+                            else if (delay > 60) {
+                                document.getElementById("delay_bus").innerHTML = `(${delay_in_min} min late)`;
+                                document.getElementById("delay_bus").style.color = "orange";
                             }
-                            else if (time_realtime = compileDepartures.stops[0].departures[i].arrival.delay <= 0) {
-                                document.getElementById("delay").innerHTML = `(${Math.abs(Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60))} min early)`;
-                                document.getElementById("delay").style.color = "skyblue";
+                            else if (delay < 0) {
+                                document.getElementById("delay_bus").innerHTML = `(${delay_in_min} min early)`;
+                                document.getElementById("delay_bus").style.color = "skyblue";
                             }
                             else {
-                                document.getElementById("delay").innerHTML = "(no data)";
-                                document.getElementById("delay").style.color = "black";
+                                document.getElementById("delay_bus").innerHTML = `(on time)`;
+                                document.getElementById("delay_bus").style.color = "green";
                             }
                         }
 
-                        document.getElementById("line_for_each_departure").innerHTML = route_desc_short;
-                        document.getElementById("line_for_each_departure").style.backgroundColor = `#${route_color}40`;
-                        document.getElementById("line_for_each_departure").style.border = `1px solid #${route_color}`;
-                        document.getElementById("line_for_each_departure").style.color = `#${route_text_color}`;
-                        document.getElementById("route_headsign").innerHTML = `<p id="isscroll">${headsign_route}</p>`;
+                        document.getElementById("line_for_each_departure_vta_bus").innerHTML = route_short_name;
+                        document.getElementById("line_for_each_departure_vta_bus").style.color = route_text_color;
+                        document.getElementById("line_for_each_departure_vta_bus").style.backgroundColor = `#${route_color}40`;
+                        document.getElementById("line_for_each_departure_vta_bus").style.border = `1px solid #${route_color}`;
+                        document.getElementById("route_headsign_vta_bus").innerHTML = route_headsign;
 
-                        if (deviceWidth <= 520 && document.getElementById("route_headsign").innerText.length > 35) {
-                            console.log("Scroll?")
-                            document.getElementById("isscroll").style.transform = "translateX(200vw)";
-                            document.getElementById("isscroll").style.animation = "my-animation-6 10s linear infinite";
+                        if (departure_bus_outputs_base.departures[i].trip.route.alerts.length === 0) {
+                            console.log("No route alerts in sight...")
+                        }
+                        else {
+                            document.getElementById("alerts_bus").innerHTML = `(<i class="fa-solid fa-triangle-exclamation alert_triangle"></i> ${departure_bus_outputs_base.departures[i].trip.route.alerts.length})`;
+                            document.querySelector(".alert_triangle").style.color = "#FFD580";
                         }
 
-                        var departureClone = document.getElementById("line_for_departure");
-                        var listToInsertClone = departureClone.cloneNode(true);
-                        document.getElementById("list_of_departures").appendChild(listToInsertClone);
-
-                        var alertList_byAgency = compileDepartures.stops[0].departures[i].trip.route.agency.alerts;
-                        var alertList_byStop = compileDepartures.stops[0].alerts;
-
-                        for (var j = 0; j < alertList_byAgency.length; j++) {
-                            if (counter_b === alertList_byAgency.length) {
-                                break;
-                            }
-                            document.getElementById("alert_entity").innerHTML = `<p>${alertList_byAgency[j].description_text[0].text}</p>`;
-                            console.log(document.getElementById("alert_entity").textContent);
-
-                            var alertClone = document.getElementById("alert_entity");
-                            var listToInsertAlertClone = alertClone.cloneNode(true);
-                            document.getElementById("list_of_alerts").appendChild(listToInsertAlertClone);
-                            console.log(counter);
-                            counter_b += 1
-                        }
-
-                        for (var k = 0; k < alertList_byStop.length; k++) {
-                            if (counter === alertList_byStop.length) {
-                                break;
-                            }
-                            document.getElementById("alert_entity").innerHTML = `<p>${alertList_byStop[k].description_text[0].text}</p>`;
-
-                            var alertClone = document.getElementById("alert_entity");
-                            var listToInsertAlertClone = alertClone.cloneNode(true);
-                            document.getElementById("list_of_alerts").appendChild(listToInsertAlertClone);
-                            console.log(counter);
-                            counter += 1
-                        }
+                        var departure_list_entity = document.getElementById("line_for_departure_vta_bus");
+                        var clone_departure = departure_list_entity.cloneNode(true);
+                        document.getElementById("list_of_departures_vta_bus").appendChild(clone_departure);
                     }
 
-                    var departuresAll = document.getElementById("list_of_departures").children;
-                    document.querySelector("#list_of_departures").removeChild(departuresAll[0]);
-
-                    var alertsAll = document.getElementById("list_of_alerts").children;
-                    document.querySelector("#list_of_alerts").removeChild(alertsAll[0]);
+                    var total_departures = document.getElementById("list_of_departures_vta_bus").children;
+                    document.getElementById("list_of_departures_vta_bus").removeChild(total_departures[0]);
                 }
             }
-            departureRequest.send();
+            departure_bus_call.send();
         }
 
-        function clearAllDepartures() {
-            document.getElementById("list_of_departures").innerHTML = `
-                <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure">-</div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
-            `
-            document.getElementById("stationname").innerHTML = "---";
-            document.getElementById("list_of_alerts").innerHTML = "<li id='alert_entity'></li>"
-            document.getElementById("alert_entity").innerHTML = `<p>Once you typed down the station by their ID, the advisories will display here.</p>`
-            counter = 0;
-            counter_b = 0;
+        function clearAllVtaBus() {
+            document.getElementById("vta_bus_stopname").innerHTML = "---";
+            document.getElementById("list_of_departures_vta_bus").innerHTML = `
+                <li id="line_for_departure_vta_bus"><div class="wrapper_for_departure_vta_bus"><div id="line_for_each_departure_vta_bus">-</div> <span id="alerts_bus"></span> <span id="route_headsign_vta_bus">(None)</span><span id="route_depart_vta_bus">Enter a specific station by their station ID</span></div></li>
+            `;
         }
 
-        function keydownbus(e) {
+        var no_route_alerts = [];
+        function keyDownAlerts(e) {
             e = e || window.event;
             if (e.keyCode === 13) {
-                callStopBus();
+                callOverVtaAlerts();
             }
         }
 
-        function callStopBus() {
-            var obtainValue = document.getElementById("busgetter").value;
-            var stopCall = new XMLHttpRequest();
-            stopCall.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q9-vta&served_by_route_type=3&stop_id=${obtainValue}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
-            stopCall.onreadystatechange = function() {
-                if (stopCall.readyState === 4 && stopCall.status === 200) {
-                    var stopId = JSON.parse(stopCall.responseText);
+        function callOverVtaAlerts() {
+            var route_receiver = document.getElementById("vta_routegetter").value.replace("/ /g", "+");
+            var alert_call = new XMLHttpRequest();
+            alert_call.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&search=${route_receiver}&operator_onestop_id=o-9q9-vta&include_alerts=true&limit=700`);
+            alert_call.onreadystatechange = function() {
+                if (alert_call.readyState === 4 && alert_call.status === 200) {
+                    var route_alerts = JSON.parse(alert_call.responseText);
+                    console.log(route_alerts);
+
+                    for (var r = 0; r < route_alerts.routes.length; r++) {
+                        var route_short_name = route_alerts.routes[r].route_short_name;
+                        var route_color = route_alerts.routes[r].route_color;
+                        var route_text_color = route_alerts.routes[r].route_text_color;
+
+                        document.getElementById("affectedroutes").innerHTML = route_short_name;
+                        document.getElementById("affectedroutes").style.backgroundColor = `#${route_color}40`;
+                        document.getElementById("affectedroutes").style.border = `1px solid #${route_color}`;
+                        document.getElementById("affectedroutes").style.color = `#${route_text_color}`;
+
+                        var routeNode = document.getElementById("affectedroutes");
+                        var cloneNode = routeNode.cloneNode(true);
+                        document.querySelector(".headerforvtaalerts").appendChild(cloneNode).insertAdjacentHTML( 'afterend', ",&nbsp;");
+
+                        if (route_alerts.routes[r].alerts.length === 0) {
+                            no_route_alerts.push(` ${route_short_name}`);
+                            document.getElementById("alert_for_specific_route").innerHTML = `There are no alerts for: ${no_route_alerts}. Please check again shortly.`
+                            console.log("Nothing.");
+                        }
+
+                        for (var a = 0; a < route_alerts.routes[r].alerts.length; a++) {
+                            var header_text = route_alerts.routes[r].alerts[a].header_text[0].text;
+                            var description_text = route_alerts.routes[r].alerts[a].description_text[0].text;
+                            document.getElementById("alert_for_specific_route").innerHTML = `<b>${header_text}</b> <br> ${description_text}`;
+
+                            var alertNode = document.getElementById("alert_desc_routes");
+                            var cloneNode = alertNode.cloneNode(true);
+                            document.getElementById("vta_routes_alerts").appendChild(cloneNode);
+                        }
+
+                        // var total_alerts = document.getElementById("vta_routes_alerts").children;
+                        // document.getElementById("vta_routes_alerts").removeChild(total_alerts[0]);
+                    }
+                    var total_routes = document.querySelector(".headerforvtaalerts").children;
+                    var last_child_routes = document.querySelector(".headerforvtaalerts").lastChild;
+
+                    document.querySelector(".headerforvtaalerts").removeChild(total_routes[0]);
+                    document.querySelector(".headerforvtaalerts").removeChild(last_child_routes);
+                }
+            }
+            alert_call.send();
+        }
+
+        function clearAllAlerts() {
+            document.getElementById("vta_routes_alerts").innerHTML = `
+                    <li id="alert_desc_routes">
+                        <p>
+                            <span id="alert_for_specific_route">Enter a specific route by their route name.</span>
+                        </p>
+                    </li>
+            `;
+            document.querySelector(".headerforvtaalerts").innerHTML = "Alerts for &nbsp; <span id='affectedroutes'>-</span><br>";
+            document.getElementById("affectedroutes").innerHTML = "-";
+            document.getElementById("affectedroutes").style.backgroundColor = "#33333340";
+            document.getElementById("affectedroutes").style.color = "white";
+            document.getElementById("affectedroutes").style.border = "1px solid black";
+            no_route_alerts = []
+        }
+
+        function getUniqueFeatures(features, comparatorProperty) {
+            const unique_ids = new Set();
+            const unique_features = [];
+
+            for (const feature of features) {
+                const id = feature.properties[comparatorProperty];
+                
+                if (!unique_ids.has(id)) {
+                    unique_ids.add(id);
+                    unique_features.push(feature);
+                }
+            }
+
+            return unique_features;
+        }
+
+        function plotVTALines() {
+            vta_call = new XMLHttpRequest();
+            vta_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-vta&include_geometry=true&limit=700");
+            vta_call.onreadystatechange = function() {
+                if (vta_call.readyState === 4 && vta_call.status === 200) {
+                    var vta_outputs = JSON.parse(vta_call.responseText);
                     
-                    if (stopId.stops.length === 0) {
-                        document.getElementById("route_depart2").innerHTML = "There's no stop departures at this moment.";
+                    for (var i = 0; i < vta_outputs.routes.length; i++) {
+                        var vta_lines = vta_outputs.routes[i].route_short_name;
+                        var vta_lines_geometry = vta_outputs.routes[i].geometry;
+                        full_vta_geojson_routes.push({
+                            'type': 'Feature',
+                            'geometry': vta_lines_geometry,
+                            'properties': {
+                                "color": `#${vta_outputs.routes[i].route_color}`,
+                                "name": `${vta_lines}`,
+                                "route_text_color": `${vta_outputs.routes[i].route_text_color}`,
+                                "route_long_name": vta_outputs.routes[i].route_long_name,
+                                "route_type": vta_outputs.routes[i].route_type,
+                                // 'id': vta_lines
+                            },
+                            // 'id': vta_outputs.routes[i].route_short_name
+                        })
                     }
-                    else {
-                        var stopIdSpecified = stopId.stops[0].stop_code;
-                        var stopName = stopId.stops[0].stop_name;
-                        
-                        document.getElementById("stopname").innerHTML = stopName;
-                        gatherDeparturesBus(stopIdSpecified);
-                    }
+
+                    var other_routes_vta = full_vta_geojson_routes.filter(function(b){return b.properties.route_type != 3})
+                    var filteredFilters = full_vta_geojson_routes.filter(function(a){return a.properties.route_type === 3});
+
+                    console.log(filteredFilters);
+
+                    map.addSource('bus_route', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': filteredFilters
+                        },
+                        'generateId': true
+                    })
+
+                    map.addSource('route', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': other_routes_vta
+                        }
+                    });
+
+                    map.addLayer({
+                        'id': 'routes',
+                        'type': 'line',
+                        'source': 'route',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-width': 4,
+                            'line-color': ['get', 'color']
+                        }
+                    });
+
+                    map.addLayer({
+                        'id': 'routes_bus',
+                        'type': 'line',
+                        'source': 'bus_route',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-width': 2,
+                            'line-color': [
+                                'case',
+                                ['boolean', ['feature-state', 'hover'], false],
+                                ['get', 'color'],
+                                '#c0e7fc',
+                            ], //['get', 'color']
+                        }
+                    });
+
+                    map.moveLayer('routes_bus', 'routes')
+
+                    map.on('movestart', () => {
+                        map.setFilter('routes', ['has', 'name']);
+                        map.setFilter('routes_bus', ['has', 'name']);
+                        document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+                    })
+
+                    map.on('moveend', () => {
+                        const features = map.queryRenderedFeatures({
+                            layers: ['routes', 'routes_bus']
+                        });
+
+                        if (features) {
+                            const uniqueFeatures = getUniqueFeatures(features, 'name');
+
+                            for (var f = 0; f < uniqueFeatures.length; f ++) {
+                                var name_of_route = uniqueFeatures[f].properties.name;
+                                var color_of_route = uniqueFeatures[f].properties.color;
+                                var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
+                                var desc_of_route = uniqueFeatures[f].properties.route_long_name;
+                                var type_of_route = uniqueFeatures[f].properties.route_type;
+
+                                document.getElementById("route_short").innerHTML = name_of_route;
+                                document.getElementById("route_short").style.color = `#${text_color_of_route}`;
+                                document.getElementById("route_short").style.backgroundColor = `${color_of_route}40`;
+                                document.getElementById("route_short").style.border = `1px solid ${color_of_route}40`;
+                                document.getElementById("detailed_route").innerHTML = desc_of_route;
+
+                                var routeClone = document.querySelector(".route_radius");
+                                var listToInsertClone = routeClone.cloneNode(true);
+                                document.getElementById("range_of_routes").appendChild(listToInsertClone);
+                            }
+
+                            var all_routes_nearby = document.getElementById("range_of_routes").children;
+                            document.getElementById("range_of_routes").removeChild(all_routes_nearby[0])
+                        }
+                    });
+
+                    let routeId = [];
+                    let routeIdBus = [];
+                    let hoverIdBus = [];
+                    let hoveredPolygonLine = null;
+
+                    const popup = new mapboxgl.Popup({
+                        closeButton: false,
+                        closeOnClick: false
+                    });
+
+                    map.on('mouseenter', 'routes', function(e) {
+                        var fs = map.queryRenderedFeatures(e.point, { layers: ['routes']});
+                        console.log(fs)
+
+                        if (fs.length > 0) {
+                            for (var f = 0; f < fs.length; f ++) {
+                                var name_of_route = fs[f].properties.name;
+                                routeId.push(name_of_route)
+                            }
+                            
+                            // Populate the popup and set its coordinates
+                            // based on the feature found.
+                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
+                        }
+                    });
+
+                    map.on('mouseenter', 'routes_bus', function(e) {
+                        var fs_2 = map.queryRenderedFeatures(e.point, {layers: ['routes_bus']});
+                        console.log(fs_2);
+
+                        if (fs_2.length > 0) {
+                            for (var f = 0; f < fs_2.length; f++) {
+                                var name_of_route = fs_2[f].properties.name;
+                                routeIdBus.push(name_of_route);
+
+                                hoveredPolygonLine = fs_2[f].id;
+                                hoverIdBus.push(hoveredPolygonLine);
+
+                                if (hoveredPolygonLine !== null) {
+                                    console.log("hello!")
+                                    map.setFeatureState(
+                                        { source: 'bus_route', id: hoveredPolygonLine },
+                                        { hover: false }
+                                    );
+                                }
+                                map.setFeatureState(
+                                    { source: 'bus_route', id: hoveredPolygonLine },
+                                    { hover: true }
+                                );
+                            }
+                            
+                            // Populate the popup and set its coordinates
+                            // based on the feature found.
+                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeIdBus).addTo(map);
+                        }
+                    });
+
+                    map.on('mouseleave', 'routes', () => {
+                        if (routeId.length > 0) {routeId = []}
+                        popup.remove();
+                        // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+                    });
+
+                    map.on('mouseleave', 'routes_bus', (e) => {
+                        if (routeIdBus.length > 0) {routeIdBus = []}
+                        popup.remove();
+                        // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+
+                        if (hoveredPolygonLine !== null) {
+                            console.log("Fix!")
+                            for (var i = 0; i < hoverIdBus.length; i++) {
+                                map.setFeatureState(
+                                    { source: 'bus_route', id: hoverIdBus[i]},
+                                    { hover: false }
+                                );
+                            }
+                        }
+                        hoveredPolygonLine = null;
+                    });
                 }
             }
-            stopCall.send();
+            vta_call.send();
         }
-
-        function removeDuplicates(arr) {
-            return arr.filter((item,
-                index) => arr.indexOf(item) === index);
-        }
-
-        var alertList_bySpecificRoute = [];
-        function gatherDeparturesBus(stopID_businput) {
-            var departureRequest = new XMLHttpRequest();
-            departureRequest.open("GET", `https://transit.land/api/v2/rest/stops/f-sf~bay~area~rg:${stopID_businput}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
-            departureRequest.onreadystatechange = function() {
-                if (departureRequest.readyState === 4 && departureRequest.status === 200) {
-                    var compileDepartures = JSON.parse(departureRequest.responseText);
-                    console.log(compileDepartures);
-
-                    for (var i = 0; i < compileDepartures.stops[0].departures.length; i++) {
-                        var route_color = compileDepartures.stops[0].departures[i].trip.route.route_color;
-                        var route_text_color = compileDepartures.stops[0].departures[i].trip.route.route_text_color;
-                        var route_desc_short = compileDepartures.stops[0].departures[i].trip.route.route_short_name;
-                        // var route_desc_long = compileDepartures.stops[0].departures[i].trip.route.route_long_name;
-                        var time_realtime = compileDepartures.stops[0].departures[i].arrival.estimated;
-                        var time_scheduled = compileDepartures.stops[0].departures[i].arrival.scheduled;
-                        var headsign_route = compileDepartures.stops[0].departures[i].trip.trip_headsign;
-
-                        if (time_realtime === null) {
-                            document.getElementById("route_depart2").innerHTML = ` ${time_scheduled} (scheduled)`;
-                            document.getElementById("route_depart2").style.color = "black";
-                        }
-                        else if (time_scheduled === null) {
-                            continue;
-                        }
-                        else {
-                            document.getElementById("route_depart2").innerHTML = ` ${time_realtime} <span id="delay2">()</span>`;
-                            document.getElementById("route_depart2").style.color = "darkgreen";
-
-                            if (time_realtime = compileDepartures.stops[0].departures[i].arrival.delay >= 60) {
-                                document.getElementById("delay2").innerHTML = `(${Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60)} min late)`;
-                                document.getElementById("delay2").style.color = "crimson";
-                            }
-                            else if (time_realtime = compileDepartures.stops[0].departures[i].arrival.delay === 0) {
-                                document.getElementById("delay2").innerHTML = `(on time)`;
-                                document.getElementById("delay2").style.color = "green";
-                            }
-                            else if (time_realtime = compileDepartures.stops[0].departures[i].arrival.delay <= 0) {
-                                document.getElementById("delay2").innerHTML = `(${Math.abs(Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60))} min early)`;
-                                document.getElementById("delay2").style.color = "skyblue";
-                            }
-                            else {
-                                document.getElementById("delay2").innerHTML = "(no data)";
-                                document.getElementById("delay2").style.color = "black";
-                            }
-                        }
-
-                        document.getElementById("line_for_each_departure2").innerHTML = route_desc_short;
-                        document.getElementById("line_for_each_departure2").style.backgroundColor = `#${route_color}40`;
-                        document.getElementById("line_for_each_departure2").style.border = `1px solid #${route_color}`;
-                        document.getElementById("line_for_each_departure2").style.color = `#${route_text_color}`;
-                        document.getElementById("route_headsign2").innerHTML = `<p id="isscroll2">${headsign_route}</p>`;
-
-                        if (deviceWidth <= 520 && document.getElementById("route_headsign2").innerText.length > 35) {
-                            console.log("Scroll?")
-                            document.getElementById("isscroll2").style.transform = "translateX(200vw)";
-                            document.getElementById("isscroll2").style.animation = "my-animation-6 10s linear infinite";
-                        }
-
-                        var departureClone = document.getElementById("line_for_departure2");
-                        var listToInsertClone = departureClone.cloneNode(true);
-                        document.getElementById("list_of_departures2").appendChild(listToInsertClone);
-
-                        var alertList_byAgency = compileDepartures.stops[0].departures[i].trip.route.agency.alerts;
-                        var alertList_byStop = compileDepartures.stops[0].alerts;
-
-                        for (var alr = 0; alr < compileDepartures.stops[0].departures[i].trip.route.alerts.length; alr++) {
-                            var alertList_bySpecificRouteHeadText = `<b>${compileDepartures.stops[0].departures[i].trip.route.alerts[alr].header_text[0].text}</b> <br> ${compileDepartures.stops[0].departures[i].trip.route.alerts[alr].description_text[0].text}`
-
-                            alertList_bySpecificRoute.push(alertList_bySpecificRouteHeadText);
-                            console.log(alertList_bySpecificRoute);
-                        }
-
-                        for (var j = 0; j < alertList_byAgency.length; j++) {
-                            if (counter_b === alertList_byAgency.length) {
-                                break;
-                            }
-                            document.getElementById("alert_entity2").innerHTML = `<p>${alertList_byAgency[j].description_text[0].text}</p>`;
-                            console.log(document.getElementById("alert_entity2").textContent);
-
-                            var alertClone = document.getElementById("alert_entity2");
-                            var listToInsertAlertClone = alertClone.cloneNode(true);
-                            document.getElementById("list_of_alerts2").appendChild(listToInsertAlertClone);
-                            console.log(counter);
-                            counter_b += 1
-                        }
-
-                        for (var k = 0; k < alertList_byStop.length; k++) {
-                            if (counter === alertList_byStop.length) {
-                                break;
-                            }
-                            document.getElementById("alert_entity2").innerHTML = `<p>${alertList_byStop[k].description_text[0].text}</p>`;
-
-                            var alertClone = document.getElementById("alert_entity2");
-                            var listToInsertAlertClone = alertClone.cloneNode(true);
-                            document.getElementById("list_of_alerts2").appendChild(listToInsertAlertClone);
-                            console.log(counter);
-                            counter += 1
-                        }
-                    }
-
-                    alertList_bySpecificRoute = removeDuplicates(alertList_bySpecificRoute)
-                    console.log("Modified: ", alertList_bySpecificRoute)
-
-                    for (var l = 0; l < alertList_bySpecificRoute.length; l++) {
-                        if (counter_c === alertList_bySpecificRoute.length) {
-                            break;
-                        }
-                        document.getElementById("alert_entity2").innerHTML = `<p>${alertList_bySpecificRoute[l]}</p>`;
-
-                        var alertClone = document.getElementById("alert_entity2");
-                        var listToInsertAlertClone = alertClone.cloneNode(true);
-                        document.getElementById("list_of_alerts2").appendChild(listToInsertAlertClone);
-                        console.log(counter_c);
-                        counter_c += 1
-                    }
-
-                    var departuresAll = document.getElementById("list_of_departures2").children;
-                    document.querySelector("#list_of_departures2").removeChild(departuresAll[0]);
-
-                    var alertsAll = document.getElementById("list_of_alerts2").children;
-                    document.querySelector("#list_of_alerts2").removeChild(alertsAll[0]);
-                }
-            }
-            departureRequest.send();
-        }
-
-        function clearAllDepartures2() {
-            document.getElementById("list_of_departures2").innerHTML = `
-                <li id="line_for_departure2"><div class="wrapper_for_departure2"><div id="line_for_each_departure2">-</div> <span id="route_headsign2">(None)</span> <span id="route_depart2">Enter a specific station by their stop ID</span></div></li>
-            `
-            document.getElementById("stopname").innerHTML = "---";
-            document.getElementById("list_of_alerts2").innerHTML = "<li id='alert_entity2'></li>"
-            document.getElementById("alert_entity2").innerHTML = `<p>Once you typed down the station by their ID, the advisories will display here.</p>`
-            counter = 0;
-            counter_b = 0;
-            counter_c = 0;
-            alertList_bySpecificRoute = [];
-        }
+        plotVTALines();
     </script>
 </body>
-
 </html>
