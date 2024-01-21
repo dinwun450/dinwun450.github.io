@@ -605,8 +605,9 @@
                         // console.log(fullGeoJsonRoutes);
                     }
 
-                    var other_routes_muni = fullGeoJsonRoutes.filter(function(b){return b.properties.route_type != 3})
+                    var other_routes_muni = fullGeoJsonRoutes.filter(function(b){return b.properties.route_type != 3 && b.properties.route_type != 6})
                     var filteredFilters = fullGeoJsonRoutes.filter(function(a){return a.properties.route_type === 3});
+                    var cable_routes_muni = fullGeoJsonRoutes.filter(function(c){return c.properties.route_type === 6});
 
                     map.addSource('bus_route', {
                         'type': 'geojson',
@@ -615,6 +616,14 @@
                             'features': filteredFilters
                         },
                         'generateId': true
+                    })
+
+                    map.addSource('cable_route', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': cable_routes_muni
+                        }
                     })
 
                     map.addSource('route', {
@@ -640,6 +649,20 @@
                     });
 
                     map.addLayer({
+                        'id': 'routes_cable',
+                        'type': 'line',
+                        'source': 'cable_route',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-width': 3,
+                            'line-color': ['get', 'color']
+                        }
+                    });
+
+                    map.addLayer({
                         'id': 'routes_bus',
                         'type': 'line',
                         'source': 'bus_route',
@@ -658,18 +681,20 @@
                         }
                     });
 
-                    map.moveLayer('routes_bus', 'routes')
+                    map.moveLayer('routes_bus', 'routes', 'routes_cable')
 
                     map.on('movestart', () => {
                         map.setFilter('routes', ['has', 'name']);
                         map.setFilter('routes_bus', ['has', 'name']);
+                        map.setFilter('routes_cable', ['has', 'name']);
+
                         console.log("Move it!");
                         document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
                     });
 
                     map.on('moveend', () => {
                         const features = map.queryRenderedFeatures({
-                            layers: ['routes', 'routes_bus']
+                            layers: ['routes', 'routes_bus', 'routes_cable']
                         });
 
                         if (features) {
@@ -753,6 +778,22 @@
                         }
                     });
 
+                    map.on('mouseenter', 'routes_cable', function(e) {
+                        var fs3 = map.queryRenderedFeatures(e.point, { layers: ['routes']});
+                        console.log(fs3)
+
+                        if (fs3.length > 0) {
+                            for (var f = 0; f < fs3.length; f ++) {
+                                var name_of_route = fs3[f].properties.name;
+                                routeId.push(name_of_route)
+                            }
+                            
+                            // Populate the popup and set its coordinates
+                            // based on the feature found.
+                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
+                        }
+                    });
+
                     map.on('mouseleave', 'routes', () => {
                         if (routeId.length > 0) {routeId = []}
                         popup.remove();
@@ -774,6 +815,12 @@
                             }
                         }
                         hoveredPolygonLine = null;
+                    });
+
+                    map.on('mouseleave', 'routes_cable', () => {
+                        if (routeId.length > 0) {routeId = []}
+                        popup.remove();
+                        // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
                     });
                 }
             }
