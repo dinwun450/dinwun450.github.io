@@ -608,6 +608,7 @@
                     var other_routes_muni = fullGeoJsonRoutes.filter(function(b){return b.properties.route_type != 3 && b.properties.route_type != 5})
                     var filteredFilters = fullGeoJsonRoutes.filter(function(a){return a.properties.route_type === 3});
                     var cable_routes_muni = fullGeoJsonRoutes.filter(function(c){return c.properties.route_type === 5});
+                    console.log(cable_routes_muni)
 
                     map.addSource('bus_route', {
                         'type': 'geojson',
