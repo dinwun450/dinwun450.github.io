@@ -589,11 +589,33 @@
                     for (var b=0; b<muniOutputs.routes.length; b++) {
                         var muniLines = muniOutputs.routes[b].route_short_name;
                         var muniLinesGeo = muniOutputs.routes[b].geometry;
-                        fullGeoJsonRoutes.push({'type': 'Feature', 'geometry': muniLinesGeo, 'properties': {"color": `#${muniOutputs.routes[b].route_color}`, "name": `${muniLines}`, "label": `${muniOutputs.routes[b].route_text_color}`, title: `${muniOutputs.routes[b].route_long_name}`}})
+                        fullGeoJsonRoutes.push({
+                            'type': 'Feature', 
+                            'geometry': muniLinesGeo, 
+                            'properties': {
+                                "color": `#${muniOutputs.routes[b].route_color}`,
+                                "name": `${muniLines}`, 
+                                "route_text_color": `${muniOutputs.routes[b].route_text_color}`, 
+                                "route_long_name": `${muniOutputs.routes[b].route_long_name}`,
+                                "route_type": muniOutputs.routes[i].route_type
+                            }
+                        })
 
                         // console.log(muniLines);
                         // console.log(fullGeoJsonRoutes);
                     }
+
+                    var other_routes_muni = fullGeoJsonRoutes.filter(function(b){return b.properties.route_type != 3})
+                    var filteredFilters = fullGeoJsonRoutes.filter(function(a){return a.properties.route_type === 3});
+
+                    map.addSource('bus_route', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': filteredFilters
+                        },
+                        'generateId': true
+                    })
 
                     map.addSource('route', {
                         'type': 'geojson',
@@ -617,15 +639,37 @@
                         }
                     });
 
+                    map.addLayer({
+                        'id': 'routes_bus',
+                        'type': 'line',
+                        'source': 'bus_route',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-width': 2,
+                            'line-color': [
+                                'case',
+                                ['boolean', ['feature-state', 'hover'], false],
+                                ['get', 'color'],
+                                '#c0e7fc',
+                            ], //['get', 'color']
+                        }
+                    });
+
+                    map.moveLayer('routes_bus', 'routes')
+
                     map.on('movestart', () => {
                         map.setFilter('routes', ['has', 'name']);
+                        map.setFilter('routes_bus', ['has', 'name']);
                         console.log("Move it!");
                         document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
                     });
 
                     map.on('moveend', () => {
                         const features = map.queryRenderedFeatures({
-                            layers: ['routes']
+                            layers: ['routes', 'routes_bus']
                         });
 
                         if (features) {
@@ -633,8 +677,8 @@
                             for (var f = 0; f < uniqueFeatures.length; f ++) {
                                 var name_of_route = uniqueFeatures[f].properties.name;
                                 var color_of_route = uniqueFeatures[f].properties.color;
-                                var text_color_of_route = uniqueFeatures[f].properties.label;
-                                var desc_of_route = uniqueFeatures[f].properties.title;
+                                var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
+                                var desc_of_route = uniqueFeatures[f].properties.route_long_name;
 
                                 document.getElementById("route_short").innerHTML = name_of_route;
                                 document.getElementById("route_short").style.color = `#${text_color_of_route}`;
@@ -646,10 +690,16 @@
                                 var listToInsertClone = routeClone.cloneNode(true);
                                 document.getElementById("range_of_routes").appendChild(listToInsertClone);
                             }
+
+                            var all_routes_nearby = document.getElementById("range_of_routes").children;
+                            document.getElementById("range_of_routes").removeChild(all_routes_nearby[0])
                         }
                     });
 
                     let routeId = [];
+                    let routeIdBus = [];
+                    let hoverIdBus = [];
+                    let hoveredPolygonLine = null;
 
                     const popup = new mapboxgl.Popup({
                         closeButton: false,
@@ -672,10 +722,58 @@
                         }
                     });
 
+                    map.on('mouseenter', 'routes_bus', function(e) {
+                        var fs_2 = map.queryRenderedFeatures(e.point, {layers: ['routes_bus']});
+                        console.log(fs_2);
+
+                        if (fs_2.length > 0) {
+                            for (var f = 0; f < fs_2.length; f++) {
+                                var name_of_route = fs_2[f].properties.name;
+                                routeIdBus.push(name_of_route);
+
+                                hoveredPolygonLine = fs_2[f].id;
+                                hoverIdBus.push(hoveredPolygonLine);
+
+                                if (hoveredPolygonLine !== null) {
+                                    console.log("hello!")
+                                    map.setFeatureState(
+                                        { source: 'bus_route', id: hoveredPolygonLine },
+                                        { hover: false }
+                                    );
+                                }
+                                map.setFeatureState(
+                                    { source: 'bus_route', id: hoveredPolygonLine },
+                                    { hover: true }
+                                );
+                            }
+                            
+                            // Populate the popup and set its coordinates
+                            // based on the feature found.
+                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeIdBus).addTo(map);
+                        }
+                    });
+
                     map.on('mouseleave', 'routes', () => {
                         if (routeId.length > 0) {routeId = []}
                         popup.remove();
                         // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+                    });
+
+                    map.on('mouseleave', 'routes_bus', (e) => {
+                        if (routeIdBus.length > 0) {routeIdBus = []}
+                        popup.remove();
+                        // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+
+                        if (hoveredPolygonLine !== null) {
+                            console.log("Fix!")
+                            for (var i = 0; i < hoverIdBus.length; i++) {
+                                map.setFeatureState(
+                                    { source: 'bus_route', id: hoverIdBus[i]},
+                                    { hover: false }
+                                );
+                            }
+                        }
+                        hoveredPolygonLine = null;
                     });
                 }
             }
