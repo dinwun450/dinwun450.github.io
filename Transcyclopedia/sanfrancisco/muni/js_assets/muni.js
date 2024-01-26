@@ -28,6 +28,14 @@ window.onload = function() {
                     document.getElementById("desc_metro").innerHTML = route_long_name;
                     document.getElementById("desc_metro").setAttribute("title", muni_metro_routes.routes[m].route_desc)
 
+                    if (muni_metro_routes.routes[i].alerts.length === 0) {
+                        document.getElementById("no_of_alerts_metro").innerHTML = "";
+                    }
+                    else {
+                        document.getElementById("no_of_alerts_metro").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${muni_metro_routes.routes[i].alerts.length})`;
+                        document.getElementById("no_of_alerts_metro").setAttribute("title", "See alerts page for details.")
+                    }
+
                     var cloneTheList = document.getElementById("route_entity_metro");
                     var listTBC = cloneTheList.cloneNode(true);
                     document.querySelector(".muni_metro_lines").appendChild(listTBC);
@@ -60,6 +68,14 @@ window.onload = function() {
                     document.getElementById("route_cablestreetcar").style.border = `1px solid #${route_color}`;
                     document.getElementById("desc_cablestreetcar").innerHTML = route_long_name;
                     document.getElementById("desc_cablestreetcar").setAttribute("title", cable_routes.routes[c].route_desc)
+
+                    if (cable_routes.routes[i].alerts.length === 0) {
+                        document.getElementById("no_of_alerts_cable").innerHTML = "";
+                    }
+                    else {
+                        document.getElementById("no_of_alerts_cable").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${cable_routes.routes[i].alerts.length})`;
+                        document.getElementById("no_of_alerts_cable").setAttribute("title", "See alerts page for details.")
+                    }
 
                     var cloneTheList = document.getElementById("route_entity_cable");
                     var listTBC = cloneTheList.cloneNode(true);
@@ -96,13 +112,11 @@ window.onload = function() {
                     document.getElementById("desc_bus").setAttribute("title", bus_routes.routes[b].route_desc)
 
                     if (bus_routes.routes[b].alerts.length === 0) {
-                        console.log("none");
+                        document.getElementById("no_of_alerts_bus").innerHTML = "";
                     }
                     else {
-                        console.log(bus_routes.routes[b].alerts[0].description_text[0].text)
-                        counter += 1;
-                        console.log(counter)
-                        document.getElementById("desc_bus").innerHTML = `${route_long_name} <span title="See alerts page for specific routes.">(<i class="fa-solid fa-triangle-exclamation"></i> ${counter})</span>`;
+                        document.getElementById("no_of_alerts_bus").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${bus_routes.routes[i].alerts.length})`;
+                        document.getElementById("no_of_alerts_bus").setAttribute("title", "See alerts page for details.")
                     }
 
                     var cloneTheList = document.getElementById("route_entity_bus");
