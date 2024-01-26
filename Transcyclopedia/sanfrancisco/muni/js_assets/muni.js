@@ -28,11 +28,11 @@ window.onload = function() {
                     document.getElementById("desc_metro").innerHTML = route_long_name;
                     document.getElementById("desc_metro").setAttribute("title", muni_metro_routes.routes[m].route_desc)
 
-                    if (muni_metro_routes.routes[i].alerts.length === 0) {
+                    if (muni_metro_routes.routes[m].alerts.length === 0) {
                         document.getElementById("no_of_alerts_metro").innerHTML = "";
                     }
                     else {
-                        document.getElementById("no_of_alerts_metro").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${muni_metro_routes.routes[i].alerts.length})`;
+                        document.getElementById("no_of_alerts_metro").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${muni_metro_routes.routes[m].alerts.length})`;
                         document.getElementById("no_of_alerts_metro").setAttribute("title", "See alerts page for details.")
                     }
 
@@ -69,11 +69,11 @@ window.onload = function() {
                     document.getElementById("desc_cablestreetcar").innerHTML = route_long_name;
                     document.getElementById("desc_cablestreetcar").setAttribute("title", cable_routes.routes[c].route_desc)
 
-                    if (cable_routes.routes[i].alerts.length === 0) {
+                    if (cable_routes.routes[c].alerts.length === 0) {
                         document.getElementById("no_of_alerts_cable").innerHTML = "";
                     }
                     else {
-                        document.getElementById("no_of_alerts_cable").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${cable_routes.routes[i].alerts.length})`;
+                        document.getElementById("no_of_alerts_cable").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${cable_routes.routes[c].alerts.length})`;
                         document.getElementById("no_of_alerts_cable").setAttribute("title", "See alerts page for details.")
                     }
 
