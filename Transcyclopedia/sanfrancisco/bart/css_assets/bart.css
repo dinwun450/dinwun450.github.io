@@ -282,13 +282,15 @@ body::after {
     overflow-y: auto;
 }
 
-#list_of_departures::-webkit-scrollbar, #range_of_routes::-webkit-scrollbar {
+#list_of_departures::-webkit-scrollbar, #range_of_routes::-webkit-scrollbar,
+#map_inter::-webkit-scrollbar {
     width: 5px;
     position: relative;
     right: 20px;
 }
 
-#list_of_departures::-webkit-scrollbar-track, #range_of_routes::-webkit-scrollbar-track {
+#list_of_departures::-webkit-scrollbar-track, #range_of_routes::-webkit-scrollbar-track,
+#map_inter::-webkit-scrollbar-track {
     border-radius: 10px;
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -296,7 +298,8 @@ body::after {
     right: 2px;
 }
 
-#list_of_departures::-webkit-scrollbar-thumb, #range_of_routes::-webkit-scrollbar-thumb {
+#list_of_departures::-webkit-scrollbar-thumb, #range_of_routes::-webkit-scrollbar-thumb,
+#map_inter::-webkit-scrollbar-thumb {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     background: rgba( 255, 255, 255, 0.25 );
     border-radius: 10px;
@@ -341,6 +344,10 @@ body::after {
 
 #alert_desc, #alert_desc_elev {
     padding: 10px;
+}
+
+#map_inter {
+    overflow-y: auto;
 }
 
 #map {
