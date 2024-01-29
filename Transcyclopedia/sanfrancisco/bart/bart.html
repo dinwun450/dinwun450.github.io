@@ -388,6 +388,9 @@
                                 var listToInsertClone = routeClone.cloneNode(true);
                                 document.getElementById("range_of_routes").appendChild(listToInsertClone);
                             }
+
+                            var list_of_routes = document.getElementById("range_of_routes").children;
+                            document.getElementById("range_of_routes").removeChild(list_of_routes[0])
                         }
                     });
 
