@@ -82,10 +82,6 @@ body::after {
     color: white;
 }
 
-.light_mode .left_navbar li a {
-    color: black;
-}
-
 .logo {
     font-size: 25px;
     margin-top: 5px;
