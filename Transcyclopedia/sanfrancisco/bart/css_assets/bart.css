@@ -333,8 +333,8 @@ body::after {
 }
 
 .alert_entity, .alert_entity_elev {
-    width: 65%;
-    height: 200px;
+    width: 92%;
+    height: fit-content;
     margin-left: 20px;
     background: rgba( 255, 255, 255, 0.25 );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
