@@ -386,6 +386,12 @@ body::after {
     overflow-y: auto;
 }
 
+.alert_entity_stops_metro, .alert_entity_stops_bus, .alert_entity_stops_cable {
+    width: 95%;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
 .alert_entity_agency h3, .alert_entity_routes h3 {
     margin-left: 5px;
 }
