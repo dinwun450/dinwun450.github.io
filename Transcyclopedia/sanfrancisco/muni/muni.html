@@ -134,14 +134,16 @@
             </div>
             <div class="alert_entity_routes">
                 <h3>Muni Routes</h3>
+                <input type="text" placeholder="Search for a route..." onkeydown="keyDownAlerts()" id="muni_routegetter" autocomplete="off">
+                <p class="headerformunialerts">Alerts for &nbsp; <span id="affectedroutes">-</span><br></p>
                 <ul id="muni_routes_alerts">
                     <li id="alert_desc_routes">
                         <p>
-                            <span id="affectedroutes">-</span><br>
-                            <span id="alert_for_specific_route">Loading...</span>
+                            <span id="alert_for_specific_route">Enter a specific route by their route name.</span>
                         </p>
                     </li>
                 </ul>
+                <button id="clearall_muni_alerts" onclick="clearAllAlerts()">Clear</button>
             </div>
         </div>
         <div class="window" id="map_inter">

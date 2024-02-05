@@ -262,7 +262,8 @@ body::after {
     right: 50px;
 }
 
-#departures_metro input, #departures_cable input, #departures_bus input {
+#departures_metro input, #departures_cable input, #departures_bus input,
+#alerts input {
     width: 95%;
     height: 30px;
     border-radius: 5px;
@@ -272,6 +273,11 @@ body::after {
     border: 1px solid #eeeeee40;
     color: white;
     padding-left: 10px;
+}
+
+#alerts input {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .light_mode #departures_metro input, .light_mode #departures_cable input, .light_mode #departures_bus input {
@@ -342,7 +348,8 @@ body::after {
     border-radius: 10px;
 }
 
-#clearall_muni_metro, #clearall_cable, #clearall_bus {
+#clearall_muni_metro, #clearall_cable, #clearall_bus,
+#clearall_muni_alerts {
     width: 95%;
     height: 30px;
     border-radius: 5px;
@@ -354,7 +361,8 @@ body::after {
     margin-left: 20px;
 }
 
-.light_mode #clearall_muni_metro, .light_mode #clearall_cable, .light_mode #clearall_bus {
+.light_mode #clearall_muni_metro, .light_mode #clearall_cable, .light_mode #clearall_bus,
+.light_mode #clearall_muni_alerts {
     color: black;
 }
 
