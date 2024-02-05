@@ -78,6 +78,14 @@
             <ul id="list_of_departures_muni_metro">
                 <li id="line_for_departure_muni_metro"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro">-</div> <span id="route_headsign_muni_metro">(None)</span> <span id="route_depart_muni_metro">Enter a specific station by their station ID</span></div></li>
             </ul>
+            <div class="alert_entity_stops_metro">
+                <h3>Alerts for this Station</h3>
+                <ul id="muni_stops_alerts_metro">
+                    <li id="alert_desc_stops_metro">
+                        <p>Once you typed down the station by their ID, the advisories will display here.</p>
+                    </li>
+                </ul>
+            </div>
             <button id="clearall_muni_metro" onclick="clearAllMuniMetro()">Clear</button>
         </div>
         <div class="window" id="departures_cable">
@@ -87,6 +95,14 @@
             <ul id="list_of_departures_cable">
                 <li id="line_for_departure_cable"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable">-</div> <span id="route_headsign_cable">(None)</span> <span id="route_depart_cable">Enter a specific stop by their stop ID</span></div></li>
             </ul>
+            <div class="alert_entity_stops_cable">
+                <h3>Alerts for this Station</h3>
+                <ul id="muni_stops_alerts_cable">
+                    <li id="alert_desc_stops_cable">
+                        <p>Once you typed down the station by their ID, the advisories will display here.</p>
+                    </li>
+                </ul>
+            </div>
             <button id="clearall_cable" onclick="clearAllCable()">Clear</button>
         </div>
         <div class="window" id="departures_bus">
@@ -96,6 +112,14 @@
             <ul id="list_of_departures_bus">
                 <li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="route_headsign_bus">(None)</span> <span id="route_depart_bus">Enter a specific stop by their stop ID</span></div></li>
             </ul>
+            <div class="alert_entity_stops_bus">
+                <h3>Alerts for this Stop</h3>
+                <ul id="muni_stops_alerts_bus">
+                    <li id="alert_desc_stops_bus">
+                        <p>Once you typed down the stop by their ID, the advisories will display here.</p>
+                    </li>
+                </ul>
+            </div>
             <button id="clearall_bus" onclick="clearAllBus()">Clear</button>
         </div>
         <div class="window" id="alerts">
@@ -334,6 +358,19 @@
 
                     var departuresAll = document.getElementById("list_of_departures_muni_metro").children;
                     document.querySelector("#list_of_departures_muni_metro").removeChild(departuresAll[0]);
+
+                    var alerts_for_this_station_metro = departures_muni_metro.stops[0].alerts;
+                    if (alerts_for_this_station_metro.length === 0) {
+                        document.getElementById("alert_desc_stops_metro").innerHTML = `
+                            <p>There are no alerts for this station.</p>
+                        `
+                    }
+                    else {
+                        for (var i=0; i<alerts_for_this_station_metro.length; i++) {
+                            var desc_text_metro = alerts_for_this_station_metro[i].description_text[0].text;
+                            document.getElementById("alert_desc_stops_metro").innerHTML = `<p>${desc_text_metro}</p>`;
+                        }
+                    }
                 }
             }
             departure_request.send();
@@ -347,6 +384,11 @@
             <li id="line_for_departure_muni_metro"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro">-</div> <span id="route_headsign_muni_metro">(None)</span> <span id="route_depart_muni_metro">Enter a specific station by their station ID</span></div></li>
             `
             document.getElementById("muni_metro_stationname").innerHTML = "---";
+            document.getElementById("muni_stops_alerts_metro").innerHTML = `
+                    <li id="alert_desc_stops_metro">
+                        <p>Once you typed down the station by their ID, the advisories will display here.</p>
+                    </li>
+            `
         }
 
         function keyDownCableCar(e) {
@@ -437,6 +479,19 @@
 
                     var departuresAll = document.getElementById("list_of_departures_cable").children;
                     document.querySelector("#list_of_departures_cable").removeChild(departuresAll[0]);
+
+                    var alerts_for_this_station_cable = departures_cable_car.stops[0].alerts;
+                    if (alerts_for_this_station_cable.length === 0) {
+                        document.getElementById("alert_desc_stops_cable").innerHTML = `
+                            <p>There are no alerts for this station.</p>
+                        `
+                    }
+                    else {
+                        for (var i=0; i<alerts_for_this_station_cable.length; i++) {
+                            var desc_text = alerts_for_this_station_cable[i].description_text[0].text;
+                            document.getElementById("alert_desc_stops_cable").innerHTML = `<p>${desc_text}</p>`;
+                        }
+                    }
                 }
             }
             departure_request.send();
@@ -450,6 +505,11 @@
             <li id="line_for_departure_cable"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable">-</div> <span id="route_headsign_cable">(None)</span> <span id="route_depart_cable">Enter a specific stop by their stop ID</span></div></li>
             `
             document.getElementById("cable_stopname").innerHTML = "---";
+            document.getElementById("muni_stops_alerts_cable").innerHTML = `
+                    <li id="alert_desc_stops_cable">
+                        <p>Once you typed down the station by their ID, the advisories will display here.</p>
+                    </li>
+            `
         }
 
         function openNav() {
@@ -551,6 +611,21 @@
 
                     var departuresAll = document.getElementById("list_of_departures_bus").children;
                     document.querySelector("#list_of_departures_bus").removeChild(departuresAll[0]);
+
+                    var alerts_for_this_stop_bus = bus_departures.stops[0].alerts;
+                    if (alerts_for_this_stop_bus.length === 0) {
+                        document.getElementById("alert_desc_stops_bus").innerHTML = `
+                            <p>There are no alerts for this station.</p>
+                        `
+                    }
+                    else {
+                        for(var i=0; i<alerts_for_this_stop_bus.length; i++) {
+                            console.log(alerts_for_this_stop_bus);
+
+                            var desc_text_bus = alerts_for_this_stop_bus[i].description_text[0].text;
+                            document.getElementById("alert_desc_stops_bus").innerHTML = `<p>${desc_text_bus}</p>`
+                        }
+                    }
                 }
             }
             departures_bus.send();
@@ -564,6 +639,11 @@
             <li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="route_headsign_bus">(None)</span> <span id="route_depart_bus">Enter a specific stop by their stop ID</span></div></li>
             `
             document.getElementById("bus_stopname").innerHTML = "---";
+            document.getElementById("muni_stops_alerts_bus").innerHTML = `
+                    <li id="alert_desc_stops_bus">
+                        <p>Once you typed down the stop by their ID, the advisories will display here.</p>
+                    </li>
+            `
         }
 
         function getUniqueFeatures(features, comparatorProperty) {
