@@ -288,7 +288,7 @@ body::after {
     outline: none;
 }
 
-.headerformunimetro, .headerforcable, .headerforbus {
+.headerformunimetro, .headerforcable, .headerforbus, .headerformunialerts {
     width: 95%;
     height: 50px;
     background: rgba( 255, 255, 255, 0.25 );
