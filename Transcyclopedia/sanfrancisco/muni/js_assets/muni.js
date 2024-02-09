@@ -156,45 +156,4 @@ window.onload = function() {
         alert_caller.send();
     }
     showMuniAgencyAlerts();
-
-    function showMuniRouteAlerts() {
-        var alert_caller = new XMLHttpRequest();
-        alert_caller.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8y-sfmta&limit=700&include_alerts=true");
-        alert_caller.onreadystatechange = function() {
-            if (alert_caller.readyState === 4 && alert_caller.status === 200) {
-                var routes_output = JSON.parse(alert_caller.responseText);
-
-                for (var i=0; i<routes_output.routes.length; i++) { 
-                    var route_short_name = routes_output.routes[i].route_short_name;
-                    var route_color = routes_output.routes[i].route_color;
-                    var route_text_color = routes_output.routes[i].route_text_color;
-
-                    if (routes_output.routes[i].alerts.length === 0) {
-                        console.log("Nope! No alerts...")
-                    }
-                    else {
-                        for (var j=0; j<routes_output.routes[i].alerts.length; j++) {
-                            console.log("routes:", route_short_name);
-                            console.log(routes_output.routes[i].alerts[j].description_text[0].text)
-
-                            document.getElementById("affectedroutes").innerHTML = route_short_name;
-                            document.getElementById("affectedroutes").style.backgroundColor = `#${route_color}40`;
-                            document.getElementById("affectedroutes").style.color = `#${route_text_color}`;
-                            document.getElementById("affectedroutes").style.border = `1px solid #${route_color}`;
-                            document.getElementById("alert_for_specific_route").innerHTML = routes_output.routes[i].alerts[j].description_text[0].text;
-                        }
-
-                        var cloneTheList = document.getElementById("alert_desc_routes");
-                        var listTBC = cloneTheList.cloneNode(true);
-                        document.querySelector("#muni_routes_alerts").appendChild(listTBC);
-                    }
-                }
-
-                var alertsAll = document.querySelector("#muni_routes_alerts").children;
-                document.querySelector("#muni_routes_alerts").removeChild(alertsAll[0]);
-            }
-        }
-        alert_caller.send();
-    }
-    showMuniRouteAlerts();
 }
