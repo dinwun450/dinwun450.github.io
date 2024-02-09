@@ -303,6 +303,14 @@ body::after {
     padding-left: 10px;
 }
 
+.headerformunialerts {
+    height: fit-content;
+    border-radius: 10px;
+    text-wrap: nowrap;
+    overflow-x: auto;
+    padding: 10px;
+}
+
 #departures_metro, #departures_bus, #departures_cable {
     overflow-y: auto;
 }
@@ -398,6 +406,10 @@ body::after {
     width: 95%;
     margin-top: 0;
     margin-bottom: 10px;
+}
+
+.alert_entity_routes {
+    height: 400px;
 }
 
 .alert_entity_agency h3, .alert_entity_routes h3 {
