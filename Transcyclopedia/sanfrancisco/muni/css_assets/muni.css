@@ -369,6 +369,10 @@ body::after {
     margin-left: 20px;
 }
 
+#clearall_muni_alerts {
+    margin-top: 20px;
+}
+
 .light_mode #clearall_muni_metro, .light_mode #clearall_cable, .light_mode #clearall_bus,
 .light_mode #clearall_muni_alerts {
     color: black;
