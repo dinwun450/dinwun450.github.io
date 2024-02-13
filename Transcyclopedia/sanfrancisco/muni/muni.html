@@ -657,7 +657,7 @@
         }
 
         function callOverMuniAlerts() {
-            var route_receiver = document.getElementById("vta_routegetter").value.replace("/ /g", "+");
+            var route_receiver = document.getElementById("muni_routegetter").value.replace("/ /g", "+");
             var alert_call = new XMLHttpRequest();
             alert_call.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&search=${route_receiver}&operator_onestop_id=o-9q8y-sfmta&include_alerts=true&limit=700`);
             alert_call.onreadystatechange = function() {
@@ -694,9 +694,6 @@
                             var cloneNode = alertNode.cloneNode(true);
                             document.getElementById("muni_routes_alerts").appendChild(cloneNode);
                         }
-
-                        // var total_alerts = document.getElementById("vta_routes_alerts").children;
-                        // document.getElementById("vta_routes_alerts").removeChild(total_alerts[0]);
                     }
                     var total_routes = document.querySelector(".headerformunialerts").children;
                     var last_child_routes = document.querySelector(".headerformunialerts").lastChild;
@@ -709,7 +706,7 @@
         }
 
         function clearAllAlerts() {
-            document.getElementById("vta_routes_alerts").innerHTML = `
+            document.getElementById("muni_routes_alerts").innerHTML = `
                     <li id="alert_desc_routes">
                         <p>
                             <span id="alert_for_specific_route">Enter a specific route by their route name.</span>
