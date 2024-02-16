@@ -507,8 +507,8 @@
                             document.getElementById("vta_routes_alerts").appendChild(cloneNode);
                         }
 
-                        // var total_alerts = document.getElementById("vta_routes_alerts").children;
-                        // document.getElementById("vta_routes_alerts").removeChild(total_alerts[0]);
+                        var total_alerts = document.getElementById("vta_routes_alerts").children;
+                        document.getElementById("vta_routes_alerts").removeChild(total_alerts[total_alerts.length-1]);
                     }
                     var total_routes = document.querySelector(".headerforvtaalerts").children;
                     var last_child_routes = document.querySelector(".headerforvtaalerts").lastChild;
