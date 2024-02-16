@@ -506,15 +506,15 @@
                             var cloneNode = alertNode.cloneNode(true);
                             document.getElementById("vta_routes_alerts").appendChild(cloneNode);
                         }
-
-                        var total_alerts = document.getElementById("vta_routes_alerts").children;
-                        document.getElementById("vta_routes_alerts").removeChild(total_alerts[total_alerts.length-1]);
                     }
                     var total_routes = document.querySelector(".headerforvtaalerts").children;
                     var last_child_routes = document.querySelector(".headerforvtaalerts").lastChild;
 
                     document.querySelector(".headerforvtaalerts").removeChild(total_routes[0]);
                     document.querySelector(".headerforvtaalerts").removeChild(last_child_routes);
+
+                    var total_alerts = document.getElementById("vta_routes_alerts").children;
+                    document.getElementById("vta_routes_alerts").removeChild(total_alerts[total_alerts.length-1]);
                 }
             }
             alert_call.send();
