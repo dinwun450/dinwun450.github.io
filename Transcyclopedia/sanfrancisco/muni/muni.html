@@ -76,7 +76,7 @@
             <input type="text" placeholder="Search for a station.." onkeydown="keyDownMuniMetro()" id="muni_metro_stationgetter" autocomplete="off">
             <p class="headerformunimetro">Departures for &nbsp;<span id="muni_metro_stationname">---</span></p>
             <ul id="list_of_departures_muni_metro">
-                <li id="line_for_departure_muni_metro"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro">-</div> <span id="route_headsign_muni_metro">(None)</span> <span id="route_depart_muni_metro">Enter a specific station by their station ID</span></div></li>
+                <li id="line_for_departure_muni_metro"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro">-</div> <span id="alerts_metro"></span> <span id="route_headsign_muni_metro">(None)</span> <span id="route_depart_muni_metro">Enter a specific station by their station ID</span></div></li>
             </ul>
             <div class="alert_entity_stops_metro">
                 <h3>Alerts for this Station</h3>
@@ -93,7 +93,7 @@
             <input type="text" placeholder="Search for a stop.." onkeydown="keyDownCableCar()" id="cable_stopgetter" autocomplete="off">
             <p class="headerforcable">Departures for &nbsp;<span id="cable_stopname">---</span></p>
             <ul id="list_of_departures_cable">
-                <li id="line_for_departure_cable"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable">-</div> <span id="route_headsign_cable">(None)</span> <span id="route_depart_cable">Enter a specific stop by their stop ID</span></div></li>
+                <li id="line_for_departure_cable"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable">-</div> <span id="alerts_cable"></span> <span id="route_headsign_cable">(None)</span> <span id="route_depart_cable">Enter a specific stop by their stop ID</span></div></li>
             </ul>
             <div class="alert_entity_stops_cable">
                 <h3>Alerts for this Station</h3>
@@ -110,7 +110,7 @@
             <input type="text" placeholder="Search for a stop.." onkeydown="keyDownBus()" id="bus_stopgetter" autocomplete="off">
             <p class="headerforbus">Departures for &nbsp;<span id="bus_stopname">---</span></p>
             <ul id="list_of_departures_bus">
-                <li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="route_headsign_bus">(None)</span> <span id="route_depart_bus">Enter a specific stop by their stop ID</span></div></li>
+                <li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="alerts_bus"></span> <span id="route_headsign_bus">(None)</span> <span id="route_depart_bus">Enter a specific stop by their stop ID</span></div></li>
             </ul>
             <div class="alert_entity_stops_bus">
                 <h3>Alerts for this Stop</h3>
@@ -353,6 +353,14 @@
                         document.getElementById("line_for_each_departure_muni_metro").style.color = `#${routeColorInText}`;
                         document.getElementById("route_headsign_muni_metro").innerHTML = `${routeFullName} ${routeLong}`;
 
+                        if (departures_muni_metro.stops[0].departures[i].trip.route.alerts.length === 0) {
+                            console.log("No route alerts in sight...")
+                        }
+                        else {
+                            document.getElementById("alerts_bus").innerHTML = `(<i class="fa-solid fa-triangle-exclamation alert_triangle"></i> ${departure_bus_outputs_base.departures[i].trip.route.alerts.length})`;
+                            document.querySelector(".alert_triangle").style.color = "#FFD580";
+                        }
+
                         var departureClone = document.getElementById("line_for_departure_muni_metro");
                         var listToInsertClone = departureClone.cloneNode(true);
                         document.getElementById("list_of_departures_muni_metro").appendChild(listToInsertClone);
@@ -473,6 +481,14 @@
                         document.getElementById("line_for_each_departure_cable").style.border = `1px solid #${routeColor}`;
                         document.getElementById("line_for_each_departure_cable").style.color = `#${routeColorInText}`;
                         document.getElementById("route_headsign_cable").innerHTML = `${routeFullName} ${routeLong}`;
+
+                        if (departures_cable_car.stops[0].departures[i].trip.route.alerts.length === 0) {
+                            console.log("No route alerts in sight...")
+                        }
+                        else {
+                            document.getElementById("alerts_bus").innerHTML = `(<i class="fa-solid fa-triangle-exclamation alert_triangle"></i> ${departure_bus_outputs_base.departures[i].trip.route.alerts.length})`;
+                            document.querySelector(".alert_triangle").style.color = "#FFD580";
+                        }
 
                         var departureClone = document.getElementById("line_for_departure_cable");
                         var listToInsertClone = departureClone.cloneNode(true);
@@ -605,6 +621,14 @@
                         document.getElementById("line_for_each_departure_bus").style.border = `1px solid #${route_color}`;
                         document.getElementById("line_for_each_departure_bus").style.color = `#${route_text_color}`;
                         document.getElementById("route_headsign_bus").innerHTML = `${route_long_desc} ${route_headsign}`;
+
+                        if (bus_departures.stops[0].departures[i].trip.route.alerts.length === 0) {
+                            console.log("No route alerts in sight...")
+                        }
+                        else {
+                            document.getElementById("alerts_bus").innerHTML = `(<i class="fa-solid fa-triangle-exclamation alert_triangle"></i> ${departure_bus_outputs_base.departures[i].trip.route.alerts.length})`;
+                            document.querySelector(".alert_triangle").style.color = "#FFD580";
+                        }
 
                         var departureClone = document.getElementById("line_for_departure_bus");
                         var listToInsertClone = departureClone.cloneNode(true);
