@@ -3,310 +3,414 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transcyclopedia San Francisco: San Francisco Ferries</title>
+    <title>Transcyclopedia San Francisco: Ferries</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="sf_ferry.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="css_assets/sf_ferry_remake.css">
+    <link rel="stylesheet" href="css_assets/scrollbars_sf_ferry.css">
+    <link rel="stylesheet" href="css_assets/responsive_page.css">
+    <link rel="stylesheet" href="css_assets/light_and_dark.css">
     <script src="js_assets/sf_ferry_agency.js"></script>
 </head>
 <body>
-    <nav id="navbar">
-        <a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html" class="brand">
-            <!--<i class="fa-solid fa-earth-americas"></i>-->
-            <span id="globe"><i class="fa-solid fa-earth-americas"></i></span>
-            <span>Transcyclopedia</span>
-        </a>
-        <ul class="nav-links">
-            <input type="checkbox" id="checkbox_toggle" />
-            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
-            <div class="menu">
-                <li style="--i:0;">
-                    <a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html">
-                        <span>Menu</span>
-                        <span><ion-icon name="home-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:1;">
-                    <a href="#">
-                        <span>Agency</span>
-                        <span><ion-icon name="business-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:2;">
-                    <a href="#">
-                        <span>Alerts</span>
-                        <span><ion-icon name="warning-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:3;">
-                    <a href="#">
-                        <span>Lines</span>
-                        <span><ion-icon name="map-outline"></ion-icon></span>
-                    </a>
-                </li>
-                <li style="--i:4;">
-                    <a href="#">
-                        <span>About</span>
-                        <span><ion-icon name="information-circle-outline"></ion-icon></span>
-                    </a>
-                </li>
-            </div>
-        </ul>
-    </nav>
+    <ul class="left_navbar">
+        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia SF:<br> Ferries</h1>
+        <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
+        <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_ferries')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About Ferries</a></li>
+        <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
+        <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-ferry"></i>&nbsp;&nbsp;Departures</a></li>
+        <li class="tablinks header4" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
+        <li><a href="#" onclick="dark_or_light()"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light/Dark Mode</a></li>
+        <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
+        <p class="copyright">&copy; 2024 Transcyclopedia. Created by Dino Wun.</p>
+    </ul>
     <div class="main">
-        <div class="topfooter">
-            <h1 style="color: white;" id="titleofsection">SF Ferries</h1>
-        </div>
-        <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'info')" id="defaulttab">Ferry Info</button>
-            <button class="tablinks" onclick="openTab(event, 'lines')">Routes</button>
-            <button class="tablinks" onclick="openTab(event, 'departures')">Departures</button>
-        </div>
-        <div id="info" class="tabcontent">
-            <h2>Ferry Info</h2>
-            <div class="ferryagencies">
-                <select name="" id="ferry_agency" onchange="changeAgency(value);">
+        <div class="window" id="about_ferries">
+            <div class="info">
+                <p id="nameswitch">About Ferries <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+                <select name="" id="ferry_info" onchange="changeAgency(value);">
                     <option value="prompt">Select Ferry Agency</option>
                     <option value="sfbayferry">SF Bay Ferry</option>
                     <option value="ggf">Golden Gate Ferry</option>
                 </select>
-                <div class="about_agency">
-                    <p style="text-align: center; color: white; margin-top: 10px;">Select an Agency from the dropdown menu above.</p>
+                <p id="desc">Select a Ferry Agency.</p>
+            </div>
+            <div class="stats">
+                <div class="began_operation">
+                    <h2>Founded:</h2>
+                    <p id="foundingdate"><b>-</b></p>
+                </div>
+                <div class="no_of_lines">
+                    <h2>Number of Lines:</h2> 
+                    <p id="nooflines"><b>-</b></p>
+                </div>
+                <div class="contact">
+                    <h2>Contact:</h2>
+                    <ul>
+                        <li><p id="email_agency"><b>-</b> (Email)</p></li>
+                        <li><p id="phone_agency"><b>-</b> (Phone)</p></li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div id="lines" class="tabcontent">
-            <h2>Ferry Routes</h2>
-            <div class="ferry_agency_routes">
-                <select name="" id="ferry_routes" onchange="changeRouteByAgency(value);">
-                    <option value="prompt">Select Ferry Agency</option>
-                    <option value="sfbayferry">SF Bay Ferry</option>
-                    <option value="ggf">Golden Gate Ferry</option>
-                </select>
-                <ul class="lines">
-                    <li id="each_line">
-                        <div id="line">-</div>
-                        <div id="route_desc">Select a Ferry Agency</div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div id="departures" class="tabcontent">
-            <h2>Departures</h2>
-            <select name="" id="ferry_departures" onchange="switchAgency(value);">
+        <div class="window" id="lines">
+            <p id="nameswitch">Lines <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="ferry_routes" onchange="changeRouteByAgency(value);">
                 <option value="prompt">Select Ferry Agency</option>
                 <option value="sfbayferry">SF Bay Ferry</option>
                 <option value="ggf">Golden Gate Ferry</option>
             </select>
-            <input type="text" placeholder="Select a Ferry Agency on the top, then search for a ferry terminal..." onkeydown="(new switchAgency()).keydown()" id="terminalgetter" autocomplete="off">
-            <p class="headerforstop">Departures for&nbsp;<span id="terminalname">---</span></p>
-            <ul id="list_of_departures">
-                <li id="line_for_departure">
-                    <div class="wrapper_for_departure">
-                        <div id="line_for_each_departure">-</div> <div id="route_headsign"><p id="isscroll">(None)</p></div> <span id="route_depart">Enter a specific terminal by their terminal ID</span>
-                    </div>
-                </li>
+            <div class="lines_ferry">
+                <ul class="ferry_lines">
+                    <li id="route_entity_ferry"><span id="route_ferry" title="No route given. Please select a ferry agency on the top dropdown box.">-</span> &nbsp; <span id="desc_ferry" title="Please select a ferry agency on the top.">Select a Ferry Agency.</span><br></li>
+                </ul>
+            </div>
+        </div>
+        <div class="window" id="departures">
+            <p id="nameswitch">Departures <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a terminal..." onkeydown="" id="terminalgetter" autocomplete="off">
+            <select name="" id="ferry_departures" onchange="callOverFerry(value);">
+                <option value="prompt">Select Ferry Agency</option>
+                <option value="sfbayferry">SF Bay Ferry</option>
+                <option value="ggf">Golden Gate Ferry</option>
+            </select>
+            <p class="headerforferry">Departures for &nbsp;<span id="terminalname">---</span></p>
+            <ul id="list_of_departures_ferry">
+                <li id="line_for_departure_ferry"><div class="wrapper_for_departure_ferry"><div id="line_for_each_departure_ferry">-</div> <span id="alerts_ferry"></span> <span id="route_headsign_ferry">(None)</span><span id="route_depart_ferry">Enter a specific station by their station ID, then select a ferry agency. <br> For GGF Departures, key in the GF: prefix, then their terminal id.</span></div></li>
             </ul>
-            <h3>Alerts Today</h3>
-            <ul id="list_of_alerts">
-                <li id="alert_entity">
-                    <p>Once you typed down the terminal by their ID, the advisories will display here.</p>
-                </li>
+        </div>
+        <div class="window" id="alerts">
+            <p id="nameswitch">Alerts <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="ferry_alerts" onchange="changeAgencyInAlerts(value);">
+                <option value="prompt">Select Ferry Agency</option>
+                <option value="sfbayferry">SF Bay Ferry</option>
+                <option value="ggf">Golden Gate Ferry</option>
+            </select>
+            <div class="alert_entity">
+                <p id="alert_desc">Select a ferry agency on the top.</p>
+            </div>
+        </div>
+        <div class="window" id="map_inter">
+            <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <section class="map_box_container">
+                <!--MAP-->
+              <div id='map' style="width: 100%; height: 500px;"></div>
+              <nav id="filter_agency" class="filter_agency"></nav>
+            </section>
+            <ul id="range_of_routes">
+                <li class="route_radius"><span id="route_short">-</span>&nbsp;&nbsp;<span id="detailed_route">Loading...</span></li>
             </ul>
-            <button id="clearall" onclick="clearAllDepartures()">Clear</button>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script>
-        let lastScrollTop = 0;
-        var deviceWidth = window.innerWidth;
-        var counter = 0;
-        var counter_b = 0;
-        var counter_c = 0;
+        var v = null;
+        var ferry_geojson_routes = [];
+        const filterGroup = document.getElementById('filter_agency');
 
-        navbar = document.getElementById("navbar");
-        window.addEventListener("scroll", function () {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop) {
-                navbar.classList.add("icon");
-            } else {
-                navbar.classList.remove("icon");
+        function mapConfiguration() {
+            document.getElementById("map").style.width = "100%";
+            document.getElementById("map").style.height = "500px";
+
+            const mapDiv = document.getElementById("map");
+            if (mapDiv.style.visibility === false) {
+                map.resize();
+            };
+
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZGlud3VuNDUwIiwiYSI6ImNsaTR4c253bTAzNnIzcnF1aTh0eTN2a3kifQ.fjcqiGi68hyGpUAKAo9Tcw';
+            map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/light-v11',
+                center: [-122.3921729, 37.7893209],
+                zoom: 10
+            });
+
+            map.on('load', function() {
+                map.addControl(new mapboxgl.NavigationControl());
+                map.scrollZoom.disable();
+            });
+        }
+        mapConfiguration();
+
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
             }
-            lastScrollTop = scrollTop;
-        })
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
 
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
+            tabcontent = document.getElementsByClassName("window");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
             }
+
             tablinks = document.getElementsByClassName("tablinks");
             for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                tablinks[i].className = tablinks[i].className.replace("active", "");
             }
+
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.className += " active";
         }
         document.getElementById("defaulttab").click();
 
-        function switchAgency(d) {
-            var agency_ferry = d;
-            if (agency_ferry === "sfbayferry") {
-                option_agency = "o-9q9p-sanfranciscobayferry"
-            }
-            else if (agency_ferry === "ggf") {
-                option_agency = "o-9q8z-goldengateferry";
-            }
+        function plotSFBFLines() {
+            var sfbf_line_call = new XMLHttpRequest();
+            sfbf_line_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p-sanfranciscobayferry&include_geometry=true");
+            sfbf_line_call.onreadystatechange = function() {
+                if (sfbf_line_call.readyState === 4 && sfbf_line_call.status === 200) {
+                    var sfbf_outputs = JSON.parse(sfbf_line_call.responseText).routes;
 
-            this.keydown = function(e) {
-                e = e || window.event;
-                if (e.keyCode === 13) {
-                    console.log("Enter!")
-                    requester(option_agency);
-                }
-            }
+                    for (var i=0; i<sfbf_outputs.length; i++) {
+                        var all_sfbf_lines_name_short = sfbf_outputs[i].route_short_name;
+                        var all_sfbf_lines_name_long = sfbf_outputs[i].route_long_name;
+                        var all_sfbf_lines_color = sfbf_outputs[i].route_color; 
+                        var all_sfbf_lines_text_color = sfbf_outputs[i].route_text_color;
+                        var geometry_sfbf = sfbf_outputs[i].geometry;
 
-            function requester(operator) {
-                var obtainValue = document.getElementById("terminalgetter").value;
-                var requestTerminalInfo = new XMLHttpRequest();
-                requestTerminalInfo.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=${operator}&stop_id=${obtainValue}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
-                requestTerminalInfo.onreadystatechange = function() {
-                    if (requestTerminalInfo.readyState === 4 && requestTerminalInfo.status === 200) {
-                        var terminal_id = JSON.parse(requestTerminalInfo.responseText);
-
-                        if (terminal_id.stops.length === 0) {
-                            document.getElementById("route_depart").innerHTML = "The terminal ID you keyed in is invalid. <br> For GGF departures, type 'GF:' first, then the terminal ID you're looking for.";
-                        }
-
-                        else {
-                            var terminal_id_code = terminal_id.stops[0].stop_code;
-                            var terminal_name = terminal_id.stops[0].stop_name;
-
-                            if (operator === "o-9q8z-goldengateferry") {
-                                terminal_id_code = terminal_id.stops[0].stop_id;
+                        ferry_geojson_routes.push({
+                            'type': 'Feature',
+                            'geometry': geometry_sfbf,
+                            'properties': {
+                                'color': `#${all_sfbf_lines_color}`,
+                                'text_color': `#${all_sfbf_lines_text_color}`,
+                                'route_short_name': all_sfbf_lines_name_short,
+                                'route_long_name': all_sfbf_lines_name_long,
+                                'label': "San Francisco Bay Ferry"
                             }
-
-                            document.getElementById("terminalname").innerHTML = terminal_name;
-                            getDepartures(terminal_id_code);
-                        }
+                        })
                     }
                 }
-                requestTerminalInfo.send();
             }
+            sfbf_line_call.send();
+        }
+        plotSFBFLines();
 
-            function getDepartures(terminal_code) {
-                var departureCall = new XMLHttpRequest();
-                departureCall.open("GET", `https://transit.land/api/v2/rest/stops/f-sf~bay~area~rg:${terminal_code}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
-                departureCall.onreadystatechange = function() {
-                    if (departureCall.status === 200 && departureCall.readyState === 4) {
-                        var departuresCompiled = JSON.parse(departureCall.responseText);
-                        console.log(departuresCompiled);
+        function plotGGFLines() {
+            var ggf_line_call = new XMLHttpRequest();
+            ggf_line_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8z-goldengateferry&include_geometry=true");
+            ggf_line_call.onreadystatechange = function() {
+                if (ggf_line_call.readyState === 4 && ggf_line_call.status === 200) {
+                    var ggf_outputs = JSON.parse(ggf_line_call.responseText).routes;
 
-                        for (var i = 0; i < departuresCompiled.stops[0].departures.length; i++) {
-                            var route_color = departuresCompiled.stops[0].departures[i].trip.route.route_color;
-                            var route_text_color = departuresCompiled.stops[0].departures[i].trip.route.route_text_color;
-                            var route_desc_short = departuresCompiled.stops[0].departures[i].trip.route.route_short_name;
-                            var time_realtime = departuresCompiled.stops[0].departures[i].arrival.estimated;
-                            var time_scheduled = departuresCompiled.stops[0].departures[i].arrival.scheduled;
-                            var headsign_route = departuresCompiled.stops[0].departures[i].trip.trip_headsign;
+                    for (var i=0; i<ggf_outputs.length; i++) {
+                        var all_ggf_lines_name_short = ggf_outputs[i].route_short_name;
+                        var all_ggf_lines_name_long = ggf_outputs[i].route_long_name;
+                        var all_ggf_lines_color = ggf_outputs[i].route_color; 
+                        var all_ggf_lines_text_color = ggf_outputs[i].route_text_color;
+                        var geometry_ggf = ggf_outputs[i].geometry;
+                        console.log("GGF!")
 
-                            if (time_realtime === null) {
-                            document.getElementById("route_depart").innerHTML = ` ${time_scheduled} (scheduled)`;
-                            document.getElementById("route_depart").style.color = "black";
+                        ferry_geojson_routes.push({
+                            'type': 'Feature',
+                            'geometry': geometry_ggf,
+                            'properties': {
+                                'color': `#${all_ggf_lines_color}`,
+                                'text_color': `#${all_ggf_lines_text_color}`,
+                                'route_short_name': all_ggf_lines_name_short,
+                                'route_long_name': all_ggf_lines_name_long,
+                                'label': "Golden Gate Ferry"
                             }
-                            else if (time_scheduled === null) {
-                                continue;
-                            }
-                            else {
-                                document.getElementById("route_depart").innerHTML = ` ${time_realtime} <span id="delay">()</span>`;
-                                document.getElementById("route_depart").style.color = "darkgreen";
-
-                                if (time_realtime = departuresCompiled.stops[0].departures[i].arrival.delay >= 60) {
-                                    document.getElementById("delay").innerHTML = `(${Math.floor(departuresCompiled.stops[0].departures[i].arrival.delay / 60)} min late)`;
-                                    document.getElementById("delay").style.color = "crimson";
-                                }
-                                else if (time_realtime = departuresCompiled.stops[0].departures[i].arrival.delay === 0) {
-                                    document.getElementById("delay").innerHTML = `(on time)`;
-                                    document.getElementById("delay").style.color = "green";
-                                }
-                                else if (time_realtime = departuresCompiled.stops[0].departures[i].arrival.delay <= 0) {
-                                    document.getElementById("delay").innerHTML = `(${Math.abs(Math.floor(departuresCompiled.stops[0].departures[i].arrival.delay / 60))} min early)`;
-                                    document.getElementById("delay").style.color = "skyblue";
-                                }
-                                else {
-                                    document.getElementById("delay").innerHTML = "(no data)";
-                                    document.getElementById("delay").style.color = "black";
-                                }
-                            }
-
-                            document.getElementById("line_for_each_departure").innerHTML = route_desc_short;
-                            document.getElementById("line_for_each_departure").style.backgroundColor = `#${route_color}40`;
-                            document.getElementById("line_for_each_departure").style.border = `1px solid #${route_color}`;
-                            document.getElementById("line_for_each_departure").style.color = `#${route_text_color}`;
-                            document.getElementById("route_headsign").innerHTML = `<p id="isscroll">${headsign_route}</p>`;
-
-                            if (deviceWidth <= 520 && document.getElementById("route_headsign").innerText.length > 35) {
-                                console.log("Scroll?")
-                                document.getElementById("isscroll").style.transform = "translateX(200vw)";
-                                document.getElementById("isscroll").style.animation = "my-animation-6 10s linear infinite";
-                            }
-
-                            var departureClone = document.getElementById("line_for_departure");
-                            var listToInsertClone = departureClone.cloneNode(true);
-                            document.getElementById("list_of_departures").appendChild(listToInsertClone);
-
-                            var alertList_byAgency = departuresCompiled.stops[0].departures[i].trip.route.agency.alerts;
-                            var alertList_byStop = departuresCompiled.stops[0].alerts;
-
-                            for (var j = 0; j < alertList_byAgency.length; j++) {
-                                if (counter_b === alertList_byAgency.length) {
-                                    break;
-                                }
-                                document.getElementById("alert_entity").innerHTML = `<p>${alertList_byAgency[j].description_text[0].text}</p>`;
-                                console.log(document.getElementById("alert_entity").textContent);
-
-                                var alertClone = document.getElementById("alert_entity");
-                                var listToInsertAlertClone = alertClone.cloneNode(true);
-                                document.getElementById("list_of_alerts").appendChild(listToInsertAlertClone);
-                                console.log(counter);
-                                counter_b += 1
-                            }
-
-                            for (var k = 0; k < alertList_byStop.length; k++) {
-                                if (counter === alertList_byStop.length) {
-                                    break;
-                                }
-                                document.getElementById("alert_entity").innerHTML = `<p>${alertList_byStop[k].description_text[0].text}</p>`;
-
-                                var alertClone = document.getElementById("alert_entity");
-                                var listToInsertAlertClone = alertClone.cloneNode(true);
-                                document.getElementById("list_of_alerts").appendChild(listToInsertAlertClone);
-                                console.log(counter);
-                                counter += 1
-                            }
-                        }
-                        var departuresAll = document.getElementById("list_of_departures").children;
-                        document.querySelector("#list_of_departures").removeChild(departuresAll[0]);
-
-                        var alertsAll = document.getElementById("list_of_alerts").children;
-                        document.querySelector("#list_of_alerts").removeChild(alertsAll[0]);
+                        })
                     }
                 }
-                departureCall.send();
             }
+            ggf_line_call.send();
         }
-        
-        function clearAllDepartures() {
-            document.getElementById("list_of_departures").innerHTML = `
-                <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure">-</div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific terminal by their stop ID</span></div></li>
-            `
-            document.getElementById("terminalname").innerHTML = "---";
-            document.getElementById("list_of_alerts").innerHTML = "<li id='alert_entity'></li>"
-            document.getElementById("alert_entity").innerHTML = `<p>Once you typed down the terminal by their ID, the advisories will display here.</p>`
-            counter = 0;
-            counter_b = 0;
+        plotGGFLines();
+
+        function getUniqueFeatures(features, comparatorProperty) {
+            const uniqueIds = new Set();
+            const uniqueFeatures = [];
+            for (const feature of features) {
+                const id = feature.properties[comparatorProperty];
+                if (!uniqueIds.has(id)) {
+                    uniqueIds.add(id);
+                    uniqueFeatures.push(feature);
+                }
+            }
+            return uniqueFeatures;
         }
+
+        function plotFerryLines() {
+            var ferry_agencies = {
+                'type': 'FeatureCollection',
+                'features': ferry_geojson_routes
+            }
+
+            map.on('style.load', () => {
+                // Insert the layer beneath any symbol layer.
+                const layers = map.getStyle().layers;
+                const labelLayerId = layers.find(
+                    (layer) => layer.type === 'symbol' && layer.layout['text-field']
+                ).id;
+                
+                // The 'building' layer in the Mapbox Streets
+                // vector tileset contains building height data
+                // from OpenStreetMap.
+                map.addLayer({
+                            'id': 'add-3d-buildings',
+                            'source': 'composite',
+                            'source-layer': 'building',
+                            'filter': ['==', 'extrude', 'true'],
+                            'type': 'fill-extrusion',
+                            'minzoom': 15,
+                            'paint': {
+                            'fill-extrusion-color': '#aaa',
+                            
+                            // Use an 'interpolate' expression to
+                            // add a smooth transition effect to
+                            // the buildings as the user zooms in.
+                            'fill-extrusion-height': [
+                                'interpolate',
+                                ['linear'],
+                                ['zoom'],
+                                15,
+                                0,
+                                15.05,
+                                ['get', 'height']
+                            ],
+                            'fill-extrusion-base': [
+                                'interpolate',
+                                ['linear'],
+                                ['zoom'],
+                                15,
+                                0,
+                                15.05,
+                                ['get', 'min_height']
+                            ],
+                            'fill-extrusion-opacity': 0.6
+                        }
+                    },
+                    labelLayerId
+                );
+            });
+
+            let routeId = [];
+            const popup = new mapboxgl.Popup({
+                closeButton: false,
+                closeOnClick: false
+            });
+                
+            map.on('load', function() {
+                map.addSource('ferry_routes', {
+                    'type': 'geojson',
+                    'data': ferry_agencies
+                });
+
+                for (const feature of ferry_agencies.features) {
+                    const label = feature.properties.label;
+                    const label_id = label;
+
+                    var feature_short_name = feature.properties.route_short_name;
+                    var feature_long_name = feature.properties.route_long_name;
+                    var feature_color = feature.properties.color;
+                    var feature_text_color = feature.properties.text_color;
+
+                    document.getElementById("route_short").innerHTML = `${feature_short_name}`;
+                    document.getElementById("route_short").style.color = `#${feature_text_color}`;
+                    document.getElementById("route_short").style.backgroundColor = `${feature_color}40`;
+                    document.getElementById("route_short").style.border = `1px solid ${feature_color}40`;
+                    document.getElementById("detailed_route").innerHTML = `${feature_long_name} (${label})`;
+
+                    switch(label) {
+                        case "San Francisco Bay Ferry":
+                            document.querySelector('.route_radius').setAttribute("id", "sfbf");
+                            break;
+                        case "Golden Gate Ferry":
+                            document.querySelector('.route_radius').setAttribute("id", "ggf");
+                            break;
+                    }
+
+                    var routeClone = document.querySelector(".route_radius");
+                    var listToInsertClone = routeClone.cloneNode(true);
+                    document.getElementById("range_of_routes").appendChild(listToInsertClone);
+
+                    if (!map.getLayer(label_id)) {
+                        map.addLayer({
+                            'id': label_id,
+                            'source': "ferry_routes",
+                            'type': 'line',
+                            'layout': {
+                                'line-join': 'round',
+                                'line-cap': 'round'
+                            },
+                            'paint': {
+                                'line-width': 3,
+                                'line-color': ['get', 'color']
+                            },
+                            'filter': ['==', 'label', label_id]
+                        });
+
+                        const input = document.createElement('input');
+                        input.type = 'checkbox';
+                        input.id = label;
+                        input.checked = true;
+                        filterGroup.appendChild(input);
+
+                        const label_for = document.createElement('label');
+                        label_for.setAttribute('for', label);
+                        label_for.textContent = label;
+                        filterGroup.appendChild(label_for);
+
+                        input.addEventListener('change', (e) => {
+                            console.log(label_id);
+
+                            map.setLayoutProperty(
+                                label_id,
+                                'visibility',
+                                e.target.checked ? 'visible' : 'none'
+                            );
+                        });
+
+                        map.on('mouseenter', label_id, function(e) {
+                            var fs = map.queryRenderedFeatures(e.point, { layers: [label_id]});
+                            console.log(fs)
+
+                            if (fs.length > 0) {
+                                for (var f = 0; f < fs.length; f ++) {
+                                    var name_of_route = fs[f].properties.route_short_name;
+                                    routeId.push(name_of_route)
+                                }
+                                
+                                // Populate the popup and set its coordinates
+                                // based on the feature found.
+                                popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
+                            }
+                        });
+
+                        map.on('mouseleave', label_id, () => {
+                            if (routeId.length > 0) {routeId = []}
+                            popup.remove();
+                            // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+                        });
+                    }
+                }
+
+                var list_of_routes = document.getElementById("range_of_routes").children;
+                document.getElementById("range_of_routes").removeChild(list_of_routes[0])
+            })
+        }
+        plotFerryLines();
+
+        function dark_or_light() {
+            var element = document.body;
+            element.classList.toggle("light_mode");
+        }
+    
+        function getCopyrightYear() {
+            var date = new Date();
+            var getYearNo = date.getFullYear();
+            document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
+        }
+        getCopyrightYear();
     </script>
 </body>
 </html>
