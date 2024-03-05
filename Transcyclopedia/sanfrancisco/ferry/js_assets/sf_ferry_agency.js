@@ -1,114 +1,427 @@
+/* Open the sidenav */
+function openNav() {
+    document.querySelector(".left_navbar").style.display = "block";
+}
+
+/* Close/hide the sidenav */
+function closeNav() {
+    document.querySelector(".left_navbar").style.display = "none";
+    console.log(document.querySelector(".left_navbar").getAttribute("style"));
+}
+
 function changeAgency(a) {
     var agency = a;
-    console.log(agency);
 
-    switch (agency) {
+    switch(agency) {
         case "sfbayferry":
-            document.querySelector(".about_agency").innerHTML = `
-                <h3>About SF Bay Ferry</h3>
-                <p id="about_content">San Francisco Bay Ferry is a public transit passenger ferry service in the San Francisco Bay, administered by the San Francisco Bay Area Water Emergency Transportation Authority (WETA) and operated under contract by the privately owned, Blue and Gold Fleet. In 2022, the system had a ridership of 1,787,400, or about 9,400 per weekday as of the second quarter of 2023. <a href="https://en.wikipedia.org/wiki/San_Francisco_Bay_Ferry" style="outline: none; color: #1d75bc;">Wikipedia</a></p>
-            `
+            aboutSFBayFerry();
             break;
         case "ggf":
-            document.querySelector(".about_agency").innerHTML = `
-                <h3>About Golden Gate Ferry</h3>
-                <p id="about_content">Golden Gate Ferry is a commuter ferry service operated by the Golden Gate Bridge, Highway and Transportation District in San Francisco Bay, part of the Bay Area of Northern California, United States. Regular service is run to the Ferry Building in San Francisco from Larkspur, Sausalito, Tiburon, and Angel Island in Marin County, with additional service from Larkspur to Oracle Park and Chase Center. The ferry service is funded primarily by passenger fares and Golden Gate Bridge tolls. In 2022, Golden Gate Ferry had a ridership of 1,022,800, or about 4,200 per weekday as of the second quarter of 2023. <a href="https://en.wikipedia.org/wiki/Golden_Gate_Ferry" style="outline: none; color: #446ba4;">Wikipedia</a></p>
-            `
+            aboutGGF();
             break;
         default:
-            document.querySelector(".about_agency").innerHTML = "<p style='text-align: center; color: white; margin-top: 10px;'>Select an Agency from the dropdown menu above.</p>";
+            clearInfo();
+    }
+} 
+
+function aboutSFBayFerry() {
+    console.log("HEY SFBF!")
+    var info_caller = new XMLHttpRequest();
+    info_caller.open("GET", "https://en.wikipedia.org/w/api.php?action=query&exintro=&explaintext=&origin=%2A&prop=extracts&redirects=1&titles=San+Francisco+Bay+Ferry&format=json&origin=*");
+    info_caller.onreadystatechange = function() {
+        if (info_caller.readyState === 4 && info_caller.status === 200) {
+            var article_summary = JSON.parse(info_caller.responseText);
+            var desc_of_sfbf = article_summary.query.pages[12625374].extract;
+
+            document.getElementById("desc").innerHTML = `${desc_of_sfbf} <br> <a href="https://en.wikipedia.org/wiki/San_Francisco_Bay_Ferry">Wikipedia</a>`
+            document.getElementById("foundingdate").innerHTML = "<b>Around 2011</b>";
+            document.getElementById("nooflines").innerHTML = "<b>6 (Including 5 Special Lines)</b>"
+            document.getElementById("email_agency").innerHTML = "<b>customerservice@sanfranciscobayferry.com</b> (Email)"
+            document.getElementById("phone_agency").innerHTML = "<b>877-643-3779/877-64-FERRY</b> (Phone)"
+        }
+    }
+    info_caller.send();
+}
+
+function aboutGGF() {
+    var info_caller = new XMLHttpRequest();
+    info_caller.open("GET", "https://en.wikipedia.org/w/api.php?action=query&exintro=&explaintext=&origin=%2A&prop=extracts&redirects=1&titles=Golden+Gate+Ferry&format=json&origin=*")
+    info_caller.onreadystatechange = function() {
+        if (info_caller.readyState === 4 && info_caller.status === 200) {
+            var article_summary = JSON.parse(info_caller.responseText);
+            var desc_of_ggf = article_summary.query.pages[12061444].extract;
+
+            document.getElementById("desc").innerHTML = `${desc_of_ggf} <br> <a href="https://en.wikipedia.org/wiki/Golden_Gate_Ferry">Wikipedia</a>`
+            document.getElementById("foundingdate").innerHTML = "<b>August 15, 1970</b>";
+            document.getElementById("nooflines").innerHTML = "<b>5 (Including 2 Special Lines)</b>"
+            document.getElementById("email_agency").innerHTML = "<b>contact@goldengate.org</b> (Email)"
+            document.getElementById("phone_agency").innerHTML = "<b>511/415-455-2000 [Outside the Bay]</b> (Phone)"
+        }
+    }
+    info_caller.send();
+}
+
+function clearInfo() {
+    document.getElementById("desc").innerHTML = "Select a Ferry Agency.";
+    document.getElementById("foundingdate").innerHTML = "<b>-</b>";
+    document.getElementById("nooflines").innerHTML = "<b>-</b>";
+    document.getElementById("email_agency").innerHTML = "<b>-</b> (Email)";
+    document.getElementById("phone_agency").innerHTML = "<b>-</b> (Phone)";
+}
+
+function changeRouteByAgency(a) {
+    var agency = a;
+
+    switch(agency) {
+        case "sfbayferry":
+            SFBayFerryLines();
+            break;
+        case "ggf":
+            GGFLines();
+            break;
+        default:
+            clearLines();
     }
 }
 
-function changeRouteByAgency(r) {
-    var agency_by_route = r;
-    console.log(agency_by_route);
+function SFBayFerryLines() {
+    document.querySelector(".ferry_lines").innerHTML = `
+        <li id="route_entity_ferry"><span id="route_ferry" title="Loading...">-</span> &nbsp; <span id="desc_ferry" title="Please wait...">Loading...</span><br></li>
+    `;
 
-    switch (agency_by_route) {
-        case "sfbayferry":
-            document.querySelector(".lines").innerHTML = `
-                <li id="each_line">
-                    <div id="line">-</div>
-                    <div id="route_desc">Select a Ferry Agency</div>
-                </li>
-            `
-            function showRoutes() {
-                var routeCall = new XMLHttpRequest();
-                routeCall.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p-sanfranciscobayferry&limit=700");
-                routeCall.onreadystatechange = function() {
-                    if (routeCall.readyState === 4 && routeCall.status === 200) {
-                        var routeResult = JSON.parse(routeCall.responseText);
-                
-                        for (var i=0; i<routeResult.routes.length; i++) {
-                            var route_short_name = routeResult.routes[i].route_short_name;
-                            var route_long_name = routeResult.routes[i].route_long_name;
-                            var route_color = routeResult.routes[i].route_color;
-                            var route_color_text = routeResult.routes[i].route_text_color;
+    var route_caller = new XMLHttpRequest();
+    route_caller.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p-sanfranciscobayferry&limit=700");
+    route_caller.onreadystatechange = function() {
+        if (route_caller.readyState === 4 && route_caller.status === 200) {
+            var route_compiler = JSON.parse(route_caller.responseText);
+            
+            for (var i=0; i<route_compiler.routes.length; i++) {
+                var base_route = route_compiler.routes[i];
+                var route_short_name = base_route.route_short_name;
+                var route_long_name = base_route.route_long_name;
+                var route_text_color = base_route.route_text_color;
+                var route_color = base_route.route_color;
 
-                            document.getElementById("line").innerHTML = route_short_name;
-                            document.getElementById("route_desc").innerHTML = route_long_name;
-                            document.getElementById("line").style.backgroundColor = `#${route_color}40`;
-                            document.getElementById("line").style.border = `1px solid #${route_color}`;
-                            document.getElementById("line").style.color = `#${route_color_text}`;
+                document.getElementById("route_ferry").innerHTML = route_short_name;
+                document.getElementById("route_ferry").style.color = `#${route_text_color}`;
+                document.getElementById("route_ferry").style.border = `1px solid #${route_color}`;
+                document.getElementById("route_ferry").style.backgroundColor = `#${route_color}40`;
+                document.getElementById("desc_ferry").innerHTML = route_long_name;
 
-                            var listToClone = document.getElementById("each_line");
-                            var listCloned = listToClone.cloneNode(true);
-                            document.querySelector(".lines").append(listCloned);
-                        }
+                document.getElementById("route_ferry").removeAttribute("title");
+                document.getElementById("desc_ferry").removeAttribute("title");
 
-                        var allLines = document.querySelector(".lines").children;
-                        document.querySelector(".lines").removeChild(allLines[0]);
-                    }
-                }
-                routeCall.send();
+                var ferry_line = document.getElementById("route_entity_ferry");
+                var clone_ferry_line = ferry_line.cloneNode(true);
+                document.querySelector(".ferry_lines").append(clone_ferry_line);
             }
-            showRoutes();
+
+            var all_ferry_lines = document.querySelector(".ferry_lines").children;
+            document.querySelector(".ferry_lines").removeChild(all_ferry_lines[0]);
+        }
+    }
+    route_caller.send();
+}
+
+function GGFLines() {
+    document.querySelector(".ferry_lines").innerHTML = `
+        <li id="route_entity_ferry"><span id="route_ferry" title="Loading...">-</span> &nbsp; <span id="desc_ferry" title="Please wait...">Loading...</span><br></li>
+    `;
+    
+    var route_caller = new XMLHttpRequest();
+    route_caller.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8z-goldengateferry&limit=700");
+    route_caller.onreadystatechange = function() {
+        if (route_caller.readyState === 4 && route_caller.status === 200) {
+            var route_compiler = JSON.parse(route_caller.responseText);
+            
+            for (var i=0; i<route_compiler.routes.length; i++) {
+                var base_route = route_compiler.routes[i];
+                var route_short_name = base_route.route_short_name;
+                var route_long_name = base_route.route_long_name;
+                var route_text_color = base_route.route_text_color;
+                var route_color = base_route.route_color;
+
+                document.getElementById("route_ferry").innerHTML = route_short_name;
+                document.getElementById("route_ferry").style.color = `#${route_text_color}`;
+                document.getElementById("route_ferry").style.border = `1px solid #${route_color}`;
+                document.getElementById("route_ferry").style.backgroundColor = `#${route_color}40`;
+                document.getElementById("desc_ferry").innerHTML = route_long_name;
+
+                document.getElementById("route_ferry").removeAttribute("title");
+                document.getElementById("desc_ferry").removeAttribute("title");
+
+                var ferry_line = document.getElementById("route_entity_ferry");
+                var clone_ferry_line = ferry_line.cloneNode(true);
+                document.querySelector(".ferry_lines").append(clone_ferry_line);
+            }
+
+            var all_ferry_lines = document.querySelector(".ferry_lines").children;
+            document.querySelector(".ferry_lines").removeChild(all_ferry_lines[0]);
+        }
+    }
+    route_caller.send();
+}
+
+function clearLines() {
+    document.querySelector(".ferry_lines").innerHTML = `
+        <li id="route_entity_ferry"><span id="route_ferry" title="No route given. Please select a ferry agency on the top dropdown box.">-</span> &nbsp; <span id="desc_ferry" title="Please select a ferry agency on the top.">Select a Ferry Agency.</span><br></li>
+    `;
+}
+
+function callOverFerry(a) {
+    getValue = document.getElementById("terminalgetter").value;
+    console.log(getValue);
+
+    var agency = a;
+    console.log(a)
+    switch(agency) {
+        case "sfbayferry":
+            SFBayFerryDeparturesPOne(getValue);
             break;
         case "ggf":
-            document.querySelector(".lines").innerHTML = `
-                <li id="each_line">
-                    <div id="line">-</div>
-                    <div id="route_desc">Select a Ferry Agency</div>
-                </li>
-            `
-            function showRoutesGGF() {
-                var routeCall = new XMLHttpRequest();
-                routeCall.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8z-goldengateferry&limit=700");
-                routeCall.onreadystatechange = function() {
-                    if (routeCall.readyState === 4 && routeCall.status === 200) {
-                        var routeResult = JSON.parse(routeCall.responseText);
-                
-                        for (var i=0; i<routeResult.routes.length; i++) {
-                            var route_short_name = routeResult.routes[i].route_short_name;
-                            var route_long_name = routeResult.routes[i].route_long_name;
-                            var route_color = routeResult.routes[i].route_color;
-                            var route_color_text = routeResult.routes[i].route_text_color;
-
-                            document.getElementById("line").innerHTML = route_short_name;
-                            document.getElementById("route_desc").innerHTML = route_long_name;
-                            document.getElementById("line").style.backgroundColor = `#${route_color}40`;
-                            document.getElementById("line").style.border = `1px solid #${route_color}`;
-                            document.getElementById("line").style.color = `#${route_color_text}`;
-
-                            var listToClone = document.getElementById("each_line");
-                            var listCloned = listToClone.cloneNode(true);
-                            document.querySelector(".lines").append(listCloned);
-                        }
-
-                        var allLines = document.querySelector(".lines").children;
-                        document.querySelector(".lines").removeChild(allLines[0]);
-                    }
-                }
-                routeCall.send();
-            }
-            showRoutesGGF();
+            GGFDeparturesPOne(getValue);
             break;
         default:
-            document.querySelector(".lines").innerHTML = `
-            <li id="each_line">
-                <div id="line">-</div>
-                <div id="route_desc">Select a Ferry Agency</div>
-            </li>
-            `
+            clearInfo();
     }
+}
+
+function SFBayFerryDeparturesPOne(onestop_id) {
+    var sfbf_stop_call = new XMLHttpRequest();
+    sfbf_stop_call.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q9p-sanfranciscobayferry&stop_id=${onestop_id}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+    sfbf_stop_call.onreadystatechange = function() {
+        if (sfbf_stop_call.status === 200 && sfbf_stop_call.readyState === 4) {
+            var stop_info = JSON.parse(sfbf_stop_call.responseText);
+            var stop_id = stop_info.stops[0].onestop_id;
+            var stop_name = stop_info.stops[0].stop_name;
+
+            document.getElementById("terminalname").innerHTML = stop_name;
+            SFBayFerryDeparturesPTwo(stop_id);
+        }
+    }
+    sfbf_stop_call.send();
+}
+
+function SFBayFerryDeparturesPTwo(departures_onestop) {
+    var sfbf_departure_call = new XMLHttpRequest();
+    sfbf_departure_call.open("GET", `https://transit.land/api/v2/rest/stops/${departures_onestop}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+    sfbf_departure_call.onreadystatechange = function() {
+        if (sfbf_departure_call.status === 200 && sfbf_departure_call.readyState === 4) {
+            var departures_sfbf = JSON.parse(sfbf_departure_call.responseText).stops[0];
+            
+            for (var i=0; i<departures_sfbf.departures.length; i++) {
+                var route_color = departures_sfbf.departures[i].trip.route.route_color;
+                var route_text_color = departures_sfbf.departures[i].trip.route.route_text_color;
+                var route_short_name = departures_sfbf.departures[i].trip.route.route_short_name;
+                var route_headsign = departures_sfbf.departures[i].trip.trip_headsign;
+
+                var arrival_time = departures_sfbf.departures[i].arrival.estimated;
+                var delay_time = departures_sfbf.departures[i].arrival.delay / 60;
+
+                switch(arrival_time) {
+                    case (null):
+                        var scheduled_arrival = departures_sfbf.departures[i].arrival.scheduled;
+                        document.getElementById("route_depart_ferry").innerHTML = `${scheduled_arrival} <span id="delay_ferry"></span>`;
+                        document.getElementById("delay_ferry").innerHTML = "(scheduled)";
+
+                        document.getElementById("route_depart_ferry").style.color = "black";
+                        document.getElementById("delay_ferry").style.color = "black";
+                        break;
+                    default:
+                        document.getElementById("route_depart_ferry").innerHTML = `${arrival_time} <span id="delay_ferry"></span>`;
+                        document.getElementById("route_depart_ferry").style.color = "green";
+                        var delay_min = Math.round(departures_sfbf.departures[i].arrival.delay / 60);
+
+                        switch(delay_time) {
+                            case (null):
+                                document.getElementById("delay_ferry").innerHTML = "(no data)";
+                                document.getElementById("delay_ferry").style.color = "black";
+                                break;
+                            case (delay_time > 60):
+                                document.getElementById("delay_ferry").innerHTML = `(${delay_min} min late)`;
+                                document.getElementById("delay_ferry").style.color = "orange";
+                                break;
+                            case (delay_time < 0):
+                                document.getElementById("delay_ferry").innerHTML = `(${delay_min} min early)`;
+                                document.getElementById("delay_ferry").style.color = "skyblue";
+                                break;
+                            default:
+                                document.getElementById("delay_ferry").innerHTML = "(on time)";
+                                document.getElementById("delay_ferry").style.color = "green";
+                                break;
+                        }
+                        break;
+                }
+
+                document.getElementById("line_for_each_departure_ferry").innerHTML = route_short_name;
+                document.getElementById("line_for_each_departure_ferry").style.color = route_text_color;
+                document.getElementById("line_for_each_departure_ferry").style.backgroundColor = `#${route_color}40`;
+                document.getElementById("line_for_each_departure_ferry").style.border = `1px solid #${route_color}`;
+                document.getElementById("route_headsign_ferry").innerHTML = route_headsign;
+
+                var departure_entity = document.getElementById("line_for_departure_ferry");
+                var cloned_departure = departure_entity.cloneNode(true);
+                document.getElementById("list_of_departures_ferry").appendChild(cloned_departure);
+            }
+
+            var total_departures = document.getElementById("list_of_departures_ferry").children;
+            document.getElementById("list_of_departures_ferry").removeChild(total_departures[0]);
+        }
+    }
+    sfbf_departure_call.send();
+}
+
+function GGFDeparturesPOne(onestop_id) {
+    var ggf_stop_call = new XMLHttpRequest();
+    ggf_stop_call.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q8z-goldengateferry&stop_id=${onestop_id}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+    ggf_stop_call.onreadystatechange = function() {
+        if (ggf_stop_call.status === 200 && ggf_stop_call.readyState === 4) {
+            var stop_info = JSON.parse(ggf_stop_call.responseText);
+            var stop_id = stop_info.stops[0].onestop_id;
+            var stop_name = stop_info.stops[0].stop_name;
+
+            document.getElementById("terminalname").innerHTML = stop_name;
+            GGFDeparturesPTwo(stop_id);
+        }
+    }
+    ggf_stop_call.send();
+}
+
+function GGFDeparturesPTwo(departures_onestop) {
+    var ggf_departure_call = new XMLHttpRequest();
+    ggf_departure_call.open("GET", `https://transit.land/api/v2/rest/stops/${departures_onestop}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+    ggf_departure_call.onreadystatechange = function() {
+        if (ggf_departure_call.status === 200 && ggf_departure_call.readyState === 4) {
+            var departures_ggf = JSON.parse(ggf_departure_call.responseText).stops[0];
+            
+            for (var i=0; i<departures_ggf.departures.length; i++) {
+                var route_color = departures_ggf.departures[i].trip.route.route_color;
+                var route_text_color = departures_ggf.departures[i].trip.route.route_text_color;
+                var route_short_name = departures_ggf.departures[i].trip.route.route_short_name;
+                var route_headsign = departures_ggf.departures[i].trip.trip_headsign;
+
+                var arrival_time = departures_ggf.departures[i].arrival.estimated;
+                var delay_time = departures_ggf.departures[i].arrival.delay / 60;
+
+                switch(arrival_time) {
+                    case (null):
+                        var scheduled_arrival = departures_ggf.departures[i].arrival.scheduled;
+                        document.getElementById("route_depart_ferry").innerHTML = `${scheduled_arrival} <span id="delay_ferry"></span>`;
+                        document.getElementById("delay_ferry").innerHTML = "(scheduled)";
+
+                        document.getElementById("route_depart_ferry").style.color = "black";
+                        document.getElementById("delay_ferry").style.color = "black";
+                        break;
+                    default:
+                        document.getElementById("route_depart_ferry").innerHTML = `${arrival_time} <span id="delay_ferry"></span>`;
+                        document.getElementById("route_depart_ferry").style.color = "green";
+                        var delay_min = Math.round(departures_ggf.departures[i].arrival.delay / 60);
+
+                        switch(delay_time) {
+                            case (null):
+                                document.getElementById("delay_ferry").innerHTML = "(no data)";
+                                document.getElementById("delay_ferry").style.color = "black";
+                                break;
+                            case (delay_time > 60):
+                                document.getElementById("delay_ferry").innerHTML = `(${delay_min} min late)`;
+                                document.getElementById("delay_ferry").style.color = "orange";
+                                break;
+                            case (delay_time < 0):
+                                document.getElementById("delay_ferry").innerHTML = `(${delay_min} min early)`;
+                                document.getElementById("delay_ferry").style.color = "skyblue";
+                                break;
+                            default:
+                                document.getElementById("delay_ferry").innerHTML = "(on time)";
+                                document.getElementById("delay_ferry").style.color = "green";
+                                break;
+                        }
+                        break;
+                }
+
+                document.getElementById("line_for_each_departure_ferry").innerHTML = route_short_name;
+                document.getElementById("line_for_each_departure_ferry").style.color = route_text_color;
+                document.getElementById("line_for_each_departure_ferry").style.backgroundColor = `#${route_color}40`;
+                document.getElementById("line_for_each_departure_ferry").style.border = `1px solid #${route_color}`;
+                document.getElementById("route_headsign_ferry").innerHTML = route_headsign;
+
+                var departure_entity = document.getElementById("line_for_departure_ferry");
+                var cloned_departure = departure_entity.cloneNode(true);
+                document.getElementById("list_of_departures_ferry").appendChild(cloned_departure);
+            }
+
+            var total_departures = document.getElementById("list_of_departures_ferry").children;
+            document.getElementById("list_of_departures_ferry").removeChild(total_departures[0]);
+        }
+    }
+    ggf_departure_call.send();
+}
+
+function clearInfo() {
+    document.querySelector(".headerforferry").innerHTML = `Departures for &nbsp;<span id="terminalname">---</span>`;
+    document.getElementById("list_of_departures_ferry").innerHTML = `<li id="line_for_departure_ferry"><div class="wrapper_for_departure_ferry"><div id="line_for_each_departure_ferry">-</div> <span id="alerts_ferry"></span> <span id="route_headsign_ferry">(None)</span><span id="route_depart_ferry">Enter a specific station by their station ID, then select a ferry agency.</span></div></li>`
+}
+
+function changeAgencyInAlerts(a) {
+    var agency = a;
+
+    switch(agency) {
+        case "sfbayferry":
+            compileAlertsSFBF();
+            break;
+        case "ggf":
+            compileAlertsGGF();
+            break;
+        default:
+            clearAllAlerts();
+    }
+}
+
+function compileAlertsSFBF() {
+    var alert_caller = new XMLHttpRequest();
+    alert_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9q9p-sanfranciscobayferry&include_alerts=true");
+    alert_caller.onreadystatechange = function() {
+        if (alert_caller.readyState === 4 && alert_caller.status === 200) {
+            var alert_lists = JSON.parse(alert_caller.responseText).agencies[0].alerts;
+
+            if (alert_lists.length === 0) {
+                document.getElementById("alert_desc").innerHTML = "There are no alerts for San Francisco Bay Ferry.";
+            }
+            else {
+                for (var i=0; i<alert_lists.length; i++) {
+                    var alert_desc = alert_lists[i].description_text[0].text;
+                    var alert_header = alert_lists[i].header_text[0].text;
+
+                    document.getElementById("alert_desc").innerHTML = `<p><b>${alert_header}</b></p><br><p>${alert_desc}`;
+                }
+            }
+        }
+    }
+    alert_caller.send();
+}
+
+function compileAlertsGGF() {
+    var alert_caller = new XMLHttpRequest();
+    alert_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9q8z-goldengateferry&include_alerts=true");
+    alert_caller.onreadystatechange = function() {
+        if (alert_caller.readyState === 4 && alert_caller.status === 200) {
+            var alert_lists = JSON.parse(alert_caller.responseText).agencies[0].alerts;
+
+            if (alert_lists.length === 0) {
+                document.getElementById("alert_desc").innerHTML = "There are no alerts for Golden Gate Ferry.";
+            }
+            else {
+                for (var i=0; i<alert_lists.length; i++) {
+                    var alert_desc = alert_lists[i].description_text[0].text;
+                    var alert_header = alert_lists[i].header_text[0].text;
+
+                    document.getElementById("alert_desc").innerHTML = `<p><b>${alert_header}</b></p><br><p>${alert_desc}`;
+                }
+            }
+        }
+    }
+    alert_caller.send();
+}
+
+function clearAllAlerts() {
+    document.querySelector(".alert_entity").innerHTML = `<p id="alert_desc">Select a ferry agency on the top.</p>`
 }
