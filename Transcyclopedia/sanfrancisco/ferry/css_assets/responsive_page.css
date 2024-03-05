@@ -19,7 +19,7 @@
     }
 
     .left_navbar .x:hover { 
-        background-color: #bbbbbb98;
+        background-color: #0398fc98;
         transition: 0.5s;
     }
 
@@ -47,7 +47,7 @@
     }
 
     .window {
-        overflow-y: auto;
+        overflow-y: scroll;
     }
 
     .info {
@@ -65,7 +65,7 @@
         display: none;
     }
 
-    #departures input, .headerforstop, #list_of_departures, #clearall {
+    #departures input, .headerforferry, #ferry_departures, #list_of_departures_ferry, #ferry_routes {
         margin-left: 9px;
     }
 
@@ -77,6 +77,10 @@
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         border-radius: 5px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
+    }
+
+    #route_headsign {
+        width: 90%;
     }
 
     #line_for_each_departure {

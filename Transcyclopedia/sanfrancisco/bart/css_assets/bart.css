@@ -324,6 +324,7 @@ body::after {
 #route_headsign {
     position: relative;
     left: 5px;
+    display: inline-block;
 }
 
 #route_depart {
