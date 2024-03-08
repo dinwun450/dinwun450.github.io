@@ -89,7 +89,7 @@
     .headerformunimetro, .headerforcable, .headerforbus, .headerformunialerts,
     #list_of_departures_muni_metro, #list_of_departures_cable, #list_of_departures_bus, #alert_desc_routes,
     #clearall_muni_metro, #clearall_cable, #clearall_bus, #clearall_muni_alerts,
-    .alert_entity_stops_metro, .alert_entity_stops_bus, .alert_entity_stops_cable {
+    .alert_entity_stops_metro, .alert_entity_stops_bus, .alert_entity_stops_cable, #alert_desc_agency {
         margin-left: 9px;
     }
 
