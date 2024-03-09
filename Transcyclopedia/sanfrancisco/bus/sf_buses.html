@@ -8,6 +8,8 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="css_assets/sf_buses.css">
+    <link rel="stylesheet" href="css_assets/responsiveness_and_scrollbars.css">
+    <link rel="stylesheet" href="css_assets/light_and_dark_mode.css">
 </head>
 <body>
     <ul class="left_navbar">
@@ -168,6 +170,37 @@
     </div>
     <script>
         alert("Coming Soon!");
+
+        var v = null;
+        var ferry_geojson_routes = [];
+        const filterGroup = document.getElementById('filter_agency');
+
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
+            }
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("window");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("defaulttab").click();
     </script>
 </body>
 </html>
