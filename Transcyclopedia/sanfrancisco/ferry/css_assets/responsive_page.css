@@ -90,4 +90,8 @@
     #route_depart_ferry {
         left: 1.5px;
     }
+
+    .wrapper_for_departure_ferry {
+        padding-right: 5px;
+    }
 }
