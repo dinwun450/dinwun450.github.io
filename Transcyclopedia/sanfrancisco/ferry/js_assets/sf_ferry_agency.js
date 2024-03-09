@@ -21,6 +21,7 @@ function changeAgency(a) {
             break;
         default:
             clearInfo();
+            break;
     }
 } 
 
@@ -81,6 +82,7 @@ function changeRouteByAgency(a) {
             break;
         default:
             clearLines();
+            break;
     }
 }
 
@@ -183,6 +185,7 @@ function callOverFerry(a) {
             break;
         default:
             clearInfo();
+            break;
     }
 }
 
