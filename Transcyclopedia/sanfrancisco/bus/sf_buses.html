@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="css_assets/sf_buses.css">
 </head>
 <body>
     <ul class="left_navbar">
@@ -97,7 +98,7 @@
         </div>
         <div class="window" id="departures">
             <p id="nameswitch">Departures <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="bus_lines">
+            <select name="" id="bus_departures">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="actransit">AC Transit</option>
                 <option value="berkeleyshuttles">Bear Transit</option>
@@ -126,7 +127,7 @@
         </div>
         <div class="window" id="alerts">
             <p id="nameswitch">Alerts <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="bus_lines">
+            <select name="" id="bus_alerts">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="actransit">AC Transit</option>
                 <option value="berkeleyshuttles">Bear Transit</option>
