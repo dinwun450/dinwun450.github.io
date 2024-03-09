@@ -70,7 +70,7 @@
     }
 
     #line_for_departure_ferry {
-        width: 93%;
+        width: 94%;
         height: fit-content;
         overflow: hidden;
         background: rgba( 255, 255, 255, 0.25 );
