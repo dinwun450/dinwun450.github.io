@@ -358,7 +358,7 @@ function GGFDeparturesPTwo(departures_onestop) {
 
 function clearInfo() {
     document.querySelector(".headerforferry").innerHTML = `Departures for &nbsp;<span id="terminalname">---</span>`;
-    document.getElementById("list_of_departures_ferry").innerHTML = `<li id="line_for_departure_ferry"><div class="wrapper_for_departure_ferry"><div id="line_for_each_departure_ferry">-</div> <span id="alerts_ferry"></span> <span id="route_headsign_ferry">(None)</span><span id="route_depart_ferry">Enter a specific station by their station ID, then select a ferry agency.</span></div></li>`
+    document.getElementById("list_of_departures_ferry").innerHTML = `<li id="line_for_departure_ferry"><div class="wrapper_for_departure_ferry"><div id="line_for_each_departure_ferry">-</div> <span id="alerts_ferry"></span> <span id="route_headsign_ferry">(None)</span><span id="route_depart_ferry">Enter a specific station by their station ID, then select a ferry agency. <br> For GGF Departures, key in the GF: prefix, then their terminal id.</span></div></li>`
 }
 
 function changeAgencyInAlerts(a) {
