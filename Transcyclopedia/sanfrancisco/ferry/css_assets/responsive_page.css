@@ -86,4 +86,8 @@
     #line_for_each_departure {
         margin-left: 2px;
     }
+
+    #route_depart_ferry {
+        right: 3px;
+    }
 }
