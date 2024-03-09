@@ -191,7 +191,7 @@ body::after {
     position: relative;
     top: 20px;
     margin-left: 20px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .routes::-webkit-scrollbar {
