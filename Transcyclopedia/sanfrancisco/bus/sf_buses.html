@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css_assets/sf_buses.css">
     <link rel="stylesheet" href="css_assets/responsiveness_and_scrollbars.css">
     <link rel="stylesheet" href="css_assets/light_and_dark_mode.css">
+    <script src="js_assets/bus_agencies_info.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -72,7 +73,7 @@
         </div>
         <div class="window" id="lines">
             <p id="nameswitch">Lines <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="bus_lines">
+            <select name="" id="bus_lines" onchange="changeRouteByAgency(value);">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="actransit">AC Transit</option>
                 <option value="berkeleyshuttles">Bear Transit</option>
