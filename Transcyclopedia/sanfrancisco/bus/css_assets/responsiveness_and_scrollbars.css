@@ -48,7 +48,7 @@
     }
 
     .window {
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     .info {
