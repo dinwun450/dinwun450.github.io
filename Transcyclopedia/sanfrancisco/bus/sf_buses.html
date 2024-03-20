@@ -29,7 +29,7 @@
         <div class="window" id="about_buses">
             <div class="info">
                 <p id="nameswitch">About Buses <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-                <select name="" id="bus_info">
+                <select name="" id="bus_info" onchange="changeAgency(value);">
                     <option value="prompt">Select Bus Agency</option>
                     <option value="actransit">AC Transit</option>
                     <option value="berkeleyshuttles">Bear Transit</option>
@@ -42,13 +42,14 @@
                     <option value="petalumatransit">Petaluma Transit</option>
                     <option value="sanmateotransit">SamTrans</option>
                     <option value="santarosacitybus">Santa Rosa City Bus</option>
-                    <option value="solanotransit">Solano Transit</option>
+                    <option value="solanotransit">SolTrans</option>
                     <option value="sonomacountytransit">Sonoma County Transit</option>
                     <option value="stanfordshuttles">Stanford Marguerite</option>
                     <option value="trideltatransit">Tri Delta Transit</option>
                     <option value="uctransit">Union City Transit</option>
                     <option value="vacavillecitycoach">Vacaville City Coach</option>
                     <option value="napatransit">Vine Transit</option>
+                    <option value="westcat">WestCAT</option>
                     <option value="trivalleywheels">Wheels</option>
                 </select>
                 <p id="desc">Select a Bus Agency.</p>
@@ -73,7 +74,7 @@
         </div>
         <div class="window" id="lines">
             <p id="nameswitch">Lines <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="bus_lines" onchange="changeAgency(value);">
+            <select name="" id="bus_lines">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="actransit">AC Transit</option>
                 <option value="berkeleyshuttles">Bear Transit</option>
@@ -86,13 +87,14 @@
                 <option value="petalumatransit">Petaluma Transit</option>
                 <option value="sanmateotransit">SamTrans</option>
                 <option value="santarosacitybus">Santa Rosa City Bus</option>
-                <option value="solanotransit">Solano Transit</option>
+                <option value="solanotransit">SolTrans</option>
                 <option value="sonomacountytransit">Sonoma County Transit</option>
                 <option value="stanfordshuttles">Stanford Marguerite</option>
                 <option value="trideltatransit">Tri Delta Transit</option>
                 <option value="uctransit">Union City Transit</option>
                 <option value="vacavillecitycoach">Vacaville City Coach</option>
                 <option value="napatransit">Vine Transit</option>
+                <option value="westcat">WestCAT</option>
                 <option value="trivalleywheels">Wheels</option>
             </select>
             <div class="lines_bus">
@@ -116,13 +118,14 @@
                 <option value="petalumatransit">Petaluma Transit</option>
                 <option value="sanmateotransit">SamTrans</option>
                 <option value="santarosacitybus">Santa Rosa City Bus</option>
-                <option value="solanotransit">Solano Transit</option>
+                <option value="solanotransit">SolTrans</option>
                 <option value="sonomacountytransit">Sonoma County Transit</option>
                 <option value="stanfordshuttles">Stanford Marguerite</option>
                 <option value="trideltatransit">Tri Delta Transit</option>
                 <option value="uctransit">Union City Transit</option>
                 <option value="vacavillecitycoach">Vacaville City Coach</option>
                 <option value="napatransit">Vine Transit</option>
+                <option value="westcat">WestCAT</option>
                 <option value="trivalleywheels">Wheels</option>
             </select>
             <p class="headerforbus">Departures for &nbsp;<span id="stopname">---</span></p>
@@ -145,13 +148,14 @@
                 <option value="petalumatransit">Petaluma Transit</option>
                 <option value="sanmateotransit">SamTrans</option>
                 <option value="santarosacitybus">Santa Rosa City Bus</option>
-                <option value="solanotransit">Solano Transit</option>
+                <option value="solanotransit">SolTrans</option>
                 <option value="sonomacountytransit">Sonoma County Transit</option>
                 <option value="stanfordshuttles">Stanford Marguerite</option>
                 <option value="trideltatransit">Tri Delta Transit</option>
                 <option value="uctransit">Union City Transit</option>
                 <option value="vacavillecitycoach">Vacaville City Coach</option>
                 <option value="napatransit">Vine Transit</option>
+                <option value="westcat">WestCAT</option>
                 <option value="trivalleywheels">Wheels</option>
             </select>
             <div class="alert_entity">
