@@ -1,12 +1,13 @@
+var foundedin = "";
+var nooflines = "";
+var email = "";
+var phoneno = "";
+var link = "";
+var page_id = "";
+var moreinfo = "";
+
 function changeAgency(a) {
     var agency = a;
-    var foundedin = "";
-    var nooflines = "";
-    var email = "";
-    var phoneno = "";
-    var link = "";
-    var page_id = "";
-    var moreinfo = "";
 
     switch (agency) {
         case "actransit":
