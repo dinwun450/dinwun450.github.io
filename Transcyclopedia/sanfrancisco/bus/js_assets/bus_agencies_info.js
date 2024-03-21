@@ -17,7 +17,7 @@ function changeAgency(a) {
             phoneno = "510-891-4777";
             moreinfo = "https://en.wikipedia.org/wiki/AC_Transit"
             break;
-        case "beartransit":
+        case "berkeleyshuttles":
             link = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=Bear_Transit&origin=*";
             page_id = "8655097";
             foundedin = "1964";
