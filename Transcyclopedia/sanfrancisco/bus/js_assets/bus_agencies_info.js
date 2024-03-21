@@ -224,7 +224,7 @@ function getWikipediaArticle(getArticleInfo, pageId) {
             document.getElementById("foundingdate").innerHTML = foundedin;
             document.getElementById("nooflines").innerHTML = nooflines;
             document.getElementById("email_agency").innerHTML = email;
-            document.getElementById("phone_agency").innerHTML = phone;
+            document.getElementById("phone_agency").innerHTML = phoneno;
         }
     }
     article_caller.send();
