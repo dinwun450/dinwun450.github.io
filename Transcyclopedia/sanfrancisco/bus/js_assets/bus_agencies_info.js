@@ -220,7 +220,7 @@ function getWikipediaArticle(getArticleInfo, pageId) {
             var summary = article.query.pages[pageId].extract;
 
             document.getElementById("desc").innerHTML = `${summary} <br> <a href="https://en.wikipedia.org/wiki/AC_Transit">Wikipedia</a>`;
-            document.getElementById("foundingdate") = foundedin;
+            document.getElementById("foundingdate").innerHTML = foundedin;
             document.getElementById("nooflines").innerHTML = nooflines;
             document.getElementById("email_agency").innerHTML = email;
             document.getElementById("phone_agency").innerHTML = phone;
