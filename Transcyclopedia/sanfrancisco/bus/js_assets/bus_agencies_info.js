@@ -15,6 +15,7 @@ function changeAgency(a) {
             page_id = "575044";
             foundedin = "1960";
             nooflines = "131";
+            email = "-"
             phoneno = "510-891-4777";
             moreinfo = "https://en.wikipedia.org/wiki/AC_Transit"
             break;
@@ -51,6 +52,7 @@ function changeAgency(a) {
             foundedin = "1984";
             nooflines = "2";
             phoneno = "510-891-4777";
+            email = "-"
             moreinfo = "https://en.wikipedia.org/wiki/Dumbarton_Express"
             break;
         case "fast":
@@ -59,6 +61,7 @@ function changeAgency(a) {
             foundedin = "1980";
             nooflines = "8";
             phoneno = "707-422-2877";
+            email = "-"
             moreinfo = "https://en.wikipedia.org/wiki/Fairfield_and_Suisun_Transit"
             break;
         case "ggt":
@@ -94,6 +97,7 @@ function changeAgency(a) {
             foundedin = "July 1st, 1976";
             nooflines = "66";
             phoneno = "800-660-4287";
+            email = "-"
             moreinfo = "https://en.wikipedia.org/wiki/SamTrans"
             break;
         case "santarosacitybus":
@@ -111,6 +115,7 @@ function changeAgency(a) {
             foundedin = "November 16th, 2010";
             nooflines = "16";
             phoneno = "707-648-4666"
+            email = "-"
             moreinfo = "https://en.wikipedia.org/wiki/SolTrans"
             break;
         case "sonomacountytransit":
@@ -119,6 +124,7 @@ function changeAgency(a) {
             foundedin = "1980";
             nooflines = "23";
             phoneno = "707-576-7433 or 800-345-4733"
+            email = "-"
             moreinfo = "https://en.wikipedia.org/wiki/Sonoma_County_Transit"
             break;
         case "stanfordshuttles":
@@ -140,6 +146,7 @@ function changeAgency(a) {
             foundedin = "1977";
             nooflines = "106";
             phoneno = "925-754-4040";
+            email = "-"
             moreinfo = "https://en.wikipedia.org/wiki/Tri_Delta_Transit"
             break;
         case "uctransit":
@@ -157,6 +164,7 @@ function changeAgency(a) {
             foundedin = "1981";
             nooflines = "6";
             phoneno = "707-449-6000";
+            email = "-"
             moreinfo = "https://en.wikipedia.org/wiki/Vacaville_City_Coach";
             break;
         case "napatransit":
@@ -174,6 +182,7 @@ function changeAgency(a) {
             foundedin = "1977";
             nooflines = "14";
             phoneno = "510-724-7993";
+            email = "-"
             moreinfo = "https://en.wikipedia.org/wiki/WestCAT"
             break;
         case "trivalleywheels":
@@ -182,6 +191,7 @@ function changeAgency(a) {
             foundedin = "May 1985";
             nooflines = "27";
             phoneno = "925-455-7500"
+            email = "-"
             moreinfo = "https://en.wikipedia.org/wiki/Wheels_(California)"
             break;
         default:
@@ -194,10 +204,10 @@ function changeAgency(a) {
             moreinfo = "";
 
             document.getElementById("desc").innerHTML = `Select a Bus Agency.`;
-            document.getElementById("foundingdate").innerHTML = "-";
-            document.getElementById("nooflines").innerHTML = "-";
-            document.getElementById("email_agency").innerHTML = "-";
-            document.getElementById("phone_agency").innerHTML = "-";
+            document.getElementById("foundingdate").innerHTML = "<b>-</b>";
+            document.getElementById("nooflines").innerHTML = "<b>-</b>";
+            document.getElementById("email_agency").innerHTML = "<b>-</b> (Email)";
+            document.getElementById("phone_agency").innerHTML = "<b>-</b> (Phone)";
             break;
     }
 
@@ -223,8 +233,8 @@ function getWikipediaArticle(getArticleInfo, pageId) {
             document.getElementById("desc").innerHTML = `${summary} <br> <a href="https://en.wikipedia.org/wiki/AC_Transit">Wikipedia</a>`;
             document.getElementById("foundingdate").innerHTML = `<b>${foundedin}</b>`;
             document.getElementById("nooflines").innerHTML = `<b>${nooflines}</b>`;
-            document.getElementById("email_agency").innerHTML = `<b>${email}</b> (Email)</p>`;
-            document.getElementById("phone_agency").innerHTML = `<b>${phoneno}</b> (Phone)</p>`;
+            document.getElementById("email_agency").innerHTML = `<b>${email}</b> (Email)`;
+            document.getElementById("phone_agency").innerHTML = `<b>${phoneno}</b> (Phone)`;
         }
     }
     article_caller.send();
