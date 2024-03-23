@@ -72,7 +72,12 @@ function changeLines(b) {
             break;
     }
 
-    getBusRoutes(link);
+    if (b === "prompt") {
+        console.log("Pass.");
+    }
+    else {
+        getBusRoutes(link);
+    }
 }
 
 function getBusRoutes(transitLink) {
@@ -86,7 +91,7 @@ function getBusRoutes(transitLink) {
         if (route_caller.readyState === 4 && route_caller.status === 200) {
             var routes_compiled = JSON.parse(route_caller.responseText);
 
-            for (var i = 0; i < routes_compiled.length; i++) {
+            for (var i = 0; i < routes_compiled.routes.length; i++) {
                 var base_route = routes_compiled.routes[i];
                 var route_short_name = base_route.route_short_name;
                 var route_long_name =  base_route.route_long_name;
