@@ -72,12 +72,7 @@ function changeLines(b) {
             break;
     }
 
-    if (b === "prompt") {
-        console.log("Pass.");
-    }
-    else {
-        getBusRoutes(link);
-    }
+    getBusRoutes(link);
 }
 
 function getBusRoutes(transitLink) {
@@ -111,7 +106,7 @@ function getBusRoutes(transitLink) {
 
             var all_bus_lines = document.querySelector(".bus_lines").children;
             console.log(all_bus_lines)
-            // document.querySelector(".bus_lines").removeChild(all_bus_lines[0])
+            document.querySelector(".bus_lines").removeChild(all_bus_lines[0])
         }
     }
     route_caller.send();
