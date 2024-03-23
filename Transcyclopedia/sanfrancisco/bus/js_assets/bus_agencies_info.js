@@ -134,11 +134,11 @@ function changeAgency(a) {
             email = "marguerite@stanford.edu";
             phoneno = "650-724-9939";
 
-            document.getElementById("desc").innerHTML = `${text} <br> <a href="https://en.wikipedia.org/wiki/Stanford_University_student_housing#Shuttle_service">Stanford University Student Housing Article</a>.`;
-            document.getElementById("foundingdate").innerHTML = foundedin;
-            document.getElementById("nooflines").innerHTML = nooflines;
-            document.getElementById("email_agency").innerHTML = email;
-            document.getElementById("phone_agency").innerHTML = phoneno;
+            document.getElementById("desc").innerHTML = `${text} <a href="https://en.wikipedia.org/wiki/Stanford_University_student_housing#Shuttle_service">Stanford University Student Housing Article</a>.`;
+            document.getElementById("foundingdate").innerHTML = `<b>${foundedin}</b>`;
+            document.getElementById("nooflines").innerHTML = `<b>${nooflines}</b>`;
+            document.getElementById("email_agency").innerHTML = `<b>${email}</b> (Email)`;
+            document.getElementById("phone_agency").innerHTML = `<b>${phoneno}</b> (Phone)`;
             break;
         case "trideltatransit":
             link = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=Tri_Delta_Transit&origin=*";
