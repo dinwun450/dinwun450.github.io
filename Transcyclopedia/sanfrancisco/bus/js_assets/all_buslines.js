@@ -109,9 +109,9 @@ function getBusRoutes(transitLink) {
                 document.querySelector(".bus_lines").append(cloned_bus_line);
             }
 
-            // var all_bus_lines = document.querySelector(".bus_lines").children;
-            // console.log(all_bus_lines)
-            // document.querySelector(".bus_lines").removeChild(all_bus_lines[0])
+            var all_bus_lines = document.querySelector(".bus_lines").children;
+            console.log(all_bus_lines)
+            document.querySelector(".bus_lines").removeChild(all_bus_lines[0])
         }
     }
     route_caller.send();
