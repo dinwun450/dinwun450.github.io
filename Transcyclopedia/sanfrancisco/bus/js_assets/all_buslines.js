@@ -82,7 +82,7 @@ function changeLines(b) {
 
 function getBusRoutes(transitLink) {
     document.querySelector(".bus_lines").innerHTML = `
-        <li id="route_entity"><span id="route">-</span> &nbsp; <span id="desc">Loading...</span></li>
+        <li id="route_entity"><span id="route">-</span> &nbsp; <span id="desc_2">Loading...</span></li>
     `;
 
     var route_caller = new XMLHttpRequest();
@@ -102,7 +102,7 @@ function getBusRoutes(transitLink) {
                 document.getElementById("route").style.color = `#${route_text_color}`;
                 document.getElementById("route").style.backgroundColor = `#${route_color}40`;
                 document.getElementById("route").style.border = `1px solid #${route_color}`;
-                document.getElementById("desc").innerHTML = route_long_name;
+                document.getElementById("desc_2").innerHTML = route_long_name;
 
                 var bus_line = document.getElementById("route_entity");
                 var cloned_bus_line = bus_line.cloneNode(true);
