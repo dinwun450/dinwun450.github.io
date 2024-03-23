@@ -98,7 +98,13 @@ function getBusRoutes(transitLink) {
                 var route_text_color = base_route.route_text_color;
                 var route_color = base_route.route_color;
 
-                document.getElementById("route").innerHTML = route_short_name;
+                if (route_short_name === "") {
+                    document.getElementById("route").innerHTML = " ";
+                }
+                else {
+                    document.getElementById("route").innerHTML = route_short_name;
+                }
+                
                 document.getElementById("route").style.color = `#${route_text_color}`;
                 document.getElementById("route").style.backgroundColor = `#${route_color}40`;
                 document.getElementById("route").style.border = `1px solid #${route_color}`;
