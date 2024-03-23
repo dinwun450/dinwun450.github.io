@@ -82,7 +82,7 @@ function changeLines(b) {
 
 function getBusRoutes(transitLink) {
     document.querySelector(".bus_lines").innerHTML = `
-        <li id="route_entity"><span id="route">-</span> &nbsp; <span id="desc_2">Loading...</span></li>
+        <li id="route_entity"><span id="route">-</span> &nbsp; <span id="desc_2">Loading...</span> <span id="no_of_alerts"></span></li>
     `;
 
     var route_caller = new XMLHttpRequest();
