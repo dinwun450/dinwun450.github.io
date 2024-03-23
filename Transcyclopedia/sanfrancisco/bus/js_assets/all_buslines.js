@@ -90,6 +90,7 @@ function getBusRoutes(transitLink) {
     route_caller.onreadystatechange = function() {
         if (route_caller.readyState === 4 && route_caller.status === 200) {
             var routes_compiled = JSON.parse(route_caller.responseText);
+            console.log(routes_compiled);
 
             for (var i = 0; i < routes_compiled.length; i++) {
                 var base_route = routes_compiled.routes[i];
