@@ -68,7 +68,7 @@ function changeAgencyInDepartures(c) {
         default:
             link = "";
             document.querySelector(".headerforbus").innerHTML = `Departures for &nbsp;<span id="stopname">---</span>`;
-            document.getElementById("list_of_departures_bus").innerHTML = `<div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="alerts_bus"></span> <span id="route_headsign_bus">(None)</span><span id="route_depart_bus">Enter a specific stop by their stop ID, then select a bus agency.</span></div>`
+            document.getElementById("list_of_departures_bus").innerHTML = `<li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="alerts_bus"></span> <span id="route_headsign_bus">(None)</span><span id="route_depart_bus">Enter a specific stop by their stop ID, then select a bus agency.</span></div></li>`
             break;
     }
 
@@ -93,6 +93,7 @@ function busDeparturesPOne(departureLink) {
             busDeparturesPTwo(stop_id_one);
         }
     }
+    stop_call.send();
 }
 
 function busDeparturesPTwo(onestop_id) {
