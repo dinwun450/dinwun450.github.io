@@ -115,14 +115,14 @@ function busDeparturesPTwo(onestop_id) {
                 switch (arrival_time) {
                     case (null):
                         var scheduled_arrival = departures_for_bus.departures[i].arrival.scheduled;
-                        document.getElementById("route_depart_bus").innerHTML = `${scheduled_arrival} <span id="delay"></span>`;
+                        document.getElementById("route_depart_bus").innerHTML = `${scheduled_arrival} <span id="delay_bus"></span>`;
                         document.getElementById("delay_bus").innerHTML = "(scheduled)";
 
                         document.getElementById("route_depart_bus").style.color = "black";
                         document.getElementById("delay_bus").style.color = "black";
                         break;
                     default:
-                        document.getElementById("route_depart_bus").innerHTML = `${arrival_time} <span id="delay"></span>`;
+                        document.getElementById("route_depart_bus").innerHTML = `${arrival_time} <span id="delay_bus"></span>`;
                         document.getElementById("route_depart_bus").style.color = "green";
                         var delay_in_minutes = Math.round(delay_time);
 
