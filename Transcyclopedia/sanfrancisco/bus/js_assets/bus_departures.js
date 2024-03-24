@@ -148,7 +148,7 @@ function busDeparturesPTwo(onestop_id) {
                 }
 
                 document.getElementById("line_for_each_departure_bus").innerHTML = route_short_name;
-                document.getElementById("line_for_each_departure_bus").style.color = route_text_color;
+                document.getElementById("line_for_each_departure_bus").style.color = `#${route_text_color}`;
                 document.getElementById("line_for_each_departure_bus").style.backgroundColor = `#${route_color}40`;
                 document.getElementById("line_for_each_departure_bus").style.border = `1px solid #${route_color}`;
                 document.getElementById("route_headsign_bus").innerHTML = route_headsign;
