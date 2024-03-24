@@ -158,7 +158,7 @@ function busDeparturesPTwo(onestop_id) {
                 document.getElementById("list_of_departures_bus").appendChild(cloned_departure);
             }
 
-            var total_departures = document.getElementById("list_of_departures_bus");
+            var total_departures = document.getElementById("list_of_departures_bus").children;
             document.getElementById("list_of_departures_bus").removeChild(total_departures[0]);
         }
     }
