@@ -101,7 +101,7 @@ function busDeparturesPTwo(onestop_id) {
     departure_call.open("GET", `https://transit.land/api/v2/rest/stops/${onestop_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
     departure_call.onreadystatechange = function() {
         if (departure_call.readyState === 4 && departure_call.status === 200) {
-            var departures_for_bus = JSON.parse(departure_call.responseText);
+            var departures_for_bus = JSON.parse(departure_call.responseText).stops[0];
 
             for (var i=0; i<departures_for_bus.departures.length; i++) {
                 var route_color = departures_for_bus.departures[i].trip.route.route_color;
