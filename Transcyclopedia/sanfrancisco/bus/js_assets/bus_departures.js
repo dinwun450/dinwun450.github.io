@@ -6,64 +6,64 @@ function changeAgencyInDepartures(c) {
 
     switch (agency) {
         case "actransit":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9-actransit`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9-actransit`;
             break;
         case "berkeleyshuttles":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9p3-beartransit`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9p3-beartransit`;
             break;
         case "commutedotorg":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9j-commuteorgshuttles`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9j-commuteorgshuttles`;
             break;
         case "countyconnection":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9p-countyconnection`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9p-countyconnection`;
             break;
         case "dumbartonexpress":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9j-dumbartonexpress`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9j-dumbartonexpress`;
             break;
         case "fast":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qc-fairfieldandsuisuntransit`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qc-fairfieldandsuisuntransit`;
             break;
         case "ggt":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qb-goldengatetransit`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qb-goldengatetransit`;
             break;
         case "marintransit":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qbb-marintransit`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qbb-marintransit`;
             break;
         case "petalumatransit":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qbc9-petalumatransit`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qbc9-petalumatransit`;
             break;
         case "sanmateotransit":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q8-samtrans`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q8-samtrans`;
             break;
         case "santarosacitybus":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qbdx-santarosacitybus`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qbdx-santarosacitybus`;
             break;
         case "solanotransit":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qc0-soltrans`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qc0-soltrans`;
             break;
         case "sonomacountytransit":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qb-sonomacountytransit`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qb-sonomacountytransit`;
             break;
         case "stanfordshuttles":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9h-stanford~marguerite`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9h-stanford~marguerite`;
             break;
         case "trideltatransit":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qc2-trideltatransit`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qc2-trideltatransit`;
             break;
         case "uctransit":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9jy-unioncitytransit`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9jy-unioncitytransit`;
             break; 
         case "vacavillecitycoach":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qc60-vacavillecitycoach`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qc60-vacavillecitycoach`;
             break;
         case "napatransit":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qc-vinenapacounty`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qc-vinenapacounty`;
             break;
         case "westcat":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qc-westcatwesterncontracosta`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9qc-westcatwesterncontracosta`;
             break;
         case "trivalleywheels":
-            link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9q-wheelsbus`;
+            link = `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${onestop_id}&served_by_onestop_ids=o-9q9q-wheelsbus`;
             break;
         default:
             link = "";
