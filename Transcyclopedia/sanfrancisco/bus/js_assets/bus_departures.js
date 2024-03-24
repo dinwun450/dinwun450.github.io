@@ -67,10 +67,17 @@ function changeAgencyInDepartures(c) {
             break;
         default:
             link = "";
+            document.querySelector(".headerforbus").innerHTML = `Departures for &nbsp;<span id="stopname">---</span>`;
+            document.getElementById("list_of_departures_bus").innerHTML = `<div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="alerts_bus"></span> <span id="route_headsign_bus">(None)</span><span id="route_depart_bus">Enter a specific stop by their stop ID, then select a bus agency.</span></div>`
             break;
     }
 
-    busDeparturesPOne(link);
+    if (agency === "prompt") {
+        console.log("Pass.");
+    }
+    else {
+        busDeparturesPOne(link);
+    }
 }
 
 function busDeparturesPOne(departureLink) {
