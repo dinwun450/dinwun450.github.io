@@ -115,33 +115,33 @@ function busDeparturesPTwo(onestop_id) {
                 switch (arrival_time) {
                     case (null):
                         var scheduled_arrival = departures_for_bus.departures[i].arrival.scheduled;
-                        document.getElementById("route_depart").innerHTML = `${scheduled_arrival} <span id="delay"></span>`;
-                        document.getElementById("delay").innerHTML = "(scheduled)";
+                        document.getElementById("route_depart_bus").innerHTML = `${scheduled_arrival} <span id="delay"></span>`;
+                        document.getElementById("delay_bus").innerHTML = "(scheduled)";
 
-                        document.getElementById("route_depart").style.color = "black";
-                        document.getElementById("delay").style.color = "black";
+                        document.getElementById("route_depart_bus").style.color = "black";
+                        document.getElementById("delay_bus").style.color = "black";
                         break;
                     default:
-                        document.getElementById("route_depart").innerHTML = `${arrival_time} <span id="delay"></span>`;
-                        document.getElementById("route_depart").style.color = "green";
+                        document.getElementById("route_depart_bus").innerHTML = `${arrival_time} <span id="delay"></span>`;
+                        document.getElementById("route_depart_bus").style.color = "green";
                         var delay_in_minutes = Math.round(delay_time);
 
                         switch (delay_time) {
                             case (null):
-                                document.getElementById("delay").innerHTML = "(no data)";
-                                document.getElementById("delay").style.color = "black";
+                                document.getElementById("delay_bus").innerHTML = "(no data)";
+                                document.getElementById("delay_bus").style.color = "black";
                                 break;
                             case (delay_time > 60):
-                                document.getElementById("delay").innerHTML = `(${delay_in_minutes} min late)`;
-                                document.getElementById("delay").style.color = "orange";
+                                document.getElementById("delay_bus").innerHTML = `(${delay_in_minutes} min late)`;
+                                document.getElementById("delay_bus").style.color = "orange";
                                 break;
                             case (delay_time < 0):
-                                document.getElementById("delay").innerHTML = `(${delay_in_minutes} min early)`;
-                                document.getElementById("delay").style.color = "skyblue";
+                                document.getElementById("delay_bus").innerHTML = `(${delay_in_minutes} min early)`;
+                                document.getElementById("delay_bus").style.color = "skyblue";
                                 break;
                             default:
-                                document.getElementById("delay").innerHTML = "(on time)";
-                                document.getElementById("delay").style.color = "green";
+                                document.getElementById("delay_bus").innerHTML = "(on time)";
+                                document.getElementById("delay_bus").style.color = "green";
                                 break;
                         }
                         break;
