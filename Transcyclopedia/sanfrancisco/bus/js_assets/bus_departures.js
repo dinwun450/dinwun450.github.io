@@ -68,7 +68,8 @@ function changeAgencyInDepartures(c) {
         default:
             link = "";
             document.querySelector(".headerforbus").innerHTML = `Departures for &nbsp;<span id="stopname">---</span>`;
-            document.getElementById("list_of_departures_bus").innerHTML = `<li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="alerts_bus"></span> <span id="route_headsign_bus">(None)</span><span id="route_depart_bus">Enter a specific stop by their stop ID, then select a bus agency.</span></div></li>`
+            document.getElementById("list_of_departures_bus").innerHTML = `<li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="alerts_bus"></span> <span id="route_headsign_bus">(None)</span><span id="route_depart_bus">Enter a specific stop by their stop ID, then select a bus agency.</span></div></li>`;
+            document.getElementById("each_stop_alert").innerHTML = `<p>Once you typed down the stop by their ID, the advisories will display here.</p>`;
             break;
     }
 
@@ -154,8 +155,8 @@ function busDeparturesPTwo(onestop_id) {
                 document.getElementById("route_headsign_bus").innerHTML = route_headsign;
 
                 var alerts_for_this_stop = departures_for_bus.alerts;
-                switch (alerts_for_this_stop) {
-                    case (alerts_for_this_stop.length === 0):
+                switch (alerts_for_this_stop.length) {
+                    case 0:
                         document.getElementById("each_stop_alert").innerHTML = `<p>There are no alerts for this stop.</p>`;
                     default:
                         for (var j=0; j<alerts_for_this_stop.length; j++) {
