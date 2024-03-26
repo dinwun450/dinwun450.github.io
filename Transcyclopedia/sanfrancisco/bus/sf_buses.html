@@ -13,6 +13,7 @@
     <script src="js_assets/bus_agencies_info.js"></script>
     <script src="js_assets/all_buslines.js"></script>
     <script src="js_assets/bus_departures.js"></script>
+    <script src="js_assets/bus_alerts.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -169,8 +170,23 @@
                 <option value="westcat">WestCAT</option>
                 <option value="trivalleywheels">Wheels</option>
             </select>
-            <div class="alert_entity">
-                <p id="alert_desc">Select a bus agency on the top.</p>
+            <div class="alert_entity_agency">
+                <h3>Alerts for Agency</h3>
+                <ul id="bus_agency_alerts">
+                    <li id="alert_desc_agency">Select a bus agency on the top.</li>
+                </ul>
+            </div>
+            <div class="alert_entity_routes">
+                <h3>Alerts for Routes</h3>
+                <input type="text" placeholder="Search for a route..." onkeydown="" id="routegetter" autocomplete="off">
+                <p class="headerforbusalerts">Alerts for &nbsp; <span id="affectedroutes">-</span></p>
+                <ul id="bus_routes_alerts">
+                    <li id="alert_desc_routes">
+                        <p>
+                            <span id="alert_for_specific_route">Once you selected the bus agency and typed down the specific routes, it'll show here.</span>
+                        </p>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="window" id="map_inter">

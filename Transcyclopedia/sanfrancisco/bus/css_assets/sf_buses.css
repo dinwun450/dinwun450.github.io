@@ -236,7 +236,7 @@ body::after {
     overflow-y: auto;
 }
 
-#departures input {
+#departures input, #alerts input {
     width: 95%;
     height: 30px;
     border-radius: 5px;
@@ -248,15 +248,15 @@ body::after {
     padding-left: 10px;
 }
 
-#departures input::placeholder {
+#departures input::placeholder, #alerts input::placeholder {
     color: white;
 }
 
-#departures input:active {
+#departures input:active, #alerts input:active {
     outline: none;
 }
 
-.headerforbus {
+.headerforbus, .headerforbusalerts {
     width: 95%;
     height: 50px;
     background: rgba(255, 255, 255, 0.25);
@@ -323,8 +323,8 @@ body::after {
     list-style-type: none;
 }
 
-.alert_entity {
-    width: 95%;
+.alert_entity_agency, .alert_entity_routes {
+    width: 92%;
     height: fit-content;
     margin-left: 20px;
     background: rgba( 255, 255, 255, 0.25 );
@@ -333,8 +333,24 @@ body::after {
     margin-top: 20px;
 }
 
-#alert_desc {
+.alert_entity_routes {
+    height: 400px;
+}
+
+.alert_entity_agency h3, .alert_entity_routes h3 {
+    margin-left: 5px;
+}
+
+#alert_desc_agency, #alert_desc_routes {
+    width: 95%;
+    height: fit-content;
+    margin-left: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    margin-top: 5px;
     padding: 10px;
+    list-style-type: none;
 }
 
 #map_inter {
