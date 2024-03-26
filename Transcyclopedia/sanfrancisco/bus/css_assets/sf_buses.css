@@ -271,6 +271,14 @@ body::after {
     padding-left: 10px;
 }
 
+.headerforbusalerts {
+    height: fit-content;
+    border-radius: 10px;
+    text-wrap: nowrap;
+    overflow-x: auto;
+    padding: 10px;
+}
+
 #list_of_departures_bus {
     width: 95%;
     height: 400px;
@@ -324,13 +332,15 @@ body::after {
 }
 
 .alert_entity_agency, .alert_entity_routes {
-    width: 92%;
-    height: fit-content;
+    width: 95%;
+    height: 200px;
     margin-left: 20px;
     background: rgba( 255, 255, 255, 0.25 );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 10px;
     margin-top: 20px;
+    padding: 10px;
+    overflow-y: auto;
 }
 
 .alert_entity_routes {
