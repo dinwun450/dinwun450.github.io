@@ -99,6 +99,9 @@ function changeAgencyInAlerts(c) {
                     <span id="alert_for_specific_route">Enter a specific route by their route name.</span>
                 </p>
             </li>
+            `;
+            document.getElementById("bus_agency_alerts").innerHTML = `
+            <li id="alert_desc_agency">Select a bus agency on the top.</li>
             `
     }
 
@@ -147,9 +150,6 @@ function getRouteAlerts(routeAlertLink) {
         </p>
     </li>
     `;
-    document.getElementById("bus_agency_alerts").innerHTML = `
-    <li id="alert_desc_agency">Select a bus agency on the top.</li>
-    `
 
     var alert_call = new XMLHttpRequest();
     alert_call.open("GET", routeAlertLink);
