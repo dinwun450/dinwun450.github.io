@@ -1,4 +1,6 @@
 var no_route_alerts = [];
+var link = "";
+var link_2 = [];
 
 function changeAgencyInAlerts(c) {
     route_searcher = document.getElementById("routegetter").value;
@@ -108,7 +110,7 @@ function getRouteAlerts(routeAlertLink) {
                 for (var a = 0; a < route_alerts.routes[r].alerts.length; a++) {
                     var header_text = route_alerts.routes[r].alerts[a].header_text[0].text;
                     var description_text = route_alerts.routes[r].alerts[a].description_text[0].text;
-                    document.getElementById("alert_for_specific_route").innerHTML = `<b>${header_text}</b> <br> ${description_text}`;
+                    document.getElementById("alert_for_specific_route").innerHTML = `<b>${header_text} (${route_short_name})</b> <br> ${description_text}`;
 
                     var alertNode = document.getElementById("alert_desc_routes");
                     var cloneNode = alertNode.cloneNode(true);
