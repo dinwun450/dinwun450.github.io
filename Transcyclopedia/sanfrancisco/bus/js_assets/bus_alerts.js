@@ -92,7 +92,7 @@ function getRouteAlerts(routeAlertLink) {
 
                 var routeNode = document.getElementById("affectedroutes");
                 var cloneNode = routeNode.cloneNode(true);
-                document.getElementById(".headerforbusalerts").appendChild(cloneNode).insertAdjacentHTML( 'afterend', ",&nbsp;");
+                document.querySelector(".headerforbusalerts").appendChild(cloneNode).insertAdjacentHTML( 'afterend', ",&nbsp;");
 
                 if (route_alerts.routes[r].alerts.length === 0) {
                     console.log("nothing.")
