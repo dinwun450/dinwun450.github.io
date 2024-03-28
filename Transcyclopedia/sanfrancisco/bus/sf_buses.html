@@ -147,7 +147,7 @@
         </div>
         <div class="window" id="alerts">
             <p id="nameswitch">Alerts <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="bus_alerts">
+            <select name="" id="bus_alerts" onchange="changeAgencyInAlerts(value)">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="actransit">AC Transit</option>
                 <option value="berkeleyshuttles">Bear Transit</option>
