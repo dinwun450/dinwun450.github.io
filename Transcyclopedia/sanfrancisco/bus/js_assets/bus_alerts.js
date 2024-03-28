@@ -1,3 +1,5 @@
+var no_route_alerts = [];
+
 function changeAgencyInAlerts(c) {
     route_searcher = document.getElementById("routegetter").value;
     var agency = c;
@@ -100,7 +102,7 @@ function getRouteAlerts(routeAlertLink) {
                 document.querySelector(".headerforbusalerts").appendChild(cloneNode).insertAdjacentHTML( 'afterend', ",&nbsp;");
 
                 if (route_alerts.routes[r].alerts.length === 0) {
-                    console.log("nothing.")
+                    no_route_alerts.push(` ${route_short_name}`);
                 }
 
                 for (var a = 0; a < route_alerts.routes[r].alerts.length; a++) {
@@ -119,6 +121,9 @@ function getRouteAlerts(routeAlertLink) {
 
             document.querySelector(".headerforbusalerts").removeChild(total_routes[0]);
             document.querySelector(".headerforbusalerts").removeChild(last_child_routes);
+
+            var one_last_alert = document.getElementById("bus_routes_alerts").children[0];
+            one_last_alert.innerHTML = `There are no alerts for:${no_route_alerts}`;
         }
     }
     alert_call.send();
