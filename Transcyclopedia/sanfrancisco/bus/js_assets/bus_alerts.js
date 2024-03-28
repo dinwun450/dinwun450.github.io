@@ -83,7 +83,7 @@ function getRouteAlerts(routeAlertLink) {
             for (var r=0; r<route_alerts.routes.length; r++) {
                 var route_short_name = route_alerts.routes[r].route_short_name;
                 var route_color = route_alerts.routes[r].route_color;
-                var route_text_color = route_alerts.route[r].route_text_color;
+                var route_text_color = route_alerts.routes[r].route_text_color;
 
                 document.getElementById("affectedroutes").innerHTML = route_short_name;
                 document.getElementById("affectedroutes").style.backgroundColor = `#${route_color}40`;
