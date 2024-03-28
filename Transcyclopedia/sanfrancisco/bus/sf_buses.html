@@ -196,9 +196,9 @@
                 <div id='map' style="width: 100%; height: 500px;"></div>
                 <nav id="filter_agency" class="filter_agency"></nav>
             </section>
-            <ul id="range_of_routes">
+            <!-- <ul id="range_of_routes">
                 <li class="route_radius"><span id="route_short">-</span>&nbsp;&nbsp;<span id="detailed_route">Loading...</span></li>
-            </ul>
+            </ul> -->
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
@@ -206,8 +206,31 @@
         alert("Coming Soon!");
 
         var v = null;
-        var ferry_geojson_routes = [];
-        const filterGroup = document.getElementById('filter_agency');
+        var bus_geojson_routes = [];
+
+        function mapConfiguration() {
+            document.getElementById("map").style.width = "100%";
+            document.getElementById("map").style.height = "500px";
+
+            const mapDiv = document.getElementById("map");
+            if (mapDiv.style.visibility === false) {
+                map.resize();
+            };
+
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZGlud3VuNDUwIiwiYSI6ImNsaTR4c253bTAzNnIzcnF1aTh0eTN2a3kifQ.fjcqiGi68hyGpUAKAo9Tcw';
+            map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/light-v11',
+                center: [-122.3765342, 37.8229885],
+                zoom: 10
+            });
+
+            map.on('load', function() {
+                map.addControl(new mapboxgl.NavigationControl());
+                map.scrollZoom.disable();
+            });
+        }
+        mapConfiguration();
 
         function updateSize() {
             v = window.innerWidth;
