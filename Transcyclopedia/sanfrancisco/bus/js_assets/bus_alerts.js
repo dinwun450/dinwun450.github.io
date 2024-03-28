@@ -1,4 +1,5 @@
 function changeAgencyInAlerts(c) {
+    route_searcher = document.getElementById("routegetter").value;
     var agency = c;
 
     switch (agency) {
@@ -63,4 +64,57 @@ function changeAgencyInAlerts(c) {
             link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&search=${route_searcher}&operator_onestop_id=o-9q9q-wheelsbus&limit=700&include_alerts=true`;
             break;
     }
+
+    if (c === "prompt") {
+        console.log(" ");
+    }
+    else {
+        getRouteAlerts(link);
+    }
+}
+
+function getRouteAlerts(routeAlertLink) {
+    var alert_call = new XMLHttpRequest();
+    alert_call.open("GET", routeAlertLink);
+    alert_call.onreadystatechange = function() {
+        if (alert_call.readyState === 4 && alert_call.status === 200) {
+            var route_alerts = JSON.parse(alert_call.responseText);
+
+            for (var r=0; r<route_alerts.routes.length; r++) {
+                var route_short_name = route_alerts.routes[r].route_short_name;
+                var route_color = route_alerts.routes[r].route_color;
+                var route_text_color = route_alerts.route[r].route_text_color;
+
+                document.getElementById("affectedroutes").innerHTML = route_short_name;
+                document.getElementById("affectedroutes").style.backgroundColor = `#${route_color}40`;
+                document.getElementById("affectedroutes").style.border = `1px solid #${route_color}`;
+                document.getElementById("affectedroutes").style.color = `#${route_text_color}`;
+
+                var routeNode = document.getElementById("affectedroutes");
+                var cloneNode = routeNode.cloneNode(true);
+                document.getElementById(".headerforbusalerts").appendChild(cloneNode).insertAdjacentHTML( 'afterend', ",&nbsp;");
+
+                if (route_alerts.routes[r].alerts.length === 0) {
+                    console.log("nothing.")
+                }
+
+                for (var a = 0; a < route_alerts.routes[r].alerts.length; a++) {
+                    var header_text = route_alerts.routes[r].alerts[a].header_text[0].text;
+                    var description_text = route_alerts.routes[r].alerts[a].description_text[0].text;
+                    document.getElementById("alert_for_specific_route").innerHTML = `<b>${header_text}</b> <br> ${description_text}`;
+
+                    var alertNode = document.getElementById("alert_desc_routes");
+                    var cloneNode = alertNode.cloneNode(true);
+                    document.getElementById("bus_routes_alerts").appendChild(cloneNode);
+                }
+            }
+
+            var total_routes = document.querySelector(".headerforbusalerts").children;
+            var last_child_routes = document.querySelector(".headerforbusalerts").lastChild;
+
+            document.querySelector(".headerforbusalerts").removeChild(total_routes[0]);
+            document.querySelector(".headerforbusalerts").removeChild(last_child_routes);
+        }
+    }
+    alert_call.send();
 }
