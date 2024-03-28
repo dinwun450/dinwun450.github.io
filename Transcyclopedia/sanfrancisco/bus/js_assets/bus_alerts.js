@@ -63,6 +63,11 @@ function changeAgencyInAlerts(c) {
         case "trivalleywheels":
             link = `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&search=${route_searcher}&operator_onestop_id=o-9q9q-wheelsbus&limit=700&include_alerts=true`;
             break;
+        default:
+            document.querySelector(".headerforbusalerts").innerHTML = `Alerts for &nbsp; <span id="affectedroutes">-</span>`;
+            document.getElementById("affectedroutes").style.backgroundColor = "#33333340";
+            document.getElementById("affectedroutes").style.color = "white";
+            document.getElementById("affectedroutes").style.border = "1px solid black";
     }
 
     if (c === "prompt") {
@@ -110,10 +115,10 @@ function getRouteAlerts(routeAlertLink) {
             }
 
             var total_routes = document.querySelector(".headerforbusalerts").children;
-            var last_child_routes = document.querySelector(".headerforbusalerts").lastChild;
+            var last_child_routes = document.querySelector(".headerforbusalerts").children;
 
             document.querySelector(".headerforbusalerts").removeChild(total_routes[0]);
-            document.querySelector(".headerforbusalerts").removeChild(last_child_routes);
+            document.querySelector(".headerforbusalerts").removeChild(last_child_routes[0]);
         }
     }
     alert_call.send();
