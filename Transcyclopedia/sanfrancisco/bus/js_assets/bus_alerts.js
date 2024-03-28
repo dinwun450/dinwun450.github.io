@@ -146,6 +146,9 @@ function getRouteAlerts(routeAlertLink) {
             <span id="alert_for_specific_route">Loading...</span>
         </p>
     </li>
+    `;
+    document.getElementById("bus_agency_alerts").innerHTML = `
+    <li id="alert_desc_agency">Select a bus agency on the top.</li>
     `
 
     var alert_call = new XMLHttpRequest();
