@@ -115,10 +115,10 @@ function getRouteAlerts(routeAlertLink) {
             }
 
             var total_routes = document.querySelector(".headerforbusalerts").children;
-            var last_child_routes = document.querySelector(".headerforbusalerts").children;
+            var last_child_routes = document.querySelector(".headerforbusalerts").lastChild;
 
             document.querySelector(".headerforbusalerts").removeChild(total_routes[0]);
-            document.querySelector(".headerforbusalerts").removeChild(last_child_routes[0]);
+            document.querySelector(".headerforbusalerts").removeChild(last_child_routes);
         }
     }
     alert_call.send();
