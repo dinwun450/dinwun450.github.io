@@ -92,6 +92,14 @@ function changeAgencyInAlerts(c) {
             document.getElementById("affectedroutes").style.backgroundColor = "#33333340";
             document.getElementById("affectedroutes").style.color = "white";
             document.getElementById("affectedroutes").style.border = "1px solid black";
+            no_route_alerts = [];
+            document.getElementById("bus_routes_alerts").innerHTML = `
+            <li id="alert_desc_routes">
+                <p>
+                    <span id="alert_for_specific_route">Enter a specific route by their route name.</span>
+                </p>
+            </li>
+            `
     }
 
     if (c === "prompt") {
@@ -127,6 +135,19 @@ function getAgencyAlerts(agencyAlertLink) {
 }
 
 function getRouteAlerts(routeAlertLink) {
+    document.querySelector(".headerforbusalerts").innerHTML = `Alerts for &nbsp; <span id="affectedroutes">-</span>`;
+    document.getElementById("affectedroutes").style.backgroundColor = "#33333340";
+    document.getElementById("affectedroutes").style.color = "white";
+    document.getElementById("affectedroutes").style.border = "1px solid black";
+    no_route_alerts = [];
+    document.getElementById("bus_routes_alerts").innerHTML = `
+    <li id="alert_desc_routes">
+        <p>
+            <span id="alert_for_specific_route">Loading...</span>
+        </p>
+    </li>
+    `
+
     var alert_call = new XMLHttpRequest();
     alert_call.open("GET", routeAlertLink);
     alert_call.onreadystatechange = function() {
