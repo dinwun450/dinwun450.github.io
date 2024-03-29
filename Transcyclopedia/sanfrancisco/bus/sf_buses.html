@@ -207,6 +207,61 @@
 
         var v = null;
         var bus_geojson_routes = [];
+        link_of_transit_geometry_routes = [
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-actransit&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p3-beartransit&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9j-commuteorgshuttles&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p-countyconnection&limit=700&include_geometry=true", 
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9j-dumbartonexpress&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc-fairfieldandsuisuntransit&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qb-goldengatetransit&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qbb-marintransit&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qbc9-petalumatransit&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8-samtrans&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qbdx-santarosacitybus&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc0-soltrans&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qb-sonomacountytransit&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9h-stanford~marguerite&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc2-trideltatransit&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9jy-unioncitytransit&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc60-vacavillecitycoach&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc-vinenapacounty&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc-westcatwesterncontracosta&limit=700&include_geometry=true",
+            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9q-wheelsbus&limit=700&include_geometry=true",
+        ]
+
+        for (var a = 0; a < link_of_transit_geometry_routes.length; a++) {
+            var bus_route_call = new XMLHttpRequest();
+            bus_route_call.open("GET", link_of_transit_geometry_routes[a])
+            bus_route_call.onreadystatechange = function() {
+                if (bus_route_call.readyState === 4 && bus_route_call.status === 200) {
+                    var bus_route_outputs = JSON.parse(bus_route_call.responseText);
+                    var agency_bus = bus_route_outputs.routes[0].agency[0].agency_name;
+
+                    for (var b=0; b<bus_route_outputs.length; b++) {
+                        var all_bus_lines_name_short = bus_route_outputs[i].route_short_name;
+                        var all_bus_lines_name_long = bus_route_outputs[i].route_long_name;
+                        var all_bus_lines_color = bus_route_outputs[i].route_color; 
+                        var all_bus_lines_text_color = bus_route_outputs[i].route_text_color;
+                        var geometry_bus = bus_route_outputs[i].geometry;
+
+                        bus_geojson_routes.push({
+                            'type': 'Feature',
+                            'geometry': geometry_bus,
+                            'properties': {
+                                'color': `#${all_bus_lines_color}`,
+                                'text_color': `#${all_bus_lines_text_color}`,
+                                'route_short_name': all_bus_lines_name_short,
+                                'route_long_name': all_bus_lines_name_long,
+                                'label': agency_bus
+                            }
+                        })
+                    }
+                }
+            }
+            bus_route_call.send();
+        }
+        console.log(bus_geojson_routes);
 
         function mapConfiguration() {
             document.getElementById("map").style.width = "100%";
