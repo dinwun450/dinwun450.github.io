@@ -232,6 +232,7 @@
 
         for (var a = 0; a < link_of_transit_geometry_routes.length; a++) {
             var bus_route_call = new XMLHttpRequest();
+            console.log(link_of_transit_geometry_routes[a])
             bus_route_call.open("GET", link_of_transit_geometry_routes[a])
             bus_route_call.onreadystatechange = function() {
                 if (bus_route_call.readyState === 4 && bus_route_call.status === 200) {
