@@ -239,11 +239,11 @@
                     var agency_bus = bus_route_outputs.routes[0].agency.agency_name;
 
                     for (var b=0; b<bus_route_outputs.length; b++) {
-                        var all_bus_lines_name_short = bus_route_outputs[i].route_short_name;
-                        var all_bus_lines_name_long = bus_route_outputs[i].route_long_name;
-                        var all_bus_lines_color = bus_route_outputs[i].route_color; 
-                        var all_bus_lines_text_color = bus_route_outputs[i].route_text_color;
-                        var geometry_bus = bus_route_outputs[i].geometry;
+                        var all_bus_lines_name_short = bus_route_outputs[b].route_short_name;
+                        var all_bus_lines_name_long = bus_route_outputs[b].route_long_name;
+                        var all_bus_lines_color = bus_route_outputs[b].route_color; 
+                        var all_bus_lines_text_color = bus_route_outputs[b].route_text_color;
+                        var geometry_bus = bus_route_outputs[b].geometry;
 
                         bus_geojson_routes.push({
                             'type': 'Feature',
