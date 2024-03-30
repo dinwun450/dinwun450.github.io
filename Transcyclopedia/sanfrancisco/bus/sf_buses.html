@@ -368,6 +368,12 @@
                 );
             });
 
+            let routeId = [];
+            const popup = new mapboxgl.Popup({
+                closeButton: false,
+                closeOnClick: false
+            });
+
             map.on('load', function() {
                 map.addSource('bus_routes', {
                     'type': 'geojson',
