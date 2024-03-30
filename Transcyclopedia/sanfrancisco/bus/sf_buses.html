@@ -231,8 +231,12 @@
         ]
 
         for (var a = 0; a < link_of_transit_geometry_routes.length; a++) {
+            setTimeout((link_of_transit_geometry_routes[a]), 1000);
+        }
+
+        function busGeoJsonCreation(busLink) {
             var bus_route_call = new XMLHttpRequest();
-            bus_route_call.open("GET", link_of_transit_geometry_routes[a])
+            bus_route_call.open("GET", busLink)
             bus_route_call.onreadystatechange = function() {
                 if (bus_route_call.readyState === 4 && bus_route_call.status === 200) {
                     var bus_route_outputs = JSON.parse(bus_route_call.responseText);
