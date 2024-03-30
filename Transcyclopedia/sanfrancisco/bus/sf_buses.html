@@ -367,80 +367,83 @@
                     labelLayerId
                 );
             });
-            map.addSource('bus_routes', {
-                'type': 'geojson',
-                'data': bus_agencies
-            });
 
-            for (const feature of bus_agencies.features) {
-                const label = feature.properties.label;
-                const label_id = label;
+            map.on('load', function() {
+                map.addSource('bus_routes', {
+                    'type': 'geojson',
+                    'data': bus_agencies
+                });
 
-                if (!map.getLayer(label_id)) {
-                    map.addLayer({
-                        'id': 'routes_bus',
-                        'type': 'line',
-                        'source': 'bus_route',
-                        'layout': {
-                            'line-join': 'round',
-                            'line-cap': 'round'
-                        },
-                        'paint': {
-                            'line-width': 2,
-                            'line-color': [
-                                'case',
-                                ['boolean', ['feature-state', 'hover'], false],
-                                ['get', 'color'],
-                                '#c0e7fc',
-                            ], //['get', 'color']
-                        },
-                        'filter': ['==', 'label', label_id]
-                    });
+                for (const feature of bus_agencies.features) {
+                    const label = feature.properties.label;
+                    const label_id = label;
 
-                    const input = document.createElement('input');
-                    input.type = 'checkbox';
-                    input.id = label;
-                    input.checked = true;
-                    filterGroup.appendChild(input);
+                    if (!map.getLayer(label_id)) {
+                        map.addLayer({
+                            'id': 'routes_bus',
+                            'type': 'line',
+                            'source': 'bus_route',
+                            'layout': {
+                                'line-join': 'round',
+                                'line-cap': 'round'
+                            },
+                            'paint': {
+                                'line-width': 2,
+                                'line-color': [
+                                    'case',
+                                    ['boolean', ['feature-state', 'hover'], false],
+                                    ['get', 'color'],
+                                    '#c0e7fc',
+                                ], //['get', 'color']
+                            },
+                            'filter': ['==', 'label', label_id]
+                        });
 
-                    const label_for = document.createElement('label');
-                    label_for.setAttribute('for', label);
-                    label_for.textContent = label;
-                    filterGroup.appendChild(label_for);
+                        const input = document.createElement('input');
+                        input.type = 'checkbox';
+                        input.id = label;
+                        input.checked = true;
+                        filterGroup.appendChild(input);
 
-                    input.addEventListener('change', (e) => {
-                        console.log(label_id);
+                        const label_for = document.createElement('label');
+                        label_for.setAttribute('for', label);
+                        label_for.textContent = label;
+                        filterGroup.appendChild(label_for);
 
-                        map.setLayoutProperty(
-                            label_id,
-                            'visibility',
-                            e.target.checked ? 'visible' : 'none'
-                        );
-                    });
+                        input.addEventListener('change', (e) => {
+                            console.log(label_id);
 
-                    map.on('mouseenter', label_id, function(e) {
-                        var fs = map.queryRenderedFeatures(e.point, { layers: [label_id]});
-                        console.log(fs)
+                            map.setLayoutProperty(
+                                label_id,
+                                'visibility',
+                                e.target.checked ? 'visible' : 'none'
+                            );
+                        });
 
-                        if (fs.length > 0) {
-                            for (var f = 0; f < fs.length; f ++) {
-                                var name_of_route = fs[f].properties.route_short_name;
-                                routeId.push(name_of_route)
+                        map.on('mouseenter', label_id, function(e) {
+                            var fs = map.queryRenderedFeatures(e.point, { layers: [label_id]});
+                            console.log(fs)
+
+                            if (fs.length > 0) {
+                                for (var f = 0; f < fs.length; f ++) {
+                                    var name_of_route = fs[f].properties.route_short_name;
+                                    routeId.push(name_of_route)
+                                }
+                                
+                                // Populate the popup and set its coordinates
+                                // based on the feature found.
+                                popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
                             }
-                            
-                            // Populate the popup and set its coordinates
-                            // based on the feature found.
-                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
-                        }
-                    });
+                        });
 
-                    map.on('mouseleave', label_id, () => {
-                        if (routeId.length > 0) {routeId = []}
-                        popup.remove();
-                        // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
-                    });
+                        map.on('mouseleave', label_id, () => {
+                            if (routeId.length > 0) {routeId = []}
+                            popup.remove();
+                            // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+                        });
+                    }
                 }
-            }
+            })
         }
         plotBusLines();
 
