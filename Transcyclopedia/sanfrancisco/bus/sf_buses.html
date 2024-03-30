@@ -315,6 +315,9 @@
         window.addEventListener("resize", updateSize);
 
         function plotBusLines() {
+            let hoverIdBus = [];
+            let hoveredPolygonLine = null;
+            
             var bus_agencies = {
                 'type': 'FeatureCollection',
                 'features': bus_geojson_routes
@@ -436,6 +439,21 @@
                                 for (var f = 0; f < fs.length; f ++) {
                                     var name_of_route = fs[f].properties.route_short_name;
                                     routeId.push(name_of_route)
+                                    
+                                    hoveredPolygonLine = fs_2[f].id;
+                                    hoverIdBus.push(hoveredPolygonLine);
+
+                                    if (hoveredPolygonLine !== null) {
+                                        console.log("hello!")
+                                        map.setFeatureState(
+                                            { source: 'bus_route', id: hoveredPolygonLine },
+                                            { hover: false }
+                                        );
+                                    }
+                                    map.setFeatureState(
+                                        { source: 'bus_route', id: hoveredPolygonLine },
+                                        { hover: true }
+                                    );
                                 }
                                 
                                 // Populate the popup and set its coordinates
@@ -444,10 +462,21 @@
                             }
                         });
 
-                        map.on('mouseleave', label_id, () => {
+                        map.on('mouseleave', label_id, (e) => {
                             if (routeId.length > 0) {routeId = []}
                             popup.remove();
                             // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+
+                            if (hoveredPolygonLine !== null) {
+                                console.log("Fix!")
+                                for (var i = 0; i < hoverIdBus.length; i++) {
+                                    map.setFeatureState(
+                                        { source: 'bus_route', id: hoverIdBus[i]},
+                                        { hover: false }
+                                    );
+                                }
+                            }
+                            hoveredPolygonLine = null;
                         });
                     }
                 }
