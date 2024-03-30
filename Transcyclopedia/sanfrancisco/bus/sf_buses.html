@@ -383,6 +383,7 @@
                 for (const feature of bus_agencies.features) {
                     const label = feature.properties.label;
                     const label_id = label;
+                    console.log(label, label_id)
 
                     if (!map.getLayer(label_id)) {
                         map.addLayer({
