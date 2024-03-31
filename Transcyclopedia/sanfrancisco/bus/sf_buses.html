@@ -363,10 +363,10 @@
             let hoverIdBus = [];
             let hoveredPolygonLine = null;
             
-            var bus_agencies = {
-                'type': 'FeatureCollection',
-                'features': geojson_routes
-            }
+            // var bus_agencies = {
+            //     'type': 'FeatureCollection',
+            //     'features': geojson_routes
+            // }
 
             let routeId = [];
             const popup = new mapboxgl.Popup({
@@ -379,7 +379,7 @@
                     'type': 'geojson',
                     'data': {
                         'type': 'FeatureCollection',
-                        'features': bus_agencies
+                        'features': geojson_routes
                     },
                     'generateId': true
                 });
