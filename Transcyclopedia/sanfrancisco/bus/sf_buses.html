@@ -339,6 +339,68 @@
             document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
         }
         getCopyrightYear();
+
+        function getUniqueFeatures(features, comparatorProperty) {
+            const uniqueIds = new Set();
+            const uniqueFeatures = [];
+            for (const feature of features) {
+                const id = feature.properties[comparatorProperty];
+                if (!uniqueIds.has(id)) {
+                    uniqueIds.add(id);
+                    uniqueFeatures.push(feature);
+                }
+            }
+            return uniqueFeatures;
+        }
+
+        function moveItEastBay() {
+            map.moveLayer('routes_bus', 'routes_bear_transit', 'routes_cccta', 'db_routes', 'delta_routes', 'union_city_routes', 'westcat_routes', 'wheels_routes');
+
+            map.on('movestart', () => {
+                map.setFilter('routes_bus', ['has', 'route_short_name']);
+                map.setFilter('routes_bear_transit', ['has', 'route_short_name']);
+                map.setFilter('routes_cccta', ['has', 'route_short_name']);
+                map.setFilter('db_routes', ['has', 'route_short_name']);
+                map.setFilter('delta_routes', ['has', 'route_short_name']);
+                map.setFilter('union_city_routes', ['has', 'route_short_name']);
+                map.setFilter('westcat_routes', ['has', 'route_short_name']);
+
+
+                console.log("Move it!");
+                document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+            });
+
+            map.on('moveend', () => {
+                const features = map.queryRenderedFeatures({
+                    layers: ['routes_bus', 'routes_bear_transit', 'routes_cccta', 'db_routes', 'delta_routes', 'union_city_routes', 'westcat_routes', 'wheels_routes']
+                });
+
+                if (features) {
+                    const uniqueFeatures = getUniqueFeatures(features, 'name');
+                    for (var f = 0; f < uniqueFeatures.length; f ++) {
+                        var name_of_route = uniqueFeatures[f].properties.name;
+                        var color_of_route = uniqueFeatures[f].properties.color;
+                        var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
+                        var desc_of_route = uniqueFeatures[f].properties.route_long_name;
+
+                        document.getElementById("route_short").innerHTML = name_of_route;
+                        document.getElementById("route_short").style.color = `#${text_color_of_route}`;
+                        document.getElementById("route_short").style.backgroundColor = `${color_of_route}40`;
+                        document.getElementById("route_short").style.border = `1px solid ${color_of_route}40`;
+                        document.getElementById("detailed_route").innerHTML = desc_of_route;
+
+                        var routeClone = document.querySelector(".route_radius");
+                        var listToInsertClone = routeClone.cloneNode(true);
+                        document.getElementById("range_of_routes").appendChild(listToInsertClone);
+                    }
+
+                    var all_routes_nearby = document.getElementById("range_of_routes").children;
+                    document.getElementById("range_of_routes").removeChild(all_routes_nearby[0])
+                }
+            });
+        }
+
+        moveItEastBay();
     </script>
 </body>
 </html>
