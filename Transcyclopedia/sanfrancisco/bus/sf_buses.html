@@ -296,31 +296,8 @@
                 zoom: 11.25
             });
 
-            map.on('load', function() {
-                map.addControl(new mapboxgl.NavigationControl());
-                map.scrollZoom.disable();
-            });
-        }
-        mapConfiguration();
-
-        function updateSize() {
-            v = window.innerWidth;
-
-            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
-                document.querySelector(".left_navbar").style.display = "block";
-            }
-        }
-        updateSize();
-        window.addEventListener("resize", updateSize);
-
-        function plotBusLines() {
-            let hoverIdBus = [];
-            let hoveredPolygonLine = null;
-            
-            var bus_agencies = {
-                'type': 'FeatureCollection',
-                'features': geojson_routes
-            }
+            map.addControl(new mapboxgl.NavigationControl());
+            map.scrollZoom.disable();
 
             map.on('style.load', () => {
                 // Insert the layer beneath any symbol layer.
@@ -369,6 +346,27 @@
                     labelLayerId
                 );
             });
+        }
+        mapConfiguration();
+
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
+            }
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
+
+        function plotBusLines() {
+            let hoverIdBus = [];
+            let hoveredPolygonLine = null;
+            
+            var bus_agencies = {
+                'type': 'FeatureCollection',
+                'features': geojson_routes
+            }
 
             let routeId = [];
             const popup = new mapboxgl.Popup({
