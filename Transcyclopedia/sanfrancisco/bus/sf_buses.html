@@ -477,6 +477,7 @@
                 }
             })
         }
+        var seg_one = null;
         
         for (var a = 0; a < link_of_transit_geometry_routes.length; a++) {
             busGeoJsonCreation(link_of_transit_geometry_routes[a]);
@@ -486,9 +487,9 @@
             return new Promise(resolve => setTimeout(resolve, ms));
         }
 
-        sleep(2000).then(() => {
+        sleep(4000).then(() => {
             console.log(geojson_routes)
-            var seg_one = geojson_routes.slice(0, 100);
+            seg_one = geojson_routes.slice(0, 100);
             plotBusLines(seg_one);
         })
 
