@@ -230,6 +230,13 @@
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9q-wheelsbus&limit=700&include_geometry=true"
         ]
         let routeId = [];
+        let hoverIdBus = [];
+        let hoveredPolygonLine = null;
+
+        const popup = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false  
+        });
 
         function busGeoJsonCreation() {
             var bus_route_call = new XMLHttpRequest();
@@ -438,25 +445,6 @@
         }
         updateSize();
         window.addEventListener("resize", updateSize);
-
-        function plotBusLines() {
-            let hoverIdBus = [];
-            let hoveredPolygonLine = null;
-            
-            // var bus_agencies = {
-            //     'type': 'FeatureCollection',
-            //     'features': geojson_routes
-            // }
-            // const popup = new mapboxgl.Popup({
-            //     closeButton: false,
-            //     closeOnClick: false  
-            // });
-
-            // map.on('load', function() {
-                
-            // })
-        }
-        plotBusLines();
 
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
