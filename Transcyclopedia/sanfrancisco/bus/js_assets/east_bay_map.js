@@ -237,3 +237,119 @@ function bearTransitMap() {
     bear_transit_route_call.send();
 }
 bearTransitMap();
+
+var county_connection = []
+function CountyConnectionMap() {
+    var cc_route_call = new XMLHttpRequest();
+    cc_route_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p-countyconnection&limit=700&include_geometry=true");
+    cc_route_call.onreadystatechange = function() {
+        if (cc_route_call.readyState === 4 && cc_route_call.status === 200) {
+            var bus_route_outputs = JSON.parse(cc_route_call.responseText);
+            var agency_bus = bus_route_outputs.routes[0].agency.agency_name;
+
+            for (var b=0; b<bus_route_outputs.routes.length; b++) {
+                var all_bus_lines_name_short = bus_route_outputs.routes[b].route_short_name;
+                var all_bus_lines_name_long = bus_route_outputs.routes[b].route_long_name;
+                var all_bus_lines_color = bus_route_outputs.routes[b].route_color; 
+                var all_bus_lines_text_color = bus_route_outputs.routes[b].route_text_color;
+                var geometry_bus = bus_route_outputs.routes[b].geometry;
+
+                if (geometry_bus === null) {
+                    console.log("nope.")
+                }
+                else {
+                    county_connection.push({
+                        'type': 'Feature',
+                        'geometry': geometry_bus,
+                        'properties': {
+                            'color': `#${all_bus_lines_color}`,
+                            'text_color': `#${all_bus_lines_text_color}`,
+                            'route_short_name': all_bus_lines_name_short,
+                            'route_long_name': all_bus_lines_name_long,
+                            'label': agency_bus
+                        }
+                    })
+                }
+            }
+
+            map.addSource('county_connection', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': county_connection
+                },
+                'generateId': true
+            });
+            console.log("loaded!")
+
+            map.addLayer({
+                'id': 'routes_cccta',
+                'type': 'line',
+                'source': 'county_connection',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-width': 2,
+                    'line-color': [
+                        'case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        ['get', 'color'],
+                        '#c0e7fc',
+                    ], //['get', 'color']
+                },
+            });
+
+            map.on('mouseenter', 'routes_cccta', function(e) {
+                var fs_3 = map.queryRenderedFeatures(e.point, { layers: ['routes_bear_transit']});
+                console.log(fs_3)
+
+                if (fs_3.length > 0) {
+                    for (var f = 0; f < fs_3.length; f ++) {
+                        var name_of_route = fs_3[f].properties.route_short_name;
+                        routeId.push(name_of_route)
+                        
+                        hoveredPolygonLine = fs_3[f].id;
+                        hoverIdBus.push(hoveredPolygonLine);
+
+                        if (hoveredPolygonLine !== null) {
+                            console.log("hello!")
+                            map.setFeatureState(
+                                { source: 'county_connection', id: hoveredPolygonLine },
+                                { hover: false }
+                            );
+                        }
+                        map.setFeatureState(
+                            { source: 'county_connection', id: hoveredPolygonLine },
+                            { hover: true }
+                        );
+                    }
+                    
+                    // Populate the popup and set its coordinates
+                    // based on the feature found.
+                    popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
+                }
+            });
+
+            map.on('mouseleave', 'routes_cccta', (e) => {
+                if (routeId.length > 0) {routeId = []}
+                popup.remove();
+                // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+
+                if (hoveredPolygonLine !== null) {
+                    console.log("Fix!")
+                    for (var i = 0; i < hoverIdBus.length; i++) {
+                        map.setFeatureState(
+                            { source: 'county_connection', id: hoverIdBus[i]},
+                            { hover: false }
+                        );
+                    }
+                }
+                hoveredPolygonLine = null;
+            });
+        }
+    }
+    cc_route_call.send();
+}
+CountyConnectionMap();
