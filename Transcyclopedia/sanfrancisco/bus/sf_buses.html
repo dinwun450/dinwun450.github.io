@@ -397,37 +397,6 @@
                     },
                 });
 
-                // for (const feature of bus_agencies.features) {
-                //     const label = feature.properties.label;
-                //     const label_id = label;
-                //     console.log(label, label_id)
-
-                //     if (!map.getLayer(label_id)) {
-                //         console.log("Huh?")
-
-                //         const input = document.createElement('input');
-                //         input.type = 'checkbox';
-                //         input.id = label;
-                //         input.checked = true;
-                //         // filterGroup.appendChild(input);
-
-                //         const label_for = document.createElement('label');
-                //         label_for.setAttribute('for', label);
-                //         label_for.textContent = label;
-                //         // filterGroup.appendChild(label_for);
-
-                //         input.addEventListener('change', (e) => {
-                //             console.log(label_id);
-
-                //             map.setLayoutProperty(
-                //                 label_id,
-                //                 'visibility',
-                //                 e.target.checked ? 'visible' : 'none'
-                //             );
-                //         });
-                //     }
-                // }
-
                 map.on('mouseenter', 'routes_bus', function(e) {
                     var fs = map.queryRenderedFeatures(e.point, { layers: ['routes_bus']});
                     console.log(fs)
@@ -468,7 +437,7 @@
                         console.log("Fix!")
                         for (var i = 0; i < hoverIdBus.length; i++) {
                             map.setFeatureState(
-                                { source: 'bus_route', id: hoverIdBus[i]},
+                                { source: 'bus_routes', id: hoverIdBus[i]},
                                 { hover: false }
                             );
                         }
