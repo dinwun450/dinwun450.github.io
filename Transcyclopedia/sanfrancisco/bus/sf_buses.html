@@ -261,6 +261,10 @@
             }
             bus_route_call.send();
         }
+
+        for (var a = 0; a < link_of_transit_geometry_routes.length; a++) {
+            busGeoJsonCreation(link_of_transit_geometry_routes[a]);
+        }
         
         function getUniqueFeatures(features, comparatorProperty) {
             const uniqueIds = new Set();
@@ -450,11 +454,6 @@
                 });
             })
         }
-
-        for (var a = 0; a < link_of_transit_geometry_routes.length; a++) {
-            busGeoJsonCreation(link_of_transit_geometry_routes[a]);
-        }
-
         plotBusLines();
 
         function openTab(evt, tabName) {
