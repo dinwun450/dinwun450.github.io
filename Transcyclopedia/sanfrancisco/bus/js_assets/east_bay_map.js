@@ -710,6 +710,6 @@ function UCMap() {
             });
         }
     }
-    delta_route_call.send();
+    uc_route_call.send();
 }
 setTimeout(UCMap, 10000);
