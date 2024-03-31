@@ -593,3 +593,123 @@ function TriDeltaMap() {
     delta_route_call.send();
 }
 setTimeout(TriDeltaMap, 7000);
+
+var uc_transit = [];
+function UCMap() {
+    var uc_route_call = new XMLHttpRequest();
+    uc_route_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9jy-unioncitytransit&limit=700&include_geometry=true");
+    uc_route_call.onreadystatechange = function() {
+        if (uc_route_call.readyState === 4 && uc_route_call.status === 200) {
+            var bus_route_outputs = JSON.parse(uc_route_call.responseText);
+            var agency_bus = bus_route_outputs.routes[0].agency.agency_name;
+
+            for (var b=0; b<bus_route_outputs.routes.length; b++) {
+                var all_bus_lines_name_short = bus_route_outputs.routes[b].route_short_name;
+                var all_bus_lines_name_long = bus_route_outputs.routes[b].route_long_name;
+                var all_bus_lines_color = bus_route_outputs.routes[b].route_color; 
+                var all_bus_lines_text_color = bus_route_outputs.routes[b].route_text_color;
+                var geometry_bus = bus_route_outputs.routes[b].geometry;
+
+                if (all_bus_lines_color === "") {
+                    all_bus_lines_color = "000000";
+                }
+
+                if (geometry_bus === null) {
+                    console.log("nope.")
+                }
+                else {
+                    uc_transit.push({
+                        'type': 'Feature',
+                        'geometry': geometry_bus,
+                        'properties': {
+                            'color': `#${all_bus_lines_color}`,
+                            'text_color': `#${all_bus_lines_text_color}`,
+                            'route_short_name': all_bus_lines_name_short,
+                            'route_long_name': all_bus_lines_name_long,
+                            'label': agency_bus
+                        }
+                    })
+                }
+            }
+
+            map.addSource('union_city', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': uc_transit
+                },
+                'generateId': true
+            });
+            console.log("loaded!")
+
+            map.addLayer({
+                'id': 'union_city_routes',
+                'type': 'line',
+                'source': 'union_city',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-width': 2,
+                    'line-color': [
+                        'case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        ['get', 'color'],
+                        '#c0e7fc',
+                    ], //['get', 'color']
+                },
+            });
+
+            map.on('mouseenter', 'union_city_routes', function(e) {
+                var fs_6 = map.queryRenderedFeatures(e.point, { layers: ['union_city_routes']});
+                console.log(fs_6)
+
+                if (fs_6.length > 0) {
+                    for (var f = 0; f < fs_6.length; f ++) {
+                        var name_of_route = fs_6[f].properties.route_short_name;
+                        routeId.push(name_of_route)
+                        
+                        hoveredPolygonLine = fs_6[f].id;
+                        hoverIdBus.push(hoveredPolygonLine);
+
+                        if (hoveredPolygonLine !== null) {
+                            console.log("hello!")
+                            map.setFeatureState(
+                                { source: 'union_city', id: hoveredPolygonLine },
+                                { hover: false }
+                            );
+                        }
+                        map.setFeatureState(
+                            { source: 'union_city', id: hoveredPolygonLine },
+                            { hover: true }
+                        );
+                    }
+                    
+                    // Populate the popup and set its coordinates
+                    // based on the feature found.
+                    popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
+                }
+            });
+
+            map.on('mouseleave', 'union_city_routes', (e) => {
+                if (routeId.length > 0) {routeId = []}
+                popup.remove();
+                // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+
+                if (hoveredPolygonLine !== null) {
+                    console.log("Fix!")
+                    for (var i = 0; i < hoverIdBus.length; i++) {
+                        map.setFeatureState(
+                            { source: 'union_city', id: hoverIdBus[i]},
+                            { hover: false }
+                        );
+                    }
+                }
+                hoveredPolygonLine = null;
+            });
+        }
+    }
+    delta_route_call.send();
+}
+setTimeout(UCMap, 10000);
