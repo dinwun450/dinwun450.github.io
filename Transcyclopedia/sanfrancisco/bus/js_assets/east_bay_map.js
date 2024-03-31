@@ -236,7 +236,7 @@ function bearTransitMap() {
     }
     bear_transit_route_call.send();
 }
-setTimeout(bearTransitMap(), 5000);
+setTimeout(bearTransitMap, 5000);
 
 var county_connection = []
 function CountyConnectionMap() {
@@ -472,7 +472,7 @@ function DBMap() {
     }
     db_route_call.send();
 }
-setTimeout(DBMap(), 2000);
+setTimeout(DBMap, 2000);
 
 var tri_delta_transit = []
 function TriDeltaMap() {
@@ -592,4 +592,4 @@ function TriDeltaMap() {
     }
     delta_route_call.send();
 }
-setTimeout(TriDeltaMap(), 7000);
+setTimeout(TriDeltaMap, 7000);
