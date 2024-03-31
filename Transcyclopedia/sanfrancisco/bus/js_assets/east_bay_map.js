@@ -236,7 +236,7 @@ function bearTransitMap() {
     }
     bear_transit_route_call.send();
 }
-bearTransitMap();
+setTimeout(bearTransitMap(), 5000);
 
 var county_connection = []
 function CountyConnectionMap() {
