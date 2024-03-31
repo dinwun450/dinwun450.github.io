@@ -236,3 +236,4 @@ function bearTransitMap() {
     }
     bear_transit_route_call.send();
 }
+bearTransitMap();
