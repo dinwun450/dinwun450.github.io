@@ -397,38 +397,38 @@
                     },
                 });
 
-                for (const feature of bus_agencies.features) {
-                    const label = feature.properties.label;
-                    const label_id = label;
-                    console.log(label, label_id)
+                // for (const feature of bus_agencies.features) {
+                //     const label = feature.properties.label;
+                //     const label_id = label;
+                //     console.log(label, label_id)
 
-                    if (!map.getLayer(label_id)) {
-                        console.log("Huh?")
+                //     if (!map.getLayer(label_id)) {
+                //         console.log("Huh?")
 
-                        const input = document.createElement('input');
-                        input.type = 'checkbox';
-                        input.id = label;
-                        input.checked = true;
-                        // filterGroup.appendChild(input);
+                //         const input = document.createElement('input');
+                //         input.type = 'checkbox';
+                //         input.id = label;
+                //         input.checked = true;
+                //         // filterGroup.appendChild(input);
 
-                        const label_for = document.createElement('label');
-                        label_for.setAttribute('for', label);
-                        label_for.textContent = label;
-                        // filterGroup.appendChild(label_for);
+                //         const label_for = document.createElement('label');
+                //         label_for.setAttribute('for', label);
+                //         label_for.textContent = label;
+                //         // filterGroup.appendChild(label_for);
 
-                        input.addEventListener('change', (e) => {
-                            console.log(label_id);
+                //         input.addEventListener('change', (e) => {
+                //             console.log(label_id);
 
-                            map.setLayoutProperty(
-                                label_id,
-                                'visibility',
-                                e.target.checked ? 'visible' : 'none'
-                            );
-                        });
-                    }
-                }
+                //             map.setLayoutProperty(
+                //                 label_id,
+                //                 'visibility',
+                //                 e.target.checked ? 'visible' : 'none'
+                //             );
+                //         });
+                //     }
+                // }
 
-                map.on('mouseenter', label_id, function(e) {
+                map.on('mouseenter', 'routes_bus', function(e) {
                     var fs = map.queryRenderedFeatures(e.point, { layers: [label_id]});
                     console.log(fs)
 
@@ -459,7 +459,7 @@
                     }
                 });
 
-                map.on('mouseleave', label_id, (e) => {
+                map.on('mouseleave', 'routes_bus', (e) => {
                     if (routeId.length > 0) {routeId = []}
                     popup.remove();
                     // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
