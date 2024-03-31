@@ -472,7 +472,7 @@ function DBMap() {
     }
     db_route_call.send();
 }
-DBMap();
+setTimeout(DBMap(), 2000);
 
 var tri_delta_transit = []
 function TriDeltaMap() {
@@ -592,4 +592,4 @@ function TriDeltaMap() {
     }
     delta_route_call.send();
 }
-TriDeltaMap();
+setTimeout(TriDeltaMap(), 4000);
