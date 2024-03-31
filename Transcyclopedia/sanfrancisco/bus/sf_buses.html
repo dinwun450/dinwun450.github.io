@@ -378,31 +378,31 @@
                     'data': bus_agencies
                 });
 
+                map.addLayer({
+                    'id': 'routes_bus',
+                    'type': 'line',
+                    'source': 'bus_routes',
+                    'layout': {
+                        'line-join': 'round',
+                        'line-cap': 'round'
+                    },
+                    'paint': {
+                        'line-width': 2,
+                        'line-color': [
+                            'case',
+                            ['boolean', ['feature-state', 'hover'], false],
+                            ['get', 'color'],
+                            '#c0e7fc',
+                        ], //['get', 'color']
+                    },
+                });
+
                 for (const feature of bus_agencies.features) {
                     const label = feature.properties.label;
                     const label_id = label;
                     console.log(label, label_id)
 
                     if (!map.getLayer(label_id)) {
-                        map.addLayer({
-                            'id': 'routes_bus',
-                            'type': 'line',
-                            'source': 'bus_routes',
-                            'layout': {
-                                'line-join': 'round',
-                                'line-cap': 'round'
-                            },
-                            'paint': {
-                                'line-width': 2,
-                                'line-color': [
-                                    'case',
-                                    ['boolean', ['feature-state', 'hover'], false],
-                                    ['get', 'color'],
-                                    '#c0e7fc',
-                                ], //['get', 'color']
-                            },
-                            'filter': ['==', 'label', label_id]
-                        });
                         console.log("Huh?")
 
                         const input = document.createElement('input');
@@ -425,56 +425,56 @@
                                 e.target.checked ? 'visible' : 'none'
                             );
                         });
-
-                        map.on('mouseenter', label_id, function(e) {
-                            var fs = map.queryRenderedFeatures(e.point, { layers: [label_id]});
-                            console.log(fs)
-
-                            if (fs.length > 0) {
-                                for (var f = 0; f < fs.length; f ++) {
-                                    var name_of_route = fs[f].properties.route_short_name;
-                                    routeId.push(name_of_route)
-                                    
-                                    hoveredPolygonLine = fs_2[f].id;
-                                    hoverIdBus.push(hoveredPolygonLine);
-
-                                    if (hoveredPolygonLine !== null) {
-                                        console.log("hello!")
-                                        map.setFeatureState(
-                                            { source: 'bus_route', id: hoveredPolygonLine },
-                                            { hover: false }
-                                        );
-                                    }
-                                    map.setFeatureState(
-                                        { source: 'bus_route', id: hoveredPolygonLine },
-                                        { hover: true }
-                                    );
-                                }
-                                
-                                // Populate the popup and set its coordinates
-                                // based on the feature found.
-                                popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
-                            }
-                        });
-
-                        map.on('mouseleave', label_id, (e) => {
-                            if (routeId.length > 0) {routeId = []}
-                            popup.remove();
-                            // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
-
-                            if (hoveredPolygonLine !== null) {
-                                console.log("Fix!")
-                                for (var i = 0; i < hoverIdBus.length; i++) {
-                                    map.setFeatureState(
-                                        { source: 'bus_route', id: hoverIdBus[i]},
-                                        { hover: false }
-                                    );
-                                }
-                            }
-                            hoveredPolygonLine = null;
-                        });
                     }
                 }
+
+                map.on('mouseenter', label_id, function(e) {
+                    var fs = map.queryRenderedFeatures(e.point, { layers: [label_id]});
+                    console.log(fs)
+
+                    if (fs.length > 0) {
+                        for (var f = 0; f < fs.length; f ++) {
+                            var name_of_route = fs[f].properties.route_short_name;
+                            routeId.push(name_of_route)
+                            
+                            hoveredPolygonLine = fs_2[f].id;
+                            hoverIdBus.push(hoveredPolygonLine);
+
+                            if (hoveredPolygonLine !== null) {
+                                console.log("hello!")
+                                map.setFeatureState(
+                                    { source: 'bus_routes', id: hoveredPolygonLine },
+                                    { hover: false }
+                                );
+                            }
+                            map.setFeatureState(
+                                { source: 'bus_routes', id: hoveredPolygonLine },
+                                { hover: true }
+                            );
+                        }
+                        
+                        // Populate the popup and set its coordinates
+                        // based on the feature found.
+                        popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
+                    }
+                });
+
+                map.on('mouseleave', label_id, (e) => {
+                    if (routeId.length > 0) {routeId = []}
+                    popup.remove();
+                    // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+
+                    if (hoveredPolygonLine !== null) {
+                        console.log("Fix!")
+                        for (var i = 0; i < hoverIdBus.length; i++) {
+                            map.setFeatureState(
+                                { source: 'bus_route', id: hoverIdBus[i]},
+                                { hover: false }
+                            );
+                        }
+                    }
+                    hoveredPolygonLine = null;
+                });
             })
         }
         var seg_one = null;
