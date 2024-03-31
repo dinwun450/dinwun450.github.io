@@ -375,7 +375,11 @@
             map.on('load', function() {
                 map.addSource('bus_routes', {
                     'type': 'geojson',
-                    'data': bus_agencies
+                    'data': {
+                        'type': 'FeatureCollection',
+                        'features': bus_agencies
+                    },
+                    'generateId': true
                 });
 
                 map.addLayer({
