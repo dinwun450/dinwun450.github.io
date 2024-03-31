@@ -302,7 +302,7 @@ function CountyConnectionMap() {
             });
 
             map.on('mouseenter', 'routes_cccta', function(e) {
-                var fs_3 = map.queryRenderedFeatures(e.point, { layers: ['routes_bear_transit']});
+                var fs_3 = map.queryRenderedFeatures(e.point, { layers: ['routes_cccta']});
                 console.log(fs_3)
 
                 if (fs_3.length > 0) {
