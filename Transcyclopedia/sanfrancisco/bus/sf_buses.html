@@ -208,7 +208,7 @@
         var v = null;
         var geojson_routes = [];
         link_of_transit_geometry_routes = [
-            "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-actransit&limit=700&include_geometry=true",
+            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-actransit&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p3-beartransit&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9j-commuteorgshuttles&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p-countyconnection&limit=700&include_geometry=true", 
@@ -230,9 +230,9 @@
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9q-wheelsbus&limit=700&include_geometry=true"
         ]
 
-        function busGeoJsonCreation(busLink) {
+        function busGeoJsonCreation() {
             var bus_route_call = new XMLHttpRequest();
-            bus_route_call.open("GET", busLink)
+            bus_route_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-actransit&limit=700&include_geometry=true")
             bus_route_call.onreadystatechange = function() {
                 if (bus_route_call.readyState === 4 && bus_route_call.status === 200) {
                     var bus_route_outputs = JSON.parse(bus_route_call.responseText);
@@ -266,10 +266,7 @@
             }
             bus_route_call.send();
         }
-
-        for (var a = 0; a < link_of_transit_geometry_routes.length; a++) {
-            busGeoJsonCreation(link_of_transit_geometry_routes[a]);
-        }
+        busGeoJsonCreation();
         
         function getUniqueFeatures(features, comparatorProperty) {
             const uniqueIds = new Set();
