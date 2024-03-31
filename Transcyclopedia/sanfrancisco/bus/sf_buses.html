@@ -245,17 +245,22 @@
                         var all_bus_lines_text_color = bus_route_outputs.routes[b].route_text_color;
                         var geometry_bus = bus_route_outputs.routes[b].geometry;
 
-                        geojson_routes.push({
-                            'type': 'Feature',
-                            'geometry': geometry_bus,
-                            'properties': {
-                                'color': `#${all_bus_lines_color}`,
-                                'text_color': `#${all_bus_lines_text_color}`,
-                                'route_short_name': all_bus_lines_name_short,
-                                'route_long_name': all_bus_lines_name_long,
-                                'label': agency_bus
-                            }
-                        })
+                        if (geometry_bus === null) {
+                            console.log("nope.")
+                        }
+                        else {
+                            geojson_routes.push({
+                                'type': 'Feature',
+                                'geometry': geometry_bus,
+                                'properties': {
+                                    'color': `#${all_bus_lines_color}`,
+                                    'text_color': `#${all_bus_lines_text_color}`,
+                                    'route_short_name': all_bus_lines_name_short,
+                                    'route_long_name': all_bus_lines_name_long,
+                                    'label': agency_bus
+                                }
+                            })
+                        }
                     }
                 }
             }
