@@ -206,7 +206,7 @@
         alert("Coming Soon!");
 
         var v = null;
-        var bus_geojson_routes = [];
+        var geojson_routes = [];
         link_of_transit_geometry_routes = [
             "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-actransit&limit=700&include_geometry=true",
             "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p3-beartransit&limit=700&include_geometry=true",
@@ -231,7 +231,8 @@
         ]
 
         for (var a = 0; a < link_of_transit_geometry_routes.length; a++) {
-            busGeoJsonCreation(link_of_transit_geometry_routes[a])
+            busGeoJsonCreation(link_of_transit_geometry_routes[a]);
+            plotBusLines(geojson_routes);
         }
 
         function busGeoJsonCreation(busLink) {
@@ -250,7 +251,7 @@
                         var all_bus_lines_text_color = bus_route_outputs.routes[b].route_text_color;
                         var geometry_bus = bus_route_outputs.routes[b].geometry;
 
-                        bus_geojson_routes.push({
+                        geojson_routes.push({
                             'type': 'Feature',
                             'geometry': geometry_bus,
                             'properties': {
@@ -314,13 +315,13 @@
         updateSize();
         window.addEventListener("resize", updateSize);
 
-        function plotBusLines() {
+        function plotBusLines(geojsonConfig) {
             let hoverIdBus = [];
             let hoveredPolygonLine = null;
             
             var bus_agencies = {
                 'type': 'FeatureCollection',
-                'features': bus_geojson_routes
+                'features': geojsonConfig
             }
 
             map.on('style.load', () => {
