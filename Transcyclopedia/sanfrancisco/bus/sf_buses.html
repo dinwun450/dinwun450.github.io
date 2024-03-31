@@ -458,7 +458,12 @@
                 });
             })
         }
-        setTimeout(plotBusLines(), 5000);
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        sleep(5000).then(() => { plotBusLines() });
 
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
