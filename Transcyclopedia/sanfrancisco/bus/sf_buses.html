@@ -409,53 +409,53 @@
                     },
                 });
 
-                map.on('mouseenter', 'routes_bus', function(e) {
-                    var fs = map.queryRenderedFeatures(e.point, { layers: ['routes_bus']});
-                    console.log(fs)
+                // map.on('mouseenter', 'routes_bus', function(e) {
+                //     var fs = map.queryRenderedFeatures(e.point, { layers: ['routes_bus']});
+                //     console.log(fs)
 
-                    if (fs.length > 0) {
-                        for (var f = 0; f < fs.length; f ++) {
-                            var name_of_route = fs[f].properties.route_short_name;
-                            routeId.push(name_of_route)
+                //     if (fs.length > 0) {
+                //         for (var f = 0; f < fs.length; f ++) {
+                //             var name_of_route = fs[f].properties.route_short_name;
+                //             routeId.push(name_of_route)
                             
-                            hoveredPolygonLine = fs[f].id;
-                            hoverIdBus.push(hoveredPolygonLine);
+                //             hoveredPolygonLine = fs[f].id;
+                //             hoverIdBus.push(hoveredPolygonLine);
 
-                            if (hoveredPolygonLine !== null) {
-                                console.log("hello!")
-                                map.setFeatureState(
-                                    { source: 'bus_routes', id: hoveredPolygonLine },
-                                    { hover: false }
-                                );
-                            }
-                            map.setFeatureState(
-                                { source: 'bus_routes', id: hoveredPolygonLine },
-                                { hover: true }
-                            );
-                        }
+                //             if (hoveredPolygonLine !== null) {
+                //                 console.log("hello!")
+                //                 map.setFeatureState(
+                //                     { source: 'bus_routes', id: hoveredPolygonLine },
+                //                     { hover: false }
+                //                 );
+                //             }
+                //             map.setFeatureState(
+                //                 { source: 'bus_routes', id: hoveredPolygonLine },
+                //                 { hover: true }
+                //             );
+                //         }
                         
-                        // Populate the popup and set its coordinates
-                        // based on the feature found.
-                        popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
-                    }
-                });
+                //         // Populate the popup and set its coordinates
+                //         // based on the feature found.
+                //         popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
+                //     }
+                // });
 
-                map.on('mouseleave', 'routes_bus', (e) => {
-                    if (routeId.length > 0) {routeId = []}
-                    popup.remove();
-                    // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+                // map.on('mouseleave', 'routes_bus', (e) => {
+                //     if (routeId.length > 0) {routeId = []}
+                //     popup.remove();
+                //     // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
 
-                    if (hoveredPolygonLine !== null) {
-                        console.log("Fix!")
-                        for (var i = 0; i < hoverIdBus.length; i++) {
-                            map.setFeatureState(
-                                { source: 'bus_routes', id: hoverIdBus[i]},
-                                { hover: false }
-                            );
-                        }
-                    }
-                    hoveredPolygonLine = null;
-                });
+                //     if (hoveredPolygonLine !== null) {
+                //         console.log("Fix!")
+                //         for (var i = 0; i < hoverIdBus.length; i++) {
+                //             map.setFeatureState(
+                //                 { source: 'bus_routes', id: hoverIdBus[i]},
+                //                 { hover: false }
+                //             );
+                //         }
+                //     }
+                //     hoveredPolygonLine = null;
+                // });
             })
         }
         plotBusLines();
