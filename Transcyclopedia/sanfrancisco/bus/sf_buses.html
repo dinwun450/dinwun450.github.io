@@ -429,7 +429,7 @@
                 // }
 
                 map.on('mouseenter', 'routes_bus', function(e) {
-                    var fs = map.queryRenderedFeatures(e.point, { layers: [label_id]});
+                    var fs = map.queryRenderedFeatures(e.point, { layers: ['routes_bus']});
                     console.log(fs)
 
                     if (fs.length > 0) {
@@ -477,7 +477,6 @@
                 });
             })
         }
-        var seg_one = null;
 
         for (var a = 0; a < link_of_transit_geometry_routes.length; a++) {
             busGeoJsonCreation(link_of_transit_geometry_routes[a]);
