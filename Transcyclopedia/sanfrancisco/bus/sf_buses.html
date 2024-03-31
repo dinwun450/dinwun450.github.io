@@ -490,9 +490,8 @@
         sleep(4000).then(() => {
             console.log(geojson_routes)
             seg_one = geojson_routes.slice(0, 100);
+            plotBusLines(seg_one);
         })
-
-        plotBusLines(seg_one);
 
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
