@@ -482,7 +482,8 @@
         for (var a = 0; a < link_of_transit_geometry_routes.length; a++) {
             busGeoJsonCreation(link_of_transit_geometry_routes[a]);
         }
-        plotBusLines(geojson_routes.slice(0, 200));
+        var seg_one = geojson_routes.slice(0, 100);
+        plotBusLines(seg_one);
 
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
