@@ -592,4 +592,4 @@ function TriDeltaMap() {
     }
     delta_route_call.send();
 }
-setTimeout(TriDeltaMap(), 4000);
+setTimeout(TriDeltaMap(), 7000);
