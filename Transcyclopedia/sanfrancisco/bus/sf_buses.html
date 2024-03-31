@@ -409,12 +409,12 @@
                         input.type = 'checkbox';
                         input.id = label;
                         input.checked = true;
-                        filterGroup.appendChild(input);
+                        // filterGroup.appendChild(input);
 
                         const label_for = document.createElement('label');
                         label_for.setAttribute('for', label);
                         label_for.textContent = label;
-                        filterGroup.appendChild(label_for);
+                        // filterGroup.appendChild(label_for);
 
                         input.addEventListener('change', (e) => {
                             console.log(label_id);
