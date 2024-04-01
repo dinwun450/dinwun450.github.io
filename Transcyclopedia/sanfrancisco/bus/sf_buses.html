@@ -376,7 +376,7 @@
                 });
 
                 if (features) {
-                    const uniqueFeatures = getUniqueFeatures(features, 'name');
+                    const uniqueFeatures = getUniqueFeatures(features, 'route_short_name');
                     for (var f = 0; f < uniqueFeatures.length; f ++) {
                         var name_of_route = uniqueFeatures[f].properties.name;
                         var color_of_route = uniqueFeatures[f].properties.color;
