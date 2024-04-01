@@ -41,35 +41,33 @@ function CommuteOrgCreation() {
                 }
             }
 
-            map.on('load', function() {
-                map.addSource('commute_org_routes', {
-                    'type': 'geojson',
-                    'data': {
-                        'type': 'FeatureCollection',
-                        'features': commute_routes
-                    },
-                    'generateId': true
-                });
-                console.log("loaded!")
-    
-                map.addLayer({
-                    'id': 'commute_org',
-                    'type': 'line',
-                    'source': 'commute_org_routes',
-                    'layout': {
-                        'line-join': 'round',
-                        'line-cap': 'round'
-                    },
-                    'paint': {
-                        'line-width': 2,
-                        'line-color': [
-                            'case',
-                            ['boolean', ['feature-state', 'hover'], false],
-                            ['get', 'color'],
-                            '#c0e7fc',
-                        ], //['get', 'color']
-                    },
-                });
+            map.addSource('commute_org_routes', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': commute_routes
+                },
+                'generateId': true
+            });
+            console.log("loaded!")
+
+            map.addLayer({
+                'id': 'commute_org',
+                'type': 'line',
+                'source': 'commute_org_routes',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-width': 2,
+                    'line-color': [
+                        'case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        ['get', 'color'],
+                        '#c0e7fc',
+                    ], //['get', 'color']
+                },
             });
 
             map.on('mouseenter', 'commute_org', function(e) {
@@ -123,4 +121,4 @@ function CommuteOrgCreation() {
     }
     commute_call.send();
 }
-CommuteOrgCreation();
+setTimeout(CommuteOrgCreation, 13000)
