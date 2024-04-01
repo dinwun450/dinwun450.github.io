@@ -365,11 +365,11 @@ body::after {
     list-style-type: none;
 }
 
-#map_inter {
+#map_inter, #map_inter_2, #map_inter_3, #map_inter_4 {
     overflow-y: auto;
 }
 
-#map {
+#map, #map2, #map3, #map4 {
     width: 100%;
     height: 500px;
     border-radius: 10px;

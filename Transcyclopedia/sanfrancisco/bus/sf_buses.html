@@ -409,6 +409,75 @@
         }
         mapConfiguration2();
 
+        function mapConfiguration3() {
+            document.getElementById("map3").style.width = "100%";
+            document.getElementById("map3").style.height = "500px";
+
+            const mapDiv3 = document.getElementById("map3");
+            if (mapDiv3.style.visibility === false) {
+                map.resize();
+            };
+
+            map3 = new mapboxgl.Map({
+                container: 'map2',
+                style: 'mapbox://styles/mapbox/light-v11',
+                center: [-122.1789019, 37.7403623],
+                zoom: 8
+            });
+
+            map3.addControl(new mapboxgl.NavigationControl());
+            map3.scrollZoom.disable();
+
+            map3.on('style.load', () => {
+                // Insert the layer beneath any symbol layer.
+                const layers = map3.getStyle().layers;
+                const labelLayerId = layers.find(
+                    (layer) => layer.type === 'symbol' && layer.layout['text-field']
+                ).id;
+                
+                // The 'building' layer in the Mapbox Streets
+                // vector tileset contains building height data
+                // from OpenStreetMap.
+                map3.addLayer({
+                            'id': 'add-3d-buildings',
+                            'source': 'composite',
+                            'source-layer': 'building',
+                            'filter': ['==', 'extrude', 'true'],
+                            'type': 'fill-extrusion',
+                            'minzoom': 15,
+                            'paint': {
+                            'fill-extrusion-color': '#aaa',
+                            
+                            // Use an 'interpolate' expression to
+                            // add a smooth transition effect to
+                            // the buildings as the user zooms in.
+                            'fill-extrusion-height': [
+                                'interpolate',
+                                ['linear'],
+                                ['zoom'],
+                                15,
+                                0,
+                                15.05,
+                                ['get', 'height']
+                            ],
+                            'fill-extrusion-base': [
+                                'interpolate',
+                                ['linear'],
+                                ['zoom'],
+                                15,
+                                0,
+                                15.05,
+                                ['get', 'min_height']
+                            ],
+                            'fill-extrusion-opacity': 0.6
+                        }
+                    },
+                    labelLayerId
+                );
+            });
+        }
+        mapConfiguration3();
+
         function updateSize() {
             v = window.innerWidth;
 
