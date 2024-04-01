@@ -25,9 +25,6 @@
         <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-bus"></i>&nbsp;&nbsp;Departures</a></li>
         <li class="tablinks header4" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
         <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map (East Bay)</a></li>
-        <li class="tablinks header6" onclick="openTab(event, 'map_inter_2')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map (Peninsula)</a></li>
-        <li class="tablinks header7" onclick="openTab(event, 'map_inter_3')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map (Sonoma-Marin)</a></li>
-        <li class="tablinks header8" onclick="openTab(event, 'map_inter_4')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map (Napa-Solano)</a></li>
         <li><a href="#" onclick="dark_or_light()"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light/Dark Mode</a></li>
         <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
         <p class="copyright">&copy; 2024 Transcyclopedia. Created by Dino Wun.</p>
@@ -205,42 +202,6 @@
             </ul>
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
-        <div class="window" id="map_inter_2">
-            <p id="nameswitch">Interactive Map (Peninsula) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <section class="map_box_container">
-                <!--MAP-->
-                <div id='map2' style="width: 100%; height: 500px;"></div>
-                <!-- <nav id="filter_agency" class="filter_agency"></nav> -->
-            </section>
-            <ul id="range_of_routes2">
-                <li class="route_radius2"><span id="route_short2">-</span>&nbsp;&nbsp;<span id="detailed_route2">Loading...</span></li>
-            </ul>
-            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
-        </div>
-        <div class="window" id="map_inter_3">
-            <p id="nameswitch">Interactive Map (Sonoma-Marin) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <section class="map_box_container">
-                <!--MAP-->
-                <div id='map3' style="width: 100%; height: 500px;"></div>
-                <!-- <nav id="filter_agency" class="filter_agency"></nav> -->
-            </section>
-            <ul id="range_of_routes3">
-                <li class="route_radius3"><span id="route_short3">-</span>&nbsp;&nbsp;<span id="detailed_route3">Loading...</span></li>
-            </ul>
-            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
-        </div>
-        <div class="window" id="map_inter_4">
-            <p id="nameswitch">Interactive Map (Napa-Solano) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <section class="map_box_container">
-                <!--MAP-->
-                <div id='map4' style="width: 100%; height: 500px;"></div>
-                <!-- <nav id="filter_agency" class="filter_agency"></nav> -->
-            </section>
-            <ul id="range_of_routes4">
-                <li class="route_radius4"><span id="route_short4">-</span>&nbsp;&nbsp;<span id="detailed_route4">Loading...</span></li>
-            </ul>
-            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
-        </div>
     </div>
     <script>
         alert("Coming Soon!");
@@ -248,11 +209,7 @@
         var v = null;
         var geojson_routes = [];
         link_of_transit_geometry_routes = [
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-actransit&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p3-beartransit&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9j-commuteorgshuttles&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p-countyconnection&limit=700&include_geometry=true", 
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9j-dumbartonexpress&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc-fairfieldandsuisuntransit&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qb-goldengatetransit&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qbb-marintransit&limit=700&include_geometry=true",
@@ -262,12 +219,8 @@
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc0-soltrans&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qb-sonomacountytransit&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9h-stanford~marguerite&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc2-trideltatransit&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9jy-unioncitytransit&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc60-vacavillecitycoach&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc-vinenapacounty&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc-westcatwesterncontracosta&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9q-wheelsbus&limit=700&include_geometry=true"
         ]
 
         function mapConfiguration() {
@@ -339,144 +292,6 @@
             });
         }
         mapConfiguration();
-
-        function mapConfiguration2() {
-            document.getElementById("map2").style.width = "100%";
-            document.getElementById("map2").style.height = "500px";
-
-            const mapDiv2 = document.getElementById("map2");
-            if (mapDiv2.style.visibility === false) {
-                map.resize();
-            };
-
-            map2 = new mapboxgl.Map({
-                container: 'map2',
-                style: 'mapbox://styles/mapbox/light-v11',
-                center: [-122.1789019, 37.7403623],
-                zoom: 8
-            });
-
-            map2.addControl(new mapboxgl.NavigationControl());
-            map2.scrollZoom.disable();
-
-            map2.on('style.load', () => {
-                // Insert the layer beneath any symbol layer.
-                const layers = map2.getStyle().layers;
-                const labelLayerId = layers.find(
-                    (layer) => layer.type === 'symbol' && layer.layout['text-field']
-                ).id;
-                
-                // The 'building' layer in the Mapbox Streets
-                // vector tileset contains building height data
-                // from OpenStreetMap.
-                map2.addLayer({
-                            'id': 'add-3d-buildings',
-                            'source': 'composite',
-                            'source-layer': 'building',
-                            'filter': ['==', 'extrude', 'true'],
-                            'type': 'fill-extrusion',
-                            'minzoom': 15,
-                            'paint': {
-                            'fill-extrusion-color': '#aaa',
-                            
-                            // Use an 'interpolate' expression to
-                            // add a smooth transition effect to
-                            // the buildings as the user zooms in.
-                            'fill-extrusion-height': [
-                                'interpolate',
-                                ['linear'],
-                                ['zoom'],
-                                15,
-                                0,
-                                15.05,
-                                ['get', 'height']
-                            ],
-                            'fill-extrusion-base': [
-                                'interpolate',
-                                ['linear'],
-                                ['zoom'],
-                                15,
-                                0,
-                                15.05,
-                                ['get', 'min_height']
-                            ],
-                            'fill-extrusion-opacity': 0.6
-                        }
-                    },
-                    labelLayerId
-                );
-            });
-        }
-        mapConfiguration2();
-
-        function mapConfiguration3() {
-            document.getElementById("map3").style.width = "100%";
-            document.getElementById("map3").style.height = "500px";
-
-            const mapDiv3 = document.getElementById("map3");
-            if (mapDiv3.style.visibility === false) {
-                map.resize();
-            };
-
-            map3 = new mapboxgl.Map({
-                container: 'map3',
-                style: 'mapbox://styles/mapbox/light-v11',
-                center: [-122.1789019, 37.7403623],
-                zoom: 8
-            });
-
-            map3.addControl(new mapboxgl.NavigationControl());
-            map3.scrollZoom.disable();
-
-            map3.on('style.load', () => {
-                // Insert the layer beneath any symbol layer.
-                const layers = map3.getStyle().layers;
-                const labelLayerId = layers.find(
-                    (layer) => layer.type === 'symbol' && layer.layout['text-field']
-                ).id;
-                
-                // The 'building' layer in the Mapbox Streets
-                // vector tileset contains building height data
-                // from OpenStreetMap.
-                map3.addLayer({
-                            'id': 'add-3d-buildings',
-                            'source': 'composite',
-                            'source-layer': 'building',
-                            'filter': ['==', 'extrude', 'true'],
-                            'type': 'fill-extrusion',
-                            'minzoom': 15,
-                            'paint': {
-                            'fill-extrusion-color': '#aaa',
-                            
-                            // Use an 'interpolate' expression to
-                            // add a smooth transition effect to
-                            // the buildings as the user zooms in.
-                            'fill-extrusion-height': [
-                                'interpolate',
-                                ['linear'],
-                                ['zoom'],
-                                15,
-                                0,
-                                15.05,
-                                ['get', 'height']
-                            ],
-                            'fill-extrusion-base': [
-                                'interpolate',
-                                ['linear'],
-                                ['zoom'],
-                                15,
-                                0,
-                                15.05,
-                                ['get', 'min_height']
-                            ],
-                            'fill-extrusion-opacity': 0.6
-                        }
-                    },
-                    labelLayerId
-                );
-            });
-        }
-        mapConfiguration3();
 
         function updateSize() {
             v = window.innerWidth;
