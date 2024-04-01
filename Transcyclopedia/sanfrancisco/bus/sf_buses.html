@@ -24,7 +24,10 @@
         <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
         <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-bus"></i>&nbsp;&nbsp;Departures</a></li>
         <li class="tablinks header4" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
-        <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
+        <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map (East Bay)</a></li>
+        <li class="tablinks header6" onclick="openTab(event, 'map_inter_2')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map (Peninsula)</a></li>
+        <li class="tablinks header7" onclick="openTab(event, 'map_inter_3')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map (Sonoma-Marin)</a></li>
+        <li class="tablinks header8" onclick="openTab(event, 'map_inter_4')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map (Napa-Solano)</a></li>
         <li><a href="#" onclick="dark_or_light()"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light/Dark Mode</a></li>
         <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
         <p class="copyright">&copy; 2024 Transcyclopedia. Created by Dino Wun.</p>
@@ -191,14 +194,50 @@
             </div>
         </div>
         <div class="window" id="map_inter">
-            <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <p id="nameswitch">Interactive Map (East Bay) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
             <section class="map_box_container">
                 <!--MAP-->
                 <div id='map' style="width: 100%; height: 500px;"></div>
                 <nav id="filter_agency" class="filter_agency"></nav>
             </section>
             <ul id="range_of_routes">
-                <li class="route_radius"><span id="route_short">-</span>&nbsp;&nbsp;<span id="detailed_route">Loading...</span></li>
+                <li class="route_radius"><span id="route_short">-</span>&nbsp;&nbsp;<span id="detailed_route">Wait for a while, then drag the map to filter nearby routes.</span></li>
+            </ul>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
+        </div>
+        <div class="window" id="map_inter_2">
+            <p id="nameswitch">Interactive Map (Peninsula) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <section class="map_box_container">
+                <!--MAP-->
+                <div id='map2' style="width: 100%; height: 500px;"></div>
+                <!-- <nav id="filter_agency" class="filter_agency"></nav> -->
+            </section>
+            <ul id="range_of_routes2">
+                <li class="route_radius2"><span id="route_short2">-</span>&nbsp;&nbsp;<span id="detailed_route2">Loading...</span></li>
+            </ul>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
+        </div>
+        <div class="window" id="map_inter_3">
+            <p id="nameswitch">Interactive Map (Sonoma-Marin) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <section class="map_box_container">
+                <!--MAP-->
+                <div id='map3' style="width: 100%; height: 500px;"></div>
+                <!-- <nav id="filter_agency" class="filter_agency"></nav> -->
+            </section>
+            <ul id="range_of_routes3">
+                <li class="route_radius3"><span id="route_short3">-</span>&nbsp;&nbsp;<span id="detailed_route3">Loading...</span></li>
+            </ul>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
+        </div>
+        <div class="window" id="map_inter_4">
+            <p id="nameswitch">Interactive Map (Napa-Solano) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <section class="map_box_container">
+                <!--MAP-->
+                <div id='map4' style="width: 100%; height: 500px;"></div>
+                <!-- <nav id="filter_agency" class="filter_agency"></nav> -->
+            </section>
+            <ul id="range_of_routes4">
+                <li class="route_radius4"><span id="route_short4">-</span>&nbsp;&nbsp;<span id="detailed_route4">Loading...</span></li>
             </ul>
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
