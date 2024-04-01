@@ -274,29 +274,14 @@
             document.getElementById("map").style.width = "100%";
             document.getElementById("map").style.height = "500px";
 
-            document.getElementById("map2").style.width = "100%";
-            document.getElementById("map2").style.height = "500px";
-
             const mapDiv = document.getElementById("map");
             if (mapDiv.style.visibility === false) {
-                map.resize();
-            };
-
-            const mapDiv2 = document.getElementById("map2");
-            if (mapDiv2.style.visibility === false) {
                 map.resize();
             };
 
             mapboxgl.accessToken = 'pk.eyJ1IjoiZGlud3VuNDUwIiwiYSI6ImNsaTR4c253bTAzNnIzcnF1aTh0eTN2a3kifQ.fjcqiGi68hyGpUAKAo9Tcw';
             map = new mapboxgl.Map({
                 container: 'map',
-                style: 'mapbox://styles/mapbox/light-v11',
-                center: [-122.1789019, 37.7403623],
-                zoom: 8
-            });
-
-            map2 = new mapboxgl.Map({
-                container: 'map2',
                 style: 'mapbox://styles/mapbox/light-v11',
                 center: [-122.1789019, 37.7403623],
                 zoom: 8
@@ -352,6 +337,17 @@
                     labelLayerId
                 );
             });
+        }
+        mapConfiguration();
+
+        function mapConfiguration2() {
+            document.getElementById("map2").style.width = "100%";
+            document.getElementById("map2").style.height = "500px";
+
+            const mapDiv2 = document.getElementById("map2");
+            if (mapDiv2.style.visibility === false) {
+                map.resize();
+            };
 
             map2 = new mapboxgl.Map({
                 container: 'map',
@@ -411,7 +407,7 @@
                 );
             });
         }
-        mapConfiguration();
+        mapConfiguration2();
 
         function updateSize() {
             v = window.innerWidth;
