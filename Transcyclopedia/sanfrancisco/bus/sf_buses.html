@@ -384,11 +384,11 @@
                         var desc_of_route = uniqueFeatures[f].properties.route_long_name;
                         var agency = uniqueFeatures[f].properties.label;
 
-                        document.getElementById("route_short").innerHTML = `${name_of_route} (${agency})`;
-                        document.getElementById("route_short").style.color = `#${text_color_of_route}`;
+                        document.getElementById("route_short").innerHTML = `${name_of_route}`;
+                        document.getElementById("route_short").style.color = `${text_color_of_route}`;
                         document.getElementById("route_short").style.backgroundColor = `${color_of_route}40`;
                         document.getElementById("route_short").style.border = `1px solid ${color_of_route}40`;
-                        document.getElementById("detailed_route").innerHTML = desc_of_route;
+                        document.getElementById("detailed_route").innerHTML = `${desc_of_route} (${agency})`;
 
                         var routeClone = document.querySelector(".route_radius");
                         var listToInsertClone = routeClone.cloneNode(true);
