@@ -211,7 +211,9 @@ body::after {
     margin-bottom: 5px;
 }
 
-#route, #line_for_each_departure_bus, #route_short, #affectedroutes {
+#route, #line_for_each_departure_bus, #route_short,
+#route_short2, #route_short3, #route_short4, 
+#affectedroutes {
     display: inline-block;
     width: fit-content;
     padding-left: 5px;
@@ -424,7 +426,7 @@ body::after {
     margin-right: 5px;
 }
 
-#range_of_routes {
+#range_of_routes, #range_of_routes2, #range_of_routes3, #range_of_routes4 {
     width: 100%;
     height: 300px;
     background: rgba( 255, 255, 255, 0.25 );
@@ -434,7 +436,7 @@ body::after {
     overflow-y: auto;
 }
 
-.route_radius {
+.route_radius, .route_radius2, .route_radius3, .route_radius4 {
     list-style-type: none;
     margin-bottom: 5px;
 }
