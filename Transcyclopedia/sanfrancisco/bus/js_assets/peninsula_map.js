@@ -1,6 +1,6 @@
-let routeId2 = [];
-let hoverIdBus2 = [];
-let hoveredPolygonLine2 = null;
+let routeId = [];
+let hoverIdBus = [];
+let hoveredPolygonLine = null;
 
 const popup2 = new mapboxgl.Popup({
     closeButton: false,
@@ -77,45 +77,45 @@ function CommuteOrgCreation() {
                 if (fs.length > 0) {
                     for (var f = 0; f < fs.length; f ++) {
                         var name_of_route = fs[f].properties.route_short_name;
-                        routeId2.push(name_of_route)
+                        routeId.push(name_of_route)
                         
-                        hoveredPolygonLine2 = fs[f].id;
-                        hoverIdBus2.push(hoveredPolygonLine2);
+                        hoveredPolygonLine = fs[f].id;
+                        hoverIdBus.push(hoveredPolygonLine);
 
-                        if (hoveredPolygonLine2 !== null) {
+                        if (hoveredPolygonLine !== null) {
                             console.log("hello!")
                             map.setFeatureState(
-                                { source: 'commute_org_routes', id: hoveredPolygonLine2 },
+                                { source: 'commute_org_routes', id: hoveredPolygonLine },
                                 { hover: false }
                             );
                         }
                         map.setFeatureState(
-                            { source: 'commute_org_routes', id: hoveredPolygonLine2 },
+                            { source: 'commute_org_routes', id: hoveredPolygonLine },
                             { hover: true }
                         );
                     }
                     
                     // Populate the popup and set its coordinates
                     // based on the feature found.
-                    popup2.setLngLat(e.lngLat.wrap()).setHTML(routeId2).addTo(map);
+                    popup2.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
                 }
             });
 
             map.on('mouseleave', 'commute_org', (e) => {
-                if (routeId2.length > 0) {routeId2 = []}
+                if (routeId.length > 0) {routeId = []}
                 popup2.remove();
                 // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
 
-                if (hoveredPolygonLine2 !== null) {
+                if (hoveredPolygonLine !== null) {
                     console.log("Fix!")
-                    for (var i = 0; i < hoverIdBus2.length; i++) {
+                    for (var i = 0; i < hoverIdBus.length; i++) {
                         map.setFeatureState(
-                            { source: 'commute_org_routes', id: hoverIdBus2[i]},
+                            { source: 'commute_org_routes', id: hoverIdBus[i]},
                             { hover: false }
                         );
                     }
                 }
-                hoveredPolygonLine2 = null;
+                hoveredPolygonLine = null;
             });
         }
     }
@@ -193,45 +193,45 @@ function SamTransCreation() {
                 if (fs.length > 0) {
                     for (var f = 0; f < fs.length; f ++) {
                         var name_of_route = fs[f].properties.route_short_name;
-                        routeId2.push(name_of_route)
+                        routeId.push(name_of_route)
                         
-                        hoveredPolygonLine2 = fs[f].id;
-                        hoverIdBus2.push(hoveredPolygonLine2);
+                        hoveredPolygonLine = fs[f].id;
+                        hoverIdBus.push(hoveredPolygonLine);
 
-                        if (hoveredPolygonLine2 !== null) {
+                        if (hoveredPolygonLine !== null) {
                             console.log("hello!")
                             map.setFeatureState(
-                                { source: 'samtrans_routes', id: hoveredPolygonLine2 },
+                                { source: 'samtrans_routes', id: hoveredPolygonLine },
                                 { hover: false }
                             );
                         }
                         map.setFeatureState(
-                            { source: 'samtrans_routes', id: hoveredPolygonLine2 },
+                            { source: 'samtrans_routes', id: hoveredPolygonLine },
                             { hover: true }
                         );
                     }
                     
                     // Populate the popup and set its coordinates
                     // based on the feature found.
-                    popup2.setLngLat(e.lngLat.wrap()).setHTML(routeId2).addTo(map);
+                    popup2.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
                 }
             });
 
             map.on('mouseleave', 'samtrans', (e) => {
-                if (routeId2.length > 0) {routeId2 = []}
+                if (routeId.length > 0) {routeId = []}
                 popup2.remove();
                 // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
 
-                if (hoveredPolygonLine2 !== null) {
+                if (hoveredPolygonLine !== null) {
                     console.log("Fix!")
-                    for (var i = 0; i < hoverIdBus2.length; i++) {
+                    for (var i = 0; i < hoverIdBus.length; i++) {
                         map.setFeatureState(
-                            { source: 'samtrans_routes', id: hoverIdBus2[i]},
+                            { source: 'samtrans_routes', id: hoverIdBus[i]},
                             { hover: false }
                         );
                     }
                 }
-                hoveredPolygonLine2 = null;
+                hoveredPolygonLine = null;
             });
         }
     }
@@ -309,45 +309,45 @@ function StanfordCreation() {
                 if (fs.length > 0) {
                     for (var f = 0; f < fs.length; f ++) {
                         var name_of_route = fs[f].properties.route_short_name;
-                        routeId2.push(name_of_route)
+                        routeId.push(name_of_route)
                         
-                        hoveredPolygonLine2 = fs[f].id;
-                        hoverIdBus2.push(hoveredPolygonLine2);
+                        hoveredPolygonLine = fs[f].id;
+                        hoverIdBus.push(hoveredPolygonLine);
 
-                        if (hoveredPolygonLine2 !== null) {
+                        if (hoveredPolygonLine !== null) {
                             console.log("hello!")
                             map.setFeatureState(
-                                { source: 'stanford_routes', id: hoveredPolygonLine2 },
+                                { source: 'stanford_routes', id: hoveredPolygonLine },
                                 { hover: false }
                             );
                         }
                         map.setFeatureState(
-                            { source: 'stanford_routes', id: hoveredPolygonLine2 },
+                            { source: 'stanford_routes', id: hoveredPolygonLine },
                             { hover: true }
                         );
                     }
                     
                     // Populate the popup and set its coordinates
                     // based on the feature found.
-                    popup2.setLngLat(e.lngLat.wrap()).setHTML(routeId2).addTo(map);
+                    popup2.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
                 }
             });
 
             map.on('mouseleave', 'stanford', (e) => {
-                if (routeId2.length > 0) {routeId2 = []}
+                if (routeId.length > 0) {routeId = []}
                 popup2.remove();
                 // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
 
-                if (hoveredPolygonLine2 !== null) {
+                if (hoveredPolygonLine !== null) {
                     console.log("Fix!")
-                    for (var i = 0; i < hoverIdBus2.length; i++) {
+                    for (var i = 0; i < hoverIdBus.length; i++) {
                         map.setFeatureState(
-                            { source: 'stanford_routes', id: hoverIdBus2[i]},
+                            { source: 'stanford_routes', id: hoverIdBus[i]},
                             { hover: false }
                         );
                     }
                 }
-                hoveredPolygonLine2 = null;
+                hoveredPolygonLine = null;
             });
         }
     }
