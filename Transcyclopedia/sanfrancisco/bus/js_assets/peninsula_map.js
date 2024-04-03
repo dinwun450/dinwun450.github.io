@@ -1,6 +1,6 @@
-let routeId = [];
-let hoverIdBus = [];
-let hoveredPolygonLine = null;
+// let routeId = [];
+// let hoverIdBus = [];
+// let hoveredPolygonLine = null;
 
 const popup2 = new mapboxgl.Popup({
     closeButton: false,
