@@ -1,7 +1,7 @@
 ggt = [];
 function GoldenGateCreation() {
     var ggt_call = new XMLHttpRequest();
-    ggt_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9h-stanford~marguerite&limit=700&include_geometry=true");
+    ggt_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qb-goldengatetransit&limit=700&include_geometry=true");
     ggt_call.onreadystatechange = function() {
         if (ggt_call.readyState === 4 && ggt_call.status === 200) {
             var bus_route_outputs = JSON.parse(ggt_call.responseText);
