@@ -352,7 +352,7 @@ function CountyConnectionMap() {
     }
     cc_route_call.send();
 }
-CountyConnectionMap();
+setTimeout(CountyConnectionMap, 1000);
 
 var db = []
 function DBMap() {
