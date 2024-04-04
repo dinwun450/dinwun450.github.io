@@ -212,12 +212,7 @@
         var geojson_routes = [];
         link_of_transit_geometry_routes = [
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc-fairfieldandsuisuntransit&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qb-goldengatetransit&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qbb-marintransit&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qbc9-petalumatransit&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qbdx-santarosacitybus&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc0-soltrans&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qb-sonomacountytransit&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc60-vacavillecitycoach&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc-vinenapacounty&limit=700&include_geometry=true",
         ]
@@ -352,7 +347,12 @@
                 'commute_org', 
                 'db_routes', 
                 'delta_routes', 
+                'golden_gate_transit',
+                'marin_transit',
+                'petaluma_transit',
                 'samtrans',
+                'santa_rosa_city_bus',
+                'sonoma_county_transit',
                 'stanford',
                 'union_city_routes', 
                 'westcat_routes', 
@@ -366,7 +366,12 @@
                 map.setFilter('commute_org', ['has', 'route_short_name']);
                 map.setFilter('db_routes', ['has', 'route_short_name']);
                 map.setFilter('delta_routes', ['has', 'route_short_name']);
+                map.setFilter('golden_gate_transit', ['has', 'route_short_name']);
+                map.setFilter('marin_transit', ['has', 'route_short_name']);
+                map.setFilter('petaluma_transit', ['has', 'route_short_name']);
                 map.setFilter('samtrans', ['has', 'route_short_name']);
+                map.setFilter('santa_rosa_city_bus', ['has', 'route_short_name']);
+                map.setFilter('sonoma_county_transit', ['has', 'route_short_name']);
                 map.setFilter('stanford', ['has', 'route_short_name']);
                 map.setFilter('union_city_routes', ['has', 'route_short_name']);
                 map.setFilter('westcat_routes', ['has', 'route_short_name']);
@@ -385,7 +390,12 @@
                         'commute_org',
                         'db_routes', 
                         'delta_routes', 
+                        'golden_gate_transit',
+                        'marin_transit',
+                        'petaluma_transit',
                         'samtrans',
+                        'santa_rosa_city_bus',
+                        'sonoma_county_transit',
                         'stanford',
                         'union_city_routes', 
                         'westcat_routes', 
