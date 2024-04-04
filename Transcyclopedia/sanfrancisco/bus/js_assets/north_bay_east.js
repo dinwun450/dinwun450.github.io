@@ -1,7 +1,7 @@
 napa_county = [];
 function VineTransitCreation() {
     var vine_call = new XMLHttpRequest();
-    vine_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qbdx-santarosacitybus&limit=700&include_geometry=true");
+    vine_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc-vinenapacounty&limit=700&include_geometry=true");
     vine_call.onreadystatechange = function() {
         if (vine_call.readyState === 4 && vine_call.status === 200) {
             var bus_route_outputs = JSON.parse(vine_call.responseText);
