@@ -214,11 +214,9 @@
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qb-goldengatetransit&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qbb-marintransit&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qbc9-petalumatransit&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8-samtrans&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qbdx-santarosacitybus&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc0-soltrans&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qb-sonomacountytransit&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9h-stanford~marguerite&limit=700&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc60-vacavillecitycoach&include_geometry=true",
             // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc-vinenapacounty&limit=700&include_geometry=true",
         ]
@@ -346,14 +344,29 @@
         }
 
         function moveItEastBay() {
-            map.moveLayer('routes_bus', 'routes_bear_transit', 'routes_cccta', 'db_routes', 'delta_routes', 'union_city_routes', 'westcat_routes', 'wheels_routes');
+            map.moveLayer(
+                'routes_bus', 
+                'routes_bear_transit', 
+                'routes_cccta',
+                'commute_org', 
+                'db_routes', 
+                'delta_routes', 
+                'samtrans',
+                'stanford',
+                'union_city_routes', 
+                'westcat_routes', 
+                'wheels_routes'
+            );
 
             map.on('movestart', () => {
                 map.setFilter('routes_bus', ['has', 'route_short_name']);
                 map.setFilter('routes_bear_transit', ['has', 'route_short_name']);
                 map.setFilter('routes_cccta', ['has', 'route_short_name']);
+                map.setFilter('commute_org', ['has', 'route_short_name']);
                 map.setFilter('db_routes', ['has', 'route_short_name']);
                 map.setFilter('delta_routes', ['has', 'route_short_name']);
+                map.setFilter('samtrans', ['has', 'route_short_name']);
+                map.setFilter('stanford', ['has', 'route_short_name']);
                 map.setFilter('union_city_routes', ['has', 'route_short_name']);
                 map.setFilter('westcat_routes', ['has', 'route_short_name']);
 
@@ -364,7 +377,19 @@
 
             map.on('moveend', () => {
                 const features = map.queryRenderedFeatures({
-                    layers: ['routes_bus', 'routes_bear_transit', 'routes_cccta', 'db_routes', 'delta_routes', 'union_city_routes', 'westcat_routes', 'wheels_routes']
+                    layers: [
+                        'routes_bus', 
+                        'routes_bear_transit', 
+                        'routes_cccta', 
+                        'commute_org',
+                        'db_routes', 
+                        'delta_routes', 
+                        'samtrans',
+                        'stanford',
+                        'union_city_routes', 
+                        'westcat_routes', 
+                        'wheels_routes'
+                    ]
                 });
 
                 if (features) {
@@ -375,6 +400,10 @@
                         var text_color_of_route = uniqueFeatures[f].properties.text_color;
                         var desc_of_route = uniqueFeatures[f].properties.route_long_name;
                         var agency = uniqueFeatures[f].properties.label;
+
+                        if (name_of_route === "") {
+                            name_of_route = "&nbsp;&nbsp;&nbsp;"
+                        }
 
                         document.getElementById("route_short").innerHTML = `${name_of_route}`;
                         document.getElementById("route_short").style.color = `${text_color_of_route}`;
@@ -393,7 +422,7 @@
             });
         }
 
-        setTimeout(moveItEastBay, 20000);
+        setTimeout(moveItEastBay, 30000);
     </script>
 </body>
 </html>
