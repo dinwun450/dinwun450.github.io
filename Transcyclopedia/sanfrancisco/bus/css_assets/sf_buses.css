@@ -211,8 +211,7 @@ body::after {
     margin-bottom: 5px;
 }
 
-#route, #line_for_each_departure_bus, #route_short,
-#route_short2, #route_short3, #route_short4, 
+#route, #line_for_each_departure_bus, #route_short, 
 #affectedroutes {
     display: inline-block;
     width: fit-content;
@@ -365,11 +364,11 @@ body::after {
     list-style-type: none;
 }
 
-#map_inter, #map_inter_2, #map_inter_3, #map_inter_4 {
+#map_inter {
     overflow-y: auto;
 }
 
-#map, #map2, #map3, #map4 {
+#map {
     width: 100%;
     height: 500px;
     border-radius: 10px;

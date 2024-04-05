@@ -99,13 +99,13 @@
 
 
 /* Scrollbars */
-#map_inter::-webkit-scrollbar, #about_buses::-webkit-scrollbar, #departures::-webkit-scrollbar {
+#lines::-webkit-scrollbar, #map_inter::-webkit-scrollbar, #about_buses::-webkit-scrollbar, #departures::-webkit-scrollbar {
     width: 5px;
     position: relative;
     right: 20px;
 }
 
-#map_inter::-webkit-scrollbar-track, #about_buses::-webkit-scrollbar-track, #departures::-webkit-scrollbar-track {
+#lines::-webkit-scrollbar-track, #map_inter::-webkit-scrollbar-track, #about_buses::-webkit-scrollbar-track, #departures::-webkit-scrollbar-track {
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -113,7 +113,7 @@
     right: 2px;
 }
 
-.light_mode #map_inter::-webkit-scrollbar-track, .light_mode #about_buses::-webkit-scrollbar-track, .light_mode #departures::-webkit-scrollbar-track {
+.light_mode #lines::-webkit-scrollbar-track, .light_mode #map_inter::-webkit-scrollbar-track, .light_mode #about_buses::-webkit-scrollbar-track, .light_mode #departures::-webkit-scrollbar-track {
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -121,13 +121,13 @@
     right: 2px;
 }
 
-#map_inter::-webkit-scrollbar-thumb, #about_buses::-webkit-scrollbar-thumb, #departures::-webkit-scrollbar-thumb {
+#lines::-webkit-scrollbar-thumb, #map_inter::-webkit-scrollbar-thumb, #about_buses::-webkit-scrollbar-thumb, #departures::-webkit-scrollbar-thumb {
     border: 1px solid rgba(255, 255, 255, 0.18);
     background: rgba(255, 255, 255, 0.25);
     border-radius: 10px;
 }
 
-.light_mode #map_inter::-webkit-scrollbar-thumb, .light_mode #about_buses::-webkit-scrollbar-thumb, .light_mode #departures::-webkit-scrollbar-thumb {
+.light_mode #lines::-webkit-scrollbar-thumb, .light_mode #map_inter::-webkit-scrollbar-thumb, .light_mode #about_buses::-webkit-scrollbar-thumb, .light_mode #departures::-webkit-scrollbar-thumb {
     border: 1px solid rgba(0, 0, 0, 0.18);
     background: rgba(0, 0, 0, 0.25);
     border-radius: 10px;
@@ -167,13 +167,19 @@
     border-radius: 10px;
 }
 
-.alerts_stop_bus::-webkit-scrollbar {
+.alerts_stop_bus::-webkit-scrollbar, .alert_entity_routes::-webkit-scrollbar {
     width: 5px;
     position: relative;
     right: 20px;
 }
 
-.alerts_stop_bus::-webkit-scrollbar-track {
+.headerforbusalerts {
+    height: 5px;
+    position: relative;
+    right: 20px;
+}
+
+.alerts_stop_bus::-webkit-scrollbar-track .alert_entity_routes::-webkit-scrollbar-track, .headerforbusalerts::-webkit-scrollbar-track {
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -181,7 +187,7 @@
     right: 2px;
 }
 
-.light_mode .alerts_stop_bus::-webkit-scrollbar-track {
+.light_mode .alerts_stop_bus::-webkit-scrollbar-track, .light_mode .alert_entity_routes::-webkit-scrollbar-track, .light_mode .headerforbusalerts::-webkit-scrollbar-track {
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -189,13 +195,13 @@
     right: 2px;
 }
 
-.alerts_stop_bus::-webkit-scrollbar-thumb {
+.alerts_stop_bus::-webkit-scrollbar-thumb .alert_entity_routes::-webkit-scrollbar-thumb, .headerforbusalerts::-webkit-scrollbar-thumb {
     border: 1px solid rgba(255, 255, 255, 0.18);
     background: rgba(255, 255, 255, 0.25);
     border-radius: 10px;
 }
 
-.light_mode .alerts_stop_bus::-webkit-scrollbar-thumb {
+.light_mode .alerts_stop_bus::-webkit-scrollbar-thumb, .light_mode .alert_entity_routes::-webkit-scrollbar-thumb, .light_mode .headerforbusalerts::-webkit-scrollbar-thumb {
     border: 1px solid rgba(0, 0, 0, 0.18);
     background: rgba(0, 0, 0, 0.25);
     border-radius: 10px;
