@@ -173,7 +173,7 @@
     right: 20px;
 }
 
-.headerforbusalerts {
+.headerforbusalerts::-webkit-scrollbar {
     height: 5px;
     position: relative;
     right: 20px;
