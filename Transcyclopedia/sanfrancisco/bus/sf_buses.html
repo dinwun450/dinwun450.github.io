@@ -211,12 +211,6 @@
 
         var v = null;
         var geojson_routes = [];
-        link_of_transit_geometry_routes = [
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc-fairfieldandsuisuntransit&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc0-soltrans&limit=700&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc60-vacavillecitycoach&include_geometry=true",
-            // "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc-vinenapacounty&limit=700&include_geometry=true",
-        ]
 
         function mapConfiguration() {
             document.getElementById("map").style.width = "100%";
@@ -340,7 +334,7 @@
             return uniqueFeatures;
         }
 
-        function moveItEastBay() {
+        function moveIt() {
             map.moveLayer(
                 'routes_bus', 
                 'routes_bear_transit', 
@@ -348,14 +342,18 @@
                 'commute_org', 
                 'db_routes', 
                 'delta_routes', 
+                'fast',
                 'golden_gate_transit',
                 'marin_transit',
                 'petaluma_transit',
                 'samtrans',
                 'santa_rosa_city_bus',
+                'soltrans',
                 'sonoma_county_transit',
                 'stanford',
                 'union_city_routes', 
+                'vacaville_city_coach',
+                'vine_transit',
                 'westcat_routes', 
                 'wheels_routes'
             );
@@ -367,14 +365,18 @@
                 map.setFilter('commute_org', ['has', 'route_short_name']);
                 map.setFilter('db_routes', ['has', 'route_short_name']);
                 map.setFilter('delta_routes', ['has', 'route_short_name']);
+                map.setFilter('fast', ['has', 'route_short_name']);
                 map.setFilter('golden_gate_transit', ['has', 'route_short_name']);
                 map.setFilter('marin_transit', ['has', 'route_short_name']);
                 map.setFilter('petaluma_transit', ['has', 'route_short_name']);
                 map.setFilter('samtrans', ['has', 'route_short_name']);
                 map.setFilter('santa_rosa_city_bus', ['has', 'route_short_name']);
+                map.setFilter('soltrans', ['has', 'route_short_name']);
                 map.setFilter('sonoma_county_transit', ['has', 'route_short_name']);
                 map.setFilter('stanford', ['has', 'route_short_name']);
                 map.setFilter('union_city_routes', ['has', 'route_short_name']);
+                map.setFilter('vacaville_city_coach', ['has', 'route_short_name']);
+                map.setFilter('vine_transit', ['has', 'route_short_name']);
                 map.setFilter('westcat_routes', ['has', 'route_short_name']);
 
 
@@ -390,15 +392,19 @@
                         'routes_cccta', 
                         'commute_org',
                         'db_routes', 
-                        'delta_routes', 
+                        'delta_routes',
+                        'fast',
                         'golden_gate_transit',
                         'marin_transit',
                         'petaluma_transit',
                         'samtrans',
                         'santa_rosa_city_bus',
+                        'soltrans',
                         'sonoma_county_transit',
                         'stanford',
-                        'union_city_routes', 
+                        'union_city_routes',
+                        'vacaville_city_coach',
+                        'vine_transit', 
                         'westcat_routes', 
                         'wheels_routes'
                     ]
@@ -415,6 +421,14 @@
 
                         if (name_of_route === "") {
                             name_of_route = "&nbsp;&nbsp;&nbsp;"
+                        }
+
+                        if (color_of_route === "") {
+                            color_of_route = "#000000";
+                        }
+
+                        if (text_color_of_route === "") {
+                            text_color_of_route = "#ffffff";
                         }
 
                         document.getElementById("route_short").innerHTML = `${name_of_route}`;
@@ -434,7 +448,7 @@
             });
         }
 
-        setTimeout(moveItEastBay, 30000);
+        setTimeout(moveIt, 30000);
     </script>
 </body>
 </html>
