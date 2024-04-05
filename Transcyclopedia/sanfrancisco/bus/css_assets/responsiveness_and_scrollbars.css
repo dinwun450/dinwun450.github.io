@@ -95,6 +95,10 @@
     .wrapper_for_departure_bus {
         padding-right: 5px;
     }
+
+    .alert_entity_agency, .alert_entity_routes {
+        width: 92%;
+    }
 }
 
 
