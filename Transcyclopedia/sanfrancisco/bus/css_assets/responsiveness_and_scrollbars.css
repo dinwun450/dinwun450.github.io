@@ -96,8 +96,12 @@
         padding-right: 5px;
     }
 
-    .alert_entity_agency, .alert_entity_routes {
+    .alert_entity_agency, .alert_entity_routes, #bus_alerts {
         width: 92%;
+    }
+
+    #alerts input, .headerforbusalerts, #alert_desc_routes, #alert_desc_agency {
+        margin-left: 10px;
     }
 }
 
