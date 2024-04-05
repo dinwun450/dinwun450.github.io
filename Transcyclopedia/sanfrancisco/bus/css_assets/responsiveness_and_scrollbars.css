@@ -66,7 +66,7 @@
         display: none;
     }
 
-    #departures input, .headerforbus, #bus_departures, #list_of_departures_bus, #bus_routes {
+    #departures input, .headerforbus, #bus_departures, #list_of_departures_bus, #bus_routes, .alerts_stop_bus {
         margin-left: 9px;
     }
 
@@ -100,7 +100,7 @@
         width: 92%;
     }
 
-    #alerts input, .headerforbusalerts, #alert_desc_routes, #alert_desc_agency {
+    #alerts input, .headerforbusalerts, #alert_desc_routes, #alert_desc_agency, #each_stop_alert {
         margin-left: 10px;
     }
 }
