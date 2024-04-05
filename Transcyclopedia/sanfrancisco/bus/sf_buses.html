@@ -423,15 +423,13 @@
                             name_of_route = "&nbsp;&nbsp;&nbsp;"
                         }
 
-                        if (color_of_route === "") {
+                        if (color_of_route === "#") {
                             color_of_route = "#000000";
                         }
-                        console.log(color_of_route);
 
-                        if (text_color_of_route === "") {
+                        if (text_color_of_route === "#") {
                             text_color_of_route = "#ffffff";
                         }
-                        console.log(text_color_of_route);
 
                         document.getElementById("route_short").innerHTML = `${name_of_route}`;
                         document.getElementById("route_short").style.color = `${text_color_of_route}`;
