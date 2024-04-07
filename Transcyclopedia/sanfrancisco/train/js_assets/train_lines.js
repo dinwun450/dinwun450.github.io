@@ -30,6 +30,10 @@ function changeTrainLines(b) {
 }
 
 function compileTrainLines(InsertOneStopID) {
+    document.querySelector(".train_lines").innerHTML = `
+    <li id="route_entity"><span id="route">-</span> &nbsp; <span id="desc_train">Select a Train Agency.</span><br></li>
+    `
+    
     var new_line_request = new XMLHttpRequest();
     new_line_request.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${InsertOneStopID}&limit=700&include_alerts=true`);
     new_line_request.onreadystatechange = function() {
@@ -50,11 +54,11 @@ function compileTrainLines(InsertOneStopID) {
 
                 var routetoClone = document.getElementById("route_entity");
                 var routeCloned = routetoClone.cloneNode(true);
-                document.getElementById("train_lines").appendChild(routeCloned);
+                document.querySelector(".train_lines").appendChild(routeCloned);
             }
 
-            var childrenRoutes = document.getElementById("train_lines").children;
-            document.getElementById("train_lines").removeChild(childrenRoutes[0]);
+            var childrenRoutes = document.querySelector(".train_lines").children;
+            document.querySelector(".train_lines").removeChild(childrenRoutes[0]);
         }
     }
     new_line_request.send();
