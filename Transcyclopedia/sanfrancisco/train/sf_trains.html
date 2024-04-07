@@ -9,6 +9,7 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="css_assets/sf_trains.css">
     <script src="js_assets/train_info.js"></script>
+    <script src="js_assets/train_lines.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -56,7 +57,7 @@
         </div>
         <div class="window" id="lines">
             <p id="nameswitch">Lines <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="trains_lines" onchange="">
+            <select name="" id="trains_lines" onchange="changeTrainLines();">
                 <option value="prompt">Select Train Agency</option>
                 <option value="ace">Altamont Corridor Express</option>
                 <option value="caltrain">Caltrain</option>
