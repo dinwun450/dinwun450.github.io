@@ -34,7 +34,7 @@ function changeTrainLines(b) {
 
 function compileTrainLines(InsertOneStopID) {
     document.querySelector(".train_lines").innerHTML = `
-    <li id="route_entity"><span id="route">-</span> &nbsp; <span id="desc_train">Select a Train Agency.</span><br></li>
+    <li id="route_entity"><span id="route">-</span> &nbsp; <span id="desc_train">Loading...</span><br></li>
     `
 
     var new_line_request = new XMLHttpRequest();
