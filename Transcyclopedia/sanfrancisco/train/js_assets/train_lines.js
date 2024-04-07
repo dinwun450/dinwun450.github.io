@@ -18,6 +18,9 @@ function changeTrainLines(b) {
             break;
         default:
             operator_onestop_id = "";
+            document.querySelector(".train_lines").innerHTML = `
+            <li id="route_entity"><span id="route">-</span> &nbsp; <span id="desc_train">Select a Train Agency.</span><br></li>
+            `
             break;
     }
 
@@ -33,7 +36,7 @@ function compileTrainLines(InsertOneStopID) {
     document.querySelector(".train_lines").innerHTML = `
     <li id="route_entity"><span id="route">-</span> &nbsp; <span id="desc_train">Select a Train Agency.</span><br></li>
     `
-    
+
     var new_line_request = new XMLHttpRequest();
     new_line_request.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${InsertOneStopID}&limit=700&include_alerts=true`);
     new_line_request.onreadystatechange = function() {
