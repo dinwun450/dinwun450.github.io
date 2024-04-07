@@ -119,6 +119,10 @@ body::after {
     overflow-y: auto;
 }
 
+#about_trains {
+    overflow-y: none;
+}
+
 #train_info, #train_routes, #train_departures, #train_alerts {
     margin-top: 10px;
     width: 95%;
