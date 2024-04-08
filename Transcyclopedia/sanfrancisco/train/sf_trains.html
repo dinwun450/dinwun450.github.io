@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css_assets/sf_trains.css">
     <script src="js_assets/train_info.js"></script>
     <script src="js_assets/train_lines.js"></script>
+    <script src="js_assets/train_departures.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -73,7 +74,7 @@
         <div class="window" id="departures">
             <p id="nameswitch">Departures <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a station..." id="stationgetter" autocomplete="off">
-            <select name="" id="trains_departures">
+            <select name="" id="trains_departures" onchange="changeTrainDepartures(value);">
                 <option value="prompt">Select Train Agency</option>
                 <option value="ace">Altamont Corridor Express</option>
                 <option value="caltrain">Caltrain</option>
