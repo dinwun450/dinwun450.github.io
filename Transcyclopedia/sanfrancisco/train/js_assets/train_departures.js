@@ -63,6 +63,7 @@ function compileDepartures(insertOneStopStop) {
 
             for (var i=0; i<departure_outputs.length; i++) {
                 var route_short_name = departure_outputs[i].trip.route.route_short_name;
+                var trip_short_name = departure_outputs[i].trip.trip_short_name;
                 var route_headsign = departure_outputs[i].trip.trip_headsign;
                 var route_color = departure_outputs[i].trip.route.route_color;
                 var route_text_color = departure_outputs[i].trip.route.route_text_color;
@@ -107,7 +108,7 @@ function compileDepartures(insertOneStopStop) {
                 document.getElementById("line_for_train_departure").style.color = `#${route_text_color}`;
                 document.getElementById("line_for_train_departure").style.backgroundColor = `#${route_color}40`;
                 document.getElementById("line_for_train_departure").style.border = `1px solid #${route_color}`;
-                document.getElementById("train_headsign").innerHTML = route_headsign;
+                document.getElementById("train_headsign").innerHTML = `${route_headsign} (Train ${trip_short_name})`;
 
                 var departure_entity = document.getElementById("line_for_departure_train");
                 var cloned_departure = departure_entity.cloneNode(true);
