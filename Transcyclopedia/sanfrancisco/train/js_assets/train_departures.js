@@ -73,11 +73,14 @@ function compileDepartures(insertOneStopStop) {
                     case (null):
                         arrival = departure_outputs[i].arrival.scheduled;
                         document.getElementById("train_departure_entity").innerHTML = `${arrival} <span id="delay"></span>`;
+                        document.getElementById("train_departure_entity").style.color = "black";
+
+                        document.getElementById("delay").innerHTML = "(scheduled)";
                         document.getElementById("delay").style.color = "black";
                         break;
                     default:
                         document.getElementById("train_departure_entity").innerHTML = `${arrival} <span id="delay"></span>`;
-                        document.getElementById("delay").style.color = "black";
+                        document.getElementById("train_departure_entity").style.color = "green";
 
                         switch (delay) {
                             case (null):
