@@ -1,4 +1,4 @@
-var departure_onestop_id = "";
+var departure_onestop_id = ""; 
 
 function changeTrainDepartures(c) {
     var get_stop = document.getElementById("stationgetter").value;
