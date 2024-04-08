@@ -1,7 +1,7 @@
 var departure_onestop_id = "";
-var get_stop = document.getElementById("stationgetter").value;
 
 function changeTrainDepartures(c) {
+    var get_stop = document.getElementById("stationgetter").value;
     var agency = c;
 
     switch(agency) {
