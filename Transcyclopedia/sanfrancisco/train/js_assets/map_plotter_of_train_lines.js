@@ -1,3 +1,5 @@
+var geojson_routes = [];
+
 function plotACELines() {
     var ace_line_call = new XMLHttpRequest();
     ace_line_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-acealtamontcorridorexpress&include_geometry=true");
