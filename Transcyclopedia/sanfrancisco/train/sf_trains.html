@@ -11,6 +11,7 @@
     <script src="js_assets/train_info.js"></script>
     <script src="js_assets/train_lines.js"></script>
     <script src="js_assets/train_departures.js"></script>
+    <script src="js_assets/train_alerts.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -88,7 +89,7 @@
         </div>
         <div class="window" id="alerts">
             <p id="nameswitch">Alerts <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="trains_alerts">
+            <select name="" id="trains_alerts" onchange="changeAgencyInAlerts(value);">
                 <option value="prompt">Select Train Agency</option>
                 <option value="ace">Altamont Corridor Express</option>
                 <option value="caltrain">Caltrain</option>
