@@ -52,7 +52,7 @@ function compileAlerts(oneStopAgency) {
                 document.querySelector(".alert_entity").appendChild(cloneAlert);
             }
 
-            var all_alerts = document.querySelector(".alert_entity");
+            var all_alerts = document.querySelector(".alert_entity").children;
             document.querySelector(".alert_entity").removeChild(all_alerts[0]);
         }
     }
