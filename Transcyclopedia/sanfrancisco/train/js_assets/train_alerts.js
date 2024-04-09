@@ -40,16 +40,22 @@ function compileAlerts(oneStopAgency) {
     alert_call.open("GET", `https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=${oneStopAgency}&include_alerts=true`);
     alert_call.onreadystatechange = function() {
         if (alert_call.readyState === 4 && alert_call.status === 200) {
-            var alert_outputs = JSON.parse(alert_call.responseText).agencies[0].alerts;
+            var alert_outputs = JSON.parse(alert_call.responseText)
+            var alert_base = alert_outputs.agencies[0].alerts;
+            
+            if (alert_base.length === 0) {
+                document.getElementById("alert_desc").innerHTML = `There are no alerts for ${alert_outputs.agencies[0].agency_name}`;
+            }
+            else {
+                for (var i=0; i<alert_base.length; i++) {
+                    var header_text = alert_base[i].header_text[0].text;
+                    var desc_text = alert_base[i].description_text[0].text;
 
-            for (var i=0; i<alert_outputs.length; i++) {
-                var header_text = alert_outputs[i].header_text[0].text;
-                var desc_text = alert_outputs[i].description_text[0].text;
-
-                document.getElementById("alert_desc").innerHTML = `<b>${header_text}</b><br>${desc_text}`;
-                var alertNode = document.getElementById("alert_desc");
-                var cloneAlert = alertNode.cloneNode(true);
-                document.querySelector(".alert_entity").appendChild(cloneAlert);
+                    document.getElementById("alert_desc").innerHTML = `<b>${header_text}</b><br>${desc_text}`;
+                    var alertNode = document.getElementById("alert_desc");
+                    var cloneAlert = alertNode.cloneNode(true);
+                    document.querySelector(".alert_entity").appendChild(cloneAlert);
+                }
             }
 
             var all_alerts = document.querySelector(".alert_entity").children;
