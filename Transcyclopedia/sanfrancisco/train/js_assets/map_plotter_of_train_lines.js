@@ -30,7 +30,7 @@ function plotACELines() {
     }
     ace_line_call.send();
 }
-plotACELines();
+setTimeout(plotACELines, 1000);
 
 function plotCaltrainLines() {
     var caltrain_line_call = new XMLHttpRequest();
@@ -62,7 +62,7 @@ function plotCaltrainLines() {
     }
     caltrain_line_call.send();
 }
-plotCaltrainLines();
+setTimeout(plotCaltrainLines, 2000);
 
 function plotCapitolCorridorLines() {
     var cc_line_call = new XMLHttpRequest();
@@ -94,7 +94,7 @@ function plotCapitolCorridorLines() {
     }
     cc_line_call.send();
 }
-plotCapitolCorridorLines();
+setTimeout(plotCapitolCorridorLines, 3000);
 
 function plotSmartLines() {
     var smart_line_call = new XMLHttpRequest();
@@ -126,7 +126,7 @@ function plotSmartLines() {
     }
     smart_line_call.send();
 }
-plotSmartLines();
+setTimeout(plotSmartLines, 4000);
 
 function plotAllTrainLines() {
     var train_agencies = {
@@ -149,7 +149,7 @@ function plotAllTrainLines() {
         const labelLayerId = layers.find(
             (layer) => layer.type === 'symbol' && layer.layout['text-field']
         ).id;
-        
+
         map.addLayer({
                 'id': 'add-3d-buildings',
                 'source': 'composite',
@@ -187,4 +187,4 @@ function plotAllTrainLines() {
         labelLayerId
     })
 }
-setTimeout(plotAllTrainLines, 5000)
+setTimeout(plotAllTrainLines, 8000)
