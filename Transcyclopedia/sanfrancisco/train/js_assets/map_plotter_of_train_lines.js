@@ -128,4 +128,19 @@ function plotSmartLines() {
 }
 plotSmartLines();
 
-console.log(geojson_routes);
+function plotAllTrainLines() {
+    var train_agencies = {
+        'type': 'FeatureCollection',
+        'features': geojson_routes
+    }
+
+    map.addSource('train_routes', {
+        'type': 'geojson',
+        'data': {
+            train_agencies
+        },
+        'generateId': true
+    });
+    console.log("Loaded!");
+}
+setTimeout(plotAllTrainLines, 5000)
