@@ -397,7 +397,7 @@
             });
 
             map.on('mouseenter', 'all_trains', function(e) {
-                var fs = map.queryRenderedFeatures(e.point, { layers: ['routes_bus']});
+                var fs = map.queryRenderedFeatures(e.point, { layers: ['all_trains']});
                 console.log(fs)
 
                 if (fs.length > 0) {
