@@ -446,6 +446,70 @@
         }
         setTimeout(plotAllTrainLines, 5000);
 
+        function getUniqueFeatures(features, comparatorProperty) {
+            const uniqueIds = new Set();
+            const uniqueFeatures = [];
+            for (const feature of features) {
+                const id = feature.properties[comparatorProperty];
+                if (!uniqueIds.has(id)) {
+                    uniqueIds.add(id);
+                    uniqueFeatures.push(feature);
+                }
+            }
+            return uniqueFeatures;
+        }
+
+        function moveTrains() {
+            map.moveLayer('all_trains');
+            map.on('movestart', () => {
+                map.setFilter('all_trains', ['has', 'route_short_name']);
+                document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+            });
+
+            map.on('moveend', () => {
+                const features = map.queryRenderedFeatures({
+                    layers: ['all_trains']
+                });
+
+                if (features) {
+                    const uniqueFeatures = getUniqueFeatures(features, 'route_short_name');
+                    for (var f = 0; f < uniqueFeatures.length; f ++) {
+                        var name_of_route = uniqueFeatures[f].properties.route_short_name;
+                        var color_of_route = uniqueFeatures[f].properties.color;
+                        var text_color_of_route = uniqueFeatures[f].properties.text_color;
+                        var desc_of_route = uniqueFeatures[f].properties.route_long_name;
+                        var agency = uniqueFeatures[f].properties.label;
+
+                        if (name_of_route === "") {
+                            name_of_route = "&nbsp;&nbsp;&nbsp;"
+                        }
+
+                        if (color_of_route === "#") {
+                            color_of_route = "#000000";
+                        }
+
+                        if (text_color_of_route === "#") {
+                            text_color_of_route = "#ffffff";
+                        }
+
+                        document.getElementById("route_short").innerHTML = `${name_of_route}`;
+                        document.getElementById("route_short").style.color = `${text_color_of_route}`;
+                        document.getElementById("route_short").style.backgroundColor = `${color_of_route}40`;
+                        document.getElementById("route_short").style.border = `1px solid ${color_of_route}40`;
+                        document.getElementById("detailed_route").innerHTML = `${desc_of_route} (${agency})`;
+
+                        var routeClone = document.querySelector(".route_radius");
+                        var listToInsertClone = routeClone.cloneNode(true);
+                        document.getElementById("range_of_routes").appendChild(listToInsertClone);
+                    }
+
+                    var all_routes_nearby = document.getElementById("range_of_routes").children;
+                    document.getElementById("range_of_routes").removeChild(all_routes_nearby[0])
+                }
+            });
+        }
+        setTimeout(moveTrains, 6000);
+
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("window");
