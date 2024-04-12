@@ -372,6 +372,20 @@
                 }),
                 labelLayerId
             })
+
+            map.addLayer({
+                'id': 'all_trains',
+                'source': "train_routes",
+                'type': 'line',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-width': 3,
+                    'line-color': ['get', 'color']
+                }
+            });
         }
         setTimeout(plotAllTrainLines, 5000);
 
