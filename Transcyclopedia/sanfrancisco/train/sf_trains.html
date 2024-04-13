@@ -8,6 +8,7 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="css_assets/sf_trains.css">
+    <link rel="stylesheet" href="css_assets/light_and_dark.css">
     <script src="js_assets/train_info.js"></script>
     <script src="js_assets/train_lines.js"></script>
     <script src="js_assets/train_departures.js"></script>
@@ -536,6 +537,11 @@
         }
         updateSize();
         window.addEventListener("resize", updateSize);
+
+        function dark_or_light() {
+            var element = document.body;
+            element.classList.toggle("light_mode");
+        }
     </script>
 </body>
 </html>
