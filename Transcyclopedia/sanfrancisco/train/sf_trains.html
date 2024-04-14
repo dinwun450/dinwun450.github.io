@@ -544,6 +544,16 @@
             var element = document.body;
             element.classList.toggle("light_mode");
         }
+
+        function openNav() {
+            document.querySelector(".left_navbar").style.display = "block";
+        }
+
+        /* Close/hide the sidenav */
+        function closeNav() {
+            document.querySelector(".left_navbar").style.display = "none";
+            console.log(document.querySelector(".left_navbar").getAttribute("style"))
+        }
     </script>
 </body>
 </html>
