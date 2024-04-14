@@ -1,0 +1,37 @@
+@media (max-width: 988px) {
+    .left_navbar {
+        display: none;
+        width: 35%;
+        background-color: #666;
+        z-index: 3;
+    }
+
+    .light_mode .left_navbar {
+        background-color: #aaa;
+    }
+
+    .left_navbar li {
+        width: 97%;
+    }
+
+    .left_navbar li a.closebtn {
+        display: block;
+    }
+
+    .left_navbar .x:hover { 
+        background-color: #0398fc98;
+        transition: 0.5s;
+    }
+
+    .main {
+        width: 100%;
+    }
+
+    #nameswitch i {
+        display: block;
+    }
+
+    .alert_entity {
+        width: 90%;
+    }
+}
