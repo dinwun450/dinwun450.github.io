@@ -1,0 +1,49 @@
+.stats::-webkit-scrollbar, #range_of_routes::-webkit-scrollbar,
+#about_trains::-webkit-scrollbar, #lines::-webkit-scrollbar, 
+#alerts::-webkit-scrollbar, #map_inter::-webkit-scrollbar,
+#list_of_train_departures::-webkit-scrollbar {
+    width: 5px;
+    position: relative;
+    right: 20px;
+}
+
+.stats::-webkit-scrollbar-track, #range_of_routes::-webkit-scrollbar-track,
+#about_trains::-webkit-scrollbar-track, #lines::-webkit-scrollbar-track, 
+#alerts::-webkit-scrollbar-track, #map_inter::-webkit-scrollbar-track,
+#list_of_train_departures::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+.stats::-webkit-scrollbar-thumb, #range_of_routes::-webkit-scrollbar-thumb,
+#about_trains::-webkit-scrollbar-thumb, #lines::-webkit-scrollbar-thumb, 
+#alerts::-webkit-scrollbar-thumb, #map_inter::-webkit-scrollbar-thumb,
+#list_of_train_departures::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+}
+
+/* Light & Dark styling */
+.light_mode .stats::-webkit-scrollbar-track, .light_mode #range_of_routes::-webkit-scrollbar-track,
+.light_mode #about-trains::-webkit-scrollbar-track, .light_mode #lines::-webkit-scrollbar-track, 
+.light_mode #alerts::-webkit-scrollbar-track, .light_mode #map_inter::-webkit-scrollbar-track,
+.light_mode #list_of_train_departures::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+.light_mode .stats::-webkit-scrollbar-thumb, .light_mode #range_of_routes::-webkit-scrollbar-thumb,
+.light_mode #about-trains::-webkit-scrollbar-thumb, .light_mode #lines::-webkit-scrollbar-thumb, 
+.light_mode #alerts::-webkit-scrollbar-thumb, .light_mode #map_inter::-webkit-scrollbar-thumb,
+.light_mode #list_of_train_departures::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
