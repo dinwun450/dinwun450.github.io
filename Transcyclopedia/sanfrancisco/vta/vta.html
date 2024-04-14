@@ -434,7 +434,8 @@
                         document.getElementById("route_headsign_vta_bus").innerHTML = route_headsign;
 
                         if (departure_bus_outputs_base.departures[i].trip.route.alerts.length === 0) {
-                            console.log("No route alerts in sight...")
+                            console.log("No route alerts in sight...");
+                            document.getElementById("alerts_bus").innerHTML = "";
                         }
                         else {
                             document.getElementById("alerts_bus").innerHTML = `(<i class="fa-solid fa-triangle-exclamation alert_triangle"></i> ${departure_bus_outputs_base.departures[i].trip.route.alerts.length})`;
