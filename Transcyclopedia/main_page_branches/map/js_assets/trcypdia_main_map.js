@@ -1,7 +1,14 @@
 window.onload = function() {
     var fullGeoJson = [];
     var fullGeoJsonRoutes = [];
-    console.log("This is the map area! We'll connect to the main page soon!")
+    let routeId = [];
+    let hoverId = [];
+    let hoveredPolygonLine = null;
+
+    const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false  
+    });
 
     function getCopyrightYear() {
         var date = new Date();
@@ -90,7 +97,7 @@ window.onload = function() {
                             });
 
                             map.addLayer({
-                                'id': 'route',
+                                'id': 'routes_nearby',
                                 'type': 'line',
                                 'source': 'route',
                                 'layout': {
@@ -101,6 +108,54 @@ window.onload = function() {
                                     'line-width': 4,
                                     'line-color': ['get', 'color']
                                 }
+                            });
+
+                            map.on('mouseenter', 'routes_nearby', function(e) {
+                                var fs = map.queryRenderedFeatures(e.point, { layers: ['routes_nearby']});
+                                console.log(fs)
+                
+                                if (fs.length > 0) {
+                                    for (var f = 0; f < fs.length; f ++) {
+                                        var name_of_route = fs[f].properties.route_short_name;
+                                        routeId.push(name_of_route)
+                                        
+                                        hoveredPolygonLine = fs[f].id;
+                                        hoverId.push(hoveredPolygonLine);
+                
+                                        if (hoveredPolygonLine !== null) {
+                                            console.log("hello!")
+                                            map.setFeatureState(
+                                                { source: 'route', id: hoveredPolygonLine },
+                                                { hover: false }
+                                            );
+                                        }
+                                        map.setFeatureState(
+                                            { source: 'route', id: hoveredPolygonLine },
+                                            { hover: true }
+                                        );
+                                    }
+                                    
+                                    // Populate the popup and set its coordinates
+                                    // based on the feature found.
+                                    popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
+                                }
+                            });
+                
+                            map.on('mouseleave', 'routes_nearby', (e) => {
+                                if (routeId.length > 0) {routeId = []}
+                                popup.remove();
+                                // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+                
+                                if (hoveredPolygonLine !== null) {
+                                    console.log("Fix!")
+                                    for (var i = 0; i < hoverId.length; i++) {
+                                        map.setFeatureState(
+                                            { source: 'route', id: hoverId[i]},
+                                            { hover: false }
+                                        );
+                                    }
+                                }
+                                hoveredPolygonLine = null;
                             });
 
                             map.addLayer({
