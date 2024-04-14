@@ -35,3 +35,33 @@
         width: 90%;
     }
 }
+
+@media (max-width: 600px) { 
+    #nameswitch {
+        font-size: 30px;
+    }
+
+    .left_navbar {
+        width: 100%;
+        z-index: 3;
+    }
+
+    .window {
+        overflow-y: scroll;
+    }
+
+    .info {
+        width: 100%;
+        height: 100%;
+    }
+
+    .stats {
+        float: left;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        display: none;
+    }
+}
