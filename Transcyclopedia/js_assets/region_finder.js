@@ -11,7 +11,7 @@ function changeSwitch(c) {
             <li><a href="https://dinwun450.github.io/Transcyclopedia/sanfrancisco/vta/vta.html" id="vta"><img src="img_assets/vta_logo.png" style="width: 50px; height: auto;"></a></li>
             <li><a href="https://dinwun450.github.io/Transcyclopedia/sanfrancisco/ferry/sf_ferry.html" id="ferry"><i class="fa-solid fa-ferry" style="font-size: 35px;"></i></a></li>
             <li><a href="https://dinwun450.github.io/Transcyclopedia/sanfrancisco/bus/sf_buses.html" id="bus"><i class="fa-solid fa-bus" style="font-size: 35px;"></i></a></li>
-            <li><a href="#" id="train"><i class="fa-solid fa-train" style="font-size: 35px;"></i></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/sanfrancisco/train/sf_trains.html" id="train"><i class="fa-solid fa-train" style="font-size: 35px;"></i></a></li>
             `
             break;
         case "losangeles":
