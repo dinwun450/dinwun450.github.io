@@ -64,4 +64,37 @@
         right: 0;
         display: none;
     }
+
+    #departures input, .headerfortrain,
+    #list_of_train_departures, #trains_departures,
+    #trains_alerts, #trains_lines,
+    #trains_info, .alert_entity {
+        width: 90%;
+    }
+
+    #line_for_departure_train {
+        width: 93%;
+        height: fit-content;
+        overflow: hidden;
+        background: rgba( 255, 255, 255, 0.25 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        border-radius: 5px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+    }
+
+    #train_headsign {
+        width: 90%;
+    }
+
+    #line_for_train_departure {
+        margin-left: 2px;
+    }
+
+    #train_departure_entity {
+        left: 1.5px;
+    }
+
+    .wrapper_for_train_departure {
+        padding-right: 5px;
+    }
 }
