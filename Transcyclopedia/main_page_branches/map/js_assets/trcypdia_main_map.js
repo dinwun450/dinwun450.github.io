@@ -29,12 +29,15 @@ window.onload = function() {
     setTimeout(getLocation, 2000);
 
     function mapConfig(position) {
+        var centerPos = [position.coords.longitude, position.coords.latitude];
+        console.log(centerPos);
+        
         mapboxgl.accessToken = 'pk.eyJ1IjoiZGlud3VuNDUwIiwiYSI6ImNsaTR4c253bTAzNnIzcnF1aTh0eTN2a3kifQ.fjcqiGi68hyGpUAKAo9Tcw';
         map = new mapboxgl.Map({
             container: 'map', // container ID
             // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
             style: 'mapbox://styles/mapbox/streets-v12', // style URL
-            center: [position.coords.longitude, position.coords.latitude], // starting position [lng, lat]
+            center: centerPos, // starting position [lng, lat]
             zoom: 16 // starting zoom
         });
 
