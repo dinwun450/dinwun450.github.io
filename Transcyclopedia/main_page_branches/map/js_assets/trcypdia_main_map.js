@@ -47,8 +47,9 @@ window.onload = function() {
                         }
                     })
                 }
-                console.log(fullGeoJsonRoutes)
+                console.log(fullGeoJsonRoutes);
             }
+            plotMaps();
         }
         routes_nearby.send();
     }
@@ -193,7 +194,6 @@ window.onload = function() {
             }
         });
     }
-    setTimeout(plotMaps, 2000);
 
     function getUniqueFeatures(features, comparatorProperty) {
         const uniqueIds = new Set();
