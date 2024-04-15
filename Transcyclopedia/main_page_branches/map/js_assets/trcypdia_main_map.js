@@ -19,8 +19,9 @@ window.onload = function() {
 
     function getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(routeMapper);
-            navigator.geolocation.getCurrentPosition(stopsLocator);
+            navigator.geolocation.getCurrentPosition(mapConfig)
+            navigator.geolocation.getCurrentPosition(setTimeout(routeMapper, 2000));
+            navigator.geolocation.getCurrentPosition(setTimeout(stopsLocator, 4000));
         } else {
             alert("Transcyclopedia wanted the location! Please enable it next time!")
         }
