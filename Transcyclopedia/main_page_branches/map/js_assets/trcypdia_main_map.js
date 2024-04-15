@@ -110,7 +110,8 @@ window.onload = function() {
             'data': {
                 'type': 'FeatureCollection',
                 'features': fullGeoJsonRoutes
-            }
+            },
+            'generateId': true
         });
 
         map.addLayer({
