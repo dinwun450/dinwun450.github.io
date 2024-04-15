@@ -44,7 +44,6 @@ window.onload = function() {
         map.addControl(new mapboxgl.NavigationControl());
         map.scrollZoom.disable();
     }
-    mapConfig();
 
     function routeMapper(position) {
         var routes_nearby = new XMLHttpRequest();
