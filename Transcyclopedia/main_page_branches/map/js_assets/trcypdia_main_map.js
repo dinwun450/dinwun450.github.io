@@ -28,7 +28,7 @@ window.onload = function() {
     }
     setTimeout(getLocation, 2000);
 
-    function mapConfig() {
+    function mapConfig(position) {
         mapboxgl.accessToken = 'pk.eyJ1IjoiZGlud3VuNDUwIiwiYSI6ImNsaTR4c253bTAzNnIzcnF1aTh0eTN2a3kifQ.fjcqiGi68hyGpUAKAo9Tcw';
         map = new mapboxgl.Map({
             container: 'map', // container ID
