@@ -36,7 +36,16 @@ window.onload = function() {
                 console.log(output_routes);
 
                 for (var r=0; r<output_routes.routes.length; r++) {
-                    fullGeoJsonRoutes.push({'type': 'Feature', 'geometry': output_routes.routes[r].geometry, 'properties': {"color": `#${output_routes.routes[r].route_color}`}})
+                    fullGeoJsonRoutes.push({
+                        'type': 'Feature', 
+                        'geometry': output_routes.routes[r].geometry, 
+                        'properties': {
+                            "color": `#${output_routes.routes[r].route_color}`,
+                            'text_color': `#${output_routes.routes[r].text_color}`,
+                            'route_short_name': output_routes.routes[r].route_short_name,
+                            'route_long_name': output_routes.routes[r].route_long_name,
+                        }
+                    })
                 }
                 console.log(fullGeoJsonRoutes)
             }
