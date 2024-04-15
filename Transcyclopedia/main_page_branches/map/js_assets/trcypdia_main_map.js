@@ -252,5 +252,5 @@ window.onload = function() {
             }
         })
     }
-    setTimeout(moveMap, 3000);
+    setTimeout(moveMap, 10000);
 }
