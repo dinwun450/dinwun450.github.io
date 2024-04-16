@@ -1,6 +1,5 @@
 window.onload = function() {
     var fullGeoJson = [];
-    var fullGeoJsonRoutes = [];
     let routeId = [];
     let hoverId = [];
     let hoveredPolygonLine = null;
@@ -54,7 +53,7 @@ window.onload = function() {
                 console.log(output_routes);
 
                 for (var r=0; r<output_routes.routes.length; r++) {
-                    fullGeoJsonRoutes.push({
+                    fullGeoJson.push({
                         'type': 'Feature', 
                         'geometry': output_routes.routes[r].geometry, 
                         'properties': {
@@ -65,7 +64,6 @@ window.onload = function() {
                         }
                     })
                 }
-                console.log(fullGeoJsonRoutes);
             }
         }
         routes_nearby.send();
@@ -121,20 +119,11 @@ window.onload = function() {
                             });
                         }
                     )
-
-                    map.addSource('route', {
-                        'type': 'geojson',
-                        'data': {
-                            'type': 'FeatureCollection',
-                            'features': fullGeoJsonRoutes
-                        },
-                        'generateId': true
-                    });
             
                     map.addLayer({
                         'id': 'routes_nearby',
                         'type': 'line',
-                        'source': 'route',
+                        'source': 'points',
                         'layout': {
                             'line-join': 'round',
                             'line-cap': 'round'
@@ -160,12 +149,12 @@ window.onload = function() {
                                 if (hoveredPolygonLine !== null) {
                                     console.log("hello!")
                                     map.setFeatureState(
-                                        { source: 'route', id: hoveredPolygonLine },
+                                        { source: 'points', id: hoveredPolygonLine },
                                         { hover: false }
                                     );
                                 }
                                 map.setFeatureState(
-                                    { source: 'route', id: hoveredPolygonLine },
+                                    { source: 'points', id: hoveredPolygonLine },
                                     { hover: true }
                                 );
                             }
@@ -185,7 +174,7 @@ window.onload = function() {
                             console.log("Fix!")
                             for (var i = 0; i < hoverId.length; i++) {
                                 map.setFeatureState(
-                                    { source: 'route', id: hoverId[i]},
+                                    { source: 'points', id: hoverId[i]},
                                     { hover: false }
                                 );
                             }
