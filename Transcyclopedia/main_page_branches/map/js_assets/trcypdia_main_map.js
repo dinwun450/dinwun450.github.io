@@ -189,7 +189,7 @@ window.onload = function() {
             });
         })
     }
-    plotRoutesandStops();
+    setTimeout(plotRoutesandStops, 4000);
 
     function getUniqueFeatures(features, comparatorProperty) {
         const uniqueIds = new Set();
