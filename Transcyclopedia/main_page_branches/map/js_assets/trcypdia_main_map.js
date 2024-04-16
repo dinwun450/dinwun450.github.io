@@ -87,105 +87,109 @@ window.onload = function() {
                 }
 
                 console.log(fullGeoJson);
-                map.on('load', () => {
-                    map.loadImage(
-                        'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
-                        (error, image) => {
-                            if (error) throw error;
-                            map.addImage('custom-marker', image);
-                            map.addSource('points', {
-                                'type': 'geojson',
-                                'data': {
-                                    'type': 'FeatureCollection',
-                                    'features': fullGeoJson
-                                }
-                            });
-
-                            map.addLayer({
-                                'id': 'points',
-                                'type': 'symbol',
-                                'source': 'points',
-                                'layout': {
-                                    'icon-image': 'custom-marker',
-                                    // get the title name from the source's "title" property
-                                    'text-field': ['get', 'title'],
-                                    'text-font': [
-                                        'Open Sans Semibold',
-                                        'Arial Unicode MS Bold'
-                                    ],
-                                    'text-offset': [0, 1.25],
-                                    'text-anchor': 'top'
-                                }
-                            });
-                        }
-                    )
-            
-                    map.addLayer({
-                        'id': 'routes_nearby',
-                        'type': 'line',
-                        'source': 'points',
-                        'layout': {
-                            'line-join': 'round',
-                            'line-cap': 'round'
-                        },
-                        'paint': {
-                            'line-width': 4,
-                            'line-color': ['get', 'color']
-                        }
-                    });
-            
-                    map.on('mouseenter', 'routes_nearby', function(e) {
-                        var fs = map.queryRenderedFeatures(e.point, { layers: ['routes_nearby']});
-                        console.log(fs)
-            
-                        if (fs.length > 0) {
-                            for (var f = 0; f < fs.length; f ++) {
-                                var name_of_route = fs[f].properties.route_short_name;
-                                routeId.push(name_of_route)
-                                
-                                hoveredPolygonLine = fs[f].id;
-                                hoverId.push(hoveredPolygonLine);
-            
-                                if (hoveredPolygonLine !== null) {
-                                    console.log("hello!")
-                                    map.setFeatureState(
-                                        { source: 'points', id: hoveredPolygonLine },
-                                        { hover: false }
-                                    );
-                                }
-                                map.setFeatureState(
-                                    { source: 'points', id: hoveredPolygonLine },
-                                    { hover: true }
-                                );
-                            }
-                            
-                            // Populate the popup and set its coordinates
-                            // based on the feature found.
-                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
-                        }
-                    });
-            
-                    map.on('mouseleave', 'routes_nearby', (e) => {
-                        if (routeId.length > 0) {routeId = []}
-                        popup.remove();
-                        // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
-            
-                        if (hoveredPolygonLine !== null) {
-                            console.log("Fix!")
-                            for (var i = 0; i < hoverId.length; i++) {
-                                map.setFeatureState(
-                                    { source: 'points', id: hoverId[i]},
-                                    { hover: false }
-                                );
-                            }
-                        }
-                        hoveredPolygonLine = null;
-                    });
-                })
             }
         }
         transitland_stops.send();
     }
+
+    function plotRoutesandStops() {
+        map.on('load', () => {
+            map.loadImage(
+                'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
+                (error, image) => {
+                    if (error) throw error;
+                    map.addImage('custom-marker', image);
+                    map.addSource('points', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': fullGeoJson
+                        }
+                    });
+
+                    map.addLayer({
+                        'id': 'points',
+                        'type': 'symbol',
+                        'source': 'points',
+                        'layout': {
+                            'icon-image': 'custom-marker',
+                            // get the title name from the source's "title" property
+                            'text-field': ['get', 'title'],
+                            'text-font': [
+                                'Open Sans Semibold',
+                                'Arial Unicode MS Bold'
+                            ],
+                            'text-offset': [0, 1.25],
+                            'text-anchor': 'top'
+                        }
+                    });
+                }
+            )
+    
+            map.addLayer({
+                'id': 'routes_nearby',
+                'type': 'line',
+                'source': 'points',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-width': 4,
+                    'line-color': ['get', 'color']
+                }
+            });
+    
+            map.on('mouseenter', 'routes_nearby', function(e) {
+                var fs = map.queryRenderedFeatures(e.point, { layers: ['routes_nearby']});
+                console.log(fs)
+    
+                if (fs.length > 0) {
+                    for (var f = 0; f < fs.length; f ++) {
+                        var name_of_route = fs[f].properties.route_short_name;
+                        routeId.push(name_of_route)
+                        
+                        hoveredPolygonLine = fs[f].id;
+                        hoverId.push(hoveredPolygonLine);
+    
+                        if (hoveredPolygonLine !== null) {
+                            console.log("hello!")
+                            map.setFeatureState(
+                                { source: 'points', id: hoveredPolygonLine },
+                                { hover: false }
+                            );
+                        }
+                        map.setFeatureState(
+                            { source: 'points', id: hoveredPolygonLine },
+                            { hover: true }
+                        );
+                    }
+                    
+                    // Populate the popup and set its coordinates
+                    // based on the feature found.
+                    popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
+                }
+            });
+    
+            map.on('mouseleave', 'routes_nearby', (e) => {
+                if (routeId.length > 0) {routeId = []}
+                popup.remove();
+                // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+    
+                if (hoveredPolygonLine !== null) {
+                    console.log("Fix!")
+                    for (var i = 0; i < hoverId.length; i++) {
+                        map.setFeatureState(
+                            { source: 'points', id: hoverId[i]},
+                            { hover: false }
+                        );
+                    }
+                }
+                hoveredPolygonLine = null;
+            });
+        })
+    }
+    plotRoutesandStops();
 
     function getUniqueFeatures(features, comparatorProperty) {
         const uniqueIds = new Set();
