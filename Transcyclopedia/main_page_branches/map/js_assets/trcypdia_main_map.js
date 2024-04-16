@@ -90,6 +90,7 @@ window.onload = function() {
             }
         }
         transitland_stops.send();
+        plotRoutesandStops();
     }
 
     function plotRoutesandStops() {
@@ -124,6 +125,8 @@ window.onload = function() {
                         },
                         'filter': ['==', '$type', 'Point']
                     });
+
+                    console.log("Loaded for the stops!")
                 }
             )
     
@@ -141,6 +144,7 @@ window.onload = function() {
                 },
                 'filter': ['==', '$type', 'MultiLineString']
             });
+            console.log("Loaded for the routes!")
     
             map.on('mouseenter', 'routes_nearby', function(e) {
                 var fs = map.queryRenderedFeatures(e.point, { layers: ['routes_nearby']});
@@ -191,7 +195,6 @@ window.onload = function() {
             });
         })
     }
-    setTimeout(plotRoutesandStops, 10000);
 
     function getUniqueFeatures(features, comparatorProperty) {
         const uniqueIds = new Set();
