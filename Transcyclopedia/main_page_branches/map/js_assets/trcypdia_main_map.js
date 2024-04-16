@@ -68,7 +68,7 @@ window.onload = function() {
                 console.log(fullGeoJsonRoutes);
             }
 
-            if (fullGeoJsonRoutes.length === output_routes.length) {
+            if (fullGeoJsonRoutes.length === output_routes.routes.length) {
                 map.addSource('route', {
                     'type': 'geojson',
                     'data': {
