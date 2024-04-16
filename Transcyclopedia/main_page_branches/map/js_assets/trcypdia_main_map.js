@@ -20,8 +20,8 @@ window.onload = function() {
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(mapConfig);
-            navigator.geolocation.getCurrentPosition(routeMapper);
             navigator.geolocation.getCurrentPosition(stopsLocator);
+            navigator.geolocation.getCurrentPosition(routeMapper);
         } else {
             alert("Transcyclopedia wanted the location! Please enable it next time!")
         }
