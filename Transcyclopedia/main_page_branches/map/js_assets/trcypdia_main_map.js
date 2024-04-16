@@ -121,7 +121,8 @@ window.onload = function() {
                             ],
                             'text-offset': [0, 1.25],
                             'text-anchor': 'top'
-                        }
+                        },
+                        'filter': ['==', '$type', 'Point']
                     });
                 }
             )
@@ -137,7 +138,8 @@ window.onload = function() {
                 'paint': {
                     'line-width': 4,
                     'line-color': ['get', 'color']
-                }
+                },
+                'filter': ['==', '$type', 'MultiLineString']
             });
     
             map.on('mouseenter', 'routes_nearby', function(e) {
@@ -189,7 +191,7 @@ window.onload = function() {
             });
         })
     }
-    setTimeout(plotRoutesandStops, 4000);
+    setTimeout(plotRoutesandStops, 10000);
 
     function getUniqueFeatures(features, comparatorProperty) {
         const uniqueIds = new Set();
