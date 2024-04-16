@@ -175,25 +175,25 @@ window.onload = function() {
                                     'features': fullGeoJson
                                 }
                             });
+
+                            map.addLayer({
+                                'id': 'points',
+                                'type': 'symbol',
+                                'source': 'points',
+                                'layout': {
+                                    'icon-image': 'custom-marker',
+                                    // get the title name from the source's "title" property
+                                    'text-field': ['get', 'title'],
+                                    'text-font': [
+                                        'Open Sans Semibold',
+                                        'Arial Unicode MS Bold'
+                                    ],
+                                    'text-offset': [0, 1.25],
+                                    'text-anchor': 'top'
+                                }
+                            });
                         }
                     )
-
-                    map.addLayer({
-                        'id': 'points',
-                        'type': 'symbol',
-                        'source': 'points',
-                        'layout': {
-                            'icon-image': 'custom-marker',
-                            // get the title name from the source's "title" property
-                            'text-field': ['get', 'title'],
-                            'text-font': [
-                                'Open Sans Semibold',
-                                'Arial Unicode MS Bold'
-                            ],
-                            'text-offset': [0, 1.25],
-                            'text-anchor': 'top'
-                        }
-                    });
                 })
             }
         }
