@@ -19,7 +19,6 @@ window.onload = function() {
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(mapConfig);
-            navigator.geolocation.getCurrentPosition(routeMapper);
             navigator.geolocation.getCurrentPosition(stopsLocator);
         } else {
             alert("Transcyclopedia wanted the location! Please enable it next time!")
@@ -42,31 +41,6 @@ window.onload = function() {
 
         map.addControl(new mapboxgl.NavigationControl());
         map.scrollZoom.disable();
-    }
-
-    function routeMapper(position) {
-        var routes_nearby = new XMLHttpRequest();
-        routes_nearby.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&lat=${position.coords.latitude}&lon=${position.coords.longitude}&radius=500&include_geometry=true`);
-        routes_nearby.onreadystatechange = function() {
-            if (routes_nearby.readyState === 4 && routes_nearby.status === 200) {
-                var output_routes = JSON.parse(routes_nearby.responseText);
-                console.log(output_routes);
-
-                for (var r=0; r<output_routes.routes.length; r++) {
-                    fullGeoJson.push({
-                        'type': 'Feature', 
-                        'geometry': output_routes.routes[r].geometry, 
-                        'properties': {
-                            "color": `#${output_routes.routes[r].route_color}`,
-                            'text_color': `#${output_routes.routes[r].route_text_color}`,
-                            'route_short_name': output_routes.routes[r].route_short_name,
-                            'route_long_name': output_routes.routes[r].route_long_name,
-                        }
-                    })
-                }
-            }
-        }
-        routes_nearby.send();
     }
 
     function stopsLocator(position) {
@@ -129,129 +103,6 @@ window.onload = function() {
                     console.log("Loaded for the stops!")
                 }
             )
-    
-            map.addLayer({
-                'id': 'routes_nearby',
-                'type': 'line',
-                'source': 'points',
-                'layout': {
-                    'line-join': 'round',
-                    'line-cap': 'round'
-                },
-                'paint': {
-                    'line-width': 4,
-                    'line-color': ['get', 'color']
-                },
-                'filter': ['==', '$type', 'MultiLineString']
-            });
-            console.log("Loaded for the routes!")
-    
-            map.on('mouseenter', 'routes_nearby', function(e) {
-                var fs = map.queryRenderedFeatures(e.point, { layers: ['routes_nearby']});
-                console.log(fs)
-    
-                if (fs.length > 0) {
-                    for (var f = 0; f < fs.length; f ++) {
-                        var name_of_route = fs[f].properties.route_short_name;
-                        routeId.push(name_of_route)
-                        
-                        hoveredPolygonLine = fs[f].id;
-                        hoverId.push(hoveredPolygonLine);
-    
-                        if (hoveredPolygonLine !== null) {
-                            console.log("hello!")
-                            map.setFeatureState(
-                                { source: 'points', id: hoveredPolygonLine },
-                                { hover: false }
-                            );
-                        }
-                        map.setFeatureState(
-                            { source: 'points', id: hoveredPolygonLine },
-                            { hover: true }
-                        );
-                    }
-                    
-                    // Populate the popup and set its coordinates
-                    // based on the feature found.
-                    popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
-                }
-            });
-    
-            map.on('mouseleave', 'routes_nearby', (e) => {
-                if (routeId.length > 0) {routeId = []}
-                popup.remove();
-                // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
-    
-                if (hoveredPolygonLine !== null) {
-                    console.log("Fix!")
-                    for (var i = 0; i < hoverId.length; i++) {
-                        map.setFeatureState(
-                            { source: 'points', id: hoverId[i]},
-                            { hover: false }
-                        );
-                    }
-                }
-                hoveredPolygonLine = null;
-            });
         })
     }
-
-    function getUniqueFeatures(features, comparatorProperty) {
-        const uniqueIds = new Set();
-        const uniqueFeatures = [];
-        for (const feature of features) {
-            const id = feature.properties[comparatorProperty];
-            if (!uniqueIds.has(id)) {
-                uniqueIds.add(id);
-                uniqueFeatures.push(feature);
-            }
-        }
-        return uniqueFeatures;
-    }
-
-    // function moveMap() {
-    //     map.moveLayer('routes_nearby');
-    //     map.on('movestart', () => {
-    //         map.setFilter('routes_nearby', ['has', 'route_short_name']);
-    //         const features = map.queryRenderedFeatures({
-    //             layers: ['routes_nearby']
-    //         });
-
-    //         if (features) {
-    //             const uniqueFeatures = getUniqueFeatures(features, 'route_short_name');
-    //             for (var f = 0; f < uniqueFeatures.length; f ++) {
-    //                 var name_of_route = uniqueFeatures[f].properties.route_short_name;
-    //                 var color_of_route = uniqueFeatures[f].properties.color;
-    //                 var text_color_of_route = uniqueFeatures[f].properties.text_color;
-    //                 var desc_of_route = uniqueFeatures[f].properties.route_long_name;
-
-    //                 if (name_of_route === "") {
-    //                     name_of_route = "&nbsp;&nbsp;&nbsp;"
-    //                 }
-
-    //                 if (color_of_route === "#") {
-    //                     color_of_route = "#000000";
-    //                 }
-
-    //                 if (text_color_of_route === "#") {
-    //                     text_color_of_route = "#ffffff";
-    //                 }
-
-    //                 document.getElementById("route_short").innerHTML = `${name_of_route}`;
-    //                 document.getElementById("route_short").style.color = `${text_color_of_route}`;
-    //                 document.getElementById("route_short").style.backgroundColor = `${color_of_route}40`;
-    //                 document.getElementById("route_short").style.border = `1px solid ${color_of_route}40`;
-    //                 document.getElementById("detailed_route").innerHTML = `${desc_of_route}`;
-
-    //                 var routeClone = document.querySelector(".route_radius");
-    //                 var listToInsertClone = routeClone.cloneNode(true);
-    //                 document.getElementById("range_of_routes").appendChild(listToInsertClone);
-    //             }
-
-    //             var all_routes_nearby = document.getElementById("range_of_routes").children;
-    //             document.getElementById("range_of_routes").removeChild(all_routes_nearby[0])
-    //         }
-    //     })
-    // }
-    // setTimeout(moveMap, 10000);
 }
