@@ -86,7 +86,7 @@
     }
 
     #departures input, .headerforstop, #list_of_departures, #clearall {
-        margin-left: 9px;
+        width: 90%;
     }
 
     #line_for_departure {
