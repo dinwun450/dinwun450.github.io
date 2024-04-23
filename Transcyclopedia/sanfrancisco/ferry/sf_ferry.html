@@ -398,7 +398,7 @@
                 document.getElementById("range_of_routes").removeChild(list_of_routes[0])
             })
         }
-        plotFerryLines();
+        setTimeout(plotFerryLines, 5000);
 
         function dark_or_light() {
             var element = document.body;
