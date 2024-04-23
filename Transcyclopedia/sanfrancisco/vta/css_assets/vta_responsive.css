@@ -89,7 +89,7 @@
     .headerforvtalr, .headerforvtabus, 
     #list_of_departures_vta_lr, #list_of_departures_vta_bus, 
     #clearall_vta_lr, #clearall_vta_bus {
-        margin-left: 9px;
+        width: 90%;
     }
 
     #line_for_departure_vta_lr, #line_for_departure_vta_bus {
@@ -108,10 +108,6 @@
 
     #line_for_each_departure_vta_lr, #line_for_each_departure_vta_bus {
         margin-left: 2px;
-    }
-
-    .alert_entity_routes, .alert_entity_agency {
-        margin-left: 13px;
     }
 
     #alert_desc_agency, #alerts input,
