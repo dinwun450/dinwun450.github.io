@@ -190,7 +190,7 @@
                 }
             }
             sfbf_line_call.send();
-            setTimeout(plotSFBFLines, 2000);
+            setTimeout(plotGGFLines, 2000);
         }
 
         function plotGGFLines() {
@@ -399,6 +399,7 @@
                 document.getElementById("range_of_routes").removeChild(list_of_routes[0])
             })
         }
+        plotSFBFLines();
 
         function dark_or_light() {
             var element = document.body;
