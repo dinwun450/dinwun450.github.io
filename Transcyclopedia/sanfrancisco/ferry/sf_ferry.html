@@ -304,6 +304,7 @@
                     'type': 'geojson',
                     'data': ferry_agencies
                 });
+                console.log('Loaded!')
 
                 for (const feature of ferry_agencies.features) {
                     const label = feature.properties.label;
@@ -398,7 +399,7 @@
                 document.getElementById("range_of_routes").removeChild(list_of_routes[0])
             })
         }
-        setTimeout(plotFerryLines, 5000);
+        plotFerryLines();
 
         function dark_or_light() {
             var element = document.body;
