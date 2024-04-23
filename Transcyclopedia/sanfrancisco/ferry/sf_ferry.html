@@ -190,8 +190,8 @@
                 }
             }
             sfbf_line_call.send();
+            setTimeout(plotSFBFLines, 2000);
         }
-        plotSFBFLines();
 
         function plotGGFLines() {
             var ggf_line_call = new XMLHttpRequest();
@@ -223,8 +223,8 @@
                 }
             }
             ggf_line_call.send();
+            setTimeout(plotFerryLines, 4000)
         }
-        plotGGFLines();
 
         function getUniqueFeatures(features, comparatorProperty) {
             const uniqueIds = new Set();
@@ -399,7 +399,6 @@
                 document.getElementById("range_of_routes").removeChild(list_of_routes[0])
             })
         }
-        plotFerryLines();
 
         function dark_or_light() {
             var element = document.body;
