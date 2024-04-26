@@ -67,7 +67,7 @@
     }
 
     #departures input, .headerforbus, #bus_departures, #list_of_departures_bus, #bus_routes, .alerts_stop_bus {
-        margin-left: 9px;
+        width: 90%;
     }
 
     #line_for_departure_bus {
