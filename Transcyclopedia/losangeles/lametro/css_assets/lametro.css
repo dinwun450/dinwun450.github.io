@@ -127,13 +127,13 @@ body::after {
     overflow-y: auto;
 }
 
-#nameswitch {
+#sectionheader {
     font-size: 40px;
     margin-left: 20px;
     margin-top: 55px;
 }
 
-#nameswitch i {
+#sectionheader i {
     display: none;
 }
 
@@ -255,7 +255,7 @@ body::after {
     margin-bottom: 10px;
 }
 
-.headerstation, .headerbus, .headerroute {
+.headerstation, .headerstop, .headerroute {
     width: 95%;
     height: 50px;
     background: rgba(255, 255, 255, 0.25);
@@ -379,7 +379,7 @@ body::after {
     overflow-y: auto;
 }
 
-.rir {
+#rir {
     list-style-type: none;
     margin-bottom: 5px;
 }
