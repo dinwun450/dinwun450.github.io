@@ -226,7 +226,7 @@ body::after {
 }
 
 #route_name_sub, #route_name_bus, 
-#lod_subway, #lod_bus,
+#lod_subway, #lod_lr, #lod_bus,
 #routes_affected, #route_name_rad {
     display: inline-block;
     width: fit-content;
@@ -241,14 +241,14 @@ body::after {
     text-align: center;
 }
 
-#route_desc_sub, #route_desc_bus {
+#route_desc_sub, #route_desc_bus, #route_desc_lr {
     width: 65%;
     text-align: right;
     margin-right: 10px;
     right: 50px;
 }
 
-#departures_subway input, #departures_bus input, #alerts input {
+#departures_subway input, #departures_lightrail input, #departures_bus input, #alerts input {
     width: 95%;
     height: 30px;
     border-radius: 5px;
@@ -265,7 +265,7 @@ body::after {
     background: rgba(255,255,255,0.13);
 }
 
-.headerstation, .headerstop, .headerroute {
+.headerstation, .headerstation_lr, .headerstop, .headerroute {
     width: 95%;
     height: 50px;
     background: rgba(255, 255, 255, 0.25);
@@ -289,7 +289,7 @@ body::after {
     padding: 10px;
 }
 
-#list_of_departures_subway, #list_of_departures_bus {
+#list_of_departures_subway, #list_of_departures_lr, #list_of_departures_bus {
     width: 95%;
     height: 400px;
     background: rgba( 255, 255, 255, 0.25 );
@@ -301,22 +301,22 @@ body::after {
     overflow-y: auto;
 }
 
-#line_for_departure_subway, #line_for_departure_bus {
+#line_for_departure_subway, #line_for_departure_lr, #line_for_departure_bus {
     margin: 10px;
 }
 
-#hod_subway, #hod_bus {
+#hod_subway, #hod_bus, #hod_lr {
     position: relative;
     left: 5px;
 }
 
-#depart_time_subway, #depart_time_bus {
+#depart_time_subway, #depart_time_lr, #depart_time_bus {
     float: right;
     position: relative;
     right: 3px;
 }
 
-#clearall_subway, #clearall_bus, #clearall_alerts {
+#clearall_subway, #clearall_bus, #clearall_lr, #clearall_alerts {
     width: 95%;
     height: 30px;
     border-radius: 5px;

@@ -17,9 +17,10 @@
         <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_lametro')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About LA Metro</a></li>
         <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
         <li class="tablinks header2" onclick="openTab(event, 'departures_subway')"><a href="#"><i class="fa-solid fa-train-subway"></i>&nbsp;&nbsp;Departures (Subway)</a></li>
-        <li class="tablinks header3" onclick="openTab(event, 'departures_bus')"><a href="#"><i class="fa-solid fa-bus"></i>&nbsp;&nbsp;Departures (Bus)</a></li>
-        <li class="tablinks header4" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
-        <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
+        <li class="tablinks header3" onclick="openTab(event, 'departures_lightrail')"><a href="#"><i class="fa-solid fa-train-tram"></i>&nbsp;&nbsp;Departures (Light Rail)</a></li>
+        <li class="tablinks header4" onclick="openTab(event, 'departures_bus')"><a href="#"><i class="fa-solid fa-bus"></i>&nbsp;&nbsp;Departures (Bus)</a></li>
+        <li class="tablinks header5" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li class="tablinks header6" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
         <li><a href="#" onclick="dark_or_light()"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light/Dark Mode</a></li>
         <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
         <p class="copyright">&copy; 2023 Transcyclopedia. Created by Dino Wun.</p>
@@ -56,6 +57,12 @@
                     <li id="route_item_sub"><span id="route_name_sub">-</span> &nbsp; <span id="route_desc_sub">Loading...</span></li>
                 </ul>
             </div>
+            <div class="metro_lightrail">
+                <h3>Light Rail</h3>
+                <ul class="lametro_lightrail">
+                    <li id="route_item_lr"><span id="route_name_lr">-</span> &nbsp; <span id="route_desc_lr">Loading...</span></li>
+                </ul>
+            </div>
             <div class="metro_buslines">
                 <h3>Bus</h3>
                 <ul class="lametro_bus">
@@ -71,6 +78,15 @@
                 <li id="line_for_departure_subway"><div id="lod_subway">-</div> <span id="hod_subway">(None)</span> <span id="depart_time_subway">Enter a station by their station ID</span></li>
             </ul>
             <button id="clearall_subway" onclick="">Clear</button>
+        </div>
+        <div class="window" id="departures_lightrail">
+            <p id="sectionheader">Departures (Light Rail) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a station..." onkeydown="" id="stationgetter_lr" autocomplete="off">
+            <p class="headerstation">Departures for &nbsp;<span id="stationname_lr">---</span></p>
+            <ul id="list_of_departures_lr">
+                <li id="line_for_departure_lr"><div id="lod_lr">-</div> <span id="hod_lr">(None)</span> <span id="depart_time_lr">Enter a station by their station ID</span></li>
+            </ul>
+            <button id="clearall_lr" onclick="">Clear</button>
         </div>
         <div class="window" id="departures_bus">
             <p id="sectionheader">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
