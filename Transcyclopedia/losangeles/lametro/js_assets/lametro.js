@@ -11,3 +11,28 @@ function loadWikipediaArticle() {
     info_fetcher.send();
 }
 loadWikipediaArticle();
+
+function loadLAMetroLinesSubway() {
+    var route_fetcher = new XMLHttpRequest();
+    route_fetcher.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q5-metro~losangeles&limit=700&route_type=1&include_alerts=true");
+    route_fetcher.onreadystatechange = function() {
+        if (route_fetcher.readyState === 4 && route_fetcher.status === 200) {
+            var route_info = JSON.parse(route_fetcher.responseText);
+            
+            for (var i=0; i<route_info.routes.length; i++) {
+                var route_short_name = route_info.routes[i].route_short_name;
+                var route_long_name = route_info.routes[i].route_long_name;
+                var route_color = route_info.routes[i].route_color;
+                var route_text_color = route_info.routes[i].route_text_color;
+
+                document.getElementById("route_name_subway").innerHTML = route_short_name;
+                document.getElementById("route_name_subway").style.color = `#${route_text_color}`;
+                document.getElementById("route_name_subway").style.backgroundColor = `#${route_color}40`;
+                document.getElementById("route_name_subway").style.border = `1px solid #${route_color}`;
+                document.getElementById("route_desc_subway").innerHTML = route_long_name;
+            }
+        }
+    }
+    route_fetcher.send();
+}
+loadLAMetroLinesSubway();
