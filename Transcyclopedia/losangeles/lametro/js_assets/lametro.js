@@ -30,7 +30,14 @@ function loadLAMetroLinesSubway() {
                 document.getElementById("route_name_sub").style.backgroundColor = `#${route_color}40`;
                 document.getElementById("route_name_sub").style.border = `1px solid #${route_color}`;
                 document.getElementById("route_desc_sub").innerHTML = route_long_name;
+
+                var route_entity = document.getElementById("route_item_sub");
+                var clone_entity = route_entity.cloneNode(true);
+                document.querySelector(".lametro_subway").appendChild(clone_entity);
             }
+
+            var all_subway_lines = document.querySelector(".lametro_subway").children;
+            document.querySelector(".lametro_subway").removeChild(all_subway_lines[0]);
         }
     }
     route_fetcher.send();
