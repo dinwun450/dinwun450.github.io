@@ -138,6 +138,10 @@ body::after {
     display: none;
 }
 
+#about_lametro {
+    overflow-y: hidden;
+}
+
 .info {
     width: 50%;
     height: 100%;
