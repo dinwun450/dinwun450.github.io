@@ -25,6 +25,10 @@ function loadLAMetroLinesSubway() {
                 var route_color = route_info.routes[i].route_color;
                 var route_text_color = route_info.routes[i].route_text_color;
 
+                if (route_short_name === "") {
+                    route_short_name = "&nbsp;&nbsp;&nbsp;";
+                }
+
                 document.getElementById("route_name_sub").innerHTML = route_short_name;
                 document.getElementById("route_name_sub").style.color = `#${route_text_color}`;
                 document.getElementById("route_name_sub").style.backgroundColor = `#${route_color}40`;
