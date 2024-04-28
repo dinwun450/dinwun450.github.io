@@ -25,11 +25,11 @@ function loadLAMetroLinesSubway() {
                 var route_color = route_info.routes[i].route_color;
                 var route_text_color = route_info.routes[i].route_text_color;
 
-                document.getElementById("route_name_subway").innerHTML = route_short_name;
-                document.getElementById("route_name_subway").style.color = `#${route_text_color}`;
-                document.getElementById("route_name_subway").style.backgroundColor = `#${route_color}40`;
-                document.getElementById("route_name_subway").style.border = `1px solid #${route_color}`;
-                document.getElementById("route_desc_subway").innerHTML = route_long_name;
+                document.getElementById("route_name_sub").innerHTML = route_short_name;
+                document.getElementById("route_name_sub").style.color = `#${route_text_color}`;
+                document.getElementById("route_name_sub").style.backgroundColor = `#${route_color}40`;
+                document.getElementById("route_name_sub").style.border = `1px solid #${route_color}`;
+                document.getElementById("route_desc_sub").innerHTML = route_long_name;
             }
         }
     }
