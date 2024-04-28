@@ -197,7 +197,7 @@ body::after {
     margin-left: 20px;
 }
 
-.metro_subwaylines, .metro_buslines {
+.metro_subwaylines, .metro_buslines, .metro_lightraillines {
     width: 90%;
     height: fit-content;
     background: rgba(255, 255, 255, 0.25);
@@ -210,22 +210,22 @@ body::after {
     margin-bottom: 5px;
 }
 
-.metro_subwaylines h3, .metro_buslines h3 {
+.metro_subwaylines h3, .metro_buslines h3, .metro_lightraillines h3 {
     margin-left: 5px;
 }
 
-.lametro_subway, .lametro_bus {
+.lametro_subway, .lametro_bus, .lametro_lightrail {
     position: relative;
     margin-left: 20px;
     list-style-type: none;
     padding-top: 10px;
 }
 
-#route_item_sub, #route_item_bus {
+#route_item_sub, #route_item_bus, #route_item_lr {
     margin-bottom: 5px;
 }
 
-#route_name_sub, #route_name_bus, 
+#route_name_sub, #route_name_bus, #route_name_lr,
 #lod_subway, #lod_lr, #lod_bus,
 #routes_affected, #route_name_rad {
     display: inline-block;
