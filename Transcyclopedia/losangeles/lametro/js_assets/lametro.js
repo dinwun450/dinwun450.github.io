@@ -76,7 +76,7 @@ function loadLAMetroLinesLR() {
                     document.getElementById("no_of_alerts_lr").innerHTML = "";
                 }
                 else {
-                    document.getElementById("no_of_alerts_lr").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${route_info.routes[i].alerts.length}`;
+                    document.getElementById("no_of_alerts_lr").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${route_info.routes[i].alerts.length})`;
                 }
 
                 document.getElementById("route_name_lr").innerHTML = route_short_name;
