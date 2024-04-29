@@ -110,6 +110,7 @@ function loadLAMetroLinesBus() {
                 var route_long_name = route_info.routes[i].route_long_name;
                 var route_color = route_info.routes[i].route_color;
                 var route_text_color = route_info.routes[i].route_text_color;
+                var route_desc = route_info.routes[i].route_desc;
 
                 if (route_short_name === "") {
                     route_short_name = "&nbsp;&nbsp;&nbsp;";
@@ -126,7 +127,7 @@ function loadLAMetroLinesBus() {
                 document.getElementById("route_name_bus").style.color = `#${route_text_color}`;
                 document.getElementById("route_name_bus").style.backgroundColor = `#${route_color}40`;
                 document.getElementById("route_name_bus").style.border = `1px solid #${route_color}`;
-                document.getElementById("route_desc_bus").innerHTML = route_long_name;
+                document.getElementById("route_desc_bus").innerHTML = `${route_long_name} ${route_desc}`;
 
                 var route_entity = document.getElementById("route_item_bus");
                 var clone_entity = route_entity.cloneNode(true);
