@@ -164,7 +164,7 @@
                     var onestop_id = station_receiver.stops[0].onestop_id;
 
                     document.getElementById("stationname").innerHTML = stop_name;
-                    compileSubwayDepartures(onestop_id);
+                    getSubDepartures(onestop_id);
                 }
             }
             station_caller.send();
