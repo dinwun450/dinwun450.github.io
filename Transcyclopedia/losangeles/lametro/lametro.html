@@ -275,7 +275,7 @@
         }
 
         function getStationLR() {
-            getValue = document.getElementById("stationgetter").value;
+            getValue = document.getElementById("stationgetter_lr").value;
             var station_caller = new XMLHttpRequest();
             station_caller.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q5-metro~losangeles&served_by_route_type=0&stop_id=${getValue}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
             station_caller.onreadystatechange = function() {
@@ -284,7 +284,7 @@
                     var stop_name = station_receiver.stops[0].stop_name;
                     var onestop_id = station_receiver.stops[0].onestop_id;
 
-                    document.getElementById("stationname").innerHTML = stop_name;
+                    document.getElementById("stationname_lr").innerHTML = stop_name;
                     getLRDepartures(onestop_id);
                 }
             }
