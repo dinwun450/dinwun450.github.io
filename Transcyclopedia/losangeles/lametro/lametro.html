@@ -388,7 +388,7 @@
             e = e || window.event;
             if (e.keyCode === 13) {
                 document.getElementById("list_of_departures_bus").innerHTML = `
-                    <li id="line_for_departure_bus"><div id="lod_bus">-</div> <span id="aor_bus"></span> <span id="hod_bus">(None)</span> <span id="depart_time_bus">Enter a station by their station ID</span></li>
+                    <li id="line_for_departure_bus"><div id="lod_bus">-</div> <span id="aor_bus"></span> <span id="hod_bus">(None)</span> <span id="depart_time_bus">Enter a stop by their stop ID</span></li>
                 `;
                 document.getElementById("stopname").innerHTML = "---";
                 getStationBus();
@@ -500,7 +500,7 @@
 
         function clearAllBus() {
             document.getElementById("list_of_departures_bus").innerHTML = `
-                <li id="line_for_departure_bus"><div id="lod_bus">-</div> <span id="aor_bus"></span> <span id="hod_bus">(None)</span> <span id="depart_time_bus">Enter a station by their station ID</span></li>
+                <li id="line_for_departure_bus"><div id="lod_bus">-</div> <span id="aor_bus"></span> <span id="hod_bus">(None)</span> <span id="depart_time_bus">Enter a stop by their stop ID</span></li>
             `;
             document.getElementById("stopname").innerHTML = "---";
         }
