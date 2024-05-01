@@ -90,7 +90,7 @@
         </div>
         <div class="window" id="departures_bus">
             <p id="sectionheader">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a stop..." onkeydown="" id="stopgetter" autocomplete="off">
+            <input type="text" placeholder="Search for a stop..." onkeydown="keyDownLR();" id="stopgetter" autocomplete="off">
             <p class="headerstop">Departures for &nbsp;<span id="stopname">---</span></p>
             <ul id="list_of_departures_bus">
                 <li id="line_for_departure_bus"><div id="lod_bus">-</div> <span id="aor_bus"></span> <span id="hod_bus">(None)</span> <span id="depart_time_bus">Enter a stop by their stop ID</span></li>
@@ -261,6 +261,127 @@
                 <li id="line_for_departure_subway"><div id="lod_subway">-</div> <span id="hod_subway">(None)</span> <span id="depart_time_subway">Enter a station by their station ID</span></li>
             `;
             document.getElementById("stationname").innerHTML = "---";
+        }
+
+        function keyDownLR(e) {
+            e = e || window.event;
+            if (e.keyCode === 13) {
+                document.getElementById("list_of_departures_lr").innerHTML = `
+                    <li id="line_for_departure_lr"><div id="lod_lr">-</div> <span id="aor_lr"></span> <span id="hod_lr">(None)</span> <span id="depart_time_lr">Enter a station by their station ID</span></li>
+                `;
+                document.getElementById("stationname_lr").innerHTML = "---";
+                getStationLR();
+            }
+        }
+
+        function getStationLR() {
+            getValue = document.getElementById("stationgetter").value;
+            var station_caller = new XMLHttpRequest();
+            station_caller.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9q5-metro~losangeles&served_by_route_type=0&stop_id=${getValue}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+            station_caller.onreadystatechange = function() {
+                if (station_caller.readyState === 4 && station_caller.status === 200) {
+                    var station_receiver = JSON.parse(station_caller.responseText);
+                    var stop_name = station_receiver.stops[0].stop_name;
+                    var onestop_id = station_receiver.stops[0].onestop_id;
+
+                    document.getElementById("stationname").innerHTML = stop_name;
+                    getLRDepartures(onestop_id);
+                }
+            }
+            station_caller.send();
+        }
+
+        function getLRDepartures(onestop_sub) {
+            var lrdeparture_caller = new XMLHttpRequest();
+            lrdeparture_caller.open("GET", `https://transit.land/api/v2/rest/stops/${onestop_sub}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            lrdeparture_caller.onreadystatechange = function() {
+                if (lrdeparture_caller.status === 200 && lrdeparture_caller.readyState === 4) {
+                    var stop_receiver = JSON.parse(lrdeparture_caller.responseText).stops;
+
+                    for (var e=0; e<stop_receiver.length; e++) {
+                        console.log(e);
+                        var lrdeparture_receiver = stop_receiver[e];
+                        if (lrdeparture_receiver.departures.length === 0) {
+                            console.log("Pass.");
+                        }
+                        else {
+                            for (var i=0; i<lrdeparture_receiver.departures.length; i++) {
+                                var route_short_name = lrdeparture_receiver.departures[i].trip.route.route_short_name;
+                                var route_color = lrdeparture_receiver.departures[i].trip.route.route_color;
+                                var route_text_color = lrdeparture_receiver.departures[i].trip.route.route_text_color;
+                                var route_headsign = lrdeparture_receiver.departures[i].stop_headsign;
+                                var scheduled_time = lrdeparture_receiver.departures[i].arrival.scheduled;
+                                var actual_arrival = lrdeparture_receiver.departures[i].arrival.estimated;
+                                var delay_lr = lrdeparture_receiver.departures[i].arrival.delay / 60;
+                                var alerts_lr = lrdeparture_receiver.departures[i].trip.route.alerts;
+
+                                switch (actual_arrival) {
+                                    case (null):
+                                        document.getElementById("depart_time_lr").innerHTML = `${scheduled_time} <span id="delay_lr">(scheduled)</span>`;
+                                        document.getElementById("depart_time_lr").style.color = "black";
+                                        document.getElementById("delay_lr").style.color = "black";
+                                        break;
+                                    default:
+                                        document.getElementById("depart_time_lr").innerHTML = `${actual_arrival} <span id="delay_lr">()</span>`;
+                                        document.getElementById("depart_time_lr").style.color = "green";
+
+                                        switch(delay_lr) {
+                                            case (null):
+                                                document.getElementById("delay_lr").innerHTML = "(no data)";
+                                                document.getElementById("delay_lr").style.color = "black";
+                                                break;
+                                            case (delay_subway > 60):
+                                                document.getElementById("delay_lr").innerHTML = `(${delay_lr} min late)`;
+                                                document.getElementById("delay_lr").style.color = "orange";
+                                                break;
+                                            case (delay_subway < 0):
+                                                document.getElementById("delay_lr").innerHTML = `(${delay_lr} min early)`;
+                                                document.getElementById("delay_lr").style.color = "skyblue";
+                                                break;
+                                            default:
+                                                document.getElementById("delay_lr").innerHTML = "(on time)";
+                                                document.getElementById("delay_lr").style.color = "green";
+                                                break;
+                                        }
+                                        break;
+                                }
+
+                                if (route_short_name === "") {
+                                    route_short_name = "&nbsp;&nbsp;&nbsp;";
+                                }
+
+                                if (alerts_lr.length === 0) {
+                                    console.log("No alerts founded.")
+                                }
+                                else {
+                                    document.getElementById("aor_lr").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_lr.length})`;
+                                }
+
+                                document.getElementById("lod_lr").innerHTML = route_short_name;
+                                document.getElementById("lod_lr").style.color = `#${route_text_color}`;
+                                document.getElementById("lod_lr").style.backgroundColor = `#${route_color}40`;
+                                document.getElementById("lod_lr").style.border = `1px solid #${route_color}`;
+                                document.getElementById("hod_lr").innerHTML = route_headsign;
+
+                                var departure_sub_item = document.getElementById("line_for_departure_lr");
+                                var departure_cloned = departure_sub_item.cloneNode(true);
+                                document.getElementById("list_of_departures_lr").appendChild(departure_cloned);
+                            }
+
+                            var all_lr_departures = document.getElementById("list_of_departures_lr").children;
+                            document.getElementById("list_of_departures_lr").removeChild(all_lr_departures[0]);
+                        }
+                    }
+                }
+            }
+            lrdeparture_caller.send();
+        }
+
+        function clearAllLR() {
+            document.getElementById("list_of_departures_lr").innerHTML = `
+                <li id="line_for_departure_lr"><div id="lod_lr">-</div> <span id="aor_lr"></span> <span id="hod_lr">(None)</span> <span id="depart_time_lr">Enter a station by their station ID</span></li>
+            `;
+            document.getElementById("stationname_lr").innerHTML = "---";
         }
     </script>
 </body>
