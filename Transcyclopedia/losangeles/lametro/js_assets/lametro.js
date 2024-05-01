@@ -159,20 +159,20 @@ function LAMetroAlerts() {
             var alerts_in_agency = alert_agency_receiver.alerts;
 
             if (alerts_in_agency.length === 0) {
-                document.getElementById("alert_routes_entity").innerHTML = "There are no alerts posted in the Los Angeles Metro Agency."
+                document.getElementById("alert_agency_entity").innerHTML = "There are no alerts posted in the Los Angeles Metro Agency."
             }
             else {
                 for (var i=0; i<alerts_in_agency.length; i++) {
                     var desc_in_alerts = alerts_in_agency[i].description_text[0].text;
-                    document.getElementById("alert_routes_entity").innerHTML = `${desc_in_alerts}`;
+                    document.getElementById("alert_agency_entity").innerHTML = `${desc_in_alerts}`;
 
-                    var alert_node = document.getElementById("alert_routes_entity");
+                    var alert_node = document.getElementById("alert_agency_entity");
                     var clone_alert = alert_node.cloneNode(true);
-                    document.getElementById("list_of_line_alerts").appendChild(clone_alert);
+                    document.getElementById("list_of_agency_alerts").appendChild(clone_alert);
                 }
 
-                var all_alerts_in_agency = document.getElementById("list_of_line_alerts").children;
-                document.getElementById("list_of_line_alerts").removeChild(all_alerts_in_agency[0]);
+                var all_alerts_in_agency = document.getElementById("list_of_agency_alerts").children;
+                document.getElementById("list_of_agency_alerts").removeChild(all_alerts_in_agency[0]);
             }
         }
     }
