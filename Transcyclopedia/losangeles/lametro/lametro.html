@@ -175,11 +175,11 @@
             subdeparture_caller.open("GET", `https://transit.land/api/v2/rest/stops/${onestop_sub}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
             subdeparture_caller.onreadystatechange = function() {
                 if (subdeparture_caller.status === 200 && subdeparture_caller.readyState === 4) {
-                    var subdeparture_receiver = JSON.parse(subdeparture_caller.responseText).stops;
+                    var stop_receiver = JSON.parse(subdeparture_caller.responseText).stops;
 
-                    for (var e=0; e<subdeparture_receiver.length; e++) {
+                    for (var e=0; e<stop_receiver.length; e++) {
                         console.log(e);
-                        var subdeparture_receiver = subdeparture_receiver[e];
+                        var subdeparture_receiver = stop_receiver[e];
                         if (subdeparture_receiver.departures.length === 0) {
                             console.log("Pass.");
                         }
