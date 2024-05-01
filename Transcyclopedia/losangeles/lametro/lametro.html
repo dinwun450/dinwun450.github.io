@@ -75,7 +75,7 @@
             <input type="text" placeholder="Search for a station..." onkeydown="keyDownSubway();" id="stationgetter" autocomplete="off">
             <p class="headerstation">Departures for &nbsp;<span id="stationname">---</span></p>
             <ul id="list_of_departures_subway">
-                <li id="line_for_departure_subway"><div id="lod_subway">-</div> <span id="hod_subway">(None)</span> <span id="depart_time_subway">Enter a station by their station ID</span></li>
+                <li id="line_for_departure_subway"><div id="lod_subway">-</div> <span id="aor_subway"></span> <span id="hod_subway">(None)</span> <span id="depart_time_subway">Enter a station by their station ID</span></li>
             </ul>
             <button id="clearall_subway" onclick="clearAllSubway();">Clear</button>
         </div>
@@ -84,7 +84,7 @@
             <input type="text" placeholder="Search for a station..." onkeydown="" id="stationgetter_lr" autocomplete="off">
             <p class="headerstation">Departures for &nbsp;<span id="stationname_lr">---</span></p>
             <ul id="list_of_departures_lr">
-                <li id="line_for_departure_lr"><div id="lod_lr">-</div> <span id="hod_lr">(None)</span> <span id="depart_time_lr">Enter a station by their station ID</span></li>
+                <li id="line_for_departure_lr"><div id="lod_lr">-</div> <span id="aor_lr"></span> <span id="hod_lr">(None)</span> <span id="depart_time_lr">Enter a station by their station ID</span></li>
             </ul>
             <button id="clearall_lr" onclick="">Clear</button>
         </div>
@@ -93,7 +93,7 @@
             <input type="text" placeholder="Search for a stop..." onkeydown="" id="stopgetter" autocomplete="off">
             <p class="headerstop">Departures for &nbsp;<span id="stopname">---</span></p>
             <ul id="list_of_departures_bus">
-                <li id="line_for_departure_bus"><div id="lod_bus">-</div> <span id="hod_bus">(None)</span> <span id="depart_time_bus">Enter a stop by their stop ID</span></li>
+                <li id="line_for_departure_bus"><div id="lod_bus">-</div> <span id="aor_bus"></span> <span id="hod_bus">(None)</span> <span id="depart_time_bus">Enter a stop by their stop ID</span></li>
             </ul>
             <button id="clearall_bus" onclick="">Clear</button>
         </div>
@@ -192,6 +192,7 @@
                                 var scheduled_time = subdeparture_receiver.departures[i].arrival.scheduled;
                                 var actual_arrival = subdeparture_receiver.departures[i].arrival.estimated;
                                 var delay_subway = subdeparture_receiver.departures[i].arrival.delay / 60;
+                                var alerts_subway = subdeparture_receiver.departures[i].trip.route.alerts;
 
                                 switch (actual_arrival) {
                                     case (null):
@@ -226,6 +227,13 @@
 
                                 if (route_short_name === "") {
                                     route_short_name = "&nbsp;&nbsp;&nbsp;";
+                                }
+
+                                if (alerts_subway.length === 0) {
+                                    document.getElementById("aor_subway").innerHTML = "";
+                                }
+                                else {
+                                    document.getElementById("aor_subway").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_subway.length})`;
                                 }
 
                                 document.getElementById("lod_subway").innerHTML = route_short_name;
