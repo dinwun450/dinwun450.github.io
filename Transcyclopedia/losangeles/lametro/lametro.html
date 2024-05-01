@@ -178,7 +178,7 @@
                     var subdeparture_receiver = JSON.parse(subdeparture_caller.responseText).stops;
 
                     for (var e=0; e<subdeparture_receiver.length; e++) {
-                        var subdeparture_receiver = subdeparture_receiver.stops[e];
+                        var subdeparture_receiver = subdeparture_receiver[e];
                         if (subdeparture_receiver.departures.length === 0) {
                             console.log("Pass.");
                         }
