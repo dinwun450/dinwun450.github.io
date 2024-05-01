@@ -81,7 +81,7 @@
         </div>
         <div class="window" id="departures_lightrail">
             <p id="sectionheader">Departures (Light Rail) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." onkeydown="" id="stationgetter_lr" autocomplete="off">
+            <input type="text" placeholder="Search for a station..." onkeydown="keyDownLR();" id="stationgetter_lr" autocomplete="off">
             <p class="headerstation">Departures for &nbsp;<span id="stationname_lr">---</span></p>
             <ul id="list_of_departures_lr">
                 <li id="line_for_departure_lr"><div id="lod_lr">-</div> <span id="aor_lr"></span> <span id="hod_lr">(None)</span> <span id="depart_time_lr">Enter a station by their station ID</span></li>
@@ -90,7 +90,7 @@
         </div>
         <div class="window" id="departures_bus">
             <p id="sectionheader">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a stop..." onkeydown="keyDownLR();" id="stopgetter" autocomplete="off">
+            <input type="text" placeholder="Search for a stop..." onkeydown="" id="stopgetter" autocomplete="off">
             <p class="headerstop">Departures for &nbsp;<span id="stopname">---</span></p>
             <ul id="list_of_departures_bus">
                 <li id="line_for_departure_bus"><div id="lod_bus">-</div> <span id="aor_bus"></span> <span id="hod_bus">(None)</span> <span id="depart_time_bus">Enter a stop by their stop ID</span></li>
