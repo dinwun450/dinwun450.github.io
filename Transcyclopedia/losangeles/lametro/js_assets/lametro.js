@@ -149,3 +149,33 @@ function loadLAMetroLinesBus() {
     route_fetcher.send();
 }
 loadLAMetroLinesBus();
+
+function LAMetroAlerts() {
+    var alert_agency_caller = new XMLHttpRequest();
+    alert_agency_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9q5-metro~losangeles&include_alerts=true");
+    alert_agency_caller.onreadystatechange = function() {
+        if (alert_agency_caller.readyState === 4 && alert_agency_caller.status === 200) {
+            var alert_agency_receiver = JSON.parse(alert_agency_caller.responseText).agencies[0];
+            var alerts_in_agency = alert_agency_receiver.alerts;
+
+            if (alerts_in_agency.length === 0) {
+                document.getElementById("alert_routes_entity").innerHTML = "There are no alerts posted in the Los Angeles Metro Agency."
+            }
+            else {
+                for (var i=0; i<alerts_in_agency.length; i++) {
+                    var desc_in_alerts = alerts_in_agency[i].description_text[0].text;
+                    document.getElementById("alert_routes_entity").innerHTML = `${desc_in_alerts}`;
+
+                    var alert_node = document.getElementById("alert_routes_entity");
+                    var clone_alert = alert_node.cloneNode(true);
+                    document.getElementById("list_of_line_alerts").appendChild(clone_alert);
+                }
+
+                var all_alerts_in_agency = document.getElementById("list_of_line_alerts").children;
+                document.getElementById("list_of_line_alerts").removeChild(all_alerts_in_agency[0]);
+            }
+        }
+    }
+    alert_agency_caller.send();
+}
+LAMetroAlerts();
