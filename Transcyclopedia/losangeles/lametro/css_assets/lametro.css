@@ -248,7 +248,7 @@ body::after {
     right: 50px;
 }
 
-#departures_subway input, #departures_lightrail input, #departures_bus input, #alerts input {
+#departures_subway input, #departures_lightrail input, #departures_bus input {
     width: 95%;
     height: 30px;
     border-radius: 5px;
@@ -259,13 +259,7 @@ body::after {
     padding-left: 10px;
 }
 
-#alerts input {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background: rgba(255,255,255,0.13);
-}
-
-.headerstation, .headerstation_lr, .headerstop, .headerroute {
+.headerstation, .headerstation_lr, .headerstop {
     width: 95%;
     height: 50px;
     background: rgba(255, 255, 255, 0.25);
@@ -278,15 +272,6 @@ body::after {
     justify-content: left;
     align-items: center;
     padding-left: 10px;
-}
-
-.headerroute {
-    background: rgba(255,255,255,0.13);
-    height: fit-content;
-    border-radius: 10px;
-    text-wrap: nowrap;
-    overflow-x: auto;
-    padding: 10px;
 }
 
 #list_of_departures_subway, #list_of_departures_lr, #list_of_departures_bus {
@@ -316,7 +301,7 @@ body::after {
     right: 3px;
 }
 
-#clearall_subway, #clearall_bus, #clearall_lr, #clearall_alerts {
+#clearall_subway, #clearall_bus, #clearall_lr {
     width: 95%;
     height: 30px;
     border-radius: 5px;
@@ -325,11 +310,6 @@ body::after {
     font-size: 1.5em;
     margin-bottom: 25px;
     margin-left: 20px;
-}
-
-#clearall_alerts {
-    margin-top: 20px;
-    background: rgba(255,255,255,0.13);
 }
 
 .alert_section_agency, .alert_section_lines {
