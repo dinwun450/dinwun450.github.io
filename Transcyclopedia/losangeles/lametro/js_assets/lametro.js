@@ -123,6 +123,14 @@ function loadLAMetroLinesBus() {
                     document.getElementById("no_of_alerts_bus").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${route_info.routes[i].alerts.length})`;
                 }
 
+                if (route_color === "") {
+                    route_color = "000000";
+                }
+
+                if (route_text_color === "") {
+                    route_text_color = "ffffff"
+                }
+
                 document.getElementById("route_name_bus").innerHTML = route_short_name;
                 document.getElementById("route_name_bus").style.color = `#${route_text_color}`;
                 document.getElementById("route_name_bus").style.backgroundColor = `#${route_color}40`;
