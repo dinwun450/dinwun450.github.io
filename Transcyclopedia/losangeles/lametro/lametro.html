@@ -330,11 +330,11 @@
                                                 document.getElementById("delay_lr").innerHTML = "(no data)";
                                                 document.getElementById("delay_lr").style.color = "black";
                                                 break;
-                                            case (delay_subway > 60):
+                                            case (delay_lr > 60):
                                                 document.getElementById("delay_lr").innerHTML = `(${delay_lr} min late)`;
                                                 document.getElementById("delay_lr").style.color = "orange";
                                                 break;
-                                            case (delay_subway < 0):
+                                            case (delay_lr < 0):
                                                 document.getElementById("delay_lr").innerHTML = `(${delay_lr} min early)`;
                                                 document.getElementById("delay_lr").style.color = "skyblue";
                                                 break;
