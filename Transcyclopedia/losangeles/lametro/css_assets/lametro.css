@@ -324,6 +324,10 @@ body::after {
     overflow-y: auto;
 }
 
+.alert_section_lines {
+    height: 400px;
+}
+
 #alert_agency_entity, #alert_routes_entity {
     width: 95%;
     height: fit-content;
