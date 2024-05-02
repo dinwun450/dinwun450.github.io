@@ -179,3 +179,39 @@ function LAMetroAlerts() {
     alert_agency_caller.send();
 }
 LAMetroAlerts();
+
+function LAMetroAlertsRoutes() {
+    var alert_route_caller = new XMLHttpRequest();
+    alert_route_caller.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q5-metro~losangeles&limit=700&include_alerts=true");
+    alert_route_caller.onreadystatechange = function() {
+        if (alert_route_caller.readyState === 4 && alert_route_caller.status === 200) {
+            var alert_route_receiver = JSON.parse(alert_route_caller.responseText);
+
+            for (var i=0; i<alert_route_receiver.routes.length; i++) {
+                if (alert_route_receiver.routes[i].alerts.length === 0) {
+                    console.log("Nothing.");
+                }
+                else {
+                    var desc_for_route_alert = alert_route_receiver.routes[i].alerts.description_text[0].text;
+                    var route_color_affected = alert_route_receiver.routes[i].route_color;
+                    var route_text_color_affected = alert_route_receiver.routes[i].route_text_color;
+                    var route_short_name_affected = alert_route_receiver.routes[i].route_short_name;
+
+                    document.getElementById("alert_route_entity").innerHTML = `<span id="route_affected">${route_short_name_affected}</span> <br> ${desc_for_route_alert}`;
+                    document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
+                    document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
+                    document.getElementById("route_affected").style.border = `1px solid #${route_color_affected}`;
+
+                    var alert_route_node = document.getElementById("alert_route_entity");
+                    var clone_alert_node = alert_route_node.cloneNode(true);
+                    document.getElementById("list_of_line_alerts").appendChild(clone_alert_node);
+                }
+            }
+
+            var all_alerts_summed = document.getElementById("list_of_line_alerts").children;
+            document.getElementById("list_of_line_alerts").removeChild(all_alerts_summed[0]);
+        }
+    }
+    alert_route_caller.send();
+}
+LAMetroAlertsRoutes();

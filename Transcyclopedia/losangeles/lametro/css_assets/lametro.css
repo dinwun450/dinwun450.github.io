@@ -227,7 +227,7 @@ body::after {
 
 #route_name_sub, #route_name_bus, #route_name_lr,
 #lod_subway, #lod_lr, #lod_bus,
-#routes_affected, #route_name_rad {
+#route_affected, #route_name_rad {
     display: inline-block;
     width: fit-content;
     padding-left: 5px;
