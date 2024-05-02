@@ -192,7 +192,7 @@ function LAMetroAlertsRoutes() {
                     console.log("Nothing.");
                 }
                 else {
-                    var desc_for_route_alert = alert_route_receiver.routes[i].alerts.description_text[0].text;
+                    var desc_for_route_alert = alert_route_receiver.routes[i].alerts[0].description_text[0].text;
                     var route_color_affected = alert_route_receiver.routes[i].route_color;
                     var route_text_color_affected = alert_route_receiver.routes[i].route_text_color;
                     var route_short_name_affected = alert_route_receiver.routes[i].route_short_name;
