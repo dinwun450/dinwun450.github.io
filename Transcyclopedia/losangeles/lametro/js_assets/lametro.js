@@ -202,7 +202,7 @@ function LAMetroAlertsRoutes() {
                     document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
                     document.getElementById("route_affected").style.border = `1px solid #${route_color_affected}`;
 
-                    var alert_route_node = document.getElementById("alert_route_entity");
+                    var alert_route_node = document.getElementById("alert_routes_entity");
                     var clone_alert_node = alert_route_node.cloneNode(true);
                     document.getElementById("list_of_line_alerts").appendChild(clone_alert_node);
                 }
