@@ -191,6 +191,10 @@ function LAMetroAlertsRoutes() {
                 var route_color_affected = alert_route_receiver.routes[i].route_color;
                 var route_text_color_affected = alert_route_receiver.routes[i].route_text_color;
                 var route_short_name_affected = alert_route_receiver.routes[i].route_short_name;
+
+                if (route_short_name_affected === "") {
+                    route_short_name_affected = "&nbsp;&nbsp;&nbsp;";
+                }
                     
                 if (alert_route_receiver.routes[i].alerts.length === 0) {
                     console.log("Nothing.");
@@ -203,13 +207,7 @@ function LAMetroAlertsRoutes() {
                         document.getElementById("alert_routes_entity").innerHTML = `<span id="route_affected"></span> <b>${header_for_route_alert}</b> <br> ${desc_for_route_alert}`;
                     }
 
-                    if (route_short_name_affected === "") {
-                        route_short_name_affected = "&nbsp;&nbsp;&nbsp;";
-                    }
-                    else {
-                        document.getElementById("route_affected").innerHTML = route_short_name_affected;
-                    }
-
+                    document.getElementById("route_affected").innerHTML = route_short_name_affected;
                     document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
                     document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
                     document.getElementById("route_affected").style.border = `1px solid #${route_color_affected}`;
