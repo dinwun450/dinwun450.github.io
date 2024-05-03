@@ -197,7 +197,7 @@ function LAMetroAlertsRoutes() {
                     var route_text_color_affected = alert_route_receiver.routes[i].route_text_color;
                     var route_short_name_affected = alert_route_receiver.routes[i].route_short_name;
 
-                    document.getElementById("alert_route_entity").innerHTML = `<span id="route_affected">${route_short_name_affected}</span> <br> ${desc_for_route_alert}`;
+                    document.getElementById("alert_routes_entity").innerHTML = `<span id="route_affected">${route_short_name_affected}</span> <br> ${desc_for_route_alert}`;
                     document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
                     document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
                     document.getElementById("route_affected").style.border = `1px solid #${route_color_affected}`;
