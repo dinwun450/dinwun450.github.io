@@ -202,12 +202,15 @@ function LAMetroAlertsRoutes() {
                     var route_color_affected = alert_route_receiver.routes[i].route_color;
                     var route_text_color_affected = alert_route_receiver.routes[i].route_text_color;
                     var route_short_name_affected = alert_route_receiver.routes[i].route_short_name;
+                    var route_long_name_affected = alert_route_caller.routes[i].route_long_name;
 
                     if (route_short_name_affected === "") {
-                        route_short_name_affected = alert_route_caller.routes[i].route_long_name;
+                        document.getElementById("route_affected").innerHTML = route_long_name_affected;
                     }
-
-                    document.getElementById("route_affected").innerHTML = route_short_name_affected;
+                    else {
+                        document.getElementById("route_affected").innerHTML = route_short_name_affected;
+                    }
+                    
                     document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
                     document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
                     document.getElementById("route_affected").style.border = `1px solid #${route_color_affected}`;
