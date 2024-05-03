@@ -205,16 +205,15 @@ function LAMetroAlertsRoutes() {
                         var header_for_route_alert = alert_route_receiver.routes[i].alerts[a].header_text[0].text;
 
                         document.getElementById("alert_routes_entity").innerHTML = `<span id="route_affected"></span> <b>${header_for_route_alert}</b> <br> ${desc_for_route_alert}`;
+                        document.getElementById("route_affected").innerHTML = route_short_name_affected;
+                        document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
+                        document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
+                        document.getElementById("route_affected").style.border = `1px solid #${route_color_affected}`;
+
+                        var alert_route_node = document.getElementById("alert_routes_entity");
+                        var clone_alert_node = alert_route_node.cloneNode(true);
+                        document.getElementById("list_of_line_alerts").appendChild(clone_alert_node);
                     }
-
-                    document.getElementById("route_affected").innerHTML = route_short_name_affected;
-                    document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
-                    document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
-                    document.getElementById("route_affected").style.border = `1px solid #${route_color_affected}`;
-
-                    var alert_route_node = document.getElementById("alert_routes_entity");
-                    var clone_alert_node = alert_route_node.cloneNode(true);
-                    document.getElementById("list_of_line_alerts").appendChild(clone_alert_node);
                 }
             }
 
