@@ -204,9 +204,7 @@ function LAMetroAlertsRoutes() {
                     var route_short_name_affected = alert_route_receiver.routes[i].route_short_name;
 
                     if (route_short_name_affected === "") {
-                        var route_long_name_affected = alert_route_caller.routes[i].route_long_name;
-                        console.log(route_long_name_affected);
-                        document.getElementById("route_affected").innerHTML = route_long_name_affected;
+                        route_short_name_affected = "&nbsp;&nbsp;&nbsp;";
                     }
                     else {
                         document.getElementById("route_affected").innerHTML = route_short_name_affected;
