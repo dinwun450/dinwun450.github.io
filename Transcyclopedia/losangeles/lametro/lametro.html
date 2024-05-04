@@ -687,7 +687,7 @@
                                 document.getElementById("route_name_rad").style.border = `1px solid ${color_of_route}40`;
                                 document.getElementById("route_detail_rad").innerHTML = desc_of_route;
 
-                                var routeClone = document.querySelector("#rir");
+                                var routeClone = document.getElementById("rir");
                                 var listToInsertClone = routeClone.cloneNode(true);
                                 document.getElementById("range_of_routes").appendChild(listToInsertClone);
                             }
