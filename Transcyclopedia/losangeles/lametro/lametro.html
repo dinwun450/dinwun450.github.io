@@ -670,6 +670,7 @@
                         const features = map.queryRenderedFeatures({
                             layers: ['la_subway_layer']
                         });
+                        console.log(features);
 
                         if (features) {
                             const uniqueFeatures = getUniqueFeatures(features, 'route_short_name');
