@@ -660,7 +660,7 @@
                     map.moveLayer('la_subway_layer');
 
                     map.on('movestart', () => {
-                        map.setFilter('la_subway_layer', ['has', 'route_short_name']);
+                        map.setFilter('la_subway_layer', ['has', 'route_long_name']);
                         document.getElementById("range_of_routes").innerHTML = `
                             <li id="rir"><span id="route_name_rad">-</span> <span id="route_detail_rad">Loading...</span></li>
                         `
@@ -673,7 +673,7 @@
                         console.log(features);
 
                         if (features) {
-                            const uniqueFeatures = getUniqueFeatures(features, 'route_short_name');
+                            const uniqueFeatures = getUniqueFeatures(features, 'route_long_name');
                             console.log(uniqueFeatures);
 
                             for (var f = 0; f < uniqueFeatures.length; f ++) {
