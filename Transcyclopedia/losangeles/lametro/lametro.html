@@ -602,12 +602,12 @@
                     var map_receiver = JSON.parse(map_getter.responseText);
 
                     for (var i=0; i<map_receiver.routes.length; i++) {
-                        var route_short_name = map_getter.routes[i].route_short_name;
-                        var route_color = map_getter.routes[i].route_color;
-                        var route_text_color = map_getter.routes[i].route_text_color;
-                        var route_long_name = map_getter.routes[i].route_long_name;
-                        var route_type = map_getter.routes[i].route_type;
-                        var geometry_of_route = map_getter.routes[i].geometry;
+                        var route_short_name = map_receiver.routes[i].route_short_name;
+                        var route_color = map_receiver.routes[i].route_color;
+                        var route_text_color = map_receiver.routes[i].route_text_color;
+                        var route_long_name = map_receiver.routes[i].route_long_name;
+                        var route_type = map_receiver.routes[i].route_type;
+                        var geometry_of_route = map_receiver.routes[i].geometry;
                         
                         geojson_of_la_metro_routes.push({
                             'type': 'Feature',
