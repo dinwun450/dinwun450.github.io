@@ -738,8 +738,8 @@
                         closeOnClick: false
                     });
 
-                    map.on('mouseenter', 'la_subway_layer', function(e) {
-                        var fs_sub = map.queryRenderedFeatures(e.point, { layers: ['la_subway_layer']});
+                    map.on('mouseenter', ['la_subway_layer', 'la_lightrail_layer'], function(e) {
+                        var fs_sub = map.queryRenderedFeatures(e.point, { layers: ['la_subway_layer', 'la_lightrail_layer']});
                         console.log(fs_sub)
 
                         if (fs_sub.length > 0) {
@@ -754,31 +754,31 @@
                         }
                     });
 
-                    map.on('mouseleave', 'la_subway_layer', function(e) {
+                    map.on('mouseleave', ['la_subway_layer', 'la_lightrail_layer'], function(e) {
                         if (routeIdSub.length > 0) {routeIdSub = []}
                         popup.remove();
                     });
 
-                    map.on('mouseenter', 'la_lightrail_layer', function(e) {
-                        var fs_lr = map.queryRenderedFeatures(e.point, { layers: ['la_lightrail_layer']});
-                        console.log(fs_lr)
+                    // map.on('mouseenter', 'la_lightrail_layer', function(e) {
+                    //     var fs_lr = map.queryRenderedFeatures(e.point, { layers: ['la_lightrail_layer']});
+                    //     console.log(fs_lr)
 
-                        if (fs_lr.length > 0) {
-                            for (var f = 0; f < fs_lr.length; f ++) {
-                                var name_of_route = fs_lr[f].properties.route_long_name;
-                                routeIdLR.push(name_of_route)
-                            }
+                    //     if (fs_lr.length > 0) {
+                    //         for (var f = 0; f < fs_lr.length; f ++) {
+                    //             var name_of_route = fs_lr[f].properties.route_long_name;
+                    //             routeIdLR.push(name_of_route)
+                    //         }
                             
-                            // Populate the popup and set its coordinates
-                            // based on the feature found.
-                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeIdLR).addTo(map);
-                        }
-                    });
+                    //         // Populate the popup and set its coordinates
+                    //         // based on the feature found.
+                    //         popup.setLngLat(e.lngLat.wrap()).setHTML(routeIdLR).addTo(map);
+                    //     }
+                    // });
 
-                    map.on('mouseleave', 'la_lightrail_layer', function(e) {
-                        if (routeIdLR.length > 0) {routeIdLR = []}
-                        popup.remove();
-                    });
+                    // map.on('mouseleave', 'la_lightrail_layer', function(e) {
+                    //     if (routeIdLR.length > 0) {routeIdLR = []}
+                    //     popup.remove();
+                    // });
                 }
             }
             map_getter.send();
