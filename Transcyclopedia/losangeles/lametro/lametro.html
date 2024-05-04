@@ -680,20 +680,49 @@
                         }
                     });
 
-                    map.moveLayer('la_subway_layer', 'la_lightrail_layer');
+                    map.addSource('la_metro_bus_routes', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': all_bus_lines_la_metro
+                        },
+                        'generateId': true
+                    });
+
+                    map.addLayer({
+                        'id': 'la_bus_layer',
+                        'type': 'line',
+                        'source': 'la_metro_bus_routes',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-width': 2,
+                            'line-color': [
+                                'case',
+                                ['boolean', ['feature-state', 'hover'], false],
+                                ['get', 'color'],
+                                '#c0e7fc',
+                            ],
+                        }
+                    });
+
+                    map.moveLayer('la_subway_layer', 'la_lightrail_layer', 'la_bus_layer');
 
                     map.on('movestart', () => {
                         map.setFilter('la_subway_layer', ['has', 'route_long_name']);
                         map.setFilter('la_lightrail_layer', ['has', 'route_long_name']);
+                        map.setFilter('la_bus_layer', ['has', 'route_long_name']);
 
                         document.getElementById("range_of_routes").innerHTML = `
                             <li id="rir"><span id="route_name_rad">-</span> <span id="route_detail_rad">Loading...</span></li>
-                        `
+                        `;
                     });
 
                     map.on('moveend', () => {
                         const features = map.queryRenderedFeatures({
-                            layers: ['la_subway_layer', 'la_lightrail_layer']
+                            layers: ['la_subway_layer', 'la_lightrail_layer', 'la_bus_layer']
                         });
                         console.log(features);
 
@@ -724,13 +753,11 @@
                             }
 
                             var all_routes_nearby = document.getElementById("range_of_routes").children;
-                            document.getElementById("range_of_routes").removeChild(all_routes_nearby[0])
+                            document.getElementById("range_of_routes").removeChild(all_routes_nearby[0]);
                         }
                     });
 
                     let routeIdSub = [];
-                    let routeIdLR = [];
-                    let hoverIdBus = [];
                     let hoveredPolygonLine = null;
 
                     const popup = new mapboxgl.Popup({
@@ -739,12 +766,12 @@
                     });
 
                     map.on('mouseenter', ['la_subway_layer', 'la_lightrail_layer'], function(e) {
-                        var fs_sub = map.queryRenderedFeatures(e.point, { layers: ['la_subway_layer', 'la_lightrail_layer']});
-                        console.log(fs_sub)
+                        var fs = map.queryRenderedFeatures(e.point, { layers: ['la_subway_layer', 'la_lightrail_layer']});
+                        console.log(fs)
 
-                        if (fs_sub.length > 0) {
-                            for (var f = 0; f < fs_sub.length; f ++) {
-                                var name_of_route = fs_sub[f].properties.route_long_name;
+                        if (fs.length > 0) {
+                            for (var f = 0; f < fs.length; f ++) {
+                                var name_of_route = fs[f].properties.route_long_name;
                                 routeIdSub.push(name_of_route)
                             }
                             
@@ -758,27 +785,6 @@
                         if (routeIdSub.length > 0) {routeIdSub = []}
                         popup.remove();
                     });
-
-                    // map.on('mouseenter', 'la_lightrail_layer', function(e) {
-                    //     var fs_lr = map.queryRenderedFeatures(e.point, { layers: ['la_lightrail_layer']});
-                    //     console.log(fs_lr)
-
-                    //     if (fs_lr.length > 0) {
-                    //         for (var f = 0; f < fs_lr.length; f ++) {
-                    //             var name_of_route = fs_lr[f].properties.route_long_name;
-                    //             routeIdLR.push(name_of_route)
-                    //         }
-                            
-                    //         // Populate the popup and set its coordinates
-                    //         // based on the feature found.
-                    //         popup.setLngLat(e.lngLat.wrap()).setHTML(routeIdLR).addTo(map);
-                    //     }
-                    // });
-
-                    // map.on('mouseleave', 'la_lightrail_layer', function(e) {
-                    //     if (routeIdLR.length > 0) {routeIdLR = []}
-                    //     popup.remove();
-                    // });
                 }
             }
             map_getter.send();
