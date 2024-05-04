@@ -623,11 +623,11 @@
                     }
 
                     var all_sub_lines_la_metro = geojson_of_la_metro_routes.filter(function(sub) {
-                        return sub.properties.route_type === 0;
+                        return sub.properties.route_type === 1;
                     });
 
                     var all_lr_lines_la_metro = geojson_of_la_metro_routes.filter(function(lr) {
-                        return lr.properties.route_type === 1;
+                        return lr.properties.route_type === 0;
                     });
 
                     var all_bus_lines_la_metro = geojson_of_la_metro_routes.filter(function(bus) {
