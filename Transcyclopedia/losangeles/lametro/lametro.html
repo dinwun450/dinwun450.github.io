@@ -122,6 +122,8 @@
         </div>
     </div>
     <script>
+        var geojson_of_la_metro_routes = [];
+
         function createMapboxMap() {
             document.getElementById("map").style.width = "100%";
             document.getElementById("map").style.height = "500px";
@@ -575,6 +577,161 @@
             `;
             document.getElementById("stopname").innerHTML = "---";
         }
+
+        function getUniqueFeatures(features, comparatorProperty) {
+            const unique_ids = new Set();
+            const unique_features = [];
+
+            for (const feature of features) {
+                const id = feature.properties[comparatorProperty];
+                
+                if (!unique_ids.has(id)) {
+                    unique_ids.add(id);
+                    unique_features.push(feature);
+                }
+            }
+
+            return unique_features;
+        }
+
+        function plotLAMetroLines() {
+            var map_getter = new XMLHttpRequest();
+            map_getter.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q5-metro~losangeles&limit=700&include_geometry=true");
+            map_getter.onreadystatechange = function() {
+                if (map_getter.readyState === 4 && map_getter.status === 200) {
+                    var map_receiver = JSON.parse(map_getter.responseText);
+
+                    for (var i=0; i<map_receiver.routes.length; i++) {
+                        var route_short_name = map_getter.routes[i].route_short_name;
+                        var route_color = map_getter.routes[i].route_color;
+                        var route_text_color = map_getter.routes[i].route_text_color;
+                        var route_long_name = map_getter.routes[i].route_long_name;
+                        var route_type = map_getter.routes[i].route_type;
+                        var geometry_of_route = map_getter.routes[i].geometry;
+                        
+                        geojson_of_la_metro_routes.push({
+                            'type': 'Feature',
+                            'geometry': geometry_of_route,
+                            'properties': {
+                                'route_color': `#${route_color}`,
+                                'route_text_color': `#${route_text_color}`,
+                                'route_short_name': route_short_name,
+                                'route_long_name': route_long_name,
+                                'route_type': route_type
+                            }
+                        })
+                    }
+
+                    var all_sub_lines_la_metro = geojson_of_la_metro_routes.filter(function(sub) {
+                        return sub.properties.route_type === 0;
+                    });
+
+                    var all_lr_lines_la_metro = geojson_of_la_metro_routes.filter(function(lr) {
+                        return lr.properties.route_type === 1;
+                    });
+
+                    var all_bus_lines_la_metro = geojson_of_la_metro_routes.filter(function(bus) {
+                        return bus.properties.route_type === 3;
+                    });
+
+                    map.addSource('la_metro_subway_routes', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': all_sub_lines_la_metro
+                        },
+                        'generateId': true
+                    });
+
+                    map.addLayer({
+                        'id': 'la_subway_layer',
+                        'type': 'line',
+                        'source': 'route',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-width': 4,
+                            'line-color': ['get', 'color']
+                        }
+                    });
+
+                    map.moveLayer('la_subway_layer');
+
+                    map.on('movestart', () => {
+                        map.setFilter('la_subway_layer', ['has', 'route_short_name']);
+                        document.getElementById("range_of_routes").innerHTML = `
+                            <li id="rir"><span id="route_name_rad">-</span> <span id="route_detail_rad">Loading...</span></li>
+                        `
+                    });
+
+                    map.on('moveend', () => {
+                        const features = map.queryRenderedFeatures({
+                            layers: ['la_subway_layer']
+                        });
+
+                        if (features) {
+                            const uniqueFeatures = getUniqueFeatures(features, 'name');
+
+                            for (var f = 0; f < uniqueFeatures.length; f ++) {
+                                var name_of_route = uniqueFeatures[f].properties.route_short_name;
+                                var color_of_route = uniqueFeatures[f].properties.route_color;
+                                var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
+                                var desc_of_route = uniqueFeatures[f].properties.route_long_name;
+                                var type_of_route = uniqueFeatures[f].properties.route_type;
+
+                                document.getElementById("route_name_rad").innerHTML = name_of_route;
+                                document.getElementById("route_name_rad").style.color = `#${text_color_of_route}`;
+                                document.getElementById("route_name_rad").style.backgroundColor = `${color_of_route}40`;
+                                document.getElementById("route_name_rad").style.border = `1px solid ${color_of_route}40`;
+                                document.getElementById("route_detail_rad").innerHTML = desc_of_route;
+
+                                var routeClone = document.querySelector("#rir");
+                                var listToInsertClone = routeClone.cloneNode(true);
+                                document.getElementById("range_of_routes").appendChild(listToInsertClone);
+                            }
+
+                            var all_routes_nearby = document.getElementById("range_of_routes").children;
+                            document.getElementById("range_of_routes").removeChild(all_routes_nearby[0])
+                        }
+                    });
+
+                    let routeIdSub = [];
+                    let routeIdLR = [];
+                    let hoverIdBus = [];
+                    let hoveredPolygonLine = null;
+
+                    const popup = new mapboxgl.Popup({
+                        closeButton: false,
+                        closeOnClick: false
+                    });
+
+                    map.on('mouseenter', 'la_subway_layer', function(e) {
+                        var fs_sub = map.queryRenderedFeatures(e.point, { layers: ['la_subway_layer']});
+                        console.log(fs_sub)
+
+                        if (fs_sub.length > 0) {
+                            for (var f = 0; f < fs_sub.length; f ++) {
+                                var name_of_route = fs_sub[f].properties.name;
+                                routeIdSub.push(name_of_route)
+                            }
+                            
+                            // Populate the popup and set its coordinates
+                            // based on the feature found.
+                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeIdSub).addTo(map);
+                        }
+                    });
+
+                    map.on('mouseleave', 'la_subway_layer', function(e) {
+                        if (routeIdSub.length > 0) {routeIdSub = []}
+                        popup.remove();
+                    });
+                }
+            }
+            map_getter.send();
+        }
+        plotLAMetroLines();
     </script>
 </body>
 </html>
