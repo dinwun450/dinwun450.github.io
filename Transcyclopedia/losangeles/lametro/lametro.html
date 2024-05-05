@@ -741,6 +741,11 @@
                                     name_of_route = "&nbsp;&nbsp;&nbsp;";
                                 }
 
+                                if (desc_of_route === "") {
+                                    console.log("Nothing!")
+                                    desc_of_route = "";
+                                }
+
                                 document.getElementById("route_name_rad").innerHTML = name_of_route;
                                 document.getElementById("route_name_rad").style.color = `#${text_color_of_route}`;
                                 document.getElementById("route_name_rad").style.backgroundColor = `${color_of_route}40`;
