@@ -643,20 +643,6 @@
                         'generateId': true
                     });
 
-                    map.addLayer({
-                        'id': 'la_subway_layer',
-                        'type': 'line',
-                        'source': 'la_metro_subway_routes',
-                        'layout': {
-                            'line-join': 'round',
-                            'line-cap': 'round'
-                        },
-                        'paint': {
-                            'line-width': 4,
-                            'line-color': ['get', 'route_color']
-                        }
-                    });
-
                     map.addSource('la_metro_lightrail_routes', {
                         'type': 'geojson',
                         'data': {
@@ -664,20 +650,6 @@
                             'features': all_lr_lines_la_metro
                         },
                         'generateId': true
-                    });
-
-                    map.addLayer({
-                        'id': 'la_lightrail_layer',
-                        'type': 'line',
-                        'source': 'la_metro_lightrail_routes',
-                        'layout': {
-                            'line-join': 'round',
-                            'line-cap': 'round'
-                        },
-                        'paint': {
-                            'line-width': 4,
-                            'line-color': ['get', 'route_color']
-                        }
                     });
 
                     map.addSource('la_metro_bus_routes', {
@@ -705,6 +677,34 @@
                                 ['get', 'color'],
                                 '#c0e7fc',
                             ],
+                        }
+                    });
+
+                    map.addLayer({
+                        'id': 'la_lightrail_layer',
+                        'type': 'line',
+                        'source': 'la_metro_lightrail_routes',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-width': 4,
+                            'line-color': ['get', 'route_color']
+                        }
+                    });
+
+                    map.addLayer({
+                        'id': 'la_subway_layer',
+                        'type': 'line',
+                        'source': 'la_metro_subway_routes',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-width': 4,
+                            'line-color': ['get', 'route_color']
                         }
                     });
 
