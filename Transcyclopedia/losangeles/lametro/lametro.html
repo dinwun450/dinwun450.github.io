@@ -608,6 +608,7 @@
                         var route_long_name = map_receiver.routes[i].route_long_name;
                         var route_type = map_receiver.routes[i].route_type;
                         var geometry_of_route = map_receiver.routes[i].geometry;
+                        var route_id = map_receiver.routes[i].route_id;
                         
                         geojson_of_la_metro_routes.push({
                             'type': 'Feature',
@@ -617,7 +618,8 @@
                                 'route_text_color': `#${route_text_color}`,
                                 'route_short_name': route_short_name,
                                 'route_long_name': route_long_name,
-                                'route_type': route_type
+                                'route_type': route_type,
+                                'route_id': route_id
                             }
                         })
                     }
@@ -711,9 +713,9 @@
                     map.moveLayer('la_subway_layer', 'la_lightrail_layer', 'la_bus_layer');
 
                     map.on('movestart', () => {
-                        map.setFilter('la_subway_layer', ['has', 'route_long_name']);
-                        map.setFilter('la_lightrail_layer', ['has', 'route_long_name']);
-                        map.setFilter('la_bus_layer', ['has', 'route_long_name']);
+                        map.setFilter('la_subway_layer', ['has', 'route_id']);
+                        map.setFilter('la_lightrail_layer', ['has', 'route_id']);
+                        map.setFilter('la_bus_layer', ['has', 'route_id']);
 
                         document.getElementById("range_of_routes").innerHTML = `
                             <li id="rir"><span id="route_name_rad">-</span> <span id="route_detail_rad">Loading...</span></li>
@@ -727,7 +729,7 @@
                         console.log(features);
 
                         if (features) {
-                            const uniqueFeatures = getUniqueFeatures(features, 'route_long_name');
+                            const uniqueFeatures = getUniqueFeatures(features, 'route_id');
                             console.log(uniqueFeatures);
 
                             for (var f = 0; f < uniqueFeatures.length; f ++) {
