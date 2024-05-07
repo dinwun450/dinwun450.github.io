@@ -230,6 +230,20 @@ body::after {
     text-align: center;
 }
 
+#icon_of_train {
+    width: 15px;
+    height: 15px;
+    filter: invert(1);
+    position: relative;
+    top: 3px;
+}
+
+#direction {
+    color: white;
+    position: relative;
+    top: 1px;
+}
+
 #description {
     width: 65%;
     /* height: 100px; */

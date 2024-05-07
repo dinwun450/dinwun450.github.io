@@ -1,4 +1,13 @@
 window.onload = function() {
+    var bartColors = {
+        "Orange": '#faa61a',
+        "Red": '#ed1c24',
+        "Yellow": '#ffe800',
+        "Green": "#4db848",
+        "Blue": "#00aeef",
+        "Beige": "#aba682"
+    }
+    
     function getCopyrightYear() {
         var date = new Date();
         var getYearNo = date.getFullYear();
@@ -17,14 +26,22 @@ window.onload = function() {
                 for (var i=0; i<routeResult.routes.length; i++) {
                     var routeShort = routeResult.routes[i].route_short_name;
                     var routeLong = routeResult.routes[i].route_long_name;
-                    var routeColor = routeResult.routes[i].route_color;
                     var routeColorText = routeResult.routes[i].route_text_color;
+                    var color_from_name = routeShort.split("-")[0];
+                    var direction = routeShort.split("-")[1]
 
-                    document.getElementById("route").innerHTML = routeShort;
+                    document.getElementById("direction").innerHTML = `(${direction})`;
                     document.getElementById("description").innerHTML = routeLong;
-                    document.getElementById("route").style.backgroundColor = `#${routeColor}40`;
-                    document.getElementById("route").style.border = `1px solid #${routeColor}`;
-                    document.getElementById("route").style.color = `#${routeColorText}`;
+                    document.getElementById("route").style.backgroundColor = `${bartColors[color_from_name]}40`;
+                    document.getElementById("route").style.border = `1px solid #${bartColors[color_from_name]}`;
+                    document.getElementById("direction").style.color = `#${routeColorText}`;
+
+                    if (routeColorText === "000000") {
+                        document.getElementById("icon_of_train").style.filter = "brightness(0%)";
+                    }
+                    else {
+                        document.getElementById("icon_of_train").style.filter = "invert(1)";
+                    }
 
                     var cloneTheList = document.getElementById("route_entity");
                     var listTBC = cloneTheList.cloneNode(true);
