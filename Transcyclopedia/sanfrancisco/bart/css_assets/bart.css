@@ -230,7 +230,7 @@ body::after {
     text-align: center;
 }
 
-#icon_of_train {
+#icon_of_train, #icon_of_train_departures {
     width: 15px;
     height: 15px;
     filter: invert(1);
