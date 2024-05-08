@@ -55,6 +55,9 @@ window.onload = function() {
                         document.getElementById("route").innerHTML = `<i class="fa-solid fa-bus"></i>`;
                         document.getElementById("route").style.color = "white";
                     }
+                    else {
+                        document.getElementById("route").innerHTML = `<img src="img_assets/noun-bart-14232.svg" id="icon_of_train">&nbsp;<span id="direction"></span>`;
+                    }
 
                     var cloneTheList = document.getElementById("route_entity");
                     var listTBC = cloneTheList.cloneNode(true);
