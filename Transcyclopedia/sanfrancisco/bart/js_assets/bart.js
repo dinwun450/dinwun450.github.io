@@ -32,17 +32,9 @@ window.onload = function() {
                     var color_from_name = routeShort.split("-")[0];
                     var direction = routeShort.split("-")[1];
 
-                    if (direction === undefined) {
-                        console.log("Nope.")
-                    }
-                    else {
-                        document.getElementById("direction").innerHTML = `(${direction})`;
-                    }
-
                     document.getElementById("description").innerHTML = routeLong;
                     document.getElementById("route").style.backgroundColor = `${bartColors[color_from_name]}40`;
                     document.getElementById("route").style.border = `1px solid ${bartColors[color_from_name]}`;
-                    document.getElementById("direction").style.color = `#${routeColorText}`;
 
                     if (routeColorText === "000000") {
                         document.getElementById("icon_of_train").style.filter = "brightness(0%)";
@@ -56,7 +48,8 @@ window.onload = function() {
                         document.getElementById("route").style.color = "white";
                     }
                     else {
-                        document.getElementById("route").innerHTML = `<img src="img_assets/noun-bart-14232.svg" id="icon_of_train">&nbsp;<span id="direction"></span>`;
+                        document.getElementById("direction").innerHTML = `(${direction})`;
+                        document.getElementById("direction").style.color = `#${routeColorText}`;
                     }
 
                     var cloneTheList = document.getElementById("route_entity");
