@@ -38,8 +38,8 @@
                     <p><b>September 11, 1972</b></p>
                 </div>
                 <div class="no_of_lines">
-                    <h2>Number of Lines:</h2>
-                    <p><b>5 Rapid Transit Lines (1 with Diesel LR Extension) <br> 1 AGT Line</b></p>
+                    <h2>Number of Routes Overall:</h2>
+                    <p id="number_of_all_routes"><b>Loading...</b></p>
                 </div>
             </div>
         </div>
@@ -112,6 +112,23 @@
             }
         }
         caller.send();
+
+        function getDetailedInfoOfBartRoutes() {
+            var agency_bart = new XMLHttpRequest();
+            agency_bart.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-bart&limit=700");
+            agency_bart.onreadystatechange = function() {
+                if (agency_bart.readyState === 4 && agency_bart.status === 200) {
+                    var agency_info = JSON.parse(agency_bart.responseText);
+                    var counter = 0;
+
+                    for (var c=0; c<agency_info.routes.length; c++) {
+                        counter += 1;
+                    }
+                    document.getElementById("number_of_all_routes").innerHTML = `<b>${counter}</b>`;
+                }
+            }
+            agency_bart.send();
+        }
 
         function mapbox() {
             document.getElementById("map").style.width = "100%";
