@@ -54,7 +54,7 @@
             <input type="text" placeholder="Search for a station.." onkeydown="keyDown()" id="stationgetter" autocomplete="off">
             <p class="headerforstop">Departures for &nbsp;<span id="stationname">---</span></p>
             <ul id="list_of_departures">
-                <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure">-</div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
+                <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
             </ul>
             <button id="clearall" onclick="clearAll()">Clear</button>
         </div>
@@ -221,6 +221,10 @@
             e = e || window.event;
             if (e.keyCode === 13) {
                 console.log("Here we go!");
+                document.getElementById("list_of_departures").innerHTML = `
+                <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
+                `;
+                document.getElementById("stationname").innerHTML = "---";
                 callOver();
             }
         }
@@ -258,9 +262,9 @@
                     console.log(compileDepartures);
 
                     for (var i=0; i<compileDepartures.stops[0].departures.length; i++) {
-                        var routeColor = compileDepartures.stops[0].departures[i].trip.route.route_color;
                         var routeColorInText = compileDepartures.stops[0].departures[i].trip.route.route_text_color;
                         var routeShort = compileDepartures.stops[0].departures[i].trip.route.route_short_name;
+                        var color_from_name = routeShort.split("-")[0];
                         var routeLong = compileDepartures.stops[0].departures[i].trip.trip_headsign;
                         var departuredTime = compileDepartures.stops[0].departures[i].arrival.estimated;
                         var scheduledTime = compileDepartures.stops[0].departures[i].arrival.scheduled;
@@ -291,10 +295,18 @@
                         }
 
                         document.getElementById("line_for_each_departure").innerHTML = routeShort;
-                        document.getElementById("line_for_each_departure").style.backgroundColor = `#${routeColor}40`;
-                        document.getElementById("line_for_each_departure").style.border = `1px solid #${routeColor}`;
+                        document.getElementById("line_for_each_departure").style.backgroundColor = `${bartColors[color_from_name]}40`;
+                        document.getElementById("line_for_each_departure").style.border = `1px solid ${bartColors[color_from_name]}`;
                         document.getElementById("line_for_each_departure").style.color = `#${routeColorInText}`;
+                        document.getElementById("color_name").innerHTML = `(${color_from_name})`; 
                         document.getElementById("route_headsign").innerHTML = routeLong;
+
+                        if (routeColorText === "000000") {
+                            document.getElementById("icon_of_train").style.filter = "brightness(0%)";
+                        }
+                        else {
+                            document.getElementById("icon_of_train").style.filter = "invert(1)";
+                        }
 
                         var departureClone = document.getElementById("line_for_departure");
                         var listToInsertClone = departureClone.cloneNode(true);
@@ -310,7 +322,7 @@
 
         function clearAll() {
             document.getElementById("list_of_departures").innerHTML = `
-            <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure">-</div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
+            <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
             `
             document.getElementById("stationname").innerHTML = "---";
         }
