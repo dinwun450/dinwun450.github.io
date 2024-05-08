@@ -222,7 +222,7 @@
             if (e.keyCode === 13) {
                 console.log("Here we go!");
                 document.getElementById("list_of_departures").innerHTML = `
-                <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
+                <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
                 `;
                 document.getElementById("stationname").innerHTML = "---";
                 callOver();
@@ -321,7 +321,7 @@
 
         function clearAll() {
             document.getElementById("list_of_departures").innerHTML = `
-            <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
+            <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
             `
             document.getElementById("stationname").innerHTML = "---";
         }
