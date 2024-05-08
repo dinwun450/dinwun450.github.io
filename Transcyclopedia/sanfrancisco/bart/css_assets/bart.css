@@ -226,6 +226,7 @@ body::after {
     -webkit-backdrop-filter: blur( 15px ); */
     border-radius: 5px;
     border: 1px solid black;
+    color: white;
     font-size: 1em;
     text-align: center;
 }
