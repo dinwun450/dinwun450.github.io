@@ -5,7 +5,9 @@ window.onload = function() {
         "Yellow": '#ffe800',
         "Green": "#4db848",
         "Blue": "#00aeef",
-        "Beige": "#aba682"
+        "Beige": "#aba682",
+        "BridgeA": "#000000",
+        "BridgeB": "#000000"
     }
     
     function getCopyrightYear() {
@@ -28,12 +30,18 @@ window.onload = function() {
                     var routeLong = routeResult.routes[i].route_long_name;
                     var routeColorText = routeResult.routes[i].route_text_color;
                     var color_from_name = routeShort.split("-")[0];
-                    var direction = routeShort.split("-")[1]
+                    var direction = routeShort.split("-")[1];
 
-                    document.getElementById("direction").innerHTML = `(${direction})`;
+                    if (direction === undefined) {
+                        console.log("Nope.")
+                    }
+                    else {
+                        document.getElementById("direction").innerHTML = `(${direction})`;
+                    }
+
                     document.getElementById("description").innerHTML = routeLong;
                     document.getElementById("route").style.backgroundColor = `${bartColors[color_from_name]}40`;
-                    document.getElementById("route").style.border = `1px solid #${bartColors[color_from_name]}`;
+                    document.getElementById("route").style.border = `1px solid ${bartColors[color_from_name]}`;
                     document.getElementById("direction").style.color = `#${routeColorText}`;
 
                     if (routeColorText === "000000") {
@@ -41,6 +49,11 @@ window.onload = function() {
                     }
                     else {
                         document.getElementById("icon_of_train").style.filter = "invert(1)";
+                    }
+
+                    if (routeShort === "BridgeA" || routeShort === "BridgeB") {
+                        document.getElementById("route").innerHTML = `<i class="fa-solid fa-bus"></i>`;
+                        document.getElementById("route").style.color = "white";
                     }
 
                     var cloneTheList = document.getElementById("route_entity");
