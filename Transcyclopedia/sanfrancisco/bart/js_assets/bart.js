@@ -26,11 +26,14 @@ window.onload = function() {
                 console.log(routeResult);
                 
                 for (var i=0; i<routeResult.routes.length; i++) {
+                    document.getElementById("route").innerHTML = `<img src="img_assets/noun-bart-14232.svg" id="icon_of_train">&nbsp;<span id="direction"></span>`;
+                    
                     var routeShort = routeResult.routes[i].route_short_name;
                     var routeLong = routeResult.routes[i].route_long_name;
                     var routeColorText = routeResult.routes[i].route_text_color;
                     var color_from_name = routeShort.split("-")[0];
                     var direction = routeShort.split("-")[1];
+                    console.log(direction);
 
                     document.getElementById("description").innerHTML = routeLong;
                     document.getElementById("route").style.backgroundColor = `${bartColors[color_from_name]}40`;
