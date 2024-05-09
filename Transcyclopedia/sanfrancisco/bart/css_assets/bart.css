@@ -159,6 +159,7 @@ body::after {
     position: absolute;
     top: 0;
     right: 0;
+    overflow-y: auto;
 }
 
 .began_operation, .no_of_lines, .contact {
