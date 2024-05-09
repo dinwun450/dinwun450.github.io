@@ -35,7 +35,7 @@ window.onload = function() {
                     var direction = routeShort.split("-")[1];
                     console.log(direction);
 
-                    document.getElementById("description").innerHTML = routeLong;
+                    document.getElementById("description").innerHTML = `${routeLong} (${color_from_name})`;
                     document.getElementById("route").style.backgroundColor = `${bartColors[color_from_name]}40`;
                     document.getElementById("route").style.border = `1px solid ${bartColors[color_from_name]}`;
 
