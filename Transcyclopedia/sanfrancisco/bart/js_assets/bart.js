@@ -49,6 +49,13 @@ window.onload = function() {
                     if (routeShort === "BridgeA" || routeShort === "BridgeB") {
                         document.getElementById("route").innerHTML = `<i class="fa-solid fa-bus"></i>`;
                         document.getElementById("route").style.color = "white";
+
+                        if (routeShort === "BridgeA") {
+                            document.getElementById("direction").innerHTML = "(A)";
+                        }
+                        else {
+                            document.getElementById("direction").innerHTML = "(B)";
+                        }
                     }
                     else {
                         document.getElementById("direction").innerHTML = `(${direction})`;
