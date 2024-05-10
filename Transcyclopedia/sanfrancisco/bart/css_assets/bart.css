@@ -287,14 +287,14 @@ body::after {
 }
 
 #list_of_departures::-webkit-scrollbar, #range_of_routes::-webkit-scrollbar,
-#map_inter::-webkit-scrollbar {
+#map_inter::-webkit-scrollbar, .stats::-webkit-scrollbar {
     width: 5px;
     position: relative;
     right: 20px;
 }
 
 #list_of_departures::-webkit-scrollbar-track, #range_of_routes::-webkit-scrollbar-track,
-#map_inter::-webkit-scrollbar-track {
+#map_inter::-webkit-scrollbar-track, .stats::-webkit-scrollbar-track {
     border-radius: 10px;
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -303,7 +303,7 @@ body::after {
 }
 
 #list_of_departures::-webkit-scrollbar-thumb, #range_of_routes::-webkit-scrollbar-thumb,
-#map_inter::-webkit-scrollbar-thumb {
+#map_inter::-webkit-scrollbar-thumb, .stats::-webkit-scrollbar-thumb {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     background: rgba( 255, 255, 255, 0.25 );
     border-radius: 10px;
