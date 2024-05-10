@@ -47,14 +47,14 @@ window.onload = function() {
                     }
 
                     if (routeShort === "BridgeA" || routeShort === "BridgeB") {
-                        document.getElementById("route").innerHTML = `<i class="fa-solid fa-bus"></i> <span id="direction"></span>`;
+                        document.getElementById("route").innerHTML = `<i class="fa-solid fa-bus"></i> <span id="direction_of_bus_bridge"></span>`;
                         document.getElementById("route").style.color = "white";
 
                         if (routeShort === "BridgeA") {
-                            document.getElementById("direction").innerHTML = "(A)";
+                            document.getElementById("direction_of_bus_bridge").innerHTML = "(A)";
                         }
                         else {
-                            document.getElementById("direction").innerHTML = "(B)";
+                            document.getElementById("direction_of_bus_bridge").innerHTML = "(B)";
                         }
                     }
                     else {
