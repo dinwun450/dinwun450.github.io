@@ -16,6 +16,33 @@ window.onload = function() {
         document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
     }
     getCopyrightYear();
+
+    function getBartContacts() {
+        var bart_agency_caller = new XMLHttpRequest();
+        bart_agency_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9q9-bart&include_alerts=true");
+        bart_agency_caller.onreadystatechange = function() {
+            if (bart_agency_caller.readyState === 4 && bart_agency_caller.status === 200) {
+                var bart_agency_receiver = JSON.parse(bart_agency_caller.responseText);
+                var phone_no = bart_agency_receiver.agencies[0].agency_phone;
+                var email = bart_agency_receiver.agencies[0].agency_email;
+
+                if (email === "" || phone_no === "") {
+                    if (email === "") {
+                        document.getElementById("email_agency").innerHTML = "<b>-</b> (Email)";
+                    }
+                    else if (phone_no === "") {
+                        document.getElementById("phone_agency").innerHTML = "<b>-</b> (Phone)";
+                    }
+                }
+                else {
+                    document.getElementById("email_agency").innerHTML = `<b>${email}</b> (Email)`;
+                    document.getElementById("phone_agency").innerHTML = `<b>${phone_agency}</b> (Phone)`;
+                }
+            }
+        }
+        bart_agency_caller.send();
+    }
+    getBartContacts();
     
     function loadBartRoutes() {
         var routeCall = new XMLHttpRequest();
