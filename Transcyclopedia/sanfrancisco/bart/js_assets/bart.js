@@ -26,20 +26,15 @@ window.onload = function() {
                 var phone_no = bart_agency_receiver.agencies[0].agency_phone;
                 var email = bart_agency_receiver.agencies[0].agency_email;
 
-                console.log(phone_no, email);
+                if (email === "") {
+                    email = "-";
+                }
+                if (phone_no === "") {
+                    phone_no = "-";
+                }
 
-                if (email === "" || phone_no === "") {
-                    if (email === "") {
-                        document.getElementById("email_agency").innerHTML = "<b>-</b> (Email)";
-                    }
-                    else if (phone_no === "") {
-                        document.getElementById("phone_agency").innerHTML = "<b>-</b> (Phone)";
-                    }
-                }
-                else {
-                    document.getElementById("email_agency").innerHTML = `<b>${email}</b> (Email)`;
-                    document.getElementById("phone_agency").innerHTML = `<b>${phone_agency}</b> (Phone)`;
-                }
+                document.getElementById("email_agency").innerHTML = `<b>${email}</b> (Email)`;
+                document.getElementById("phone_agency").innerHTML = `<b>${phone_agency}</b> (Phone)`;
             }
         }
         bart_agency_caller.send();
