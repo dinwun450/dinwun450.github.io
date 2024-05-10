@@ -26,6 +26,8 @@ window.onload = function() {
                 var phone_no = bart_agency_receiver.agencies[0].agency_phone;
                 var email = bart_agency_receiver.agencies[0].agency_email;
 
+                console.log(phone_no, email);
+
                 if (email === "" || phone_no === "") {
                     if (email === "") {
                         document.getElementById("email_agency").innerHTML = "<b>-</b> (Email)";
