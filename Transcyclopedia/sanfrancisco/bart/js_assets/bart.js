@@ -34,7 +34,7 @@ window.onload = function() {
                 }
 
                 document.getElementById("email_agency").innerHTML = `<b>${email}</b> (Email)`;
-                document.getElementById("phone_agency").innerHTML = `<b>${phone_agency}</b> (Phone)`;
+                document.getElementById("phone_agency").innerHTML = `<b>${phone_no}</b> (Phone)`;
             }
         }
         bart_agency_caller.send();
