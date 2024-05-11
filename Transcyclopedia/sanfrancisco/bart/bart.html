@@ -326,19 +326,19 @@
                         document.getElementById("line_for_each_departure").style.color = `#${routeColorInText}`; 
                         document.getElementById("route_headsign").innerHTML = routeLong;
 
-                        if (routeColorInText === "000000") {
-                            document.getElementById("icon_of_train_departures").style.filter = "brightness(0%)";
-                        }
-                        else {
-                            document.getElementById("icon_of_train_departures").style.filter = "invert(1)";
-                        }
-
                         if (routeShort === "BridgeA" || routeShort === "BridgeB") {
                             document.getElementById("line_for_each_departure").innerHTML = `<i class="fa-solid fa-bus"></i> <span id="color_name"></span>`;
                             document.getElementById("line_for_each_departure").style.color = "white";
                             document.getElementById("color_name").innerHTML = `(${routeShort})`;
                         }
                         else {
+                            if (routeColorInText === "000000") {
+                                document.getElementById("icon_of_train_departures").style.filter = "brightness(0%)";
+                            }
+                            else {
+                                document.getElementById("icon_of_train_departures").style.filter = "invert(1)";
+                            }
+
                             document.getElementById("color_name").innerHTML = `(${color_from_name})`;
                         }
 
