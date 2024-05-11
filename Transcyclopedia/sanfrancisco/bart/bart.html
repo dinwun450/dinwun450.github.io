@@ -95,7 +95,9 @@
             "Yellow": '#ffe800',
             "Green": "#4db848",
             "Blue": "#00aeef",
-            "Beige": "#aba682"
+            "Beige": "#aba682",
+            "BridgeA": "#000000",
+            "BridgeB": "#000000"
         }
     
         function updateSize() {
@@ -321,8 +323,7 @@
 
                         document.getElementById("line_for_each_departure").style.backgroundColor = `${bartColors[color_from_name]}40`;
                         document.getElementById("line_for_each_departure").style.border = `1px solid ${bartColors[color_from_name]}`;
-                        document.getElementById("line_for_each_departure").style.color = `#${routeColorInText}`;
-                        document.getElementById("color_name").innerHTML = `(${color_from_name})`; 
+                        document.getElementById("line_for_each_departure").style.color = `#${routeColorInText}`; 
                         document.getElementById("route_headsign").innerHTML = routeLong;
 
                         if (routeColorInText === "000000") {
@@ -330,6 +331,15 @@
                         }
                         else {
                             document.getElementById("icon_of_train_departures").style.filter = "invert(1)";
+                        }
+
+                        if (routeShort === "BridgeA" || routeShort === "BridgeB") {
+                            document.getElementById("line_for_each_departure").innerHTML = `<i class="fa-solid fa-bus"></i> <span id="direction_of_bus_bridge"></span>`;
+                            document.getElementById("line_for_each_departure").style.color = "white";
+                            document.getElementById("color_name").innerHTML = `(${routeShort})`;
+                        }
+                        else {
+                            document.getElementById("color_name").innerHTML = `(${color_from_name})`;
                         }
 
                         var departureClone = document.getElementById("line_for_departure");
