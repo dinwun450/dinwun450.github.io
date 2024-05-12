@@ -81,7 +81,7 @@
             <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
             <div id="map"></div>
             <ul id="range_of_routes">
-                <li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Drag the map to filter nearby routes</span></li>
+                <li class="route_radius"><span id="route_short"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_map">&nbsp;<span id="direction_map"></span></span> <span id="detailed_route">Drag the map to filter nearby routes</span></li>
             </ul>
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
@@ -249,7 +249,7 @@
             if (e.keyCode === 13) {
                 console.log("Here we go!");
                 document.getElementById("list_of_departures").innerHTML = `
-                <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
+                <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">Loading...</span> <span id="route_depart">Please wait...</span></div></li>
                 `;
                 document.getElementById("stationname").innerHTML = "---";
                 callOver();
@@ -429,15 +429,40 @@
                             const uniqueFeatures = getUniqueFeatures(features, 'name');
                             for (var f = 0; f < uniqueFeatures.length; f ++) {
                                 var name_of_route = uniqueFeatures[f].properties.name;
+                                var color_part_of_route = name_of_route.split('-')[0];
+                                var direction_of_route = name_of_route.split("-")[1];
                                 var color_of_route = uniqueFeatures[f].properties.color;
                                 var text_color_of_route = uniqueFeatures[f].properties.label;
                                 var desc_of_route = uniqueFeatures[f].properties.title;
 
-                                document.getElementById("route_short").innerHTML = name_of_route;
+                                document.getElementById("route_short").innerHTML = `<img src="img_assets/noun-bart-14232.svg" id="icon_of_train_map">&nbsp;<span id="direction_map"></span>`;
                                 document.getElementById("route_short").style.color = `#${text_color_of_route}`;
-                                document.getElementById("route_short").style.backgroundColor = `${color_of_route}40`;
-                                document.getElementById("route_short").style.border = `1px solid ${color_of_route}40`;
-                                document.getElementById("detailed_route").innerHTML = desc_of_route;
+                                document.getElementById("detailed_route").innerHTML = `${desc_of_route} (${color_part_of_route})`;
+                                document.getElementById("route_short").style.backgroundColor = `${bartColors[color_part_of_route]}40`;
+                                document.getElementById("route_short").style.border = `1px solid ${bartColors[color_part_of_route]}40`;
+
+                                if (color_part_of_route === "000000") {
+                                    document.getElementById("icon_of_train_map").style.filter = "brightness(0%)";
+                                }
+                                else {
+                                    document.getElementById("icon_of_train_map").style.filter = "invert(1)";
+                                }
+
+                                if (name_of_route === "BridgeA" || name_of_route === "BridgeB") {
+                                    document.getElementById("route_short").innerHTML = `<i class="fa-solid fa-bus"></i> <span id="direction_of_bus_bridge_in_map"></span>`;
+                                    document.getElementById("route_short").style.color = "white";
+
+                                    if (name_of_route === "BridgeA") {
+                                        document.getElementById("direction_of_bus_bridge_in_map").innerHTML = "(A)";
+                                    }
+                                    else {
+                                        document.getElementById("direction_of_bus_bridge_in_map").innerHTML = "(B)";
+                                    }
+                                }
+                                else {
+                                    document.getElementById("direction_map").innerHTML = `(${direction_of_route})`;
+                                    document.getElementById("direction_map").style.color = `#${text_color_of_route}`;
+                                }
 
                                 var routeClone = document.querySelector(".route_radius");
                                 var listToInsertClone = routeClone.cloneNode(true);
