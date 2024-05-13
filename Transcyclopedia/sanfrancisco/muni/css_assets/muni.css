@@ -240,7 +240,7 @@ body::after {
     margin-bottom: 5px;
 }
 
-#route_metro, #route_cablestreetcar, #route_bus, #line_for_each_departure_muni_metro, #line_for_each_departure_cable, #line_for_each_departure_bus, #affectedroutes, #route_short {
+#route_cablestreetcar, #route_bus, #line_for_each_departure_muni_metro, #line_for_each_departure_cable, #line_for_each_departure_bus, #affectedroutes, #route_short {
     display: inline-block;
     width: fit-content;
     padding-left: 5px;
