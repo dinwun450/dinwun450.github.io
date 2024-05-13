@@ -266,7 +266,7 @@ body::after {
     font-weight: bold; 
     color: white;
     text-align: center;
-    display: flex;
+    display: inline-block;
     justify-content: center;
     align-items: center;
     margin-bottom: 5px;
