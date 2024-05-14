@@ -1,6 +1,16 @@
 window.onload = function() {
     counter = 0;
 
+    var muniLineSVGs = {
+        'F': 'muni_metro_icons/the_f_marketwharves.svg',
+        'J': 'muni_metro_icons/the_j_church.svg',
+        'K': 'muni_metro_icons/the_k_ingleside.svg',
+        'M': 'muni_metro_icons/the_m_oceanview.svg',
+        'N': 'muni_metro_icons/the_n_judah.svg',
+        'S': 'muni_metro_icons/the_s_shuttle.svg',
+        'T': 'muni_metro_icons/the_t_third.svg'
+    }
+
     function getCopyrightYear() {
         var date = new Date();
         var getYearNo = date.getFullYear();
@@ -20,8 +30,9 @@ window.onload = function() {
                     var route_long_name = muni_metro_routes.routes[m].route_long_name;
                     var route_color = muni_metro_routes.routes[m].route_color;
                     var route_text_color = muni_metro_routes.routes[m].route_text_color;
+                    var route_image = muniLineSVGs[route_short_name];
 
-                    document.getElementById("route_metro").innerHTML = route_short_name;
+                    document.getElementById("route_metro").innerHTML = `<img src="${route_image}" style="width: 20px; height: 20px;">`;
                     document.getElementById("route_metro").style.backgroundColor = `#${route_color}40`;
                     document.getElementById("route_metro").style.color = `#${route_text_color}`;
                     document.getElementById("route_metro").style.border = `1px solid #${route_color}`;

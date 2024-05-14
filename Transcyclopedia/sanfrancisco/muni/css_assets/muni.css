@@ -255,23 +255,6 @@ body::after {
     text-align: center;
 }
 
-#route_metro {
-    font-family: 'Helvetica', 'Arial', sans-serif;
-    width: 23px;
-    height: 23px;
-    background-color: #33333340;
-    border: 1px solid #000000;
-    border-radius: 50%;
-    font-size: 19.5px;
-    font-weight: bold; 
-    color: white;
-    text-align: center;
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
 #desc_metro, #desc_streetcablecar, #desc_bus {
     width: 65%;
     text-align: right;
