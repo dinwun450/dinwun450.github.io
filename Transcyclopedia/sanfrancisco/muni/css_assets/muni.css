@@ -259,7 +259,14 @@ body::after {
     text-align: center;
 }
 
-#route_metro {
+#line_for_departure_muni_metro {
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 5px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+#route_metro, #line_for_each_departure_muni_metro {
     padding-left: 3px;
     padding-right: 3px;
     position: relative;
@@ -427,6 +434,10 @@ body::after {
 #route_headsign_muni_metro, #route_headsign_cable, #route_headsign_bus {
     position: relative;
     left: 5px;
+}
+
+#route_headsign_muni_metro {
+    left: 2px;
 }
 
 #route_depart_muni_metro, #route_depart_cable, #route_depart_bus {
