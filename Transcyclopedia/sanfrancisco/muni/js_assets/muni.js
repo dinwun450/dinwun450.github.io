@@ -73,12 +73,19 @@ window.onload = function() {
                     var route_color = cable_routes.routes[c].route_color;
                     var route_text_color = cable_routes.routes[c].route_text_color;
 
-                    document.getElementById("route_cablestreetcar").innerHTML = route_short_name;
+                    document.getElementById("route_cablestreetcar").innerHTML = `<img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables">&nbsp;${route_short_name}`;
                     document.getElementById("route_cablestreetcar").style.backgroundColor = `#${route_color}40`;
                     document.getElementById("route_cablestreetcar").style.color = `#${route_text_color}`;
                     document.getElementById("route_cablestreetcar").style.border = `1px solid #${route_color}`;
                     document.getElementById("desc_cablestreetcar").innerHTML = route_long_name;
-                    document.getElementById("desc_cablestreetcar").setAttribute("title", cable_routes.routes[c].route_desc)
+                    document.getElementById("desc_cablestreetcar").setAttribute("title", cable_routes.routes[c].route_desc);
+
+                    if (route_text_color === "000000") {
+                        document.getElementById("color_of_cables").style.filter = "brightness(0%)";
+                    }
+                    else {
+                        document.getElementById("color_of_cables").style.filter = "invert(1)";
+                    }
 
                     if (cable_routes.routes[c].alerts.length === 0) {
                         document.getElementById("no_of_alerts_cable").innerHTML = "";
