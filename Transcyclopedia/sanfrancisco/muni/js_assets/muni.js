@@ -32,7 +32,7 @@ window.onload = function() {
                     var route_text_color = muni_metro_routes.routes[m].route_text_color;
                     var route_image = muniLineSVGs[route_short_name];
 
-                    document.getElementById("route_metro").innerHTML = `<img src="${route_image}" style="width: 20px; height: 20px;">`;
+                    document.getElementById("route_metro").innerHTML = `<img src="${route_image}" style="width: 20px; height: 20px;"> <span id="no_of_alerts_metro"></span>`;
                     document.getElementById("route_metro").style.backgroundColor = `#${route_color}40`;
                     document.getElementById("route_metro").style.color = `#${route_text_color}`;
                     document.getElementById("route_metro").style.border = `1px solid #${route_color}`;
