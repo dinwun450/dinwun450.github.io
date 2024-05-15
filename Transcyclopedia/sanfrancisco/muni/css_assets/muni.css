@@ -240,6 +240,10 @@ body::after {
     margin-bottom: 5px;
 }
 
+#route_entity_metro {
+    display: flex;
+}
+
 #route_metro, #route_cablestreetcar, #route_bus, #line_for_each_departure_muni_metro, #line_for_each_departure_cable, #line_for_each_departure_bus, #affectedroutes, #route_short {
     display: inline-block;
     width: fit-content;
@@ -259,19 +263,17 @@ body::after {
     padding-left: 3px;
     padding-right: 3px;
     position: relative;
-    top: 3.5px;
-}
-
-#route_metro img {
-    position: relative;
-    top: 0.5px;
+    /* top: 3.5px; */
+    display: flex;
+    align-items: center;
 }
 
 #desc_metro, #desc_streetcablecar, #desc_bus {
     width: 65%;
-    text-align: right;
+    text-align: left;
     margin-right: 10px;
     right: 50px;
+    margin-left: 5px;
 }
 
 #departures_metro input, #departures_cable input, #departures_bus input,
