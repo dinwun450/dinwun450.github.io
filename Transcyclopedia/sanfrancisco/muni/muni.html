@@ -428,16 +428,16 @@
             if (e.keyCode === 13) {
                 document.querySelector(".headerforcable").innerHTML = `
                 Departures for &nbsp;<span id="cable_stopname">---</span>
-                `
+                `;
                 document.getElementById("list_of_departures_cable").innerHTML = `
                 <li id="line_for_departure_cable"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable"><img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables">&nbsp;(-)</div> <span id="alerts_cable"></span> <span id="route_headsign_cable">Loading...</span> <span id="route_depart_cable">Please Wait...</span></div></li>
-                `
+                `;
                 document.getElementById("cable_stopname").innerHTML = "---";
                 document.getElementById("muni_stops_alerts_cable").innerHTML = `
                         <li id="alert_desc_stops_cable">
                             <p>Loading Alerts...</p>
                         </li>
-                `
+                `;
                 callOverStopCableCar();
             }
         }
