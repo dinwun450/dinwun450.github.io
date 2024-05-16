@@ -158,6 +158,15 @@
     <script>
         var v = null;
         var fullGeoJsonRoutes = [];
+        var muniMetroSVGs = {
+            'F': 'muni_metro_icons/the_f_marketwharves.svg',
+            'J': 'muni_metro_icons/the_j_church.svg',
+            'K': 'muni_metro_icons/the_k_ingleside.svg',
+            'M': 'muni_metro_icons/the_m_oceanview.svg',
+            'N': 'muni_metro_icons/the_n_judah.svg',
+            'S': 'muni_metro_icons/the_s_shuttle.svg',
+            'T': 'muni_metro_icons/the_t_third.svg'
+        }
     
         function updateSize() {
             v = window.innerWidth;
@@ -275,6 +284,18 @@
             e = e || window.event;
             if (e.keyCode === 13) {
                 console.log("Here we go Muni Metro!");
+                document.querySelector(".headerformunimetro").innerHTML = `
+                Departures for &nbsp;<span id="muni_metro_stationname">---</span>
+                `
+                document.getElementById("list_of_departures_muni_metro").innerHTML = `
+                <li id="line_for_departure_muni_metro"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro">-</div> <span id="route_headsign_muni_metro">Loading...</span> <span id="route_depart_muni_metro">Please Wait...</span></div></li>
+                `
+                document.getElementById("muni_metro_stationname").innerHTML = "---";
+                document.getElementById("muni_stops_alerts_metro").innerHTML = `
+                        <li id="alert_desc_stops_metro">
+                            <p>Loading alerts...</p>
+                        </li>
+                `
                 callOverStopMuniMetro();
             }
         }
@@ -313,6 +334,7 @@
                         var routeColor = departures_muni_metro.stops[0].departures[i].trip.route.route_color;
                         var routeColorInText = departures_muni_metro.stops[0].departures[i].trip.route.route_text_color;
                         var routeShort = departures_muni_metro.stops[0].departures[i].trip.route.route_short_name;
+                        var routeImage = muniMetroSVGs[routeShort];
                         var routeLong = departures_muni_metro.stops[0].departures[i].trip.trip_headsign;
                         var routeFullName = departures_muni_metro.stops[0].departures[i].trip.route.route_long_name;
                         var departuredTime = departures_muni_metro.stops[0].departures[i].arrival.estimated;
@@ -347,11 +369,11 @@
                             }
                         }
 
-                        document.getElementById("line_for_each_departure_muni_metro").innerHTML = routeShort;
+                        document.getElementById("line_for_each_departure_muni_metro").innerHTML = `<img src="${route_image}" style="width: 20px; height: 20px;">`;
                         document.getElementById("line_for_each_departure_muni_metro").style.backgroundColor = `#${routeColor}40`;
                         document.getElementById("line_for_each_departure_muni_metro").style.border = `1px solid #${routeColor}`;
                         document.getElementById("line_for_each_departure_muni_metro").style.color = `#${routeColorInText}`;
-                        document.getElementById("route_headsign_muni_metro").innerHTML = `${routeFullName} ${routeLong}`;
+                        document.getElementById("route_headsign_muni_metro").innerHTML = `${routeFullName} to ${routeLong}`;
 
                         if (departures_muni_metro.stops[0].departures[i].trip.route.alerts.length === 0) {
                             console.log("No route alerts in sight...")
