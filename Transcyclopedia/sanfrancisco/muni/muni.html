@@ -93,7 +93,7 @@
             <input type="text" placeholder="Search for a stop.." onkeydown="keyDownCableCar()" id="cable_stopgetter" autocomplete="off">
             <p class="headerforcable">Departures for &nbsp;<span id="cable_stopname">---</span></p>
             <ul id="list_of_departures_cable">
-                <li id="line_for_departure_cable"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable"><img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables">&nbsp;(-)</div> <span id="alerts_cable"></span> <span id="route_headsign_cable">(None)</span> <span id="route_depart_cable">Enter a specific stop by their stop ID</span></div></li>
+                <li id="line_for_departure_cable"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable"><img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables_in_departures">&nbsp;(-)</div> <span id="alerts_cable"></span> <span id="route_headsign_cable">(None)</span> <span id="route_depart_cable">Enter a specific stop by their stop ID</span></div></li>
             </ul>
             <div class="alert_entity_stops_cable">
                 <h3>Alerts for this Station</h3>
@@ -525,10 +525,10 @@
                         }
 
                         if (routeColorInText === "000000") {
-                            document.getElementById("color_of_cables").style.filter = "brightness(0%)";
+                            document.getElementById("color_of_cables_in_departures").style.filter = "brightness(0%)";
                         }
                         else {
-                            document.getElementById("color_of_cables").style.filter = "invert(1)";
+                            document.getElementById("color_of_cables_in_departures").style.filter = "invert(1)";
                         }
 
                         var departureClone = document.getElementById("line_for_departure_cable");
