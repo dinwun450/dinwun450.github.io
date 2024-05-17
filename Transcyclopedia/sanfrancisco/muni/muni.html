@@ -910,6 +910,8 @@
 
                         console.log("Move it!");
                         document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+                        document.getElementById("route_short").style.paddingLeft = "3px";
+                                        document.getElementById("route_short").style.paddingRight = "3px";
                     });
 
                     map.on('moveend', () => {
@@ -934,7 +936,8 @@
                                         console.log("Muni Metro!");
                                         break;
                                     default:
-                                        console.log("It's a bus!");
+                                        document.getElementById("route_short").style.paddingLeft = "5px";
+                                        document.getElementById("route_short").style.paddingRight = "5px";
                                         break;
                                 }
 
