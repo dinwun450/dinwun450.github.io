@@ -925,7 +925,15 @@
                                 var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
                                 var desc_of_route = uniqueFeatures[f].properties.route_long_name;
                                 var type_of_route = uniqueFeatures[f].properties.route_type;
-                                console.log(type_of_route);
+
+                                switch (type_of_route) {
+                                    case (type_of_route === 5):
+                                        console.log("Cable Cars!");
+                                    case (type_of_route === 0):
+                                        console.log("Muni Metro!");
+                                    default:
+                                        console.log("It's a bus!");
+                                }
 
                                 document.getElementById("route_short").innerHTML = name_of_route;
                                 document.getElementById("route_short").style.color = `#${text_color_of_route}`;
