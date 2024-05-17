@@ -283,7 +283,7 @@ body::after {
     top: 1.5px;
 }
 
-#route_short img {
+#color_of_cables_map {
     width: 15px;
     height: 15px;
     filter: invert(1);
