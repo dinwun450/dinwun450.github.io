@@ -275,12 +275,20 @@ body::after {
     align-items: center;
 }
 
-#route_cablestreetcar img, #line_for_each_departure_cable img, #route_short img {
+#route_cablestreetcar img, #line_for_each_departure_cable img {
     width: 15px;
     height: 15px;
     filter: invert(1);
     position: relative;
     top: 1.5px;
+}
+
+#route_short img {
+    width: 15px;
+    height: 15px;
+    filter: invert(1);
+    position: relative;
+    bottom: 0.15px;
 }
 
 #desc_metro, #desc_streetcablecar, #desc_bus, #detailed_route {
