@@ -911,7 +911,7 @@
                         console.log("Move it!");
                         document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
                         document.getElementById("route_short").style.paddingLeft = "3px";
-                                        document.getElementById("route_short").style.paddingRight = "3px";
+                        document.getElementById("route_short").style.paddingRight = "3px";
                     });
 
                     map.on('moveend', () => {
@@ -930,18 +930,27 @@
 
                                 switch (type_of_route) {
                                     case 5:
-                                        console.log("Cable Cars!");
+                                        document.getElementById("route_short").innerHTML = `<img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables_map">&nbsp;${name_of_route}`;
+                                        document.getElementById("route_short").style.paddingLeft = "5px";
+                                        document.getElementById("route_short").style.paddingRight = "5px";
+
+                                        if (text_color_of_route === "000000") {
+                                            document.getElementById("color_of_cables_map").style.filter = "brightness(0%)";
+                                        }
+                                        else {
+                                            document.getElementById("color_of_cables_map").style.filter = "invert(1)";
+                                        }
                                         break;
                                     case 0:
                                         console.log("Muni Metro!");
                                         break;
                                     default:
+                                        document.getElementById("route_short").innerHTML = name_of_route;
                                         document.getElementById("route_short").style.paddingLeft = "5px";
                                         document.getElementById("route_short").style.paddingRight = "5px";
                                         break;
                                 }
 
-                                document.getElementById("route_short").innerHTML = name_of_route;
                                 document.getElementById("route_short").style.color = `#${text_color_of_route}`;
                                 document.getElementById("route_short").style.backgroundColor = `${color_of_route}40`;
                                 document.getElementById("route_short").style.border = `1px solid ${color_of_route}40`;
