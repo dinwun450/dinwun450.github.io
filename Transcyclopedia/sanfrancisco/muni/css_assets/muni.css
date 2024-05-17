@@ -240,7 +240,7 @@ body::after {
     margin-bottom: 5px;
 }
 
-#route_entity_metro {
+#route_entity_metro, .route_radius {
     display: flex;
 }
 
@@ -266,7 +266,7 @@ body::after {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
-#route_metro, #line_for_each_departure_muni_metro {
+#route_metro, #line_for_each_departure_muni_metro, #route_short {
     padding-left: 3px;
     padding-right: 3px;
     position: relative;
@@ -283,7 +283,7 @@ body::after {
     top: 1.5px;
 }
 
-#desc_metro, #desc_streetcablecar, #desc_bus {
+#desc_metro, #desc_streetcablecar, #desc_bus, #detailed_route {
     width: 65%;
     text-align: left;
     margin-right: 10px;
