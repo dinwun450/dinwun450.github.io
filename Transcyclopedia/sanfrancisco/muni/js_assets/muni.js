@@ -1,5 +1,6 @@
 window.onload = function() {
     counter = 0;
+    var counter_lines = 0;
 
     var muniLineSVGs = {
         'F': 'muni_metro_icons/the_f_marketwharves.svg',
@@ -174,4 +175,18 @@ window.onload = function() {
         alert_caller.send();
     }
     showMuniAgencyAlerts();
+
+    function countNumberOfMuniLines() {
+        var all_routes_caller = new XMLHttpRequest();
+        all_routes_caller.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8y-sfmta&limit=700");
+        all_routes_caller.onreadystatechange = function() {
+            if (all_routes_caller.readyState === 4 && all_routes_caller.status === 200) {
+                var all_routes_receiver = JSON.parse(all_routes_caller.responseText);
+                counter_lines = all_routes_receiver.routes.length;
+                document.getElementById("how_many_lines_muni").innerHTML = `<b>${counter_lines}</b>`;
+            }
+        }
+        all_routes_caller.send();
+    }
+    countNumberOfMuniLines();
 }
