@@ -19,7 +19,47 @@ window.onload = function() {
                     var route_color = lr_routes.routes[i].route_color;
                     var route_text_color = lr_routes.routes[i].route_text_color;
 
-                    document.getElementById("route_lr").innerHTML = `<i class="fa-solid fa-train-tram" id="lr_icon_vta"></i> <img src="${route_image}" style="width: 20px; height: 20px;> | <span id="no_of_alerts_lr"></span>`;
+                    switch (route_image) {
+                        case "GreenS":
+                            document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").style.paddingLeft = "5px";
+                            document.getElementById("route_lr").style.paddingRight = "5px";
+                            break;
+                        case "BlueN":
+                            document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").style.paddingLeft = "5px";
+                            document.getElementById("route_lr").style.paddingRight = "5px";
+                            break;
+                        case "BlueS":
+                            document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").style.paddingLeft = "5px";
+                            document.getElementById("route_lr").style.paddingRight = "5px";
+                            break;
+                        case "Event-Blue":
+                            document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").style.paddingLeft = "5px";
+                            document.getElementById("route_lr").style.paddingRight = "5px";
+                            break;
+                        case "Event-Orange":
+                            document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").style.paddingLeft = "5px";
+                            document.getElementById("route_lr").style.paddingRight = "5px";
+                            break;
+                        case "Event-Green":
+                            document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").style.paddingLeft = "5px";
+                            document.getElementById("route_lr").style.paddingRight = "5px";
+                            break;
+                        case "Event-Special":
+                            document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").style.paddingLeft = "5px";
+                            document.getElementById("route_lr").style.paddingRight = "5px";
+                            break;
+                        default:
+                            document.getElementById("route_lr").innerHTML = `<i class="fa-solid fa-train-tram" id="lr_icon_vta"></i> <img src="${route_image}" style="width: 20px; height: 20px;> | <span id="no_of_alerts_lr"></span>`;
+                            break;
+                    }
+
                     document.getElementById("route_lr").setAttribute("title", "");
                     document.getElementById("route_lr").style.backgroundColor = `#${route_color}40`;
                     document.getElementById("route_lr").style.border = `1px solid #${route_color}`;
