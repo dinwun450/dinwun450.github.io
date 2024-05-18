@@ -212,6 +212,10 @@ body::after {
     margin-bottom: 5px;
 }
 
+.vta_lr_lines li {
+    display: flex;
+}
+
 #route_lr, #route_bus,
 #line_for_each_departure_vta_lr, #line_for_each_departure_vta_bus,
 #affectedroutes, #route_short {
@@ -228,11 +232,22 @@ body::after {
     text-align: center;
 }
 
+#route_lr {
+    display: flex;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
 #desc_lr, #desc_bus {
     width: 65%;
     text-align: right;
     margin-right: 10px;
     right: 50px;
+}
+
+#desc_lr {
+    text-align: left;
+    margin-left: 10px;
 }
 
 #departures_lr input, #departures_bus input {

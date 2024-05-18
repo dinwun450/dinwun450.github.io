@@ -1,4 +1,10 @@
 window.onload = function() {
+    var all_vta_icons = {
+        'Blue': 'img_assets/vta_blue.svg',
+        'Green': 'img_assets/vta_green.svg',
+        'Orange': 'img_assets/vta_orange.svg'
+    }
+
     function loadVTALRRoutes() {
         var route_fetcher = new XMLHttpRequest();
         route_fetcher.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-vta&limit=700&route_type=0&include_alerts=true");
@@ -8,11 +14,12 @@ window.onload = function() {
 
                 for (var i = 0; i < lr_routes.routes.length; i++) {
                     var route_short_name = lr_routes.routes[i].route_short_name;
+                    var route_image = all_vta_icons[route_short_name.split(" ")[0]];
                     var route_long_name = lr_routes.routes[i].route_long_name;
                     var route_color = lr_routes.routes[i].route_color;
                     var route_text_color = lr_routes.routes[i].route_text_color;
 
-                    document.getElementById("route_lr").innerHTML = route_short_name;
+                    document.getElementById("route_lr").innerHTML = `<i class="fa-solid fa-train-tram" id="lr_icon_vta"></i> <img src="${route_image}" style="width: 20px; height: 20px;> | <span id="no_of_alerts_lr"></span>`;
                     document.getElementById("route_lr").setAttribute("title", "");
                     document.getElementById("route_lr").style.backgroundColor = `#${route_color}40`;
                     document.getElementById("route_lr").style.border = `1px solid #${route_color}`;
