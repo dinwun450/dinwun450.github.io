@@ -21,37 +21,37 @@ window.onload = function() {
 
                     switch (route_short_name) {
                         case "GreenS":
-                            document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").innerHTML = `${route_short_name}`;
                             document.getElementById("route_lr").style.paddingLeft = "5px";
                             document.getElementById("route_lr").style.paddingRight = "5px";
                             break;
                         case "BlueN":
-                            document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").innerHTML = `${route_short_name}`;
                             document.getElementById("route_lr").style.paddingLeft = "5px";
                             document.getElementById("route_lr").style.paddingRight = "5px";
                             break;
                         case "BlueS":
-                            document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").innerHTML = `${route_short_name}`;
                             document.getElementById("route_lr").style.paddingLeft = "5px";
                             document.getElementById("route_lr").style.paddingRight = "5px";
                             break;
                         case "Event-Blue":
-                            document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").innerHTML = `${route_short_name}`;
                             document.getElementById("route_lr").style.paddingLeft = "5px";
                             document.getElementById("route_lr").style.paddingRight = "5px";
                             break;
                         case "Event-Orange":
-                            document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").innerHTML = `${route_short_name}`;
                             document.getElementById("route_lr").style.paddingLeft = "5px";
                             document.getElementById("route_lr").style.paddingRight = "5px";
                             break;
                         case "Event-Green":
-                            document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").innerHTML = `${route_short_name}`;
                             document.getElementById("route_lr").style.paddingLeft = "5px";
                             document.getElementById("route_lr").style.paddingRight = "5px";
                             break;
                         case "Event-Special":
-                            document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").innerHTML = `${route_short_name}`;
                             document.getElementById("route_lr").style.paddingLeft = "5px";
                             document.getElementById("route_lr").style.paddingRight = "5px";
                             break;
@@ -65,7 +65,7 @@ window.onload = function() {
                     document.getElementById("route_lr").style.backgroundColor = `#${route_color}40`;
                     document.getElementById("route_lr").style.border = `1px solid #${route_color}`;
                     document.getElementById("route_lr").style.color = `#${route_text_color}`;
-                    document.getElementById("desc_lr").innerHTML = route_long_name;
+                    document.getElementById("desc_lr").innerHTML = `${route_long_name} <span id="no_of_alerts_lr"></span>`;
                     document.getElementById("desc_lr").setAttribute("title", "")
 
                     if (lr_routes.routes[i].alerts.length === 0) {
