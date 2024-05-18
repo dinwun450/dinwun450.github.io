@@ -18,6 +18,7 @@ window.onload = function() {
                     var route_long_name = lr_routes.routes[i].route_long_name;
                     var route_color = lr_routes.routes[i].route_color;
                     var route_text_color = lr_routes.routes[i].route_text_color;
+                    console.log(route_image);
 
                     switch (route_image) {
                         case "GreenS":
