@@ -168,7 +168,13 @@ window.onload = function() {
                     for (var a=0; a<agency_output.agencies[0].alerts.length; a++) {
                         var desc_text = agency_output.agencies[0].alerts[a].description_text[0].text;
                         document.getElementById("alert_desc_agency").innerHTML = desc_text;
+
+                        var alert_agency_to_clone = document.getElementById("alert_desc_agency").cloneNode(true);
+                        document.getElementById("muni_agency_alerts").appendChild(alert_agency_to_clone);
                     }
+
+                    var all_agency_alerts_overall = document.getElementById("muni_agency_alerts").children;
+                    document.getElementById("muni_agency_alerts").removeChild(all_agency_alerts_overall[0]);
                 }
             }
         }
