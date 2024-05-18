@@ -14,13 +14,12 @@ window.onload = function() {
 
                 for (var i = 0; i < lr_routes.routes.length; i++) {
                     var route_short_name = lr_routes.routes[i].route_short_name;
-                    var route_image = all_vta_icons[route_short_name.split(" ")[0]];
                     var route_long_name = lr_routes.routes[i].route_long_name;
                     var route_color = lr_routes.routes[i].route_color;
                     var route_text_color = lr_routes.routes[i].route_text_color;
                     console.log(route_image);
 
-                    switch (route_image) {
+                    switch (route_short_name) {
                         case "GreenS":
                             document.getElementById("route_lr").innerHTML = `${route_short_name} | <span id="no_of_alerts_lr"></span>`;
                             document.getElementById("route_lr").style.paddingLeft = "5px";
@@ -57,6 +56,7 @@ window.onload = function() {
                             document.getElementById("route_lr").style.paddingRight = "5px";
                             break;
                         default:
+                            var route_image = all_vta_icons[route_short_name.split(" ")[0]];
                             document.getElementById("route_lr").innerHTML = `<i class="fa-solid fa-train-tram" id="lr_icon_vta"></i> <img src="${route_image}" style="width: 20px; height: 20px;> | <span id="no_of_alerts_lr"></span>`;
                             break;
                     }
