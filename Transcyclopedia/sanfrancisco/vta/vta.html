@@ -122,6 +122,11 @@
     <script>
         var v = null;
         var full_vta_geojson_routes = [];
+        var all_vta_icons_web = {
+            'Blue': 'img_assets/vta_blue.svg',
+            'Green': 'img_assets/vta_green.svg',
+            'Orange': 'img_assets/vta_orange.svg'
+        }
 
         function updateSize() {
             v = window.innerWidth;
@@ -257,6 +262,10 @@
         function keyDownLR(e) {
             e = e || window.event;
             if (e.keyCode === 13) {
+                document.getElementById("vta_lr_stationname").innerHTML = "---";
+                document.getElementById("list_of_departures_vta_lr").innerHTML = `
+                    <li id="line_for_departure_vta_lr"><div class="wrapper_for_departure_vta_lr"><div id="line_for_each_departure_vta_lr"><i class="fa-solid fa-train-tram" id="lr_icon_vta"></i> (-)</div> <span id="alerts_lr"></span> <span id="route_headsign_vta_lr">Loading...</span><span id="route_depart_vta_lr">Please Wait...</span></div></li>
+                `;
                 callOverVTALR();
             }
         }
@@ -324,7 +333,48 @@
                             }
                         }
 
-                        document.getElementById("line_for_each_departure_vta_lr").innerHTML = route_short_name;
+                        switch (route_short_name) {
+                            case "GreenS":
+                                document.getElementById("line_for_each_departure_vta_lr").innerHTML = `${route_short_name}`;
+                                document.getElementById("line_for_each_departure_vta_lr").style.paddingLeft = "5px";
+                                document.getElementById("line_for_each_departure_vta_lr").style.paddingRight = "5px";
+                                break;
+                            case "BlueN":
+                                document.getElementById("line_for_each_departure_vta_lr").innerHTML = `${route_short_name}`;
+                                document.getElementById("line_for_each_departure_vta_lr").style.paddingLeft = "5px";
+                                document.getElementById("line_for_each_departure_vta_lr").style.paddingRight = "5px";
+                                break;
+                            case "BlueS":
+                                document.getElementById("line_for_each_departure_vta_lr").innerHTML = `${route_short_name}`;
+                                document.getElementById("line_for_each_departure_vta_lr").style.paddingLeft = "5px";
+                                document.getElementById("line_for_each_departure_vta_lr").style.paddingRight = "5px";
+                                break;
+                            case "Event-Blue":
+                                document.getElementById("line_for_each_departure_vta_lr").innerHTML = `${route_short_name}`;
+                                document.getElementById("line_for_each_departure_vta_lr").style.paddingLeft = "5px";
+                                document.getElementById("line_for_each_departure_vta_lr").style.paddingRight = "5px";
+                                break;
+                            case "Event-Orange":
+                                document.getElementById("line_for_each_departure_vta_lr").innerHTML = `${route_short_name}`;
+                                document.getElementById("line_for_each_departure_vta_lr").style.paddingLeft = "5px";
+                                document.getElementById("line_for_each_departure_vta_lr").style.paddingRight = "5px";
+                                break;
+                            case "Event-Green":
+                                document.getElementById("line_for_each_departure_vta_lr").innerHTML = `${route_short_name}`;
+                                document.getElementById("line_for_each_departure_vta_lr").style.paddingLeft = "5px";
+                                document.getElementById("line_for_each_departure_vta_lr").style.paddingRight = "5px";
+                                break;
+                            case "Event-Special":
+                                document.getElementById("line_for_each_departure_vta_lr").innerHTML = `${route_short_name}`;
+                                document.getElementById("line_for_each_departure_vta_lr").style.paddingLeft = "5px";
+                                document.getElementById("line_for_each_departure_vta_lr").style.paddingRight = "5px";
+                                break;
+                            default:
+                                var route_image = all_vta_icons_web[route_short_name.split(" ")[0]];
+                                document.getElementById("line_for_each_departure_vta_lr").innerHTML = `<i class="fa-solid fa-train-tram" id="lr_icon_vta"></i> <img src="${route_image}" style="width: 20px; height: 20px;>`;
+                                break;
+                        }
+
                         document.getElementById("line_for_each_departure_vta_lr").style.color = route_text_color;
                         document.getElementById("line_for_each_departure_vta_lr").style.backgroundColor = `#${route_color}40`;
                         document.getElementById("line_for_each_departure_vta_lr").style.border = `1px solid #${route_color}`;
@@ -353,7 +403,7 @@
         function clearAllVtaLR() {
             document.getElementById("vta_lr_stationname").innerHTML = "---";
             document.getElementById("list_of_departures_vta_lr").innerHTML = `
-                <li id="line_for_departure_vta_lr"><div class="wrapper_for_departure_vta_lr"><div id="line_for_each_departure_vta_lr">-</div> <span id="alerts_lr"></span> <span id="route_headsign_vta_lr">(None)</span><span id="route_depart_vta_lr">Enter a specific station by their station ID</span></div></li>
+                <li id="line_for_departure_vta_lr"><div class="wrapper_for_departure_vta_lr"><div id="line_for_each_departure_vta_lr"><i class="fa-solid fa-train-tram" id="lr_icon_vta"></i> (-)</div> <span id="alerts_lr"></span> <span id="route_headsign_vta_lr">(None)</span><span id="route_depart_vta_lr">Enter a specific station by their station ID</span></div></li>
             `;
         }
 
