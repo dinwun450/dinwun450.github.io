@@ -372,11 +372,11 @@
                             default:
                                 var route_image = all_vta_icons_web[route_short_name.split(" ")[0]];
                                 console.log(route_image);
-                                document.getElementById("line_for_each_departure_vta_lr").innerHTML = `<i class="fa-solid fa-train-tram" id="lr_icon_vta_departures"></i> <img src="${route_image}" style="width: 20px; height: 20px;>`;
+                                document.getElementById("line_for_each_departure_vta_lr").innerHTML = `<img src="${route_image}" style="width: 20px; height: 20px;>`;
                                 break;
                         }
 
-                        document.getElementById("lr_icon_vta_departures").style.color = route_text_color;
+                        document.getElementById("line_for_each_departure_vta_lr").style.color = route_text_color;
                         document.getElementById("line_for_each_departure_vta_lr").style.backgroundColor = `#${route_color}40`;
                         document.getElementById("line_for_each_departure_vta_lr").style.border = `1px solid #${route_color}`;
                         document.getElementById("route_headsign_vta_lr").innerHTML = route_headsign;
@@ -404,7 +404,7 @@
         function clearAllVtaLR() {
             document.getElementById("vta_lr_stationname").innerHTML = "---";
             document.getElementById("list_of_departures_vta_lr").innerHTML = `
-                <li id="line_for_departure_vta_lr"><div class="wrapper_for_departure_vta_lr"><div id="line_for_each_departure_vta_lr"><i class="fa-solid fa-train-tram" id="lr_icon_vta_departures"></i> (-)</div> <span id="alerts_lr"></span> <span id="route_headsign_vta_lr">(None)</span><span id="route_depart_vta_lr">Enter a specific station by their station ID</span></div></li>
+                <li id="line_for_departure_vta_lr"><div class="wrapper_for_departure_vta_lr"><div id="line_for_each_departure_vta_lr">-</div> <span id="alerts_lr"></span> <span id="route_headsign_vta_lr">(None)</span><span id="route_depart_vta_lr">Enter a specific station by their station ID</span></div></li>
             `;
         }
 
