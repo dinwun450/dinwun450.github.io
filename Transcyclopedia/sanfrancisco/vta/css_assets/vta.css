@@ -234,8 +234,12 @@ body::after {
 
 #route_lr {
     display: flex;
-    padding-left: 3px;
-    padding-right: 3px;
+    justify-content: center;
+    align-items: center;
+}
+
+#route_lr img {
+    margin-left: 2px;
 }
 
 #desc_lr, #desc_bus {
