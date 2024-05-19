@@ -232,13 +232,13 @@ body::after {
     text-align: center;
 }
 
-#route_lr {
+#route_lr, #line_for_each_departure_vta_lr {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#route_lr img {
+#route_lr img, #line_for_each_departure_vta_lr img {
     margin-left: 2px;
 }
 
@@ -347,11 +347,6 @@ body::after {
 
 #line_for_departure_vta_lr, #line_for_departure_vta_bus {
     margin: 10px;
-}
-
-#route_headsign_vta_lr, #route_headsign_vta_bus {
-    position: relative;
-    left: 5px;
 }
 
 #route_depart_vta_lr, #route_depart_vta_bus {
