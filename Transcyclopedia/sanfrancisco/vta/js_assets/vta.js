@@ -126,8 +126,12 @@ window.onload = function() {
                     document.getElementById("route_bus").style.backgroundColor = `#${route_color}40`;
                     document.getElementById("route_bus").style.border = `1px solid #${route_color}`;
                     document.getElementById("route_bus").style.color = `#${route_text_color}`;
-                    document.getElementById("desc_bus").innerHTML = `${route_long_name} (${prefix_of_route})`;
+                    document.getElementById("desc_bus").innerHTML = `${route_long_name} <span id="special_type_of_route">(${prefix_of_route})</span>`;
                     document.getElementById("desc_bus").setAttribute("title", "")
+
+                    if (prefix_of_route === "") {
+                        document.getElementById("special_type_of_route").innerHTML = "";
+                    }
 
                     if (bus_routes.routes[i].alerts.length === 0) {
                         document.getElementById("no_of_alerts_bus").innerHTML = "";
