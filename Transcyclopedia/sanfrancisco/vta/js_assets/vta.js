@@ -98,16 +98,35 @@ window.onload = function() {
 
                 for (var i = 0; i < bus_routes.routes.length; i++) {
                     var route_short_name = bus_routes.routes[i].route_short_name;
+                    var prefix_of_route = route_short_name.split(" ")[0];
                     var route_long_name = bus_routes.routes[i].route_long_name;
                     var route_color = bus_routes.routes[i].route_color;
                     var route_text_color = bus_routes.routes[i].route_text_color;
 
-                    document.getElementById("route_bus").innerHTML = route_short_name;
+                    switch (prefix_of_route) {
+                        case "School":
+                            document.getElementById("route_bus").innerHTML = `${route_short_name.split(" ")[1]} (<i class="fa-solid fa-school"></i>)`;
+                            break;
+                        case "Rapid":
+                            document.getElementById("route_bus").innerHTML = `${route_short_name.split(" ")[1]} (<i class="fa-solid fa-gauge"></i>)`;
+                            break;
+                        case "Express":
+                            document.getElementById("route_bus").innerHTML = `${route_short_name.split(" ")[1]} (<i class="fa-solid fa-bolt"></i>)`;
+                            break;
+                        case "BB":
+                            document.getElementById("route_bus").innerHTML = `<i class="fa-solid fa-bus"></i><i class="fa-solid fa-bridge"></i> ${route_short_name.split(" ")[1]}`;
+                            break;
+                        default:
+                            document.getElementById("route_bus").innerHTML = route_short_name;
+                            prefix_of_route = "";
+                            break;
+                    }
+
                     document.getElementById("route_bus").setAttribute("title", "");
                     document.getElementById("route_bus").style.backgroundColor = `#${route_color}40`;
                     document.getElementById("route_bus").style.border = `1px solid #${route_color}`;
                     document.getElementById("route_bus").style.color = `#${route_text_color}`;
-                    document.getElementById("desc_bus").innerHTML = route_long_name;
+                    document.getElementById("desc_bus").innerHTML = `${route_long_name} (${prefix_of_route})`;
                     document.getElementById("desc_bus").setAttribute("title", "")
 
                     if (bus_routes.routes[i].alerts.length === 0) {
