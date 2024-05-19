@@ -57,7 +57,7 @@ window.onload = function() {
                             break;
                         default:
                             var route_image = all_vta_icons[route_short_name.split(" ")[0]];
-                            document.getElementById("route_lr").innerHTML = `<i class="fa-solid fa-train-tram" id="lr_icon_vta"></i> <img src="${route_image}" style="width: 20px; height: 20px;"> | <span id="no_of_alerts_lr"></span>`;
+                            document.getElementById("route_lr").innerHTML = `<i class="fa-solid fa-train-tram" id="lr_icon_vta"></i> <img src="${route_image}" style="width: 20px; height: 20px;">`;
                             break;
                     }
 
