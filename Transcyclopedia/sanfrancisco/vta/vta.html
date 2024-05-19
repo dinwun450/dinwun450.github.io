@@ -371,6 +371,7 @@
                                 break;
                             default:
                                 var route_image = all_vta_icons_web[route_short_name.split(" ")[0]];
+                                console.log(route_image);
                                 document.getElementById("line_for_each_departure_vta_lr").innerHTML = `<i class="fa-solid fa-train-tram" id="lr_icon_vta_departures"></i> <img src="${route_image}" style="width: 20px; height: 20px;>`;
                                 break;
                         }
