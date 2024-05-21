@@ -411,6 +411,10 @@
         function keyDownBus(e) {
             e = e || window.event;
             if (e.keyCode === 13) {
+                document.getElementById("vta_bus_stopname").innerHTML = "---";
+                document.getElementById("list_of_departures_vta_bus").innerHTML = `
+                    <li id="line_for_departure_vta_bus"><div class="wrapper_for_departure_vta_bus"><div id="line_for_each_departure_vta_bus">-</div> <span id="alerts_bus"></span> <span id="route_headsign_vta_bus">Loading...</span><span id="route_depart_vta_bus">Please Wait...</span></div></li>
+                `;
                 callOverVTABus();
             }
         }
@@ -482,29 +486,25 @@
                         switch (prefix_of_route) {
                             case "School":
                                 document.getElementById("line_for_each_departure_vta_bus").innerHTML = `${route_short_name.split(" ")[1]} (<i class="fa-solid fa-school"></i>)`;
-                                document.getElementById("route_headsign_vta_bus").innerHTML = `${route_headsign} (School Route)`;
                                 break;
                             case "Rapid":
                                 document.getElementById("line_for_each_departure_vta_bus").innerHTML = `${route_short_name.split(" ")[1]} (<i class="fa-solid fa-gauge"></i>)`;
-                                document.getElementById("route_headsign_vta_bus").innerHTML = `${route_headsign} (Rapid Route)`;
                                 break;
                             case "Express":
                                 document.getElementById("line_for_each_departure_vta_bus").innerHTML = `${route_short_name.split(" ")[1]} (<i class="fa-solid fa-bolt"></i>)`;
-                                document.getElementById("route_headsign_vta_bus").innerHTML = `${route_headsign} (Express Route)`;
                                 break;
                             case "BB":
                                 document.getElementById("line_for_each_departure_vta_bus").innerHTML = `<i class="fa-solid fa-bus"></i><i class="fa-solid fa-bridge"></i> ${route_short_name.split(" ")[1]}`;
-                                document.getElementById("route_headsign_vta_bus").innerHTML = `${route_headsign} (Bus Bridge)`;
                                 break;
                             default:
                                 document.getElementById("line_for_each_departure_vta_bus").innerHTML = route_short_name;
-                                document.getElementById("route_headsign_vta_bus").innerHTML = route_headsign;
                                 break;
                         }
 
                         document.getElementById("line_for_each_departure_vta_bus").style.color = route_text_color;
                         document.getElementById("line_for_each_departure_vta_bus").style.backgroundColor = `#${route_color}40`;
                         document.getElementById("line_for_each_departure_vta_bus").style.border = `1px solid #${route_color}`;
+                        document.getElementById("route_headsign_vta_bus").innerHTML = route_headsign;
 
                         if (departure_bus_outputs_base.departures[i].trip.route.alerts.length === 0) {
                             console.log("No route alerts in sight...");
