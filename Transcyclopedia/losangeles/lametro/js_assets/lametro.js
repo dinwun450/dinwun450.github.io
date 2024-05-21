@@ -82,13 +82,6 @@ function loadLAMetroLinesLR() {
                     document.getElementById("route_name_lr").innerHTML = `<img src="${corr_image}" id="la_metro_lr_img" style="width: 20px; height: 20px">`;
                 }
 
-                if (route_text_color === "000000") {
-                    document.getElementById("la_metro_lr_img").style.filter = "brightness(0%)";
-                }
-                else {
-                    document.getElementById("la_metro_lr_img").style.filter = "invert(1)";
-                }
-
                 if (route_info.routes[i].alerts.length === 0) {
                     document.getElementById("no_of_alerts_lr").innerHTML = "";
                 }
