@@ -80,15 +80,15 @@ function loadLAMetroLinesLR() {
 
                 if (route_short_name === "") {
                     document.getElementById("route_name_lr").innerHTML = `<img src="${corr_image}" id="la_metro_lr_img" style="width: 20px; height: 20px">`;
+                }
 
-                    switch (route_text_color) {
-                        case "FFFFFF":
-                            document.getElementById("la_metro_lr_img").style.filter = "invert(1)";
-                            break;
-                        default:
-                            document.getElementById("la_metro_lr_img").style.filter = "brightness(0%)";
-                            break;
-                    }
+                switch (route_text_color) {
+                    case "FFFFFF":
+                        document.getElementById("la_metro_lr_img").style.filter = "invert(1)";
+                        break;
+                    default:
+                        document.getElementById("la_metro_lr_img").style.filter = "brightness(0%)";
+                        break;
                 }
 
                 if (route_info.routes[i].alerts.length === 0) {
