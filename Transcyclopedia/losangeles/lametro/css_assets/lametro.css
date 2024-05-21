@@ -225,6 +225,10 @@ body::after {
     margin-bottom: 5px;
 }
 
+#route_item_sub, #route_item_lr {
+    display: flex;
+}
+
 #route_name_sub, #route_name_bus, #route_name_lr,
 #lod_subway, #lod_lr, #lod_bus,
 #route_affected, #route_name_rad {
@@ -241,11 +245,22 @@ body::after {
     text-align: center;
 }
 
+#route_name_sub, #route_name_lr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #route_desc_sub, #route_desc_bus, #route_desc_lr {
     width: 65%;
     text-align: right;
     margin-right: 10px;
     right: 50px;
+}
+
+#route_desc_sub, #route_desc_lr {
+    text-align: left;
+    margin-left: 10px;
 }
 
 #departures_subway input, #departures_lightrail input, #departures_bus input {
