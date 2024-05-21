@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="36"
+   height="36"
+   role="presentation"
+   viewBox="0 0 40 40"
+   version="1.1"
+   id="svg6"
+   sodipodi:docname="metro_d.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="6.5555556"
+     inkscape:cx="18"
+     inkscape:cy="18"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6" />
+  <path
+     style="fill:#ffffff;stroke-width:0.89999998"
+     d="M 18 0 A 18 18 0 0 0 0 18 A 18 18 0 0 0 18 36 A 18 18 0 0 0 36 18 A 18 18 0 0 0 18 0 z M 11.609375 7.9199219 L 18.900391 7.9199219 C 21.690391 7.9199219 23.579531 8.910625 25.019531 10.890625 C 26.279531 12.600625 26.279297 14.669844 26.279297 18.089844 C 26.279297 21.509844 26.279531 23.489063 25.019531 25.289062 C 23.669531 27.179063 21.690391 28.259766 18.900391 28.259766 L 11.609375 28.259766 L 11.609375 7.9199219 z M 15.480469 11.429688 L 15.480469 24.660156 L 18.449219 24.660156 C 19.799219 24.660156 20.789922 24.210391 21.419922 23.400391 C 22.139922 22.500391 22.230469 21.239844 22.230469 18.089844 C 22.230469 14.939844 22.139922 13.589297 21.419922 12.779297 C 20.789922 11.969297 19.799219 11.519531 18.449219 11.519531 L 15.480469 11.429688 z "
+     transform="scale(1.1111111)"
+     id="circle2" />
+</svg>
