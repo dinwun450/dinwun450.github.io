@@ -79,14 +79,14 @@ function loadLAMetroLinesLR() {
                 var corr_image = la_metro_img_icons[route_long_name];
 
                 if (route_short_name === "") {
-                    document.getElementById("route_name_lr").innerHTML = `<img src="${corr_image}" id="la_metro_sub_img" style="width: 20px; height: 20px">`;
+                    document.getElementById("route_name_lr").innerHTML = `<img src="${corr_image}" id="la_metro_lr_img" style="width: 20px; height: 20px">`;
 
                     switch (route_text_color) {
                         case "FFFFFF":
-                            document.getElementById("la_metro_sub_img").style.filter = "invert(1)";
+                            document.getElementById("la_metro_lr_img").style.filter = "invert(1)";
                             break;
                         default:
-                            document.getElementById("la_metro_sub_name").style.filter = "brightness(0%)";
+                            document.getElementById("la_metro_lr_img").style.filter = "brightness(0%)";
                             break;
                     }
                 }
