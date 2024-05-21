@@ -33,10 +33,16 @@ function loadLAMetroLinesSubway() {
                 var route_long_name = route_info.routes[i].route_long_name;
                 var route_color = route_info.routes[i].route_color;
                 var route_text_color = route_info.routes[i].route_text_color;
+                var corr_image = la_metro_img_icons[route_long_name];
 
                 if (route_short_name === "") {
-                    route_short_name = "&nbsp;&nbsp;&nbsp;";
+                    document.getElementById("route_name_sub").innerHTML = `<img src="${corr_image}" style="width: 20px; height: 20px">`;
                 }
+
+                document.getElementById("route_name_sub").style.color = `#${route_text_color}`;
+                document.getElementById("route_name_sub").style.backgroundColor = `#${route_color}40`;
+                document.getElementById("route_name_sub").style.border = `1px solid #${route_color}`;
+                document.getElementById("route_desc_sub").innerHTML = `${route_long_name} <span id="no_of_alerts_sub"></span>`;
 
                 if (route_info.routes[i].alerts.length === 0) {
                     document.getElementById("no_of_alerts_sub").innerHTML = "";
@@ -44,12 +50,6 @@ function loadLAMetroLinesSubway() {
                 else {
                     document.getElementById("no_of_alerts_sub").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${route_info.routes[i].alerts.length}`;
                 }
-
-                document.getElementById("route_name_sub").innerHTML = route_short_name;
-                document.getElementById("route_name_sub").style.color = `#${route_text_color}`;
-                document.getElementById("route_name_sub").style.backgroundColor = `#${route_color}40`;
-                document.getElementById("route_name_sub").style.border = `1px solid #${route_color}`;
-                document.getElementById("route_desc_sub").innerHTML = route_long_name;
 
                 var route_entity = document.getElementById("route_item_sub");
                 var clone_entity = route_entity.cloneNode(true);
@@ -82,17 +82,17 @@ function loadLAMetroLinesLR() {
                     document.getElementById("route_name_lr").innerHTML = `<img src="${corr_image}" id="la_metro_lr_img" style="width: 20px; height: 20px">`;
                 }
 
+                document.getElementById("route_name_lr").style.color = `#${route_text_color}`;
+                document.getElementById("route_name_lr").style.backgroundColor = `#${route_color}40`;
+                document.getElementById("route_name_lr").style.border = `1px solid #${route_color}`;
+                document.getElementById("route_desc_lr").innerHTML = `${route_long_name} <span id="no_of_alerts_lr"></span>`;
+
                 if (route_info.routes[i].alerts.length === 0) {
                     document.getElementById("no_of_alerts_lr").innerHTML = "";
                 }
                 else {
                     document.getElementById("no_of_alerts_lr").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${route_info.routes[i].alerts.length})`;
                 }
-
-                document.getElementById("route_name_lr").style.color = `#${route_text_color}`;
-                document.getElementById("route_name_lr").style.backgroundColor = `#${route_color}40`;
-                document.getElementById("route_name_lr").style.border = `1px solid #${route_color}`;
-                document.getElementById("route_desc_lr").innerHTML = route_long_name;
 
                 var route_entity = document.getElementById("route_item_lr");
                 var clone_entity = route_entity.cloneNode(true);
