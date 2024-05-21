@@ -443,6 +443,7 @@
                         var route_color = departure_bus_outputs_base.departures[i].trip.route.route_color;
                         var route_text_color = departure_bus_outputs_base.departures[i].trip.route.route_text_color;
                         var route_short_name = departure_bus_outputs_base.departures[i].trip.route.route_short_name;
+                        var prefix_of_route = route_short_name.split(" ")[0];
                         var route_headsign = departure_bus_outputs_base.departures[i].trip.trip_headsign;
                         var arrival_time = departure_bus_outputs_base.departures[i].arrival.estimated;
                         var delay = departure_bus_outputs_base.departures[i].arrival.delay / 60;
@@ -478,11 +479,32 @@
                             }
                         }
 
-                        document.getElementById("line_for_each_departure_vta_bus").innerHTML = route_short_name;
+                        switch (prefix_of_route) {
+                            case "School":
+                                document.getElementById("line_for_each_departure_vta_bus").innerHTML = `${route_short_name.split(" ")[1]} (<i class="fa-solid fa-school"></i>)`;
+                                document.getElementById("route_headsign_vta_bus").innerHTML = `${route_headsign} (School Route)`;
+                                break;
+                            case "Rapid":
+                                document.getElementById("line_for_each_departure_vta_bus").innerHTML = `${route_short_name.split(" ")[1]} (<i class="fa-solid fa-gauge"></i>)`;
+                                document.getElementById("route_headsign_vta_bus").innerHTML = `${route_headsign} (Rapid Route)`;
+                                break;
+                            case "Express":
+                                document.getElementById("line_for_each_departure_vta_bus").innerHTML = `${route_short_name.split(" ")[1]} (<i class="fa-solid fa-bolt"></i>)`;
+                                document.getElementById("route_headsign_vta_bus").innerHTML = `${route_headsign} (Express Route)`;
+                                break;
+                            case "BB":
+                                document.getElementById("line_for_each_departure_vta_bus").innerHTML = `<i class="fa-solid fa-bus"></i><i class="fa-solid fa-bridge"></i> ${route_short_name.split(" ")[1]}`;
+                                document.getElementById("route_headsign_vta_bus").innerHTML = `${route_headsign} (Bus Bridge)`;
+                                break;
+                            default:
+                                document.getElementById("line_for_each_departure_vta_bus").innerHTML = route_short_name;
+                                document.getElementById("route_headsign_vta_bus").innerHTML = route_headsign;
+                                break;
+                        }
+
                         document.getElementById("line_for_each_departure_vta_bus").style.color = route_text_color;
                         document.getElementById("line_for_each_departure_vta_bus").style.backgroundColor = `#${route_color}40`;
                         document.getElementById("line_for_each_departure_vta_bus").style.border = `1px solid #${route_color}`;
-                        document.getElementById("route_headsign_vta_bus").innerHTML = route_headsign;
 
                         if (departure_bus_outputs_base.departures[i].trip.route.alerts.length === 0) {
                             console.log("No route alerts in sight...");
