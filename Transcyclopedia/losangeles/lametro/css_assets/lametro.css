@@ -249,6 +249,8 @@ body::after {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 3px;
+    padding-right: 3px;
 }
 
 #route_desc_sub, #route_desc_bus, #route_desc_lr {
