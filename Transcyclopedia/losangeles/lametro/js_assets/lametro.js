@@ -125,7 +125,7 @@ function loadLAMetroLinesBus() {
                 var corr_image = la_metro_img_icons[route_long_name];
 
                 if (route_short_name === "") {
-                    document.getElementById("route_name_lr").innerHTML = `<img src="${corr_image}" id="la_metro_bus_img" style="width: 20px; height: 20px; display: block; margin-left: auto; margin-right: auto;">`;
+                    document.getElementById("route_name_bus").innerHTML = `<img src="${corr_image}" id="la_metro_bus_img" style="width: 20px; height: 20px; display: block; margin-left: auto; margin-right: auto;">`;
                 }
 
                 if (route_info.routes[i].alerts.length === 0) {
@@ -142,8 +142,7 @@ function loadLAMetroLinesBus() {
                 if (route_text_color === "") {
                     route_text_color = "ffffff"
                 }
-
-                document.getElementById("route_name_bus").innerHTML = route_short_name;
+                
                 document.getElementById("route_name_bus").style.color = `#${route_text_color}`;
                 document.getElementById("route_name_bus").style.backgroundColor = `#${route_color}40`;
                 document.getElementById("route_name_bus").style.border = `1px solid #${route_color}`;
