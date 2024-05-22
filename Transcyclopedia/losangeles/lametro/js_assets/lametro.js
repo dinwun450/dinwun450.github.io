@@ -4,7 +4,9 @@ var la_metro_img_icons = {
     "Metro C Line": "img_assets/metro_c.svg",
     "Metro D Line": "img_assets/metro_d.svg",
     "Metro E Line": "img_assets/metro_e.svg",
-    "Metro K Line": "img_assets/metro_k.svg"
+    "Metro K Line": "img_assets/metro_k.svg",
+    "Metro J Line": "img_assets/metro_j.svg",
+    "Metro G Line": "img_assets/metro_g.svg"
 }
 
 function loadWikipediaArticle() {
@@ -120,9 +122,10 @@ function loadLAMetroLinesBus() {
                 var route_color = route_info.routes[i].route_color;
                 var route_text_color = route_info.routes[i].route_text_color;
                 var route_desc = route_info.routes[i].route_desc;
+                var corr_image = la_metro_img_icons[route_long_name];
 
                 if (route_short_name === "") {
-                    route_short_name = "&nbsp;&nbsp;&nbsp;";
+                    document.getElementById("route_name_lr").innerHTML = `<img src="${corr_image}" id="la_metro_bus_img" style="width: 20px; height: 20px; display: block; margin-left: auto; margin-right: auto;">`;
                 }
 
                 if (route_info.routes[i].alerts.length === 0) {
