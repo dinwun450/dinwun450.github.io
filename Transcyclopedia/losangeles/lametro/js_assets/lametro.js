@@ -142,7 +142,8 @@ function loadLAMetroLinesBus() {
                 if (route_text_color === "") {
                     route_text_color = "ffffff"
                 }
-                
+
+                document.getElementById("route_name_bus").innerHTML = route_short_name;
                 document.getElementById("route_name_bus").style.color = `#${route_text_color}`;
                 document.getElementById("route_name_bus").style.backgroundColor = `#${route_color}40`;
                 document.getElementById("route_name_bus").style.border = `1px solid #${route_color}`;
