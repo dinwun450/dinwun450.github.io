@@ -123,6 +123,16 @@
     </div>
     <script>
         var geojson_of_la_metro_routes = [];
+        var la_metro_img_icons_web = {
+            "Metro A Line": "img_assets/metro_a.svg",
+            "Metro B Line": "img_assets/metro_b.svg",
+            "Metro C Line": "img_assets/metro_c.svg",
+            "Metro D Line": "img_assets/metro_d.svg",
+            "Metro E Line": "img_assets/metro_e.svg",
+            "Metro K Line": "img_assets/metro_k.svg",
+            "Metro J Line 910/950": "img_assets/metro_j.svg",
+            "Metro G Line 901": "img_assets/metro_g.svg"
+        }
 
         function createMapboxMap() {
             document.getElementById("map").style.width = "100%";
@@ -261,6 +271,7 @@
                                 var route_short_name = subdeparture_receiver.departures[i].trip.route.route_short_name;
                                 var route_color = subdeparture_receiver.departures[i].trip.route.route_color;
                                 var route_text_color = subdeparture_receiver.departures[i].trip.route.route_text_color;
+                                var corr_image_of_route_sub = la_metro_img_icons_web[route_short_name];
                                 var route_headsign = subdeparture_receiver.departures[i].stop_headsign;
                                 var scheduled_time = subdeparture_receiver.departures[i].arrival.scheduled;
                                 var actual_arrival = subdeparture_receiver.departures[i].arrival.estimated;
@@ -299,7 +310,7 @@
                                 }
 
                                 if (route_short_name === "") {
-                                    route_short_name = "&nbsp;&nbsp;&nbsp;";
+                                    document.getElementById("lod_subway").innerHTML = `<img src="${corr_image_of_route_sub}" style="width: 20px; height: 20px">`;
                                 }
 
                                 if (alerts_subway.length === 0) {
