@@ -245,7 +245,7 @@ body::after {
     text-align: center;
 }
 
-#route_name_sub, #route_name_lr {
+#route_name_sub, #route_name_lr, #lod_subway {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -317,11 +317,6 @@ body::after {
 
 #line_for_departure_subway, #line_for_departure_lr, #line_for_departure_bus {
     margin: 10px;
-}
-
-#hod_subway, #hod_bus, #hod_lr {
-    position: relative;
-    left: 5px;
 }
 
 #depart_time_subway, #depart_time_lr, #depart_time_bus {
