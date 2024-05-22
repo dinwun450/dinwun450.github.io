@@ -140,7 +140,7 @@ function loadLAMetroLinesBus() {
                 }
 
                 if (route_short_name === "") {
-                    document.getElementById("route_name_bus").innerHTML = `<img src="${corr_image}" id="la_metro_bus_img" style="width: 20px; height: 20px; display: block; margin-left: auto; margin-right: auto;">`;
+                    document.getElementById("route_name_bus").innerHTML = `<img src="${corr_image}" id="la_metro_bus_img" style="width: 20px; height: 20px;">`;
                 }
                 else {
                     document.getElementById("route_name_bus").innerHTML = route_short_name;
