@@ -5,8 +5,8 @@ var la_metro_img_icons = {
     "Metro D Line": "img_assets/metro_d.svg",
     "Metro E Line": "img_assets/metro_e.svg",
     "Metro K Line": "img_assets/metro_k.svg",
-    "Metro J Line": "img_assets/metro_j.svg",
-    "Metro G Line": "img_assets/metro_g.svg"
+    "METRO J LINE": "img_assets/metro_j.svg",
+    "METRO G LINE": "img_assets/metro_g.svg"
 }
 
 function loadWikipediaArticle() {
