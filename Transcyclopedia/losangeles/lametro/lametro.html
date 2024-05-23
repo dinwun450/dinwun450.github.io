@@ -278,6 +278,7 @@
                                 var actual_arrival = subdeparture_receiver.departures[i].arrival.estimated;
                                 var delay_subway = subdeparture_receiver.departures[i].arrival.delay / 60;
                                 var alerts_subway = subdeparture_receiver.departures[i].trip.route.alerts;
+                                console.log(corr_image_of_route_sub);
 
                                 switch (actual_arrival) {
                                     case (null):
@@ -310,15 +311,15 @@
                                         break;
                                 }
 
-                                if (route_short_name === "") {
-                                    document.getElementById("lod_subway").innerHTML = `<img src="${corr_image_of_route_sub}" style="width: 20px; height: 20px">`;
-                                }
-
                                 if (alerts_subway.length === 0) {
                                     console.log("No alerts founded.")
                                 }
                                 else {
                                     document.getElementById("aor_subway").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_subway.length})`;
+                                }
+
+                                if (route_short_name === "") {
+                                    document.getElementById("lod_subway").innerHTML = `<img src="${corr_image_of_route_sub}" style="width: 20px; height: 20px">`;
                                 }
 
                                 document.getElementById("lod_subway").innerHTML = route_short_name;
