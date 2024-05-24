@@ -229,7 +229,7 @@
             e = e || window.event;
             if (e.keyCode === 13) {
                 document.getElementById("list_of_departures_subway").innerHTML = `
-                    <li id="line_for_departure_subway"><div id="lod_subway">-</div> <span id="hod_subway">(None)</span> <span id="depart_time_subway">Enter a station by their station ID</span></li>
+                    <li id="line_for_departure_subway"><div id="lod_subway">-</div> <span id="aor_subway"></span> <span id="hod_subway">Loading...</span> <span id="depart_time_subway">Please wait.</span></li>
                 `;
                 document.getElementById("stationname").innerHTML = "---";
                 getStation();
@@ -278,7 +278,6 @@
                                 var actual_arrival = subdeparture_receiver.departures[i].arrival.estimated;
                                 var delay_subway = subdeparture_receiver.departures[i].arrival.delay / 60;
                                 var alerts_subway = subdeparture_receiver.departures[i].trip.route.alerts;
-                                console.log(corr_image_of_route_sub);
 
                                 switch (actual_arrival) {
                                     case (null):
@@ -321,7 +320,7 @@
                                 if (route_short_name === "") {
                                     document.getElementById("lod_subway").innerHTML = `<img src="${corr_image_of_route_sub}" style="width: 20px; height: 20px">`;
                                 }
-                                
+
                                 document.getElementById("lod_subway").style.color = `#${route_text_color}`;
                                 document.getElementById("lod_subway").style.backgroundColor = `#${route_color}40`;
                                 document.getElementById("lod_subway").style.border = `1px solid #${route_color}`;
@@ -352,7 +351,7 @@
             e = e || window.event;
             if (e.keyCode === 13) {
                 document.getElementById("list_of_departures_lr").innerHTML = `
-                    <li id="line_for_departure_lr"><div id="lod_lr">-</div> <span id="aor_lr"></span> <span id="hod_lr">(None)</span> <span id="depart_time_lr">Enter a station by their station ID</span></li>
+                    <li id="line_for_departure_lr"><div id="lod_lr">-</div> <span id="aor_lr"></span> <span id="hod_lr">Loading...</span> <span id="depart_time_lr">Please wait.</span></li>
                 `;
                 document.getElementById("stationname_lr").innerHTML = "---";
                 getStationLR();
@@ -392,6 +391,8 @@
                         else {
                             for (var i=0; i<lrdeparture_receiver.departures.length; i++) {
                                 var route_short_name = lrdeparture_receiver.departures[i].trip.route.route_short_name;
+                                var route_long_name = lrdeparture_receiver.departures[i].trip.route.route_long_name;
+                                var corr_image_of_route_lr = la_metro_img_icons_web[route_long_name];
                                 var route_color = lrdeparture_receiver.departures[i].trip.route.route_color;
                                 var route_text_color = lrdeparture_receiver.departures[i].trip.route.route_text_color;
                                 var route_headsign = lrdeparture_receiver.departures[i].stop_headsign;
@@ -432,7 +433,7 @@
                                 }
 
                                 if (route_short_name === "") {
-                                    route_short_name = "&nbsp;&nbsp;&nbsp;";
+                                    document.getElementById("lod_lr").innerHTML = `<img src="${corr_image_of_route_lr}" style="width: 20px; height: 20px`;
                                 }
 
                                 if (alerts_lr.length === 0) {
@@ -442,7 +443,6 @@
                                     document.getElementById("aor_lr").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_lr.length})`;
                                 }
 
-                                document.getElementById("lod_lr").innerHTML = route_short_name;
                                 document.getElementById("lod_lr").style.color = `#${route_text_color}`;
                                 document.getElementById("lod_lr").style.backgroundColor = `#${route_color}40`;
                                 document.getElementById("lod_lr").style.border = `1px solid #${route_color}`;
