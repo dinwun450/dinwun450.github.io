@@ -513,6 +513,8 @@
                         else {
                             for (var i=0; i<busdeparture_receiver.departures.length; i++) {
                                 var route_short_name = busdeparture_receiver.departures[i].trip.route.route_short_name;
+                                var route_long_name_bus = busdeparture_receiver.departures[i].trip.route.route_long_name;
+                                var corr_image_of_route_bus = la_metro_img_icons_web[route_long_name_bus];
                                 var route_color = busdeparture_receiver.departures[i].trip.route.route_color;
                                 var route_text_color = busdeparture_receiver.departures[i].trip.route.route_text_color;
                                 var route_headsign = busdeparture_receiver.departures[i].stop_headsign;
@@ -553,7 +555,10 @@
                                 }
 
                                 if (route_short_name === "") {
-                                    route_short_name = "&nbsp;&nbsp;&nbsp;";
+                                    document.getElementById("lod_bus").innerHTML = `<img src="${corr_image_of_route_bus}" style="width: 20px; height: 20px;">`
+                                }
+                                else {
+                                    document.getElementById("lod_bus").innerHTML = route_short_name;
                                 }
 
                                 if (alerts_bus.length === 0) {
@@ -563,7 +568,6 @@
                                     document.getElementById("aor_bus").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_bus.length})`;
                                 }
 
-                                document.getElementById("lod_bus").innerHTML = route_short_name;
                                 document.getElementById("lod_bus").style.color = `#${route_text_color}`;
                                 document.getElementById("lod_bus").style.backgroundColor = `#${route_color}40`;
                                 document.getElementById("lod_bus").style.border = `1px solid #${route_color}`;

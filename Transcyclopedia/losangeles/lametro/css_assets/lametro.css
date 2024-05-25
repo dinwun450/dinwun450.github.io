@@ -253,7 +253,7 @@ body::after {
     padding-right: 3px;
 }
 
-#route_name_bus img {
+#route_name_bus img, #lod_bus img {
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
