@@ -245,7 +245,7 @@ body::after {
     text-align: center;
 }
 
-#route_name_sub, #route_name_lr, #lod_subway {
+#route_name_sub, #route_name_lr, #lod_subway, #lod_lr {
     display: flex;
     justify-content: center;
     align-items: center;
