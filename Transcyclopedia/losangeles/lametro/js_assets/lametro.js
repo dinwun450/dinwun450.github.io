@@ -203,12 +203,11 @@ function LAMetroAlertsRoutes() {
 
             for (var i=0; i<alert_route_receiver.routes.length; i++) {
                 var route_color_affected = alert_route_receiver.routes[i].route_color;
+                var route_type_affected = alert_route_receiver.routes[i].route_type;
                 var route_text_color_affected = alert_route_receiver.routes[i].route_text_color;
                 var route_short_name_affected = alert_route_receiver.routes[i].route_short_name;
-
-                if (route_short_name_affected === "") {
-                    route_short_name_affected = "&nbsp;&nbsp;&nbsp;";
-                }
+                var route_long_name_affected = alert_route_receiver.routes[i].route_long_name;
+                var corr_image_route_affected = la_metro_img_icons[route_long_name_affected];
                     
                 if (alert_route_receiver.routes[i].alerts.length === 0) {
                     console.log("Nothing.");
@@ -219,10 +218,26 @@ function LAMetroAlertsRoutes() {
                         var header_for_route_alert = alert_route_receiver.routes[i].alerts[a].header_text[0].text;
 
                         document.getElementById("alert_routes_entity").innerHTML = `<span id="route_affected"></span> <b>${header_for_route_alert}</b> <br> ${desc_for_route_alert}`;
-                        document.getElementById("route_affected").innerHTML = route_short_name_affected;
+
+                        if (route_short_name_affected === "") {
+                            document.getElementById("route_affected").innerHTML = `<img src="${corr_image_route_affected}" id="la_metro_lr_img" style="width: 20px; height: 20px">`;
+                        }
+                        else {
+                            document.getElementById("route_affected").innerHTML = route_short_name_affected;
+                        }
+
                         document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
                         document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
                         document.getElementById("route_affected").style.border = `1px solid #${route_color_affected}`;
+
+                        if (route_type_affected === 0 && route_type_affected === 1) {
+                            document.getElementById("route_affected").style.paddingLeft = "3px";
+                            document.getElementById("route_affected").style.paddingRight = "3px";
+                        }
+                        else {
+                            document.getElementById("route_affected").style.paddingLeft = "5px";
+                            document.getElementById("route_affected").style.paddingRight = "5px";
+                        }
 
                         var alert_route_node = document.getElementById("alert_routes_entity");
                         var clone_alert_node = alert_route_node.cloneNode(true);
