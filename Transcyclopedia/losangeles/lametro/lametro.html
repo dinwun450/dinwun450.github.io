@@ -831,9 +831,14 @@
                         if (fs_2.length > 0) {
                             for (var f = 0; f < fs_2.length; f++) {
                                 var name_of_route = fs_2[f].properties.route_short_name;
+                                
+                                if (name_of_route === "") {
+                                    name_of_route = fs_2[f].properties.route_long_name;
+                                }
                                 routeIdBus.push(name_of_route);
 
                                 hoveredPolygonLine = fs_2[f].id;
+                                console.log(hoveredPolygonLine);
                                 hoverIdBus.push(hoveredPolygonLine);
 
                                 if (hoveredPolygonLine !== null) {
