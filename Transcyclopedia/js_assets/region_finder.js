@@ -16,7 +16,7 @@ function changeSwitch(c) {
             break;
         case "losangeles":
             document.querySelector(".optionsfortransit").innerHTML = `
-            <li><a href="#"><img src="img_assets/la_metro.svg.png" style="width: 50px; height: auto; position: relative; bottom: 7px;"></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/losangeles/lametro/lametro.html"><img src="img_assets/la_metro.svg.png" style="width: 50px; height: auto; position: relative; bottom: 7px;"></a></li>
             <li><a href="#"><img src="img_assets/metrolink_logo.svg" style="width: 90px; height: auto; position: relative; top: 5px;"></a></li>
             <li><a href="#" id="bus"><i class="fa-solid fa-bus" style="font-size: 35px;"></i></a></li>
             <li><a href="#" id="ferry"><i class="fa-solid fa-ferry" style="font-size: 35px;"></i></a></li>
