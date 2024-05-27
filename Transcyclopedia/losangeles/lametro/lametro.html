@@ -761,6 +761,10 @@
                                     desc_of_route = "";
                                 }
 
+                                if (color_of_route === "") {
+                                    color_of_route = "#000000";
+                                }
+
                                 if (name_of_route === "") {
                                     document.getElementById("route_name_rad").innerHTML = `<img src="${corr_image_of_route_map}" id="la_metro_bus_img" style="width: 20px; height: 20px;">`;
                                 }
@@ -812,6 +816,54 @@
                     map.on('mouseleave', ['la_subway_layer', 'la_lightrail_layer'], function(e) {
                         if (routeIdSub.length > 0) {routeIdSub = []}
                         popup.remove();
+                    });
+
+                    map.on('mouseenter', 'la_bus_layer', function(e) {
+                        var fs_2 = map.queryRenderedFeatures(e.point, {layers: ['la_bus_layer']});
+                        console.log(fs_2);
+
+                        if (fs_2.length > 0) {
+                            for (var f = 0; f < fs_2.length; f++) {
+                                var name_of_route = fs_2[f].properties.name;
+                                routeIdBus.push(name_of_route);
+
+                                hoveredPolygonLine = fs_2[f].id;
+                                hoverIdBus.push(hoveredPolygonLine);
+
+                                if (hoveredPolygonLine !== null) {
+                                    console.log("hello!")
+                                    map.setFeatureState(
+                                        { source: 'la_metro_bus_routes', id: hoveredPolygonLine },
+                                        { hover: false }
+                                    );
+                                }
+                                map.setFeatureState(
+                                    { source: 'la_metro_bus_routes', id: hoveredPolygonLine },
+                                    { hover: true }
+                                );
+                            }
+                            
+                            // Populate the popup and set its coordinates
+                            // based on the feature found.
+                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeIdBus).addTo(map);
+                        }
+                    });
+
+                    map.on('mouseleave', 'la_bus_layer', (e) => {
+                        if (routeIdBus.length > 0) {routeIdBus = []}
+                        popup.remove();
+                        // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+
+                        if (hoveredPolygonLine !== null) {
+                            console.log("Fix!")
+                            for (var i = 0; i < hoverIdBus.length; i++) {
+                                map.setFeatureState(
+                                    { source: 'la_metro_bus_routes', id: hoverIdBus[i]},
+                                    { hover: false }
+                                );
+                            }
+                        }
+                        hoveredPolygonLine = null;
                     });
                 }
             }
