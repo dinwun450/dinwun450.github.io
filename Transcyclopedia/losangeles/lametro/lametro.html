@@ -124,6 +124,7 @@
         </div>
     </div>
     <script>
+        var v = null;
         var geojson_of_la_metro_routes = [];
         var la_metro_img_icons_web = {
             "Metro A Line": "img_assets/metro_a.svg",
@@ -209,6 +210,16 @@
             });
         }
         createMapboxMap();
+
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
+            }
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
         
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
@@ -890,6 +901,11 @@
             map_getter.send();
         }
         plotLAMetroLines();
+
+        function dark_or_light() {
+            var element = document.body;
+            element.classList.toggle("light_mode");
+        }
     </script>
 </body>
 </html>
