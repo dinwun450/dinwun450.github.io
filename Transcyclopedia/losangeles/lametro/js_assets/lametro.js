@@ -9,6 +9,30 @@ var la_metro_img_icons = {
     "Metro G Line 901": "img_assets/metro_g.svg"
 }
 
+function getLAMetroContactInfo() {
+    var la_metro_contact_caller = new XMLHttpRequest();
+    la_metro_contact_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9q5-metro~losangeles&include_alerts=true");
+    la_metro_contact_caller.onreadystatechange = function() {
+        if (la_metro_contact_caller.readyState === 4 && la_metro_contact_caller.status === 200) {
+            var la_metro_contact_receiver = JSON.parse(la_metro_contact_caller.responseText);
+            var phone_no = la_metro_contact_receiver.agencies[0].agency_phone;
+            var email = la_metro_contact_receiver.agencies[0].agency_email;
+
+            if (email === "") {
+                email = "-";
+            }
+            if (phone_no === "") {
+                phone_no = "-";
+            }
+
+            document.getElementById("email_agency").innerHTML = `<b>${email}</b> (Email)`;
+            document.getElementById("phone_agency").innerHTML = `<b>${phone_no}</b> (Phone)`;
+        }
+    }
+    la_metro_contact_caller.send();
+}
+getLAMetroContactInfo();
+
 function loadWikipediaArticle() {
     var info_fetcher = new XMLHttpRequest();
     info_fetcher.open("GET", "https://en.wikipedia.org/w/api.php?action=query&exintro=&explaintext=&origin=%2A&prop=extracts&redirects=1&titles=Los_Angeles_County_Metropolitan_Transportation_Authority&format=json&origin=*");
