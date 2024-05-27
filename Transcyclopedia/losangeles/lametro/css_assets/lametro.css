@@ -225,7 +225,7 @@ body::after {
     margin-bottom: 5px;
 }
 
-#route_item_sub, #route_item_lr {
+#route_item_sub, #route_item_lr, #rir {
     display: flex;
 }
 
@@ -245,7 +245,7 @@ body::after {
     text-align: center;
 }
 
-#route_name_sub, #route_name_lr, #lod_subway, #lod_lr, #lod_bus, #route_affected {
+#route_name_sub, #route_name_lr, #lod_subway, #lod_lr, #lod_bus, #route_affected, #route_name_rad {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -272,7 +272,7 @@ body::after {
     right: 50px;
 }
 
-#route_desc_sub, #route_desc_lr {
+#route_desc_sub, #route_desc_lr, #route_detail_rad {
     text-align: left;
     margin-left: 10px;
 }
