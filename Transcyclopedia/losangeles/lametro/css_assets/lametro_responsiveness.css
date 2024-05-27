@@ -27,7 +27,7 @@
         width: 100%;
     }
 
-    #nameswitch i {
+    #sectionheader i {
         display: block;
     }
 
@@ -37,7 +37,7 @@
 }
 
 @media (max-width: 600px) { 
-    #nameswitch {
+    #sectionheader {
         font-size: 30px;
     }
 
