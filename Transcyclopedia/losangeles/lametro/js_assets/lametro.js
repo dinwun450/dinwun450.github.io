@@ -9,13 +9,6 @@ var la_metro_img_icons = {
     "Metro G Line 901": "img_assets/metro_g.svg"
 }
 
-function getCopyrightYear() {
-    var date = new Date();
-    var getYearNo = date.getFullYear();
-    document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
-}
-getCopyrightYear();
-
 function getLAMetroContactInfo() {
     var la_metro_contact_caller = new XMLHttpRequest();
     la_metro_contact_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9q5-metro~losangeles&include_alerts=true");

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css_assets/lametro.css">
     <link rel="stylesheet" href="css_assets/lametro_scrollbars.css">
     <link rel="stylesheet" href="css_assets/lametro_lightdark.css">
+    <link rel="stylesheet" href="css_assets/lametro_responsiveness.css">
     <script src="js_assets/lametro.js"></script>
 </head>
 <body>
@@ -906,6 +907,13 @@
             var element = document.body;
             element.classList.toggle("light_mode");
         }
+
+        function getCopyrightYear() {
+            var date = new Date();
+            var getYearNo = date.getFullYear();
+            document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
+        }
+        getCopyrightYear();
     </script>
 </body>
 </html>
