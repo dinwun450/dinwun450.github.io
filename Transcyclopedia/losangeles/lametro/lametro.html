@@ -625,6 +625,10 @@
                         var route_type = map_receiver.routes[i].route_type;
                         var geometry_of_route = map_receiver.routes[i].geometry;
                         var route_id = map_receiver.routes[i].route_id;
+
+                        if (route_color === "") {
+                            route_color = "000000";
+                        }
                         
                         geojson_of_la_metro_routes.push({
                             'type': 'Feature',
@@ -838,7 +842,6 @@
                                 routeIdBus.push(name_of_route);
 
                                 hoveredPolygonLine = fs_2[f].id;
-                                console.log(hoveredPolygonLine);
                                 hoverIdBus.push(hoveredPolygonLine);
 
                                 if (hoveredPolygonLine !== null) {
