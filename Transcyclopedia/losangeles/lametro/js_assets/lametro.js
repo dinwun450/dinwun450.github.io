@@ -29,6 +29,7 @@ function loadLAMetroLinesSubway() {
     route_fetcher.onreadystatechange = function() {
         if (route_fetcher.readyState === 4 && route_fetcher.status === 200) {
             var route_info = JSON.parse(route_fetcher.responseText);
+            var counter_sub = 0;
             
             for (var i=0; i<route_info.routes.length; i++) {
                 var route_short_name = route_info.routes[i].route_short_name;
@@ -50,16 +51,19 @@ function loadLAMetroLinesSubway() {
                     document.getElementById("no_of_alerts_sub").innerHTML = "";
                 }
                 else {
-                    document.getElementById("no_of_alerts_sub").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${route_info.routes[i].alerts.length}`;
+                    document.getElementById("no_of_alerts_sub").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${route_info.routes[i].alerts.length})`;
                 }
 
                 var route_entity = document.getElementById("route_item_sub");
                 var clone_entity = route_entity.cloneNode(true);
                 document.querySelector(".lametro_subway").appendChild(clone_entity);
+
+                counter_sub += 1;
             }
 
             var all_subway_lines = document.querySelector(".lametro_subway").children;
             document.querySelector(".lametro_subway").removeChild(all_subway_lines[0]);
+            document.getElementById("sub_routes").innerHTML = `${counter_sub} (Subway)`;
         }
     }
     route_fetcher.send();
@@ -72,6 +76,7 @@ function loadLAMetroLinesLR() {
     route_fetcher.onreadystatechange = function() {
         if (route_fetcher.readyState === 4 && route_fetcher.status === 200) {
             var route_info = JSON.parse(route_fetcher.responseText);
+            var counter_lr = 0;
             
             for (var i=0; i<route_info.routes.length; i++) {
                 var route_short_name = route_info.routes[i].route_short_name;
@@ -99,10 +104,13 @@ function loadLAMetroLinesLR() {
                 var route_entity = document.getElementById("route_item_lr");
                 var clone_entity = route_entity.cloneNode(true);
                 document.querySelector(".lametro_lightrail").appendChild(clone_entity);
+
+                counter_lr += 1;
             }
 
             var all_lr_lines = document.querySelector(".lametro_lightrail").children;
             document.querySelector(".lametro_lightrail").removeChild(all_lr_lines[0]);
+            document.getElementById("lr_routes").innerHTML = `${counter_lr} (Light Rail)`;
         }
     }
     route_fetcher.send();
@@ -115,6 +123,7 @@ function loadLAMetroLinesBus() {
     route_fetcher.onreadystatechange = function() {
         if (route_fetcher.readyState === 4 && route_fetcher.status === 200) {
             var route_info = JSON.parse(route_fetcher.responseText);
+            var counter_bus = 0;
             
             for (var i=0; i<route_info.routes.length; i++) {
                 var route_short_name = route_info.routes[i].route_short_name;
@@ -154,10 +163,13 @@ function loadLAMetroLinesBus() {
                 var route_entity = document.getElementById("route_item_bus");
                 var clone_entity = route_entity.cloneNode(true);
                 document.querySelector(".lametro_bus").appendChild(clone_entity);
+
+                counter_bus += 1;
             }
 
             var all_bus_lines = document.querySelector(".lametro_bus").children;
             document.querySelector(".lametro_bus").removeChild(all_bus_lines[0]);
+            document.getElementById("bus_routes").innerHTML = `${counter_bus} (Bus)`;
         }
     }
     route_fetcher.send();
