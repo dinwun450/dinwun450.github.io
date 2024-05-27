@@ -761,10 +761,6 @@
                                     desc_of_route = "";
                                 }
 
-                                if (color_of_route === "") {
-                                    color_of_route = "#000000";
-                                }
-
                                 if (name_of_route === "") {
                                     document.getElementById("route_name_rad").innerHTML = `<img src="${corr_image_of_route_map}" id="la_metro_bus_img" style="width: 20px; height: 20px;">`;
                                 }
@@ -775,8 +771,16 @@
                                 }
 
                                 document.getElementById("route_name_rad").style.color = `#${text_color_of_route}`;
-                                document.getElementById("route_name_rad").style.backgroundColor = `${color_of_route}40`;
-                                document.getElementById("route_name_rad").style.border = `1px solid ${color_of_route}40`;
+
+                                if (color_of_route === "") {
+                                    document.getElementById("route_name_rad").style.backgroundColor = `#00000040`;
+                                    document.getElementById("route_name_rad").style.border = `1px solid #00000040`;
+                                }
+                                else {
+                                    document.getElementById("route_name_rad").style.backgroundColor = `${color_of_route}40`;
+                                    document.getElementById("route_name_rad").style.border = `1px solid ${color_of_route}40`;
+                                }
+                        
                                 document.getElementById("route_detail_rad").innerHTML = desc_of_route;
 
                                 var routeClone = document.getElementById("rir");
