@@ -753,18 +753,23 @@
                                 var color_of_route = uniqueFeatures[f].properties.route_color;
                                 var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
                                 var desc_of_route = uniqueFeatures[f].properties.route_long_name;
+                                var corr_image_of_route_map = la_metro_img_icons_web[desc_of_route];
                                 var type_of_route = uniqueFeatures[f].properties.route_type;
-
-                                if (name_of_route === "") {
-                                    name_of_route = "&nbsp;&nbsp;&nbsp;";
-                                }
 
                                 if (desc_of_route === "") {
                                     console.log("Nothing!")
                                     desc_of_route = "";
                                 }
 
-                                document.getElementById("route_name_rad").innerHTML = name_of_route;
+                                if (name_of_route === "") {
+                                    document.getElementById("route_name_rad").innerHTML = `<img src="${corr_image_of_route_map}" id="la_metro_bus_img" style="width: 20px; height: 20px;">`;
+                                }
+                                else {
+                                    document.getElementById("route_name_rad").innerHTML = name_of_route;
+                                    document.getElementById("route_name_rad").style.paddingLeft = "5px";
+                                    document.getElementById("route_name_rad").style.paddingRight = "5px";
+                                }
+
                                 document.getElementById("route_name_rad").style.color = `#${text_color_of_route}`;
                                 document.getElementById("route_name_rad").style.backgroundColor = `${color_of_route}40`;
                                 document.getElementById("route_name_rad").style.border = `1px solid ${color_of_route}40`;
