@@ -67,7 +67,8 @@
 
     #departures_subway input, #departures_lightrail input, #departures_bus input, 
     .headerstation, .headerstop, #list_of_departures_subway, 
-    #list_of_departures_lr, #list_of_departures_bus {
+    #list_of_departures_lr, #list_of_departures_bus,
+    #clearall_subway, #clearall_lightrail, #clearall_bus {
         width: 90%;
     }
 
@@ -79,10 +80,6 @@
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         border-radius: 5px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
-    }
-
-    #depart_time_subway, #depart_time_lr, #depart_time_bus {
-        left: 1.5px;
     }
 
     #alert_agency_entity, #alert_routes_entity {
