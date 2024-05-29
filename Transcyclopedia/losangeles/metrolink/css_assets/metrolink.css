@@ -111,7 +111,6 @@ body::after {
     right: 0;
     top: 0;
     overflow-y: hidden;
-    color: #333;
 }
 
 .window {
