@@ -58,7 +58,7 @@ body::after {
 }
 
 .left_navbar li.active {
-    background-color: #82818198;
+    background-color: #003D7398;
 }
 
 .left_navbar li.active a {
@@ -66,7 +66,7 @@ body::after {
 }
 
 .left_navbar li:hover:not(.active, .x) {
-    background-color: #82818198;
+    background-color: #0075DE98;
     transition: 0.5s;
 }
 
@@ -154,7 +154,7 @@ body::after {
 
 .info #desc a {
     outline: none;
-    color: #828181;
+    color: #0075DE;
 }
 
 .stats {
