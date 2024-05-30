@@ -174,18 +174,26 @@
                                 break;
                         }
                         
-                        document.getElementById("lod_metrolink").innerHTML = `<img src='img_assets/metrolink_icon.svg' id='metrolink_icon_departures' style='width: 20px; height: 20px;'> &nbsp; | ${trip_short_name}`;
+                        document.getElementById("lod_metrolink").innerHTML = `<img src='img_assets/metrolink_icon.svg' id='metrolink_icon_departures' style='width: 20px; height: 20px;'> | ${trip_short_name}`;
                         document.getElementById("lod_metrolink").style.backgroundColor = `#${route_color}40`;
                         document.getElementById("lod_metrolink").style.border = `1px solid #${route_color}`;
                         document.getElementById("lod_metrolink").style.color = `#${route_text_color}`;
                         document.getElementById("hod_metrolink").innerHTML = route_headsign;
+
+                        switch (route_text_color) {
+                            case "FFFFFF":
+                                document.getElementById("metrolink_icon_departures").style.filter = "invert(1)";
+                                break;
+                            default:
+                                document.getElementById("metrolink_icon_departures").style.filter = "brightness(0%)";
+                        }
 
                         var departure_cloner = document.getElementById("line_for_departure_metrolink").cloneNode(true);
                         document.getElementById("list_of_metrolink_departures").appendChild(departure_cloner);
                     }
 
                     var all_metrolink_departures = document.getElementById("list_of_metrolink_departures").children;
-                    document.getElementById("list_of_metrolink_departures").removeChild(all_metrolink_departures);
+                    document.getElementById("list_of_metrolink_departures").removeChild(all_metrolink_departures[0]);
                 }
             }
             metrolink_departure_caller.send();
