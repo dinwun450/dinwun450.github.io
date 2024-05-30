@@ -76,12 +76,12 @@ function loadMetrolinkLines() {
                 }
 
                 var line_to_clone_metrolink = document.getElementById("route_entity").cloneNode(true);
-                document.getElementById("all_routes_metrolink").appendChild(line_to_clone_metrolink);
+                document.querySelector(".all_routes_metrolink").appendChild(line_to_clone_metrolink);
                 counter_for_all_metrolink_lines += 1;
             }
 
-            var all_lines_metrolink = document.getElementById("all_routes_metrolink").children;
-            document.getElementById("all_routes_metrolink").removeChild(all_lines_metrolink[0]);
+            var all_lines_metrolink = document.querySelector(".all_routes_metrolink").children;
+            document.querySelector(".all_routes_metrolink").removeChild(all_lines_metrolink[0]);
             document.getElementById("total_number_of_lines").innerHTML = counter_for_all_metrolink_lines;
         }
     }
