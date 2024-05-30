@@ -57,12 +57,12 @@
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter" autocomplete="off">
+            <input type="text" placeholder="Search for a station..." id="stationgetter" autocomplete="off" onkeydown="callOverMetrolink();">
             <p class="headerformetrolink_departures">Departures for &nbsp;<span id="nameofstation">---</span></p>
             <ul id="list_of_metrolink_departures">
                 <li id="line_for_departure_metrolink"><span id="lod_metrolink">-</span> <span id="hod_metrolink">(None)</span> <span id="depart_time_metrolink">Enter a station by their station ID</span></li>
             </ul>
-            <button id="clearall_metrolink" onclick="">Clear</button>
+            <button id="clearall_metrolink" onclick="clearAllMetrolink();">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
@@ -96,6 +96,107 @@
             evt.currentTarget.className += " active";
         }
         document.getElementById("defaulttab").click();
+
+
+        // Departures
+        function callOverMetrolink(e) {
+            e = e || window.event;
+            if (e.keyCode === 13) {
+                document.getElementById("list_of_metrolink_departures").innerHTML = `
+                <li id="line_for_departure_metrolink"><span id="lod_metrolink">-</span> <span id="hod_metrolink">Loading</span> <span id="depart_time_metrolink">Please wait...</span></li>
+                `;
+                document.getElementById("nameofstation").innerHTML = "---";
+                getStationInfoMetrolink();
+            }
+        }
+
+        function getStationInfoMetrolink() {
+            getStationID = document.getElementById("stationgetter").value;
+            var metrolink_station_caller = new XMLHttpRequest();
+            metrolink_station_caller.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9qh-metrolinktrains&stop_id=${getStationID}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+            metrolink_station_caller.onreadystatechange = function() {
+                if (metrolink_station_caller.readyState === 4 && metrolink_station_caller.readyState === 4) {
+                    var metrolink_station_receiver = JSON.parse(metrolink_station_caller.responseText);
+                    var metrolink_station_name = metrolink_station_receiver.stops[0].stop_name;
+                    var metrolink_onestop_id = metrolink_station_receiver.stops[0].onestop_id;
+
+                    document.getElementById("nameofstation").innerHTML = metrolink_station_name;
+                    getMetrolinkDepartures(onestop_id);
+                }
+            }
+            metrolink_station_caller.send();
+        }
+        
+        function getMetrolinkDepartures(insert_onestop_id) {
+            var metrolink_departure_caller = new XMLHttpRequest();
+            metrolink_departure_caller.open("GET", `https://transit.land/api/v2/rest/stops/${insert_onestop_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`)
+            metrolink_departure_caller.onreadystatechange = function() {
+                if (metrolink_departure_caller.readyState === 4 && metrolink_departure_caller.status === 200) {
+                    var metrolink_departure_receiver = JSON.parse(metrolink_departure_caller.responseText).stops[0].departures;
+
+                    for (var i=0; i<metrolink_departure_receiver.length; i++) {
+                        var route_color = metrolink_departure_receiver[i].trip.route.route_color;
+                        var route_text_color = metrolink_departure_receiver[i].trip.route.route_text_color;
+                        var route_headsign = metrolink_departure_receiver[i].stop_headsign;
+                        var sched_time = metrolink_departure_receiver[i].arrival.scheduled;
+                        var actual_arrival = metrolink_departure_receiver[i].arrival.estimated;
+                        var delay_time = metrolink_departure_receiver[i].arrival.delay;
+                        var trip_short_name = metrolink_departure_receiver[i].trip.trip_short_name;
+
+                        switch (actual_arrival) {
+                            case (null):
+                                document.getElementById("depart_time_metrolink").innerHTML = `${scheduled_time} <span id="delay_metrolink">(scheduled)</span>`;
+                                document.getElementById("depart_time_metrolink").style.color = "black";
+                                document.getElementById("delay_metrolink").style.color = "black";
+                                break;
+                            default:
+                                document.getElementById("depart_time_metrolink").innerHTML = `${actual_arrival} <span id="delay_metrolink">()</span>`;
+                                document.getElementById("depart_time_metrolink").style.color = "green";
+
+                                switch(delay_time) {
+                                    case (null):
+                                        document.getElementById("delay_metrolink").innerHTML = "(no data)";
+                                        document.getElementById("delay_metrolink").style.color = "black";
+                                        break;
+                                    case (delay_time > 60):
+                                        document.getElementById("delay_metrolink").innerHTML = `(${delay_time} min late)`;
+                                        document.getElementById("delay_metrolink").style.color = "orange";
+                                        break;
+                                    case (delay_time < 0):
+                                        document.getElementById("delay_metrolink").innerHTML = `(${delay_time} min early)`;
+                                        document.getElementById("delay_metrolink").style.color = "skyblue";
+                                        break;
+                                    default:
+                                        document.getElementById("delay_metrolink").innerHTML = "(on time)";
+                                        document.getElementById("delay_metrolink").style.color = "green";
+                                        break;
+                                }
+                                break;
+                        }
+                        
+                        document.getElementById("lod_metrolink").innerHTML = `<img src='img_assets/metrolink_icon.svg' id='metrolink_icon_departures' style='width: 20px; height: 20px;'> &nbsp; | ${trip_short_name}`;
+                        document.getElementById("lod_metrolink").style.backgroundColor = `#${route_color}40`;
+                        document.getElementById("lod_metrolink").style.border = `1px solid #${route_color}`;
+                        document.getElementById("lod_metrolink").style.color = `#${route_text_color}`;
+                        document.getElementById("hod_metrolink").innerHTML = route_headsign;
+
+                        var departure_cloner = document.getElementById("line_for_departure_metrolink").cloneNode(true);
+                        document.getElementById("list_of_metrolink_departures").appendChild(departure_cloner);
+                    }
+
+                    var all_metrolink_departures = document.getElementById("list_of_metrolink_departures").children;
+                    document.getElementById("list_of_metrolink_departures").removeChild(all_metrolink_departures);
+                }
+            }
+            metrolink_departure_caller.send();
+        }
+
+        function clearAllMetrolink() {
+            document.getElementById("list_of_metrolink_departures").innerHTML = `
+            <li id="line_for_departure_metrolink"><span id="lod_metrolink">-</span> <span id="hod_metrolink">(None)</span> <span id="depart_time_metrolink">Enter a station by their station ID</span></li>
+            `;
+            document.getElementById("nameofstation").innerHTML = "---";
+        }
     </script>
 </body>
 </html>
