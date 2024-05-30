@@ -18,7 +18,7 @@ function getMetrolinkContactInfo() {
     metrolink_contact_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9qh-metrolinktrains");
     metrolink_contact_caller.onreadystatechange = function() {
         if (metrolink_contact_caller.status === 200 && metrolink_contact_caller.readyState === 4) {
-            var metrolink_contact_receiver = JSON.parse(metrolink_contact_caller);
+            var metrolink_contact_receiver = JSON.parse(metrolink_contact_caller.responseText);
             var phone_no = metrolink_contact_receiver.agencies[0].agency_phone;
             var email = metrolink_contact_receiver.agencies[0].agency_email;
 
