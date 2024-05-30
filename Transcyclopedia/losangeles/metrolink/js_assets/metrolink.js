@@ -88,3 +88,35 @@ function loadMetrolinkLines() {
     metrolink_line_caller.send();
 }
 loadMetrolinkLines();
+
+
+// Alerts
+function loadMetrolinkAlerts() {
+    var metrolink_alert_caller = new XMLHttpRequest();
+    metrolink_alert_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9qh-metrolinktrains&include_alerts=true");
+    metrolink_alert_caller.onreadystatechange = function() {
+        if (metrolink_alert_caller.readyState === 4 && metrolink_alert_caller.status === 200) {
+            var metrolink_alert_receiver = JSON.parse(metrolink_alert_caller.responseText);
+            switch (metrolink_alert_receiver.agencies[0].alerts.length) {
+                case 0:
+                    document.getElementById("alert_desc_metrolink").innerHTML = "There are no alerts posted from Metrolink.";
+                    break;
+                default:
+                    for (var i=0; i<metrolink_alert_receiver.agencies[0].alerts.length; i++) {
+                        var desc_for_metrolink_alert = metrolink_alert_receiver.agencies[0].alerts[i].description_text[0].text;
+                        var header_for_metrolink_alert = metrolink_alert_receiver.agencies[0].alerts[i].header_text[0].text;
+                        document.getElementById("alert_desc_metrolink").innerHTML = `<b>${header_for_metrolink_alert}</b> <br> ${desc_for_metrolink_alert}`;
+
+                        var alert_cloned = document.querySelector(".list_of_alerts_metrolink").cloneNode(true);
+                        document.getElementById("alerts").appendChild(alert_cloned);
+                    }
+
+                    var all_alerts = document.getElementById("alerts").children;
+                    document.getElementById("alerts").removeChild(all_alerts[1]);
+                    break;
+            }
+        }
+    }
+    metrolink_alert_caller.send();
+}
+loadMetrolinkAlerts();
