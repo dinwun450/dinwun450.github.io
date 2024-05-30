@@ -205,6 +205,8 @@ body::after {
 
 .all_routes_metrolink li {
     margin-top: 10px;
+    display: flex;
+    align-items: center;
 }
 
 #route, #lod_metrolink, #route_name_rad {
@@ -219,12 +221,14 @@ body::after {
     color: white;
     font-size: 1em;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #desc_of_route {
     width: 65%;
-    text-align: right;
-    margin-right: 10px;
+    margin-left: 10px;
     right: 50px;
 }
 
@@ -288,8 +292,6 @@ body::after {
 }
 
 #hod_metrolink {
-    position: relative;
-    left: 5px;
     display: inline-block;
 }
 
@@ -334,9 +336,15 @@ body::after {
     overflow-y: auto;
 }
 
-.rir {
+#rir {
     list-style-type: none;
     margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+#route_detail_rad {
+    margin-left: 10px;
 }
 
 .mapboxgl-popup-content {
