@@ -121,7 +121,7 @@
                     var metrolink_onestop_id = metrolink_station_receiver.stops[0].onestop_id;
 
                     document.getElementById("nameofstation").innerHTML = metrolink_station_name;
-                    getMetrolinkDepartures(onestop_id);
+                    getMetrolinkDepartures(metrolink_onestop_id);
                 }
             }
             metrolink_station_caller.send();
