@@ -286,6 +286,22 @@
 
 
         // Map (Part 2)
+        function getUniqueFeatures(features, comparatorProperty) {
+            const unique_ids = new Set();
+            const unique_features = [];
+
+            for (const feature of features) {
+                const id = feature.properties[comparatorProperty];
+                
+                if (!unique_ids.has(id)) {
+                    unique_ids.add(id);
+                    unique_features.push(feature);
+                }
+            }
+
+            return unique_features;
+        }
+        
         function plotMetrolinkLines() {
             var metrolink_map_getter = new XMLHttpRequest();
             metrolink_map_getter.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qh-metrolinktrains&limit=700&include_geometry=true");
@@ -329,7 +345,7 @@
                         },
                         'paint': {
                             'line-width': 4,
-                            'line_color': ['get', 'route_color']
+                            'line-color': ['get', 'route_color']
                         }
                     });
 
@@ -394,7 +410,7 @@
                                 routeIdMetrolink.push(name_of_route);
                             };
 
-                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
+                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeIdMetrolink).addTo(map);
                         };
                     });
 
