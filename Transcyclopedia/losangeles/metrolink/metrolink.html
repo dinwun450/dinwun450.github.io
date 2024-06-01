@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css_assets/metrolink.css">
     <link rel="stylesheet" href="css_assets/metrolink_scrollbars.css">
+    <link rel="stylesheet" href="css_assets/metrolink_lightdark.css">
     <script src="js_assets/metrolink.js"></script>
 </head>
 <body>
@@ -159,6 +160,7 @@
         loadMap();
 
 
+        // Open Tab Functions
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("window");
@@ -427,6 +429,13 @@
             metrolink_map_getter.send();
         }
         plotMetrolinkLines();
+
+
+        // Other Functions
+        function dark_or_light() {
+            var element = document.body;
+            element.classList.toggle("light_mode");
+        }
     </script>
 </body>
 </html>
