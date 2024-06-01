@@ -80,6 +80,10 @@
         </div>
     </div>
     <script>
+        // Variables
+        var geojson_of_metrolink_routes = [];
+
+
         // Map (Part 1)
         function loadMap() {
             document.getElementById("map").style.width = "100%";
@@ -279,6 +283,132 @@
             `;
             document.getElementById("nameofstation").innerHTML = "---";
         }
+
+
+        // Map (Part 2)
+        function plotMetrolinkLines() {
+            var metrolink_map_getter = new XMLHttpRequest();
+            metrolink_map_getter.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qh-metrolinktrains&limit=700&include_geometry=true");
+            metrolink_map_getter.onreadystatechange = function() {
+                if (metrolink_map_getter.readyState === 4 && metrolink_map_getter.status === 200) {
+                    var metrolink_map_receiver = JSON.parse(metrolink_map_getter.responseText);
+
+                    for (var i=0; i<metrolink_map_receiver.routes.length; i++) {
+                        var route_long_name = metrolink_map_receiver.routes[i].route_long_name;
+                        var route_color = metrolink_map_receiver.routes[i].route_color;
+                        var route_text_color = metrolink_map_receiver.routes[i].route_text_color;
+                        var geometry_of_metrolink_route = metrolink_map_receiver.routes[i].geometry;
+
+                        geojson_of_metrolink_routes.push({
+                            'type': 'Feature',
+                            'geometry': geometry_of_metrolink_route,
+                            'properties': {
+                                'route_color': `#${route_color}`,
+                                'route_text_color': `#${route_text_color}`,
+                                'route_long_name': route_long_name
+                            }
+                        });
+                    };
+
+                    map.addSource('metrolink_routes', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': geojson_of_metrolink_routes
+                        },
+                        'generateId': true
+                    });
+
+                    map.addLayer({
+                        'id': 'metrolink_routes_layer',
+                        'type': 'line',
+                        'source': 'metrolink_routes',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-width': 4,
+                            'line_color': ['get', 'route_color']
+                        }
+                    });
+
+                    map.moveLayer('metrolink_routes_layer')
+
+                    map.on('movestart', () => {
+                        map.setFilter('metrolink_routes_layer', ['has', 'route_long_name']);
+                        document.getElementById("range_of_routes").innerHTML = `
+                        <li id="rir"><span id="route_name_rad">-</span> <span id="route_detail_rad">Loading routes...</span></li>                        
+                        `;
+                    });
+
+                    map.on('moveend', () => {
+                        const features = map.queryRenderedFeatures({
+                            layers: ['metrolink_routes_layer']
+                        });
+
+                        if (features) {
+                            const uniqueFeatures = getUniqueFeatures(features, 'route_long_name');
+
+                            for (var f=0; f<uniqueFeatures.length; f++) {
+                                var long_name_of_route = uniqueFeatures[f].properties.route_long_name;
+                                var color_of_route = uniqueFeatures[f].properties.route_color;
+                                var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
+
+                                document.getElementById("route_name_rad").innerHTML = `<img src='img_assets/metrolink_icon.svg' id='metrolink_icon_map' style='width: 20px; height: 20px;'>`
+                                document.getElementById("route_name_rad").style.backgroundColor = `${color_of_route}40`;
+                                document.getElementById("route_name_rad").style.border = `1px solid ${color_of_route}`;
+                                
+                                switch (text_color_of_route) {
+                                    case "FFFFFF":
+                                        document.getElementById("metrolink_icon_map").style.filter = "invert(1)";
+                                        break;
+                                    default:
+                                        document.getElementById("metrolink_icon_map").style.filter = "brightness(0%)";
+                                        break;
+                                }
+
+                                var route_rad_to_clone = document.getElementById("rir").cloneNode(true);
+                                document.getElementById("range_of_routes").appendChild(route_rad_to_clone);
+                            }
+
+                            var all_metrolink_routes_in_rad = document.getElementById("range_of_routes").children;
+                            document.getElementById("range_of_routes").removeChild(all_metrolink_routes_in_rad[0]);
+                        };
+                    });
+
+                    let routeIdMetrolink = [];
+                    const popup = new mapboxgl.Popup({
+                        closeButton: false,
+                        closeOnClick: false
+                    });
+
+                    map.on('mouseenter', 'metrolink_routes_layer', function(e) {
+                        var fs = map.queryRenderedFeatures(e.point, {
+                            layers: ['metrolink_routes_layer']
+                        });
+
+                        if (fs.length > 0) {
+                            for (var f=0; f<fs.length; f++) {
+                                var name_of_route = fs[f].properties.route_long_name;
+                                routeIdMetrolink.push(name_of_route);
+                            };
+
+                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
+                        };
+                    });
+
+                    map.on('mouseleave', 'metrolink_routes_layer', function(e) {
+                        if (routeIdMetrolink.length > 0) {
+                            routeIdMetrolink = [];
+                        };
+                        popup.remove();
+                    })
+                }
+            }
+            metrolink_map_getter.send();
+        }
+        plotMetrolinkLines();
     </script>
 </body>
 </html>
