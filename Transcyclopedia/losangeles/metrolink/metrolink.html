@@ -232,7 +232,7 @@
                                 break;
                             default:
                                 document.getElementById("depart_time_metrolink").innerHTML = `${actual_arrival} <span id="delay_metrolink">()</span>`;
-                                document.getElementById("depart_time_metrolink").style.color = "green";
+                                document.getElementById("depart_time_metrolink").style.color = "lime";
 
                                 switch(delay_time) {
                                     case (null):
@@ -249,7 +249,7 @@
                                         break;
                                     default:
                                         document.getElementById("delay_metrolink").innerHTML = "(on time)";
-                                        document.getElementById("delay_metrolink").style.color = "green";
+                                        document.getElementById("delay_metrolink").style.color = "lime";
                                         break;
                                 }
                                 break;
