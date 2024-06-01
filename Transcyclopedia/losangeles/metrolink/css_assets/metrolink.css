@@ -249,6 +249,10 @@ body::after {
     outline: none;
 }
 
+#departures input::placeholder {
+    color: white;
+}
+
 .headerformetrolink_departures {
     width: 95%;
     height: 50px;
@@ -300,6 +304,10 @@ body::after {
     float: right;
     position: relative;
     right: 3px;
+}
+
+#alerts {
+    overflow-y: auto;
 }
 
 .list_of_alerts_metrolink {
