@@ -259,6 +259,10 @@ body::after {
     outline: none;
 }
 
+#departures input::placeholder {
+    color: white;
+}
+
 .headerforstop {
     width: 95%;
     height: 50px;

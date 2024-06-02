@@ -8,6 +8,10 @@
     color: black;
 }
 
+#departures input::placeholder {
+    color: black;
+}
+
 .light_mode .left_navbar li a,
 .light_mode #clearall {
     color: black;
