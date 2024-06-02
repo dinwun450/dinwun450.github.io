@@ -28,10 +28,9 @@
             <p id="date">Day, Month DayNumber, <br> Year, ##:##:## PM</p>
             <p id="weather"><i class="wi wi-day-sunny"></i> | ##&deg;F</p>
         </div>
-        <label class="toggle_light_dark">
-            <input type="checkbox" onclick="dark_or_light()">
-            <span class="slider"></span>
-        </label>
+        <button id="light_or_dark" onclick="dark_or_light()">
+            <i class="fa-regular fa-sun" id="icon"></i>
+        </button>
         <div class="routes">
             <h2>Routes Nearby <button onclick="reloader()"><i class="fa-solid fa-rotate-right"></i></button></h2>
             <ul class="routes_near_you">
@@ -108,7 +107,9 @@
 
         function dark_or_light() {
             var element = document.body;
-            element.classList.toggle("light_mode");
+            var light_or_dark = element.classList.toggle("light_mode");
+            console.log(document.getElementById("light_or_dark").querySelector("#icon"));
+            document.getElementById("light_or_dark").innerHTML = light_or_dark ? `<i class="fa-regular fa-moon" id="icon"></i>` : `<i class="fa-regular fa-sun" id="icon"></i>`;
         }
 
         function reloader() {
@@ -124,7 +125,7 @@
         function closeNav() {
             document.querySelector(".left_navbar").style.display = "none";
             console.log(document.querySelector(".left_navbar").getAttribute("style"))
-        }
+        } 
     </script>
 </body>
 </html>
