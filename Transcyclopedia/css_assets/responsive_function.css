@@ -51,7 +51,7 @@
 }
 
 @media (max-width: 600px) {
-    .toggle_light_dark {
+    #light_or_dark {
         display: none;
     }
 
