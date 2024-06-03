@@ -41,7 +41,7 @@
         margin-left: 10px;
     }
 
-    .toggle_light_dark, .stops_nearby {
+    #light_or_dark, .stops_nearby {
         margin-right: 10px;
     }
     .show_and_hide_info {
