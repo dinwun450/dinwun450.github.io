@@ -22,7 +22,7 @@
         <li class="tablinks header4" onclick="openTab(event, 'departures_bus')"><a href="#"><i class="fa-solid fa-bus"></i>&nbsp;&nbsp;Departures (Bus)</a></li>
         <li class="tablinks header5" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
         <li class="tablinks header6" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
-        <li><a href="#" onclick="dark_or_light()"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light/Dark Mode</a></li>
+        <li><a href="#" onclick="dark_or_light()"><span id="light_dark_transition"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</span></a></li>
         <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
         <p class="copyright">&copy; 2023 Transcyclopedia. Created by Dino Wun.</p>
     </ul>
@@ -73,7 +73,7 @@
         </div>
         <div class="window" id="departures_metro">
             <p id="nameswitch">Departures (Muni Metro) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station.." onkeydown="keyDownMuniMetro()" id="muni_metro_stationgetter" autocomplete="off">
+            <input type="text" placeholder="Search for a station..." onkeydown="keyDownMuniMetro()" id="muni_metro_stationgetter" autocomplete="off">
             <p class="headerformunimetro">Departures for &nbsp;<span id="muni_metro_stationname">---</span></p>
             <ul id="list_of_departures_muni_metro">
                 <li id="line_for_departure_muni_metro"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro">-</div> <span id="route_headsign_muni_metro">(None)</span> <span id="alerts_metro"></span> <span id="route_depart_muni_metro">Enter a specific station by their station ID</span></div></li>
@@ -90,7 +90,7 @@
         </div>
         <div class="window" id="departures_cable">
             <p id="nameswitch">Departures (Cable Car) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a stop.." onkeydown="keyDownCableCar()" id="cable_stopgetter" autocomplete="off">
+            <input type="text" placeholder="Search for a stop..." onkeydown="keyDownCableCar()" id="cable_stopgetter" autocomplete="off">
             <p class="headerforcable">Departures for &nbsp;<span id="cable_stopname">---</span></p>
             <ul id="list_of_departures_cable">
                 <li id="line_for_departure_cable"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable"><img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables_in_departures">&nbsp;(-)</div> <span id="alerts_cable"></span> <span id="route_headsign_cable">(None)</span> <span id="route_depart_cable">Enter a specific stop by their stop ID</span></div></li>
@@ -107,7 +107,7 @@
         </div>
         <div class="window" id="departures_bus">
             <p id="nameswitch">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a stop.." onkeydown="keyDownBus()" id="bus_stopgetter" autocomplete="off">
+            <input type="text" placeholder="Search for a stop..." onkeydown="keyDownBus()" id="bus_stopgetter" autocomplete="off">
             <p class="headerforbus">Departures for &nbsp;<span id="bus_stopname">---</span></p>
             <ul id="list_of_departures_bus">
                 <li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="alerts_bus"></span> <span id="route_headsign_bus">(None)</span> <span id="route_depart_bus">Enter a specific stop by their stop ID</span></div></li>
@@ -127,23 +127,14 @@
             <div class="alert_entity_agency">
                 <h3>Muni Agency</h3>
                 <ul id="muni_agency_alerts">
-                    <li id="alert_desc_agency">
-                        <p>Loading...</p>
-                    </li>
+                    <li id="alert_desc_agency">Loading...</li>
                 </ul>
             </div>
             <div class="alert_entity_routes">
                 <h3>Muni Routes</h3>
-                <input type="text" placeholder="Search for a route..." onkeydown="keyDownAlerts()" id="muni_routegetter" autocomplete="off">
-                <p class="headerformunialerts">Alerts for &nbsp; <span id="affectedroutes">-</span><br></p>
                 <ul id="muni_routes_alerts">
-                    <li id="alert_desc_routes">
-                        <p>
-                            <span id="alert_for_specific_route">Enter a specific route by their route name.</span>
-                        </p>
-                    </li>
+                    <li id="alert_desc_routes">Loading...</li>
                 </ul>
-                <button id="clearall_muni_alerts" onclick="clearAllAlerts()">Clear</button>
             </div>
         </div>
         <div class="window" id="map_inter">
@@ -349,7 +340,7 @@
                         }
                         else {
                             document.getElementById("route_depart_muni_metro").innerHTML = ` ${departuredTime} <span id="delay_muni_metro">()</span>`;
-                            document.getElementById("route_depart_muni_metro").style.color = "darkgreen";
+                            document.getElementById("route_depart_muni_metro").style.color = "rgb(10, 161, 45)";
 
                             if (departuredTime = departures_muni_metro.stops[0].departures[i].arrival.delay >= 60) {
                                 document.getElementById("delay_muni_metro").innerHTML = `(${Math.floor(departures_muni_metro.stops[0].departures[i].arrival.delay / 60)} min late)`;
@@ -357,7 +348,7 @@
                             }
                             else if (departuredTime = departures_muni_metro.stops[0].departures[i].arrival.delay === 0) {
                                 document.getElementById("delay_muni_metro").innerHTML = `(on time)`;
-                                document.getElementById("delay_muni_metro").style.color = "green";
+                                document.getElementById("delay_muni_metro").style.color = "rgb(10, 161, 45)";
                             }
                             else if (departuredTime = departures_muni_metro.stops[0].departures[i].arrival.delay <= 0) {
                                 document.getElementById("delay_muni_metro").innerHTML = `(${Math.abs(Math.floor(departures_muni_metro.stops[0].departures[i].arrival.delay / 60))} min early)`;
@@ -490,7 +481,7 @@
                         }
                         else {
                             document.getElementById("route_depart_cable").innerHTML = ` ${departuredTime} <span id="delay_cable_car">()</span>`;
-                            document.getElementById("route_depart_cable").style.color = "darkgreen";
+                            document.getElementById("route_depart_cable").style.color = "rgb(10, 161, 45)";
 
                             if (departuredTime = departures_cable_car.stops[0].departures[i].arrival.delay >= 60) {
                                 document.getElementById("delay_cable_car").innerHTML = `(${Math.floor(departures_cable_car.stops[0].departures[i].arrival.delay / 60)} min late)`;
@@ -498,7 +489,7 @@
                             }
                             else if (departuredTime = departures_cable_car.stops[0].departures[i].arrival.delay === 0) {
                                 document.getElementById("delay_cable_car").innerHTML = `(on time)`;
-                                document.getElementById("delay_cable_car").style.color = "green";
+                                document.getElementById("delay_cable_car").style.color = "rgb(10, 161, 45)";
                             }
                             else if (departuredTime = departures_cable_car.stops[0].departures[i].arrival.delay <= 0) {
                                 document.getElementById("delay_cable_car").innerHTML = `(${Math.abs(Math.floor(departures_cable_car.stops[0].departures[i].arrival.delay / 60))} min early)`;
@@ -637,7 +628,7 @@
                         }
                         else {
                             document.getElementById("route_depart_bus").innerHTML = ` ${real_time} <span id="delay_bus">()</span>`;
-                            document.getElementById("route_depart_bus").style.color = "darkgreen";
+                            document.getElementById("route_depart_bus").style.color = "rgb(10, 161, 45)";
 
                             if (real_time = bus_departures.stops[0].departures[i].arrival.delay >= 60) {
                                 document.getElementById("delay_bus").innerHTML = `(${Math.floor(bus_departures.stops[0].departures[i].arrival.delay / 60)} min late)`;
@@ -645,7 +636,7 @@
                             }
                             else if (real_time = bus_departures.stops[0].departures[i].arrival.delay === 0) {
                                 document.getElementById("delay_bus").innerHTML = "(on time)";
-                                document.getElementById("delay_bus").style.color = "green";
+                                document.getElementById("delay_bus").style.color = "rgb(10, 161, 45)";
                             }
                             else if (real_time = bus_departures.stops[0].departures[i].arrival.delay <= 0) {
                                 document.getElementById("delay_bus").innerHTML = `(${Math.abs(Math.floor(bus_departures.stops[0].departures[i].arrival.delay / 60))} min early)`;
@@ -711,79 +702,6 @@
                         <p>Once you typed down the stop by their ID, the advisories will display here.</p>
                     </li>
             `
-        }
-
-        var no_route_alerts = [];
-        function keyDownAlerts(e) {
-            e = e || window.event;
-            if (e.keyCode === 13) {
-                callOverMuniAlerts();
-            }
-        }
-
-        function callOverMuniAlerts() {
-            var route_receiver = document.getElementById("muni_routegetter").value.replace("/ /g", "+");
-            var alert_call = new XMLHttpRequest();
-            alert_call.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&search=${route_receiver}&operator_onestop_id=o-9q8y-sfmta&include_alerts=true&limit=700`);
-            alert_call.onreadystatechange = function() {
-                if (alert_call.readyState === 4 && alert_call.status === 200) {
-                    var route_alerts = JSON.parse(alert_call.responseText);
-                    console.log(route_alerts);
-
-                    for (var r = 0; r < route_alerts.routes.length; r++) {
-                        var route_short_name = route_alerts.routes[r].route_short_name;
-                        var route_color = route_alerts.routes[r].route_color;
-                        var route_text_color = route_alerts.routes[r].route_text_color;
-
-                        document.getElementById("affectedroutes").innerHTML = route_short_name;
-                        document.getElementById("affectedroutes").style.backgroundColor = `#${route_color}40`;
-                        document.getElementById("affectedroutes").style.border = `1px solid #${route_color}`;
-                        document.getElementById("affectedroutes").style.color = `#${route_text_color}`;
-
-                        var routeNode = document.getElementById("affectedroutes");
-                        var cloneNode = routeNode.cloneNode(true);
-                        document.querySelector(".headerformunialerts").appendChild(cloneNode).insertAdjacentHTML( 'afterend', ",&nbsp;");
-
-                        if (route_alerts.routes[r].alerts.length === 0) {
-                            no_route_alerts.push(` ${route_short_name}`);
-                            document.getElementById("alert_for_specific_route").innerHTML = `There are no alerts for: ${no_route_alerts}. Please check again shortly.`
-                            console.log("Nothing.");
-                        }
-
-                        for (var a = 0; a < route_alerts.routes[r].alerts.length; a++) {
-                            var header_text = route_alerts.routes[r].alerts[a].header_text[0].text;
-                            var description_text = route_alerts.routes[r].alerts[a].description_text[0].text;
-                            document.getElementById("alert_for_specific_route").innerHTML = `<b>${header_text}</b> <br> ${description_text}`;
-
-                            var alertNode = document.getElementById("alert_desc_routes");
-                            var cloneNode = alertNode.cloneNode(true);
-                            document.getElementById("muni_routes_alerts").appendChild(cloneNode);
-                        }
-                    }
-                    var total_routes = document.querySelector(".headerformunialerts").children;
-                    var last_child_routes = document.querySelector(".headerformunialerts").lastChild;
-
-                    document.querySelector(".headerformunialerts").removeChild(total_routes[0]);
-                    document.querySelector(".headerformunialerts").removeChild(last_child_routes);
-                }
-            }
-            alert_call.send();
-        }
-
-        function clearAllAlerts() {
-            document.getElementById("muni_routes_alerts").innerHTML = `
-                    <li id="alert_desc_routes">
-                        <p>
-                            <span id="alert_for_specific_route">Enter a specific route by their route name.</span>
-                        </p>
-                    </li>
-            `;
-            document.querySelector(".headerformunialerts").innerHTML = "Alerts for &nbsp; <span id='affectedroutes'>-</span><br>";
-            document.getElementById("affectedroutes").innerHTML = "-";
-            document.getElementById("affectedroutes").style.backgroundColor = "#33333340";
-            document.getElementById("affectedroutes").style.color = "white";
-            document.getElementById("affectedroutes").style.border = "1px solid black";
-            no_route_alerts = []
         }
 
         function getUniqueFeatures(features, comparatorProperty) {
@@ -1075,7 +993,8 @@
 
         function dark_or_light() {
             var element = document.body;
-            element.classList.toggle("light_mode");
+            var light_or_dark_muni = element.classList.toggle("light_mode");
+            document.getElementById("light_dark_transition").innerHTML = light_or_dark_muni ? `<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</a></span>` : `<i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</a></span>`;
         }
     </script>
 </body>

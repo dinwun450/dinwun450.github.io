@@ -182,6 +182,64 @@ window.onload = function() {
     }
     showMuniAgencyAlerts();
 
+    function showMuniRouteAlerts() {
+        var muni_alert_route_caller = new XMLHttpRequest();
+        muni_alert_route_caller.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8y-sfmta&limit=700&include_alerts=true");
+        muni_alert_route_caller.onreadystatechange = function() {
+            if (muni_alert_route_caller.readyState === 4 && muni_alert_route_caller.status === 200) {
+                var muni_alert_route_receiver = JSON.parse(muni_alert_route_caller.responseText);
+
+                for (var i = 0; i < muni_alert_route_receiver.length; i++) {
+                    var route_color_affected = muni_alert_route_receiver.routes[i].route_color;
+                    var route_type_affected = muni_alert_route_receiver.routes[i].route_type;
+                    var route_text_color_affected = muni_alert_route_receiver.routes[i].route_text_color;
+                    var route_short_name_affected = muni_alert_route_receiver.routes[i].route_short_name;
+                    var route_long_name_affected = muni_alert_route_receiver.routes[i].route_long_name;
+                    var corr_image_route_affected = muniLineSVGs[route_long_name_affected];
+
+                    if (muni_alert_route_receiver.routes[i].alerts.length === 0) {
+                        document.getElementById("alert_desc_routes").innerHTML = "There are no alerts posted in any of Muni Routes.";
+                    }
+                    else {
+                        for (var a = 0; a < muni_alert_route_receiver.routes[i].alerts.length; a++) {
+                            var desc_for_route_alert = muni_alert_route_receiver.routes[i].alerts[a].description_text[0].text;
+                            var header_for_route_alert = muni_alert_route_receiver.routes[i].alerts[a].header_text[0].text;
+                            document.getElementById("alert_desc_routes").innerHTML = `<span id="route_affected"></span> <b>${header_for_route_alert}</b> <br> ${desc_for_route_alert}`;
+
+                            document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
+                            document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
+                            document.getElementById("route_affected").style.border = `1px solid #${route_color_affected}`;
+
+                            if (route_type_affected === 0) {
+                                document.getElementById("route_affected").innerHTML = `<img src="${corr_image_route_affected}" style="width: 20px; height: 20px;">`;
+                                document.getElementById("route_affected").style.paddingLeft = "3px";
+                                document.getElementById("route_affected").style.paddingRight = "3px";
+                            }
+                            else if (route_type_affected === 5) {
+                                document.getElementById("route_affected").innerHTML = `<img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables">&nbsp;${route_short_name_affected}`;
+                                document.getElementById("route_affected").style.paddingLeft = "5px";
+                                document.getElementById("route_affected").style.paddingRight = "5px";
+                            }
+                            else {
+                                document.getElementById("route_affected").innerHTML = route_short_name_affected;
+                                document.getElementById("route_affected").style.paddingLeft = "5px";
+                                document.getElementById("route_affected").style.paddingRight = "5px";
+                            }
+
+                            var alert_route_node = document.getElementById("alert_desc_routes").cloneNode(true);
+                            document.getElementById("muni_agency_alerts").appendChild(alert_route_node);
+                        }
+                    }
+                }
+
+                var all_alerts_summed = document.getElementById("muni_agency_alerts").children;
+                document.getElementById("muni_agency_alerts").removeChild(all_alerts_summed[0]);
+            }
+        }
+        muni_alert_route_caller.send();
+    }
+    showMuniRouteAlerts();
+
     function countNumberOfMuniLines() {
         var all_routes_caller = new XMLHttpRequest();
         all_routes_caller.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8y-sfmta&limit=700");

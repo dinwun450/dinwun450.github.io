@@ -131,10 +131,6 @@ body::after {
     position: absolute;
     right: 0;
     bottom: 0;
-    background: rgba( 255, 255, 255, 0.25 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 #lines {
@@ -235,7 +231,7 @@ body::after {
     display: flex;
 }
 
-#route_metro, #route_cablestreetcar, #route_bus, #line_for_each_departure_muni_metro, #line_for_each_departure_cable, #line_for_each_departure_bus, #affectedroutes, #route_short {
+#route_metro, #route_cablestreetcar, #route_bus, #line_for_each_departure_muni_metro, #line_for_each_departure_cable, #line_for_each_departure_bus, #route_affected, #route_short {
     display: inline-block;
     width: fit-content;
     padding-left: 5px;
@@ -250,14 +246,7 @@ body::after {
     text-align: center;
 }
 
-#line_for_departure_muni_metro {
-    background: rgba( 255, 255, 255, 0.25 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    border-radius: 5px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-}
-
-#route_metro, #line_for_each_departure_muni_metro, #route_short {
+#route_metro, #line_for_each_departure_muni_metro, #route_affected, #route_short {
     padding-left: 3px;
     padding-right: 3px;
     position: relative;
@@ -290,8 +279,7 @@ body::after {
     margin-left: 5px;
 }
 
-#departures_metro input, #departures_cable input, #departures_bus input,
-#alerts input {
+#departures_metro input, #departures_cable input, #departures_bus input {
     width: 95%;
     height: 30px;
     border-radius: 5px;
@@ -303,12 +291,15 @@ body::after {
     padding-left: 10px;
 }
 
-#alerts input {
-    margin-top: 10px;
-    margin-bottom: 10px;
+#departures_metro input::placeholder, #departures_cable input::placeholder, #departures_bus input::placeholder {
+    color: white;
 }
 
 .light_mode #departures_metro input, .light_mode #departures_cable input, .light_mode #departures_bus input {
+    color: black;
+}
+
+.light_mode #departures_metro input::placeholder, .light_mode #departures_cable input::placeholder, .light_mode #departures_bus input::placeholder {
     color: black;
 }
 
@@ -316,7 +307,7 @@ body::after {
     outline: none;
 }
 
-.headerformunimetro, .headerforcable, .headerforbus, .headerformunialerts {
+.headerformunimetro, .headerforcable, .headerforbus {
     width: 95%;
     height: 50px;
     background: rgba( 255, 255, 255, 0.25 );
@@ -329,14 +320,6 @@ body::after {
     justify-content: left;
     align-items: center;
     padding-left: 10px;
-}
-
-.headerformunialerts {
-    height: fit-content;
-    border-radius: 10px;
-    text-wrap: nowrap;
-    overflow-x: auto;
-    padding: 10px;
 }
 
 #departures_metro, #departures_bus, #departures_cable {
@@ -404,8 +387,7 @@ body::after {
     border-radius: 10px;
 }
 
-#clearall_muni_metro, #clearall_cable, #clearall_bus,
-#clearall_muni_alerts {
+#clearall_muni_metro, #clearall_cable, #clearall_bus {
     width: 95%;
     height: 30px;
     border-radius: 5px;
@@ -421,8 +403,7 @@ body::after {
     margin-top: 20px;
 }
 
-.light_mode #clearall_muni_metro, .light_mode #clearall_cable, .light_mode #clearall_bus,
-.light_mode #clearall_muni_alerts {
+.light_mode #clearall_muni_metro, .light_mode #clearall_cable, .light_mode #clearall_bus {
     color: black;
 }
 
@@ -448,7 +429,7 @@ body::after {
 .alert_entity_agency, .alert_entity_routes,
 .alert_entity_stops_metro, .alert_entity_stops_bus, .alert_entity_stops_cable {
     width: 92%;
-    height: 200px;
+    height: fit-content;
     margin-left: 20px;
     background: rgba( 255, 255, 255, 0.25 );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
@@ -462,10 +443,6 @@ body::after {
     width: 95%;
     margin-top: 0;
     margin-bottom: 10px;
-}
-
-.alert_entity_routes {
-    height: 400px;
 }
 
 .alert_entity_agency h3, .alert_entity_routes h3 {

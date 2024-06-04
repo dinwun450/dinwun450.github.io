@@ -75,6 +75,15 @@
         height: 100%;
     }
 
+    #desc {
+        background: rgba( 255, 255, 255, 0.25 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        border-radius: 5px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
     .stats {
         float: left;
         width: 100%;
@@ -85,10 +94,10 @@
         display: none;
     }
 
-    #departures_metro input, #departures_cable input, #departures_bus input, #alerts input,
-    .headerformunimetro, .headerforcable, .headerforbus, .headerformunialerts,
+    #departures_metro input, #departures_cable input, #departures_bus input,
+    .headerformunimetro, .headerforcable, .headerforbus,
     #list_of_departures_muni_metro, #list_of_departures_cable, #list_of_departures_bus, #alert_desc_routes,
-    #clearall_muni_metro, #clearall_cable, #clearall_bus, #clearall_muni_alerts,
+    #clearall_muni_metro, #clearall_cable, #clearall_bus,
     .alert_entity_stops_metro, .alert_entity_stops_bus, .alert_entity_stops_cable, #alert_desc_agency {
         width: 90%;
     }
