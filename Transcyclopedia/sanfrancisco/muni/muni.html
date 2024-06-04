@@ -485,7 +485,7 @@
 
                             if (departuredTime = departures_cable_car.stops[0].departures[i].arrival.delay >= 60) {
                                 document.getElementById("delay_cable_car").innerHTML = `(${Math.floor(departures_cable_car.stops[0].departures[i].arrival.delay / 60)} min late)`;
-                                document.getElementById("delay_cable_car").style.color = "crimson";
+                                document.getElementById("delay_cable_car").style.color = "#db4242";
                             }
                             else if (departuredTime = departures_cable_car.stops[0].departures[i].arrival.delay === 0) {
                                 document.getElementById("delay_cable_car").innerHTML = `(on time)`;
@@ -493,7 +493,7 @@
                             }
                             else if (departuredTime = departures_cable_car.stops[0].departures[i].arrival.delay <= 0) {
                                 document.getElementById("delay_cable_car").innerHTML = `(${Math.abs(Math.floor(departures_cable_car.stops[0].departures[i].arrival.delay / 60))} min early)`;
-                                document.getElementById("delay_cable_car").style.color = "skyblue";
+                                document.getElementById("delay_cable_car").style.color = "#0398fc";
                             }
                             else {
                                 document.getElementById("delay_cable_car").innerHTML = "(no data)";
