@@ -344,7 +344,7 @@
 
                             if (departuredTime = departures_muni_metro.stops[0].departures[i].arrival.delay >= 60) {
                                 document.getElementById("delay_muni_metro").innerHTML = `(${Math.floor(departures_muni_metro.stops[0].departures[i].arrival.delay / 60)} min late)`;
-                                document.getElementById("delay_muni_metro").style.color = "crimson";
+                                document.getElementById("delay_muni_metro").style.color = "#db4242";
                             }
                             else if (departuredTime = departures_muni_metro.stops[0].departures[i].arrival.delay === 0) {
                                 document.getElementById("delay_muni_metro").innerHTML = `(on time)`;
@@ -352,7 +352,7 @@
                             }
                             else if (departuredTime = departures_muni_metro.stops[0].departures[i].arrival.delay <= 0) {
                                 document.getElementById("delay_muni_metro").innerHTML = `(${Math.abs(Math.floor(departures_muni_metro.stops[0].departures[i].arrival.delay / 60))} min early)`;
-                                document.getElementById("delay_muni_metro").style.color = "skyblue";
+                                document.getElementById("delay_muni_metro").style.color = "#0398fc";
                             }
                             else {
                                 document.getElementById("delay_muni_metro").innerHTML = "(no data)";
@@ -632,7 +632,7 @@
 
                             if (real_time = bus_departures.stops[0].departures[i].arrival.delay >= 60) {
                                 document.getElementById("delay_bus").innerHTML = `(${Math.floor(bus_departures.stops[0].departures[i].arrival.delay / 60)} min late)`;
-                                document.getElementById("delay_bus").style.color = "crimson";
+                                document.getElementById("delay_bus").style.color = "#db4242";
                             }
                             else if (real_time = bus_departures.stops[0].departures[i].arrival.delay === 0) {
                                 document.getElementById("delay_bus").innerHTML = "(on time)";
@@ -640,7 +640,7 @@
                             }
                             else if (real_time = bus_departures.stops[0].departures[i].arrival.delay <= 0) {
                                 document.getElementById("delay_bus").innerHTML = `(${Math.abs(Math.floor(bus_departures.stops[0].departures[i].arrival.delay / 60))} min early)`;
-                                document.getElementById("delay_bus").style.color = "skyblue";
+                                document.getElementById("delay_bus").style.color = "#0398fc";
                             }
                             else {
                                 document.getElementById("delay_bus").innerHTML = "(no data)";
