@@ -312,7 +312,7 @@
                         }
                         else {
                             document.getElementById("route_depart_vta_lr").innerHTML = `${arrival_time} <span id="delay_lr"></span>`;
-                            document.getElementById("route_depart_vta_lr").style.color = "green";
+                            document.getElementById("route_depart_vta_lr").style.color = "rgb(10, 161, 45)";
                             var delay_in_min = Math.round(departure_lr_outputs_base.departures[i].arrival.delay / 60);
 
                             if (delay === null) {
@@ -321,15 +321,15 @@
                             }
                             else if (delay > 60) {
                                 document.getElementById("delay_lr").innerHTML = `(${delay_in_min} min late)`;
-                                document.getElementById("delay_lr").style.color = "orange";
+                                document.getElementById("delay_lr").style.color = "#db4242";
                             }
                             else if (delay < 0) {
                                 document.getElementById("delay_lr").innerHTML = `(${delay_in_min} min early)`;
-                                document.getElementById("delay_lr").style.color = "skyblue";
+                                document.getElementById("delay_lr").style.color = "#0398fc";
                             }
                             else {
                                 document.getElementById("delay_lr").innerHTML = `(on time)`;
-                                document.getElementById("delay_lr").style.color = "green";
+                                document.getElementById("delay_lr").style.color = "rgb(10, 161, 45)";
                             }
                         }
 
@@ -462,7 +462,7 @@
                         }
                         else {
                             document.getElementById("route_depart_vta_bus").innerHTML = `${arrival_time} <span id="delay_bus"></span>`;
-                            document.getElementById("route_depart_vta_bus").style.color = "green";
+                            document.getElementById("route_depart_vta_bus").style.color = "rgb(10, 161, 45)";
                             var delay_in_min = Math.round(departure_bus_outputs_base.departures[i].arrival.delay / 60);
 
                             if (delay === null) {
@@ -471,15 +471,15 @@
                             }
                             else if (delay > 60) {
                                 document.getElementById("delay_bus").innerHTML = `(${delay_in_min} min late)`;
-                                document.getElementById("delay_bus").style.color = "orange";
+                                document.getElementById("delay_bus").style.color = "#db4242";
                             }
                             else if (delay < 0) {
                                 document.getElementById("delay_bus").innerHTML = `(${delay_in_min} min early)`;
-                                document.getElementById("delay_bus").style.color = "skyblue";
+                                document.getElementById("delay_bus").style.color = "#0398fc";
                             }
                             else {
                                 document.getElementById("delay_bus").innerHTML = `(on time)`;
-                                document.getElementById("delay_bus").style.color = "green";
+                                document.getElementById("delay_bus").style.color = "rgb(10, 161, 45)";
                             }
                         }
 
