@@ -309,7 +309,7 @@
                             
                             if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay >= 60) {
                                 document.getElementById("delay").innerHTML = `(${Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60)} min late)`;
-                                document.getElementById("delay").style.color = "crimson";
+                                document.getElementById("delay").style.color = "#db4242";
                             }
                             else if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay === 0) {
                                 document.getElementById("delay").innerHTML = `(on time)`;
