@@ -227,13 +227,13 @@ window.onload = function() {
                             }
 
                             var alert_route_node = document.getElementById("alert_desc_routes").cloneNode(true);
-                            document.getElementById("muni_agency_alerts").appendChild(alert_route_node);
+                            document.getElementById("muni_routes_alerts").appendChild(alert_route_node);
                         }
                     }
                 }
 
-                var all_alerts_summed = document.getElementById("muni_agency_alerts").children;
-                document.getElementById("muni_agency_alerts").removeChild(all_alerts_summed[0]);
+                var all_alerts_summed = document.getElementById("muni_routes_alerts").children;
+                document.getElementById("muni_routes_alerts").removeChild(all_alerts_summed[0]);
             }
         }
         muni_alert_route_caller.send();
