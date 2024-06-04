@@ -305,7 +305,7 @@
                         }
                         else {
                             document.getElementById("route_depart").innerHTML = ` ${departuredTime} <span id="delay">()</span>`;
-                            document.getElementById("route_depart").style.color = "darkgreen";
+                            document.getElementById("route_depart").style.color = "rgb(10, 161, 45)";
                             
                             if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay >= 60) {
                                 document.getElementById("delay").innerHTML = `(${Math.floor(compileDepartures.stops[0].departures[i].arrival.delay / 60)} min late)`;
@@ -313,7 +313,7 @@
                             }
                             else if (departuredTime = compileDepartures.stops[0].departures[i].arrival.delay === 0) {
                                 document.getElementById("delay").innerHTML = `(on time)`;
-                                document.getElementById("delay").style.color = "green";
+                                document.getElementById("delay").style.color = "rgb(10, 161, 45)";
                             }
                             else {
                                 document.getElementById("delay").innerHTML = "(no data)";
