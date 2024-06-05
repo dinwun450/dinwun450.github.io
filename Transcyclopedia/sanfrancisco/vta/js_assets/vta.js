@@ -5,8 +5,43 @@ window.onload = function() {
         'Orange': 'img_assets/vta_orange.svg'
     }
 
+    function loadVTAContacts() {
+        var vta_contact_caller = new XMLHttpRequest();
+        vta_contact_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9q9-vta&include_alerts=true");
+        vta_contact_caller.onreadystatechange = function() {
+            if (vta_contact_caller.readyState === 4 && vta_contact_caller.status === 200) {
+                var vta_contact_receiver = JSON.parse(vta_contact_caller.responseText).agencies[0];
+                var vta_email = vta_contact_receiver.agency_email;
+                var vta_phone = vta_contact_receiver.agency_phone;
+
+                switch(vta_phone) {
+                    case "":
+                        vta_phone = "-";
+                        document.getElementById("phone_agency").innerHTML = `<b>${vta_phone}</b>`;
+                        break;
+                    default:
+                        document.getElementById("phone_agency").innerHTML = `<b>${vta_phone}</b>`;
+                        break;
+                };
+
+                switch(vta_email) {
+                    case "":
+                        vta_email = "-";
+                        document.getElementById("email_agency").innerHTML = `<b>${vta_email}</b>`;
+                        break;
+                    default:
+                        document.getElementById("email_agency").innerHTML = `<b>${vta_email}</b>`;
+                        break;
+                };
+            }
+        }
+        vta_contact_caller.send();
+    }
+    loadVTAContacts();
+
     function loadVTALRRoutes() {
         var route_fetcher = new XMLHttpRequest();
+        var total_no_vta_lr_lines = 0;
         route_fetcher.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-vta&limit=700&route_type=0&include_alerts=true");
         route_fetcher.onreadystatechange = function() {
             if (route_fetcher.readyState === 4 && route_fetcher.status === 200) {
@@ -79,10 +114,12 @@ window.onload = function() {
                     var route_entity = document.getElementById("route_entity_lr");
                     var route_clone = route_entity.cloneNode(true);
                     document.querySelector(".vta_lr_lines").appendChild(route_clone);
+                    total_no_vta_lr_lines += 1;
                 }
 
                 var all_lr_lines = document.querySelector(".vta_lr_lines").children;
                 document.querySelector(".vta_lr_lines").removeChild(all_lr_lines[0]);
+                document.getElementById("curr_no_vta_lr").innerHTML = `${total_no_vta_lr_lines} (Light Rail)`;
             }
         }
         route_fetcher.send();
@@ -91,6 +128,7 @@ window.onload = function() {
 
     function loadVTABusRoutes() {
         var route_fetcher = new XMLHttpRequest();
+        var total_no_vta_bus_lines = 0;
         route_fetcher.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-vta&limit=700&route_type=3&include_alerts=true");
         route_fetcher.onreadystatechange = function() {
             if (route_fetcher.readyState === 4 && route_fetcher.status === 200) {
@@ -144,10 +182,12 @@ window.onload = function() {
                     var route_entity = document.getElementById("route_entity_bus");
                     var route_clone = route_entity.cloneNode(true);
                     document.querySelector(".vta_bus_lines").appendChild(route_clone);
+                    total_no_vta_bus_lines += 1;
                 }
 
                 var all_bus_lines = document.querySelector(".vta_bus_lines").children;
                 document.querySelector(".vta_bus_lines").removeChild(all_bus_lines[0]);
+                document.getElementById("curr_no_vta_bus").innerHTML = `${total_no_vta_bus_lines} (Bus)`;
             }
         }
         route_fetcher.send();
