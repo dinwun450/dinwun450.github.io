@@ -221,7 +221,7 @@ window.onload = function() {
                         for (var a = 0; a < iterator_of_alerts.length; a++) {
                             var vta_alert_route_desc = iterator_of_alerts[a].description_text[0].text;
                             var vta_alert_route_header = iterator_of_alerts[a].header_text[0].text;
-                            document.getElementById("alert_desc_routes").innerHTML = `<p><span id="route_affected"> <b>${vta_alert_route_header}<b> <br> ${vta_alert_route_desc}`;
+                            document.getElementById("alert_desc_routes").innerHTML = `<p><span id="route_affected"> <b>${vta_alert_route_header}</b> <br> ${vta_alert_route_desc}`;
 
                             document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
                             document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
