@@ -234,7 +234,7 @@ body::after {
     align-items: center;
 }
 
-#route_lr img, #line_for_each_departure_vta_lr img, #route_affected img {
+#route_lr img, #line_for_each_departure_vta_lr img, #route_affected img, #route_short img {
     margin-left: 2px;
 }
 
