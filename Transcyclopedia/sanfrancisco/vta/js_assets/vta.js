@@ -213,7 +213,7 @@ window.onload = function() {
                     var route_text_color_affected = route_outputs.routes[i].route_text_color;
                     var route_short_name_affected = route_outputs.routes[i].route_short_name;
 
-                    if (iterator_of_alerts.length === 0) {
+                    if (route_outputs.routes[i].alerts.length === 0) {
                         // document.getElementById("alert_desc_routes").innerHTML = "<p>There are no alerts posted in any of VTA routes.</p>";
                         console.log("Nope.");
                     }
