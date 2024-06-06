@@ -212,16 +212,15 @@ window.onload = function() {
                     var route_type_affected = route_outputs.routes[i].route_type;
                     var route_text_color_affected = route_outputs.routes[i].route_text_color;
                     var route_short_name_affected = route_outputs.routes[i].route_short_name;
-                    var iterator_of_alerts = route_outputs.routes[i].alerts;
 
                     if (iterator_of_alerts.length === 0) {
                         // document.getElementById("alert_desc_routes").innerHTML = "<p>There are no alerts posted in any of VTA routes.</p>";
                         console.log("Nope.");
                     }
                     else {
-                        for (var a = 0; a < iterator_of_alerts.length; a++) {
-                            var vta_alert_route_desc = iterator_of_alerts[a].description_text[0].text;
-                            var vta_alert_route_header = iterator_of_alerts[a].header_text[0].text;
+                        for (var a = 0; a < route_outputs.routes[i].alerts.length; a++) {
+                            var vta_alert_route_desc = route_outputs.routes[i].alerts[a].description_text[0].text;
+                            var vta_alert_route_header = route_outputs.routes[i].alerts[a].header_text[0].text;
                             document.getElementById("alert_desc_routes").innerHTML = `<p><span id="route_affected"> <b>${vta_alert_route_header}</b> <br> ${vta_alert_route_desc}`;
 
                             document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
