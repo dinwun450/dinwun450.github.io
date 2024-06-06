@@ -225,7 +225,7 @@ window.onload = function() {
                             console.log(vta_alert_route_header)
                             console.log(vta_alert_route_desc)
 
-                            document.getElementById("alert_desc_routes").innerHTML = `<p><span id="route_affected"> <b>${vta_alert_route_header}</b> <br> ${vta_alert_route_desc}</p>`;
+                            document.getElementById("alert_desc_routes").innerHTML = `<p><span id="route_affected"></span> <b>${vta_alert_route_header}</b> <br> ${vta_alert_route_desc}</p>`;
 
                             document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
                             document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
