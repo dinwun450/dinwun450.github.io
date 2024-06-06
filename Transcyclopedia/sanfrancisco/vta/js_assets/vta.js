@@ -186,8 +186,13 @@ window.onload = function() {
                         var alert_description = agency_outputs.agencies[0].alerts[i].description_text[0].text;
                         var alert_header = agency_outputs.agencies[0].alerts[i].header_text[0].text;
 
-                        document.getElementById("alert_desc_agency").innerHTML = `<p><b>${alert_header}</b> <br> ${alert_description}</p>`
+                        document.getElementById("alert_desc_agency").innerHTML = `<p><b>${alert_header}</b> <br> ${alert_description}</p>`;
+                        var agency_alert_cloner = document.getElementById("alert_desc_agency").cloneNode(true);
+                        document.getElementById("vta_agency_alerts").appendChild(agency_alert_cloner);
                     }
+
+                    var all_alerts_in_vta_agency = document.getElementById("vta_agency_alerts").children;
+                    document.getElementById("vta_agency_alerts").removeChild(all_alerts_in_vta_agency[0]);
                 }
             }
         }
