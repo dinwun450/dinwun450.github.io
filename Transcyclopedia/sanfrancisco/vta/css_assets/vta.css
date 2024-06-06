@@ -208,7 +208,7 @@ body::after {
     margin-bottom: 5px;
 }
 
-.vta_lr_lines li {
+.vta_lr_lines li, .route_radius {
     display: flex;
 }
 
@@ -228,13 +228,13 @@ body::after {
     text-align: center;
 }
 
-#route_lr, #line_for_each_departure_vta_lr, #route_affected {
+#route_lr, #line_for_each_departure_vta_lr, #route_affected, #route_short {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#route_lr img, #line_for_each_departure_vta_lr img {
+#route_lr img, #line_for_each_departure_vta_lr img, #route_affected img {
     margin-left: 2px;
 }
 
@@ -413,6 +413,10 @@ body::after {
 .route_radius {
     list-style-type: none;
     margin-bottom: 5px;
+}
+
+#detailed_route {
+    margin-left: 10px;
 }
 
 .mapboxgl-popup-content {
