@@ -221,6 +221,10 @@ window.onload = function() {
                         for (var a = 0; a < route_outputs.routes[i].alerts.length; a++) {
                             var vta_alert_route_desc = route_outputs.routes[i].alerts[a].description_text[0].text;
                             var vta_alert_route_header = route_outputs.routes[i].alerts[a].header_text[0].text;
+
+                            console.log(vta_alert_route_header)
+                            console.log(vta_alert_route_desc)
+
                             document.getElementById("alert_desc_routes").innerHTML = `<p><span id="route_affected"> <b>${vta_alert_route_header}</b> <br> ${vta_alert_route_desc}`;
 
                             document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
