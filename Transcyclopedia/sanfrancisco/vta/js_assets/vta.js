@@ -215,7 +215,8 @@ window.onload = function() {
                     var iterator_of_alerts = route_outputs.routes[i].alerts;
 
                     if (iterator_of_alerts.length === 0) {
-                        document.getElementById("alert_desc_routes").innerHTML = "<p>There are no alerts posted in any of VTA routes.</p>";
+                        // document.getElementById("alert_desc_routes").innerHTML = "<p>There are no alerts posted in any of VTA routes.</p>";
+                        console.log("Nope.");
                     }
                     else {
                         for (var a = 0; a < iterator_of_alerts.length; a++) {
