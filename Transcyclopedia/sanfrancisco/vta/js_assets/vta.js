@@ -281,11 +281,11 @@ window.onload = function() {
                             var alert_to_clone = document.getElementById("alert_desc_routes").cloneNode(true);
                             document.getElementById("vta_routes_alerts").appendChild(alert_to_clone);
                         }
-
-                        var all_route_alerts = document.getElementById("vta_routes_alerts").children;
-                        document.getElementById("vta_routes_alerts").removeChild(all_route_alerts[0]);
                     }
                 }
+
+                var all_route_alerts = document.getElementById("vta_routes_alerts").children;
+                document.getElementById("vta_routes_alerts").removeChild(all_route_alerts[0]);
             }
         }
         route_call.send();
