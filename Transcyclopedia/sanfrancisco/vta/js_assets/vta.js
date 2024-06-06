@@ -56,35 +56,12 @@ window.onload = function() {
 
                     switch (route_short_name) {
                         case "GreenS":
-                            document.getElementById("route_lr").innerHTML = `${route_short_name}`;
-                            document.getElementById("route_lr").style.paddingLeft = "5px";
-                            document.getElementById("route_lr").style.paddingRight = "5px";
-                            break;
+                        case "GreenN":
                         case "BlueN":
-                            document.getElementById("route_lr").innerHTML = `${route_short_name}`;
-                            document.getElementById("route_lr").style.paddingLeft = "5px";
-                            document.getElementById("route_lr").style.paddingRight = "5px";
-                            break;
                         case "BlueS":
-                            document.getElementById("route_lr").innerHTML = `${route_short_name}`;
-                            document.getElementById("route_lr").style.paddingLeft = "5px";
-                            document.getElementById("route_lr").style.paddingRight = "5px";
-                            break;
                         case "Event-Blue":
-                            document.getElementById("route_lr").innerHTML = `${route_short_name}`;
-                            document.getElementById("route_lr").style.paddingLeft = "5px";
-                            document.getElementById("route_lr").style.paddingRight = "5px";
-                            break;
                         case "Event-Orange":
-                            document.getElementById("route_lr").innerHTML = `${route_short_name}`;
-                            document.getElementById("route_lr").style.paddingLeft = "5px";
-                            document.getElementById("route_lr").style.paddingRight = "5px";
-                            break;
                         case "Event-Green":
-                            document.getElementById("route_lr").innerHTML = `${route_short_name}`;
-                            document.getElementById("route_lr").style.paddingLeft = "5px";
-                            document.getElementById("route_lr").style.paddingRight = "5px";
-                            break;
                         case "Event-Special":
                             document.getElementById("route_lr").innerHTML = `${route_short_name}`;
                             document.getElementById("route_lr").style.paddingLeft = "5px";
