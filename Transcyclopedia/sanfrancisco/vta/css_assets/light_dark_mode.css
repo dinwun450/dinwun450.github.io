@@ -10,6 +10,10 @@
     transition: 0.4s;
 }
 
+.light_mode #departures_lr input::placeholder, .light_mode #departures_bus input::placeholder {
+    color: black;
+}
+
 .light_mode .stats::-webkit-scrollbar-track, .light_mode #lines::-webkit-scrollbar-track, .light_mode #list_of_departures_vta_lr::-webkit-scrollbar-track, .light_mode #list_of_departures_vta_bus::-webkit-scrollbar-track,
 .light_mode #map_inter::-webkit-scrollbar-track, .light_mode #range_of_routes::-webkit-scrollbar-track, .light_mode .alert_entity_routes::-webkit-scrollbar-track, .light_mode .alert_entity_agency::-webkit-scrollbar-track {
     border-radius: 10px;
