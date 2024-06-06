@@ -262,21 +262,12 @@ body::after {
     padding-left: 10px;
 }
 
-#alerts input {
-    width: 95%;
-    height: 30px;
-    border-radius: 5px;
-    margin-left: 20px;
-    background-color: #eeeeee40;
-    border: 1px solid #eeeeee40;
-    color: white;
-    padding-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
 #departures_lr input:active, #departures_bus input:active, #alerts input:active {
     outline: none;
+}
+
+#departures_lr input::placeholder, #departures_bus input::placeholder, #alerts input::placeholder {
+    color: white;
 }
 
 .headerforvtalr, .headerforvtabus, .headerforvtaalerts {
@@ -294,14 +285,6 @@ body::after {
     padding-left: 10px;
 }
 
-.headerforvtaalerts {
-    height: fit-content;
-    border-radius: 10px;
-    text-wrap: nowrap;
-    overflow-x: auto;
-    padding: 10px;
-}
-
 #list_of_departures_vta_bus, #list_of_departures_vta_lr {
     width: 95%;
     height: 400px;
@@ -315,18 +298,15 @@ body::after {
 }
 
 .stats::-webkit-scrollbar, #lines::-webkit-scrollbar, #list_of_departures_vta_lr::-webkit-scrollbar, #list_of_departures_vta_bus::-webkit-scrollbar,
-#map_inter::-webkit-scrollbar, #range_of_routes::-webkit-scrollbar, .alert_entity_routes::-webkit-scrollbar {
+#map_inter::-webkit-scrollbar, #range_of_routes::-webkit-scrollbar, .alert_entity_routes::-webkit-scrollbar, .alert_entity_agency::-webkit-scrollbar {
     width: 5px;
     position: relative;
     right: 20px;
 }
 
-.headerforvtaalerts::-webkit-scrollbar {
-    height: 5px;
-}
-
 .stats::-webkit-scrollbar-track, #lines::-webkit-scrollbar-track, #list_of_departures_vta_lr::-webkit-scrollbar-track, #list_of_departures_vta_bus::-webkit-scrollbar-track,
-#map_inter::-webkit-scrollbar-track, #range_of_routes::-webkit-scrollbar-track, .headerforvtaalerts::-webkit-scrollbar-track, .alert_entity_routes::-webkit-scrollbar-track {
+#map_inter::-webkit-scrollbar-track, #range_of_routes::-webkit-scrollbar-track, .alert_entity_routes::-webkit-scrollbar-track,
+.alert_entity_agency::-webkit-scrollbar-track {
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -335,7 +315,8 @@ body::after {
 }
 
 .stats::-webkit-scrollbar-thumb, #lines::-webkit-scrollbar-thumb, #list_of_departures_vta_lr::-webkit-scrollbar-thumb, #list_of_departures_vta_bus::-webkit-scrollbar-thumb,
-#map_inter::-webkit-scrollbar-thumb, #range_of_routes::-webkit-scrollbar-thumb, .headerforvtaalerts::-webkit-scrollbar-thumb, .alert_entity_routes::-webkit-scrollbar-thumb {
+#map_inter::-webkit-scrollbar-thumb, #range_of_routes::-webkit-scrollbar-thumb, .alert_entity_routes::-webkit-scrollbar-thumb,
+.alert_entity_agency::-webkit-scrollbar-thumb {
     border: 1px solid rgba(255, 255, 255, 0.18);
     background: rgba(255, 255, 255, 0.25);
     border-radius: 10px;
@@ -363,17 +344,13 @@ body::after {
     color: white;
 }
 
-#clearall_vta_alerts {
-    margin-top: 20px;
-}
-
 #alerts {
     overflow-y: auto;
 }
 
 .alert_entity_agency, .alert_entity_routes {
     width: 92%;
-    height: 200px;
+    height: fit-content;
     margin-left: 20px;
     background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -381,10 +358,6 @@ body::after {
     margin-top: 20px;
     padding: 10px;
     overflow-y: auto;
-}
-
-.alert_entity_routes {
-    height: 400px;
 }
 
 .alert_entity_agency h3, .alert_entity_routes h3 {

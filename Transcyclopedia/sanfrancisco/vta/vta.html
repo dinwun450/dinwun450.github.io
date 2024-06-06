@@ -95,16 +95,11 @@
             </div>
             <div class="alert_entity_routes">
                 <h3>VTA Routes</h3>
-                <input type="text" placeholder="Search for a route..." onkeydown="keyDownAlerts()" id="vta_routegetter" autocomplete="off">
-                <p class="headerforvtaalerts">Alerts for &nbsp; <span id="affectedroutes">-</span><br></p>
                 <ul id="vta_routes_alerts">
                     <li id="alert_desc_routes">
-                        <p>
-                            <span id="alert_for_specific_route">Enter a specific route by their route name.</span>
-                        </p>
+                        <p>Loading...</p>
                     </li>
                 </ul>
-                <button id="clearall_vta_alerts" onclick="clearAllAlerts()">Clear</button>
             </div>
         </div>
         <div class="window" id="map_inter">
@@ -509,82 +504,6 @@
             document.getElementById("list_of_departures_vta_bus").innerHTML = `
                 <li id="line_for_departure_vta_bus"><div class="wrapper_for_departure_vta_bus"><div id="line_for_each_departure_vta_bus">-</div> <span id="alerts_bus"></span> <span id="route_headsign_vta_bus">(None)</span><span id="route_depart_vta_bus">Enter a specific station by their station ID</span></div></li>
             `;
-        }
-
-        var no_route_alerts = [];
-        function keyDownAlerts(e) {
-            e = e || window.event;
-            if (e.keyCode === 13) {
-                callOverVtaAlerts();
-            }
-        }
-
-        function callOverVtaAlerts() {
-            var route_receiver = document.getElementById("vta_routegetter").value.replace("/ /g", "+");
-            var alert_call = new XMLHttpRequest();
-            alert_call.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&search=${route_receiver}&operator_onestop_id=o-9q9-vta&include_alerts=true&limit=700`);
-            alert_call.onreadystatechange = function() {
-                if (alert_call.readyState === 4 && alert_call.status === 200) {
-                    var route_alerts = JSON.parse(alert_call.responseText);
-                    console.log(route_alerts);
-
-                    for (var r = 0; r < route_alerts.routes.length; r++) {
-                        var route_short_name = route_alerts.routes[r].route_short_name;
-                        var route_color = route_alerts.routes[r].route_color;
-                        var route_text_color = route_alerts.routes[r].route_text_color;
-
-                        document.getElementById("affectedroutes").innerHTML = route_short_name;
-                        document.getElementById("affectedroutes").style.backgroundColor = `#${route_color}40`;
-                        document.getElementById("affectedroutes").style.border = `1px solid #${route_color}`;
-                        document.getElementById("affectedroutes").style.color = `#${route_text_color}`;
-
-                        var routeNode = document.getElementById("affectedroutes");
-                        var cloneNode = routeNode.cloneNode(true);
-                        document.querySelector(".headerforvtaalerts").appendChild(cloneNode).insertAdjacentHTML( 'afterend', ",&nbsp;");
-
-                        if (route_alerts.routes[r].alerts.length === 0) {
-                            no_route_alerts.push(` ${route_short_name}`);
-                            document.getElementById("alert_for_specific_route").innerHTML = `There are no alerts for: ${no_route_alerts}. Please check again shortly.`
-                            console.log("Nothing.");
-                        }
-
-                        for (var a = 0; a < route_alerts.routes[r].alerts.length; a++) {
-                            var header_text = route_alerts.routes[r].alerts[a].header_text[0].text;
-                            var description_text = route_alerts.routes[r].alerts[a].description_text[0].text;
-                            document.getElementById("alert_for_specific_route").innerHTML = `<b>${header_text}</b> <br> ${description_text}`;
-
-                            var alertNode = document.getElementById("alert_desc_routes");
-                            var cloneNode = alertNode.cloneNode(true);
-                            document.getElementById("vta_routes_alerts").appendChild(cloneNode);
-                        }
-                    }
-                    var total_routes = document.querySelector(".headerforvtaalerts").children;
-                    var last_child_routes = document.querySelector(".headerforvtaalerts").lastChild;
-
-                    document.querySelector(".headerforvtaalerts").removeChild(total_routes[0]);
-                    document.querySelector(".headerforvtaalerts").removeChild(last_child_routes);
-
-                    var total_alerts = document.getElementById("vta_routes_alerts").children;
-                    document.getElementById("vta_routes_alerts").removeChild(total_alerts[total_alerts.length-1]);
-                }
-            }
-            alert_call.send();
-        }
-
-        function clearAllAlerts() {
-            document.getElementById("vta_routes_alerts").innerHTML = `
-                    <li id="alert_desc_routes">
-                        <p>
-                            <span id="alert_for_specific_route">Enter a specific route by their route name.</span>
-                        </p>
-                    </li>
-            `;
-            document.querySelector(".headerforvtaalerts").innerHTML = "Alerts for &nbsp; <span id='affectedroutes'>-</span><br>";
-            document.getElementById("affectedroutes").innerHTML = "-";
-            document.getElementById("affectedroutes").style.backgroundColor = "#33333340";
-            document.getElementById("affectedroutes").style.color = "white";
-            document.getElementById("affectedroutes").style.border = "1px solid black";
-            no_route_alerts = []
         }
 
         function getUniqueFeatures(features, comparatorProperty) {
