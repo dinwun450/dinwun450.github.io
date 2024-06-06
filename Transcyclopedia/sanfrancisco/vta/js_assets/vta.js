@@ -229,7 +229,7 @@ window.onload = function() {
 
                             switch (route_type_affected) {
                                 case 0:
-                                    switch (route_short_name) {
+                                    switch (route_short_name_affected) {
                                         case "GreenS":
                                         case "GreenN":
                                         case "BlueN":
