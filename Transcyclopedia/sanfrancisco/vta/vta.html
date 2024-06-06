@@ -624,11 +624,55 @@
                                 var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
                                 var desc_of_route = uniqueFeatures[f].properties.route_long_name;
                                 var type_of_route = uniqueFeatures[f].properties.route_type;
+                                var prefix_of_route = name_of_route.split(" ")[0];
 
-                                document.getElementById("route_short").innerHTML = name_of_route;
                                 document.getElementById("route_short").style.color = `#${text_color_of_route}`;
                                 document.getElementById("route_short").style.backgroundColor = `${color_of_route}40`;
                                 document.getElementById("route_short").style.border = `1px solid ${color_of_route}40`;
+
+                                switch (type_of_route) {
+                                    case 0:
+                                        switch (name_of_route) {
+                                            case "GreenS":
+                                            case "GreenN":
+                                            case "BlueN":
+                                            case "BlueS":
+                                            case "Event-Blue":
+                                            case "Event-Orange":
+                                            case "Event-Green":
+                                            case "Event-Special":
+                                                document.getElementById("route_short").innerHTML = `${name_of_route}`;
+                                                document.getElementById("route_short").style.paddingLeft = "5px";
+                                                document.getElementById("route_short").style.paddingRight = "5px";
+                                                break;
+                                            default:
+                                                var route_image = all_vta_icons_web[name_of_route.split(" ")[0]];
+                                                console.log(route_image);
+                                                document.getElementById("route_short").innerHTML = `<i class="fa-solid fa-train-tram" id="lr_icon_vta_map"></i> <img src="${route_image}" style="width: 20px; height: 20px;">`;
+                                                break;
+                                        }
+                                        break;
+                                    default:
+                                        switch (prefix_of_route) {
+                                            case "School":
+                                                document.getElementById("route_short").innerHTML = `${name_of_route.split(" ")[1]} (<i class="fa-solid fa-school"></i>)`;
+                                                break;
+                                            case "Rapid":
+                                                document.getElementById("route_short").innerHTML = `${name_of_route.split(" ")[1]} (<i class="fa-solid fa-gauge"></i>)`;
+                                                break;
+                                            case "Express":
+                                                document.getElementById("route_short").innerHTML = `${name_of_route.split(" ")[1]} (<i class="fa-solid fa-bolt"></i>)`;
+                                                break;
+                                            case "BB":
+                                                document.getElementById("route_short").innerHTML = `<i class="fa-solid fa-bus"></i><i class="fa-solid fa-bridge"></i> ${route_short_name.split(" ")[1]}`;
+                                                break;
+                                            default:
+                                                document.getElementById("route_short").innerHTML = name_of_route;
+                                                break;
+                                        }
+                                        break;
+                                };
+
                                 document.getElementById("detailed_route").innerHTML = desc_of_route;
 
                                 var routeClone = document.querySelector(".route_radius");
