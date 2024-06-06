@@ -239,7 +239,7 @@ body::after {
 }
 
 #desc_lr, #desc_bus {
-    width: 65%;
+    width: fit-content;
     text-align: right;
     margin-right: 10px;
     right: 50px;
