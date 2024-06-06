@@ -189,13 +189,12 @@ window.onload = function() {
             if (muni_alert_route_caller.readyState === 4 && muni_alert_route_caller.status === 200) {
                 var muni_alert_route_receiver = JSON.parse(muni_alert_route_caller.responseText);
 
-                for (var i = 0; i < muni_alert_route_receiver.length; i++) {
+                for (var i = 0; i < muni_alert_route_receiver.routes.length; i++) {
                     var route_color_affected = muni_alert_route_receiver.routes[i].route_color;
                     var route_type_affected = muni_alert_route_receiver.routes[i].route_type;
                     var route_text_color_affected = muni_alert_route_receiver.routes[i].route_text_color;
                     var route_short_name_affected = muni_alert_route_receiver.routes[i].route_short_name;
-                    var route_long_name_affected = muni_alert_route_receiver.routes[i].route_long_name;
-                    var corr_image_route_affected = muniLineSVGs[route_long_name_affected];
+                    var corr_image_route_affected = muniLineSVGs[route_short_name_affected];
 
                     if (muni_alert_route_receiver.routes[i].alerts.length === 0) {
                         document.getElementById("alert_desc_routes").innerHTML = "There are no alerts posted in any of Muni Routes.";

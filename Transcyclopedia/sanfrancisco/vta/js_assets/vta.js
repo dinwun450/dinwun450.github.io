@@ -199,4 +199,92 @@ window.onload = function() {
         agency_call.send();
     }
     loadVTAAlertsByAgency();
+
+    function loadVTAAlertsbyRoutes() {
+        var route_call = new XMLHttpRequest();
+        route_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9-vta&limit=700&include_alerts=true");
+        route_call.onreadystatechange = function() {
+            if (route_call.status === 200 && route_call.readyState === 4) {
+                var route_outputs = JSON.parse(route_call.responseText);
+
+                for (var i = 0; i < route_outputs.routes.length; i++) {
+                    var route_color_affected = route_outputs.routes[i].route_color;
+                    var route_type_affected = route_outputs.routes[i].route_type;
+                    var route_text_color_affected = route_outputs.routes[i].route_text_color;
+                    var route_short_name_affected = route_outputs.routes[i].route_short_name;
+                    var iterator_of_alerts = route_outputs.routes[i].alerts;
+
+                    if (iterator_of_alerts.length === 0) {
+                        document.getElementById("alert_desc_routes").innerHTML = "<p>There are no alerts posted in any of VTA routes.</p>";
+                    }
+                    else {
+                        for (var a = 0; a < iterator_of_alerts.length; a++) {
+                            var vta_alert_route_desc = iterator_of_alerts[a].description_text[0].text;
+                            var vta_alert_route_header = iterator_of_alerts[a].header_text[0].text;
+                            document.getElementById("alert_desc_routes").innerHTML = `<p><span id="route_affected"> <b>${vta_alert_route_header}<b> <br> ${vta_alert_route_desc}`;
+
+                            document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
+                            document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
+                            document.getElementById("route_affected").style.border = `1px solid #${route_color_affected}`;
+
+                            switch (route_type_affected) {
+                                case 0:
+                                    switch (route_short_name) {
+                                        case "GreenS":
+                                        case "GreenN":
+                                        case "BlueN":
+                                        case "BlueS":
+                                        case "Event-Blue":
+                                        case "Event-Orange":
+                                        case "Event-Green":
+                                        case "Event-Special":
+                                            document.getElementById("route_affected").innerHTML = `${route_short_name_affected}`;
+                                            document.getElementById("route_affected").style.paddingLeft = "5px";
+                                            document.getElementById("route_affected").style.paddingRight = "5px";
+                                            break;
+                                        default:
+                                            var corr_image_route_affected = all_vta_icons[route_short_name_affected.split(" ")[0]];
+                                            document.getElementById("route_affected").innerHTML = `<i class="fa-solid fa-train-tram" id="lr_icon_vta"></i> <img src="${corr_image_route_affected}" style="width: 20px; height: 20px;">`;
+                                            break;
+                                    }
+                                    break;
+                                default:
+                                    var prefix_of_route_affected = route_short_name_affected.split(" ")[0];
+                                    switch (prefix_of_route_affected) {
+                                        case "School":
+                                            document.getElementById("route_affected").innerHTML = `${route_short_name_affected.split(" ")[1]} (<i class="fa-solid fa-school"></i>)`;
+                                            break;
+                                        case "Rapid":
+                                            document.getElementById("route_affected").innerHTML = `${route_short_name_affected.split(" ")[1]} (<i class="fa-solid fa-gauge"></i>)`;
+                                            break;
+                                        case "Express":
+                                            document.getElementById("route_affected").innerHTML = `${route_short_name_affected.split(" ")[1]} (<i class="fa-solid fa-bolt"></i>)`;
+                                            break;
+                                        case "BB":
+                                            document.getElementById("route_affected").innerHTML = `<i class="fa-solid fa-bus"></i><i class="fa-solid fa-bridge"></i> ${route_short_name_affected.split(" ")[1]}`;
+                                            break;
+                                        default:
+                                            document.getElementById("route_affected").innerHTML = route_short_name_affected;
+                                            prefix_of_route_affected = "";
+                                            break;
+                                    }
+                                    
+                                    document.getElementById("route_affected").style.paddingLeft = "5px";
+                                    document.getElementById("route_affected").style.paddingRight = "5px";
+                                    break;
+                            }
+
+                            var alert_to_clone = document.getElementById("alert_desc_routes").cloneNode(true);
+                            document.getElementById("vta_routes_alerts").appendChild(alert_to_clone);
+                        }
+
+                        var all_route_alerts = document.getElementById("vta_routes_alerts").children;
+                        document.getElementById("vta_routes_alerts").removeChild(all_route_alerts[0]);
+                    }
+                }
+            }
+        }
+        route_call.send();
+    }
+    loadVTAAlertsbyRoutes();
 }

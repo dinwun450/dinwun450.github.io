@@ -212,7 +212,7 @@ body::after {
     display: flex;
 }
 
-#route_lr, #route_bus,
+#route_lr, #route_bus, #route_affected,
 #line_for_each_departure_vta_lr, #line_for_each_departure_vta_bus,
 #affectedroutes, #route_short {
     display: inline-block;
@@ -228,7 +228,7 @@ body::after {
     text-align: center;
 }
 
-#route_lr, #line_for_each_departure_vta_lr {
+#route_lr, #line_for_each_departure_vta_lr, #route_affected {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -262,11 +262,11 @@ body::after {
     padding-left: 10px;
 }
 
-#departures_lr input:active, #departures_bus input:active, #alerts input:active {
+#departures_lr input:active, #departures_bus input:active {
     outline: none;
 }
 
-#departures_lr input::placeholder, #departures_bus input::placeholder, #alerts input::placeholder {
+#departures_lr input::placeholder, #departures_bus input::placeholder {
     color: white;
 }
 
@@ -358,6 +358,10 @@ body::after {
     margin-top: 20px;
     padding: 10px;
     overflow-y: auto;
+}
+
+.alert_entity_routes {
+    height: 400px;
 }
 
 .alert_entity_agency h3, .alert_entity_routes h3 {
