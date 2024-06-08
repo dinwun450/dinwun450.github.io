@@ -124,7 +124,7 @@ function busDeparturesPTwo(onestop_id) {
                         break;
                     default:
                         document.getElementById("route_depart_bus").innerHTML = `${arrival_time} <span id="delay_bus"></span>`;
-                        document.getElementById("route_depart_bus").style.color = "green";
+                        document.getElementById("route_depart_bus").style.color = "rgb(10, 161, 45)";
                         var delay_in_minutes = Math.round(delay_time);
 
                         switch (delay_time) {
@@ -134,15 +134,15 @@ function busDeparturesPTwo(onestop_id) {
                                 break;
                             case (delay_time > 60):
                                 document.getElementById("delay_bus").innerHTML = `(${delay_in_minutes} min late)`;
-                                document.getElementById("delay_bus").style.color = "orange";
+                                document.getElementById("delay_bus").style.color = "#db4242";
                                 break;
                             case (delay_time < 0):
                                 document.getElementById("delay_bus").innerHTML = `(${delay_in_minutes} min early)`;
-                                document.getElementById("delay_bus").style.color = "skyblue";
+                                document.getElementById("delay_bus").style.color = "#0398fc";
                                 break;
                             default:
                                 document.getElementById("delay_bus").innerHTML = "(on time)";
-                                document.getElementById("delay_bus").style.color = "green";
+                                document.getElementById("delay_bus").style.color = "rgb(10, 161, 45)";
                                 break;
                         }
                         break;
