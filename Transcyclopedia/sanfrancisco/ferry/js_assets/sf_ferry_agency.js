@@ -131,7 +131,7 @@ function countGGFLines() {
 
 function getGGFContactInfo() {
     var ggf_contact_caller = new XMLHttpRequest();
-    ggf_contact_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9q9p-sanfranciscobayferry");
+    ggf_contact_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9q8z-goldengateferry");
     ggf_contact_caller.onreadystatechange = function() {
         if (ggf_contact_caller.readyState === 4 && ggf_contact_caller.status === 200) {
             var ggf_contact_receiver = JSON.parse(ggf_contact_caller.responseText);
