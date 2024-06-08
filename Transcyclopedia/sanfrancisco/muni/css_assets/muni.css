@@ -244,6 +244,7 @@ body::after {
     border: 1px solid black;
     font-size: 1em;
     text-align: center;
+    color: white;
 }
 
 #route_metro, #line_for_each_departure_muni_metro, #route_affected, #route_short {
