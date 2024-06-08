@@ -113,10 +113,6 @@ body::after {
     position: absolute;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 #ferry_info, #ferry_routes, #ferry_departures, #ferry_alerts {
@@ -203,13 +199,16 @@ body::after {
 .ferry_lines {
     position: relative;
     margin-left: 20px;
+    margin-right: 20px;
     list-style-type: none;
-    padding-top: 10px;
+    margin-top: 10px;
+    background: rgba( 255, 255, 255, 0.25 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .ferry_lines li {
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin: 10px;
 }
 
 #route_ferry, #line_for_each_departure_ferry, #route_short {
