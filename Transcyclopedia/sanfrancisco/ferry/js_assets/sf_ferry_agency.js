@@ -15,9 +15,13 @@ function changeAgency(a) {
     switch(agency) {
         case "sfbayferry":
             aboutSFBayFerry();
+            countSFBayFerryLines();
+            getSFBFContactInfo();
             break;
         case "ggf":
             aboutGGF();
+            countGGFLines();
+            getGGFContactInfo();
             break;
         default:
             clearInfo();
@@ -36,12 +40,60 @@ function aboutSFBayFerry() {
 
             document.getElementById("desc").innerHTML = `${desc_of_sfbf} <br> <a href="https://en.wikipedia.org/wiki/San_Francisco_Bay_Ferry">Wikipedia</a>`
             document.getElementById("foundingdate").innerHTML = "<b>Around 2011</b>";
-            document.getElementById("nooflines").innerHTML = "<b>6 (Including 5 Special Lines)</b>"
-            document.getElementById("email_agency").innerHTML = "<b>customerservice@sanfranciscobayferry.com</b> (Email)"
-            document.getElementById("phone_agency").innerHTML = "<b>877-643-3779/877-64-FERRY</b> (Phone)"
         }
     }
     info_caller.send();
+}
+
+function countSFBayFerryLines() {
+    var route_counter_sfbf = new XMLHttpRequest();
+    route_counter_sfbf.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p-sanfranciscobayferry&limit=700");
+    route_counter_sfbf.onreadystatechange = function() {
+        if (route_counter_sfbf.readyState === 4 && route_counter_sfbf.status === 200) {
+            var route_outputs_counter_sfbf = JSON.parse(route_counter_sfbf.responseText);
+            var counter = 0;
+            
+            for (var i = 0; i < route_outputs_counter_sfbf.routes.length; i++) {
+                counter += 1;
+            }
+
+            document.getElementById("nooflines").innerHTML = `<b>${counter}</b>`;
+        }
+    }
+    route_caller_sfbf.send();
+}
+
+function getSFBFContactInfo() {
+    var sfbf_contact_caller = new XMLHttpRequest();
+    sfbf_contact_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9q9p-sanfranciscobayferry");
+    sfbf_contact_caller.onreadystatechange = function() {
+        if (sfbf_contact_caller.readyState === 4 && sfbf_contact_caller.status === 200) {
+            var sfbf_contact_receiver = JSON.parse(sfbf_contact_caller.responseText);
+            var phone_no = sfbf_contact_receiver.agencies[0].agency_phone;
+            var email = sfbf_contact_receiver.agencies[0].agency_email;
+
+            switch (phone_no) {
+                case "":
+                    phone_no = "-";
+                    document.getElementById("phone_agency").innerHTML = `<b>${phone_no}</b> (Phone)`;
+                    break;
+                default:
+                    document.getElementById("phone_agency").innerHTML = `<b>${phone_no}</b> (Phone)`;
+                    break;
+            };
+
+            switch (email) {
+                case "":
+                    email = "-";
+                    document.getElementById("email_agency").innerHTML = `<b>${email}</b> (Email)`;
+                    break;
+                default:
+                    document.getElementById("email_agency").innerHTML = `<b>${email}</b> (Email)`;
+                    break;
+            };
+        }
+    }
+    sfbf_contact_caller.send();
 }
 
 function aboutGGF() {
@@ -54,12 +106,60 @@ function aboutGGF() {
 
             document.getElementById("desc").innerHTML = `${desc_of_ggf} <br> <a href="https://en.wikipedia.org/wiki/Golden_Gate_Ferry">Wikipedia</a>`
             document.getElementById("foundingdate").innerHTML = "<b>August 15, 1970</b>";
-            document.getElementById("nooflines").innerHTML = "<b>5 (Including 2 Special Lines)</b>"
-            document.getElementById("email_agency").innerHTML = "<b>contact@goldengate.org</b> (Email)"
-            document.getElementById("phone_agency").innerHTML = "<b>511/415-455-2000 [Outside the Bay]</b> (Phone)"
         }
     }
     info_caller.send();
+}
+
+function countGGFLines() {
+    var route_counter_ggf = new XMLHttpRequest();
+    route_counter_ggf.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8z-goldengateferry&limit=700");
+    route_counter_ggf.onreadystatechange = function() {
+        if (route_counter_ggf.readyState === 4 && route_counter_ggf.status === 200) {
+            var route_outputs_counter_ggf = JSON.parse(route_counter_ggf.responseText);
+            var counter = 0;
+            
+            for (var i = 0; i < route_outputs_counter_ggf.routes.length; i++) {
+                counter += 1;
+            }
+
+            document.getElementById("nooflines").innerHTML = `<b>${counter}</b>`;
+        }
+    }
+    route_caller_ggf.send();
+}
+
+function getGGFContactInfo() {
+    var ggf_contact_caller = new XMLHttpRequest();
+    ggf_contact_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9q9p-sanfranciscobayferry");
+    ggf_contact_caller.onreadystatechange = function() {
+        if (ggf_contact_caller.readyState === 4 && ggf_contact_caller.status === 200) {
+            var ggf_contact_receiver = JSON.parse(ggf_contact_caller.responseText);
+            var phone_no = ggf_contact_receiver.agencies[0].agency_phone;
+            var email = ggf_contact_receiver.agencies[0].agency_email;
+
+            switch (phone_no) {
+                case "":
+                    phone_no = "-";
+                    document.getElementById("phone_agency").innerHTML = `<b>${phone_no}</b> (Phone)`;
+                    break;
+                default:
+                    document.getElementById("phone_agency").innerHTML = `<b>${phone_no}</b> (Phone)`;
+                    break;
+            };
+
+            switch (email) {
+                case "":
+                    email = "-";
+                    document.getElementById("email_agency").innerHTML = `<b>${email}</b> (Email)`;
+                    break;
+                default:
+                    document.getElementById("email_agency").innerHTML = `<b>${email}</b> (Email)`;
+                    break;
+            };
+        }
+    }
+    ggf_contact_caller.send();
 }
 
 function clearInfo() {
