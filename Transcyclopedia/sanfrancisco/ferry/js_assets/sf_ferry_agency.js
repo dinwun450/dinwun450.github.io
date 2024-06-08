@@ -232,7 +232,7 @@ function SFBayFerryDeparturesPTwo(departures_onestop) {
                         break;
                     default:
                         document.getElementById("route_depart_ferry").innerHTML = `${arrival_time} <span id="delay_ferry"></span>`;
-                        document.getElementById("route_depart_ferry").style.color = "green";
+                        document.getElementById("route_depart_ferry").style.color = "rgb(10, 161, 45)";
                         var delay_min = Math.round(departures_sfbf.departures[i].arrival.delay / 60);
 
                         switch(delay_time) {
@@ -242,15 +242,15 @@ function SFBayFerryDeparturesPTwo(departures_onestop) {
                                 break;
                             case (delay_time > 60):
                                 document.getElementById("delay_ferry").innerHTML = `(${delay_min} min late)`;
-                                document.getElementById("delay_ferry").style.color = "orange";
+                                document.getElementById("delay_ferry").style.color = "#db4242";
                                 break;
                             case (delay_time < 0):
                                 document.getElementById("delay_ferry").innerHTML = `(${delay_min} min early)`;
-                                document.getElementById("delay_ferry").style.color = "skyblue";
+                                document.getElementById("delay_ferry").style.color = "#0398fc";
                                 break;
                             default:
                                 document.getElementById("delay_ferry").innerHTML = "(on time)";
-                                document.getElementById("delay_ferry").style.color = "green";
+                                document.getElementById("delay_ferry").style.color = "rgb(10, 161, 45)";
                                 break;
                         }
                         break;
@@ -317,7 +317,7 @@ function GGFDeparturesPTwo(departures_onestop) {
                         break;
                     default:
                         document.getElementById("route_depart_ferry").innerHTML = `${arrival_time} <span id="delay_ferry"></span>`;
-                        document.getElementById("route_depart_ferry").style.color = "green";
+                        document.getElementById("route_depart_ferry").style.color = "rgb(10, 161, 45)";
                         var delay_min = Math.round(departures_ggf.departures[i].arrival.delay / 60);
 
                         switch(delay_time) {
@@ -327,15 +327,15 @@ function GGFDeparturesPTwo(departures_onestop) {
                                 break;
                             case (delay_time > 60):
                                 document.getElementById("delay_ferry").innerHTML = `(${delay_min} min late)`;
-                                document.getElementById("delay_ferry").style.color = "orange";
+                                document.getElementById("delay_ferry").style.color = "#db4242";
                                 break;
                             case (delay_time < 0):
                                 document.getElementById("delay_ferry").innerHTML = `(${delay_min} min early)`;
-                                document.getElementById("delay_ferry").style.color = "skyblue";
+                                document.getElementById("delay_ferry").style.color = "#0398fc";
                                 break;
                             default:
                                 document.getElementById("delay_ferry").innerHTML = "(on time)";
-                                document.getElementById("delay_ferry").style.color = "green";
+                                document.getElementById("delay_ferry").style.color = "rgb(10, 161, 45)";
                                 break;
                         }
                         break;
