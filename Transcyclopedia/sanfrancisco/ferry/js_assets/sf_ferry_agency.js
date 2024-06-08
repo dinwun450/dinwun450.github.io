@@ -60,7 +60,7 @@ function countSFBayFerryLines() {
             document.getElementById("nooflines").innerHTML = `<b>${counter}</b>`;
         }
     }
-    route_caller_sfbf.send();
+    route_counter_sfbf.send();
 }
 
 function getSFBFContactInfo() {
@@ -126,7 +126,7 @@ function countGGFLines() {
             document.getElementById("nooflines").innerHTML = `<b>${counter}</b>`;
         }
     }
-    route_caller_ggf.send();
+    route_counter_ggf.send();
 }
 
 function getGGFContactInfo() {
