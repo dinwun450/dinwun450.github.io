@@ -3,7 +3,6 @@ var link = "";
 var link_2 = "";
 
 function changeAgencyInAlerts(c) {
-    route_searcher = document.getElementById("routegetter").value;
     var agency = c;
 
     switch (agency) {
@@ -96,10 +95,6 @@ function changeAgencyInAlerts(c) {
             link_2 = "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9q9q-wheelsbus&include_alerts=true"
             break;
         default:
-            document.querySelector(".headerforbusalerts").innerHTML = `Alerts for &nbsp; <span id="affectedroutes">-</span>`;
-            document.getElementById("affectedroutes").style.backgroundColor = "#33333340";
-            document.getElementById("affectedroutes").style.color = "white";
-            document.getElementById("affectedroutes").style.border = "1px solid black";
             no_route_alerts = [];
             document.getElementById("bus_routes_alerts").innerHTML = `
             <li id="alert_desc_routes">
@@ -146,10 +141,6 @@ function getAgencyAlerts(agencyAlertLink) {
 }
 
 function getRouteAlerts(routeAlertLink) {
-    document.querySelector(".headerforbusalerts").innerHTML = `Alerts for &nbsp; <span id="affectedroutes">-</span>`;
-    document.getElementById("affectedroutes").style.backgroundColor = "#33333340";
-    document.getElementById("affectedroutes").style.color = "white";
-    document.getElementById("affectedroutes").style.border = "1px solid black";
     no_route_alerts = [];
     document.getElementById("bus_routes_alerts").innerHTML = `
     <li id="alert_desc_routes">
@@ -170,14 +161,9 @@ function getRouteAlerts(routeAlertLink) {
                 var route_color = route_alerts.routes[r].route_color;
                 var route_text_color = route_alerts.routes[r].route_text_color;
 
-                document.getElementById("affectedroutes").innerHTML = route_short_name;
-                document.getElementById("affectedroutes").style.backgroundColor = `#${route_color}40`;
-                document.getElementById("affectedroutes").style.border = `1px solid #${route_color}`;
-                document.getElementById("affectedroutes").style.color = `#${route_text_color}`;
-
-                var routeNode = document.getElementById("affectedroutes");
-                var cloneNode = routeNode.cloneNode(true);
-                document.querySelector(".headerforbusalerts").appendChild(cloneNode).insertAdjacentHTML( 'afterend', ",&nbsp;");
+                if (route_short_name === "") {
+                    route_short_name = route_alerts.routes[r].route_long_name;
+                }
 
                 if (route_alerts.routes[r].alerts.length === 0) {
                     no_route_alerts.push(` ${route_short_name}`);
@@ -186,7 +172,12 @@ function getRouteAlerts(routeAlertLink) {
                 for (var a = 0; a < route_alerts.routes[r].alerts.length; a++) {
                     var header_text = route_alerts.routes[r].alerts[a].header_text[0].text;
                     var description_text = route_alerts.routes[r].alerts[a].description_text[0].text;
-                    document.getElementById("alert_for_specific_route").innerHTML = `<b>${header_text} (${route_short_name})</b> <br> ${description_text}`;
+                    document.getElementById("alert_for_specific_route").innerHTML = `<span id="affectedroutes"></span> <br> <b>${header_text}</b> <br> ${description_text}`;
+
+                    document.getElementById("affectedroutes").innerHTML = route_short_name;
+                    document.getElementById("affectedroutes").style.backgroundColor = `#${route_color}40`;
+                    document.getElementById("affectedroutes").style.border = `1px solid #${route_color}`;
+                    document.getElementById("affectedroutes").style.color = `#${route_text_color}`;
 
                     var alertNode = document.getElementById("alert_desc_routes");
                     var cloneNode = alertNode.cloneNode(true);
@@ -194,14 +185,8 @@ function getRouteAlerts(routeAlertLink) {
                 }
             }
 
-            var total_routes = document.querySelector(".headerforbusalerts").children;
-            var last_child_routes = document.querySelector(".headerforbusalerts").lastChild;
-
-            document.querySelector(".headerforbusalerts").removeChild(total_routes[0]);
-            document.querySelector(".headerforbusalerts").removeChild(last_child_routes);
-
             var one_last_alert = document.getElementById("bus_routes_alerts").children[0];
-            one_last_alert.innerHTML = `There are no alerts for:${no_route_alerts}`;
+            one_last_alert.innerHTML = `No route alerts for:${no_route_alerts}`;
         }
     }
     alert_call.send();
