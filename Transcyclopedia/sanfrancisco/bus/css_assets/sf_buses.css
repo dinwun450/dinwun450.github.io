@@ -327,7 +327,7 @@ body::after {
 
 .alert_entity_agency, .alert_entity_routes {
     width: 95%;
-    height: 200px;
+    height: fit-content;
     margin-left: 20px;
     background: rgba( 255, 255, 255, 0.25 );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
