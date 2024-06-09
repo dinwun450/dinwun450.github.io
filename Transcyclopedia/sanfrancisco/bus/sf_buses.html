@@ -346,9 +346,11 @@
                 'commute_org', 
                 'db_routes', 
                 'delta_routes', 
+                'emerygoround_layer',
                 'fast',
                 'golden_gate_transit',
                 'marin_transit',
+                'mstma_layer',
                 'petaluma_transit',
                 'samtrans',
                 'santa_rosa_city_bus',
@@ -369,9 +371,11 @@
                 map.setFilter('commute_org', ['has', 'route_short_name']);
                 map.setFilter('db_routes', ['has', 'route_short_name']);
                 map.setFilter('delta_routes', ['has', 'route_short_name']);
+                map.setFilter('emerygoround_layer', ['has', 'route_short_name']);
                 map.setFilter('fast', ['has', 'route_short_name']);
                 map.setFilter('golden_gate_transit', ['has', 'route_short_name']);
                 map.setFilter('marin_transit', ['has', 'route_short_name']);
+                map.setFilter('mstma_layer', ['has', 'route_short_name']);
                 map.setFilter('petaluma_transit', ['has', 'route_short_name']);
                 map.setFilter('samtrans', ['has', 'route_short_name']);
                 map.setFilter('santa_rosa_city_bus', ['has', 'route_short_name']);
@@ -382,7 +386,7 @@
                 map.setFilter('vacaville_city_coach', ['has', 'route_short_name']);
                 map.setFilter('vine_transit', ['has', 'route_short_name']);
                 map.setFilter('westcat_routes', ['has', 'route_short_name']);
-
+                map.setFilter('wheels_routes', ['has', 'route_short_name']);
 
                 console.log("Move it!");
                 document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
@@ -397,9 +401,11 @@
                         'commute_org',
                         'db_routes', 
                         'delta_routes',
+                        'emerygoround_layer',
                         'fast',
                         'golden_gate_transit',
                         'marin_transit',
+                        'mstma_layer',
                         'petaluma_transit',
                         'samtrans',
                         'santa_rosa_city_bus',

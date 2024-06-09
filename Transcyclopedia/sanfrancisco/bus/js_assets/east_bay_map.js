@@ -953,3 +953,123 @@ function WheelsMap() {
     wheels_route_call.send();
 }
 setTimeout(WheelsMap, 12000);
+
+var emery = [];
+function EmeryGoRoundMap() {
+    var emery_route_call = new XMLHttpRequest();
+    emery_route_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p3-emerygo~round&limit=700&include_geometry=true");
+    emery_route_call.onreadystatechange = function() {
+        if (emery_route_call.readyState === 4 && emery_route_call.status === 200) {
+            var bus_route_outputs = JSON.parse(emery_route_call.responseText);
+            var agency_bus = bus_route_outputs.routes[0].agency.agency_name;
+
+            for (var b=0; b<bus_route_outputs.routes.length; b++) {
+                var all_bus_lines_name_short = bus_route_outputs.routes[b].route_short_name;
+                var all_bus_lines_name_long = bus_route_outputs.routes[b].route_long_name;
+                var all_bus_lines_color = bus_route_outputs.routes[b].route_color; 
+                var all_bus_lines_text_color = bus_route_outputs.routes[b].route_text_color;
+                var geometry_bus = bus_route_outputs.routes[b].geometry;
+
+                if (all_bus_lines_color === "") {
+                    all_bus_lines_color = "000000";
+                }
+
+                if (geometry_bus === null) {
+                    console.log("nope.")
+                }
+                else {
+                    emery.push({
+                        'type': 'Feature',
+                        'geometry': geometry_bus,
+                        'properties': {
+                            'color': `#${all_bus_lines_color}`,
+                            'text_color': `#${all_bus_lines_text_color}`,
+                            'route_short_name': all_bus_lines_name_short,
+                            'route_long_name': all_bus_lines_name_long,
+                            'label': agency_bus
+                        }
+                    })
+                }
+            }
+
+            map.addSource('emerygoround_routes', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': emery
+                },
+                'generateId': true
+            });
+            console.log("loaded!")
+
+            map.addLayer({
+                'id': 'emerygoround_layer',
+                'type': 'line',
+                'source': 'emerygoround_routes',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-width': 2,
+                    'line-color': [
+                        'case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        ['get', 'color'],
+                        '#c0e7fc',
+                    ], //['get', 'color']
+                },
+            });
+
+            map.on('mouseenter', 'emerygoround_layer', function(e) {
+                var fs_9 = map.queryRenderedFeatures(e.point, { layers: ['emerygoround_layer']});
+                console.log(fs_9)
+
+                if (fs_9.length > 0) {
+                    for (var f = 0; f < fs_9.length; f ++) {
+                        var name_of_route = fs_9[f].properties.route_short_name;
+                        routeId.push(name_of_route)
+                        
+                        hoveredPolygonLine = fs_9[f].id;
+                        hoverIdBus.push(hoveredPolygonLine);
+
+                        if (hoveredPolygonLine !== null) {
+                            console.log("hello!")
+                            map.setFeatureState(
+                                { source: 'emerygoround_routes', id: hoveredPolygonLine },
+                                { hover: false }
+                            );
+                        }
+                        map.setFeatureState(
+                            { source: 'emerygoround_routes', id: hoveredPolygonLine },
+                            { hover: true }
+                        );
+                    }
+                    
+                    // Populate the popup and set its coordinates
+                    // based on the feature found.
+                    popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
+                }
+            });
+
+            map.on('mouseleave', 'emerygoround_layer', (e) => {
+                if (routeId.length > 0) {routeId = []}
+                popup.remove();
+                // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+
+                if (hoveredPolygonLine !== null) {
+                    console.log("Fix!")
+                    for (var i = 0; i < hoverIdBus.length; i++) {
+                        map.setFeatureState(
+                            { source: 'emerygoround_routes', id: hoverIdBus[i]},
+                            { hover: false }
+                        );
+                    }
+                }
+                hoveredPolygonLine = null;
+            });
+        }
+    }
+    emery_route_call.send();
+}
+setTimeout(EmeryGoRoundMap, 25000);
