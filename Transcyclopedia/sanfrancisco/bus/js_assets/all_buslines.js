@@ -19,6 +19,9 @@ function changeLines(b) {
         case "dumbartonexpress":
             link = "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9j-dumbartonexpress&limit=700&include_alerts=true";
             break;
+        case "emeryvilleshuttles":
+            link = "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p3-emerygo~round&limit=700&include_alerts=true";
+            break;
         case "fast":
             link = "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qc-fairfieldandsuisuntransit&limit=700&include_alerts=true";
             break;
@@ -27,6 +30,9 @@ function changeLines(b) {
             break;
         case "marintransit":
             link = "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qbb-marintransit&limit=700&include_alerts=true";
+            break;
+        case "missionbaytma":
+            link = "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8yy-missionbaytma&limit=700&include_alerts=true";
             break;
         case "petalumatransit":
             link = "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9qbc9-petalumatransit&limit=700&include_alerts=true";

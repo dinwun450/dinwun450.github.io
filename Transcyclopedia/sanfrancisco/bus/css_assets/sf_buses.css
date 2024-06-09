@@ -198,14 +198,18 @@ body::after {
 
 .bus_lines {
     position: relative;
+    padding: 10px;
     margin-left: 20px;
+    margin-right: 20px;
     list-style-type: none;
-    padding-top: 10px;
+    margin-top: 20px;
+    background: rgba( 255, 255, 255, 0.25 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .bus_lines li {
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin: 10px;
 }
 
 #route, #line_for_each_departure_bus, #route_short, 
