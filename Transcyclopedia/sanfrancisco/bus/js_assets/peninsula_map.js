@@ -361,7 +361,7 @@ setTimeout(StanfordCreation, 15000);
 missiontma = [];
 function MissionBayTMACreation() {
     var tma_call = new XMLHttpRequest();
-    tma_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9h-stanford~marguerite&limit=700&include_geometry=true");
+    tma_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8yy-missionbaytma&limit=700&include_geometry=true");
     tma_call.onreadystatechange = function() {
         if (tma_call.readyState === 4 && tma_call.status === 200) {
             var bus_route_outputs = JSON.parse(tma_call.responseText);
