@@ -81,7 +81,7 @@ function compileDepartures(insertOneStopStop) {
                         break;
                     default:
                         document.getElementById("train_departure_entity").innerHTML = `${arrival} <span id="delay"></span>`;
-                        document.getElementById("train_departure_entity").style.color = "green";
+                        document.getElementById("train_departure_entity").style.color = "rgb(10, 161, 45)";
 
                         switch (delay) {
                             case (null):
@@ -90,15 +90,15 @@ function compileDepartures(insertOneStopStop) {
                                 break;
                             case (delay > 60):
                                 document.getElementById("delay").innerHTML = `(${delay} min late)`;
-                                document.getElementById("delay").style.color = "orange";
+                                document.getElementById("delay").style.color = "#db4242";
                                 break;
                             case (delay < 0):
                                 document.getElementById("delay").innerHTML = `(${delay} min early)`;
-                                document.getElementById("delay").style.color = "skyblue";
+                                document.getElementById("delay").style.color = "#0398fc";
                                 break;
                             default:
                                 document.getElementById("delay").innerHTML = "(on time)";
-                                document.getElementById("delay").style.color = "green";
+                                document.getElementById("delay").style.color = "rgb(10, 161, 45)";
                                 break;
                         }
                         break;
