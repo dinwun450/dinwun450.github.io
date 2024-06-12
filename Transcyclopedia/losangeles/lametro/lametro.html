@@ -301,7 +301,7 @@
                                         break;
                                     default:
                                         document.getElementById("depart_time_subway").innerHTML = `${actual_arrival} <span id="delay_subway">()</span>`;
-                                        document.getElementById("depart_time_subway").style.color = "green";
+                                        document.getElementById("depart_time_subway").style.color = "rgb(10, 161, 45)";
 
                                         switch(delay_subway) {
                                             case (null):
@@ -310,15 +310,15 @@
                                                 break;
                                             case (delay_subway > 60):
                                                 document.getElementById("delay_subway").innerHTML = `(${delay_subway} min late)`;
-                                                document.getElementById("delay_subway").style.color = "orange";
+                                                document.getElementById("delay_subway").style.color = "#db4242";
                                                 break;
                                             case (delay_subway < 0):
                                                 document.getElementById("delay_subway").innerHTML = `(${delay_subway} min early)`;
-                                                document.getElementById("delay_subway").style.color = "skyblue";
+                                                document.getElementById("delay_subway").style.color = "#0398fc";
                                                 break;
                                             default:
                                                 document.getElementById("delay_subway").innerHTML = "(on time)";
-                                                document.getElementById("delay_subway").style.color = "green";
+                                                document.getElementById("delay_subway").style.color = "rgb(10, 161, 45)";
                                                 break;
                                         }
                                         break;
@@ -423,7 +423,7 @@
                                         break;
                                     default:
                                         document.getElementById("depart_time_lr").innerHTML = `${actual_arrival} <span id="delay_lr">()</span>`;
-                                        document.getElementById("depart_time_lr").style.color = "green";
+                                        document.getElementById("depart_time_lr").style.color = "rgb(10, 161, 45)";
 
                                         switch(delay_lr) {
                                             case (null):
@@ -432,15 +432,15 @@
                                                 break;
                                             case (delay_lr > 60):
                                                 document.getElementById("delay_lr").innerHTML = `(${delay_lr} min late)`;
-                                                document.getElementById("delay_lr").style.color = "orange";
+                                                document.getElementById("delay_lr").style.color = "#db4242";
                                                 break;
                                             case (delay_lr < 0):
                                                 document.getElementById("delay_lr").innerHTML = `(${delay_lr} min early)`;
-                                                document.getElementById("delay_lr").style.color = "skyblue";
+                                                document.getElementById("delay_lr").style.color = "#0398fc";
                                                 break;
                                             default:
                                                 document.getElementById("delay_lr").innerHTML = "(on time)";
-                                                document.getElementById("delay_lr").style.color = "green";
+                                                document.getElementById("delay_lr").style.color = "rgb(10, 161, 45)";
                                                 break;
                                         }
                                         break;
@@ -545,7 +545,7 @@
                                         break;
                                     default:
                                         document.getElementById("depart_time_bus").innerHTML = `${actual_arrival} <span id="delay_bus">()</span>`;
-                                        document.getElementById("depart_time_bus").style.color = "green";
+                                        document.getElementById("depart_time_bus").style.color = "rgb(10, 161, 45)";
 
                                         switch(delay_bus) {
                                             case (null):
@@ -554,15 +554,15 @@
                                                 break;
                                             case (delay_bus > 60):
                                                 document.getElementById("delay_bus").innerHTML = `(${delay_bus} min late)`;
-                                                document.getElementById("delay_bus").style.color = "orange";
+                                                document.getElementById("delay_bus").style.color = "#db4242";
                                                 break;
                                             case (delay_bus < 0):
                                                 document.getElementById("delay_bus").innerHTML = `(${delay_bus} min early)`;
-                                                document.getElementById("delay_bus").style.color = "skyblue";
+                                                document.getElementById("delay_bus").style.color = "#0398fc";
                                                 break;
                                             default:
                                                 document.getElementById("delay_bus").innerHTML = "(on time)";
-                                                document.getElementById("delay_bus").style.color = "green";
+                                                document.getElementById("delay_bus").style.color = "rgb(10, 161, 45)";
                                                 break;
                                         }
                                         break;
