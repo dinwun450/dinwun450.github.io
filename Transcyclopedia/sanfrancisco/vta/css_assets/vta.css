@@ -158,6 +158,7 @@ body::after {
     border: 1px solid rgba(255, 255, 255, 0.18);
     margin-top: 25px;
     word-wrap: break-word;
+    overflow-y: auto;
 }
 
 .began_operation h2, .no_of_lines h2, .contact h2 {
@@ -298,7 +299,8 @@ body::after {
 }
 
 .stats::-webkit-scrollbar, #lines::-webkit-scrollbar, #list_of_departures_vta_lr::-webkit-scrollbar, #list_of_departures_vta_bus::-webkit-scrollbar, #alerts::-webkit-scrollbar,
-#map_inter::-webkit-scrollbar, #range_of_routes::-webkit-scrollbar, .alert_entity_routes::-webkit-scrollbar, .alert_entity_agency::-webkit-scrollbar {
+#map_inter::-webkit-scrollbar, #range_of_routes::-webkit-scrollbar, .alert_entity_routes::-webkit-scrollbar, .alert_entity_agency::-webkit-scrollbar,
+.began_operation::-webkit-scrollbar, .no_of_lines::-webkit-scrollbar, .contact::-webkit-scrollbar {
     width: 5px;
     position: relative;
     right: 20px;
@@ -306,7 +308,8 @@ body::after {
 
 .stats::-webkit-scrollbar-track, #lines::-webkit-scrollbar-track, #list_of_departures_vta_lr::-webkit-scrollbar-track, #list_of_departures_vta_bus::-webkit-scrollbar-track, #alerts::-webkit-scrollbar-track,
 #map_inter::-webkit-scrollbar-track, #range_of_routes::-webkit-scrollbar-track, .alert_entity_routes::-webkit-scrollbar-track,
-.alert_entity_agency::-webkit-scrollbar-track {
+.alert_entity_agency::-webkit-scrollbar-track, .began_operation::-webkit-scrollbar-track, .no_of_lines::-webkit-scrollbar-track, 
+.contact::-webkit-scrollbar-track {
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -316,7 +319,8 @@ body::after {
 
 .stats::-webkit-scrollbar-thumb, #lines::-webkit-scrollbar-thumb, #list_of_departures_vta_lr::-webkit-scrollbar-thumb, #list_of_departures_vta_bus::-webkit-scrollbar-thumb, #alerts::-webkit-scrollbar-thumb,
 #map_inter::-webkit-scrollbar-thumb, #range_of_routes::-webkit-scrollbar-thumb, .alert_entity_routes::-webkit-scrollbar-thumb,
-.alert_entity_agency::-webkit-scrollbar-thumb {
+.alert_entity_agency::-webkit-scrollbar-thumb, .began_operation::-webkit-scrollbar-thumb, .no_of_lines::-webkit-scrollbar-thumb, 
+.contact::-webkit-scrollbar-thumb {
     border: 1px solid rgba(255, 255, 255, 0.18);
     background: rgba(255, 255, 255, 0.25);
     border-radius: 10px;
