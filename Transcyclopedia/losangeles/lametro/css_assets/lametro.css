@@ -338,6 +338,7 @@ body::after {
     font-size: 1.5em;
     margin-bottom: 25px;
     margin-left: 20px;
+    color: white;
 }
 
 .alert_section_agency, .alert_section_lines {

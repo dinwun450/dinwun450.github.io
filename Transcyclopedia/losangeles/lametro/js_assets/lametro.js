@@ -40,7 +40,7 @@ function loadWikipediaArticle() {
         if (info_fetcher.readyState === 4 && info_fetcher.status === 200) {
             var info_receiver = JSON.parse(info_fetcher.responseText);
             var info_of_lametro = info_receiver.query.pages[359028].extract;
-            document.getElementById("desc").innerHTML = `${info_of_lametro} <a href="https://en.wikipedia.org/wiki/Los_Angeles_County_Metropolitan_Transportation_Authority">Wikipedia</a>`
+            document.getElementById("desc").innerHTML = `${info_of_lametro} <br> <a href="https://en.wikipedia.org/wiki/Los_Angeles_County_Metropolitan_Transportation_Authority">Wikipedia</a>`
         }
     }
     info_fetcher.send();
