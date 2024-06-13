@@ -6,7 +6,7 @@ function getWikipediaInfo() {
         if (wikipedia_info_caller.readyState === 4 && wikipedia_info_caller.status === 200) {
             var wikipedia_info_receiver = JSON.parse(wikipedia_info_caller.responseText);
             var info_of_page = wikipedia_info_receiver.query.pages[591619].extract;
-            document.getElementById("desc").innerHTML = `${info_of_page} <a href="https://en.wikipedia.org/wiki/Metrolink_(California)">Wikipedia</a>`
+            document.getElementById("desc").innerHTML = `${info_of_page} <br> <a href="https://en.wikipedia.org/wiki/Metrolink_(California)">Wikipedia</a>`
         }
     }
     wikipedia_info_caller.send();

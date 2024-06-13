@@ -244,7 +244,7 @@
                                 break;
                             default:
                                 document.getElementById("depart_time_metrolink").innerHTML = `${actual_arrival} <span id="delay_metrolink">()</span>`;
-                                document.getElementById("depart_time_metrolink").style.color = "lime";
+                                document.getElementById("depart_time_metrolink").style.color = "rgb(10, 161, 45)";
 
                                 switch(delay_time) {
                                     case (null):
@@ -253,15 +253,15 @@
                                         break;
                                     case (delay_time > 60):
                                         document.getElementById("delay_metrolink").innerHTML = `(${delay_time} min late)`;
-                                        document.getElementById("delay_metrolink").style.color = "orange";
+                                        document.getElementById("delay_metrolink").style.color = "#db4242";
                                         break;
                                     case (delay_time < 0):
                                         document.getElementById("delay_metrolink").innerHTML = `(${delay_time} min early)`;
-                                        document.getElementById("delay_metrolink").style.color = "skyblue";
+                                        document.getElementById("delay_metrolink").style.color = "#0398fc";
                                         break;
                                     default:
                                         document.getElementById("delay_metrolink").innerHTML = "(on time)";
-                                        document.getElementById("delay_metrolink").style.color = "lime";
+                                        document.getElementById("delay_metrolink").style.color = "rgb(10, 161, 45)";
                                         break;
                                 }
                                 break;
