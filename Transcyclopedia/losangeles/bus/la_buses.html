@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcyclopedia LA: Buses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+</head>
+<body>
+    <ul class="left_navbar">
+        <h1 id="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia LA:<br> Buses</h1>
+        <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
+        <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_buses')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About Buses</a></li>
+        <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
+        <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-bus"></i>&nbsp;&nbsp;Departures</a></li>
+        <li class="tablinks header4" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
+        <li><a href="#" onclick="dark_or_light()"><span id="light_dark_transition"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</span></a></li>
+        <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
+        <p class="copyright">&copy; 2024 Transcyclopedia. Created by Dino Wun.</p>
+    </ul>
+    <div class="main">
+        <div class="window" id="about_buses">
+            <div class="info">
+                <p id="sectionheader">About Buses <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+                <select name="" id="bus_info" onchange="">
+                    <option value="prompt">Select Bus Agency</option>
+                    <option value="avta">Antelope Valley Transit Authority</option>
+                    <option value="baldinpark">Baldin Park Transit</option>
+                    <option value="beachcities">Beach Cities Transit</option>
+                    <option value="burbankbus">Burbank Bus</option>
+                    <option value="carsoncirc">Carson Circuit</option>
+                    <option value="compton">Compton Renaissance</option>
+                    <option value="culver">Culver CityBus</option>
+                    <option value="foothill">Foothil Transit</option>
+                    <option value="gtrans">Gardena GTRANS</option>
+                    <option value="glendale">Glendale Beeline</option>
+                    <option value="glendora">Glendora Transportation Division</option>
+                    <option value="huntington">Huntington Park Express</option>
+                    <option value="lagobus">LA Go Bus</option>
+                    <option value="ladot">LADOT Transit</option>
+                    <option value="lawndale">Lawndale Beat</option>
+                    <option value="laxflyaway">LAX Flyaway</option>
+                    <option value="longbeach">Long Beach Transit</option>
+                    <option value="montebello">Montebello Bus Lines</option>
+                    <option value="montereypark">Monterey Park Spirit Bus</option>
+                    <option value="norwalk">Norwalk Transit</option>
+                    <option value="palosverdes">Palo Verdes Peninsula Transit Authority</option>
+                    <option value="pasadena">Pasadena Transit</option>
+                    <option value="santaclarita">Santa Clarita Transit</option>
+                    <option value="bigbluebus">Santa Monica Big Blue Bus</option>
+                    <option value="torrance">Torance Transit</option>
+                </select>
+                <p id="desc">Select a Bus Agency.</p>
+            </div>
+            <div class="stats">
+                <div class="began_operation">
+                    <h2>Founded:</h2>
+                    <p><b id="foundingdate">-</b></p>
+                </div>
+                <div class="no_of_lines">
+                    <h2>Number of Lines:</h2>
+                    <p><b id="nooflines">-</b></p>
+                </div>
+                <div class="contact">
+                    <h2>Contact</h2>
+                    <ul>
+                        <li><p><b id="email_agency">-</b> (Email)</p></li>
+                        <li><p><b id="phone_agency">-</b> (Phone)</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="window" id="lines">
+            <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="bus_lines" onchange="">
+                <option value="prompt">Select Bus Agency</option>
+                <option value="avta">Antelope Valley Transit Authority</option>
+                <option value="baldinpark">Baldin Park Transit</option>
+                <option value="beachcities">Beach Cities Transit</option>
+                <option value="burbankbus">Burbank Bus</option>
+                <option value="carsoncirc">Carson Circuit</option>
+                <option value="compton">Compton Renaissance</option>
+                <option value="culver">Culver CityBus</option>
+                <option value="foothill">Foothil Transit</option>
+                <option value="gtrans">Gardena GTRANS</option>
+                <option value="glendale">Glendale Beeline</option>
+                <option value="glendora">Glendora Transportation Division</option>
+                <option value="huntington">Huntington Park Express</option>
+                <option value="lagobus">LA Go Bus</option>
+                <option value="ladot">LADOT Transit</option>
+                <option value="lawndale">Lawndale Beat</option>
+                <option value="laxflyaway">LAX Flyaway</option>
+                <option value="longbeach">Long Beach Transit</option>
+                <option value="montebello">Montebello Bus Lines</option>
+                <option value="montereypark">Monterey Park Spirit Bus</option>
+                <option value="norwalk">Norwalk Transit</option>
+                <option value="palosverdes">Palo Verdes Peninsula Transit Authority</option>
+                <option value="pasadena">Pasadena Transit</option>
+                <option value="santaclarita">Santa Clarita Transit</option>
+                <option value="bigbluebus">Santa Monica Big Blue Bus</option>
+                <option value="torrance">Torance Transit</option>
+            </select>
+            <div class="all_bus_lines">
+                <ul id="list_of_bus_lines">
+                    <li id="bus_route_entity"><span id="route_bus">-</span> &nbsp; <span id="desc_of_each_bus_route">Select a Bus Agency.</span> <span id="no_of_alerts"></span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="window" id="departures">
+            <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a stop.." onkeydown="" id="stopgetter" autocomplete="off">
+            <select name="" id="bus_lines" onchange="">
+                <option value="prompt">Select Bus Agency</option>
+                <option value="avta">Antelope Valley Transit Authority</option>
+                <option value="baldinpark">Baldin Park Transit</option>
+                <option value="beachcities">Beach Cities Transit</option>
+                <option value="burbankbus">Burbank Bus</option>
+                <option value="carsoncirc">Carson Circuit</option>
+                <option value="compton">Compton Renaissance</option>
+                <option value="culver">Culver CityBus</option>
+                <option value="foothill">Foothil Transit</option>
+                <option value="gtrans">Gardena GTRANS</option>
+                <option value="glendale">Glendale Beeline</option>
+                <option value="glendora">Glendora Transportation Division</option>
+                <option value="huntington">Huntington Park Express</option>
+                <option value="lagobus">LA Go Bus</option>
+                <option value="ladot">LADOT Transit</option>
+                <option value="lawndale">Lawndale Beat</option>
+                <option value="laxflyaway">LAX Flyaway</option>
+                <option value="longbeach">Long Beach Transit</option>
+                <option value="montebello">Montebello Bus Lines</option>
+                <option value="montereypark">Monterey Park Spirit Bus</option>
+                <option value="norwalk">Norwalk Transit</option>
+                <option value="palosverdes">Palo Verdes Peninsula Transit Authority</option>
+                <option value="pasadena">Pasadena Transit</option>
+                <option value="santaclarita">Santa Clarita Transit</option>
+                <option value="bigbluebus">Santa Monica Big Blue Bus</option>
+                <option value="torrance">Torance Transit</option>
+            </select>
+            <p class="headerforbus">Departures for &nbsp;<span id="stopname">---</span></p>
+            <ul id="list_of_bus_departures">
+                <li id="busline_for_departure"><div id="lod_labus">-</div> <span id="aor_labus"></span> <span id="hod_labus">(None)</span> <span id="depart_time_labus">Enter a stop by their stop ID, then select a bus agency.</span></li>
+            </ul>
+            <div class="alerts_in_busstop">
+                <h3>Alerts for this Stop</h3>
+                <ul>
+                    <li id="each_busstop_alert">
+                        <p>Once you typed down the stop by their ID, the advisories will display here.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="window" id="alerts">
+            <select name="" id="bus_lines" onchange="">
+                <option value="prompt">Select Bus Agency</option>
+                <option value="avta">Antelope Valley Transit Authority</option>
+                <option value="baldinpark">Baldin Park Transit</option>
+                <option value="beachcities">Beach Cities Transit</option>
+                <option value="burbankbus">Burbank Bus</option>
+                <option value="carsoncirc">Carson Circuit</option>
+                <option value="compton">Compton Renaissance</option>
+                <option value="culver">Culver CityBus</option>
+                <option value="foothill">Foothil Transit</option>
+                <option value="gtrans">Gardena GTRANS</option>
+                <option value="glendale">Glendale Beeline</option>
+                <option value="glendora">Glendora Transportation Division</option>
+                <option value="huntington">Huntington Park Express</option>
+                <option value="lagobus">LA Go Bus</option>
+                <option value="ladot">LADOT Transit</option>
+                <option value="lawndale">Lawndale Beat</option>
+                <option value="laxflyaway">LAX Flyaway</option>
+                <option value="longbeach">Long Beach Transit</option>
+                <option value="montebello">Montebello Bus Lines</option>
+                <option value="montereypark">Monterey Park Spirit Bus</option>
+                <option value="norwalk">Norwalk Transit</option>
+                <option value="palosverdes">Palo Verdes Peninsula Transit Authority</option>
+                <option value="pasadena">Pasadena Transit</option>
+                <option value="santaclarita">Santa Clarita Transit</option>
+                <option value="bigbluebus">Santa Monica Big Blue Bus</option>
+                <option value="torrance">Torance Transit</option>
+            </select>
+            <div class="alert_entity_agency">
+                <h3>Alerts for Agency</h3>
+                <ul id="bus_agency_alerts">
+                    <li id="alert_desc_agency">Select a bus agency on the top.</li>
+                </ul>
+            </div>
+            <div class="alert_entity_routes">
+                <h3>Alerts for Routes</h3>
+                <ul id="bus_routes_alerts">
+                    <li id="alert_desc_routes">
+                        <p>
+                            <span id="alert_for_specific_route">Once you selected the bus agency and typed down the specific routes, it'll show here.</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="window" id="map_inter">
+            <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <section class="map_box_container">
+                <!--MAP-->
+                <div id='map' style="width: 100%; height: 500px;"></div>
+                <nav id="filter_agency" class="filter_agency"></nav>
+            </section>
+            <ul id="range_of_routes">
+                <li class="route_radius"><span id="route_short">-</span>&nbsp;&nbsp;<span id="detailed_route">Wait for a while, then drag the map to filter nearby routes.</span></li>
+            </ul>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
+        </div>
+    </div>
+</body>
+</html>
