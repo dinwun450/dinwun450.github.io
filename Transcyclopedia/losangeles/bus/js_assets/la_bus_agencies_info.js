@@ -225,7 +225,7 @@ function changeLABusAgency(a) {
         console.log("End.");
     }
     else {
-        getWikipediaArticle(link, page_id);
+        getWikipediaArticle(wikipedia_link_api, wikipedia_page_id);
         countNoOfLines(onestop_id);
         getBusContactInfo(onestop_id);
     }
@@ -239,7 +239,7 @@ function getWikipediaArticle(getArticleInfo, pageId) {
             var article = JSON.parse(article_caller.responseText);
             var summary = article.query.pages[pageId].extract;
 
-            document.getElementById("desc").innerHTML = `${summary} <br> <a href="${moreinfo}">Wikipedia</a>`;
+            document.getElementById("desc").innerHTML = `${summary} <br> <a href="${wikipedia_info}">Wikipedia</a>`;
             document.getElementById("foundingdate").innerHTML = `<b>${foundedin}</b>`;
         }
     }
