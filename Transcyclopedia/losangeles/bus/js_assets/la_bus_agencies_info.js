@@ -87,6 +87,7 @@ function changeLABusAgency(a) {
             wikipedia_info = "https://en.wikipedia.org/wiki/Glendale_Beeline";
             break;
         case "glendora":
+            var text = "See";
             wikipedia_info = "https://en.wikipedia.org/wiki/List_of_Southern_California_transit_agencies#Glendora_Transportation_Division";
             foundedin = "Around 1911";
             onestop_id = "o-9qh4j-glendoratransportationdivision";
@@ -97,6 +98,7 @@ function changeLABusAgency(a) {
             getBusContactInfo(onestop_id);
             break;
         case "huntington":
+            var text = "See";
             wikipedia_info = "https://en.wikipedia.org/wiki/List_of_Southern_California_transit_agencies#Huntington_Park_Express";
             foundedin = "Around 1970s";
             onestop_id = "o-9q5cm-huntingtonparkexpress";
@@ -107,6 +109,7 @@ function changeLABusAgency(a) {
             getBusContactInfo(onestop_id);
             break;
         case "lagobus":
+            var text = "See";
             wikipedia_info = "https://en.wikipedia.org/wiki/List_of_Southern_California_transit_agencies#Los_Angeles_County_Public_Works";
             foundedin = "Around 1985";
             onestop_id = "o-9q5-lagobus";
@@ -124,6 +127,7 @@ function changeLABusAgency(a) {
             wikipedia_info = "https://en.wikipedia.org/wiki/Los_Angeles_Department_of_Transportation";
             break;
         case "lawndale":
+            var text = "See";
             wikipedia_info = "https://en.wikipedia.org/wiki/List_of_Southern_California_transit_agencies#Lawndale_Beat";
             foundedin = "Around 1959";
             onestop_id = "o-9q5bf-lawndalebeat";
