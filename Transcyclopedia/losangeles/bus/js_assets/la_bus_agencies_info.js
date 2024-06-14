@@ -21,7 +21,7 @@ function changeLABusAgency(a) {
             foundedin = "Around 1994";
             onestop_id = "o-9qh1g-baldwinparktransit";
 
-            document.getElementById("desc").innerHTML = `${text} <a href="${moreinfo}">SoCal Transit Agencies Wikipedia Page, Baldin Park Transit Section</a>.`;
+            document.getElementById("desc").innerHTML = `${text} <a href="${wikipedia_info}">SoCal Transit Agencies Wikipedia Page, Baldin Park Transit Section</a>.`;
             document.getElementById("foundingdate").innerHTML = `${foundedin}`;
             countNoOfLines(onestop_id);
             getBusContactInfo(onestop_id);
@@ -53,7 +53,7 @@ function changeLABusAgency(a) {
             foundedin = "1970s-1990s";
             onestop_id = "o-9q5bv-comptonrenaissancetransit";
 
-            document.getElementById("desc").innerHTML = `${text} <a href="${moreinfo}">SoCal Transit Agencies Wikipedia Page, Compton Renaissance Transit Section</a>.`;
+            document.getElementById("desc").innerHTML = `${text} <a href="${wikipedia_info}">SoCal Transit Agencies Wikipedia Page, Compton Renaissance Transit Section</a>.`;
             document.getElementById("foundingdate").innerHTML = `${foundedin}`;
             countNoOfLines(onestop_id);
             getBusContactInfo(onestop_id);
@@ -91,7 +91,7 @@ function changeLABusAgency(a) {
             foundedin = "Around 1911";
             onestop_id = "o-9qh4j-glendoratransportationdivision";
 
-            document.getElementById("desc").innerHTML = `${text} <a href="${moreinfo}">SoCal Transit Agencies Wikipedia Page, Glendora Transportation Division Section</a>.`;
+            document.getElementById("desc").innerHTML = `${text} <a href="${wikipedia_info}">SoCal Transit Agencies Wikipedia Page, Glendora Transportation Division Section</a>.`;
             document.getElementById("foundingdate").innerHTML = `${foundedin}`;
             countNoOfLines(onestop_id);
             getBusContactInfo(onestop_id);
@@ -101,7 +101,7 @@ function changeLABusAgency(a) {
             foundedin = "Around 1970s";
             onestop_id = "o-9q5cm-huntingtonparkexpress";
 
-            document.getElementById("desc").innerHTML = `${text} <a href="${moreinfo}">SoCal Transit Agencies Wikipedia Page, Huntington Park Express Section</a>.`;
+            document.getElementById("desc").innerHTML = `${text} <a href="${wikipedia_info}">SoCal Transit Agencies Wikipedia Page, Huntington Park Express Section</a>.`;
             document.getElementById("foundingdate").innerHTML = `${foundedin}`;
             countNoOfLines(onestop_id);
             getBusContactInfo(onestop_id);
@@ -111,7 +111,7 @@ function changeLABusAgency(a) {
             foundedin = "Around 1985";
             onestop_id = "o-9q5-lagobus";
 
-            document.getElementById("desc").innerHTML = `${text} <a href="${moreinfo}">SoCal Transit Agencies Wikipedia Page, LA Go Bus Section</a>.`;
+            document.getElementById("desc").innerHTML = `${text} <a href="${wikipedia_info}">SoCal Transit Agencies Wikipedia Page, LA Go Bus Section</a>.`;
             document.getElementById("foundingdate").innerHTML = `${foundedin}`;
             countNoOfLines(onestop_id);
             getBusContactInfo(onestop_id);
@@ -128,7 +128,7 @@ function changeLABusAgency(a) {
             foundedin = "Around 1959";
             onestop_id = "o-9q5bf-lawndalebeat";
 
-            document.getElementById("desc").innerHTML = `${text} <a href="${moreinfo}">SoCal Transit Agencies Wikipedia Page, Lawndale Beat Section</a>.`;
+            document.getElementById("desc").innerHTML = `${text} <a href="${wikipedia_info}">SoCal Transit Agencies Wikipedia Page, Lawndale Beat Section</a>.`;
             document.getElementById("foundingdate").innerHTML = `${foundedin}`;
             countNoOfLines(onestop_id);
             getBusContactInfo(onestop_id);
