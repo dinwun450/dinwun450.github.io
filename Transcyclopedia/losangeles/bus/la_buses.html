@@ -8,6 +8,7 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="css_assets/la_buses.css">
+    <script src="js_assets/la_bus_agencies_info.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -26,16 +27,16 @@
         <div class="window" id="about_buses">
             <div class="info">
                 <p id="sectionheader">About Buses <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-                <select name="" id="bus_info" onchange="">
+                <select name="" id="bus_info" onchange="changeLABusAgency(value);">
                     <option value="prompt">Select Bus Agency</option>
                     <option value="avta">Antelope Valley Transit Authority</option>
-                    <option value="baldinpark">Baldin Park Transit</option>
+                    <option value="baldinpark">Baldwin Park Transit</option>
                     <option value="beachcities">Beach Cities Transit</option>
                     <option value="burbankbus">Burbank Bus</option>
                     <option value="carsoncirc">Carson Circuit</option>
                     <option value="compton">Compton Renaissance</option>
                     <option value="culver">Culver CityBus</option>
-                    <option value="foothill">Foothil Transit</option>
+                    <option value="foothill">Foothill Transit</option>
                     <option value="gtrans">Gardena GTRANS</option>
                     <option value="glendale">Glendale Beeline</option>
                     <option value="glendora">Glendora Transportation Division</option>
@@ -48,7 +49,7 @@
                     <option value="montebello">Montebello Bus Lines</option>
                     <option value="montereypark">Monterey Park Spirit Bus</option>
                     <option value="norwalk">Norwalk Transit</option>
-                    <option value="palosverdes">Palo Verdes Peninsula Transit Authority</option>
+                    <option value="palosverdes">Palos Verdes Peninsula Transit Authority</option>
                     <option value="pasadena">Pasadena Transit</option>
                     <option value="santaclarita">Santa Clarita Transit</option>
                     <option value="bigbluebus">Santa Monica Big Blue Bus</option>
@@ -79,13 +80,13 @@
             <select name="" id="bus_lines" onchange="">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="avta">Antelope Valley Transit Authority</option>
-                <option value="baldinpark">Baldin Park Transit</option>
+                <option value="baldinpark">Baldwin Park Transit</option>
                 <option value="beachcities">Beach Cities Transit</option>
                 <option value="burbankbus">Burbank Bus</option>
                 <option value="carsoncirc">Carson Circuit</option>
                 <option value="compton">Compton Renaissance</option>
                 <option value="culver">Culver CityBus</option>
-                <option value="foothill">Foothil Transit</option>
+                <option value="foothill">Foothill Transit</option>
                 <option value="gtrans">Gardena GTRANS</option>
                 <option value="glendale">Glendale Beeline</option>
                 <option value="glendora">Glendora Transportation Division</option>
@@ -98,7 +99,7 @@
                 <option value="montebello">Montebello Bus Lines</option>
                 <option value="montereypark">Monterey Park Spirit Bus</option>
                 <option value="norwalk">Norwalk Transit</option>
-                <option value="palosverdes">Palo Verdes Peninsula Transit Authority</option>
+                <option value="palosverdes">Palos Verdes Peninsula Transit Authority</option>
                 <option value="pasadena">Pasadena Transit</option>
                 <option value="santaclarita">Santa Clarita Transit</option>
                 <option value="bigbluebus">Santa Monica Big Blue Bus</option>
@@ -116,13 +117,13 @@
             <select name="" id="bus_lines" onchange="">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="avta">Antelope Valley Transit Authority</option>
-                <option value="baldinpark">Baldin Park Transit</option>
+                <option value="baldinpark">Baldwin Park Transit</option>
                 <option value="beachcities">Beach Cities Transit</option>
                 <option value="burbankbus">Burbank Bus</option>
                 <option value="carsoncirc">Carson Circuit</option>
                 <option value="compton">Compton Renaissance</option>
                 <option value="culver">Culver CityBus</option>
-                <option value="foothill">Foothil Transit</option>
+                <option value="foothill">Foothill Transit</option>
                 <option value="gtrans">Gardena GTRANS</option>
                 <option value="glendale">Glendale Beeline</option>
                 <option value="glendora">Glendora Transportation Division</option>
@@ -135,7 +136,7 @@
                 <option value="montebello">Montebello Bus Lines</option>
                 <option value="montereypark">Monterey Park Spirit Bus</option>
                 <option value="norwalk">Norwalk Transit</option>
-                <option value="palosverdes">Palo Verdes Peninsula Transit Authority</option>
+                <option value="palosverdes">Palos Verdes Peninsula Transit Authority</option>
                 <option value="pasadena">Pasadena Transit</option>
                 <option value="santaclarita">Santa Clarita Transit</option>
                 <option value="bigbluebus">Santa Monica Big Blue Bus</option>
@@ -159,13 +160,13 @@
             <select name="" id="bus_lines" onchange="">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="avta">Antelope Valley Transit Authority</option>
-                <option value="baldinpark">Baldin Park Transit</option>
+                <option value="baldinpark">Baldwin Park Transit</option>
                 <option value="beachcities">Beach Cities Transit</option>
                 <option value="burbankbus">Burbank Bus</option>
                 <option value="carsoncirc">Carson Circuit</option>
                 <option value="compton">Compton Renaissance</option>
                 <option value="culver">Culver CityBus</option>
-                <option value="foothill">Foothil Transit</option>
+                <option value="foothill">Foothill Transit</option>
                 <option value="gtrans">Gardena GTRANS</option>
                 <option value="glendale">Glendale Beeline</option>
                 <option value="glendora">Glendora Transportation Division</option>
@@ -178,7 +179,7 @@
                 <option value="montebello">Montebello Bus Lines</option>
                 <option value="montereypark">Monterey Park Spirit Bus</option>
                 <option value="norwalk">Norwalk Transit</option>
-                <option value="palosverdes">Palo Verdes Peninsula Transit Authority</option>
+                <option value="palosverdes">Palos Verdes Peninsula Transit Authority</option>
                 <option value="pasadena">Pasadena Transit</option>
                 <option value="santaclarita">Santa Clarita Transit</option>
                 <option value="bigbluebus">Santa Monica Big Blue Bus</option>
