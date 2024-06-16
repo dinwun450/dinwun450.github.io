@@ -122,7 +122,7 @@ function getLABusRoutes(getOneStopID) {
                 document.getElementById("route_bus").style.color = `#${route_text_color}`;
                 document.getElementById("route_bus").style.backgroundColor = `#${route_color}40`;
                 document.getElementById("route_bus").style.border = `1px solid #${route_color}`;
-                document.getElementById("desc_of_bus_route").innerHTML = route_long_name;
+                document.getElementById("desc_of_each_bus_route").innerHTML = route_long_name;
 
                 if (base_route.alerts.length === 0) {
                     document.getElementById("no_of_alerts").innerHTML = "";
