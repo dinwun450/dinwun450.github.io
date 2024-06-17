@@ -88,7 +88,7 @@ function changeLABusDepartures(c) {
                 break;
     }
 
-    if (agency === "prompt") {
+    if (la_bus_agency === "prompt") {
         console.log("Pass.");
     }
     else {
