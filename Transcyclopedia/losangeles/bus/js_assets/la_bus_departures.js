@@ -109,6 +109,7 @@ function getLABusDeparturesPOne(insAgencyOnestopID, insBusstopOnestopID) {
             getLABusDeparturesPTwo(onestop_id_departures);
         }
     }
+    la_busstop_call.send();
 }
 
 function getLABusDeparturesPTwo(insOneBusstopID) {
@@ -120,8 +121,8 @@ function getLABusDeparturesPTwo(insOneBusstopID) {
 
             for (var i = 0; i < la_bus_departure_receiver.departures.length; i++) {
                 var route_color = la_bus_departure_receiver.departures[i].trip.route.route_color;
-                var route_text_color = la_bus_departure_receiver.departures[i].trip.route_text_color;
-                var route_short_name = la_bus_departure_receiver.departures[i].trip.route_short_name;
+                var route_text_color = la_bus_departure_receiver.departures[i].trip.route.route_text_color;
+                var route_short_name = la_bus_departure_receiver.departures[i].trip.route.route_short_name;
                 var departure_headsign = la_bus_departure_receiver.departures[i].trip.trip_headsign;
                 var no_of_alerts = la_bus_departure_receiver.departures[i].trip.route.alerts.length;
 
