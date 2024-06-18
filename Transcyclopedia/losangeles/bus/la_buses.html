@@ -11,6 +11,7 @@
     <script src="js_assets/la_bus_agencies_info.js"></script>
     <script src="js_assets/la_bus_lines.js"></script>
     <script src="js_assets/la_bus_departures.js"></script>
+    <script src="js_assets/la_bus_alerts.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -159,7 +160,7 @@
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="bus_lines" onchange="">
+            <select name="" id="bus_lines" onchange="changeLABusAlerts(value);">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="avta">Antelope Valley Transit Authority</option>
                 <option value="baldinpark">Baldwin Park Transit</option>
@@ -198,7 +199,7 @@
                 <ul id="bus_routes_alerts">
                     <li id="alert_desc_routes">
                         <p>
-                            <span id="alert_for_specific_route">Once you selected the bus agency and typed down the specific routes, it'll show here.</span>
+                            Once you selected the bus agency and typed down the specific routes, it'll show here.
                         </p>
                     </li>
                 </ul>

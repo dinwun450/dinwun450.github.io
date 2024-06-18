@@ -80,12 +80,12 @@ function changeLABusDepartures(c) {
         case "torrance":
             onestop_id = "o-9q5b-torrancetransit";
             break;
-            default:
-                link = "";
-                document.querySelector(".headerforbus").innerHTML = `Departures for &nbsp;<span id="stopname">---</span>`;
-                document.getElementById("list_of_bus_departures").innerHTML = `<li id="busline_for_departure"><div id="lod_labus">-</div> <span id="aor_labus"></span> <span id="hod_labus">(None)</span> <span id="depart_time_labus">Enter a stop by their stop ID, then select a bus agency.</span></li>`;
-                document.getElementById("each_busstop_alert").innerHTML = `<p>Once you typed down the stop by their ID, the advisories will display here.</p>`;
-                break;
+        default:
+            link = "";
+            document.querySelector(".headerforbus").innerHTML = `Departures for &nbsp;<span id="stopname">---</span>`;
+            document.getElementById("list_of_bus_departures").innerHTML = `<li id="busline_for_departure"><div id="lod_labus">-</div> <span id="aor_labus"></span> <span id="hod_labus">(None)</span> <span id="depart_time_labus">Enter a stop by their stop ID, then select a bus agency.</span></li>`;
+            document.getElementById("each_busstop_alert").innerHTML = `<p>Once you typed down the stop by their ID, the advisories will display here.</p>`;
+            break;
     }
 
     if (la_bus_agency === "prompt") {
