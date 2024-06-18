@@ -115,8 +115,8 @@ function getLABusAgencyAlerts(insOneStopID) {
             }
             else {
                 for (var i = 0; i < labus_agency_alert_receiver.agencies[0].alerts.length; i++) {
-                    var alert_agency_desc = labus_agency_alert_receiver.agencies[0].alerts[a].description_text[0].text;
-                    var alert_agency_header = labus_agency_alert_receiver.agencies[0].alerts[a].header_text[0].text;
+                    var alert_agency_desc = labus_agency_alert_receiver.agencies[0].alerts[i].description_text[0].text;
+                    var alert_agency_header = labus_agency_alert_receiver.agencies[0].alerts[i].header_text[0].text;
                     document.getElementById("alert_desc_agency").innerHTML = `<b>${alert_agency_header}</b> <br> ${alert_agency_desc}`;
                 }
             }
@@ -126,7 +126,7 @@ function getLABusAgencyAlerts(insOneStopID) {
 }
 
 function getLABusRouteAlerts(insOneStopIDinRoutes) {
-    var labus_agency_route_caller = new XMLDocument();
+    var labus_agency_route_caller = new XMLHttpRequest();
     labus_agency_route_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${insOneStopIDinRoutes}&limit=700&include_alerts=true`);
     labus_agency_route_caller.onreadystatechange = function() {
         if (labus_agency_route_caller.readyState === 4 && labus_agency_route_caller.status === 200) {
