@@ -115,9 +115,15 @@ function getLABusAgencyAlerts(insOneStopID) {
             }
             else {
                 for (var i = 0; i < labus_agency_alert_receiver.agencies[0].alerts.length; i++) {
-                    var alert_agency_desc = labus_agency_alert_receiver.agencies[0].alerts[i].description_text[0].text;
+                    var alert_agency_desc = labus_agency_alert_receiver.agencies[0].alerts[i].description_text[0];
+                    if (alert_agency_desc.length == 0) {
+                        console.log("nothing!");
+                    }
+                    else {
+                        var desc_of_alert_in_agency = alert_agency_desc.text
+                    }
                     var alert_agency_header = labus_agency_alert_receiver.agencies[0].alerts[i].header_text[0].text;
-                    document.getElementById("alert_desc_agency").innerHTML = `<b>${alert_agency_header}</b> <br> ${alert_agency_desc}`;
+                    document.getElementById("alert_desc_agency").innerHTML = `<b>${alert_agency_header}</b> <br> ${desc_of_alert_in_agency}`;
                 }
             }
         }
@@ -141,12 +147,12 @@ function getLABusRouteAlerts(insOneStopIDinRoutes) {
                 switch (alerts_for_labus.length) {
                     case 0:
                         console.log("Nope.");
-                        no_route_alerts_labus.append(affected_route_short_name);
+                        no_route_alerts_labus.push(affected_route_short_name);
                         break;
                     default:
                         for (var j = 0; j < alerts_for_labus.length; j++) {
-                            var labus_alert_route_desc = alerts_for_labus[a].description_text[0].text;
-                            var labus_alert_route_header = alerts_for_labus[a].header_text[0].text;
+                            var labus_alert_route_desc = alerts_for_labus[j].description_text[0].text;
+                            var labus_alert_route_header = alerts_for_labus[j].header_text[0].text;
                             document.getElementById("alert_desc_routes").innerHTML = `<p><span id="affectedroutes"></span> <b>${labus_alert_route_header}</b> <br> ${labus_alert_route_desc}`;
 
                             document.getElementById("affectedroutes").innerHTML = affected_route_short_name;
