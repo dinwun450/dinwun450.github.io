@@ -132,6 +132,8 @@ function getLABusAgencyAlerts(insOneStopID) {
 }
 
 function getLABusRouteAlerts(insOneStopIDinRoutes) {
+    no_route_alerts_labus = [];
+    
     var labus_agency_route_caller = new XMLHttpRequest();
     labus_agency_route_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${insOneStopIDinRoutes}&limit=700&include_alerts=true`);
     labus_agency_route_caller.onreadystatechange = function() {
