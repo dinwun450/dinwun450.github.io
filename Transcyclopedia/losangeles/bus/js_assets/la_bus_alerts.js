@@ -133,7 +133,14 @@ function getLABusAgencyAlerts(insOneStopID) {
 
 function getLABusRouteAlerts(insOneStopIDinRoutes) {
     no_route_alerts_labus = [];
-    
+    document.getElementById("bus_routes_alerts").innerHTML = `
+        <li id="alert_desc_routes">
+            <p>
+                Loading...
+            </p>
+        </li>
+    `;
+
     var labus_agency_route_caller = new XMLHttpRequest();
     labus_agency_route_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${insOneStopIDinRoutes}&limit=700&include_alerts=true`);
     labus_agency_route_caller.onreadystatechange = function() {
@@ -180,7 +187,7 @@ function getLABusRouteAlerts(insOneStopIDinRoutes) {
                 };
             };
 
-            if (no_route_alerts_labus.length !== labus_agency_route_receiver.routes.length) {
+            if (no_route_alerts_labus.length === labus_agency_route_receiver.routes.length) {
                 document.getElementById("alert_desc_routes").innerHTML = "There are no alerts in all routes under this agency.";
             };
         }
