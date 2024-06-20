@@ -115,12 +115,12 @@ function getLABusAgencyAlerts(insOneStopID) {
             }
             else {
                 for (var i = 0; i < labus_agency_alert_receiver.agencies[0].alerts.length; i++) {
-                    var alert_agency_desc = labus_agency_alert_receiver.agencies[0].alerts[i].description_text[0];
+                    var alert_agency_desc = labus_agency_alert_receiver.agencies[0].alerts[i].description_text;
                     if (alert_agency_desc.length == 0) {
                         console.log("nothing!");
                     }
                     else {
-                        var desc_of_alert_in_agency = alert_agency_desc.text
+                        var desc_of_alert_in_agency = alert_agency_desc[0].text
                     }
                     var alert_agency_header = labus_agency_alert_receiver.agencies[0].alerts[i].header_text[0].text;
                     document.getElementById("alert_desc_agency").innerHTML = `<b>${alert_agency_header}</b> <br> ${desc_of_alert_in_agency}`;
@@ -151,9 +151,17 @@ function getLABusRouteAlerts(insOneStopIDinRoutes) {
                         break;
                     default:
                         for (var j = 0; j < alerts_for_labus.length; j++) {
-                            var labus_alert_route_desc = alerts_for_labus[j].description_text[0].text;
+                            var labus_alert_route_desc = alerts_for_labus[j].description_text;
                             var labus_alert_route_header = alerts_for_labus[j].header_text[0].text;
-                            document.getElementById("alert_desc_routes").innerHTML = `<p><span id="affectedroutes"></span> <b>${labus_alert_route_header}</b> <br> ${labus_alert_route_desc}`;
+
+                            if (labus_alert_route_desc.length == 0) {
+                                console.log("nothing!");
+                            }
+                            else {
+                                var desc_of_alert_in_routes = labus_alert_route_desc[0].text;
+                            }
+
+                            document.getElementById("alert_desc_routes").innerHTML = `<p><span id="affectedroutes"></span> <b>${labus_alert_route_header}</b> <br> ${desc_of_alert_in_routes}`;
 
                             document.getElementById("affectedroutes").innerHTML = affected_route_short_name;
                             document.getElementById("affectedroutes").style.color = `#${affected_route_text_color}`;
