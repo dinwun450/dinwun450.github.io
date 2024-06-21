@@ -180,12 +180,12 @@ function getLABusRouteAlerts(insOneStopIDinRoutes) {
                             var route_alert_cloner = document.getElementById("alert_desc_routes").cloneNode(true);
                             document.getElementById("bus_routes_alerts").appendChild(route_alert_cloner);
                         }
-
-                        var all_route_alerts = document.getElementById("bus_routes_alerts").children;
-                        document.getElementById("bus_routes_alerts").removeChild(all_route_alerts[0]);
                         break;
                 };
             };
+            
+            var all_route_alerts = document.getElementById("bus_routes_alerts").children;
+            document.getElementById("bus_routes_alerts").removeChild(all_route_alerts[0]);
 
             if (no_route_alerts_labus.length === labus_agency_route_receiver.routes.length) {
                 document.getElementById("alert_desc_routes").innerHTML = "There are no alerts in all routes under this agency.";
