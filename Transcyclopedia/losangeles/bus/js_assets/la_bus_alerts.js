@@ -118,6 +118,7 @@ function getLABusAgencyAlerts(insOneStopID) {
                     var alert_agency_desc = labus_agency_alert_receiver.agencies[0].alerts[i].description_text;
                     if (alert_agency_desc.length == 0) {
                         console.log("nothing!");
+                        var desc_of_alert_in_agency = "";
                     }
                     else {
                         var desc_of_alert_in_agency = alert_agency_desc[0].text
@@ -171,7 +172,7 @@ function getLABusRouteAlerts(insOneStopIDinRoutes) {
                                 var desc_of_alert_in_routes = labus_alert_route_desc[0].text;
                             }
 
-                            document.getElementById("alert_desc_routes").innerHTML = `<p><span id="affectedroutes"></span> <b>${labus_alert_route_header}</b> <br> ${desc_of_alert_in_routes}`;
+                            document.getElementById("alert_desc_routes").innerHTML = `<p><span id="affectedroutes"></span> <br> <b>${labus_alert_route_header}</b> <br> ${desc_of_alert_in_routes}`;
 
                             document.getElementById("affectedroutes").innerHTML = affected_route_short_name;
                             document.getElementById("affectedroutes").style.color = `#${affected_route_text_color}`;
