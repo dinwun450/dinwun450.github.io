@@ -201,7 +201,7 @@ function LABusGeoJsonCreation(insOneStopID) {
                         );
                     }
 
-                    popup.setLngLat(e.lnglat.wrap()).setHTML(routeId).addTo(map);
+                    popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
                 }
             });
 
