@@ -349,14 +349,16 @@
         }
 
         function moveMap() {
-            if (map.getLayer("la_bus_route_layer")) {
-                map.moveLayer("la_bus_route_layer");
-                map.on('movestart', () => {
+            map.moveLayer("la_bus_route_layer");
+            map.on('movestart', () => {
+                if (map.getLayer("la_bus_route_layer")) {
                     map.setFilter('la_bus_route_layer', ['has', 'route_id']);
                     document.getElementById("range_of_routes").innerHTML = `<li id="rir"><span id="route_rad">-</span>&nbsp;&nbsp;<span id="detailed_route">Wait for a while, then drag the map to filter nearby routes.</span></li>`;
-                });
-                
-                map.on('moveend', () => {
+                }
+            });
+            
+            map.on('moveend', () => {
+                if (map.getLayer("la_bus_route_layer")) {
                     const features = map.queryRenderedFeatures({
                         layers: ['la_bus_route_layer']
                     });
@@ -394,8 +396,8 @@
                         var all_routes_nearby = document.getElementById("range_of_routes").children;
                         document.getElementById("range_of_routes").removeChild(all_routes_nearby[0]);
                     }
-                });
-            }
+                }
+            });
         }
         moveMap();
     </script>

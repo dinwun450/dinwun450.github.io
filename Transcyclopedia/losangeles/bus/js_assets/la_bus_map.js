@@ -96,6 +96,7 @@ function changeLABusMap(e) {
             if (map.getSource("la_bus_route_source")) {
                 map.removeSource("la_bus_route_source");
             }
+            labus_geojson_routes = [];
             break;
     }
 
@@ -114,6 +115,7 @@ function LABusGeoJsonCreation(insOneStopID) {
     if (map.getSource("la_bus_route_source")) {
         map.removeSource("la_bus_route_source");
     }
+    labus_geojson_routes = [];
 
     var labus_route_caller = new XMLHttpRequest();
     labus_route_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${insOneStopID}&limit=700&include_geometry=true`);
