@@ -118,7 +118,7 @@
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a stop.." onkeydown="" id="stopgetter" autocomplete="off">
-            <select name="" id="bus_lines" onchange="changeLABusDepartures(value);">
+            <select name="" id="bus_departures" onchange="changeLABusDepartures(value);">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="avta">Antelope Valley Transit Authority</option>
                 <option value="baldinpark">Baldwin Park Transit</option>
@@ -161,7 +161,7 @@
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="bus_lines" onchange="changeLABusAlerts(value);">
+            <select name="" id="bus_alerts" onchange="changeLABusAlerts(value);">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="avta">Antelope Valley Transit Authority</option>
                 <option value="baldinpark">Baldwin Park Transit</option>
@@ -208,7 +208,7 @@
         </div>
         <div class="window" id="map_inter">
             <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="bus_maps" onchange="changeLABusMap(value);">
+            <select name="" id="bus_map" onchange="changeLABusMap(value);">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="avta">Antelope Valley Transit Authority</option>
                 <option value="baldinpark">Baldwin Park Transit</option>
