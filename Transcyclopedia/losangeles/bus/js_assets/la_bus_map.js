@@ -190,7 +190,7 @@ function LABusGeoJsonCreation(insOneStopID) {
 
                         if (hoveredPolygonLine !== null) {
                             map.setFeatureState(
-                                {source: 'bus_routes', id: hoveredPolygonLine},
+                                {source: 'la_bus_route_source', id: hoveredPolygonLine},
                                 {hover: false}
                             );
                         }
