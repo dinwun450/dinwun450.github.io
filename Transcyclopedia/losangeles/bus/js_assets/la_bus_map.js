@@ -171,7 +171,7 @@ function LABusGeoJsonCreation(insOneStopID) {
                     'line-color': [
                         'case',
                         ['boolean', ['feature-state', 'hover'], false],
-                        ['get', 'color'],
+                        ['get', 'route_color'],
                         '#c0e7fc',
                     ],
                 },
