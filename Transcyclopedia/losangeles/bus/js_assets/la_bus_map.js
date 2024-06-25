@@ -114,7 +114,7 @@ function LABusGeoJsonCreation(insOneStopID) {
     if (map.getSource("la_bus_route_source")) {
         map.removeSource("la_bus_route_source");
     }
-    
+
     var labus_route_caller = new XMLHttpRequest();
     labus_route_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${insOneStopID}&limit=700&include_geometry=true`);
     labus_route_caller.onreadystatechange = function() {
@@ -123,12 +123,12 @@ function LABusGeoJsonCreation(insOneStopID) {
             var name_of_labus_agency = labus_route_receiver.routes[0].agency.agency_name;
 
             for (var i = 0; i < labus_route_receiver.routes.length; i++) {
-                var route_short_name = labus_route_receiver.routes[b].route_short_name;
-                var route_long_name = labus_route_receiver.routes[b].route_long_name;
-                var route_color = labus_route_receiver.routes[b].route_color;
-                var route_text_color = labus_route_receiver.routes[b].route_text_color;
-                var route_id = labus_route_receiver.routes[b].route_id;
-                var labus_route_geometry = labus_route_receiver.routes[b].geometry;
+                var route_short_name = labus_route_receiver.routes[i].route_short_name;
+                var route_long_name = labus_route_receiver.routes[i].route_long_name;
+                var route_color = labus_route_receiver.routes[i].route_color;
+                var route_text_color = labus_route_receiver.routes[i].route_text_color;
+                var route_id = labus_route_receiver.routes[i].route_id;
+                var labus_route_geometry = labus_route_receiver.routes[i].geometry;
 
                 if (labus_route_geometry === null) {
                     console.log("No GeoJson routes here.");
