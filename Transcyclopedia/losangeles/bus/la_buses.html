@@ -12,6 +12,7 @@
     <script src="js_assets/la_bus_lines.js"></script>
     <script src="js_assets/la_bus_departures.js"></script>
     <script src="js_assets/la_bus_alerts.js"></script>
+    <script src="js_assets/la_bus_map.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -207,6 +208,34 @@
         </div>
         <div class="window" id="map_inter">
             <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="bus_maps" onchange="changeLABusMap(value);">
+                <option value="prompt">Select Bus Agency</option>
+                <option value="avta">Antelope Valley Transit Authority</option>
+                <option value="baldinpark">Baldwin Park Transit</option>
+                <option value="beachcities">Beach Cities Transit</option>
+                <option value="burbankbus">Burbank Bus</option>
+                <option value="carsoncirc">Carson Circuit</option>
+                <option value="compton">Compton Renaissance</option>
+                <option value="culver">Culver CityBus</option>
+                <option value="foothill">Foothill Transit</option>
+                <option value="gtrans">Gardena GTRANS</option>
+                <option value="glendale">Glendale Beeline</option>
+                <option value="glendora">Glendora Transportation Division</option>
+                <option value="huntington">Huntington Park Express</option>
+                <option value="lagobus">LA Go Bus</option>
+                <option value="ladot">LADOT Transit</option>
+                <option value="lawndale">Lawndale Beat</option>
+                <option value="laxflyaway">LAX Flyaway</option>
+                <option value="longbeach">Long Beach Transit</option>
+                <option value="montebello">Montebello Bus Lines</option>
+                <option value="montereypark">Monterey Park Spirit Bus</option>
+                <option value="norwalk">Norwalk Transit</option>
+                <option value="palosverdes">Palos Verdes Peninsula Transit Authority</option>
+                <option value="pasadena">Pasadena Transit</option>
+                <option value="santaclarita">Santa Clarita Transit</option>
+                <option value="bigbluebus">Santa Monica Big Blue Bus</option>
+                <option value="torrance">Torance Transit</option>
+            </select>
             <section class="map_box_container">
                 <!--MAP-->
                 <div id='map' style="width: 100%; height: 500px;"></div>
@@ -219,6 +248,76 @@
         </div>
     </div>
     <script>
+        function mapConfiguration() {
+            document.getElementById("map").style.width = "100%";
+            document.getElementById("map").style.height = "500px";
+
+            const mapDiv = document.getElementById("map");
+            if (mapDiv.style.visibility === false) {
+                map.resize();
+            };
+
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZGlud3VuNDUwIiwiYSI6ImNsaTR4c253bTAzNnIzcnF1aTh0eTN2a3kifQ.fjcqiGi68hyGpUAKAo9Tcw';
+            map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/light-v11',
+                center: [-122.1789019, 37.7403623],
+                zoom: 8
+            });
+
+            map.addControl(new mapboxgl.NavigationControl());
+            map.scrollZoom.disable();
+
+            map.on('style.load', () => {
+                // Insert the layer beneath any symbol layer.
+                const layers = map.getStyle().layers;
+                const labelLayerId = layers.find(
+                    (layer) => layer.type === 'symbol' && layer.layout['text-field']
+                ).id;
+                
+                // The 'building' layer in the Mapbox Streets
+                // vector tileset contains building height data
+                // from OpenStreetMap.
+                map.addLayer({
+                            'id': 'add-3d-buildings',
+                            'source': 'composite',
+                            'source-layer': 'building',
+                            'filter': ['==', 'extrude', 'true'],
+                            'type': 'fill-extrusion',
+                            'minzoom': 15,
+                            'paint': {
+                            'fill-extrusion-color': '#aaa',
+                            
+                            // Use an 'interpolate' expression to
+                            // add a smooth transition effect to
+                            // the buildings as the user zooms in.
+                            'fill-extrusion-height': [
+                                'interpolate',
+                                ['linear'],
+                                ['zoom'],
+                                15,
+                                0,
+                                15.05,
+                                ['get', 'height']
+                            ],
+                            'fill-extrusion-base': [
+                                'interpolate',
+                                ['linear'],
+                                ['zoom'],
+                                15,
+                                0,
+                                15.05,
+                                ['get', 'min_height']
+                            ],
+                            'fill-extrusion-opacity': 0.6
+                        }
+                    },
+                    labelLayerId
+                );
+            });
+        }
+        mapConfiguration();
+
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("window");
@@ -235,6 +334,70 @@
             evt.currentTarget.className += " active";
         }
         document.getElementById("defaulttab").click();
+
+        function getUniqueFeatures(features, comparatorProperty) {
+            const uniqueIds = new Set();
+            const uniqueFeatures = [];
+            for (const feature of features) {
+                const id = feature.properties[comparatorProperty];
+                if (!uniqueIds.has(id)) {
+                    uniqueIds.add(id);
+                    uniqueFeatures.push(feature);
+                }
+            }
+            return uniqueFeatures;
+        }
+
+        function moveMap() {
+            if (map.getLayer("la_bus_route_layer")) {
+                map.moveLayer("la_bus_route_layer");
+                map.on('movestart', () => {
+                    map.setFilter('la_bus_route_layer', ['has', 'route_id']);
+                    document.getElementById("range_of_routes").innerHTML = `<li id="rir"><span id="route_rad">-</span>&nbsp;&nbsp;<span id="detailed_route">Wait for a while, then drag the map to filter nearby routes.</span></li>`;
+                });
+                
+                map.on('moveend', () => {
+                    const features = map.queryRenderedFeatures({
+                        layers: ['la_bus_route_layer']
+                    });
+
+                    if (features) {
+                        const uniqueFeatures = getUniqueFeatures(features, 'route_id');
+                        for (var f = 0; f < uniqueFeatures.length; f++) {
+                            var name_of_route = uniqueFeatures[f].properties.route_short_name;
+                            var color_of_route = uniqueFeatures[f].properties.color;
+                            var text_color_of_route = uniqueFeatures[f].properties.text_color;
+                            var desc_of_route = uniqueFeatures[f].properties.route_long_name;
+
+                            if (name_of_route === "") {
+                                name_of_route = "&nbsp;&nbsp;&nbsp;"
+                            }
+
+                            if (color_of_route === "#") {
+                                color_of_route = "#000000";
+                            }
+
+                            if (text_color_of_route === "#") {
+                                text_color_of_route = "#ffffff";
+                            }
+
+                            document.getElementById("route_rad").innerHTML = `${name_of_route}`;
+                            document.getElementById("route_rad").style.color = `${text_color_of_route}`;
+                            document.getElementById("route_rad").style.backgroundColor = `${color_of_route}40`;
+                            document.getElementById("route_rad").style.border = `1px solid ${color_of_route}40`;
+                            document.getElementById("detailed_route").innerHTML = `${desc_of_route}`;
+
+                            var route_cloner = document.getElementById("rir").cloneNode(true);
+                            document.getElementById("range_of_routes").appendChild(route_cloner);
+                        }
+
+                        var all_routes_nearby = document.getElementById("range_of_routes").children;
+                        document.getElementById("range_of_routes").removeChild(all_routes_nearby[0]);
+                    }
+                });
+            }
+        }
+        moveMap();
     </script>
 </body>
 </html>
