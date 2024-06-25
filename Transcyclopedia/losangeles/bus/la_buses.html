@@ -349,7 +349,10 @@
         }
 
         function moveMap() {
-            map.moveLayer("la_bus_route_layer");
+            if (map.getLayer("la_bus_route_layer")) {
+                map.moveLayer("la_bus_route_layer");
+            }
+            
             map.on('movestart', () => {
                 if (map.getLayer("la_bus_route_layer")) {
                     map.setFilter('la_bus_route_layer', ['has', 'route_id']);
