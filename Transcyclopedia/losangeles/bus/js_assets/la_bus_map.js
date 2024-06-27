@@ -195,6 +195,7 @@ function LABusGeoJsonCreation(insOneStopID) {
 
                         hoveredPolygonLine = fs[f].id;
                         hoverIdBus.push(hoveredPolygonLine);
+                        hoverIdBus = hoverIdBus.filter((item, index) => hoverIdBus.indexOf(item) === index);
 
                         if (hoveredPolygonLine !== null) {
                             map.setFeatureState(
