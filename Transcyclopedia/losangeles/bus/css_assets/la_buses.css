@@ -133,6 +133,7 @@ body::after {
 
 #bus_map {
     width: 100%;
+    margin-left: 0px;
 }
 
 #sectionheader {
