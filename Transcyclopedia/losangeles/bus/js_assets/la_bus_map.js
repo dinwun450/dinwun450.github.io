@@ -189,6 +189,7 @@ function LABusGeoJsonCreation(insOneStopID) {
 
                         hoveredPolygonLine = fs[f].id;
                         hoverIdBus.push(hoveredPolygonLine);
+                        console.log(hoverIdBus)
 
                         if (hoveredPolygonLine !== null) {
                             map.setFeatureState(
@@ -203,6 +204,7 @@ function LABusGeoJsonCreation(insOneStopID) {
                         );
                     }
 
+                    console.log(routeId)
                     popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
                 }
             });
