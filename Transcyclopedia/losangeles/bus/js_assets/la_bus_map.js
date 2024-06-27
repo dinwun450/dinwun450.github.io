@@ -1,7 +1,7 @@
 let routeId = [];
 let hoverIdBus = [];
 var labus_geojson_routes = [];
-let hoveredPolygonLine = null;
+var hoveredPolygonLine = null;
 var onestop_id = "";
 
 const popup = new mapboxgl.Popup({
@@ -97,6 +97,9 @@ function changeLABusMap(e) {
                 map.removeSource("la_bus_route_source");
             }
             labus_geojson_routes = [];
+            routeId = [];
+            hoverIdBus = [];
+            hoveredPolygonLine = null;
             break;
     }
 
@@ -116,6 +119,9 @@ function LABusGeoJsonCreation(insOneStopID) {
         map.removeSource("la_bus_route_source");
     }
     labus_geojson_routes = [];
+    routeId = [];
+    hoverIdBus = [];
+    hoveredPolygonLine = null;
 
     var labus_route_caller = new XMLHttpRequest();
     labus_route_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${insOneStopID}&limit=700&include_geometry=true`);
@@ -189,7 +195,6 @@ function LABusGeoJsonCreation(insOneStopID) {
 
                         hoveredPolygonLine = fs[f].id;
                         hoverIdBus.push(hoveredPolygonLine);
-                        console.log(hoverIdBus)
 
                         if (hoveredPolygonLine !== null) {
                             map.setFeatureState(
@@ -204,7 +209,6 @@ function LABusGeoJsonCreation(insOneStopID) {
                         );
                     }
 
-                    console.log(routeId)
                     popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
                 }
             });
