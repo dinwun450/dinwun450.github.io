@@ -192,10 +192,10 @@ function LABusGeoJsonCreation(insOneStopID) {
                     for (var f = 0; f < fs.length; f++) {
                         var name_of_route = fs[f].properties.route_short_name;
                         routeId.push(name_of_route);
+                        routeId = routeId.filter((item, index) => routeId.indexOf(item) === index);
 
                         hoveredPolygonLine = fs[f].id;
                         hoverIdBus.push(hoveredPolygonLine);
-                        hoverIdBus = hoverIdBus.filter((item, index) => hoverIdBus.indexOf(item) === index);
 
                         if (hoveredPolygonLine !== null) {
                             map.setFeatureState(
