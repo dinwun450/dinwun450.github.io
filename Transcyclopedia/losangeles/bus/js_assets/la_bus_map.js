@@ -191,6 +191,10 @@ function LABusGeoJsonCreation(insOneStopID) {
                 if (fs.length > 0) {
                     for (var f = 0; f < fs.length; f++) {
                         var name_of_route = fs[f].properties.route_short_name;
+                        if (name_of_route === "") {
+                            name_of_route = fs[f].properties.route_long_name;
+                        }
+
                         routeId.push(name_of_route);
                         routeId = routeId.filter((item, index) => routeId.indexOf(item) === index);
 
