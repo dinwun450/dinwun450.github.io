@@ -64,7 +64,7 @@
         display: none;
     }
 
-    #departures input, .headerforbus, #bus_departures, #list_of_departures_bus, .alerts_in_busstop {
+    #departures input, .headerforbus, #bus_departures, #list_of_bus_departures, .alerts_in_busstop {
         width: 90%;
     }
 
