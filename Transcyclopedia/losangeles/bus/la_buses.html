@@ -8,6 +8,7 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="css_assets/la_buses.css">
+    <link rel="stylesheet" href="css_assets/la_buses_responsive.css">
     <script src="js_assets/la_bus_agencies_info.js"></script>
     <script src="js_assets/la_bus_lines.js"></script>
     <script src="js_assets/la_bus_departures.js"></script>
@@ -249,6 +250,8 @@
     </div>
     <script>
         function mapConfiguration() {
+            var v = null;
+            
             document.getElementById("map").style.width = "100%";
             document.getElementById("map").style.height = "500px";
 
@@ -317,6 +320,16 @@
             });
         }
         mapConfiguration();
+
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
+            }
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
 
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
