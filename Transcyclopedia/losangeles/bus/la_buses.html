@@ -251,7 +251,7 @@
     <script>
         function mapConfiguration() {
             var v = null;
-            
+
             document.getElementById("map").style.width = "100%";
             document.getElementById("map").style.height = "500px";
 
@@ -416,6 +416,15 @@
             });
         }
         moveMap();
+
+        function openNav() {
+            document.querySelector(".left_navbar").style.display = "block";
+        }
+        
+        function closeNav() {
+            document.querySelector(".left_navbar").style.display = "none";
+            console.log(document.querySelector(".left_navbar").getAttribute("style"))
+        }
     </script>
 </body>
 </html>
