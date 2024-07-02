@@ -1,0 +1,116 @@
+#lines::-webkit-scrollbar, #map_inter::-webkit-scrollbar, #about_buses::-webkit-scrollbar, #departures::-webkit-scrollbar,
+.began_operation::-webkit-scrollbar, .no_of_lines::-webkit-scrollbar, .contact::-webkit-scrollbar {
+    width: 5px;
+    position: relative;
+    right: 20px;
+}
+
+#lines::-webkit-scrollbar-track, #map_inter::-webkit-scrollbar-track, #about_buses::-webkit-scrollbar-track, #departures::-webkit-scrollbar-track,
+.began_operation::-webkit-scrollbar-track, .no_of_lines::-webkit-scrollbar-track, 
+.contact::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+.light_mode #lines::-webkit-scrollbar-track, .light_mode #map_inter::-webkit-scrollbar-track, .light_mode #about_buses::-webkit-scrollbar-track, .light_mode #departures::-webkit-scrollbar-track,
+.light_mode .began_operation::-webkit-scrollbar-track, .light_mode .no_of_lines::-webkit-scrollbar-track, .light_mode .contact::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+#lines::-webkit-scrollbar-thumb, #map_inter::-webkit-scrollbar-thumb, #about_buses::-webkit-scrollbar-thumb, #departures::-webkit-scrollbar-thumb,
+.began_operation::-webkit-scrollbar-thumb, .no_of_lines::-webkit-scrollbar-thumb, 
+.contact::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+}
+
+.light_mode #lines::-webkit-scrollbar-thumb, .light_mode #map_inter::-webkit-scrollbar-thumb, .light_mode #about_buses::-webkit-scrollbar-thumb, .light_mode #departures::-webkit-scrollbar-thumb,
+.light_mode #alerts::-webkit-scrollbar-thumb, .light_mode .began_operation::-webkit-scrollbar-thumb, .light_mode .no_of_lines::-webkit-scrollbar-thumb, .light_mode .contact::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.stats::-webkit-scrollbar, #range_of_routes::-webkit-scrollbar {
+    width: 5px;
+    position: relative;
+    right: 20px;
+}
+
+.stats::-webkit-scrollbar-track, #range_of_routes::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+.light_mode .stats::-webkit-scrollbar-track, .light_mode #range_of_routes::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+.stats::-webkit-scrollbar-thumb, #range_of_routes::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+}
+
+.light_mode .stats::-webkit-scrollbar-thumb, .light_mode #range_of_routes::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.alerts_in_busstop::-webkit-scrollbar, .alert_entity_routes::-webkit-scrollbar {
+    width: 5px;
+    position: relative;
+    right: 20px;
+}
+
+.alerts_in_busstop::-webkit-scrollbar-track, .alert_entity_routes::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+.headerforbusalerts::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+.light_mode .alerts_in_busstop::-webkit-scrollbar-track, .light_mode .alert_entity_routes::-webkit-scrollbar-track, .light_mode .headerforbusalerts::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+.alerts_in_busstop::-webkit-scrollbar-thumb, .alert_entity_routes::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+}
+
+.light_mode .alerts_in_busstop::-webkit-scrollbar-thumb, .light_mode .alert_entity_routes::-webkit-scrollbar-thumb, .light_mode .headerforbusalerts::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
