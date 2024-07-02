@@ -1,0 +1,20 @@
+.light_mode {
+    background-color: #dedede;
+    color: black;
+    transition: 0.4s;
+}
+
+.light_mode #departures input {
+    color: black;
+    transition: 0.4s;
+}
+
+.light_mode .left_navbar li a {
+    color: black;
+    transition: 0.4s;
+}
+
+.light_mode #departures input::placeholder {
+    color: black;
+    transition: 0.4s;
+}

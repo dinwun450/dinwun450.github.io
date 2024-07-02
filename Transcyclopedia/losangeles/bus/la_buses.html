@@ -9,6 +9,7 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="css_assets/la_buses.css">
     <link rel="stylesheet" href="css_assets/la_buses_responsive.css">
+    <link rel="stylesheet" href="css_assets/la_buses_light_dark.css">
     <script src="js_assets/la_bus_agencies_info.js"></script>
     <script src="js_assets/la_bus_lines.js"></script>
     <script src="js_assets/la_bus_departures.js"></script>
@@ -424,6 +425,12 @@
         function closeNav() {
             document.querySelector(".left_navbar").style.display = "none";
             console.log(document.querySelector(".left_navbar").getAttribute("style"))
+        }
+
+        function dark_or_light() {
+            var element = document.body;
+            var light_or_dark_labus = element.classList.toggle("light_mode");
+            document.getElementById("light_dark_transition").innerHTML = light_or_dark_labus ? `<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</a></span>` : `<i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</a></span>`;
         }
     </script>
 </body>
