@@ -91,6 +91,9 @@ function changeLinesInMap(n) {
             routeId = [];
             hoverIdBus = [];
             hoveredPolygonLine = null;
+            document.getElementById("range_of_routes").innerHTML = `
+                <li class="route_radius"><span id="route_short">-</span>&nbsp;&nbsp;<span id="detailed_route">Select a transit agency above, then drag the map to filter nearby routes.</span></li>
+            `;
             break;
     }
 
