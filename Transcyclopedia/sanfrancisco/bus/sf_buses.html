@@ -374,7 +374,7 @@
                 if (map.getLayer("sf_bus_route_layer")) {
                     map.setFilter('sf_bus_route_layer', ['has', 'route_short_name']);
                     console.log("Move it!");
-                    document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+                    document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span>&nbsp;&nbsp;<span id="detailed_route">Loading...</span></li>`;
                 }
             });
 
