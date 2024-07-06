@@ -14,10 +14,11 @@
     <script src="js_assets/all_buslines.js"></script>
     <script src="js_assets/bus_departures.js"></script>
     <script src="js_assets/bus_alerts.js"></script>
-    <script src="js_assets/east_bay_map.js"></script>
+    <script src="js_assets/new_bus_map.js"></script>
+    <!-- <script src="js_assets/east_bay_map.js"></script>
     <script src="js_assets/peninsula_map.js"></script>
     <script src="js_assets/north_bay_west.js"></script>
-    <script src="js_assets/north_bay_east.js"></script>
+    <script src="js_assets/north_bay_east.js"></script> -->
 </head>
 <body>
     <ul class="left_navbar">
@@ -201,6 +202,31 @@
         </div>
         <div class="window" id="map_inter">
             <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="bus_map" onchange="">
+                <option value="prompt">Select Bus Agency</option>
+                <option value="actransit">AC Transit</option>
+                <option value="berkeleyshuttles">Bear Transit</option>
+                <option value="commutedotorg">Commute.org Shuttles</option>
+                <option value="countyconnection">County Connection</option>
+                <option value="dumbartonexpress">Dumbarton Express</option>
+                <option value="emeryvilleshuttles">Emery Go-Round</option>
+                <option value="fast">Fairfield-Suisun City Transit</option>
+                <option value="ggt">Golden Gate Transit</option>
+                <option value="marintransit">Marin Transit</option>
+                <option value="missionbaytma">Mission Bay TMA</option>
+                <option value="petalumatransit">Petaluma Transit</option>
+                <option value="sanmateotransit">SamTrans</option>
+                <option value="santarosacitybus">Santa Rosa City Bus</option>
+                <option value="solanotransit">SolTrans</option>
+                <option value="sonomacountytransit">Sonoma County Transit</option>
+                <option value="stanfordshuttles">Stanford Marguerite</option>
+                <option value="trideltatransit">Tri Delta Transit</option>
+                <option value="uctransit">Union City Transit</option>
+                <option value="vacavillecitycoach">Vacaville City Coach</option>
+                <option value="napatransit">Vine Transit</option>
+                <option value="westcat">WestCAT</option>
+                <option value="trivalleywheels">Wheels</option>
+            </select>
             <section class="map_box_container">
                 <!--MAP-->
                 <div id='map' style="width: 100%; height: 500px;"></div>
@@ -340,125 +366,63 @@
         }
 
         function moveIt() {
-            map.moveLayer(
-                'routes_bus', 
-                'routes_bear_transit', 
-                'routes_cccta',
-                'commute_org', 
-                'db_routes', 
-                'delta_routes', 
-                'emerygoround_layer',
-                'fast',
-                'golden_gate_transit',
-                'marin_transit',
-                'mstma_layer',
-                'petaluma_transit',
-                'samtrans',
-                'santa_rosa_city_bus',
-                'soltrans',
-                'sonoma_county_transit',
-                'stanford',
-                'union_city_routes', 
-                'vacaville_city_coach',
-                'vine_transit',
-                'westcat_routes', 
-                'wheels_routes'
-            );
+            if (map.getLayer("sf_bus_route_layer")) {
+                map.moveLayer('sf_bus_route_layer');
+            }
 
             map.on('movestart', () => {
-                map.setFilter('routes_bus', ['has', 'route_short_name']);
-                map.setFilter('routes_bear_transit', ['has', 'route_short_name']);
-                map.setFilter('routes_cccta', ['has', 'route_short_name']);
-                map.setFilter('commute_org', ['has', 'route_short_name']);
-                map.setFilter('db_routes', ['has', 'route_short_name']);
-                map.setFilter('delta_routes', ['has', 'route_short_name']);
-                map.setFilter('emerygoround_layer', ['has', 'route_short_name']);
-                map.setFilter('fast', ['has', 'route_short_name']);
-                map.setFilter('golden_gate_transit', ['has', 'route_short_name']);
-                map.setFilter('marin_transit', ['has', 'route_short_name']);
-                map.setFilter('mstma_layer', ['has', 'route_short_name']);
-                map.setFilter('petaluma_transit', ['has', 'route_short_name']);
-                map.setFilter('samtrans', ['has', 'route_short_name']);
-                map.setFilter('santa_rosa_city_bus', ['has', 'route_short_name']);
-                map.setFilter('soltrans', ['has', 'route_short_name']);
-                map.setFilter('sonoma_county_transit', ['has', 'route_short_name']);
-                map.setFilter('stanford', ['has', 'route_short_name']);
-                map.setFilter('union_city_routes', ['has', 'route_short_name']);
-                map.setFilter('vacaville_city_coach', ['has', 'route_short_name']);
-                map.setFilter('vine_transit', ['has', 'route_short_name']);
-                map.setFilter('westcat_routes', ['has', 'route_short_name']);
-                map.setFilter('wheels_routes', ['has', 'route_short_name']);
-
-                console.log("Move it!");
-                document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+                if (map.getLayer("sf_bus_route_layer")) {
+                    map.setFilter('sf_bus_route_layer', ['has', 'route_short_name']);
+                    console.log("Move it!");
+                    document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+                }
             });
 
             map.on('moveend', () => {
-                const features = map.queryRenderedFeatures({
-                    layers: [
-                        'routes_bus', 
-                        'routes_bear_transit', 
-                        'routes_cccta', 
-                        'commute_org',
-                        'db_routes', 
-                        'delta_routes',
-                        'emerygoround_layer',
-                        'fast',
-                        'golden_gate_transit',
-                        'marin_transit',
-                        'mstma_layer',
-                        'petaluma_transit',
-                        'samtrans',
-                        'santa_rosa_city_bus',
-                        'soltrans',
-                        'sonoma_county_transit',
-                        'stanford',
-                        'union_city_routes',
-                        'vacaville_city_coach',
-                        'vine_transit', 
-                        'westcat_routes', 
-                        'wheels_routes'
-                    ]
-                });
+                if (map.getLayer("la_bus_route_layer")) {
+                    const features = map.queryRenderedFeatures({
+                        layers: ['sf_bus_route_layer']
+                    });
 
-                if (features) {
-                    const uniqueFeatures = getUniqueFeatures(features, 'route_short_name');
-                    for (var f = 0; f < uniqueFeatures.length; f ++) {
-                        var name_of_route = uniqueFeatures[f].properties.route_short_name;
-                        var color_of_route = uniqueFeatures[f].properties.color;
-                        var text_color_of_route = uniqueFeatures[f].properties.text_color;
-                        var desc_of_route = uniqueFeatures[f].properties.route_long_name;
-                        var agency = uniqueFeatures[f].properties.label;
+                    if (features) {
+                        const uniqueFeatures = getUniqueFeatures(features, 'route_short_name');
+                        for (var f = 0; f < uniqueFeatures.length; f ++) {
+                            var name_of_route = uniqueFeatures[f].properties.route_short_name;
+                            var color_of_route = uniqueFeatures[f].properties.color;
+                            var text_color_of_route = uniqueFeatures[f].properties.text_color;
+                            var desc_of_route = uniqueFeatures[f].properties.route_long_name;
+                            var agency = uniqueFeatures[f].properties.label;
 
-                        if (name_of_route === "") {
-                            name_of_route = "&nbsp;&nbsp;&nbsp;"
+                            if (name_of_route === "") {
+                                name_of_route = "&nbsp;&nbsp;&nbsp;"
+                            }
+
+                            if (color_of_route === "#") {
+                                color_of_route = "#000000";
+                            }
+
+                            if (text_color_of_route === "#") {
+                                text_color_of_route = "#ffffff";
+                            }
+
+                            document.getElementById("route_short").innerHTML = `${name_of_route}`;
+                            document.getElementById("route_short").style.color = `${text_color_of_route}`;
+                            document.getElementById("route_short").style.backgroundColor = `${color_of_route}40`;
+                            document.getElementById("route_short").style.border = `1px solid ${color_of_route}40`;
+                            document.getElementById("detailed_route").innerHTML = `${desc_of_route} (${agency})`;
+
+                            var routeClone = document.querySelector(".route_radius");
+                            var listToInsertClone = routeClone.cloneNode(true);
+                            document.getElementById("range_of_routes").appendChild(listToInsertClone);
                         }
 
-                        if (color_of_route === "#") {
-                            color_of_route = "#000000";
-                        }
-
-                        if (text_color_of_route === "#") {
-                            text_color_of_route = "#ffffff";
-                        }
-
-                        document.getElementById("route_short").innerHTML = `${name_of_route}`;
-                        document.getElementById("route_short").style.color = `${text_color_of_route}`;
-                        document.getElementById("route_short").style.backgroundColor = `${color_of_route}40`;
-                        document.getElementById("route_short").style.border = `1px solid ${color_of_route}40`;
-                        document.getElementById("detailed_route").innerHTML = `${desc_of_route} (${agency})`;
-
-                        var routeClone = document.querySelector(".route_radius");
-                        var listToInsertClone = routeClone.cloneNode(true);
-                        document.getElementById("range_of_routes").appendChild(listToInsertClone);
+                        var all_routes_nearby = document.getElementById("range_of_routes").children;
+                        document.getElementById("range_of_routes").removeChild(all_routes_nearby[0])
                     }
-
-                    var all_routes_nearby = document.getElementById("range_of_routes").children;
-                    document.getElementById("range_of_routes").removeChild(all_routes_nearby[0])
                 }
             });
         }
-        setTimeout(moveIt, 30000);
+        moveIt();
 
         function openNav() {
             document.querySelector(".left_navbar").style.display = "block";

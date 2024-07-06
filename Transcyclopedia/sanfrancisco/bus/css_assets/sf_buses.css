@@ -115,7 +115,7 @@ body::after {
     bottom: 0;
 }
 
-#bus_info, #bus_lines, #bus_departures, #bus_alerts {
+#bus_info, #bus_lines, #bus_departures, #bus_alerts, #bus_map {
     margin-top: 10px;
     width: 95%;
     height: 30px;
@@ -129,6 +129,11 @@ body::after {
 
 #bus_info {
     width: 93%;
+}
+
+#bus_map {
+    width: 100%;
+    margin-left: 0px;
 }
 
 #nameswitch {
