@@ -388,10 +388,9 @@
                         const uniqueFeatures = getUniqueFeatures(features, 'route_short_name');
                         for (var f = 0; f < uniqueFeatures.length; f ++) {
                             var name_of_route = uniqueFeatures[f].properties.route_short_name;
-                            var color_of_route = uniqueFeatures[f].properties.color;
-                            var text_color_of_route = uniqueFeatures[f].properties.text_color;
+                            var color_of_route = uniqueFeatures[f].properties.route_color;
+                            var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
                             var desc_of_route = uniqueFeatures[f].properties.route_long_name;
-                            var agency = uniqueFeatures[f].properties.label;
 
                             if (name_of_route === "") {
                                 name_of_route = "&nbsp;&nbsp;&nbsp;"
@@ -409,7 +408,7 @@
                             document.getElementById("route_short").style.color = `${text_color_of_route}`;
                             document.getElementById("route_short").style.backgroundColor = `${color_of_route}40`;
                             document.getElementById("route_short").style.border = `1px solid ${color_of_route}40`;
-                            document.getElementById("detailed_route").innerHTML = `${desc_of_route} (${agency})`;
+                            document.getElementById("detailed_route").innerHTML = `${desc_of_route}`;
 
                             var routeClone = document.querySelector(".route_radius");
                             var listToInsertClone = routeClone.cloneNode(true);
