@@ -9,7 +9,7 @@ const popup = new mapboxgl.Popup({
     closeOnClick: false
 });
 
-function changeLines(n) {
+function changeLinesInMap(n) {
     var bus_agency = n;
 
     switch (bus_agency) {
