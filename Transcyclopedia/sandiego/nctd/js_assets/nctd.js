@@ -59,7 +59,7 @@ function loadNCTDCoaster() {
                 document.getElementById("route_name_coaster").style.border = `1px solid #${route_color}`;
                 document.getElementById("route_desc_coaster").innerHTML = `${route_long_name} <span id="no_of_alerts_sub"></span>`;
 
-                if (route_info.routes[i].alerts.length === 0) {
+                if (route_coaster_receiver.routes[i].alerts.length === 0) {
                     document.getElementById("no_of_alerts_coaster").innerHTML = "";
                 }
                 else {
