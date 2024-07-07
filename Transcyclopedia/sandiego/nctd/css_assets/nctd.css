@@ -281,6 +281,11 @@ body::after {
     margin: 10px;
 }
 
+#hod_sprinter, #hod_coaster, #hod_bus {
+    position: relative;
+    left: 5px;
+}
+
 #depart_time_coaster, #depart_time_sprinter, #depart_time_bus {
     float: right;
     position: relative;
