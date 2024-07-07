@@ -37,7 +37,7 @@
                 </div>
                 <div class="no_of_lines">
                     <h2>Number of Lines</h2>
-                    <p><b id="bus_routes">- Train (Coaster)</b> <br> <b id="lr_routes">- Light Rail (Sprinter)</b> <br> <b id="sub_routes">- Subway</b></p>
+                    <p><b id="bus_routes">- Train (Coaster)</b> <br> <b id="lr_routes">- Light Rail (Sprinter)</b> <br> <b id="sub_routes">- Bus</b></p>
                 </div>
                 <div class="contact">
                     <h2>Contact:</h2>
@@ -120,5 +120,23 @@
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("window");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("defaulttab").click();
+    </script>
 </body>
 </html>
