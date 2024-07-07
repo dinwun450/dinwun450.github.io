@@ -74,7 +74,7 @@ function loadNCTDCoaster() {
 
             var all_coaster_lines = document.querySelector(".nctd_coaster").children;
             document.querySelector(".nctd_coaster").removeChild(all_coaster_lines[0]);
-            document.getElementById("coaster_routes").innerHTML = `${counter_coaster} (Coaster)`;
+            document.getElementById("coaster_routes").innerHTML = `${counter_coaster} Train (Coaster)`;
         }
     }
     route_coaster_fetcher.send();
