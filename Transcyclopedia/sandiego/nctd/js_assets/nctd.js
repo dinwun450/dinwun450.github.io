@@ -144,6 +144,9 @@ function loadNCTDBreeze() {
                 if (route_short_name === "") {
                     document.getElementById("route_name_bus").innerHTML = `&nbsp;&nbsp;&nbsp;`;
                 }
+                else {
+                    document.getElementById("route_name_bus").innerHTML = route_short_name;
+                }
 
                 document.getElementById("route_name_bus").style.color = `#${route_text_color}`;
                 document.getElementById("route_name_bus").style.backgroundColor = `#${route_color}40`;
