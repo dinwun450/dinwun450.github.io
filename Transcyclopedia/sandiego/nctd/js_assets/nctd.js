@@ -83,7 +83,7 @@ loadNCTDCoaster();
 
 function loadNCTDSprinter() {
     var route_sprinter_fetcher = new XMLHttpRequest();
-    route_sprinter_fetcher.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9mu-northcountytransitdistrict&limit=700&route_type=2&include_alerts=true");
+    route_sprinter_fetcher.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9mu-northcountytransitdistrict&limit=700&route_type=0&include_alerts=true");
     route_sprinter_fetcher.onreadystatechange = function() {
         if (route_sprinter_fetcher.readyState === 4 && route_sprinter_fetcher.status === 200) {
             var route_sprinter_receiver = JSON.parse(route_sprinter_fetcher.responseText);
