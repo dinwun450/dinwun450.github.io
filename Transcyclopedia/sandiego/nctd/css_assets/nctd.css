@@ -184,6 +184,10 @@ body::after {
     margin-left: 20px;
 }
 
+#lines {
+    overflow-y: auto;
+}
+
 .nctd_coasterline, .nctd_buslines, .nctd_sprinterline {
     width: 90%;
     height: fit-content;
