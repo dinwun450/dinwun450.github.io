@@ -125,3 +125,49 @@ function loadNCTDSprinter() {
     route_sprinter_fetcher.send();
 }
 loadNCTDSprinter();
+
+
+function loadNCTDBreeze() {
+    var route_breeze_fetcher = new XMLHttpRequest();
+    route_breeze_fetcher.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9mu-northcountytransitdistrict&limit=700&route_type=3&include_alerts=true");
+    route_breeze_fetcher.onreadystatechange = function() {
+        if (route_breeze_fetcher.readyState === 4 && route_breeze_fetcher.status === 200) {
+            var route_breeze_receiver = JSON.parse(route_breeze_fetcher.responseText);
+            var counter_breeze = 0;
+
+            for (var i=0; i<route_breeze_receiver.routes.length; i++) {
+                var route_short_name = route_breeze_receiver.routes[i].route_short_name;
+                var route_long_name = route_breeze_receiver.routes[i].route_long_name;
+                var route_color = route_breeze_receiver.routes[i].route_color;
+                var route_text_color = route_breeze_receiver.routes[i].route_text_color;
+
+                if (route_short_name === "") {
+                    document.getElementById("route_name_bus").innerHTML = `&nbsp;&nbsp;&nbsp;`;
+                }
+
+                document.getElementById("route_name_bus").style.color = `#${route_text_color}`;
+                document.getElementById("route_name_bus").style.backgroundColor = `#${route_color}40`;
+                document.getElementById("route_name_bus").style.border = `1px solid #${route_color}`;
+                document.getElementById("route_desc_bus").innerHTML = `${route_long_name}`;
+
+                if (route_breeze_receiver.routes[i].alerts.length === 0) {
+                    document.getElementById("no_of_alerts_bus").innerHTML = "";
+                }
+                else {
+                    document.getElementById("no_of_alerts_bus").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${route_breeze_receiver.routes[i].alerts.length})`;
+                }
+
+                var route_entity = document.getElementById("route_item_bus").cloneNode(true);
+                document.querySelector(".nctd_bus").appendChild(route_entity);
+
+                counter_breeze += 1;
+            }
+
+            var all_breeze_lines = document.querySelector(".nctd_bus").children;
+            document.querySelector(".nctd_bus").removeChild(all_breeze_lines[0]);
+            document.getElementById("bus_breeze_routes").innerHTML = `${counter_breeze} Bus (Breeze)`;
+        }
+    }
+    route_breeze_fetcher.send();
+}
+loadNCTDBreeze();
