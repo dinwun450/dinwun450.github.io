@@ -57,13 +57,13 @@ function loadNCTDCoaster() {
                 document.getElementById("route_name_coaster").style.color = `#${route_text_color}`;
                 document.getElementById("route_name_coaster").style.backgroundColor = `#${route_color}40`;
                 document.getElementById("route_name_coaster").style.border = `1px solid #${route_color}`;
-                document.getElementById("route_desc_coaster").innerHTML = `${route_long_name} <span id="no_of_alerts_sub"></span>`;
+                document.getElementById("route_desc_coaster").innerHTML = `${route_long_name}`;
 
                 if (route_coaster_receiver.routes[i].alerts.length === 0) {
                     document.getElementById("no_of_alerts_coaster").innerHTML = "";
                 }
                 else {
-                    document.getElementById("no_of_alerts_coaster").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${route_info.routes[i].alerts.length})`;
+                    document.getElementById("no_of_alerts_coaster").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${route_coaster_receiver.routes[i].alerts.length})`;
                 }
 
                 var route_entity = document.getElementById("route_item_coaster").cloneNode(true);
@@ -80,3 +80,48 @@ function loadNCTDCoaster() {
     route_coaster_fetcher.send();
 }
 loadNCTDCoaster();
+
+function loadNCTDSprinter() {
+    var route_sprinter_fetcher = new XMLHttpRequest();
+    route_sprinter_fetcher.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9mu-northcountytransitdistrict&limit=700&route_type=2&include_alerts=true");
+    route_sprinter_fetcher.onreadystatechange = function() {
+        if (route_sprinter_fetcher.readyState === 4 && route_sprinter_fetcher.status === 200) {
+            var route_sprinter_receiver = JSON.parse(route_sprinter_fetcher.responseText);
+            var counter_sprinter = 0;
+
+            for (var i=0; i<route_sprinter_receiver.routes.length; i++) {
+                var route_short_name = route_sprinter_receiver.routes[i].route_short_name;
+                var route_long_name = route_sprinter_receiver.routes[i].route_long_name;
+                var route_color = route_sprinter_receiver.routes[i].route_color;
+                var route_text_color = route_sprinter_receiver.routes[i].route_text_color;
+
+                if (route_short_name === "") {
+                    document.getElementById("route_name_sprinter").innerHTML = `&nbsp;&nbsp;&nbsp;`;
+                }
+
+                document.getElementById("route_name_sprinter").style.color = `#${route_text_color}`;
+                document.getElementById("route_name_sprinter").style.backgroundColor = `#${route_color}40`;
+                document.getElementById("route_name_sprinter").style.border = `1px solid #${route_color}`;
+                document.getElementById("route_desc_sprinter").innerHTML = `${route_long_name}`;
+
+                if (route_sprinter_receiver.routes[i].alerts.length === 0) {
+                    document.getElementById("no_of_alerts_sprinter").innerHTML = "";
+                }
+                else {
+                    document.getElementById("no_of_alerts_sprinter").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${route_sprinter_receiver.routes[i].alerts.length})`;
+                }
+
+                var route_entity = document.getElementById("route_item_sprinter").cloneNode(true);
+                document.querySelector(".nctd_sprinter").appendChild(route_entity);
+
+                counter_sprinter += 1;
+            }
+
+            var all_sprinter_lines = document.querySelector(".nctd_sprinter").children;
+            document.querySelector(".nctd_sprinter").removeChild(all_sprinter_lines[0]);
+            document.getElementById("sprinter_routes").innerHTML = `${counter_sprinter} Light Rail (Sprinter)`;
+        }
+    }
+    route_sprinter_fetcher.send();
+}
+loadNCTDSprinter();
