@@ -72,7 +72,7 @@
         </div>
         <div class="window" id="departures_coaster">
             <p id="sectionheader">Departures (Coaster) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." onkeydown="" id="stationgetter_coaster" autocomplete="off">
+            <input type="text" placeholder="Search for a station..." onkeydown="keyDownCoaster();" id="stationgetter_coaster" autocomplete="off">
             <p class="headerstation_coaster">Departures for &nbsp;<span id="stationname_coaster">---</span></p>
             <ul id="list_of_departures_coaster">
                 <li id="line_for_departure_coaster"><div id="lod_coaster">-</div> <span id="aor_coaster"></span> <span id="hod_coaster">(None)</span> <span id="depart_time_coaster">Enter a station by their station ID</span></li>
@@ -138,6 +138,106 @@
             evt.currentTarget.className += " active";
         }
         document.getElementById("defaulttab").click();
+
+        function keyDownCoaster(e) {
+            e = e || window.event;
+            if (e.keyCode == '13') {
+                document.getElementById("list_of_departures_coaster").innerHTML = `
+                <li id="line_for_departure_coaster"><div id="lod_coaster">-</div> <span id="aor_coaster"></span> <span id="hod_coaster">(None)</span> <span id="depart_time_coaster">Enter a station by their station ID</span></li>
+                `;
+                document.getElementById("stationname_coaster").innerHTML = "---";
+                getCoasterStation();
+            }
+        }
+
+        function getCoasterStation() {
+            var station_value_coaster = document.getElementById("stationgetter_coaster").value;
+            var station_caller = new XMLHttpRequest();
+            station_caller.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9mu-northcountytransitdistrict&served_by_route_type=2&stop_id=${station_value_coaster}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+            station_caller.onreadystatechange = function() {
+                if (station_caller.readyState == 4 && station_caller.status == 200) {
+                    var station_receiver = JSON.parse(station_caller.responseText);
+                    var station_name = station_receiver.stops[0].stop_name;
+                    var station_onestop_id = station_receiver.stops[0].onestop_id;
+
+                    document.getElementById("stationname_coaster").innerHTML = station_name;
+                    getCoasterDepartures(station_onestop_id);
+                }
+            }
+            station_caller.send();
+        }
+
+        function getCoasterDepartures(station_onestop_id) {
+            var departures_caller = new XMLHttpRequest();
+            departures_caller.open("GET", `https://transit.land/api/v2/rest/stops/${station_onestop_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            departures_caller.onreadystatechange = function() {
+                if (departures_caller.readyState == 4 && departures_caller.status == 200) {
+                    var departures_coaster_receiver = JSON.parse(departures_caller.responseText);
+                    
+                    for (var i=0; i<departures_coaster_receiver.stops[0].departures.length; i++) {
+                        var route_color = departures_coaster_receiver.stops[0].departures[i].trip.route.route_color;
+                        var route_text_color = departures_coaster_receiver.stops[0].departures[i].trip.route.route_text_color;
+                        var route_name = departures_coaster_receiver.stops[0].departures[i].trip.route.route_long_name;
+                        var route_headsign = departures_coaster_receiver.stops[0].departures[i].trip.trip_headsign;
+                        var departure_time = departures_coaster_receiver.stops[0].departures[i].arrival.estimated;
+                        var scheduled_time = departures_coaster_receiver.stops[0].departures[i].arrival.scheduled;
+                        var delayed = departures_coaster_receiver.stops[0].departures[i].arrival.delay / 60;
+                        var alerts_coaster = departures_coaster_receiver.stops[0].departures[i].trip.alerts.length;
+                        var trip_num = departures_coaster_receiver.stops[0].departures[i].trip.trip_short_name;
+
+                        switch (departure_time) {
+                            case (null):
+                                document.getElementById("depart_time_coaster").innerHTML = `${scheduled_time} (scheduled)`;
+                                document.getElementById("depart_time_coaster").style.color = "black";
+                                document.getElementById("delay_coaster").style.color = "black";
+                                break;
+                            default:
+                                document.getElementById("depart_time_coaster").innerHTML = `${departure_time} <span id="delay_coaster">()</span>`;
+                                document.getElementById("depart_time_coaster").style.color = "rgb(10, 161, 45)";
+
+                                switch (delayed) {
+                                    case (null):
+                                        document.getElementById("delay_coaster").innerHTML = "(no data)";
+                                        document.getElementById("delay_coaster").style.color = "black";
+                                        break;
+                                    case (delayed > 60):
+                                        document.getElementById("delay_coaster").innerHTML = `(${delayed} min late)`;
+                                        document.getElementById("delay_coaster").style.color = "#db4242";
+                                        break;
+                                    case (delayed < 0):
+                                        document.getElementById("delay_coaster").innerHTML = `(${delayed} min early)`;
+                                        document.getElementById("delay_coaster").style.color = "#0398fc";
+                                        break;
+                                    default:
+                                        document.getElementById("delay_coaster").innerHTML = "(on time)";
+                                        document.getElementById("delay_coaster").style.color = "rgb(10, 161, 45)";
+                                        break;
+                                }
+                                break;
+                        }
+
+                        if (alerts_coaster.length === 0) {
+                            document.getElementById("no_of_alerts_coaster").innerHTML = "";
+                        } else {
+                            document.getElementById("no_of_alerts_coaster").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_coaster.length})`;
+                        }
+
+                        document.getElementById("lod_coaster").innerHTML = trip_num;
+                        document.getElementById("lod_coaster").style.backgroundColor = `#${route_color}40`;
+                        document.getElementById("lod_coaster").style.color = `#${route_text_color}`;
+                        document.getElementById("lod_coaster").style.border = `1px solid #${route_color}`;
+                        document.getElementById("hod_coaster").innerHTML = `${route_long_name} to ${route_headsign}`;
+
+                        var departure_coaster_item = document.getElementById("line_for_departure_coaster").cloneNode(true);
+                        document.getElementById("list_of_departures_coaster").appendChild(departure_coaster_item);
+                    }
+
+                    var all_coaster_departures = document.getElementById("list_of_departures_coaster").children;
+                    document.getElementById("list_of_departures_coaster").removeChild(all_coaster_departures[0]);
+                }
+            }
+            departures_caller.send();
+        }
     </script>
 </body>
 </html>
