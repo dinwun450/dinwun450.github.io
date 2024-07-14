@@ -77,7 +77,7 @@
             <ul id="list_of_departures_coaster">
                 <li id="line_for_departure_coaster"><div id="lod_coaster">-</div> <span id="aor_coaster"></span> <span id="hod_coaster">(None)</span> <span id="depart_time_coaster">Enter a station by their station ID</span></li>
             </ul>
-            <button id="clearall_coaster" onclick="">Clear</button>
+            <button id="clearall_coaster" onclick="clearAllCoaster();">Clear</button>
         </div>
         <div class="window" id="departures_sprinter">
             <p id="sectionheader">Departures (Sprinter) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
@@ -235,6 +235,13 @@
                 }
             }
             departures_caller.send();
+        }
+
+        function clearAllCoaster() {
+            document.getElementById("list_of_departures_coaster").innerHTML = `
+                <li id="line_for_departure_coaster"><div id="lod_coaster">-</div> <span id="aor_coaster"></span> <span id="hod_coaster">(None)</span> <span id="depart_time_coaster">Enter a station by their station ID</span></li>
+            `;
+            document.getElementById("stationname_coaster").innerHTML = "---";
         }
     </script>
 </body>
