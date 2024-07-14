@@ -183,7 +183,6 @@
                         var scheduled_time = departures_coaster_receiver.stops[0].departures[i].arrival.scheduled;
                         var delayed = departures_coaster_receiver.stops[0].departures[i].arrival.delay / 60;
                         var alerts_coaster = departures_coaster_receiver.stops[0].departures[i].trip.alerts.length;
-                        var trip_num = departures_coaster_receiver.stops[0].departures[i].trip.trip_short_name;
 
                         switch (departure_time) {
                             case (null):
@@ -222,11 +221,11 @@
                             document.getElementById("no_of_alerts_coaster").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_coaster.length})`;
                         }
 
-                        document.getElementById("lod_coaster").innerHTML = trip_num;
+                        document.getElementById("lod_coaster").innerHTML = "&nbsp;&nbsp;&nbsp;";
                         document.getElementById("lod_coaster").style.backgroundColor = `#${route_color}40`;
                         document.getElementById("lod_coaster").style.color = `#${route_text_color}`;
                         document.getElementById("lod_coaster").style.border = `1px solid #${route_color}`;
-                        document.getElementById("hod_coaster").innerHTML = `${route_name} to ${route_headsign}`;
+                        document.getElementById("hod_coaster").innerHTML = route_headsign;
 
                         var departure_coaster_item = document.getElementById("line_for_departure_coaster").cloneNode(true);
                         document.getElementById("list_of_departures_coaster").appendChild(departure_coaster_item);
