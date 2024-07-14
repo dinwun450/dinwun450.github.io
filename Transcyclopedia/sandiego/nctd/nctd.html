@@ -81,7 +81,7 @@
         </div>
         <div class="window" id="departures_sprinter">
             <p id="sectionheader">Departures (Sprinter) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." onkeydown="" id="stationgetter_sprinter" autocomplete="off">
+            <input type="text" placeholder="Search for a station..." onkeydown="keyDownSprinter()" id="stationgetter_sprinter" autocomplete="off">
             <p class="headerstation_sprinter">Departures for &nbsp;<span id="stationname_sprinter">---</span></p>
             <ul id="list_of_departures_sprinter">
                 <li id="line_for_departure_sprinter"><div id="lod_sprinter">-</div> <span id="aor_sprinter"></span> <span id="hod_sprinter">(None)</span> <span id="depart_time_sprinter">Enter a station by their station ID</span></li>
@@ -242,6 +242,111 @@
                 <li id="line_for_departure_coaster"><div id="lod_coaster">-</div> <span id="aor_coaster"></span> <span id="hod_coaster">(None)</span> <span id="depart_time_coaster">Enter a station by their station ID</span></li>
             `;
             document.getElementById("stationname_coaster").innerHTML = "---";
+        }
+
+        function keyDownSprinter(e) {
+            e = e || window.event;
+            if (e.keyCode == '13') {
+                document.getElementById("list_of_departures_sprinter").innerHTML = `
+                <li id="line_for_departure_sprinter"><div id="lod_sprinter">-</div> <span id="aor_sprinter"></span> <span id="hod_sprinter">(None)</span> <span id="depart_time_sprinter">Loading...</span></li>
+                `;
+                document.getElementById("stationname_sprinter").innerHTML = "---";
+                getSprinterStation();
+            }
+        }
+
+        function getSprinterStation() {
+            var station_value_sprinter = document.getElementById("stationgetter_sprinter").value;
+            var station_caller = new XMLHttpRequest();
+            station_caller.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9mu-northcountytransitdistrict&served_by_route_type=0&stop_id=${station_value_sprinter}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+            station_caller.onreadystatechange = function() {
+                if (station_caller.readyState == 4 && station_caller.status == 200) {
+                    var station_receiver = JSON.parse(station_caller.responseText);
+                    var station_name = station_receiver.stops[0].stop_name;
+                    var station_onestop_id_sprinter = station_receiver.stops[0].onestop_id;
+
+                    document.getElementById("stationname_sprinter").innerHTML = station_name;
+                    getSprinterDepartures(station_onestop_id_sprinter);
+                }
+            }
+            station_caller.send();
+        }
+
+        function getSprinterDepartures(station_onestop_id) {
+            var departures_caller = new XMLHttpRequest();
+            departures_caller.open("GET", `https://transit.land/api/v2/rest/stops/${station_onestop_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            departures_caller.onreadystatechange = function() {
+                if (departures_caller.readyState == 4 && departures_caller.status == 200) {
+                    var departures_sprinter_receiver = JSON.parse(departures_caller.responseText);
+                    
+                    for (var i=0; i<departures_sprinter_receiver.stops[0].departures.length; i++) {
+                        var route_color = departures_sprinter_receiver.stops[0].departures[i].trip.route.route_color;
+                        var route_text_color = departures_sprinter_receiver.stops[0].departures[i].trip.route.route_text_color;
+                        var route_name = departures_sprinter_receiver.stops[0].departures[i].trip.route.route_long_name;
+                        var route_headsign = departures_sprinter_receiver.stops[0].departures[i].trip.trip_headsign;
+                        var departure_time = departures_sprinter_receiver.stops[0].departures[i].arrival.estimated;
+                        var scheduled_time = departures_sprinter_receiver.stops[0].departures[i].arrival.scheduled;
+                        var delayed = departures_sprinter_receiver.stops[0].departures[i].arrival.delay / 60;
+                        var alerts_sprinter = departures_sprinter_receiver.stops[0].departures[i].trip.alerts.length;
+
+                        switch (departure_time) {
+                            case (null):
+                                document.getElementById("depart_time_sprinter").innerHTML = `${scheduled_time} (scheduled)`;
+                                document.getElementById("depart_time_sprinter").style.color = "black";
+                                break;
+                            default:
+                                document.getElementById("depart_time_sprinter").innerHTML = `${departure_time} <span id="delay_sprinter">()</span>`;
+                                document.getElementById("depart_time_sprinter").style.color = "rgb(10, 161, 45)";
+
+                                switch (delayed) {
+                                    case (null):
+                                        document.getElementById("delay_sprinter").innerHTML = "(no data)";
+                                        document.getElementById("delay_sprinter").style.color = "black";
+                                        break;
+                                    case (delayed > 60):
+                                        document.getElementById("delay_sprinter").innerHTML = `(${delayed} min late)`;
+                                        document.getElementById("delay_sprinter").style.color = "#db4242";
+                                        break;
+                                    case (delayed < 0):
+                                        document.getElementById("delay_sprinter").innerHTML = `(${delayed} min early)`;
+                                        document.getElementById("delay_sprinter").style.color = "#0398fc";
+                                        break;
+                                    default:
+                                        document.getElementById("delay_sprinter").innerHTML = "(on time)";
+                                        document.getElementById("delay_sprinter").style.color = "rgb(10, 161, 45)";
+                                        break;
+                                }
+                                break;
+                        }
+
+                        if (alerts_sprinter === 0) {
+                            document.getElementById("aor_sprinter").innerHTML = "";
+                        } else {
+                            document.getElementById("aor_sprinter").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_sprinter})`;
+                        }
+
+                        document.getElementById("lod_sprinter").innerHTML = "&nbsp;&nbsp;&nbsp;";
+                        document.getElementById("lod_sprinter").style.backgroundColor = `#${route_color}40`;
+                        document.getElementById("lod_sprinter").style.color = `#${route_text_color}`;
+                        document.getElementById("lod_sprinter").style.border = `1px solid #${route_color}`;
+                        document.getElementById("hod_sprinter").innerHTML = route_headsign;
+
+                        var departure_sprinter_item = document.getElementById("line_for_departure_sprinter").cloneNode(true);
+                        document.getElementById("list_of_departures_sprinter").appendChild(departure_sprinter_item);
+                    }
+
+                    var all_sprinter_departures = document.getElementById("list_of_departures_sprinter").children;
+                    document.getElementById("list_of_departures_sprinter").removeChild(all_sprinter_departures[0]);
+                }
+            }
+            departures_caller.send();
+        }
+
+        function clearAllSprinter() {
+            document.getElementById("list_of_departures_sprinter").innerHTML = `
+                <li id="line_for_departure_sprinter"><div id="lod_sprinter">-</div> <span id="aor_sprinter"></span> <span id="hod_sprinter">(None)</span> <span id="depart_time_sprinter">Enter a station by their station ID</span></li>
+            `;
+            document.getElementById("stationname_sprinter").innerHTML = "---";
         }
     </script>
 </body>
