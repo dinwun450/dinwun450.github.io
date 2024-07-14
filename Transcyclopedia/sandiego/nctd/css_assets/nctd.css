@@ -248,6 +248,7 @@ body::after {
     background-color: #eeeeee40;
     border: 1px solid #eeeeee40;
     padding-left: 10px;
+    color: white;
 }
 
 #departures_coaster input::placeholder, #departures_sprinter input::placeholder, #departures_bus input::placeholder {
