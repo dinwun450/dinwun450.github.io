@@ -257,7 +257,7 @@ body::after {
     align-items: center;
 }
 
-#route_cablestreetcar img, #line_for_each_departure_cable img {
+#route_cablestreetcar img, #line_for_each_departure_cable img, #route_affected img {
     width: 15px;
     height: 15px;
     filter: invert(1);
