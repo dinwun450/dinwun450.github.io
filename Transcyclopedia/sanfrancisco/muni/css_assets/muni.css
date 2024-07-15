@@ -265,6 +265,11 @@ body::after {
     top: 1.5px;
 }
 
+#route_affected img {
+    filter: invert(0);
+    top: 0.05px;
+}
+
 #color_of_cables_map {
     width: 15px;
     height: 15px;
