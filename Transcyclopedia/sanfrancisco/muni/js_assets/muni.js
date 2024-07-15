@@ -197,7 +197,8 @@ window.onload = function() {
                     var corr_image_route_affected = muniLineSVGs[route_short_name_affected];
 
                     if (muni_alert_route_receiver.routes[i].alerts.length === 0) {
-                        document.getElementById("alert_desc_routes").innerHTML = "There are no alerts posted in any of Muni Routes.";
+                        // document.getElementById("alert_desc_routes").innerHTML = "There are no alerts posted in any of Muni Routes.";
+                        console.log("No.")
                     }
                     else {
                         for (var a = 0; a < muni_alert_route_receiver.routes[i].alerts.length; a++) {
@@ -228,11 +229,11 @@ window.onload = function() {
                             var alert_route_node = document.getElementById("alert_desc_routes").cloneNode(true);
                             document.getElementById("muni_routes_alerts").appendChild(alert_route_node);
                         }
-
-                        var all_alerts_summed = document.getElementById("muni_routes_alerts").children;
-                        document.getElementById("muni_routes_alerts").removeChild(all_alerts_summed[0]);
                     }
                 }
+
+                var all_alerts_summed = document.getElementById("muni_routes_alerts").children;
+                document.getElementById("muni_routes_alerts").removeChild(all_alerts_summed[0]);
             }
         }
         muni_alert_route_caller.send();
