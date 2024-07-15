@@ -257,7 +257,7 @@ body::after {
     align-items: center;
 }
 
-#route_cablestreetcar img, #line_for_each_departure_cable img, #route_affected img {
+#route_cablestreetcar img, #line_for_each_departure_cable img {
     width: 15px;
     height: 15px;
     filter: invert(1);
@@ -266,8 +266,11 @@ body::after {
 }
 
 #route_affected img {
+    width: 15px;
+    height: 15px;
+    position: relative;
     filter: invert(0);
-    top: 0.05px;
+    bottom: 0.5px;
 }
 
 #color_of_cables_map {
