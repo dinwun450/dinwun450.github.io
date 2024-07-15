@@ -393,7 +393,7 @@
                         var departure_time = departures_bus_receiver.stops[0].departures[i].arrival.estimated;
                         var scheduled_time = departures_bus_receiver.stops[0].departures[i].arrival.scheduled;
                         var delayed = departures_bus_receiver.stops[0].departures[i].arrival.delay / 60;
-                        var alerts_bus = departures_bus_receiver.stops[0].departures[i].trip.alerts.length;
+                        var alerts_bus = departures_bus_receiver.stops[0].departures[i].trip.route.alerts.length;
 
                         switch (departure_time) {
                             case (null):
@@ -435,7 +435,12 @@
                         document.getElementById("lod_bus").style.backgroundColor = `#${route_color}40`;
                         document.getElementById("lod_bus").style.color = `#${route_text_color}`;
                         document.getElementById("lod_bus").style.border = `1px solid #${route_color}`;
-                        document.getElementById("hod_bus").innerHTML = route_headsign;
+
+                        if (route_headsign === "") {
+                            document.getElementById("hod_bus").innerHTML = route_name;
+                        } else {
+                            document.getElementById("hod_bus").innerHTML = route_headsign;
+                        }
 
                         var departure_bus_item = document.getElementById("line_for_departure_bus").cloneNode(true);
                         document.getElementById("list_of_departures_bus").appendChild(departure_bus_item);
