@@ -174,3 +174,91 @@ function loadNCTDBreeze() {
     route_breeze_fetcher.send();
 }
 loadNCTDBreeze();
+
+function loadNCTDAlertsAgency() {
+    var nctd_alert_caller = new XMLHttpRequest();
+    nctd_alert_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9mu-northcountytransitdistrict&include_alerts=true");
+    nctd_alert_caller.onreadystatechange = function() {
+        if (nctd_alert_caller.readyState === 4 && nctd_alert_caller.status === 200) {
+            var nctd_alert_receiver = JSON.parse(nctd_alert_caller.responseText);
+
+            switch (nctd_alert_receiver.agencies[0].alerts.length) {
+                case 0:
+                    document.getElementById("alert_agency_entity").innerHTML = "There are no alerts at the moment involving the NCTD agency.";
+                    break;
+                default:
+                    for (var i=0; i<nctd_alert_receiver.agencies[0].alerts.length; i++) {
+                        var desc_for_nctd_alert = nctd_alert_receiver.agencies[0].alerts[i].description_text[0].text;
+                        var header_for_nctd_alert = nctd_alert_receiver.agencies[0].alerts[i].header_text[0].text;
+                        document.getElementById("alert_agency_entity").innerHTML = `<b>${header_for_nctd_alert}</b> <br> ${desc_for_nctd_alert}`;
+
+                        var agency_alert_cloner = document.getElementById("alert_agency_entity").cloneNode(true);
+                        document.getElementById("list_of_agency_alerts").appendChild(agency_alert_cloner);
+                    }
+
+                    var all_agency_alerts = document.getElementById("list_of_agency_alerts").children;
+                    document.getElementById("list_of_agency_alerts").removeChild(all_agency_alerts[0]);
+                    break;
+            }
+        }
+    }
+    nctd_alert_caller.send();
+}
+loadNCTDAlertsAgency();
+
+function loadNCTDAlertsRoutes() {
+    var nctd_route_alert_caller = new XMLHttpRequest();
+    nctd_route_alert_caller.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9mu-northcountytransitdistrict&limit=700&include_alerts=true");
+    nctd_route_alert_caller.onreadystatechange = function() {
+        if (nctd_route_alert_caller.readyState === 4 && nctd_route_alert_caller.status === 200) {
+            var nctd_route_alert_receiver = JSON.parse(nctd_route_alert_caller.responseText);
+            var no_route_alerts_nctd = [];
+
+            for (var i=0; i<nctd_route_alert_receiver.routes.length; i++) {
+                var affected_route_color = nctd_route_alert_receiver.routes[i].route_color;
+                var affected_route_text_color = nctd_route_alert_receiver.routes[i].route_text_color;
+                var affected_route_short_name = nctd_route_alert_receiver.routes[i].route_short_name;
+                var alerts_for_nctd = nctd_route_alert_receiver.routes[i].alerts;
+
+                switch (alerts_for_nctd.length) {
+                    case 0:
+                        no_route_alerts_nctd.push(affected_route_short_name);
+                        break;
+                    default:
+                        for (var j=0; j<alerts_for_nctd.length; j++) {
+                            var nctd_alert_route_desc = alerts_for_nctd[j].description_text;
+                            var nctd_alert_route_header = alerts_for_nctd[j].header_text[0].text;
+
+                            if (nctd_alert_route_desc.length === 0) {
+                                var desc_of_alert_in_routes = "";
+                            }
+                            else {
+                                var desc_of_alert_in_routes = nctd_alert_route_desc[0].text;
+                            }
+
+                            document.getElementById("alert_routes_entity").innerHTML = `<p><span id="affectedroutes"></span> <br> <b>${nctd_alert_route_header}</b> <br> ${desc_of_alert_in_routes}`;
+
+                            document.getElementById("affectedroutes").innerHTML = affected_route_short_name;
+                            document.getElementById("affectedroutes").style.color = `#${affected_route_text_color}`;
+                            document.getElementById("affectedroutes").style.backgroundColor = `#${affected_route_color}40`;
+                            document.getElementById("affectedroutes").style.border = `1px solid #${affected_route_color}`;
+
+                            var route_alert_cloner = document.getElementById("alert_routes_entity").cloneNode(true);
+                            document.getElementById("list_of_line_alerts").appendChild(route_alert_cloner);
+                        }
+                        break;
+                }
+            }
+
+            if (no_route_alerts_nctd.length === nctd_route_alert_receiver.routes.length) {
+                document.getElementById("alert_routes_entity").innerHTML = "There are no alerts in all routes under NCTD.";
+            }
+            else {
+                var all_route_alerts = document.getElementById("list_of_line_alerts").children;
+                document.getElementById("list_of_line_alerts").removeChild(all_route_alerts[0]);
+            }
+        }
+    }
+    nctd_route_alert_caller.send();
+}
+loadNCTDAlertsRoutes();
