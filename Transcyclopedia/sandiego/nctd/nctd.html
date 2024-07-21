@@ -122,6 +122,8 @@
         </div>
     </div>
     <script>
+        var geojson_of_nctd_routes = [];
+
         function mapConfiguration() {
             document.getElementById("map").style.width = "100%";
             document.getElementById("map").style.height = "500px";
@@ -529,6 +531,262 @@
             `;
             document.getElementById("stopname").innerHTML = "---";
         }
+
+        function getUniqueFeatures(features, comparatorProperty) {
+            const unique_ids = new Set();
+            const unique_features = [];
+
+            for (const feature of features) {
+                const id = feature.properties[comparatorProperty];
+                
+                if (!unique_ids.has(id)) {
+                    unique_ids.add(id);
+                    unique_features.push(feature);
+                }
+            }
+
+            return unique_features;
+        }
+
+        function plotNCTDLines() {
+            var nctd_map_caller = new XMLHttpRequest();
+            nctd_map_caller.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9mu-northcountytransitdistrict&limit=700&include_geometry=true");
+            nctd_map_caller.onreadystatechange = function() {
+                if (nctd_map_caller.readyState === 4 && nctd_map_caller.status === 200) {
+                    var nctd_map_receiver = JSON.parse(nctd_map_caller.responseText);
+
+                    for (var i=0; i<nctd_map_receiver.routes.length; i++) {
+                        var route_short_name = nctd_map_receiver.routes[i].route_short_name;
+                        var route_long_name = nctd_map_receiver.routes[i].route_long_name;
+                        var route_color = nctd_map_receiver.routes[i].route_color;
+                        var route_text_color = nctd_map_receiver.routes[i].route_text_color;
+                        var route_id = nctd_map_receiver.routes[i].route_id;
+                        var route_type = nctd_map_receiver.routes[i].route_type;
+                        var route_geometry = nctd_map_receiver.routes[i].geometry;
+
+                        geojson_of_nctd_routes.push({
+                            'type': 'Feature',
+                            'properties': {
+                                'route_short_name': route_short_name,
+                                'route_long_name': route_long_name,
+                                'route_color': `#${route_color}`,
+                                'route_text_color': `#${route_text_color}`,
+                                'route_id': route_id,
+                                'route_type': route_type
+                            },
+                            'geometry': route_geometry
+                        });
+                    }
+
+                    var coaster_nctd_geojson = geojson_of_nctd_routes.filter(function(c) {
+                        return c.properties.route_type === 2;
+                    });
+
+                    var sprinter_nctd_geojson = geojson_of_nctd_routes.filter(function(s) {
+                        return s.properties.route_type === 0;
+                    });
+
+                    var bus_nctd_geojson = geojson_of_nctd_routes.filter(function(b) {
+                        return b.properties.route_type === 3;
+                    });
+
+                    map.addSource('nctd_coaster_route', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': coaster_nctd_geojson
+                        },
+                        'generateId': true
+                    });
+
+                    map.addSource('nctd_sprinter_route', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': sprinter_nctd_geojson
+                        },
+                        'generateId': true
+                    });
+
+                    map.addSource('nctd_bus_routes', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': bus_nctd_geojson
+                        },
+                        'generateId': true
+                    });
+                    
+                    map.addLayer({
+                        'id': 'nctd_bus_id',
+                        'type': 'line',
+                        'source': 'nctd_bus_routes',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-width': 2,
+                            'line-color': [
+                                'case',
+                                ['boolean', ['feature-state', 'hover'], false],
+                                ['get', 'color'],
+                                '#c0e7fc',
+                            ],
+                        }
+                    });
+
+                    map.addLayer({
+                        'id': 'nctd_coaster_id',
+                        'type': 'line',
+                        'source': 'nctd_coaster_route',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-color': ['get', 'route_color'],
+                            'line-width': 4
+                        }
+                    });
+
+                    map.addLayer({
+                        'id': 'nctd_sprinter_id',
+                        'type': 'line',
+                        'source': 'nctd_sprinter_route',
+                        'layout': {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        'paint': {
+                            'line-color': ['get', 'route_color'],
+                            'line-width': 4
+                        }
+                    });
+
+                    map.moveLayer('nctd_coaster_id', 'nctd_sprinter_id', 'nctd_bus_id');
+
+                    map.on('movestart', () => {
+                        map.setFilter('nctd_coaster_id', ['has', 'route_id']);
+                        map.setFilter('nctd_sprinter_id', ['has', 'route_id']);
+                        map.setFilter('nctd_bus_id', ['has', 'route_id']);
+
+                        document.getElementById("range_of_routes").innerHTML = `
+                            <li id="rir"><span id="route_name_rad">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
+                        `;
+                    });
+
+                    map.on('moveend', () => {
+                        const features = map.queryRenderedFeatures({ 
+                            layers: ['nctd_coaster_id', 'nctd_sprinter_id', 'nctd_bus_id'] 
+                        });
+
+                        if (features) {
+                            const uniqueFeatures = getUniqueFeatures(features, 'route_id');
+
+                            for (var f=0; f<uniqueFeatures.length; f++) {
+                                var name_of_route = uniqueFeatures[f].properties.route_short_name;
+                                var color_of_route = uniqueFeatures[f].properties.route_color;
+                                var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
+                                var desc_of_route = uniqueFeatures[f].properties.route_long_name;
+                                var type_of_route = uniqueFeatures[f].properties.route_type;
+
+                                if (name_of_route === "") {
+                                    document.getElementById("route_name_rad").innerHTML = "&nbsp;&nbsp;&nbsp;";
+                                }
+                                else {
+                                    document.getElementById("route_name_rad").innerHTML = name_of_route;
+                                }
+
+                                document.getElementById("route_name_rad").style.backgroundColor = `${color_of_route}40`;
+                                document.getElementById("route_name_rad").style.border = `1px solid ${color_of_route}`;
+                                document.getElementById("route_name_rad").style.color = text_color_of_route;
+                                document.getElementById("route_detail_rad").innerHTML = desc_of_route;
+
+                                var route_clone = document.getElementById("rir").cloneNode(true);
+                                document.getElementById("range_of_routes").appendChild(route_clone);
+                            }
+
+                            var all_routes = document.getElementById("range_of_routes").children;
+                            document.getElementById("range_of_routes").removeChild(all_routes[0]);
+                        }
+                    });
+
+                    let routeIdCoasterSprinter = [];
+                    let routeIdBus = [];
+                    let hoverIdBus = [];
+                    let hoveredPolygonLine = null;
+
+                    const popup = new mapboxgl.Popup({
+                        closeButton: false,
+                        closeOnClick: false
+                    });
+
+                    map.on('mouseenter', ['nctd_coaster_id', 'nctd_sprinter_id'], (e) => {
+                        var fs = map.queryRenderedFeatures(e.point, { layers: ['nctd_coaster_id', 'nctd_sprinter_id'] });
+
+                        if (fs.length > 0) {
+                            for (var f=0; f<fs.length; f++) {
+                                var name_of_route = fs[f].properties.route_long_name;
+                                routeIdCoasterSprinter.push(name_of_route);
+                            }
+
+                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeIdCoasterSprinter).addTo(map);
+                        }
+                    });
+
+                    map.on('mouseleave', ['nctd_coaster_id', 'nctd_sprinter_id'], () => {
+                        if (routeIdCoasterSprinter.length > 0) {routeIdCoasterSprinter = []}
+                        popup.remove();
+                    });
+
+                    map.on('mouseenter', 'nctd_bus_id', function(e) {
+                        var fs2 = map.queryRenderedFeatures(e.point, { layers: ['nctd_bus_id'] });
+
+                        if (fs2.length > 0) {
+                            for (var f=0; f<fs2.length; f++) {
+                                var name_of_route = fs2[f].properties.route_short_name;
+                                routeIdBus.push(name_of_route);
+
+                                hoveredPolygonLine = fs2[f].id;
+                                hoverIdBus.push(hoveredPolygonLine);
+
+                                if (hoveredPolygonLine !== null) {
+                                    map.setFeatureState(
+                                        { source: 'nctd_bus_routes', id: hoveredPolygonLine }, 
+                                        { hover: false }
+                                    );
+                                }
+
+                                map.setFeatureState(
+                                    { source: 'nctd_bus_routes', id: hoveredPolygonLine }, 
+                                    { hover: true }
+                                );
+                            }
+
+                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeIdBus).addTo(map);
+                        }
+                    });
+
+                    map.on('mouseleave', 'nctd_bus_id', function() {
+                        if (routeIdBus.length > 0) {routeIdBus = []}
+                        popup.remove();
+
+                        if (hoveredPolygonLine !== null) {
+                            for (var i = 0; i < hoverIdBus.length; i++) {
+                                map.setFeatureState(
+                                    { source: 'nctd_bus_routes', id: hoverIdBus[i] }, 
+                                    { hover: false }
+                                );
+                            }
+                        }
+                        hoveredPolygonLine = null;
+                    });
+                }
+            }
+            nctd_map_caller.send();
+        }
+        plotNCTDLines();
     </script>
 </body>
 </html>
