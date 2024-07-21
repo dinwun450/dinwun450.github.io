@@ -220,33 +220,32 @@ function loadNCTDAlertsRoutes() {
                 var affected_route_short_name = nctd_route_alert_receiver.routes[i].route_short_name;
                 var alerts_for_nctd = nctd_route_alert_receiver.routes[i].alerts;
 
-                switch (alerts_for_nctd.length) {
-                    case 0:
-                        no_route_alerts_nctd.push(affected_route_short_name);
-                        break;
-                    default:
-                        for (var j=0; j<alerts_for_nctd.length; j++) {
-                            var nctd_alert_route_desc = alerts_for_nctd[j].description_text;
-                            var nctd_alert_route_header = alerts_for_nctd[j].header_text[0].text;
+                if (alerts_for_nctd.length === 0) {
+                    no_route_alerts_nctd.push(affected_route_short_name);
+                }
+                else {
+                    for (var j=0; j<alerts_for_nctd.length; j++) {
+                        var nctd_alert_route_desc = alerts_for_nctd[j].description_text;
+                        var nctd_alert_route_header = alerts_for_nctd[j].header_text[0].text;
 
-                            if (nctd_alert_route_desc.length === 0) {
-                                var desc_of_alert_in_routes = "";
-                            }
-                            else {
-                                var desc_of_alert_in_routes = nctd_alert_route_desc[0].text;
-                            }
-
-                            document.getElementById("alert_routes_entity").innerHTML = `<p><span id="affectedroutes"></span> <br> <b>${nctd_alert_route_header}</b> <br> ${desc_of_alert_in_routes}`;
-
-                            document.getElementById("affectedroutes").innerHTML = affected_route_short_name;
-                            document.getElementById("affectedroutes").style.color = `#${affected_route_text_color}`;
-                            document.getElementById("affectedroutes").style.backgroundColor = `#${affected_route_color}40`;
-                            document.getElementById("affectedroutes").style.border = `1px solid #${affected_route_color}`;
-
-                            var route_alert_cloner = document.getElementById("alert_routes_entity").cloneNode(true);
-                            document.getElementById("list_of_line_alerts").appendChild(route_alert_cloner);
+                        if (nctd_alert_route_desc.length === 0) {
+                            var desc_of_alert_in_routes = "";
                         }
-                        break;
+                        else {
+                            var desc_of_alert_in_routes = nctd_alert_route_desc[0].text;
+                        }
+
+                        document.getElementById("alert_routes_entity").innerHTML = `<p><span id="affectedroutes"></span> <br> <b>${nctd_alert_route_header}</b> <br> ${desc_of_alert_in_routes}`;
+
+                        document.getElementById("affectedroutes").innerHTML = affected_route_short_name;
+                        document.getElementById("affectedroutes").style.color = `#${affected_route_text_color}`;
+                        document.getElementById("affectedroutes").style.backgroundColor = `#${affected_route_color}40`;
+                        document.getElementById("affectedroutes").style.border = `1px solid #${affected_route_color}`;
+
+                        var route_alert_cloner = document.getElementById("alert_routes_entity").cloneNode(true);
+                        document.getElementById("list_of_line_alerts").appendChild(route_alert_cloner);
+                    }
+                    break;
                 }
             }
 
