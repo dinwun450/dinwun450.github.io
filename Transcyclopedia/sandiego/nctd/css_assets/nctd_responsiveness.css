@@ -68,7 +68,7 @@
         display: none;
     }
 
-    #departures_coaster, #departures_sprinter, #departures_bus,
+    #departures_coaster input, #departures_sprinter input, #departures_bus input,
     .headerstation_coaster, .headerstation_sprinter, .headerstop,
     #list_of_departures_coaster, #list_of_departures_sprinter, #list_of_departures_bus,
     #clearall_coaster, #clearall_bus, #clearall_sprinter {
