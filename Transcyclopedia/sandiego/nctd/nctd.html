@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css_assets/nctd.css">
     <link rel="stylesheet" href="css_assets/nctd_scrollbars.css">
     <link rel="stylesheet" href="css_assets/nctd_lightdark.css">
+    <link rel="stylesheet" href="css_assets/nctd_responsiveness.css">
     <script src="js_assets/nctd.js"></script>
 </head>
 <body>
@@ -124,6 +125,7 @@
         </div>
     </div>
     <script>
+        var v = null;
         var geojson_of_nctd_routes = [];
 
         function mapConfiguration() {
@@ -195,6 +197,16 @@
             });
         }
         mapConfiguration();
+
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
+            }
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
 
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
@@ -794,6 +806,15 @@
             var element = document.body;
             var light_or_dark_nctd = element.classList.toggle("light_mode");
             document.getElementById("light_dark_transition").innerHTML = light_or_dark_nctd ? `<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</a></span>` : `<i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</a></span>`;
+        }
+
+        function openNav() {
+            document.querySelector(".left_navbar").style.display = "block";
+        }
+
+        function closeNav() {
+            document.querySelector(".left_navbar").style.display = "none";
+            console.log(document.querySelector(".left_navbar").getAttribute("style"));
         }
     </script>
 </body>

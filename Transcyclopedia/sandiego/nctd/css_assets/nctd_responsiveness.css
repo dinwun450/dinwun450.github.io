@@ -1,0 +1,91 @@
+@media (max-width: 988px) {
+    .left_navbar {
+        display: none;
+        width: 35%;
+        background-color: #666;
+        z-index: 3;
+    }
+
+    .light_mode .left_navbar {
+        background-color: #aaa;
+    }
+
+    .left_navbar li {
+        width: 97%;
+    }
+
+    .left_navbar li a.closebtn {
+        display: block;
+    }
+
+    .left_navbar .x:hover { 
+        background-color: #00879898;
+        transition: 0.5s;
+    }
+
+    .main {
+        width: 100%;
+    }
+
+    #sectionheader i {
+        display: block;
+    }
+
+    #alert_agency_entity, #alert_routes_entity {
+        width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    #sectionheader {
+        font-size: 30px;
+    }
+
+    .left_navbar {
+        width: 100%;
+        z-index: 3;
+    }
+
+    .window {
+        overflow-y: auto;
+    }
+
+    .info {
+        width: 100%;
+        height: 100%;
+    }
+
+    #desc {
+        background: rgba( 255, 255, 255, 0.25 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        border-radius: 5px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .stats {
+        display: none;
+    }
+
+    #departures_coaster, #departures_sprinter, #departures_bus,
+    .headerstation_coaster, .headerstation_sprinter, .headerstop,
+    #list_of_departures_coaster, #list_of_departures_sprinter, #list_of_departures_bus,
+    #clearall_coaster, #clearall_bus, #clearall_sprinter {
+        width: 90%;
+    }
+
+    #line_for_departure_coaster, #line_for_departure_sprinter, #line_for_departure_bus {
+        width: 93%;
+        height: fit-content;
+        overflow: hidden;
+        background: rgba( 255, 255, 255, 0.25 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        border-radius: 5px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+    }
+
+    #alert_agency_entity, #alert_routes_entity {
+        width: 92%;
+    }
+}
