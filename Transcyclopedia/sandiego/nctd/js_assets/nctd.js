@@ -245,7 +245,6 @@ function loadNCTDAlertsRoutes() {
                         var route_alert_cloner = document.getElementById("alert_routes_entity").cloneNode(true);
                         document.getElementById("list_of_line_alerts").appendChild(route_alert_cloner);
                     }
-                    break;
                 }
             }
 
