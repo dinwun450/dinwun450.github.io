@@ -9,6 +9,7 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="css_assets/nctd.css">
     <link rel="stylesheet" href="css_assets/nctd_scrollbars.css">
+    <link rel="stylesheet" href="css_assets/nctd_lightdark.css">
     <script src="js_assets/nctd.js"></script>
 </head>
 <body>
@@ -788,6 +789,12 @@
             nctd_map_caller.send();
         }
         plotNCTDLines();
+
+        function dark_or_light() {
+            var element = document.body;
+            var light_or_dark_nctd = element.classList.toggle("light_mode");
+            document.getElementById("light_dark_transition").innerHTML = light_or_dark_nctd ? `<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</a></span>` : `<i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</a></span>`;
+        }
     </script>
 </body>
 </html>
