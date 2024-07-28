@@ -30,10 +30,6 @@
     #nameswitch i {
         display: block;
     }
-
-    .alert_entity, .alert_entity_elev {
-        width: 90%;
-    }
 }
 
 @media (max-width: 600px) { 
@@ -80,8 +76,7 @@
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         border-radius: 5px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
-        margin-left: 20px;
-        margin-right: 20px;
+        padding: 20px;
     }
 
     .stats {
@@ -96,9 +91,5 @@
 
     #line_for_each_departure {
         margin-left: 2px;
-    }
-
-    .alert_entity_routes, .alert_entity_agency {
-        margin-left: 13px;
     }
 }
