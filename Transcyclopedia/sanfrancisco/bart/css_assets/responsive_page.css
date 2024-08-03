@@ -30,10 +30,6 @@
     #nameswitch i {
         display: block;
     }
-
-    .alert_entity, .alert_entity_elev {
-        width: 90%;
-    }
 }
 
 @media (max-width: 600px) { 
@@ -80,8 +76,7 @@
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         border-radius: 5px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
-        margin-left: 20px;
-        margin-right: 20px;
+        padding: 20px;
     }
 
     .stats {
@@ -92,20 +87,6 @@
         bottom: 0;
         right: 0;
         display: none;
-    }
-
-    #departures input, .headerforstop, #list_of_departures, #clearall {
-        width: 90%;
-    }
-
-    #line_for_departure {
-        width: 93%;
-        height: fit-content;
-        overflow: hidden;
-        background: rgba( 255, 255, 255, 0.25 );
-        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-        border-radius: 5px;
-        border: 1px solid rgba( 255, 255, 255, 0.18 );
     }
 
     #line_for_each_departure {
