@@ -119,13 +119,13 @@ body::after {
     width: 100%;
     height: 100%;
     position: absolute;
+    padding: 20px;
     right: 0;
     bottom: 0;
 }
 
 #nameswitch {
     font-size: 40px;
-    margin-left: 20px;
     margin-top: 55px;
 }
 
@@ -139,7 +139,7 @@ body::after {
 }
 
 .info #desc {
-    padding: 20px;
+    padding-right: 20px;
     margin-top: 15px;
 }
 
@@ -191,8 +191,6 @@ body::after {
 .bart_lines {
     position: relative;
     /* top: 100px; */
-    margin-left: 20px;
-    margin-right: 20px;
     list-style-type: none;
     margin-top: 20px;
     background: rgba( 255, 255, 255, 0.25 );
@@ -244,7 +242,7 @@ body::after {
 }
 
 #departures input {
-    width: 95%;
+    width: 100%;
     height: 30px;
     border-radius: 5px;
     margin-top: 20px;
@@ -264,14 +262,13 @@ body::after {
 }
 
 .headerforstop {
-    width: 95%;
+    width: 100%;
     height: 50px;
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     border-radius: 10px 10px 0 0;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     margin-top: 10px;
-    margin-left: 20px;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -279,12 +276,11 @@ body::after {
 }
 
 #list_of_departures {
-    width: 95%;
+    width: 100%;
     height: 400px;
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     border-radius: 0 0 10px 10px;
-    margin-left: 20px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     margin-bottom: 10px;
     overflow-y: auto;
@@ -317,7 +313,7 @@ body::after {
 }
 
 #clearall {
-    width: 95%;
+    width: 100%;
     height: 30px;
     border-radius: 5px;
     background: rgba( 255, 255, 255, 0.25 );
@@ -325,7 +321,6 @@ body::after {
     font-size: 1.5em;
     color: white;
     margin-bottom: 25px;
-    margin-left: 20px;
 }
 
 #line_for_departure {
@@ -345,9 +340,8 @@ body::after {
 }
 
 .alert_entity, .alert_entity_elev {
-    width: 92%;
+    width: 100%;
     height: fit-content;
-    margin-left: 20px;
     background: rgba( 255, 255, 255, 0.25 );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 10px;
@@ -375,6 +369,8 @@ body::after {
     background: rgba( 255, 255, 255, 0.25 );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 20px;
     overflow-y: auto;
 }
