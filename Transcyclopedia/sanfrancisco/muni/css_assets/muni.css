@@ -421,9 +421,11 @@ body::after {
     margin: 10px;
 }
 
-#route_headsign_muni_metro, #route_headsign_cable, #route_headsign_bus {
+#route_headsign_cable {
     position: relative;
     left: 5px;
+    display: inline-block;
+    width: 50%;
 }
 
 #route_headsign_muni_metro {
@@ -460,9 +462,8 @@ body::after {
 
 #alert_desc_agency, #alert_desc_routes,
 #alert_desc_stops_metro, #alert_desc_stops_bus, #alert_desc_stops_cable {
-    width: 95%;
+    width: 100%;
     height: fit-content;
-    margin-left: 20px;
     background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 10px;

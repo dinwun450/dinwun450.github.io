@@ -188,6 +188,7 @@ window.onload = function() {
         muni_alert_route_caller.onreadystatechange = function() {
             if (muni_alert_route_caller.readyState === 4 && muni_alert_route_caller.status === 200) {
                 var muni_alert_route_receiver = JSON.parse(muni_alert_route_caller.responseText);
+                var no_muni_route_alerts = 0;
 
                 for (var i = 0; i < muni_alert_route_receiver.routes.length; i++) {
                     var route_color_affected = muni_alert_route_receiver.routes[i].route_color;
@@ -197,8 +198,7 @@ window.onload = function() {
                     var corr_image_route_affected = muniLineSVGs[route_short_name_affected];
 
                     if (muni_alert_route_receiver.routes[i].alerts.length === 0) {
-                        // document.getElementById("alert_desc_routes").innerHTML = "There are no alerts posted in any of Muni Routes.";
-                        console.log("No.")
+                        no_muni_route_alerts += 1;
                     }
                     else {
                         for (var a = 0; a < muni_alert_route_receiver.routes[i].alerts.length; a++) {
@@ -232,8 +232,13 @@ window.onload = function() {
                     }
                 }
 
-                var all_alerts_summed = document.getElementById("muni_routes_alerts").children;
-                document.getElementById("muni_routes_alerts").removeChild(all_alerts_summed[0]);
+                if (no_muni_route_alerts === muni_alert_route_receiver.routes.length) {
+                    document.getElementById("alert_desc_routes").innerHTML = "There are no alerts posted in any of Muni Routes.";
+                }
+                else {
+                    var all_alerts_summed = document.getElementById("muni_routes_alerts").children;
+                    document.getElementById("muni_routes_alerts").removeChild(all_alerts_summed[0]);
+                }
             }
         }
         muni_alert_route_caller.send();
