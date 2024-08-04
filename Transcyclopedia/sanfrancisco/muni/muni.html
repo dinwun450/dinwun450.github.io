@@ -304,10 +304,10 @@
                         document.querySelector(".headerformunimetro").innerHTML = "The station you typed in is not valid or doesn't exist."
                     }
                     else {
-                        var stop_code_metro = muni_metro_stops.stops[0].stop_code;
+                        var onestop_id_metro = muni_metro_stops.stops[0].onestop_id;
                         var stop_name = muni_metro_stops.stops[0].stop_name;
                         document.getElementById("muni_metro_stationname").innerHTML = stop_name;
-                        muniMetroDepartures(stop_code_metro);
+                        muniMetroDepartures(onestop_id_metro);
                     }
                 }
             }
@@ -316,7 +316,7 @@
 
         function muniMetroDepartures(station_id) {
             var departure_request = new XMLHttpRequest();
-            departure_request.open("GET", `https://transit.land/api/v2/rest/stops/f-sf~bay~area~rg:${station_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            departure_request.open("GET", `https://transit.land/api/v2/rest/stops/${station_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
             departure_request.onreadystatechange = function() {
                 if (departure_request.readyState === 4 && departure_request.status === 200) {
                     var departures_muni_metro = JSON.parse(departure_request.responseText);
