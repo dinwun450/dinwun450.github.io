@@ -59,6 +59,8 @@ window.onload = function() {
                         case "GreenN":
                         case "BlueN":
                         case "BlueS":
+                        case "OrangeN":
+                        case "OrangeS":
                         case "Event-Blue":
                         case "Event-Orange":
                         case "Event-Green":
