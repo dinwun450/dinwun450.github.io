@@ -111,13 +111,13 @@ body::after {
     width: 100%;
     height: 100%;
     position: absolute;
+    padding: 20px;
     right: 0;
     bottom: 0;
 }
 
 #nameswitch {
     font-size: 40px;
-    margin-left: 20px;
     margin-top: 55px;
 }
 
@@ -131,7 +131,7 @@ body::after {
 }
 
 .info #desc {
-    padding: 20px;
+    padding-right: 20px;
     margin-top: 15px;
 }
 
@@ -182,13 +182,12 @@ body::after {
 }
 
 .lines_lr, .lines_bus {
-    width: 90%;
+    width: 100%;
     height: fit-content;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    margin-left: 20px;
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -252,11 +251,10 @@ body::after {
 }
 
 #departures_lr input, #departures_bus input {
-    width: 95%;
+    width: 100%;
     height: 30px;
     border-radius: 5px;
     margin-top: 20px;
-    margin-left: 20px;
     background-color: #eeeeee40;
     border: 1px solid #eeeeee40;
     color: white;
@@ -272,14 +270,13 @@ body::after {
 }
 
 .headerforvtalr, .headerforvtabus, .headerforvtaalerts {
-    width: 95%;
+    width: 100%;
     height: 50px;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border-radius: 10px 10px 0 0;
     border: 1px solid rgba(255, 255, 255, 0.18);
     margin-top: 10px;
-    margin-left: 20px;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -287,13 +284,12 @@ body::after {
 }
 
 #list_of_departures_vta_bus, #list_of_departures_vta_lr {
-    width: 95%;
+    width: 100%;
     height: 400px;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border-radius: 0 0 10px 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    margin-left: 20px;
     margin-bottom: 10px;
     overflow-y: auto;
 }
@@ -337,14 +333,13 @@ body::after {
 }
 
 #clearall_vta_lr, #clearall_vta_bus, #clearall_vta_alerts {
-    width: 95%;
+    width: 100%;
     height: 30px;
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.18);
     font-size: 1.5em;
     margin-bottom: 25px;
-    margin-left: 20px;
     color: white;
 }
 
@@ -353,13 +348,12 @@ body::after {
 }
 
 .alert_entity_agency, .alert_entity_routes {
-    width: 92%;
+    width: 100%;
     height: fit-content;
     margin-left: 20px;
     background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 10px;
-    margin-top: 20px;
     padding: 10px;
     overflow-y: auto;
 }
@@ -373,9 +367,8 @@ body::after {
 }
 
 #alert_desc_routes, #alert_desc_agency {
-    width: 95%;
+    width: 100%;
     height: fit-content;
-    margin-left: 20px;
     background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 10px;
@@ -410,6 +403,8 @@ body::after {
     background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 20px;
     overflow-y: auto;
 }
