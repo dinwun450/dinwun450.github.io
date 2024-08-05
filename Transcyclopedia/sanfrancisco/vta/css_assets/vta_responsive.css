@@ -30,10 +30,6 @@
     #nameswitch i {
         display: block;
     }
-
-    .alert_entity_routes, .alert_entity_agency {
-        width: 90%;
-    }
 }
 
 @media (max-width: 600px) { 
@@ -80,8 +76,7 @@
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         border-radius: 5px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
-        margin-left: 20px;
-        margin-right: 20px;
+        padding: 20px;
     }
 
     .stats {
@@ -94,34 +89,16 @@
         display: none;
     }
 
-    #departures_lr input, #departures_bus input, 
-    .headerforvtalr, .headerforvtabus, 
-    #list_of_departures_vta_lr, #list_of_departures_vta_bus, 
-    #clearall_vta_lr, #clearall_vta_bus {
-        width: 90%;
-    }
-
     #line_for_departure_vta_lr, #line_for_departure_vta_bus {
-        width: 93%;
         height: fit-content;
         overflow: hidden;
-        background: rgba( 255, 255, 255, 0.25 );
+        background: rgba( 255, 255, 255, 0.15 );
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         border-radius: 5px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
     }
 
-    #route_headsign_vta_lr, #route_headsign_vta_bus {
-        width: 90%;
-    }
-
     #line_for_each_departure_vta_lr, #line_for_each_departure_vta_bus {
         margin-left: 2px;
-    }
-
-    #alert_desc_agency, #alerts input,
-    .headerforvtaalerts, #vta_routes_alerts, 
-    #alert_desc_routes, #clearall_vta_alerts {
-        margin-left: 5px;
     }
 }
