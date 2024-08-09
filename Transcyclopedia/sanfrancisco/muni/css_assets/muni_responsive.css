@@ -29,12 +29,17 @@
 
     #nameswitch i {
         display: block;
+        margin-right: 20px;
     }
 }
 
 @media (max-width: 600px) { 
     #nameswitch {
         font-size: 30px;
+    }
+
+    #nameswitch i {
+        margin-right: 0;
     }
 
     .left_navbar {
