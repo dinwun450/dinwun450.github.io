@@ -29,7 +29,7 @@
     <div class="main">
         <div class="window" id="about_vta">
             <div class="info">
-                <p id="nameswitch">About VTA <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+                <p id="nameswitch">About VTA <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
                 <p id="desc">Loading Content...</p>
             </div>
             <div class="stats">
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="window" id="lines">
-            <p id="nameswitch">Lines <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <p id="nameswitch">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <div class="lines_lr">
                 <h3>VTA Light Rail</h3>
                 <ul class="vta_lr_lines">
@@ -66,7 +66,7 @@
             </div>
         </div>
         <div class="window" id="departures_lr">
-            <p id="nameswitch">Departures (Light Rail) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <p id="nameswitch">Departures (Light Rail) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a station..." onkeydown="keyDownLR()" id="vta_lr_stationgetter" autocomplete="off">
             <p class="headerforvtalr">Departures for &nbsp;<span id="vta_lr_stationname">---</span></p>
             <ul id="list_of_departures_vta_lr">
@@ -75,7 +75,7 @@
             <button id="clearall_vta_lr" onclick="clearAllVtaLR()">Clear</button>
         </div>
         <div class="window" id="departures_bus">
-            <p id="nameswitch">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <p id="nameswitch">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a stop..." onkeydown="keyDownBus()" id="vta_bus_stopgetter" autocomplete="off">
             <p class="headerforvtabus">Departures for &nbsp;<span id="vta_bus_stopname">---</span></p>
             <ul id="list_of_departures_vta_bus">
@@ -84,7 +84,7 @@
             <button id="clearall_vta_bus" onclick="clearAllVtaBus()">Clear</button>
         </div>
         <div class="window" id="alerts">
-            <p id="nameswitch">Alerts <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <p id="nameswitch">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <div class="alert_entity_agency">
                 <h3>VTA Agency</h3>
                 <ul id="vta_agency_alerts">
@@ -103,7 +103,7 @@
             </div>
         </div>
         <div class="window" id="map_inter">
-            <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-right: 20px; padding-top: 5px;" onclick="openNav()"></i></p>
+            <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <section class="map_box_container">
                 <!--MAP-->
               <div id='map' style="width: 100%; height: 500px;"></div>
@@ -638,6 +638,8 @@
                                             case "GreenN":
                                             case "BlueN":
                                             case "BlueS":
+                                            case "OrangeE":
+                                            case "OrangeW":
                                             case "Event-Blue":
                                             case "Event-Orange":
                                             case "Event-Green":
