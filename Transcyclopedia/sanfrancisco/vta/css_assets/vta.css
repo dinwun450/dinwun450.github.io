@@ -193,6 +193,10 @@ body::after {
     margin-bottom: 5px;
 }
 
+.lines_lr {
+    margin-top: 20px;
+}
+
 .lines_lr h3, .lines_bus h3 {
     margin-left: 5px;
 }
@@ -356,6 +360,10 @@ body::after {
     margin-top: 5px;
     padding: 10px;
     overflow-y: auto;
+}
+
+.alert_entity_agency {
+    margin-top: 20px;
 }
 
 .alert_entity_routes {
