@@ -129,7 +129,6 @@ body::after {
 
 #nameswitch {
     font-size: 40px;
-    margin-left: 20px;
     margin-top: 55px;
 }
 
@@ -140,6 +139,7 @@ body::after {
 .info {
     width: 50%;
     height: 100%;
+    padding-right: 20px;
 }
 
 .info #desc {
@@ -163,7 +163,7 @@ body::after {
 }
 
 .began_operation, .no_of_lines, .contact {
-    width: 100%;
+    width: 96%;
     height: 40%;
     background: rgba(255, 255, 255, 0.25);
     border-radius: 10px;
