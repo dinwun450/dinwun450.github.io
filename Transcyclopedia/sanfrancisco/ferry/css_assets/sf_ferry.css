@@ -127,6 +127,10 @@ body::after {
     color: #0398fc;
 }
 
+#ferry_info, #ferry_routes, #ferry_alerts {
+    margin-top: 20px;
+}
+
 #nameswitch {
     font-size: 40px;
     margin-top: 55px;
@@ -195,8 +199,6 @@ body::after {
 
 .ferry_lines {
     position: relative;
-    margin-left: 20px;
-    margin-right: 20px;
     list-style-type: none;
     margin-top: 10px;
     background: rgba( 255, 255, 255, 0.25 );
