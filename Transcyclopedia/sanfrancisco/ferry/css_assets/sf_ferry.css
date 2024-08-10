@@ -116,7 +116,7 @@ body::after {
     bottom: 0;
 }
 
-#ferry_info, #ferry_routes, #ferry_departures, #ferry_alerts {
+#ferry_info, #ferry_routes, #ferry_departures, #ferry_alerts, #ferry_map {
     margin-top: 10px;
     width: 100%;
     height: 30px;

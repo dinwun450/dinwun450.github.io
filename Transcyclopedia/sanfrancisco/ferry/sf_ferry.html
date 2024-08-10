@@ -94,6 +94,11 @@
         </div>
         <div class="window" id="map_inter">
             <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="ferry_map" onchange="changeFerryLinesInMap(value);">
+                <option value="prompt">Select Ferry Agency</option>
+                <option value="sfbayferry">SF Bay Ferry</option>
+                <option value="ggf">Golden Gate Ferry</option>
+            </select>
             <section class="map_box_container">
                 <!--MAP-->
               <div id='map' style="width: 100%; height: 500px;"></div>
