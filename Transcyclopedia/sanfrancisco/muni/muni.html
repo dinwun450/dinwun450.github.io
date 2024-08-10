@@ -575,7 +575,19 @@
         function keyDownBus(e) {
             e = e || window.event;
             if (e.keyCode === 13) {
-                console.log("Bus Time!")
+                console.log("Bus Time!");
+                document.querySelector(".headerforbus").innerHTML = `
+                Departures for &nbsp;<span id="bus_stopname">---</span>
+                `;
+                document.getElementById("list_of_departures_bus").innerHTML = `
+                <li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="alerts_bus"></span> <span id="route_headsign_bus">Loading...</span> <span id="route_depart_bus">Please wait...</span></div></li>
+                `;
+                document.getElementById("bus_stopname").innerHTML = "---";
+                document.getElementById("muni_stops_alerts_bus").innerHTML = `
+                        <li id="alert_desc_stops_bus">
+                            <p>Loading Alerts...</p>
+                        </li>
+                `;
                 callOverStopBus();
             }
         }
