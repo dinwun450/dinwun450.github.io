@@ -1,7 +1,7 @@
 @media (max-width: 988px) {
     .left_navbar {
         display: none;
-        width: 36%;
+        width: 35%;
         background-color: #666;
         z-index: 3;
     }
