@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css_assets/responsive_page.css">
     <link rel="stylesheet" href="css_assets/light_and_dark.css">
     <script src="js_assets/sf_ferry_agency.js"></script>
+    <script src="js_assets/sf_ferry_new_map.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -112,7 +113,6 @@
     </div>
     <script>
         var v = null;
-        var ferry_geojson_routes = [];
         const filterGroup = document.getElementById('filter_agency');
 
         function mapConfiguration() {
@@ -135,6 +135,54 @@
             map.on('load', function() {
                 map.addControl(new mapboxgl.NavigationControl());
                 map.scrollZoom.disable();
+
+                map.on('style.load', () => {
+                    // Insert the layer beneath any symbol layer.
+                    const layers = map.getStyle().layers;
+                    const labelLayerId = layers.find(
+                        (layer) => layer.type === 'symbol' && layer.layout['text-field']
+                    ).id;
+                    
+                    // The 'building' layer in the Mapbox Streets
+                    // vector tileset contains building height data
+                    // from OpenStreetMap.
+                    map.addLayer({
+                                'id': 'add-3d-buildings',
+                                'source': 'composite',
+                                'source-layer': 'building',
+                                'filter': ['==', 'extrude', 'true'],
+                                'type': 'fill-extrusion',
+                                'minzoom': 15,
+                                'paint': {
+                                'fill-extrusion-color': '#aaa',
+                                
+                                // Use an 'interpolate' expression to
+                                // add a smooth transition effect to
+                                // the buildings as the user zooms in.
+                                'fill-extrusion-height': [
+                                    'interpolate',
+                                    ['linear'],
+                                    ['zoom'],
+                                    15,
+                                    0,
+                                    15.05,
+                                    ['get', 'height']
+                                ],
+                                'fill-extrusion-base': [
+                                    'interpolate',
+                                    ['linear'],
+                                    ['zoom'],
+                                    15,
+                                    0,
+                                    15.05,
+                                    ['get', 'min_height']
+                                ],
+                                'fill-extrusion-opacity': 0.6
+                            }
+                        },
+                        labelLayerId
+                    );
+                });
             });
         }
         mapConfiguration();
@@ -166,71 +214,6 @@
         }
         document.getElementById("defaulttab").click();
 
-        function plotSFBFLines() {
-            var sfbf_line_call = new XMLHttpRequest();
-            sfbf_line_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q9p-sanfranciscobayferry&include_geometry=true");
-            sfbf_line_call.onreadystatechange = function() {
-                if (sfbf_line_call.readyState === 4 && sfbf_line_call.status === 200) {
-                    var sfbf_outputs = JSON.parse(sfbf_line_call.responseText).routes;
-
-                    for (var i=0; i<sfbf_outputs.length; i++) {
-                        var all_sfbf_lines_name_short = sfbf_outputs[i].route_short_name;
-                        var all_sfbf_lines_name_long = sfbf_outputs[i].route_long_name;
-                        var all_sfbf_lines_color = sfbf_outputs[i].route_color; 
-                        var all_sfbf_lines_text_color = sfbf_outputs[i].route_text_color;
-                        var geometry_sfbf = sfbf_outputs[i].geometry;
-
-                        ferry_geojson_routes.push({
-                            'type': 'Feature',
-                            'geometry': geometry_sfbf,
-                            'properties': {
-                                'color': `#${all_sfbf_lines_color}`,
-                                'text_color': `#${all_sfbf_lines_text_color}`,
-                                'route_short_name': all_sfbf_lines_name_short,
-                                'route_long_name': all_sfbf_lines_name_long,
-                                'label': "San Francisco Bay Ferry"
-                            }
-                        })
-                    }
-                }
-            }
-            sfbf_line_call.send();
-            setTimeout(plotGGFLines, 2000);
-        }
-
-        function plotGGFLines() {
-            var ggf_line_call = new XMLHttpRequest();
-            ggf_line_call.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9q8z-goldengateferry&include_geometry=true");
-            ggf_line_call.onreadystatechange = function() {
-                if (ggf_line_call.readyState === 4 && ggf_line_call.status === 200) {
-                    var ggf_outputs = JSON.parse(ggf_line_call.responseText).routes;
-
-                    for (var i=0; i<ggf_outputs.length; i++) {
-                        var all_ggf_lines_name_short = ggf_outputs[i].route_short_name;
-                        var all_ggf_lines_name_long = ggf_outputs[i].route_long_name;
-                        var all_ggf_lines_color = ggf_outputs[i].route_color; 
-                        var all_ggf_lines_text_color = ggf_outputs[i].route_text_color;
-                        var geometry_ggf = ggf_outputs[i].geometry;
-                        console.log("GGF!")
-
-                        ferry_geojson_routes.push({
-                            'type': 'Feature',
-                            'geometry': geometry_ggf,
-                            'properties': {
-                                'color': `#${all_ggf_lines_color}`,
-                                'text_color': `#${all_ggf_lines_text_color}`,
-                                'route_short_name': all_ggf_lines_name_short,
-                                'route_long_name': all_ggf_lines_name_long,
-                                'label': "Golden Gate Ferry"
-                            }
-                        })
-                    }
-                }
-            }
-            ggf_line_call.send();
-            setTimeout(plotFerryLines, 4000)
-        }
-
         function getUniqueFeatures(features, comparatorProperty) {
             const uniqueIds = new Set();
             const uniqueFeatures = [];
@@ -244,165 +227,45 @@
             return uniqueFeatures;
         }
 
-        function plotFerryLines() {
-            var ferry_agencies = {
-                'type': 'FeatureCollection',
-                'features': ferry_geojson_routes
+        function moveFerryRoutes() {
+            if (map.getLayer("sf_ferry_route_layer")) {
+                map.moveLayer("sf_ferry_route_layer");
             }
 
-            map.on('style.load', () => {
-                // Insert the layer beneath any symbol layer.
-                const layers = map.getStyle().layers;
-                const labelLayerId = layers.find(
-                    (layer) => layer.type === 'symbol' && layer.layout['text-field']
-                ).id;
-                
-                // The 'building' layer in the Mapbox Streets
-                // vector tileset contains building height data
-                // from OpenStreetMap.
-                map.addLayer({
-                            'id': 'add-3d-buildings',
-                            'source': 'composite',
-                            'source-layer': 'building',
-                            'filter': ['==', 'extrude', 'true'],
-                            'type': 'fill-extrusion',
-                            'minzoom': 15,
-                            'paint': {
-                            'fill-extrusion-color': '#aaa',
-                            
-                            // Use an 'interpolate' expression to
-                            // add a smooth transition effect to
-                            // the buildings as the user zooms in.
-                            'fill-extrusion-height': [
-                                'interpolate',
-                                ['linear'],
-                                ['zoom'],
-                                15,
-                                0,
-                                15.05,
-                                ['get', 'height']
-                            ],
-                            'fill-extrusion-base': [
-                                'interpolate',
-                                ['linear'],
-                                ['zoom'],
-                                15,
-                                0,
-                                15.05,
-                                ['get', 'min_height']
-                            ],
-                            'fill-extrusion-opacity': 0.6
-                        }
-                    },
-                    labelLayerId
-                );
+            map.on('movestart', () => {
+                if (map.getLayer("sf_ferry_route_layer")) {
+                    map.setFilter("sf_ferry_route_layer", ['has', 'route_short_name']);
+                    document.getElementById("range_of_routes").innerHTML = `
+                        <li class="route_radius"><span id="route_short">-</span>&nbsp;&nbsp;<span id="detailed_route">Loading...</span></li>
+                    `;
+                };
             });
 
-            let routeId = [];
-            const popup = new mapboxgl.Popup({
-                closeButton: false,
-                closeOnClick: false
-            });
-                
-            map.addSource('ferry_routes', {
-                'type': 'geojson',
-                'data': ferry_agencies
-            });
-            console.log('Loaded!')
+            map.on('moveend', () => {
+                if (map.getLayer("sf_ferry_route_layer")) {
+                    const features = getUniqueFeatures(features, 'route_short_name');
+                    for (var f=0; f<uniqueFeatures.length; f++) {
+                        var name_of_route = uniqueFeatures[f].properties.route_short_name;
+                        var color_of_route = uniqueFeatures[f].properties.route_color;
+                        var desc_of_route = uniqueFeatures[f].properties.route_desc;
+                        var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
 
-            for (const feature of ferry_agencies.features) {
-                const label = feature.properties.label;
-                const label_id = label;
+                        document.getElementById("route_short").innerHTML = name_of_route;
+                        document.getElementById("route_short").style.backgroundColor = `${color_of_route}40`;
+                        document.getElementById("route_short").style.border = `1px solid ${color_of_route}`;
+                        document.getElementById("route_short").style.color = `${text_color_of_route}`;
+                        document.getElementById("detailed_route").innerHTML = desc_of_route;
 
-                var feature_short_name = feature.properties.route_short_name;
-                var feature_long_name = feature.properties.route_long_name;
-                var feature_color = feature.properties.color;
-                var feature_text_color = feature.properties.text_color;
+                        var route_cloner = document.querySelector(".route_radius").cloneNode(true);
+                        document.getElementById("range_of_routes").appendChild(route_cloner);
+                    }
 
-                document.getElementById("route_short").innerHTML = `${feature_short_name}`;
-                document.getElementById("route_short").style.color = `#${feature_text_color}`;
-                document.getElementById("route_short").style.backgroundColor = `${feature_color}40`;
-                document.getElementById("route_short").style.border = `1px solid ${feature_color}40`;
-                document.getElementById("detailed_route").innerHTML = `${feature_long_name} (${label})`;
-
-                switch(label) {
-                    case "San Francisco Bay Ferry":
-                        document.querySelector('.route_radius').setAttribute("id", "sfbf");
-                        break;
-                    case "Golden Gate Ferry":
-                        document.querySelector('.route_radius').setAttribute("id", "ggf");
-                        break;
+                    var all_routes = document.getElementById("range_of_routes").children;
+                    document.getElementById("range_of_routes").removeChild(all_routes[0]);
                 }
-
-                var routeClone = document.querySelector(".route_radius");
-                var listToInsertClone = routeClone.cloneNode(true);
-                document.getElementById("range_of_routes").appendChild(listToInsertClone);
-
-                if (!map.getLayer(label_id)) {
-                    map.addLayer({
-                        'id': label_id,
-                        'source': "ferry_routes",
-                        'type': 'line',
-                        'layout': {
-                            'line-join': 'round',
-                            'line-cap': 'round'
-                        },
-                        'paint': {
-                            'line-width': 3,
-                            'line-color': ['get', 'color']
-                        },
-                        'filter': ['==', 'label', label_id]
-                    });
-
-                    const input = document.createElement('input');
-                    input.type = 'checkbox';
-                    input.id = label;
-                    input.checked = true;
-                    filterGroup.appendChild(input);
-
-                    const label_for = document.createElement('label');
-                    label_for.setAttribute('for', label);
-                    label_for.textContent = label;
-                    filterGroup.appendChild(label_for);
-
-                    input.addEventListener('change', (e) => {
-                        console.log(label_id);
-
-                        map.setLayoutProperty(
-                            label_id,
-                            'visibility',
-                            e.target.checked ? 'visible' : 'none'
-                        );
-                    });
-
-                    map.on('mouseenter', label_id, function(e) {
-                        var fs = map.queryRenderedFeatures(e.point, { layers: [label_id]});
-                        console.log(fs)
-
-                        if (fs.length > 0) {
-                            for (var f = 0; f < fs.length; f ++) {
-                                var name_of_route = fs[f].properties.route_short_name;
-                                routeId.push(name_of_route)
-                            }
-                            
-                            // Populate the popup and set its coordinates
-                            // based on the feature found.
-                            popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
-                        }
-                    });
-
-                    map.on('mouseleave', label_id, () => {
-                        if (routeId.length > 0) {routeId = []}
-                        popup.remove();
-                        // document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
-                    });
-                }
-            }
-
-            var list_of_routes = document.getElementById("range_of_routes").children;
-            document.getElementById("range_of_routes").removeChild(list_of_routes[0])
+            });
         }
-        plotSFBFLines();
+        moveFerryRoutes();
 
         function dark_or_light() {
             var element = document.body;
