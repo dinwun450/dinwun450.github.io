@@ -99,7 +99,7 @@ function SFFerryGeoJSONCreation(insId) {
                 },
                 'paint': {
                     'line-width': 3,
-                    'line-color': ['get', 'color']
+                    'line-color': ['get', 'route_color']
                 },
             });
 
@@ -132,6 +132,9 @@ function SFFerryGeoJSONCreation(insId) {
             });
 
             map.on('mouseleave', 'sf_ferry_route_layer', function() {
+                if (route_id.length > 0) {routeId = []};
+                popup.remove();
+
                 if (hoveredPolygonLine !== null) {
                     map.setFeatureState(
                         {source: 'sf_ferry_route', id: hoverId[i]}, 
