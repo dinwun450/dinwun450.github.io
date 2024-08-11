@@ -1,4 +1,4 @@
-let lineId = [];
+let routeId = [];
 let hoverId = [];
 var ferry_geojson_routes = [];
 var hoveredPolygonLine = null;
@@ -20,7 +20,7 @@ function changeFerryLinesInMap(id) {
             onestopId = "o-9q8z-goldengateferry";
             break;
         default:
-            lineId = [];
+            routeId = [];
             hoverId = [];
             ferry_geojson_routes = [];
             hoveredPolygonLine = null;
@@ -132,7 +132,7 @@ function SFFerryGeoJSONCreation(insId) {
             });
 
             map.on('mouseleave', 'sf_ferry_route_layer', function() {
-                if (route_id.length > 0) {routeId = []};
+                if (routeId.length > 0) {routeId = []};
                 popup.remove();
 
                 if (hoveredPolygonLine !== null) {
