@@ -136,10 +136,12 @@ function SFFerryGeoJSONCreation(insId) {
                 popup.remove();
 
                 if (hoveredPolygonLine !== null) {
-                    map.setFeatureState(
-                        {source: 'sf_ferry_route', id: hoverId[i]}, 
-                        {hover: false}
-                    );
+                    for (var i=0; i<hoverId.length; i++) {
+                        map.setFeatureState(
+                            {source: 'sf_ferry_route', id: hoverId[i]}, 
+                            {hover: false}
+                        );
+                    }
                 }
                 hoveredPolygonLine = null;
             });
