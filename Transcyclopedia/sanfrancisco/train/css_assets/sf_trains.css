@@ -111,6 +111,7 @@ body::after {
     width: 100%;
     height: 100%;
     position: absolute;
+    padding: 20px;
     right: 0;
     bottom: 0;
     overflow-y: auto;
@@ -122,23 +123,21 @@ body::after {
 
 #trains_info, #trains_lines, #trains_departures, #trains_alerts {
     margin-top: 10px;
-    width: 95%;
+    width: 100%;
     height: 30px;
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 4px );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     color: #0398fc;
-    margin-left: 20px;
 }
 
-#trains_info {
-    width: 93%;
+#trains_info, #trains_lines, #trains_alerts {
+    margin-top: 20px;
 }
 
 #nameswitch {
     font-size: 40px;
-    margin-left: 20px;
     margin-top: 55px;
 }
 
@@ -149,10 +148,11 @@ body::after {
 .info {
     width: 50%;
     height: 100%;
+    padding-right: 20px;
 }
 
 .info #desc {
-    padding: 20px;
+    padding-right: 20px;
     margin-top: 15px;
 }
 
@@ -200,10 +200,7 @@ body::after {
 
 .train_lines {
     position: relative;
-    margin-left: 20px;
-    padding: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-top: 10px;
     list-style-type: none;
     margin-top: 20px;
     background: rgba( 255, 255, 255, 0.25 );
@@ -212,8 +209,7 @@ body::after {
 }
 
 .train_lines li {
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin: 10px;
 }
 
 #route, #line_for_train_departure, #route_short {
@@ -238,11 +234,10 @@ body::after {
 }
 
 #departures input {
-    width: 95%;
+    width: 100%;
     height: 30px;
     border-radius: 5px;
     margin-top: 20px;
-    margin-left: 20px;
     background-color: #eeeeee40;
     border: 1px solid #eeeeee40;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -259,14 +254,13 @@ body::after {
 }
 
 .headerfortrain {
-    width: 95%;
+    width: 100%;
     height: 50px;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border-radius: 10px 10px 0 0;
     border: 1px solid rgba(255, 255, 255, 0.18);
     margin-top: 10px;
-    margin-left: 20px;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -274,13 +268,12 @@ body::after {
 }
 
 #list_of_train_departures {
-    width: 95%;
+    width: 100%;
     height: 400px;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border-radius: 0 0 10px 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    margin-left: 20px;
     margin-bottom: 10px;
     overflow-y: auto;
 }
@@ -301,9 +294,8 @@ body::after {
 }
 
 .alert_entity {
-    width: 95%;
+    width: 100%;
     height: fit-content;
-    margin-left: 20px;
     background: rgba( 255, 255, 255, 0.25 );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 10px;
@@ -325,62 +317,14 @@ body::after {
     margin-top: 20px;
 }
 
-.filter_agency {
-    font-size: 12px;
-    font-weight: 600;
-    z-index: 1;
-    border-radius: 10px;
-    width: 100%;
-    color: #fff;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.filter_agency input[type='checkbox']:first-child + label {
-    border-radius: 3px 3px 0 0;
-}
-
-.filter_agency label:last-child {
-    border-radius: 0 0 3px 3px;
-    border: none;
-}
-
-.filter_agency input[type='checkbox'] {
-    display: none;
-}
-
-.filter_agency input[type='checkbox'] + label {
-    background: rgba(255, 255, 255, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    display: block;
-    cursor: pointer;
-    padding: 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-}
-
-.filter_agency input[type='checkbox'] + label {
-    background: rgba(255, 255, 255, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    text-transform: capitalize;
-}
-
-.filter_agency input[type='checkbox'] + label:hover,
-.filter_agency input[type='checkbox']:checked + label {
-    background: rgba(255, 255, 255, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-.filter_agency input[type='checkbox']:checked + label:before {
-    content: '✔';
-    margin-right: 5px;
-}
-
 #range_of_routes {
     width: 100%;
     height: 300px;
     background: rgba( 255, 255, 255, 0.25 );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 20px;
     overflow-y: auto;
 }
