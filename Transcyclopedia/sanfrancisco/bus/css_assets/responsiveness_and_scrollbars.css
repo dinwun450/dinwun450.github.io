@@ -77,10 +77,9 @@
     }
 
     #line_for_departure_bus {
-        width: 100%;
         height: fit-content;
         overflow: hidden;
-        background: rgba( 255, 255, 255, 0.25 );
+        background: rgba( 255, 255, 255, 0.15 );
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         border-radius: 5px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
@@ -101,10 +100,6 @@
     .wrapper_for_departure_bus {
         padding-right: 5px;
     }
-
-    /* #alerts input, .headerforbusalerts, #alert_desc_routes, #alert_desc_agency, #each_stop_alert {
-        margin-left: 10px;
-    } */
 }
 
 
