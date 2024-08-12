@@ -125,7 +125,6 @@ body::after {
     backdrop-filter: blur( 4px );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     color: #0398fc;
-    margin-left: 20px;
 }
 
 #bus_info, #bus_routes, #bus_alerts {
