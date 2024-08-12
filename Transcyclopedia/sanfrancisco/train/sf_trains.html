@@ -230,8 +230,8 @@
                     const uniqueFeatures = getUniqueFeatures(features, 'route_short_name');
                     for (var f = 0; f < uniqueFeatures.length; f ++) {
                         var name_of_route = uniqueFeatures[f].properties.route_short_name;
-                        var color_of_route = uniqueFeatures[f].properties.color;
-                        var text_color_of_route = uniqueFeatures[f].properties.text_color;
+                        var color_of_route = uniqueFeatures[f].properties.route_color;
+                        var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
                         var desc_of_route = uniqueFeatures[f].properties.route_long_name;
 
                         if (name_of_route === "") {
