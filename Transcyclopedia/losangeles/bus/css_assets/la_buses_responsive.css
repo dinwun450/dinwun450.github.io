@@ -37,6 +37,10 @@
         font-size: 30px;
     }
 
+    #sectionheader i {
+        margin-right: 0;
+    }
+
     .left_navbar {
         width: 100%;
         z-index: 3;
@@ -49,6 +53,7 @@
     .info {
         width: 100%;
         height: 100%;
+        padding-right: 0;
     }
 
     #desc {
@@ -56,16 +61,11 @@
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         border-radius: 5px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
-        margin-left: 20px;
-        margin-right: 20px;
+        padding: 20px;
     }
 
     .stats {
         display: none;
-    }
-
-    #departures input, .headerforbus, #bus_departures, #list_of_bus_departures, .alerts_in_busstop {
-        width: 90%;
     }
 
     #line_for_departure_bus {
@@ -92,13 +92,5 @@
 
     .wrapper_for_departure_bus {
         padding-right: 5px;
-    }
-
-    .alert_entity_agency, .alert_entity_routes, #bus_alerts, #bus_lines {
-        width: 92%;
-    }
-
-    #alerts input, .headerforbusalerts, #alert_desc_routes, #alert_desc_agency, #each_stop_alert {
-        margin-left: 10px;
     }
 }
