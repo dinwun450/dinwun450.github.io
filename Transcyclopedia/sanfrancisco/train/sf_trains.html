@@ -212,7 +212,10 @@
         }
 
         function moveTrains() {
-            map.moveLayer('train_route_layer');
+            if (map.getLayer('train_route_layer')) {
+                map.moveLayer('train_route_layer');
+            }
+
             map.on('movestart', () => {
                 map.setFilter('train_route_layer', ['has', 'route_short_name']);
                 document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
@@ -259,7 +262,7 @@
                 }
             });
         }
-        setTimeout(moveTrains, 6000);
+        moveTrains();
 
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
