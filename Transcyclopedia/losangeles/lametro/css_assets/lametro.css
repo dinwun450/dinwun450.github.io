@@ -339,7 +339,7 @@ body::after {
 .alert_section_agency, .alert_section_lines {
     width: 100%;
     height: fit-content;
-    background: rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 10px;
     margin-top: 20px;
@@ -354,7 +354,7 @@ body::after {
 #alert_agency_entity, #alert_routes_entity {
     width: 100%;
     height: fit-content;
-    background: rgba(255, 255, 255, 0.13);
+    background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 10px;
     margin-top: 5px;
