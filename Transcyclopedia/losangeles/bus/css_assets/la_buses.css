@@ -111,13 +111,14 @@ body::after {
     width: 100%;
     height: 100%;
     position: absolute;
+    padding: 20px;
     right: 0;
     bottom: 0;
 }
 
 #bus_info, #bus_lines, #bus_departures, #bus_alerts, #bus_map {
     margin-top: 10px;
-    width: 95%;
+    width: 100%;
     height: 30px;
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -127,8 +128,8 @@ body::after {
     margin-left: 20px;
 }
 
-#bus_info {
-    width: 93%;
+#bus_info, #bus_routes, #bus_alerts {
+    margin-top: 20px;
 }
 
 #bus_map {
@@ -138,7 +139,6 @@ body::after {
 
 #sectionheader {
     font-size: 40px;
-    margin-left: 20px;
     margin-top: 55px;
 }
 
@@ -152,7 +152,7 @@ body::after {
 }
 
 .info #desc {
-    padding: 20px;
+    padding-right: 20px;
     margin-top: 15px;
 }
 
@@ -204,11 +204,8 @@ body::after {
 
 #list_of_bus_lines {
     position: relative;
-    padding: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
     list-style-type: none;
-    margin-top: 20px;
+    margin-top: 10px;
     background: rgba( 255, 255, 255, 0.25 );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
@@ -244,11 +241,10 @@ body::after {
 }
 
 #departures input {
-    width: 95%;
+    width: 100%;
     height: 30px;
     border-radius: 5px;
     margin-top: 20px;
-    margin-left: 20px;
     background-color: #eeeeee40;
     border: 1px solid #eeeeee40;
     color: white;
@@ -264,14 +260,13 @@ body::after {
 }
 
 .headerforbus {
-    width: 95%;
+    width: 100%;
     height: 50px;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border-radius: 10px 10px 0 0;
     border: 1px solid rgba(255, 255, 255, 0.18);
     margin-top: 10px;
-    margin-left: 20px;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -279,13 +274,12 @@ body::after {
 }
 
 #list_of_bus_departures {
-    width: 95%;
+    width: 100%;
     height: 400px;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border-radius: 0 0 10px 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    margin-left: 20px;
     margin-bottom: 10px;
     overflow-y: auto;
 }
@@ -306,11 +300,10 @@ body::after {
 }
 
 .alerts_in_busstop {
-    width: 95%;
+    width: 100%;
     margin-top: 0;
     margin-bottom: 10px;
     height: 200px;
-    margin-left: 20px;
     background: rgba( 255, 255, 255, 0.25 );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 10px;
@@ -319,9 +312,8 @@ body::after {
 }
 
 #each_busstop_alert {
-    width: 95%;
+    width: 100%;
     height: fit-content;
-    margin-left: 20px;
     background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 10px;
@@ -331,9 +323,8 @@ body::after {
 }
 
 .alert_entity_agency, .alert_entity_routes {
-    width: 95%;
+    width: 100%;
     height: fit-content;
-    margin-left: 20px;
     background: rgba( 255, 255, 255, 0.25 );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 10px;
@@ -351,9 +342,8 @@ body::after {
 }
 
 #alert_desc_agency, #alert_desc_routes {
-    width: 95%;
+    width: 100%;
     height: fit-content;
-    margin-left: 20px;
     background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 10px;
@@ -379,6 +369,8 @@ body::after {
     background: rgba( 255, 255, 255, 0.25 );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 20px;
     overflow-y: auto;
 }
