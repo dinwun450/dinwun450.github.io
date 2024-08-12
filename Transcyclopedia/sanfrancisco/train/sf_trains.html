@@ -218,7 +218,7 @@
 
             map.on('movestart', () => {
                 map.setFilter('train_route_layer', ['has', 'route_short_name']);
-                document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+                document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span>&nbsp;&nbsp;<span id="detailed_route">Loading...</span></li>`;
             });
 
             map.on('moveend', () => {
