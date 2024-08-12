@@ -38,6 +38,10 @@
         font-size: 30px;
     }
 
+    #sectionheader i {
+        margin-right: 0;
+    }
+
     .left_navbar {
         width: 100%;
         z-index: 3;
