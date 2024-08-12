@@ -121,7 +121,7 @@ body::after {
     overflow-y: hidden;
 }
 
-#trains_info, #trains_lines, #trains_departures, #trains_alerts {
+#trains_info, #trains_lines, #trains_departures, #trains_alerts, #trains_map {
     margin-top: 10px;
     width: 100%;
     height: 30px;
