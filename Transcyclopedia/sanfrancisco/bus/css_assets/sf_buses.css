@@ -300,6 +300,10 @@ body::after {
     right: 3px;
 }
 
+#alerts {
+    overflow-y: auto;
+}
+
 .alerts_stop_bus {
     width: 100%;
     margin-top: 0;
