@@ -103,14 +103,14 @@
 
 
 /* Scrollbars */
-#lines::-webkit-scrollbar, #map_inter::-webkit-scrollbar, #about_buses::-webkit-scrollbar, #departures::-webkit-scrollbar,
+#lines::-webkit-scrollbar, #map_inter::-webkit-scrollbar, #about_buses::-webkit-scrollbar, #departures::-webkit-scrollbar, #alerts::-webkit-scrollbar,
 .began_operation::-webkit-scrollbar, .no_of_lines::-webkit-scrollbar, .contact::-webkit-scrollbar {
     width: 5px;
     position: relative;
     right: 20px;
 }
 
-#lines::-webkit-scrollbar-track, #map_inter::-webkit-scrollbar-track, #about_buses::-webkit-scrollbar-track, #departures::-webkit-scrollbar-track,
+#lines::-webkit-scrollbar-track, #map_inter::-webkit-scrollbar-track, #about_buses::-webkit-scrollbar-track, #departures::-webkit-scrollbar-track, #alerts::-webkit-scrollbar-track,
 .began_operation::-webkit-scrollbar-track, .no_of_lines::-webkit-scrollbar-track, 
 .contact::-webkit-scrollbar-track {
     border-radius: 10px;
@@ -120,7 +120,7 @@
     right: 2px;
 }
 
-.light_mode #lines::-webkit-scrollbar-track, .light_mode #map_inter::-webkit-scrollbar-track, .light_mode #about_buses::-webkit-scrollbar-track, .light_mode #departures::-webkit-scrollbar-track,
+.light_mode #lines::-webkit-scrollbar-track, .light_mode #map_inter::-webkit-scrollbar-track, .light_mode #about_buses::-webkit-scrollbar-track, .light_mode #departures::-webkit-scrollbar-track, .light_mode #alerts::-webkit-scrollbar-track,
 .light_mode .began_operation::-webkit-scrollbar-track, .light_mode .no_of_lines::-webkit-scrollbar-track, .light_mode .contact::-webkit-scrollbar-track {
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.25);
@@ -129,7 +129,7 @@
     right: 2px;
 }
 
-#lines::-webkit-scrollbar-thumb, #map_inter::-webkit-scrollbar-thumb, #about_buses::-webkit-scrollbar-thumb, #departures::-webkit-scrollbar-thumb,
+#lines::-webkit-scrollbar-thumb, #map_inter::-webkit-scrollbar-thumb, #about_buses::-webkit-scrollbar-thumb, #departures::-webkit-scrollbar-thumb, #alerts::-webkit-scrollbar-thumb,
 .began_operation::-webkit-scrollbar-thumb, .no_of_lines::-webkit-scrollbar-thumb, 
 .contact::-webkit-scrollbar-thumb {
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -137,7 +137,7 @@
     border-radius: 10px;
 }
 
-.light_mode #lines::-webkit-scrollbar-thumb, .light_mode #map_inter::-webkit-scrollbar-thumb, .light_mode #about_buses::-webkit-scrollbar-thumb, .light_mode #departures::-webkit-scrollbar-thumb,
+.light_mode #lines::-webkit-scrollbar-thumb, .light_mode #map_inter::-webkit-scrollbar-thumb, .light_mode #about_buses::-webkit-scrollbar-thumb, .light_mode #departures::-webkit-scrollbar-thumb, .light_mode #alerts::-webkit-scrollbar-thumb,
 .light_mode #alerts::-webkit-scrollbar-thumb, .light_mode .began_operation::-webkit-scrollbar-thumb, .light_mode .no_of_lines::-webkit-scrollbar-thumb, .light_mode .contact::-webkit-scrollbar-thumb {
     border: 1px solid rgba(0, 0, 0, 0.18);
     background: rgba(0, 0, 0, 0.25);
