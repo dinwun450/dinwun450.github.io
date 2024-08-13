@@ -119,7 +119,7 @@
             <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <div id="map"></div>
             <ul id="range_of_routes">
-                <li id="rir"><span id="route_name_rad">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
+                <li id="rir"><span id="route_name_rad">-</span>&nbsp;&nbsp;<span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
             </ul>
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
@@ -686,7 +686,7 @@
                         map.setFilter('nctd_bus_id', ['has', 'route_id']);
 
                         document.getElementById("range_of_routes").innerHTML = `
-                            <li id="rir"><span id="route_name_rad">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
+                            <li id="rir"><span id="route_name_rad">-</span>&nbsp;&nbsp;<span id="route_detail_rad">Loading...</span></li>
                         `;
                     });
 
