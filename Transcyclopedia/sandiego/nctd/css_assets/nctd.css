@@ -135,7 +135,7 @@ body::after {
 }
 
 .info #desc {
-    padding: 20px;
+    padding-right: 20px;
     margin-top: 15px;
 }
 
