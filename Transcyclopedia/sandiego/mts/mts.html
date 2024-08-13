@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcyclopedia San Diego: San Diego Metropolitan Transit System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+</head>
+<body>
+    <ul id="left_navbar">
+        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia SD:<br> San Diego Metropolitan Transit System</h1>
+        <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
+        <li class="tablinks" id="defaulttab" onclick="openTab(event, 'about_mts')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About MTS</a></li>
+        <li class="tablinks" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
+        <li class="tablinks" onclick="openTab(event, 'departures_trolley')"><a href="#"><i class="fa-solid fa-train-tram"></i>&nbsp;&nbsp;Departures (Trolley)</a></li>
+        <li class="tablinks" onclick="openTab(event, 'departures_bus')"><a href="#"><i class="fa-solid fa-bus"></i>&nbsp;&nbsp;Departures (Bus)</a></li>
+        <li class="tablinks" onclick="openTab(event, 'departures_coronado')"><a href="#"><i class="fa-solid fa-ferry"></i>&nbsp;&nbsp;Departures (Coronado Ferry)</a></li>
+        <li class="tablinks header5" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li class="tablinks header6" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
+        <li><a href="#" onclick="dark_or_light()"><span id="light_dark_transition"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</span></a></li>
+        <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
+        <p class="copyright">&copy; 2024 Transcyclopedia. Created by Dino Wun.</p>
+    </ul>
+    <div class="main">
+        <div class="window" id="about_mts">
+            <div class="info">
+                <p id="sectionheader">About MTS <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+                <p id="desc">Loading...</p>
+            </div>
+            <div class="stats">
+                <div class="began_operation">
+                    <h2>Began Operation</h2>
+                    <p><b>1976</b></p>
+                </div>
+                <div class="no_of_lines">
+                    <h2>Number of Lines</h2>
+                    <p><b id="trolley_routes">- Trolley</b> <br> <b id="bus_routes">- Bus</b> <br> <b id="coronado">1 Ferry</b></p>
+                </div>
+                <div class="contact">
+                    <h2>Contact</h2>
+                    <ul>
+                        <li><p id="email_agency"><b>-</b> (Email)</p></li>
+                        <li><p id="phone_agency"><b>-</b> (Phone)</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="window" id="lines">
+            <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="mts_trolleyline">
+                <h3>Trolley</h3>
+                <ul class="mts_trolley">
+                    <li id="route_item_trolley"><span id="route_name_trolley">-</span> &nbsp; <span id="route_desc_trolley">Loading...</span><span id="no_of_alerts_trolley"></span></li>
+                </ul>
+            </div>
+            <div class="mts_busline">
+                <h3>Bus</h3>
+                <ul class="mts_bus">
+                    <li id="route_item_bus"><span id="route_name_bus">-</span> &nbsp; <span id="route_desc_bus">Loading...</span><span id="no_of_alerts_bus"></span></li>
+                </ul>
+            </div>
+            <div class="mts_coronadoline">
+                <h3>Coronado Ferry</h3>
+                <ul class="mts_coronado">
+                    <li id="route_item_coronado"><span id="route_name_coronado">-</span> &nbsp; <span id="route_desc_coronado">Loading...</span><span id="no_of_alerts_coronado"></span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="window" id="departures_trolley">
+            <p id="sectionheader">Departures (Trolley) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a station..." onkeydown="" id="stationgetter_trolley" autocomplete="off">
+            <p class="headerstation_trolley">Departures for &nbsp;<span id="stationname_trolley">---</span></p>
+            <ul id="list_of_departures_trolley">
+                <li id="line_for_departure_trolley"><div id="lod_trolley">-</div> <span id="aor_trolley"></span> <span id="hod_trolley">(None)</span> <span id="depart_time_trolley">Enter a station by their station ID</span></li>
+            </ul>
+            <button id="clearall_trolley" onclick="">Clear</button>
+        </div>
+        <div class="window" id="departures_bus">
+            <p id="sectionheader">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a stop..." onkeydown="" id="stopgetter" autocomplete="off">
+            <p class="headerstop">Departures for &nbsp;<span id="stopname">---</span></p>
+            <ul id="list_of_departures_bus">
+                <li id="line_for_departure_bus"><div id="lod_bus">-</div> <span id="aor_bus"></span> <span id="hod_bus">(None)</span> <span id="depart_time_bus">Enter a stop by their stop ID</span></li>
+            </ul>
+            <button id="clearall_bus" onclick="">Clear</button>
+        </div>
+        <div class="window" id="departures_coronado">
+            <p id="sectionheader">Departures (Coronado) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a terminal..." onkeydown="" id="terminalgetter" autocomplete="off">
+            <p class="headerterminal">Departures for &nbsp;<span id="terminalname">---</span></p>
+            <ul id="list_of_departures_coronado">
+                <li id="line_for_departure_coronado"><div id="lod_coronado">-</div> <span id="aor_coronado"></span> <span id="hod_coronado">(None)</span> <span id="depart_time_coronado">Enter a stop by their stop ID</span></li>
+            </ul>
+            <button id="clearall_coronado" onclick="">Clear</button>
+        </div>
+        <div class="window" id="alerts">
+            <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="alert_section_agency">
+                <h3>Agency</h3>
+                <ul id="list_of_agency_alerts">
+                    <li id="alert_agency_entity">Loading...</li>
+                </ul>
+            </div>
+            <div class="alert_section_lines">
+                <h3>Routes</h3>
+                <ul id="list_of_line_alerts">
+                    <li id="alert_routes_entity">Loading...</li>
+                </ul>
+            </div>
+        </div>
+        <div class="window" id="map_inter">
+            <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div id="map"></div>
+            <ul id="range_of_routes">
+                <li id="rir"><span id="route_name_rad">-</span>&nbsp;&nbsp;<span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
+            </ul>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
+        </div>
+    </div>
+</body>
+</html>
