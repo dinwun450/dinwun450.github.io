@@ -111,13 +111,13 @@ body::after {
     width: 100%;
     height: 100%;
     position: absolute;
+    padding: 20px;
     right: 0;
     bottom: 0;
 }
 
 #sectionheader {
     font-size: 40px;
-    margin-left: 20px;
     margin-top: 55px;
 }
 
@@ -189,13 +189,12 @@ body::after {
 }
 
 .nctd_coasterline, .nctd_buslines, .nctd_sprinterline {
-    width: 90%;
+    width: 100%;
     height: fit-content;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    margin-left: 20px;
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -240,11 +239,10 @@ body::after {
 }
 
 #departures_coaster input, #departures_sprinter input, #departures_bus input {
-    width: 95%;
+    width: 100%;
     height: 30px;
     border-radius: 5px;
     margin-top: 20px;
-    margin-left: 20px;
     background-color: #eeeeee40;
     border: 1px solid #eeeeee40;
     padding-left: 10px;
@@ -256,14 +254,13 @@ body::after {
 }
 
 .headerstation_coaster, .headerstation_sprinter, .headerstop {
-    width: 95%;
+    width: 100%;
     height: 50px;
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border-radius: 10px 10px 0 0;
     border: 1px solid rgba(255, 255, 255, 0.18);
     margin-top: 10px;
-    margin-left: 20px;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -271,13 +268,12 @@ body::after {
 }
 
 #list_of_departures_coaster, #list_of_departures_sprinter, #list_of_departures_bus {
-    width: 95%;
+    width: 100%;
     height: 400px;
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border-radius: 0 0 10px 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-    margin-left: 20px;
     margin-bottom: 10px;
     overflow-y: auto;
 }
@@ -298,21 +294,19 @@ body::after {
 }
 
 #clearall_coaster, #clearall_bus, #clearall_sprinter {
-    width: 95%;
+    width: 100%;
     height: 30px;
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.18);
     font-size: 1.5em;
     margin-bottom: 25px;
-    margin-left: 20px;
     color: white;
 }
 
 .alert_section_agency, .alert_section_lines {
-    width: 92%;
+    width: 100%;
     height: fit-content;
-    margin-left: 20px;
     background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 10px;
@@ -326,9 +320,8 @@ body::after {
 }
 
 #alert_agency_entity, #alert_routes_entity {
-    width: 95%;
+    width: 100%;
     height: fit-content;
-    margin-left: 20px;
     background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 10px;
@@ -359,6 +352,8 @@ body::after {
     background: rgba(255, 255, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 20px;
     overflow-y: auto;
 }
