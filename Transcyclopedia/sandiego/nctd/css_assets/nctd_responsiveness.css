@@ -29,20 +29,21 @@
 
     #sectionheader i {
         display: block;
+        margin-right: 20px;
     }
 
     .info {
         overflow-y: auto;
-    }
-
-    #alert_agency_entity, #alert_routes_entity {
-        width: 90%;
     }
 }
 
 @media (max-width: 600px) {
     #sectionheader {
         font-size: 30px;
+    }
+
+    #sectionheader i {
+        margin-right: 0;
     }
 
     .left_navbar {
@@ -65,32 +66,19 @@
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         border-radius: 5px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
-        margin-left: 20px;
-        margin-right: 20px;
+        padding: 20px;
     }
 
     .stats {
         display: none;
     }
 
-    #departures_coaster input, #departures_sprinter input, #departures_bus input,
-    .headerstation_coaster, .headerstation_sprinter, .headerstop,
-    #list_of_departures_coaster, #list_of_departures_sprinter, #list_of_departures_bus,
-    #clearall_coaster, #clearall_bus, #clearall_sprinter {
-        width: 90%;
-    }
-
     #line_for_departure_coaster, #line_for_departure_sprinter, #line_for_departure_bus {
-        width: 93%;
         height: fit-content;
         overflow: hidden;
-        background: rgba( 255, 255, 255, 0.25 );
+        background: rgba( 255, 255, 255, 0.15 );
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         border-radius: 5px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
-    }
-
-    #alert_agency_entity, #alert_routes_entity {
-        width: 92%;
     }
 }
