@@ -72,8 +72,8 @@ function loadMTSTrolley() {
                 document.querySelector(".mts_trolley").appendChild(each_trolley_route);
             }
 
-            var all_routes = document.querySelector(".trolley_route").children;
-            document.querySelector(".trolley_route").removeChild(all_routes[0]);
+            var all_routes = document.querySelector(".mts_trolley").children;
+            document.querySelector(".mts_trolley").removeChild(all_routes[0]);
             document.getElementById("trolley_routes").innerHTML = `${all_trolley_routes} Trolley`;
         }
     }
@@ -117,8 +117,8 @@ function loadMTSBus() {
                 document.querySelector(".mts_bus").appendChild(each_bus_route);
             }
 
-            var all_routes = document.querySelector(".bus_route").children;
-            document.querySelector(".bus_route").removeChild(all_routes[0]);
+            var all_routes = document.querySelector(".mts_bus").children;
+            document.querySelector(".mts_bus").removeChild(all_routes[0]);
             document.getElementById("bus_routes").innerHTML = `${all_bus_routes} Bus`;
         }
     }
@@ -148,7 +148,7 @@ function loadMTSCoronado() {
             document.getElementById("route_name_coronado").style.border = `1px solid #${route_color}`;
             document.getElementById("route_desc_coronado").innerHTML = route_long_name;
 
-            if (coronado_receiver.routes[i].alerts.length === 0) {
+            if (coronado_receiver.routes[0].alerts.length === 0) {
                 document.getElementById("no_of_alerts_coronado").innerHTML = "";
             }
             else {
