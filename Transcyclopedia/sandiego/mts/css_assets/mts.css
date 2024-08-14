@@ -1,0 +1,369 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Geologica", sans-serif;
+}
+
+body {
+    background-color: #2e2e2e;
+    color: white;
+    transition: 0.4s;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(#e02826, #dedede);
+    z-index: -1;
+    clip-path: circle(22% at 30% 20%);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(#dedede, #e02826);
+    z-index: -1;
+    clip-path: circle(22% at 70% 80%);
+}
+
+.left_navbar {
+    width: 22%;
+    height: 100vh;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 16px;
+    position: sticky;
+    padding: 10px;
+    font-size: 18px;
+    list-style-type: none;
+}
+
+.left_navbar li {
+    width: 20vw;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.left_navbar li.active {
+    background-color: #e0282698;
+}
+
+.left_navbar li:hover:not(.active, .x) {
+    background-color: #e0282698;
+    transition: 0.5s;
+}
+
+.left_navbar li a.closebtn {
+    display: none;
+}
+
+.left_navbar li a {
+    display: block;
+    width: 250px;
+    text-decoration: none;
+    color: white;
+}
+
+.logo {
+    font-size: 25px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.globe {
+    color: rgb(10, 161, 45);
+    font-size: 15px;
+}
+
+.copyright {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.main {
+    float: right;
+    width: 78%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow-y: hidden;
+}
+
+.window {
+    float: right;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 20px;
+    right: 0;
+    bottom: 0;
+}
+
+#sectionheader {
+    font-size: 40px;
+    margin-top: 55px;
+}
+
+#sectionheader i {
+    display: none;
+}
+
+#about_mts {
+    overflow-y: hidden;
+}
+
+.info {
+    width: 50%;
+    height: 100%;
+}
+
+.info #desc {
+    padding-right: 20px;
+    margin-top: 15px;
+}
+
+.info #desc a {
+    outline: none;
+    color: #e02826;
+}
+
+.stats {
+    float: right;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow-y: scroll;
+}
+
+.began_operation, .no_of_lines, .contact {
+    width: 96%;
+    height: 40%;
+    background: rgba( 255, 255, 255, 0.25 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-top: 25px;
+    overflow-y: auto;
+}
+
+.began_operation h2, .no_of_lines h2, .contact h2 {
+    font-weight: normal;
+    margin-top: 60px;
+    margin-left: 20px;
+}
+
+.began_operation p, .no_of_lines p {
+    margin-left: 20px;
+    font-size: 50px;
+}
+
+.contact ul {
+    list-style-type: none;
+}
+
+.contact p {
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+#lines {
+    overflow-y: auto;
+}
+
+.mts_trolleyline, .mts_busline, .mts_coronadoline {
+    width: 100%;
+    height: fit-content;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.mts_trolleyline h3, .mts_busline h3, .mts_coronadoline h3 {
+    margin-left: 5px;
+}
+
+.mts_trolley, .mts_bus, .mts_coronado {
+    position: relative;
+    margin-left: 20px;
+    list-style-type: none;
+    padding-top: 10px;
+}
+
+#route_item_trolley, #route_item_bus, #route_item_coronado {
+    margin-bottom: 5px;
+}
+
+#route_name_trolley, #route_name_bus, #route_name_coronado,
+#lod_coronado, #lod_trolley, #lod_bus,
+#affectedroutes, #route_name_rad {
+    display: inline-block;
+    width: fit-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 23px;
+    background: #33333340;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: white;
+    font-size: 1em;
+    text-align: center;
+}
+
+#route_desc_trolley, #route_desc_bus, #route_desc_coronado {
+    width: 65%;
+    text-align: right;
+    margin-right: 10px;
+    right: 50px;
+}
+
+#departures_trolley input, #departures_bus input, #departures_coronado input {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: #eeeeee40;
+    border: 1px solid #eeeeee40;
+    padding-left: 10px;
+    color: white;
+}
+
+#departures_trolley input::placeholder, #departures_bus input::placeholder, #departures_coronado input::placeholder {
+    color: white;
+}
+
+.headerstation_trolley, .headerstop, .headerterminal {
+    width: 100%;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 10px 10px 0 0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin-top: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 10px;
+}
+
+#list_of_departures_trolley, #list_of_departures_bus, #list_of_departures_coronado {
+    width: 100%;
+    height: 400px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 0 0 10px 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-bottom: 10px;
+    overflow-y: auto;
+}
+
+#line_for_departure_trolley, #line_for_departure_bus, #line_for_departure_coronado {
+    margin: 10px;
+}
+
+#hod_trolley, #hod_bus, #hod_coronado {
+    position: relative;
+    left: 5px;
+}
+
+#depart_time_trolley, #depart_time_bus, #depart_time_coronado {
+    float: right;
+    position: relative;
+    right: 3px;
+}
+
+#clearall_trolley, #clearall_bus, #clearall_coronado {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 1.5em;
+    margin-bottom: 25px;
+    color: white;
+}
+
+.alert_section_agency, .alert_section_lines {
+    width: 100%;
+    height: fit-content;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.alert_section_lines {
+    height: 400px;
+}
+
+#alert_agency_entity, #alert_routes_entity {
+    width: 100%;
+    height: fit-content;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 10px;
+    list-style-type: none;
+}
+
+#alert_agency_entity {
+    margin-top: 10px;
+}
+
+#map_inter {
+    overflow-y: auto;
+}
+
+#map {
+    border-radius: 10px;
+    margin-top: 20px;
+    z-index: 1;
+    width: 100%;
+    height: 500px;
+}
+
+#range_of_routes {
+    width: 100%;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+#rir {
+    list-style-type: none;
+    margin-bottom: 5px;
+}
+
+.mapboxgl-popup-content {
+    color: black;
+    width: fit-content;
+}
