@@ -72,7 +72,7 @@
         </div>
         <div class="window" id="departures_trolley">
             <p id="sectionheader">Departures (Trolley) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." onkeydown="" id="stationgetter_trolley" autocomplete="off">
+            <input type="text" placeholder="Search for a station..." onkeydown="keyDownTrolley();" id="stationgetter_trolley" autocomplete="off">
             <p class="headerstation_trolley">Departures for &nbsp;<span id="stationname_trolley">---</span></p>
             <ul id="list_of_departures_trolley">
                 <li id="line_for_departure_trolley"><div id="lod_trolley">-</div> <span id="aor_trolley"></span> <span id="hod_trolley">(None)</span> <span id="depart_time_trolley">Enter a station by their station ID</span></li>
@@ -138,6 +138,102 @@
             evt.currentTarget.className += " active";
         }
         document.getElementById("defaulttab").click();
+
+        function keyDownTrolley(e) {
+            if (e.keyCode === 13) {
+                document.getElementById("list_of_departures_trolley").innerHTML = `
+                    <li id="line_for_departure_trolley"><div id="lod_trolley">-</div> <span id="aor_trolley"></span> <span id="hod_trolley">(None)</span> <span id="depart_time_trolley">Loading...</span></li>
+                `;
+                document.getElementById("stationname_trolley").innerHTML = "---";
+                getTrolleyStation();
+            }
+        }
+
+        function getTrolleyStation() {
+            var station_value_trolley = document.getElementById("stationgetter_trolley").value;
+            var trolley_station_caller = new XMLHttpRequest();
+            trolley_station_caller.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9mu-mts&served_by_route_type=0&stop_id=${station_value_trolley}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+            trolley_station_caller.onreadystatechange = function() {
+                if (trolley_station_caller.readyState === 4 && trolley_station_caller.status === 200) {
+                    var trolley_station_receiver = JSON.parse(trolley_station_caller.responseText);
+                    var station_name = trolley_station_receiver.stops[0].name;
+                    var station_onestop_id = trolley_station_receiver.stops[0].onestop_id;
+
+                    document.getElementById("stationname_trolley").innerHTML = station_name;
+                    getTrolleyDepartures(station_onestop_id);
+                }
+            }
+            trolley_station_caller.send();
+        }
+
+        function getTrolleyDepartures(station_onestop_id) {
+            var trolley_departure_caller = new XMLHttpRequest();
+            trolley_departure_caller.open("GET", `https://transit.land/api/v2/rest/stops/${station_onestop_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            trolley_departure_caller.onreadystatechange = function() {
+                if (trolley_departure_caller.readyState === 4 && trolley_departure_caller.status === 200) {
+                    var trolley_departure_receiver = JSON.parse(trolley_departure_caller.responseText);
+
+                    for (var i=0; i<trolley_departure_receiver.stops[0].departures.length; i++) {
+                        var route_color = trolley_departure_receiver.stops[0].departures[i].trip.route.route_color;
+                        var route_short_name = trolley_departure_receiver.stops[0].departures[i].trip.route.route_short_name;
+                        var route_headsign = trolley_departure_receiver.stops[0].departures[i].trip.trip_headsign;
+                        var departure_time = trolley_departure_receiver.stops[0].departures[i].arrival.estimated;
+                        var scheduled_time = trolley_departure_receiver.stops[0].departures[i].arrival.scheduled;
+                        var delayed = trolley_departure_receiver.stops[0].departures[i].arrival.delay / 60;
+                        var alerts_trolley = trolley_departure_receiver.stops[0].departures[i].trip.alerts.length;
+
+                        switch (departure_time) {
+                            case null:
+                                document.getElementById("depart_time_trolley").innerHTML = `${scheduled_time} (scheduled)`;
+                                document.getElementById("depart_time_trolley").style.color = "black";
+                                break;
+                            default:
+                                document.getElementById("depart_time_trolley").innerHTML = `${departure_time} <span id="delay_trolley">()</span>`;
+                                document.getElementById("depart_time_trolley").style.color = "rgb(10, 161, 45)";
+
+                                switch (delayed) {
+                                    case null:
+                                        document.getElementById("delay_trolley").innerHTML = "(no data)";
+                                        document.getElementById("delay_trolley").style.color = "black";
+                                        break;
+                                    case (delayed > 60):
+                                        document.getElementById("delay_trolley").innerHTML = `(${delayed} min late)`;
+                                        document.getElementById("delay_trolley").style.color = "#db4242";
+                                        break;
+                                    case (delayed < 0):
+                                        document.getElementById("delay_trolley").innerHTML = `(${delayed} min early)`;
+                                        document.getElementById("delay_trolley").style.color = "#0398fc";
+                                        break;
+                                    default:
+                                        document.getElementById("delay_trolley").innerHTML = `(on time)`;
+                                        document.getElementById("delay_trolley").style.color = "rgb(10, 161, 45)";
+                                        break;
+                                }
+                                break;
+                        }
+
+                        if (alerts_trolley === 0) {
+                            document.getElementsById("aor_trolley").innerHTML = "";
+                        } else {
+                            document.getElementById("aor_trolley").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_trolley})`;
+                        }
+
+                        document.getElementById("lod_trolley").innerHTML = route_short_name;
+                        document.getElementById("lod_trolley").style.backgroundColor = `#${route_color}40`;
+                        document.getElementById("lod_trolley").style.color = `#${route_text_color}`;
+                        document.getElementById("lod_trolley").style.border = `1px solid #${route_color}`;
+                        document.getElementById("hod_trolley").innerHTML = route_headsign;
+
+                        var departure_trolley_entity = document.getElementById("line_for_departure_trolley").cloneNode(true);
+                        document.getElementById("list_of_departures_trolley").appendChild(departure_trolley_entity);
+                    }
+
+                    var all_trolley_departures = document.getElementById("list_of_departures_trolley").children;
+                    document.getElementById("list_of_departures_trolley").removeChild(all_trolley_departures[0]);
+                }
+            }
+            trolley_departure_caller.send();
+        }
     </script>
 </body>
 </html>
