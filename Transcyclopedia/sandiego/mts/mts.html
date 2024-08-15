@@ -140,6 +140,7 @@
         document.getElementById("defaulttab").click();
 
         function keyDownTrolley(e) {
+            e = e || window.event;
             if (e.keyCode === 13) {
                 document.getElementById("list_of_departures_trolley").innerHTML = `
                     <li id="line_for_departure_trolley"><div id="lod_trolley">-</div> <span id="aor_trolley"></span> <span id="hod_trolley">(None)</span> <span id="depart_time_trolley">Loading...</span></li>
