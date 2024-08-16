@@ -157,7 +157,7 @@
             trolley_station_caller.onreadystatechange = function() {
                 if (trolley_station_caller.readyState === 4 && trolley_station_caller.status === 200) {
                     var trolley_station_receiver = JSON.parse(trolley_station_caller.responseText);
-                    var station_name = trolley_station_receiver.stops[0].name;
+                    var station_name = trolley_station_receiver.stops[0].stop_name;
                     var station_onestop_id = trolley_station_receiver.stops[0].onestop_id;
 
                     document.getElementById("stationname_trolley").innerHTML = station_name;
@@ -214,7 +214,7 @@
                         }
 
                         if (alerts_trolley === 0) {
-                            document.getElementsById("aor_trolley").innerHTML = "";
+                            document.getElementById("aor_trolley").innerHTML = "";
                         } else {
                             document.getElementById("aor_trolley").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_trolley})`;
                         }
