@@ -159,3 +159,11 @@ function loadMTSCoronado() {
     coronado_caller.send();
 }
 loadMTSCoronado();
+
+function keyDownBus() {
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Enter") {
+            console.log("For Bus!");
+        }
+    });
+}
