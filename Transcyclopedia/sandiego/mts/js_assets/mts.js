@@ -161,9 +161,99 @@ function loadMTSCoronado() {
 loadMTSCoronado();
 
 function keyDownBus(e) {
-    document.getElementById("stopgetter").addEventListener('keydown', function(event) {
-        if (event.key === "Enter") {
-            console.log("For Bus!");
+    e = e || window.event;
+    if (e.keyCode === 13) {
+        document.getElementById("list_of_departures_bus").innerHTML = `
+            <li id="line_for_departure_bus"><div id="lod_bus">-</div> <span id="aor_bus"></span> <span id="hod_bus">(None)</span> <span id="depart_time_bus">Loading...</span></li>
+        `;
+        document.getElementById("stopname").innerHTML = "---";
+        getBusStop();
+    }
+}
+
+function getBusStop() {
+    var stop_id_bus = document.getElementById("stopgetter").value;
+    var bus_stop_caller = new XMLHttpRequest();
+    bus_stop_caller.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9mu-mts&served_by_route_type=3&stop_id=${stop_id_bus}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+    bus_stop_caller.onreadystatechange = function() {
+        if (bus_stop_caller.readyState === 4 && bus_stop_caller.status === 200) {
+            var bus_stop_receiver = JSON.parse(bus_stop_caller.responseText);
+            var stop_name = bus_stop_receiver.stops[0].stop_name;
+            var stop_onestop_id = bus_stop_receiver.stops[0].onestop_id;
+
+            document.getElementById("stopname").innerHTML = stop_name;
+            getBusDepartures(stop_onestop_id);
         }
-    });
+    }
+    bus_stop_caller.send();
+}
+
+function getBusDepartures(stop_id) {
+    var bus_departure_caller = new XMLHttpRequest();
+    bus_departure_caller.open("GET", `https://transit.land/api/v2/rest/stops/${stop_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+    bus_departure_caller.onreadystatechange = function() {
+        if (bus_departure_caller.readyState === 4 && bus_departure_caller.status === 200) {
+            var bus_departure_receiver = JSON.parse(bus_departure_caller.responseText);
+
+            for (var i=0; i<bus_departure_receiver.stops[0].departures.length; i++) {
+                var route_color = bus_departure_receiver.stops[0].departures[i].trip.route.route_color;
+                var route_short_name = bus_departure_receiver.stops[0].departures[i].trip.route.route_short_name;
+                var route_text_color = bus_departure_receiver.stops[0].departures[i].trip.route.route_text_color;
+                var route_headsign = bus_departure_receiver.stops[0].departures[i].trip.trip_headsign;
+                var departure_time = bus_departure_receiver.stops[0].departures[i].arrival.estimated;
+                var scheduled_time = bus_departure_receiver.stops[0].departures[i].arrival.scheduled;
+                var delayed = bus_departure_receiver.stops[0].departures[i].arrival.delay / 60;
+                var alerts_bus = bus_departure_receiver.stops[0].departures[i].trip.alerts.length;
+
+                switch (departure_time) {
+                    case null:
+                        document.getElementById("depart_time_bus").innerHTML = `${scheduled_time} (scheduled)`;
+                        document.getElementById("depart_time_bus").style.color = "black";
+                        break;
+                    default:
+                        document.getElementById("depart_time_bus").innerHTML = `${departure_time} <span id="delay_bus">()</span>`;
+                        document.getElementById("depart_time_bus").style.color = "rgb(10, 161, 45)";
+
+                        switch (delayed) {
+                            case null:
+                                document.getElementById("delay_bus").innerHTML = "(no data)";
+                                document.getElementById("delay_bus").style.color = "black";
+                                break;
+                            case (delayed > 60):
+                                document.getElementById("delay_bus").innerHTML = `(${delayed} min late)`;
+                                document.getElementById("delay_bus").style.color = "#db4242";
+                                break;
+                            case (delayed < 0):
+                                document.getElementById("delay_bus").innerHTML = `(${delayed} min early)`;
+                                document.getElementById("delay_bus").style.color = "#0398fc";
+                                break;
+                            default:
+                                document.getElementById("delay_bus").innerHTML = `(on time)`;
+                                document.getElementById("delay_bus").style.color = "rgb(10, 161, 45)";
+                                break;
+                        }
+                        break;
+                }
+
+                if (alerts_bus === 0) {
+                    document.getElementById("aor_bus").innerHTML = "";
+                } else {
+                    document.getElementById("aor_bus").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_bus})`;
+                }
+
+                document.getElementById("lod_bus").innerHTML = route_short_name;
+                document.getElementById("lod_bus").style.backgroundColor = `#${route_color}40`;
+                document.getElementById("lod_bus").style.color = `#${route_text_color}`;
+                document.getElementById("lod_bus").style.border = `1px solid #${route_color}`;
+                document.getElementById("hod_bus").innerHTML = route_headsign;
+
+                var departure_bus_entity = document.getElementById("line_for_departure_bus").cloneNode(true);
+                document.getElementById("list_of_departures_bus").appendChild(departure_bus_entity);
+            }
+
+            var all_bus_departures = document.getElementById("list_of_departures_bus").children;
+            document.getElementById("list_of_departures_bus").removeChild(all_bus_departures[0]);
+        }
+    }
+    bus_departure_caller.send();
 }
