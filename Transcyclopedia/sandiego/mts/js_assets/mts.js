@@ -161,7 +161,7 @@ function loadMTSCoronado() {
 loadMTSCoronado();
 
 function keyDownBus(e) {
-    document.addEventListener('keydown', function(event) {
+    document.getElementById("stopgetter").addEventListener('keydown', function(event) {
         if (event.key === "Enter") {
             console.log("For Bus!");
         }
