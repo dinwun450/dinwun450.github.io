@@ -295,7 +295,6 @@ function getCoronadoDepartures(terminal_id) {
 
             for (var i=0; i<coronado_departure_receiver.stops[0].departures.length; i++) {
                 var route_color = coronado_departure_receiver.stops[0].departures[i].trip.route.route_color;
-                var route_short_name = coronado_departure_receiver.stops[0].departures[i].trip.route.route_short_name;
                 var route_text_color = coronado_departure_receiver.stops[0].departures[i].trip.route.route_text_color;
                 var route_headsign = coronado_departure_receiver.stops[0].departures[i].trip.trip_headsign;
                 var departure_time = coronado_departure_receiver.stops[0].departures[i].arrival.estimated;
@@ -340,7 +339,7 @@ function getCoronadoDepartures(terminal_id) {
                     document.getElementById("aor_coronado").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_coronado})`;
                 }
 
-                document.getElementById("lod_coronado").innerHTML = route_short_name;
+                document.getElementById("lod_coronado").innerHTML = "&nbsp;&nbsp;&nbsp;";
                 document.getElementById("lod_coronado").style.backgroundColor = `#${route_color}40`;
                 document.getElementById("lod_coronado").style.color = `#${route_text_color}`;
                 document.getElementById("lod_coronado").style.border = `1px solid #${route_color}`;
