@@ -235,7 +235,7 @@ function loadNCTDAlertsRoutes() {
                             var desc_of_alert_in_routes = nctd_alert_route_desc[0].text;
                         }
 
-                        document.getElementById("alert_routes_entity").innerHTML = `<p><span id="affectedroutes"></span> <br> <b>${nctd_alert_route_header}</b> <br> ${desc_of_alert_in_routes}`;
+                        document.getElementById("alert_routes_entity").innerHTML = `<p><span id="affectedroutes"></span> <br> <b>${nctd_alert_route_header}</b> <br> ${desc_of_alert_in_routes}</p>`;
 
                         document.getElementById("affectedroutes").innerHTML = affected_route_short_name;
                         document.getElementById("affectedroutes").style.color = `#${affected_route_text_color}`;

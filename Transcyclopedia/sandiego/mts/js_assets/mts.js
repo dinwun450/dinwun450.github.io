@@ -398,3 +398,50 @@ function loadMTSAlertsByAgency() {
     alert_caller.send();
 }
 loadMTSAlertsByAgency();
+
+function loadMTSAlertsByRoutes() {
+    var mts_route_alert_caller = new XMLHttpRequest();
+    mts_route_alert_caller.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9mu-mts&include_alerts=true");
+    mts_route_alert_caller.onreadystatechange = function() {
+        if (mts_route_alert_caller.readyState === 4 && mts_route_alert_caller.status === 200) {
+            var mts_route_alert_receiver = JSON.parse(mts_route_alert_caller.responseText);
+            var no_of_alerts_mts = 0;
+
+            for (var i=0; i<mts_route_alert_receiver.routes.length; i++) {
+                var affected_route_color = mts_route_alert_receiver.routes[i].route_color;
+                var affected_route_text_color = mts_route_alert_receiver.routes[i].route_text_color;
+                var affected_route_short_name = mts_route_alert_receiver.routes[i].route_short_name;
+                var alerts_for_mts = mts_route_alert_receiver.routes[i].alerts;
+
+                if (alerts_for_mts.length === 0) {
+                    no_of_alerts_mts.push(affected_route_short_name);
+                }
+                else {
+                    for (var j=0; j<alerts_for_mts.length; j++) {
+                        var header_for_mts_route_alert = alerts_for_mts[j].header_text[0].text;
+                        var desc_for_mts_route_alert = alerts_for_mts[j].description_text[0].text;
+
+                        document.getElementById("alert_route_entity").innerHTML = `<p><span id="affectedroutes"></span> <br> <b>${header_for_mts_route_alert}</b> <br> ${desc_for_mts_route_alert}</p>`;
+                        document.getElementById("affectedroutes").innerHTML = affected_route_short_name;
+                        document.getElementById("affectedroutes").style.color = `#${affected_route_text_color}`;
+                        document.getElementById("affectedroutes").style.backgroundColor = `#${affected_route_color}40`;
+                        document.getElementById("affectedroutes").style.border = `1px solid #${affected_route_color}`;
+
+                        var each_route_alert = document.getElementById("alert_route_entity").cloneNode(true);
+                        document.getElementById("list_of_line_alerts").appendChild(each_route_alert);
+                    }
+                }
+            }
+
+            if (no_of_alerts_mts.length === mts_route_alert_receiver.routes.length) {
+                document.getElementById("alert_routes_entity").innerHTML = "There are no alerts in all routes under MTS.";
+            }
+            else {
+                var all_route_alerts = document.getElementById("list_of_line_alerts").children;
+                document.getElementById("list_of_line_alerts").removeChild(all_route_alerts[0]);
+            }
+        }
+    }
+    mts_route_alert_caller.send();
+}
+loadMTSAlertsByRoutes();
