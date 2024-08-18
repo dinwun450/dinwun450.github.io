@@ -258,6 +258,13 @@ function getBusDepartures(stop_id) {
     bus_departure_caller.send();
 }
 
+function clearAllBus() {
+    document.getElementById("list_of_departures_bus").innerHTML = `
+        <li id="line_for_departure_bus"><div id="lod_bus">-</div> <span id="aor_bus"></span> <span id="hod_bus">(None)</span> <span id="depart_time_bus">Enter a station by their station ID</span></li>
+    `;
+    document.getElementById("stopname").innerHTML = "---";
+}
+
 function keyDownCoronado(e) {
     e = e || window.event;
     if (e.keyCode === 13) {
@@ -354,4 +361,11 @@ function getCoronadoDepartures(terminal_id) {
         }
     }
     coronado_departure_caller.send();
+}
+
+function clearAllCoronado() {
+    document.getElementById("list_of_departures_coronado").innerHTML = `
+        <li id="line_for_departure_coronado"><div id="lod_coronado">-</div> <span id="aor_coronado"></span> <span id="hod_coronado">(None)</span> <span id="depart_time_coronado">Enter a station by their station ID</span></li>
+    `;
+    document.getElementById("terminalname").innerHTML = "---";
 }
