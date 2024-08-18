@@ -514,4 +514,4 @@ function mapConfiguration() {
         );
     });
 }
-mapConfiguration();
+setTimeout(mapConfiguration, 5000);
