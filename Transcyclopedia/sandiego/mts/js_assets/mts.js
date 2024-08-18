@@ -405,7 +405,7 @@ function loadMTSAlertsByRoutes() {
     mts_route_alert_caller.onreadystatechange = function() {
         if (mts_route_alert_caller.readyState === 4 && mts_route_alert_caller.status === 200) {
             var mts_route_alert_receiver = JSON.parse(mts_route_alert_caller.responseText);
-            var no_of_alerts_mts = 0;
+            var no_of_alerts_mts = [];
 
             for (var i=0; i<mts_route_alert_receiver.routes.length; i++) {
                 var affected_route_color = mts_route_alert_receiver.routes[i].route_color;
