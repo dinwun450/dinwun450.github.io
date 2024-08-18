@@ -421,21 +421,13 @@ function loadMTSAlertsByRoutes() {
                         var header_for_mts_route_alert = alerts_for_mts[j].header_text[0].text;
                         var desc_for_mts_route_alert = alerts_for_mts[j].description_text[0].text;
 
-<<<<<<< HEAD
                         document.getElementById("alert_routes_entity").innerHTML = `<p><span id="affectedroutes"></span> <br> <b>${header_for_mts_route_alert}</b> <br> ${desc_for_mts_route_alert}</p>`;
-=======
-                        document.getElementById("alert_route_entity").innerHTML = `<p><span id="affectedroutes"></span> <br> <b>${header_for_mts_route_alert}</b> <br> ${desc_for_mts_route_alert}</p>`;
->>>>>>> b014753d9d7a4f2d26635b6fea6eafee79cd430e
                         document.getElementById("affectedroutes").innerHTML = affected_route_short_name;
                         document.getElementById("affectedroutes").style.color = `#${affected_route_text_color}`;
                         document.getElementById("affectedroutes").style.backgroundColor = `#${affected_route_color}40`;
                         document.getElementById("affectedroutes").style.border = `1px solid #${affected_route_color}`;
 
-<<<<<<< HEAD
                         var each_route_alert = document.getElementById("alert_routes_entity").cloneNode(true);
-=======
-                        var each_route_alert = document.getElementById("alert_route_entity").cloneNode(true);
->>>>>>> b014753d9d7a4f2d26635b6fea6eafee79cd430e
                         document.getElementById("list_of_line_alerts").appendChild(each_route_alert);
                     }
                 }
