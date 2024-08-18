@@ -257,3 +257,102 @@ function getBusDepartures(stop_id) {
     }
     bus_departure_caller.send();
 }
+
+function keyDownCoronado(e) {
+    e = e || window.event;
+    if (e.keyCode === 13) {
+        document.getElementById("list_of_departures_coronado").innerHTML = `
+            <li id="line_for_departure_coronado"><div id="lod_coronado">-</div> <span id="aor_coronado"></span> <span id="hod_coronado">(None)</span> <span id="depart_time_coronado">Loading...</span></li>
+        `;
+        document.getElementById("terminalname").innerHTML = "---";
+        getCoronadoTerminal();
+    }
+}
+
+function getCoronadoTerminal() {
+    var terminal_id_coronado = document.getElementById("terminalgetter").value;
+    var coronado_terminal_caller = new XMLHttpRequest();
+    coronado_terminal_caller.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=o-9mu-mts&served_by_route_type=4&stop_id=${terminal_id_coronado}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+    coronado_terminal_caller.onreadystatechange = function() {
+        if (coronado_terminal_caller.readyState === 4 && coronado_terminal_caller.status === 200) {
+            var coronado_terminal_receiver = JSON.parse(coronado_terminal_caller.responseText);
+            var terminal_name = coronado_terminal_receiver.stops[0].stop_name;
+            var terminal_onestop_id = coronado_terminal_receiver.stops[0].onestop_id;
+
+            document.getElementById("terminalname").innerHTML = terminal_name;
+            getCoronadoDepartures(terminal_onestop_id);
+        }
+    }
+    coronado_terminal_caller.send();
+}
+
+function getCoronadoDepartures(terminal_id) {
+    var coronado_departure_caller = new XMLHttpRequest();
+    coronado_departure_caller.open("GET", `https://transit.land/api/v2/rest/stops/${terminal_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+    coronado_departure_caller.onreadystatechange = function() {
+        if (coronado_departure_caller.readyState === 4 && coronado_departure_caller.status === 200) {
+            var coronado_departure_receiver = JSON.parse(coronado_departure_caller.responseText);
+
+            for (var i=0; i<coronado_departure_receiver.stops[0].departures.length; i++) {
+                var route_color = coronado_departure_receiver.stops[0].departures[i].trip.route.route_color;
+                var route_short_name = coronado_departure_receiver.stops[0].departures[i].trip.route.route_short_name;
+                var route_text_color = coronado_departure_receiver.stops[0].departures[i].trip.route.route_text_color;
+                var route_headsign = coronado_departure_receiver.stops[0].departures[i].trip.trip_headsign;
+                var departure_time = coronado_departure_receiver.stops[0].departures[i].arrival.estimated;
+                var scheduled_time = coronado_departure_receiver.stops[0].departures[i].arrival.scheduled;
+                var delayed = coronado_departure_receiver.stops[0].departures[i].arrival.delay / 60;
+                var alerts_coronado = coronado_departure_receiver.stops[0].departures[i].trip.alerts.length;
+
+                switch (departure_time) {
+                    case null:
+                        document.getElementById("depart_time_coronado").innerHTML = `${scheduled_time} (scheduled)`;
+                        document.getElementById("depart_time_coronado").style.color = "black";
+                        break;
+                    default:
+                        document.getElementById("depart_time_coronado").innerHTML = `${departure_time} <span id="delay_coronado">()</span>`;
+                        document.getElementById("depart_time_coronado").style.color = "rgb(10, 161, 45)";
+
+                        switch (delayed) {
+                            case null:
+                                document.getElementById("delay_coronado").innerHTML = "(no data)";
+                                document.getElementById("delay_coronado").style.color = "black";
+                                break;
+                            case (delayed > 60):
+                                document.getElementById("delay_coronado").innerHTML = `(${delayed} min late)`;
+                                document.getElementById("delay_coronado").style.color = "#db4242";
+                                break;
+                            case (delayed < 0):
+                                document.getElementById("delay_coronado").innerHTML = `(${delayed} min early)`;
+                                document.getElementById("delay_coronado").style.color = "#0398fc";
+                                break;
+                            default:
+                                document.getElementById("delay_coronado").innerHTML = `(on time)`;
+                                document.getElementById("delay_coronado").style.color = "rgb(10, 161, 45)";
+                                break;
+                        }
+                        break;
+                }
+
+                if (alerts_coronado === 0) {
+                    document.getElementById("aor_coronado").innerHTML = "";
+                }
+                else {
+                    document.getElementById("aor_coronado").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_coronado})`;
+                }
+
+                document.getElementById("lod_coronado").innerHTML = route_short_name;
+                document.getElementById("lod_coronado").style.backgroundColor = `#${route_color}40`;
+                document.getElementById("lod_coronado").style.color = `#${route_text_color}`;
+                document.getElementById("lod_coronado").style.border = `1px solid #${route_color}`;
+                document.getElementById("hod_coronado").innerHTML = route_headsign;
+                
+                var departure_coronado_entity = document.getElementById("line_for_departure_coronado").cloneNode(true);
+                document.getElementById("list_of_departures_coronado").appendChild(departure_coronado_entity);
+            }
+
+            var all_coronado_departures = document.getElementById("list_of_departures_coronado").children;
+            document.getElementById("list_of_departures_coronado").removeChild(all_coronado_departures[0]);
+        }
+    }
+    coronado_departure_caller.send();
+}
