@@ -397,3 +397,4 @@ function loadMTSAlertsByAgency() {
     }
     alert_caller.send();
 }
+loadMTSAlertsByAgency();
