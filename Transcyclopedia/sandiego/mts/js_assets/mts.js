@@ -369,3 +369,31 @@ function clearAllCoronado() {
     `;
     document.getElementById("terminalname").innerHTML = "---";
 }
+
+function loadMTSAlertsByAgency() {
+    var alert_caller = new XMLHttpRequest();
+    alert_caller.open("GET", "https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=o-9mu-mts&include_alerts=true");
+    alert_caller.onreadystatechange = function() {
+        if (alert_caller.readyState === 4 && alert_caller.status === 200) {
+            var alert_receiver = JSON.parse(alert_caller.responseText);
+
+            if (alert_receiver.agencies[0].alerts.length === 0) {
+                document.getElementById("alert_agency_entity").innerHTML = "There are no alerts at the moment involving the MTS agency.";
+            }
+            else {
+                for (var i=0; i<alert_receiver.agencies[0].alerts.length; i++) {
+                    var desc_for_mts_alert = alert_receiver.agencies[0].alerts[i].description_text[0].text;
+                    var header_for_mts_alert = alert_receiver.agencies[0].alerts[i].header_text[0].text;
+                    document.getElementById("alert_agency_entity").innerHTML = `<b>${header_for_mts_alert}</b> <br> ${desc_for_mts_alert}`;
+
+                    var each_alert = document.getElementById("alert_agency_entity").cloneNode(true);
+                    document.getElementById("list_of_agency_alerts").appendChild(each_alert);
+                }
+
+                var all_alerts = document.getElementById("list_of_agency_alerts").children;
+                document.getElementById("list_of_agency_alerts").removeChild(all_alerts[0]);
+            }
+        }
+    }
+    alert_caller.send();
+}
