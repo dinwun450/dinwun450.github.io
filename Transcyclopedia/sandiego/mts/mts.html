@@ -90,12 +90,12 @@
         </div>
         <div class="window" id="departures_coronado">
             <p id="sectionheader">Departures (Coronado) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a terminal..." onkeydown="" id="terminalgetter" autocomplete="off">
+            <input type="text" placeholder="Search for a terminal..." onkeydown="keyDownCoronado();" id="terminalgetter" autocomplete="off">
             <p class="headerterminal">Departures for &nbsp;<span id="terminalname">---</span></p>
             <ul id="list_of_departures_coronado">
                 <li id="line_for_departure_coronado"><div id="lod_coronado">-</div> <span id="aor_coronado"></span> <span id="hod_coronado">(None)</span> <span id="depart_time_coronado">Enter a stop by their stop ID</span></li>
             </ul>
-            <button id="clearall_coronado" onclick="keyDownCoronado();">Clear</button>
+            <button id="clearall_coronado" onclick="">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
