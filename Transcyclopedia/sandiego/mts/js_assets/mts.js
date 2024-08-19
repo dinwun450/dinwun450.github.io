@@ -422,6 +422,7 @@ function loadMTSAlertsByRoutes() {
                     for (var j=0; j<alerts_for_mts.length; j++) {
                         var header_for_mts_route_alert = alerts_for_mts[j].header_text[0].text;
                         var desc_for_mts_route_alert = alerts_for_mts[j].description_text[0].text;
+                        console.log(affected_route_short_name);
 
                         document.getElementById("alert_routes_entity").innerHTML = `<p><span id="affectedroutes"></span> <br> <b>${header_for_mts_route_alert}</b> <br> ${desc_for_mts_route_alert}</p>`;
                         document.getElementById("affectedroutes").innerHTML = affected_route_short_name;
@@ -447,6 +448,22 @@ function loadMTSAlertsByRoutes() {
     mts_route_alert_caller.send();
 }
 loadMTSAlertsByRoutes();
+
+function getUniqueFeatures(features, comparatorProperty) {
+    const unique_ids = new Set();
+    const unique_features = [];
+
+    for (const feature of features) {
+        const id = feature.properties[comparatorProperty];
+        
+        if (!unique_ids.has(id)) {
+            unique_ids.add(id);
+            unique_features.push(feature);
+        }
+    }
+
+    return unique_features;
+}
 
 function mapConfiguration() {
     document.getElementById("map").style.width = "100%";
