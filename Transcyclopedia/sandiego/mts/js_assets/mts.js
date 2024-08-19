@@ -1,3 +1,5 @@
+var geojson_of_mts_routes = []
+
 function loadMTSWikipedia() {
     var mts_info_caller = new XMLHttpRequest();
     mts_info_caller.open("GET", "https://en.wikipedia.org/w/api.php?action=query&exintro=&explaintext=&origin=%2A&prop=extracts&redirects=1&titles=San_Diego_Metropolitan_Transit_System&format=json&origin=*");
@@ -514,3 +516,237 @@ function mapConfiguration() {
         );
     });
 }
+
+function plotMTSLines() {
+    var mts_map_caller = new XMLHttpRequest();
+    mts_map_caller.open("GET", "https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=o-9mu-mts&limit=700&include_geometry=true");
+    mts_map_caller.onreadystatechange = function() {
+        if (mts_map_caller.readyState === 4 && mts_map_caller.status === 200) {
+            var mts_map_receiver = JSON.parse(mts_map_caller.responseText);
+
+            for (var i = 0; i < mts_map_receiver.routes.length; i++) {
+                var route_short_name = mts_map_receiver.routes[i].route_short_name;
+                var route_long_name = mts_map_receiver.routes[i].route_long_name;
+                var route_color = mts_map_receiver.routes[i].route_color;
+                var route_text_color = mts_map_receiver.routes[i].route_text_color;
+                var route_id = mts_map_receiver.routes[i].route_id;
+                var route_type = mts_map_receiver.routes[i].route_type;
+                var route_geometry = mts_map_receiver.routes[i].geometry;
+
+                geojson_of_mts_routes.push({
+                    "type": "Feature",
+                    "properties": {
+                        "route_short_name": route_short_name,
+                        "route_long_name": route_long_name,
+                        "route_color": `#${route_color}`,
+                        "route_text_color": `#${route_text_color}`,
+                        "route_id": route_id,
+                        "route_type": route_type
+                    },
+                    "geometry": route_geometry
+                });
+            }
+
+            var trolley_mts_geojson = geojson_of_mts_routes.filter(function(t) {return t.properties.route_type === 0});
+            var bus_mts_geojson = geojson_of_mts_routes.filter(function(b) {return b.properties.route_type === 3});
+            var coronado_mts_geojson = geojson_of_mts_routes.filter(function(c) {return c.properties.route_type === 4});
+
+            map.addSource('source_from_mts_trolley', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': trolley_mts_geojson
+                },
+                'generateId': true
+            });
+
+            map.addSource('source_from_mts_bus', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': bus_mts_geojson
+                },
+                'generateId': true
+            });
+
+            map.addSource('source_from_mts_coronado', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': coronado_mts_geojson
+                },
+                'generateId': true
+            });
+
+            map.addLayer({
+                'id': 'mts_trolley',
+                'type': 'line',
+                'source': 'source_from_mts_trolley',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': ['get', 'route_color'],
+                    'line-width': 4
+                }
+            });
+
+            map.addLayer({
+                'id': 'mts_bus',
+                'type': 'line',
+                'source': 'source_from_mts_bus',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-width': 2,
+                    'line-color': [
+                        'case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        ['get', 'route_color'],
+                        '#c0e7fc',
+                    ],
+                }
+            });
+
+            map.addLayer({
+                'id': 'mts_coronado',
+                'type': 'line',
+                'source': 'source_from_mts_coronado',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': ['get', 'route_color'],
+                    'line-width': 4
+                }
+            });
+
+            map.moveLayer('mts_trolley', 'mts_bus', 'mts_coronado');
+
+            map.on('movestart', () => {
+                map.setFilter('mts_trolley', ['has', 'route_id']);
+                map.setFilter('mts_bus', ['has', 'route_id']);
+                map.setFilter('mts_coronado', ['has', 'route_id']);
+
+                document.getElementById("range_of_routes").innerHTML = `
+                    <li id="rir"><span id="route_name_rad">-</span>&nbsp;&nbsp;<span id="route_detail_rad">Loading...</span></li>
+                `;
+            });
+
+            map.on('moveend', () => {
+                const features = map.queryRenderedFeatures({ 
+                    layers: ['mts_trolley', 'mts_bus', 'mts_coronado'] 
+                });
+
+                if (features) {
+                    const uniqueFeatures = getUniqueFeatures(features, 'route_id');
+
+                    for (var f=0; f<uniqueFeatures.length; f++) {
+                        var name_of_route = uniqueFeatures[f].properties.route_short_name;
+                        var desc_of_route = uniqueFeatures[f].properties.route_long_name;
+                        var color_of_route = uniqueFeatures[f].properties.route_color;
+                        var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
+
+                        if (name_of_route === "") {
+                            document.getElementById("route_name_rad").innerHTML = `&nbsp;&nbsp;&nbsp;`;
+                        } else {
+                            document.getElementById("route_name_rad").innerHTML = name_of_route;
+                        }
+
+                        document.getElementById("route_name_rad").style.backgroundColor = `${color_of_route}40`;
+                        document.getElementById("route_name_rad").style.color = text_color_of_route;
+                        document.getElementById("route_name_rad").style.border = `1px solid ${color_of_route}`;
+                        document.getElementById("route_detail_rad").innerHTML = desc_of_route;
+
+                        var each_route = document.getElementById("rir").cloneNode(true);
+                        document.getElementById("range_of_routes").appendChild(each_route);
+                    }
+
+                    var all_routes = document.getElementById("range_of_routes").children;
+                    document.getElementById("range_of_routes").removeChild(all_routes[0]);
+                }
+            });
+
+            let routeID_for_Trolley_and_Coronado = [];
+            let routeID_for_Bus = [];
+            let hoverIDBus = [];
+            let hoveredPolygonLine = null;
+
+            const popup = new mapboxgl.Popup({
+                closeButton: false,
+                closeOnClick: false
+            });
+
+            map.on('mouseenter', ['mts_trolley, mts_coronado'], (e) => {
+                var fs = map.queryRenderedFeatures(e.point, { layers: ['mts_trolley', 'mts_coronado'] });
+
+                if (fs.length > 0) {
+                    for (var f=0; f<fs.length; f++) {
+                        var name_of_route = fs[f].properties.route_long_name;
+                        routeID_for_Trolley_and_Coronado.push(name_of_route);
+                    }
+
+                    popup.setLngLat(e.lngLat.wrap()).setHTML(routeID_for_Trolley_and_Coronado).addTo(map);
+                }
+            });
+
+            map.on('mouseleave', ['mts_trolley', 'mts_coronado'], () => {
+                if (routeID_for_Trolley_and_Coronado.length > 0) {
+                    routeID_for_Trolley_and_Coronado = [];
+                }
+                popup.remove();
+            });
+
+            map.on('mouseenter', 'mts_bus', function(e) {
+                var fs2 = map.queryRenderedFeatures(e.point, { layers: ['mts_bus'] });
+
+                if (fs2.length > 0) {
+                    for (var f=0; f<fs2.length; f++) {
+                        var name_of_route = fs2[f].properties.route_long_name;
+                        routeID_for_Bus.push(name_of_route);
+
+                        hoveredPolygonLine = fs2[f].id;
+                        hoverIDBus.push(hoveredPolygonLine);
+
+                        if (hoveredPolygonLine !== null) {
+                            map.setFeatureState(
+                                { source: 'source_from_mts_bus', id: hoveredPolygonLine },
+                                { hover: false }
+                            );
+                        }
+
+                        map.setFeatureState(
+                            { source: 'source_from_mts_bus', id: hoveredPolygonLine },
+                            { hover: true }
+                        );
+                    }
+
+                    popup.setLngLat(e.lngLat.wrap()).setHTML(routeID_for_Bus).addTo(map);
+                }
+            });
+
+            map.on('mouseleave', 'mts_bus', function() {
+                if (routeID_for_Bus.length > 0) {
+                    routeID_for_Bus = [];
+                }
+                popup.remove();
+
+                if (hoverIDBus.length > 0) {
+                    for (var h=0; h<hoverIDBus.length; h++) {
+                        map.setFeatureState(
+                            { source: 'source_from_mts_bus', id: hoverIDBus[h] },
+                            { hover: false }
+                        );
+                    }
+                }
+                hoveredPolygonLine = null;
+            });
+        }
+    }
+    mts_map_caller.send();
+}
+plotMTSLines();
