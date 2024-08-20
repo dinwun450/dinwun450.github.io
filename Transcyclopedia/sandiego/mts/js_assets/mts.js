@@ -595,20 +595,6 @@ function plotMTSLines() {
             });
 
             map.addLayer({
-                'id': 'mts_trolley',
-                'type': 'line',
-                'source': 'source_from_mts_trolley',
-                'layout': {
-                    'line-join': 'round',
-                    'line-cap': 'round'
-                },
-                'paint': {
-                    'line-color': ['get', 'route_color'],
-                    'line-width': 4
-                }
-            });
-
-            map.addLayer({
                 'id': 'mts_bus',
                 'type': 'line',
                 'source': 'source_from_mts_bus',
@@ -624,6 +610,20 @@ function plotMTSLines() {
                         ['get', 'route_color'],
                         '#c0e7fc',
                     ],
+                }
+            });
+
+            map.addLayer({
+                'id': 'mts_trolley',
+                'type': 'line',
+                'source': 'source_from_mts_trolley',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': ['get', 'route_color'],
+                    'line-width': 4
                 }
             });
 
