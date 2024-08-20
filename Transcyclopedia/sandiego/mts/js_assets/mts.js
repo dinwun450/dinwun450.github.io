@@ -641,11 +641,11 @@ function plotMTSLines() {
                 }
             });
 
-            map.moveLayer('mts_trolley', 'mts_bus', 'mts_coronado');
+            map.moveLayer('mts_bus', 'mts_trolley', 'mts_coronado');
 
             map.on('movestart', () => {
-                map.setFilter('mts_trolley', ['has', 'route_id']);
                 map.setFilter('mts_bus', ['has', 'route_id']);
+                map.setFilter('mts_trolley', ['has', 'route_id']);
                 map.setFilter('mts_coronado', ['has', 'route_id']);
 
                 document.getElementById("range_of_routes").innerHTML = `
