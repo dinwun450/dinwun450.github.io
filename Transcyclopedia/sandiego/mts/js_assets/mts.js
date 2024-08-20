@@ -687,7 +687,8 @@ function plotMTSLines() {
                 }
             });
 
-            let routeID_for_Trolley_and_Coronado = [];
+            let routeID_for_Trolley = [];
+            let routeID_for_Coronado = [];
             let routeID_for_Bus = [];
             let hoverIDBus = [];
             let hoveredPolygonLine = null;
@@ -697,22 +698,42 @@ function plotMTSLines() {
                 closeOnClick: false
             });
 
-            map.on('mouseenter', ['mts_trolley, mts_coronado'], (e) => {
-                var fs = map.queryRenderedFeatures(e.point, { layers: ['mts_trolley', 'mts_coronado'] });
+            map.on('mouseenter', 'mts_trolley', (e) => {
+                var fs = map.queryRenderedFeatures(e.point, { layers: ['mts_trolley'] });
+
+                if (fs.length > 0) {
+                    for (var f=0; f<fs.length; f++) {
+                        var name_of_route = fs[f].properties.route_short_name;
+                        routeID_for_Trolley.push(name_of_route);
+                    }
+
+                    popup.setLngLat(e.lngLat.wrap()).setHTML(routeID_for_Trolley).addTo(map);
+                }
+            });
+
+            map.on('mouseenter', 'mts_coronado', (e) => {
+                var fs = map.queryRenderedFeatures(e.point, { layers: ['mts_coronado'] });
 
                 if (fs.length > 0) {
                     for (var f=0; f<fs.length; f++) {
                         var name_of_route = fs[f].properties.route_long_name;
-                        routeID_for_Trolley_and_Coronado.push(name_of_route);
+                        routeID_for_Coronado.push(name_of_route);
                     }
 
-                    popup.setLngLat(e.lngLat.wrap()).setHTML(routeID_for_Trolley_and_Coronado).addTo(map);
+                    popup.setLngLat(e.lngLat.wrap()).setHTML(routeID_for_Coronado).addTo(map);
                 }
             });
 
-            map.on('mouseleave', ['mts_trolley', 'mts_coronado'], () => {
-                if (routeID_for_Trolley_and_Coronado.length > 0) {
-                    routeID_for_Trolley_and_Coronado = [];
+            map.on('mouseleave', ['mts_trolley'], () => {
+                if (routeID_for_Trolley.length > 0) {
+                    routeID_for_Trolley = [];
+                }
+                popup.remove();
+            });
+
+            map.on('mouseleave', ['mts_coronado'], () => {
+                if (routeID_for_Coronado.length > 0) {
+                    routeID_for_Coronado = [];
                 }
                 popup.remove();
             });
@@ -722,7 +743,7 @@ function plotMTSLines() {
 
                 if (fs2.length > 0) {
                     for (var f=0; f<fs2.length; f++) {
-                        var name_of_route = fs2[f].properties.route_long_name;
+                        var name_of_route = fs2[f].properties.route_short_name;
                         routeID_for_Bus.push(name_of_route);
 
                         hoveredPolygonLine = fs2[f].id;
