@@ -72,32 +72,32 @@
                 </ul>
             </div>
         </div>
-        <div class="window" id="departures_trolley">
+        <div class="window departure_branches" id="departures_trolley">
             <p id="sectionheader">Departures (Trolley) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." onkeydown="keyDownTrolley();" id="stationgetter_trolley" autocomplete="off">
+            <input type="text" placeholder="Search for a station..." onkeydown="keyDownTrolley();" id="stationgetter_trolley" class="searchbars" autocomplete="off">
             <p class="headerstation_trolley">Departures for &nbsp;<span id="stationname_trolley">---</span></p>
             <ul id="list_of_departures_trolley" class="scroller_departures">
                 <li id="line_for_departure_trolley"><div id="lod_trolley">-</div> <span id="aor_trolley"></span> <span id="hod_trolley">(None)</span> <span id="depart_time_trolley">Enter a station by their station ID</span></li>
             </ul>
-            <button id="clearall_trolley" onclick="clearAllTrolley();">Clear</button>
+            <button id="clearall_trolley" class="all_clearalls" onclick="clearAllTrolley();">Clear</button>
         </div>
-        <div class="window" id="departures_bus">
+        <div class="window departure_branches" id="departures_bus">
             <p id="sectionheader">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a stop..." onkeydown="keyDownBus();" id="stopgetter" autocomplete="off">
+            <input type="text" placeholder="Search for a stop..." onkeydown="keyDownBus();" id="stopgetter" class="searchbars" autocomplete="off">
             <p class="headerstop">Departures for &nbsp;<span id="stopname">---</span></p>
             <ul id="list_of_departures_bus" class="scroller_departures">
                 <li id="line_for_departure_bus"><div id="lod_bus">-</div> <span id="aor_bus"></span> <span id="hod_bus">(None)</span> <span id="depart_time_bus">Enter a stop by their stop ID</span></li>
             </ul>
-            <button id="clearall_bus" onclick="clearAllBus();">Clear</button>
+            <button id="clearall_bus" class="all_clearalls" onclick="clearAllBus();">Clear</button>
         </div>
-        <div class="window" id="departures_coronado">
+        <div class="window departure_branches" id="departures_coronado">
             <p id="sectionheader">Departures (Coronado) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a terminal..." onkeydown="keyDownCoronado();" id="terminalgetter" autocomplete="off">
+            <input type="text" placeholder="Search for a terminal..." onkeydown="keyDownCoronado();" id="terminalgetter" class="searchbars" autocomplete="off">
             <p class="headerterminal">Departures for &nbsp;<span id="terminalname">---</span></p>
             <ul id="list_of_departures_coronado" class="scroller_departures">
                 <li id="line_for_departure_coronado"><div id="lod_coronado">-</div> <span id="aor_coronado"></span> <span id="hod_coronado">(None)</span> <span id="depart_time_coronado">Enter a stop by their stop ID</span></li>
             </ul>
-            <button id="clearall_coronado" onclick="clearAllCoronado();">Clear</button>
+            <button id="clearall_coronado" class="all_clearalls" onclick="clearAllCoronado();">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
