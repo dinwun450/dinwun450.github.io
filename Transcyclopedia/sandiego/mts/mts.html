@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css_assets/mts.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_scrollbars.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_responsiveness.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_lightdark.css">
     <script src="js_assets/mts.js"></script>
 </head>
 <body>
@@ -246,6 +247,12 @@
                 <li id="line_for_departure_trolley"><div id="lod_trolley">-</div> <span id="aor_trolley"></span> <span id="hod_trolley">(None)</span> <span id="depart_time_trolley">Enter a station by their station ID</span></li>
             `;
             document.getElementById("stationname_trolley").innerHTML = "---";
+        }
+
+        function dark_or_light() {
+            var element = document.body;
+            var light_or_dark = element.classList.toggle("light_mode");
+            document.getElementById("light_dark_transition").innerHTML = light_or_dark ? `<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</a></span>` : `<i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</a></span>`;
         }
     </script>
 </body>
