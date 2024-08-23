@@ -1,0 +1,291 @@
+/* Main Styles of CSS */
+.main {
+    float: right;
+    width: 78%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow-y: hidden;
+}
+
+.window {
+    float: right;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 20px;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+#sectionheader {
+    font-size: 40px;
+    margin-top: 55px;
+}
+
+#sectionheader i {
+    display: none;
+}
+
+.styling_for_routes {
+    display: inline-block;
+    width: fit-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 23px;
+    background: #33333340;
+    /* backdrop-filter: blur( 2px );
+    -webkit-backdrop-filter: blur( 15px ); */
+    border-radius: 5px;
+    border: 1px solid black;
+    color: white;
+    font-size: 1em;
+    text-align: center;
+}
+
+.transit_icons {
+    width: 15px;
+    height: 15px;
+    filter: invert(1);
+    position: relative;
+    top: 2px;
+}
+
+
+/* Styles for the Info Section */
+.window .about_page {
+    overflow-y: hidden;
+}
+
+.info {
+    width: 50%;
+    height: 100%;
+}
+
+.info #desc {
+    padding-right: 20px;
+    margin-top: 15px;
+}
+
+.info #desc a {
+    outline: none;
+    color: #333;
+}
+
+.stats {
+    float: right;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow-y: auto;
+}
+
+.began_operation, .no_of_lines, .contact {
+    width: 96%;
+    height: 40%;
+    background: rgba( 255, 255, 255, 0.25 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-top: 25px;
+    overflow-y: auto;
+}
+
+.began_operation h2, .no_of_lines h2, .contact h2 {
+    font-weight: normal;
+    margin-top: 60px;
+    margin-left: 20px;
+}
+
+.began_operation p, .no_of_lines p {
+    margin-left: 20px;
+    font-size: 50px;
+}
+
+.contact ul {
+    list-style-type: none;
+}
+
+.contact p {
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+
+/* Styles for the Lines Section */
+#lines {
+    overflow-y: auto;
+}
+
+.lines {
+    position: relative;
+    /* top: 100px; */
+    list-style-type: none;
+    margin-top: 20px;
+    background: rgba( 255, 255, 255, 0.25 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.lines li {
+    margin: 10px;
+}
+
+#desc_route {
+    width: 65%;
+    text-align: right;
+    margin-right: 10px;
+    right: 50px;
+}
+
+
+/* Styles for the Departures Section */
+#departures input {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: #eeeeee40;
+    border: 1px solid #eeeeee40;
+    color: white;
+    padding-left: 10px;
+}
+
+#departures input:active {
+    outline: none;
+}
+
+#departures input::placeholder {
+    color: white;
+}
+
+.stopheader {
+    width: 100%;
+    height: 50px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px 10px 0 0;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-top: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 10px;
+}
+
+#list_of_departures {
+    width: 100%;
+    height: 400px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 0 0 10px 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-bottom: 10px;
+    overflow-y: auto;
+}
+
+#clearall {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    background: rgba( 255, 255, 255, 0.25 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    font-size: 1.5em;
+    color: white;
+    margin-bottom: 25px;
+}
+
+#line_for_departure {
+    margin: 10px;
+}
+
+#route_headsign {
+    position: relative;
+    left: 5px;
+    display: inline-block;
+}
+
+#route_depart {
+    float: right;
+    position: relative;
+    right: 3px;
+}
+
+
+/* Styles for the Alerts Section */
+.alert_entity_single {
+    width: 100%;
+    height: fit-content;
+    background: rgba( 255, 255, 255, 0.25 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.alert_section_agency, .alert_section_lines {
+    width: 100%;
+    height: fit-content;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.alert_section_lines {
+    height: 400px;
+}
+
+#alert_agency_entity, #alert_routes_entity {
+    width: 100%;
+    height: fit-content;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 10px;
+    list-style-type: none;
+}
+
+#alert_agency_entity {
+    margin-top: 10px;
+}
+
+.desc_of_each_alert {
+    padding: 10px;
+}
+
+
+/* Styles for the Map Section */
+#map {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#range_of_routes {
+    width: 100%;
+    height: 300px;
+    background: rgba( 255, 255, 255, 0.25 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.route_radius {
+    list-style-type: none;
+    margin-bottom: 5px;
+}
+
+.mapboxgl-popup-content {
+    color: black;
+    width: fit-content;
+}
