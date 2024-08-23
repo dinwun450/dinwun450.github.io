@@ -18,11 +18,6 @@
         display: block;
     }
 
-    .left_navbar .x:hover { 
-        background-color: #00879898;
-        transition: 0.5s;
-    }
-
     .main {
         width: 100%;
     }
