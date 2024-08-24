@@ -55,7 +55,7 @@
 
 
 /* Styles for the Info Section */
-.window .about_page {
+.about_page {
     overflow-y: hidden;
 }
 
@@ -116,10 +116,6 @@
 
 
 /* Styles for the Lines Section */
-#lines {
-    overflow-y: auto;
-}
-
 .lines {
     position: relative;
     /* top: 100px; */
@@ -134,7 +130,7 @@
     margin: 10px;
 }
 
-#desc_route {
+.all_desc_routes {
     width: 65%;
     text-align: right;
     margin-right: 10px;
@@ -162,7 +158,7 @@
     color: white;
 }
 
-.stopheader {
+.headerforstop {
     width: 100%;
     height: 50px;
     background: rgba( 255, 255, 255, 0.25 );
@@ -176,7 +172,7 @@
     padding-left: 10px;
 }
 
-#list_of_departures {
+.individual_departure {
     width: 100%;
     height: 400px;
     background: rgba( 255, 255, 255, 0.25 );
@@ -187,7 +183,7 @@
     overflow-y: auto;
 }
 
-#clearall {
+.all_clearalls {
     width: 100%;
     height: 30px;
     border-radius: 5px;
@@ -198,17 +194,17 @@
     margin-bottom: 25px;
 }
 
-#line_for_departure {
+.lod_styling {
     margin: 10px;
 }
 
-#route_headsign {
+.route_headsigns {
     position: relative;
     left: 5px;
     display: inline-block;
 }
 
-#route_depart {
+.departure_times {
     float: right;
     position: relative;
     right: 3px;

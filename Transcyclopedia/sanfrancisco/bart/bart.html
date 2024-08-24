@@ -8,6 +8,7 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/bart.css">
     <link rel="stylesheet" href="css_assets/light_dark_mode_bart.css">
     <link rel="stylesheet" href="css_assets/responsive_page.css">
@@ -17,20 +18,20 @@
     <ul class="left_navbar">
         <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia SF:<br> Bay Area Rapid Transit</h1>
         <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
-        <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_bart')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About BART</a></li>
-        <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-train-subway"></i>&nbsp;&nbsp;Lines</a></li>
-        <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-clock"></i>&nbsp;&nbsp;Departures</a></li>
-        <li class="tablinks header3" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
-        <li class="tablinks header4" onclick="openTab(event, 'elevator')"><a href="#"><i class="fa-solid fa-elevator"></i>&nbsp;&nbsp;Elevator Updates</a></li>
-        <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
+        <li class="tablinks" id="defaulttab" onclick="openTab(event, 'about_bart')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About BART</a></li>
+        <li class="tablinks" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-train-subway"></i>&nbsp;&nbsp;Lines</a></li>
+        <li class="tablinks" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-clock"></i>&nbsp;&nbsp;Departures</a></li>
+        <li class="tablinks" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li class="tablinks" onclick="openTab(event, 'elevator')"><a href="#"><i class="fa-solid fa-elevator"></i>&nbsp;&nbsp;Elevator Updates</a></li>
+        <li class="tablinks" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
         <li><a href="#" onclick="dark_or_light()"><span id="light_dark_transition"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</a></span></li>
         <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
         <p class="copyright">&copy; 2023 Transcyclopedia. Created by Dino Wun.</p>
     </ul>
     <div class="main">
-        <div class="window" id="about_bart">
+        <div class="window about_page" id="about_bart">
             <div class="info">
-                <p id="nameswitch">About BART <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+                <p id="sectionheader">About BART <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
                 <p id="desc"></p>
             </div>
             <div class="stats">
@@ -52,37 +53,37 @@
             </div>
         </div>
         <div class="window" id="lines">
-            <p id="nameswitch">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <ul class="bart_lines">
-                <li id="route_entity"><span id="route"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train">&nbsp;<span id="direction"></span></span> &nbsp; <span id="description" title="Please wait">Loading...</span><br></li>
+            <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <ul class="bart_lines lines">
+                <li id="route_entity"><span id="route" class="styling_for_routes"><img class="transit_icons" src="img_assets/noun-bart-14232.svg" id="icon_of_train">&nbsp;<span id="direction"></span></span> &nbsp; <span id="description" class="all_desc_routes" title="Please wait">Loading...</span><br></li>
             </ul>
         </div>
         <div class="window" id="departures">
-            <p id="nameswitch">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a station..." onkeydown="keyDown()" id="stationgetter" autocomplete="off">
             <p class="headerforstop">Departures for &nbsp;<span id="stationname">---</span></p>
-            <ul id="list_of_departures">
-                <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
+            <ul id="list_of_departures" class="individual_departure">
+                <li id="line_for_departure" class="lod_styling"><div class="wrapper_for_departure"><div id="line_for_each_departure" class="styling_for_routes"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures" class="transit_icons">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign" class="route_headsigns">(None)</span> <span id="route_depart" class="departure_times">Enter a specific station by their stop ID</span></div></li>
             </ul>
-            <button id="clearall" onclick="clearAll()">Clear</button>
+            <button id="clearall" class="all_clearalls" onclick="clearAll()">Clear</button>
         </div>
         <div class="window" id="alerts">
-            <p id="nameswitch">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <div class="alert_entity">
-                <p id="alert_desc"></p>
+            <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="alert_entity alert_entity_single">
+                <p id="alert_desc" class="desc_of_each_alert"></p>
             </div>
         </div>
         <div class="window" id="elevator">
-            <p id="nameswitch">Elevator Status <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <div class="alert_entity_elev">
-                <p id="alert_desc_elev">Loading...</p>
+            <p id="sectionheader">Elevator Status <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="alert_entity_elev alert_entity_single">
+                <p id="alert_desc_elev" class="desc_of_each_alert">Loading...</p>
             </div>
         </div>
         <div class="window" id="map_inter">
-            <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <div id="map"></div>
             <ul id="range_of_routes">
-                <li class="route_radius"><span id="route_short"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_map">&nbsp;<span id="direction_map">(-)</span></span> <span id="detailed_route">Drag the map to filter nearby routes</span></li>
+                <li class="route_radius"><span id="route_short" class="styling_for_routes"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_map" class="transit_icons">&nbsp;<span id="direction_map">(-)</span></span> <span id="detailed_route">Drag the map to filter nearby routes</span></li>
             </ul>
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
@@ -218,7 +219,6 @@
 
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
-            var list_of_headers = ["About BART", "Lines", "Departures", "Alerts", "Elevator Updates", "Interactive Map"]
             tabcontent = document.getElementsByClassName("window");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
@@ -250,7 +250,7 @@
             if (e.keyCode === 13) {
                 console.log("Here we go!");
                 document.getElementById("list_of_departures").innerHTML = `
-                <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">Loading...</span> <span id="route_depart">Please wait...</span></div></li>
+                <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures" class="transit_icons">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">Loading...</span> <span id="route_depart">Please wait...</span></div></li>
                 `;
                 document.getElementById("stationname").innerHTML = "---";
                 callOver();
@@ -322,7 +322,7 @@
                             }
                         }
 
-                        document.getElementById("line_for_each_departure").innerHTML = `<img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures">&nbsp;<span id="color_name">(-)</span>`;
+                        document.getElementById("line_for_each_departure").innerHTML = `<img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures" class="transit_icons">&nbsp;<span id="color_name">(-)</span>`;
                         document.getElementById("line_for_each_departure").style.backgroundColor = `${bartColors[color_from_name]}40`;
                         document.getElementById("line_for_each_departure").style.border = `1px solid ${bartColors[color_from_name]}`;
                         document.getElementById("line_for_each_departure").style.color = `#${routeColorInText}`; 
@@ -358,7 +358,7 @@
 
         function clearAll() {
             document.getElementById("list_of_departures").innerHTML = `
-            <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
+            <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures" class="transit_icons">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
             `
             document.getElementById("stationname").innerHTML = "---";
         }
@@ -436,7 +436,7 @@
                                 var text_color_of_route = uniqueFeatures[f].properties.label;
                                 var desc_of_route = uniqueFeatures[f].properties.title;
 
-                                document.getElementById("route_short").innerHTML = `<img src="img_assets/noun-bart-14232.svg" id="icon_of_train_map">&nbsp;<span id="direction_map"></span>`;
+                                document.getElementById("route_short").innerHTML = `<img src="img_assets/noun-bart-14232.svg" id="icon_of_train_map" class="transit_icons">&nbsp;<span id="direction_map"></span>`;
                                 document.getElementById("route_short").style.color = `#${text_color_of_route}`;
                                 document.getElementById("detailed_route").innerHTML = `${desc_of_route} (${color_part_of_route})`;
                                 document.getElementById("route_short").style.backgroundColor = `${bartColors[color_part_of_route]}40`;
