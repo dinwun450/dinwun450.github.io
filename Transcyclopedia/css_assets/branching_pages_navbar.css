@@ -56,6 +56,10 @@ body::after {
     padding: 5px;
 }
 
+.left_navbar li.active {
+    background-color: #33333398;
+}
+
 .left_navbar li:hover:not(.active, .x) {
     background-color: #33333398;
     transition: 0.5s;
@@ -72,10 +76,10 @@ body::after {
     color: white;
 }
 
-.left_navbar .x:hover { 
+/* .left_navbar .x:hover { 
     background-color: #33333398;
     transition: 0.5s;
-}
+} */
 
 .logo {
     font-size: 25px;
