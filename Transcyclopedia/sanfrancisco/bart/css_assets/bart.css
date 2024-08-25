@@ -50,10 +50,3 @@ body::after {
     background: rgba( 255, 255, 255, 0.25 );
     border-radius: 10px;
 } */
-
-@media (max-width: 600px) {
-    .left_navbar .x:hover { 
-        background-color: #34bceb98;
-        transition: 0.5s;
-    }
-}
