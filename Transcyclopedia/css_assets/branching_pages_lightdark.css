@@ -20,6 +20,20 @@
     transition: 0.4s;
 }
 
+.light_mode .window::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+.light_mode .window::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
 
 /* Info Page */
 .light_mode .stats::-webkit-scrollbar-track, .light_mode .began_operation::-webkit-scrollbar-track,
@@ -35,38 +49,6 @@
 .light_mode .stats::-webkit-scrollbar-thumb, .light_mode .began_operation::-webkit-scrollbar-thumb,
 .light_mode .no_of_lines::-webkit-scrollbar-thumb, .light_mode .contact::-webkit-scrollbar-thumb,
 .light_mode .info::-webkit-scrollbar-thumb {
-    border: 1px solid rgba(0, 0, 0, 0.18);
-    background: rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-}
-
-
-/* Lines */
-.light_mode #lines::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.25);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    position: relative;
-    right: 2px;
-}
-
-.light_mode #lines::-webkit-scrollbar-thumb {
-    border: 1px solid rgba(0, 0, 0, 0.18);
-    background: rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-}
-
-
-/* Departures */
-.light_mode .departure_branches::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.25);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    position: relative;
-    right: 2px;
-}
-
-.light_mode .departure_branches::-webkit-scrollbar-thumb {
     border: 1px solid rgba(0, 0, 0, 0.18);
     background: rgba(0, 0, 0, 0.25);
     border-radius: 10px;

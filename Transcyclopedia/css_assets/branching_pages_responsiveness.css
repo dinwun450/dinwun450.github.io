@@ -79,7 +79,7 @@
         display: none;
     }
 
-    #line_for_departure_coaster, #line_for_departure_sprinter, #line_for_departure_bus {
+    .lod_styling {
         height: fit-content;
         overflow: hidden;
         background: rgba( 255, 255, 255, 0.15 );
