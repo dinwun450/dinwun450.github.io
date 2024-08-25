@@ -250,7 +250,7 @@
             if (e.keyCode === 13) {
                 console.log("Here we go!");
                 document.getElementById("list_of_departures").innerHTML = `
-                <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures" class="transit_icons">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">Loading...</span> <span id="route_depart">Please wait...</span></div></li>
+                    <li id="line_for_departure" class="lod_styling"><div class="wrapper_for_departure"><div id="line_for_each_departure" class="styling_for_routes"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures" class="transit_icons">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign" class="route_headsigns">Loading...</span> <span id="route_depart" class="departure_times">Please wait...</span></div></li>
                 `;
                 document.getElementById("stationname").innerHTML = "---";
                 callOver();
@@ -358,7 +358,7 @@
 
         function clearAll() {
             document.getElementById("list_of_departures").innerHTML = `
-            <li id="line_for_departure"><div class="wrapper_for_departure"><div id="line_for_each_departure"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures" class="transit_icons">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign">(None)</span> <span id="route_depart">Enter a specific station by their stop ID</span></div></li>
+                <li id="line_for_departure" class="lod_styling"><div class="wrapper_for_departure"><div id="line_for_each_departure" class="styling_for_routes"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures" class="transit_icons">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign" class="route_headsigns">(None)</span> <span id="route_depart" class="departure_times">Enter a specific station by their stop ID</span></div></li>
             `
             document.getElementById("stationname").innerHTML = "---";
         }
@@ -418,7 +418,7 @@
                     map.on('movestart', () => {
                         map.setFilter('routes', ['has', 'name']);
                         console.log("Move it!");
-                        document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Loading...</span></li>`;
+                        document.getElementById("range_of_routes").innerHTML = `<li class="route_radius"><span id="route_short" class="styling_for_routes">-</span> <span id="detailed_route">Loading...</span></li>`;
                     });
 
                     map.on('moveend', () => {
