@@ -56,10 +56,6 @@ body::after {
     padding: 5px;
 }
 
-.left_navbar li.active {
-    background-color: #33333398;
-}
-
 .left_navbar li:hover:not(.active, .x) {
     background-color: #33333398;
     transition: 0.5s;
