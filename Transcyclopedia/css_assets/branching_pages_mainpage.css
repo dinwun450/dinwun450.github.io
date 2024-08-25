@@ -139,7 +139,7 @@
 
 
 /* Styles for the Departures Section */
-#departures input {
+.searchbars {
     width: 100%;
     height: 30px;
     border-radius: 5px;
@@ -150,11 +150,11 @@
     padding-left: 10px;
 }
 
-#departures input:active {
+.searchbars:active {
     outline: none;
 }
 
-#departures input::placeholder {
+.searchbars::placeholder {
     color: white;
 }
 

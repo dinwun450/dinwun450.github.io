@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_responsiveness.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_scrollbars.css">
-    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_darkmode.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_lightdark.css">
     <link rel="stylesheet" href="css_assets/bart.css">
-    <link rel="stylesheet" href="css_assets/light_dark_mode_bart.css">
+    <!-- <link rel="stylesheet" href="css_assets/light_dark_mode_bart.css"> -->
     <!-- <link rel="stylesheet" href="css_assets/responsive_page.css"> -->
     <script src="js_assets/bart.js"></script>
 </head>
@@ -63,7 +63,7 @@
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." onkeydown="keyDown()" id="stationgetter" autocomplete="off">
+            <input type="text" placeholder="Search for a station..." onkeydown="keyDown()" id="stationgetter" class="searchbars" autocomplete="off">
             <p class="headerforstop">Departures for &nbsp;<span id="stationname">---</span></p>
             <ul id="list_of_departures" class="individual_departure scroller_departures">
                 <li id="line_for_departure" class="lod_styling"><div class="wrapper_for_departure"><div id="line_for_each_departure" class="styling_for_routes"><img src="img_assets/noun-bart-14232.svg" id="icon_of_train_departures" class="transit_icons">&nbsp;<span id="color_name">(-)</span></div> <span id="route_headsign" class="route_headsigns">(None)</span> <span id="route_depart" class="departure_times">Enter a specific station by their stop ID</span></div></li>

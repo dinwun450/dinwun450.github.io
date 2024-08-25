@@ -30,7 +30,7 @@ body::after {
     top: 0.5px;
 }
 
-#list_of_departures::-webkit-scrollbar, #range_of_routes::-webkit-scrollbar,
+/* #list_of_departures::-webkit-scrollbar, #range_of_routes::-webkit-scrollbar,
 #map_inter::-webkit-scrollbar, .stats::-webkit-scrollbar,
 .began_operation::-webkit-scrollbar, .no_of_lines::-webkit-scrollbar, .contact::-webkit-scrollbar {
     width: 5px;
@@ -54,4 +54,4 @@ body::after {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     background: rgba( 255, 255, 255, 0.25 );
     border-radius: 10px;
-}
+} */
