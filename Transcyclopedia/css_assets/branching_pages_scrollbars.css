@@ -48,6 +48,28 @@
 }
 
 
+/* Departures */
+.scroller_departures::-webkit-scrollbar {
+    width: 5px;
+    position: relative;
+    right: 20px;
+}
+
+.scroller_departures::-webkit-scrolbar-track {
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+.scroller_departures::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+}
+
+
 /* Alerts */
 .alert_section_agency::-webkit-scrollbar, .alert_section_lines::-webkit-scrollbar {
     width: 5px;
