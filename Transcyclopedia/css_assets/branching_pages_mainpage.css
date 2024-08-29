@@ -45,12 +45,24 @@
     text-align: center;
 }
 
+.symbol_tagged {
+    padding-left: 3px;
+    padding-right: 3px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
 .transit_icons {
     width: 15px;
     height: 15px;
     filter: invert(1);
     position: relative;
     top: 2px;
+}
+
+.flexer {
+    display: flex;
 }
 
 
@@ -126,8 +138,31 @@
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
+.lines_branches {
+    width: 100%;
+    height: fit-content;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .lines li {
     margin: 10px;
+}
+
+.lines_branches h3 {
+    margin-left: 5px;
+}
+
+.inner_list_of_lines {
+    position: relative;
+    margin-left: 20px;
+    list-style-type: none;
+    padding-top: 10px;
 }
 
 .all_desc_routes {
@@ -221,7 +256,7 @@
     margin-top: 20px;
 }
 
-.alert_section_agency, .alert_section_lines {
+.alert_section_agency, .alert_section_lines, .all_stop_alerts {
     width: 100%;
     height: fit-content;
     background: rgba(255, 255, 255, 0.25);
@@ -232,11 +267,17 @@
     overflow-y: auto;
 }
 
+.all_stop_alerts {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
 .alert_section_lines {
     height: 400px;
 }
 
-#alert_agency_entity, #alert_routes_entity {
+#alert_agency_entity, #alert_routes_entity, .each_stopalert_desc {
     width: 100%;
     height: fit-content;
     background: rgba(255, 255, 255, 0.25);

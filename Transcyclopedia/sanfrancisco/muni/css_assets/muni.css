@@ -1,47 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Geologica", sans-serif;
-}
-
-body {
-    background-color: #2e2e2e;
-    /* background-color: #dedede; */
-    color: white;
-    transition: 0.4s;
-}
-
-.light_mode {
-    background-color: #dedede;
-    color: black;
-    transition: 0.4s;
-}
-
 body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     background-image: linear-gradient( #d02143, #dedede);
-    z-index: -1;
-    clip-path: circle(22% at 30% 20%);
 }
 
 body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     background-image: linear-gradient( #dedede, #e26b26);
-    z-index: -1;
-    clip-path: circle(22% at 70% 80%);
 }
 
 .left_navbar {
@@ -58,18 +20,8 @@ body::after {
     list-style-type: none;
 }
 
-.left_navbar li {
-    width: 20vw;
-    border-radius: 10px;
-    padding: 5px;
-}
-
 .left_navbar li.active {
     background-color: #d0214398;
-}
-
-.left_navbar li.active a {
-    color: white;
 }
 
 .left_navbar li:hover:not(.active, .x) {

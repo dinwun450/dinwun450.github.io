@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_responsiveness.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_scrollbars.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_lightdark.css">
     <link rel="stylesheet" href="css_assets/muni.css">
     <link rel="stylesheet" href="css_assets/muni_responsive.css">
     <script src="js_assets/muni.js"></script>
@@ -27,9 +32,9 @@
         <p class="copyright">&copy; 2023 Transcyclopedia. Created by Dino Wun.</p>
     </ul>
     <div class="main">
-        <div class="window" id="about_muni">
+        <div class="window about_page" id="about_muni">
             <div class="info">
-                <p id="nameswitch">About Muni <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+                <p id="sectionheader">About Muni <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
                 <p id="desc"></p>
             </div>
             <div class="stats">
@@ -51,37 +56,37 @@
             </div>
         </div>
         <div class="window" id="lines">
-            <p id="nameswitch">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <div class="lines_metro">
+            <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="lines_metro lines_branches">
                 <h3>Muni Metro</h3>
-                <ul class="muni_metro_lines">
-                    <li id="route_entity_metro"><span id="route_metro">-</span> &nbsp; <span id="desc_metro" title="Please wait">Loading... <span id="no_of_alerts_metro"></span></span><br></li>
+                <ul class="muni_metro_lines inner_list_of_lines">
+                    <li id="route_entity_metro" class="flexer"><span id="route_metro" class="styling_for_routes symbol_tagged">-</span> &nbsp; <span id="desc_metro" class="all_desc_routes" title="Please wait">Loading... <span id="no_of_alerts_metro"></span></span><br></li>
                 </ul>
             </div>
-            <div class="lines_cablestreet">
+            <div class="lines_cablestreet lines_branches">
                 <h3>Cablecar</h3>
-                <ul class="muni_cablestreetcar_lines">
-                    <li id="route_entity_cable"><span id="route_cablestreetcar" title="Loading...">-</span> &nbsp; <span id="desc_cablestreetcar" title="Please wait">Loading...</span> <span id="no_of_alerts_cable"></span><br></li>
+                <ul class="muni_cablestreetcar_lines inner_list_of_lines">
+                    <li id="route_entity_cable"><span id="route_cablestreetcar" class="styling_for_routes symbol_tagged">-</span> &nbsp; <span id="desc_cablestreetcar" class="all_desc_routes" title="Please wait">Loading...</span> <span id="no_of_alerts_cable"></span><br></li>
                 </ul>
             </div>
-            <div class="lines_bus">
+            <div class="lines_bus lines_branches">
                 <h3>Bus</h3>
-                <ul class="muni_bus_lines">
-                    <li id="route_entity_bus"><span id="route_bus" title="Loading...">-</span> &nbsp; <span id="desc_bus" title="Please wait">Loading...</span> <span id="no_of_alerts_bus"></span><br></li>
+                <ul class="muni_bus_lines inner_list_of_lines">
+                    <li id="route_entity_bus"><span id="route_bus" class="styling_for_routes">-</span> &nbsp; <span id="desc_bus" class="all_desc_routes" title="Please wait">Loading...</span> <span id="no_of_alerts_bus"></span><br></li>
                 </ul>
             </div>
         </div>
         <div class="window" id="departures_metro">
-            <p id="nameswitch">Departures (Muni Metro) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." onkeydown="keyDownMuniMetro()" id="muni_metro_stationgetter" autocomplete="off">
-            <p class="headerformunimetro">Departures for &nbsp;<span id="muni_metro_stationname">---</span></p>
+            <p id="sectionheader">Departures (Muni Metro) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a station..." onkeydown="keyDownMuniMetro()" id="muni_metro_stationgetter" class="searchbars" autocomplete="off">
+            <p class="headerforstop">Departures for &nbsp;<span id="muni_metro_stationname">---</span></p>
             <ul id="list_of_departures_muni_metro">
-                <li id="line_for_departure_muni_metro"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro">-</div> <span id="route_headsign_muni_metro">(None)</span> <span id="alerts_metro"></span> <span id="route_depart_muni_metro">Enter a specific station by their station ID</span></div></li>
+                <li id="line_for_departure_muni_metro"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro" class="styling_for_routes">-</div> <span id="route_headsign_muni_metro">(None)</span> <span id="alerts_metro"></span> <span id="route_depart_muni_metro">Enter a specific station by their station ID</span></div></li>
             </ul>
-            <div class="alert_entity_stops_metro">
+            <div class="alert_entity_stops_metro all_stop_alerts">
                 <h3>Alerts for this Station</h3>
                 <ul id="muni_stops_alerts_metro">
-                    <li id="alert_desc_stops_metro">
+                    <li id="alert_desc_stops_metro" class="each_stopalert_desc">
                         <p>Once you typed down the station by their ID, the advisories will display here.</p>
                     </li>
                 </ul>
@@ -89,16 +94,16 @@
             <button id="clearall_muni_metro" onclick="clearAllMuniMetro()">Clear</button>
         </div>
         <div class="window" id="departures_cable">
-            <p id="nameswitch">Departures (Cable Car) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a stop..." onkeydown="keyDownCableCar()" id="cable_stopgetter" autocomplete="off">
-            <p class="headerforcable">Departures for &nbsp;<span id="cable_stopname">---</span></p>
+            <p id="sectionheader">Departures (Cable Car) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a stop..." onkeydown="keyDownCableCar()" id="cable_stopgetter" class="searchbars" autocomplete="off">
+            <p class="headerforstop">Departures for &nbsp;<span id="cable_stopname">---</span></p>
             <ul id="list_of_departures_cable">
-                <li id="line_for_departure_cable"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable"><img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables_in_departures">&nbsp;(-)</div> <span id="alerts_cable"></span> <span id="route_headsign_cable">(None)</span> <span id="route_depart_cable">Enter a specific stop by their stop ID</span></div></li>
+                <li id="line_for_departure_cable"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable" class="styling_for_routes"><img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables_in_departures" class="transit_icons">&nbsp;(-)</div> <span id="alerts_cable"></span> <span id="route_headsign_cable">(None)</span> <span id="route_depart_cable">Enter a specific stop by their stop ID</span></div></li>
             </ul>
             <div class="alert_entity_stops_cable">
                 <h3>Alerts for this Station</h3>
-                <ul id="muni_stops_alerts_cable">
-                    <li id="alert_desc_stops_cable">
+                <ul id="muni_stops_alerts_cable all_stop_alerts">
+                    <li id="alert_desc_stops_cable" class="each_stopalert_desc">
                         <p>Once you typed down the station by their ID, the advisories will display here.</p>
                     </li>
                 </ul>
@@ -106,16 +111,16 @@
             <button id="clearall_cable" onclick="clearAllCable()">Clear</button>
         </div>
         <div class="window" id="departures_bus">
-            <p id="nameswitch">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a stop..." onkeydown="keyDownBus()" id="bus_stopgetter" autocomplete="off">
-            <p class="headerforbus">Departures for &nbsp;<span id="bus_stopname">---</span></p>
+            <p id="sectionheader">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a stop..." onkeydown="keyDownBus()" id="bus_stopgetter" class="searchbars" autocomplete="off">
+            <p class="headerforstop">Departures for &nbsp;<span id="bus_stopname">---</span></p>
             <ul id="list_of_departures_bus">
-                <li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="alerts_bus"></span> <span id="route_headsign_bus">(None)</span> <span id="route_depart_bus">Enter a specific stop by their stop ID</span></div></li>
+                <li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus" class="styling_for_routes">-</div> <span id="alerts_bus"></span> <span id="route_headsign_bus">(None)</span> <span id="route_depart_bus">Enter a specific stop by their stop ID</span></div></li>
             </ul>
-            <div class="alert_entity_stops_bus">
+            <div class="alert_entity_stops_bus all_stop_alerts">
                 <h3>Alerts for this Stop</h3>
                 <ul id="muni_stops_alerts_bus">
-                    <li id="alert_desc_stops_bus">
+                    <li id="alert_desc_stops_bus" class="each_stopalert_desc">
                         <p>Once you typed down the stop by their ID, the advisories will display here.</p>
                     </li>
                 </ul>
@@ -123,7 +128,7 @@
             <button id="clearall_bus" onclick="clearAllBus()">Clear</button>
         </div>
         <div class="window" id="alerts">
-            <p id="nameswitch">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <div class="alert_entity_agency">
                 <h3>Muni Agency</h3>
                 <ul id="muni_agency_alerts">
@@ -138,10 +143,10 @@
             </div>
         </div>
         <div class="window" id="map_inter">
-            <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <div id="map"></div>
             <ul id="range_of_routes">
-                <li class="route_radius"><span id="route_short">-</span> <span id="detailed_route">Drag the map to filter nearby routes</span></li>
+                <li class="route_radius flexer"><span id="route_short" class="styling_for_routes symbol_tagged">-</span> <span id="detailed_route" class="all_desc_routes">Drag the map to filter nearby routes</span></li>
             </ul>
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
@@ -860,7 +865,7 @@
 
                                 switch (type_of_route) {
                                     case 5:
-                                        document.getElementById("route_short").innerHTML = `<img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables_map">&nbsp;${name_of_route}`;
+                                        document.getElementById("route_short").innerHTML = `<img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables_map" class="transit_icons">&nbsp;${name_of_route}`;
                                         document.getElementById("route_short").style.paddingLeft = "5px";
                                         document.getElementById("route_short").style.paddingRight = "5px";
 

@@ -74,7 +74,7 @@ window.onload = function() {
                     var route_color = cable_routes.routes[c].route_color;
                     var route_text_color = cable_routes.routes[c].route_text_color;
 
-                    document.getElementById("route_cablestreetcar").innerHTML = `<img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables">&nbsp;${route_short_name}`;
+                    document.getElementById("route_cablestreetcar").innerHTML = `<img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables" class="transit_icons">&nbsp;${route_short_name}`;
                     document.getElementById("route_cablestreetcar").style.backgroundColor = `#${route_color}40`;
                     document.getElementById("route_cablestreetcar").style.color = `#${route_text_color}`;
                     document.getElementById("route_cablestreetcar").style.border = `1px solid #${route_color}`;
@@ -204,7 +204,7 @@ window.onload = function() {
                         for (var a = 0; a < muni_alert_route_receiver.routes[i].alerts.length; a++) {
                             var desc_for_route_alert = muni_alert_route_receiver.routes[i].alerts[a].description_text[0].text;
                             var header_for_route_alert = muni_alert_route_receiver.routes[i].alerts[a].header_text[0].text;
-                            document.getElementById("alert_desc_routes").innerHTML = `<span id="route_affected"></span> <b>${header_for_route_alert}</b> <br> ${desc_for_route_alert}`;
+                            document.getElementById("alert_desc_routes").innerHTML = `<span id="route_affected" class="styling_for_routes symbol_tagged"></span> <b>${header_for_route_alert}</b> <br> ${desc_for_route_alert}`;
 
                             document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
                             document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
