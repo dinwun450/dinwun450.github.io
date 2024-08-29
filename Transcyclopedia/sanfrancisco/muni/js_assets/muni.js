@@ -216,7 +216,7 @@ window.onload = function() {
                                 document.getElementById("route_affected").style.paddingRight = "3px";
                             }
                             else if (route_type_affected === 5) {
-                                document.getElementById("route_affected").innerHTML = `<img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables">&nbsp;${route_short_name_affected}`;
+                                document.getElementById("route_affected").innerHTML = `<img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables" class="transit_icons">&nbsp;${route_short_name_affected}`;
                                 document.getElementById("route_affected").style.paddingLeft = "5px";
                                 document.getElementById("route_affected").style.paddingRight = "5px";
                             }
