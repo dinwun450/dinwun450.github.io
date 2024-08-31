@@ -79,7 +79,7 @@
         <div class="window" id="departures_metro">
             <p id="sectionheader">Departures (Muni Metro) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a station..." onkeydown="keyDownMuniMetro()" id="muni_metro_stationgetter" class="searchbars" autocomplete="off">
-            <p class="headerforstop">Departures for &nbsp;<span id="muni_metro_stationname">---</span></p>
+            <p id="headerformunimetro" class="headerforstop">Departures for &nbsp;<span id="muni_metro_stationname">---</span></p>
             <ul id="list_of_departures_muni_metro">
                 <li id="line_for_departure_muni_metro" class="lod_styling"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro" class="styling_for_routes">-</div> <span id="route_headsign_muni_metro">(None)</span> <span id="alerts_metro"></span> <span id="route_depart_muni_metro">Enter a specific station by their station ID</span></div></li>
             </ul>
@@ -96,7 +96,7 @@
         <div class="window" id="departures_cable">
             <p id="sectionheader">Departures (Cable Car) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a stop..." onkeydown="keyDownCableCar()" id="cable_stopgetter" class="searchbars" autocomplete="off">
-            <p class="headerforstop">Departures for &nbsp;<span id="cable_stopname">---</span></p>
+            <p id="headerforcable" class="headerforstop">Departures for &nbsp;<span id="cable_stopname">---</span></p>
             <ul id="list_of_departures_cable">
                 <li id="line_for_departure_cable" class="lod_styling"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable" class="styling_for_routes"><img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables_in_departures" class="transit_icons">&nbsp;(-)</div> <span id="alerts_cable"></span> <span id="route_headsign_cable">(None)</span> <span id="route_depart_cable">Enter a specific stop by their stop ID</span></div></li>
             </ul>
@@ -113,7 +113,7 @@
         <div class="window" id="departures_bus">
             <p id="sectionheader">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a stop..." onkeydown="keyDownBus()" id="bus_stopgetter" class="searchbars" autocomplete="off">
-            <p class="headerforstop">Departures for &nbsp;<span id="bus_stopname">---</span></p>
+            <p id="headerforbus"class="headerforstop">Departures for &nbsp;<span id="bus_stopname">---</span></p>
             <ul id="list_of_departures_bus">
                 <li id="line_for_departure_bus" class="lod_styling"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus" class="styling_for_routes">-</div> <span id="alerts_bus"></span> <span id="route_headsign_bus">(None)</span> <span id="route_depart_bus">Enter a specific stop by their stop ID</span></div></li>
             </ul>
@@ -280,11 +280,11 @@
             e = e || window.event;
             if (e.keyCode === 13) {
                 console.log("Here we go Muni Metro!");
-                document.querySelector(".headerformunimetro").innerHTML = `
+                document.querySelector("#headerformunimetro").innerHTML = `
                 Departures for &nbsp;<span id="muni_metro_stationname">---</span>
                 `
                 document.getElementById("list_of_departures_muni_metro").innerHTML = `
-                <li id="line_for_departure_muni_metro"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro">-</div> <span id="route_headsign_muni_metro">Loading...</span> <span id="route_depart_muni_metro">Please Wait...</span></div></li>
+                    <li id="line_for_departure_muni_metro" class="lod_styling"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro" class="styling_for_routes">-</div> <span id="route_headsign_muni_metro">Loading...</span> <span id="alerts_metro"></span> <span id="route_depart_muni_metro">Please wait...</span></div></li>
                 `
                 document.getElementById("muni_metro_stationname").innerHTML = "---";
                 document.getElementById("muni_stops_alerts_metro").innerHTML = `
@@ -405,11 +405,11 @@
         }
 
         function clearAllMuniMetro() {
-            document.querySelector(".headerformunimetro").innerHTML = `
+            document.querySelector("#headerformunimetro").innerHTML = `
             Departures for &nbsp;<span id="muni_metro_stationname">---</span>
             `
             document.getElementById("list_of_departures_muni_metro").innerHTML = `
-            <li id="line_for_departure_muni_metro"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro">-</div> <span id="route_headsign_muni_metro">(None)</span> <span id="route_depart_muni_metro">Enter a specific station by their station ID</span></div></li>
+                <li id="line_for_departure_muni_metro" class="lod_styling"><div class="wrapper_for_departure_muni_metro"><div id="line_for_each_departure_muni_metro" class="styling_for_routes">-</div> <span id="route_headsign_muni_metro">(None)</span> <span id="alerts_metro"></span> <span id="route_depart_muni_metro">Enter a specific station by their station ID</span></div></li>
             `
             document.getElementById("muni_metro_stationname").innerHTML = "---";
             document.getElementById("muni_stops_alerts_metro").innerHTML = `
@@ -422,11 +422,11 @@
         function keyDownCableCar(e) {
             e = e || window.event;
             if (e.keyCode === 13) {
-                document.querySelector(".headerforcable").innerHTML = `
+                document.querySelector("#headerforcable").innerHTML = `
                 Departures for &nbsp;<span id="cable_stopname">---</span>
                 `;
                 document.getElementById("list_of_departures_cable").innerHTML = `
-                <li id="line_for_departure_cable"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable"><img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables_in_departures">&nbsp;(-)</div> <span id="alerts_cable"></span> <span id="route_headsign_cable">Loading...</span> <span id="route_depart_cable">Please Wait...</span></div></li>
+                    <li id="line_for_departure_cable" class="lod_styling"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable" class="styling_for_routes"><img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables_in_departures" class="transit_icons">&nbsp;(-)</div> <span id="alerts_cable"></span> <span id="route_headsign_cable">Loading...</span> <span id="route_depart_cable">Please wait...</span></div></li>
                 `;
                 document.getElementById("cable_stopname").innerHTML = "---";
                 document.getElementById("muni_stops_alerts_cable").innerHTML = `
@@ -448,7 +448,7 @@
 
                     if (cable_car_stops.stops.length === 0) {
                         console.log("There's nothing to do about it...");
-                        document.querySelector(".headerforcable").innerHTML = "The stop you typed in is not valid or doesn't exist."
+                        document.querySelector("#headerforcable").innerHTML = "The stop you typed in is not valid or doesn't exist."
                     }
                     else {
                         var stop_code_cable = cable_car_stops.stops[0].stop_code;
@@ -553,11 +553,11 @@
         }
 
         function clearAllCable() {
-            document.querySelector(".headerforcable").innerHTML = `
+            document.querySelector("#headerforcable").innerHTML = `
             Departures for &nbsp;<span id="cable_stopname">---</span>
             `;
             document.getElementById("list_of_departures_cable").innerHTML = `
-            <li id="line_for_departure_cable"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable"><img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables_in_departures">&nbsp;(-)</div> <span id="alerts_cable"></span> <span id="route_headsign_cable">(None)</span> <span id="route_depart_cable">Enter a specific stop by their stop ID</span></div></li>
+                <li id="line_for_departure_cable" class="lod_styling"><div class="wrapper_for_departure_cable"><div id="line_for_each_departure_cable" class="styling_for_routes"><img src="icon_assets/noun-cable-car-4173.svg" id="color_of_cables_in_departures" class="transit_icons">&nbsp;(-)</div> <span id="alerts_cable"></span> <span id="route_headsign_cable">(None)</span> <span id="route_depart_cable">Enter a specific stop by their stop ID</span></div></li>
             `;
             document.getElementById("cable_stopname").innerHTML = "---";
             document.getElementById("muni_stops_alerts_cable").innerHTML = `
@@ -581,11 +581,11 @@
             e = e || window.event;
             if (e.keyCode === 13) {
                 console.log("Bus Time!");
-                document.querySelector(".headerforbus").innerHTML = `
+                document.querySelector("#headerforbus").innerHTML = `
                 Departures for &nbsp;<span id="bus_stopname">---</span>
                 `;
                 document.getElementById("list_of_departures_bus").innerHTML = `
-                <li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="alerts_bus"></span> <span id="route_headsign_bus">Loading...</span> <span id="route_depart_bus">Please wait...</span></div></li>
+                    <li id="line_for_departure_bus" class="lod_styling"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus" class="styling_for_routes">-</div> <span id="alerts_bus"></span> <span id="route_headsign_bus">Loading...</span> <span id="route_depart_bus">Please wait...</span></div></li>
                 `;
                 document.getElementById("bus_stopname").innerHTML = "---";
                 document.getElementById("muni_stops_alerts_bus").innerHTML = `
@@ -707,11 +707,11 @@
         }
 
         function clearAllBus() {
-            document.querySelector(".headerforbus").innerHTML = `
+            document.querySelector("#headerforbus").innerHTML = `
             Departures for &nbsp;<span id="bus_stopname">---</span>
             `
             document.getElementById("list_of_departures_bus").innerHTML = `
-            <li id="line_for_departure_bus"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus">-</div> <span id="route_headsign_bus">(None)</span> <span id="route_depart_bus">Enter a specific stop by their stop ID</span></div></li>
+                <li id="line_for_departure_bus" class="lod_styling"><div class="wrapper_for_departure_bus"><div id="line_for_each_departure_bus" class="styling_for_routes">-</div> <span id="alerts_bus"></span> <span id="route_headsign_bus">(None)</span> <span id="route_depart_bus">Enter a specific stop by their stop ID</span></div></li>
             `
             document.getElementById("bus_stopname").innerHTML = "---";
             document.getElementById("muni_stops_alerts_bus").innerHTML = `
