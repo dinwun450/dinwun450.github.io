@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 * {
     margin: 0;
@@ -11,33 +11,33 @@ body {
     background-color: #2e2e2e;
     color: white;
     transition: 0.4s;
-}
+} */
 
 body::before {
-    content: "";
+    /* content: "";
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100%; */
     background-image: linear-gradient(#214e8d, #dedede);
-    z-index: -1;
-    clip-path: circle(22% at 30% 20%);
+    /* z-index: -1;
+    clip-path: circle(22% at 30% 20%); */
 }
 
 body::after {
-    content: "";
+    /* content: "";
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100%; */
     background-image: linear-gradient(#dedede, #5db9e8);
-    z-index: -1;
-    clip-path: circle(22% at 70% 80%);
+    /* z-index: -1;
+    clip-path: circle(22% at 70% 80%); */
 }
 
-.left_navbar {
+/* .left_navbar {
     width: 22%;
     height: 100vh;
     background: rgba( 255, 255, 255, 0.25 );
@@ -54,7 +54,7 @@ body::after {
     width: 20vw;
     border-radius: 10px;
     padding: 5px;
-}
+} */
 
 .left_navbar li.active {
     background-color: #214e8d98;
@@ -65,7 +65,7 @@ body::after {
     transition: 0.5s;
 }
 
-.left_navbar li a.closebtn {
+/* .left_navbar li a.closebtn {
     display: none;
 }
 
@@ -94,7 +94,7 @@ body::after {
     padding-bottom: 10px;
     font-size: 18px;
     font-weight: 100;
-}
+} */
 
 .main {
     float: right;
@@ -116,12 +116,12 @@ body::after {
     bottom: 0;
 }
 
-#nameswitch {
+#sectionheader {
     font-size: 40px;
     margin-top: 55px;
 }
 
-#nameswitch i {
+#sectionheader i {
     display: none;
 }
 
@@ -269,7 +269,7 @@ body::after {
     outline: none;
 }
 
-#departures_lr input::placeholder, #departures_bus input::placeholder {
+.searchbars::placeholder {
     color: white;
 }
 
@@ -336,7 +336,7 @@ body::after {
     right: 3px;
 }
 
-#clearall_vta_lr, #clearall_vta_bus, #clearall_vta_alerts {
+.all_clearalls {
     width: 100%;
     height: 30px;
     border-radius: 5px;
