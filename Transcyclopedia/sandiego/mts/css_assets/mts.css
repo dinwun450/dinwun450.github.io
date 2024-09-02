@@ -76,11 +76,6 @@ body::after {
     color: white;
 }
 
-.left_navbar .x:hover { 
-    background-color: #e0282698;
-    transition: 0.5s;
-}
-
 .logo {
     font-size: 25px;
     margin-top: 5px;
