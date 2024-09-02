@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="css_assets/sf_ferry.css">
-    <link rel="stylesheet" href="css_assets/scrollbars_sf_ferry.css">
-    <link rel="stylesheet" href="css_assets/responsive_page.css">
-    <link rel="stylesheet" href="css_assets/light_and_dark.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_responsiveness.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_lightdark.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_scrollbars.css">
     <script src="js_assets/sf_ferry_agency.js"></script>
-    <script src="js_assets/sf_ferry_new_map.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -28,15 +28,15 @@
         <p class="copyright">&copy; 2024 Transcyclopedia. Created by Dino Wun.</p>
     </ul>
     <div class="main">
-        <div class="window" id="about_ferries">
-            <div class="info">
-                <p id="nameswitch">About Ferries <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+        <div class="window about_page about_page_with_dropdowns" id="about_ferries">
+            <div class="info infowithdropdowns">
+                <p id="sectionheader">About Ferries <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
                 <select name="" id="ferry_info" onchange="changeAgency(value);">
                     <option value="prompt">Select Ferry Agency</option>
                     <option value="sfbayferry">SF Bay Ferry</option>
                     <option value="ggf">Golden Gate Ferry</option>
                 </select>
-                <p id="desc">Select a Ferry Agency.</p>
+                <p id="desc" class="desc_with_dropdowns">Select a Ferry Agency.</p>
             </div>
             <div class="stats">
                 <div class="began_operation">
@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="window" id="lines">
-            <p id="nameswitch">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <select name="" id="ferry_routes" onchange="changeRouteByAgency(value);">
                 <option value="prompt">Select Ferry Agency</option>
                 <option value="sfbayferry">SF Bay Ferry</option>
@@ -70,20 +70,20 @@
             </div>
         </div>
         <div class="window" id="departures">
-            <p id="nameswitch">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a terminal..." onkeydown="" id="terminalgetter" autocomplete="off">
-            <select name="" id="ferry_departures" onchange="callOverFerry(value);">
+            <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a terminal..." onkeydown="" id="terminalgetter" class="searchbars" autocomplete="off">
+            <select name="" id="ferry_departures" class="scroller_departures" onchange="callOverFerry(value);">
                 <option value="prompt">Select Ferry Agency</option>
                 <option value="sfbayferry">SF Bay Ferry</option>
                 <option value="ggf">Golden Gate Ferry</option>
             </select>
             <p class="headerforferry">Departures for &nbsp;<span id="terminalname">---</span></p>
-            <ul id="list_of_departures_ferry">
-                <li id="line_for_departure_ferry"><div class="wrapper_for_departure_ferry"><div id="line_for_each_departure_ferry">-</div> <span id="alerts_ferry"></span> <span id="route_headsign_ferry">(None)</span><span id="route_depart_ferry">Enter a specific station by their station ID, then select a ferry agency. <br> For GGF Departures, key in the GF: prefix, then their terminal id.</span></div></li>
+            <ul id="list_of_departures_ferry" class="scroller_departures">
+                <li id="line_for_departure_ferry" class="lod_styling"><div class="wrapper_for_departure_ferry"><div id="line_for_each_departure_ferry">-</div> <span id="alerts_ferry"></span> <span id="route_headsign_ferry">(None)</span><span id="route_depart_ferry" class="departure_times_shift">Enter a specific station by their station ID, then select a ferry agency. <br> For GGF Departures, key in the GF: prefix, then their terminal id.</span></div></li>
             </ul>
         </div>
         <div class="window" id="alerts">
-            <p id="nameswitch">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <select name="" id="ferry_alerts" onchange="changeAgencyInAlerts(value);">
                 <option value="prompt">Select Ferry Agency</option>
                 <option value="sfbayferry">SF Bay Ferry</option>
@@ -94,7 +94,7 @@
             </div>
         </div>
         <div class="window" id="map_inter">
-            <p id="nameswitch">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <select name="" id="ferry_map" onchange="changeFerryLinesInMap(value);">
                 <option value="prompt">Select Ferry Agency</option>
                 <option value="sfbayferry">SF Bay Ferry</option>

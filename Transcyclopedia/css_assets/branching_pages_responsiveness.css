@@ -38,6 +38,10 @@
     .info #sectionheader i {
         margin-right: 20px;
     }
+
+    .infowithdropdowns #sectionheader i {
+        margin-right: 0;
+    }
 }
 
 @media (max-width: 600px) {
@@ -64,13 +68,26 @@
         overflow-y: auto;
     }
 
+    .infowithdropdowns {
+        padding-right: 0;
+    }
+
     .about_page {
         padding: 0;
+    }
+
+    .about_page_with_dropdowns {
+        padding: 20px;
     }
 
     .about_page #sectionheader {
         margin-left: 20px;
         margin-right: 20px;
+    }
+
+    .about_page_with_dropdowns #sectionheader {
+        margin-left: 0;
+        margin-right: 0;
     }
 
     #desc {
@@ -81,6 +98,11 @@
         padding: 20px;
         margin-left: 20px;
         margin-right: 20px;
+    }
+
+    .about_page_with_dropdowns #desc {
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .stats {
@@ -98,5 +120,9 @@
 
     .departure_times {
         left: 0;
+    }
+
+    .departure_times_shift {
+        left: 1.5px;
     }
 }
