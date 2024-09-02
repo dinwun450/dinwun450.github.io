@@ -24,7 +24,7 @@ function changeSwitch(c) {
         case "sand":
             document.querySelector(".optionsfortransit").innerHTML = `
             <li><a href="https://dinwun450.github.io/Transcyclopedia/sandiego/nctd/nctd.html"><img src="img_assets/nctd.svg" style="width: 90px; height: auto; position: relative; top: 5px;"></a></li>
-            <li><a href="#"><img src="img_assets/sdmts_logo.png" style="width: 70px; height: auto; position: relative;"></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/sandiego/mts/mts.html"><img src="img_assets/sdmts_logo.png" style="width: 70px; height: auto; position: relative;"></a></li>
             `
             break;
         case "yosenmerced":
