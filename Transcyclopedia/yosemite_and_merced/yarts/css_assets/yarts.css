@@ -6,6 +6,10 @@ body::after {
     background-image: linear-gradient(#dedede, #003399);
 }
 
+.left_navbar li.active {
+    background-color: #00339998;
+}
+
 .left_navbar li:hover:not(.active, .x) {
     background-color: #00339998;
     transition: 0.5s;
