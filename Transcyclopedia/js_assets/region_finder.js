@@ -29,7 +29,7 @@ function changeSwitch(c) {
             break;
         case "yosenmerced":
             document.querySelector(".optionsfortransit").innerHTML = `
-            <li><a href="#"><img src="img_assets/yarts_logo.png" style="width: 90px; height: auto; position: relative; top: 5px;"></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/yosemite_and_merced/yarts/yarts.html"><img src="img_assets/yarts_logo.png" style="width: 90px; height: auto; position: relative; top: 5px;"></a></li>
             <li><a href="#"><img src="img_assets/merced_bus.png" style="width: 90px; height: auto; position: relative; bottom: 7px;"></a></li>
             `
             break;
