@@ -7,7 +7,7 @@ function getWikipediaForYARTS() {
         if (wikipedia_yarts_caller.readyState === 4 && wikipedia_yarts_caller.status === 200) {
             var wikipedia_yarts_receiver = JSON.parse(wikipedia_yarts_caller.responseText);
             var wikipedia_yarts_info = wikipedia_yarts_receiver.query.pages["25064852"].extract;
-            document.getElementById("desc").innerHTML = `${wikipedia_yarts_info} <a href="https://en.wikipedia.org/wiki/Yosemite_Area_Regional_Transportation_System">Wikipedia</a>`;
+            document.getElementById("desc").innerHTML = `${wikipedia_yarts_info} <br> <a href="https://en.wikipedia.org/wiki/Yosemite_Area_Regional_Transportation_System">Wikipedia</a>`;
         };
     };
     wikipedia_yarts_caller.send();
