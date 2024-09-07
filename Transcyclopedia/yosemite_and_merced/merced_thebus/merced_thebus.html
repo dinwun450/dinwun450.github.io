@@ -55,11 +55,12 @@
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <div class="list_of_departures">
-                <ul id="departures_list">
-                    <li id="departure_entity"><span id="departure_time">-</span>&nbsp;<span id="departure_desc">Loading...</span></li>
-                </ul>
-            </div>
+            <input type="text" placeholder="Search for a stop..." id="stopgetter" class="searchbars" autocomplete="off" onkeydown="">
+            <p class="headerstop">Departures for: &nbsp; <span id="stopname_thebus">---</span></p>
+            <ul id="list_of_departures_thebus" class="scroller_departures">
+                <li id="line_for_departure_thebus" class="lod_styling"><div id="lod_thebus">-</div> <span id="aor_thebus"></span> <span id="hod_thebus">(None)</span> <span id="depart_time_thebus">Enter a stop by their stop ID</span></li>
+            </ul>
+            <button id="clearall_thebus" class="all_clearalls" onclick="">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
