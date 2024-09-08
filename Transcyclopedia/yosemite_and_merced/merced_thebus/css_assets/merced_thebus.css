@@ -1,0 +1,255 @@
+body::before {
+    background-image: linear-gradient(#1a3c79, #dedede);
+}
+
+body::after {
+    background-image: linear-gradient(#dedede, #0f725e);
+}
+
+.left_navbar li.active {
+    background-color: #1a3c7998;
+}
+
+.left_navbar li:hover:not(.active, .x) {
+    background-color: #0f725e98;
+    transition: 0.5s;
+}
+
+.main {
+    float: right;
+    width: 78%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow-y: hidden;
+}
+
+.window {
+    float: right;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 20px;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+#sectionheader {
+    font-size: 40px;
+    margin-top: 55px;
+}
+
+#sectionheader i {
+    display: none;
+}
+
+#about_thebus {
+    overflow-y: hidden;
+}
+
+.info {
+    width: 50%;
+    height: 100%;
+}
+
+.info #desc {
+    padding-right: 20px;
+    margin-top: 15px;
+}
+
+.info #desc a {
+    outline: none;
+    color: #1a3c79;
+}
+
+.stats {
+    float: right;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow-y: scroll;
+}
+
+.began_operation, .no_of_lines, .contact {
+    width: 96%;
+    height: 40%;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    margin-top: 25px;
+    overflow-y: auto;
+}
+
+.began_operation h2, .no_of_lines h2, .contact h2 {
+    font-weight: normal;
+    margin-top: 60px;
+    margin-left: 20px;
+}
+
+.began_operation p, .no_of_lines p {
+    margin-left: 20px;
+    font-size: 50px;
+}
+
+.contact ul {
+    list-style-type: none;
+}
+
+.contact p {
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.list_of_thebus_lines {
+    position: relative;
+    padding: 10px;
+    list-style-type: none;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.list_of_thebus_lines li {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#route_name_thebus {
+    display: inline-block;
+    width: fit-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 23px;
+    background: #33333340;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: white;
+    font-size: 1em;
+    text-align: center;
+}
+
+#route_desc_thebus {
+    width: 65%;
+    margin-left: 10px;
+    right: 50px;
+}
+
+.searchbars {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: #eeeeee40;
+    border: 1px solid #eeeeee40;
+    color: white;
+    padding-left: 10px;
+}
+
+.searchbars::placeholder {
+    color: white;
+}
+
+.headerstop {
+    width: 100%;
+    height: 50px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px 10px 0 0;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-top: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 10px;
+}
+
+#list_of_departures_thebus {
+    width: 100%;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 0 0 10px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin-bottom: 10px;
+    overflow-y: auto;
+}
+
+#line_for_departure_thebus {
+    margin: 10px;
+}
+
+#hod_thebus {
+    position: relative;
+    left: 5px;
+}
+
+#depart_time_thebus {
+    float: right;
+    position: relative;
+    right: 3px;
+}
+
+#list_of_alerts_thebus {
+    width: 100%;
+    height: fit-content;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#alert_desc_thebus {
+    padding: 10px;
+}
+
+.all_clearalls {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    background: rgba( 255, 255, 255, 0.25 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    font-size: 1.5em;
+    color: white;
+    margin-bottom: 25px;
+}
+
+#map {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#range_of_routes {
+    width: 100%;
+    height: 300px;
+    background: rgba( 255, 255, 255, 0.25 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+#rir {
+    list-style-type: none;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+#route_detail_rad {
+    margin-left: 10px;
+}
+
+.mapboxgl-popup-content {
+    color: black;
+    width: fit-content;
+}
