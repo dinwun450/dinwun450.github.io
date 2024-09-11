@@ -9,6 +9,7 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="css_assets/merced_thebus.css">
+    <script src="js_assets/merced_thebus.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -56,12 +57,12 @@
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a stop..." id="stopgetter" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a stop..." id="stopgetter" class="searchbars" autocomplete="off" onkeydown="keyDownTheBus();">
             <p class="headerstop">Departures for: &nbsp; <span id="stopname_thebus">---</span></p>
             <ul id="list_of_departures_thebus" class="scroller_departures">
                 <li id="line_for_departure_thebus" class="lod_styling"><div id="lod_thebus">-</div> <span id="aor_thebus"></span> <span id="hod_thebus">(None)</span> <span id="depart_time_thebus">Enter a stop by their stop ID</span></li>
             </ul>
-            <button id="clearall_thebus" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_thebus" class="all_clearalls" onclick="clearAllTheBus();">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
@@ -79,6 +80,8 @@
         </div>
     </div>
     <script>
+        mapConfiguration();
+        
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("window");
