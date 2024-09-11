@@ -83,7 +83,18 @@
         </div>
     </div>
     <script>
+        var v = null;
         mapConfiguration();
+
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
+            }
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
         
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
