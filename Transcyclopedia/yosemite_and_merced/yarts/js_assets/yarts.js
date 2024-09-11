@@ -119,20 +119,20 @@ function getDeparturesForYARTS(stop_id_yarts) {
                     
                         switch (delayed) {
                             case null:
-                                document.getElementsById("delay_yarts").innerHTML = "(no data)";
-                                document.getElementsById("delay_yarts").style.color = "black";
+                                document.getElementById("delay_yarts").innerHTML = "(no data)";
+                                document.getElementById("delay_yarts").style.color = "black";
                                 break;
                             case (delayed > 60):
-                                document.getElementsById("delay_yarts").innerHTML = `(${delayed} min late)`;
-                                document.getElementsById("delay_yarts").style.color = "#db4242";
+                                document.getElementById("delay_yarts").innerHTML = `(${delayed} min late)`;
+                                document.getElementById("delay_yarts").style.color = "#db4242";
                                 break;
                             case (delayed < 0):
-                                document.getElementsById("delay_yarts").innerHTML = `(${delayed} min early)`;
-                                document.getElementsById("delay_yarts").style.color = "#0398fc";
+                                document.getElementById("delay_yarts").innerHTML = `(${delayed} min early)`;
+                                document.getElementById("delay_yarts").style.color = "#0398fc";
                                 break;
                             default:
-                                document.getElementsById("delay_yarts").innerHTML = "(on time)";
-                                document.getElementsById("delay_yarts").style.color = "rgb(10, 161, 45)";
+                                document.getElementById("delay_yarts").innerHTML = "(on time)";
+                                document.getElementById("delay_yarts").style.color = "rgb(10, 161, 45)";
                                 break;
                         };
                         break;
