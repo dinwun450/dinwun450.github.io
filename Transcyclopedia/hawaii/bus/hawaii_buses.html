@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
+    <link rel="stylesheet" href="css_assets/hawaii_buses.css">
 </head>
 <body>
     <ul class="left_navbar">
@@ -23,110 +25,112 @@
     </ul>
     <div class="main">
         <div class="window" id="about_buses">
-            <p id="sectionheader">About Buses <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="hi_bus_info" onchange="">
+            <div class="info">
+                <p id="sectionheader">About Buses <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+                <select name="" id="hi_bus_info" onchange="">
+                    <option value="prompt">Select Bus Agency</option>
+                    <option value="thebus">TheBus</option>
+                    <option value="hele_on">Hele-On</option>
+                    <option value="maui_bus">Maui Bus</option>
+                    <option value="kauai_bus">The Kauai Bus</option>
+                </select>
+                <p id="desc">Select a Bus Agency.</p>
+            </div>
+            <div class="stats">
+                <div class="began_operation">
+                    <h2>Founded:</h2>
+                    <p id="foundingdate"><b>-</b></p>
+                </div>
+                <div class="no_of_lines">
+                    <h2>Number of Lines:</h2> 
+                    <p id="nooflines"><b>-</b></p>
+                </div>
+                <div class="contact">
+                    <h2>Contact:</h2>
+                    <ul>
+                        <li><p id="email_agency"><b>-</b> (Email)</p></li>
+                        <li><p id="phone_agency"><b>-</b> (Phone)</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="window" id="lines">
+            <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="hi_bus_lines" onchange="">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="thebus">TheBus</option>
                 <option value="hele_on">Hele-On</option>
                 <option value="maui_bus">Maui Bus</option>
                 <option value="kauai_bus">The Kauai Bus</option>
             </select>
-            <p id="desc">Select a Bus Agency.</p>
-        </div>
-        <div class="stats">
-            <div class="began_operation">
-                <h2>Founded:</h2>
-                <p id="foundingdate"><b>-</b></p>
-            </div>
-            <div class="no_of_lines">
-                <h2>Number of Lines:</h2> 
-                <p id="nooflines"><b>-</b></p>
-            </div>
-            <div class="contact">
-                <h2>Contact:</h2>
-                <ul>
-                    <li><p id="email_agency"><b>-</b> (Email)</p></li>
-                    <li><p id="phone_agency"><b>-</b> (Phone)</p></li>
+            <div class="list_of_hi_bus_lines">
+                <ul id="hi_bus_lines_list">
+                    <li id="route_entity_hi_bus"><span id="route_name_hi_bus">-</span>&nbsp;<span id="route_desc_hi_bus">Loading...</span></li>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="window" id="lines">
-        <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-        <select name="" id="hi_bus_lines" onchange="">
-            <option value="prompt">Select Bus Agency</option>
-            <option value="thebus">TheBus</option>
-            <option value="hele_on">Hele-On</option>
-            <option value="maui_bus">Maui Bus</option>
-            <option value="kauai_bus">The Kauai Bus</option>
-        </select>
-        <div class="list_of_hi_bus_lines">
-            <ul id="hi_bus_lines_list">
-                <li id="route_entity_hi_bus"><span id="route_name_hi_bus">-</span>&nbsp;<span id="route_desc_hi_bus">Loading...</span></li>
+        <div class="window" id="departures">
+            <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="hi_bus_departures" onchange="">
+                <option value="prompt">Select Bus Agency</option>
+                <option value="thebus">TheBus</option>
+                <option value="hele_on">Hele-On</option>
+                <option value="maui_bus">Maui Bus</option>
+                <option value="kauai_bus">The Kauai Bus</option>
+            </select>
+            <input type="text" placeholder="Search for a stop..." id="stopgetter" class="searchbars" autocomplete="off" onkeydown="">
+            <p class="headerstop">Departures for: &nbsp; <span id="stopname_hi_bus">---</span></p>
+            <ul id="list_of_departures_hi_bus" class="scroller_departures">
+                <li id="line_for_departure_hi_bus" class="lod_styling"><div id="lod_hi_bus">-</div> <span id="aor_hi_bus"></span> <span id="hod_hi_bus">(None)</span> <span id="depart_time_hi_bus">Enter a stop by their stop ID, then select a bus agency.</span></li>
             </ul>
+            <div id="alerts_stop_hi_bus" class="scroller_departures">
+                <h3>Alerts for this stop</h3>
+                <ul id="list_of_stop_alerts_hi_bus">
+                    <li id="alert_for_stop_hi_bus">Once you typed down the stop by their ID, the alerts will display here.</li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="window" id="departures">
-        <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-        <select name="" id="hi_bus_departures" onchange=""></select>
-            <option value="prompt">Select Bus Agency</option>
-            <option value="thebus">TheBus</option>
-            <option value="hele_on">Hele-On</option>
-            <option value="maui_bus">Maui Bus</option>
-            <option value="kauai_bus">The Kauai Bus</option>
-        </select>
-        <input type="text" placeholder="Search for a stop..." id="stopgetter" class="searchbars" autocomplete="off" onkeydown="">
-        <p class="headerstop">Departures for: &nbsp; <span id="stopname_hi_bus">---</span></p>
-        <ul id="list_of_departures_hi_bus" class="scroller_departures">
-            <li id="line_for_departure_hi_bus" class="lod_styling"><div id="lod_hi_bus">-</div> <span id="aor_hi_bus"></span> <span id="hod_hi_bus">(None)</span> <span id="depart_time_hi_bus">Enter a stop by their stop ID, then select a bus agency.</span></li>
-        </ul>
-        <div id="alerts_stop_hi_bus" class="scroller_departures">
-            <h3>Alerts for this stop</h3>
-            <ul id="list_of_stop_alerts_hi_bus">
-                <li id="alert_for_stop_hi_bus">Once you typed down the stop by their ID, the alerts will display here.</li>
+        <div class="window" id="alerts">
+            <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="hi_bus_alerts" onchange="">
+                <option value="prompt">Select Bus Agency</option>
+                <option value="thebus">TheBus</option>
+                <option value="hele_on">Hele-On</option>
+                <option value="maui_bus">Maui Bus</option>
+                <option value="kauai_bus">The Kauai Bus</option>
+            </select>
+            <div class="alert_entity_agency">
+               <h3>Alerts for Agency</h3>
+               <ul id="bus_alerts_agency">
+                    <li id="alert_desc_agency">Select a bus agency on the top.</li>
+               </ul>
+            </div>
+            <div class="alert_entity_routes">
+                <h3>Alerts for Routes</h3>
+                <ul id="bus_alerts_routes">
+                    <li id="alert_desc_routes">
+                        <p>
+                            <span id="alert_for_specific_route">Once you selected the bus agency and typed down the specific routes, it'll show here.</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="window" id="map_inter">
+            <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="hi_bus_map" onchange="">
+                <option value="prompt">Select Bus Agency</option>
+                <option value="thebus">TheBus</option>
+                <option value="hele_on">Hele-On</option>
+                <option value="maui_bus">Maui Bus</option>
+                <option value="kauai_bus">The Kauai Bus</option>
+            </select>
+            <div id="map"></div>
+            <ul id="range_of_routes">
+                <li id="rir"><span id="route_name_rad">-</span> <span id="route_detail_rad">Select a transit agency above, then drag the map to filter nearby routes.</span></li>
             </ul>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
-    </div>
-    <div class="window" id="alerts">
-        <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-        <select name="" id="hi_bus_alerts" onchange="">
-            <option value="prompt">Select Bus Agency</option>
-            <option value="thebus">TheBus</option>
-            <option value="hele_on">Hele-On</option>
-            <option value="maui_bus">Maui Bus</option>
-            <option value="kauai_bus">The Kauai Bus</option>
-        </select>
-        <div class="alert_entity_agency">
-           <h3>Alerts for Agency</h3>
-           <ul id="bus_alerts_agency">
-                <li id="alert_desc_agency">Select a bus agency on the top.</li>
-           </ul>
-        </div>
-        <div class="alert_entity_routes">
-            <h3>Alerts for Routes</h3>
-            <ul id="bus_alerts_routes">
-                <li id="alert_desc_routes">
-                    <p>
-                        <span id="alert_for_specific_route">Once you selected the bus agency and typed down the specific routes, it'll show here.</span>
-                    </p>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="window" id="map_inter">
-        <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-        <select name="" id="hi_bus_map" onchange=""></select>
-            <option value="prompt">Select Bus Agency</option>
-            <option value="thebus">TheBus</option>
-            <option value="hele_on">Hele-On</option>
-            <option value="maui_bus">Maui Bus</option>
-            <option value="kauai_bus">The Kauai Bus</option>
-        </select>
-        <div id="map"></div>
-        <ul id="range_of_routes">
-            <li id="rir"><span id="route_name_rad">-</span> <span id="route_detail_rad">Select a transit agency above, then drag the map to filter nearby routes.</span></li>
-        </ul>
-        <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
     </div>
 </body>
 </html>

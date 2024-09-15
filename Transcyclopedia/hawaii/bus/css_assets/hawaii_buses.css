@@ -1,0 +1,284 @@
+body::before {
+    background-image: linear-gradient(#0398fc, #dedede);
+}
+
+body::after {
+    background-image: linear-gradient(#dedede, #0398fc);
+}
+
+.left_navbar li.active {
+    background-color: #0398fc98;
+}
+
+.left_navbar li:hover:not(.active, .x) {
+    background-color: #0398fc98;
+    transition: 0.5s;
+}
+
+.main {
+    float: right;
+    width: 78%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow-y: hidden;
+}
+
+.window {
+    float: right;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 20px;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+#sectionheader {
+    font-size: 40px;
+    margin-top: 55px;
+}
+
+#sectionheader i {
+    display: none;
+}
+
+#about_buses {
+    overflow-y: hidden;
+}
+
+#hi_bus_info, #hi_bus_lines, #hi_bus_departures, #hi_bus_alerts, #hi_bus_map {
+    margin-top: 10px;
+    width: 100%;
+    height: 30px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: #0398fc;
+}
+
+.info {
+    width: 50%;
+    height: 100%;
+    padding-right: 20px;
+}
+
+.info #desc {
+    padding-right: 20px;
+    margin-top: 15px;
+}
+
+.info #desc a {
+    outline: none;
+    color: #0398fc;
+}
+
+.stats {
+    float: right;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow-y: scroll;
+}
+
+.began_operation, .no_of_lines, .contact {
+    width: 96%;
+    height: 40%;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    margin-top: 25px;
+    overflow-y: auto;
+}
+
+.began_operation h2, .no_of_lines h2, .contact h2 {
+    font-weight: normal;
+    margin-top: 60px;
+    margin-left: 20px;
+}
+
+.began_operation p, .no_of_lines p {
+    margin-left: 20px;
+    font-size: 50px;
+}
+
+.contact ul {
+    list-style-type: none;
+}
+
+.contact p {
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.list_of_hi_bus_lines {
+    position: relative;
+    padding: 10px;
+    list-style-type: none;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.list_of_hi_bus_lines li {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#route_name_hi_bus, #lod_hi_bus, #route_name_rad, #route_affected {
+    display: inline-block;
+    width: fit-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 23px;
+    background: #33333340;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: white;
+    font-size: 1em;
+    text-align: center;
+}
+
+#route_desc_hi_bus {
+    width: 65%;
+    margin-left: 10px;
+    right: 50px;
+}
+
+.searchbars {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: #eeeeee40;
+    border: 1px solid #eeeeee40;
+    color: white;
+    padding-left: 10px;
+}
+
+.searchbars::placeholder {
+    color: white;
+}
+
+.headerstop {
+    width: 100%;
+    height: 50px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px 10px 0 0;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-top: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 10px;
+}
+
+#list_of_departures_hi_bus {
+    width: 100%;
+    height: 400px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 0 0 10px 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-bottom: 10px;
+    overflow-y: auto;
+}
+
+#line_for_departure_hi_bus {
+    margin: 10px;
+}
+
+#hod_hi_bus {
+    position: relative;
+    left: 5px;
+}
+
+#depart_time_hi_bus {
+    float: right;
+    position: relative;
+    right: 3px;
+}
+
+#alerts_stop_hi_bus {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 10px;
+    background: rgba( 255, 255, 255, 0.25 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 10px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+#alert_for_stop_hi_bus {
+    width: 100%;
+    height: fit-content;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 10px;
+    list-style-type: none;
+}
+
+.alert_entity_agency, .alert_entity_routes {
+    width: 100%;
+    height: fit-content;
+    background: rgba( 255, 255, 255, 0.25 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.alert_entity_routes {
+    height: 400px;
+}
+
+.alert_entity_agency h3, .alert_entity_routes h3 {
+    margin-left: 5px;
+}
+
+#map {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#range_of_routes {
+    width: 100%;
+    height: 300px;
+    background: rgba( 255, 255, 255, 0.25 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+#rir {
+    list-style-type: none;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+#route_detail_rad {
+    margin-left: 10px;
+}
+
+.mapboxgl-popup-content {
+    color: black;
+    width: fit-content;
+}
