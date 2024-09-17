@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="css_assets/hawaii_buses.css">
     <script src="js_assets/hawaii_bus_agencies.js"></script>
+    <script src="js_assets/hawaii_bus_lines.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -57,7 +58,7 @@
         </div>
         <div class="window" id="lines">
             <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="hi_bus_lines" onchange="">
+            <select name="" id="hi_bus_lines" onchange="getBusLines(value);">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="thebus">TheBus</option>
                 <option value="hele_on">Hele-On</option>
@@ -66,7 +67,7 @@
             </select>
             <div class="list_of_hi_bus_lines">
                 <ul id="hi_bus_lines_list">
-                    <li id="route_entity_hi_bus"><span id="route_name_hi_bus">-</span>&nbsp;<span id="route_desc_hi_bus">Loading...</span></li>
+                    <li id="route_entity_hi_bus"><span id="route_name_hi_bus">-</span>&nbsp;<span id="route_desc_hi_bus">Select a Bus Agency.</span> <span id="no_of_alerts_hi_bus"></span></li>
                 </ul>
             </div>
         </div>
