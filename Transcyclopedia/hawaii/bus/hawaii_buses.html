@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css_assets/hawaii_buses.css">
     <script src="js_assets/hawaii_bus_agencies.js"></script>
     <script src="js_assets/hawaii_bus_lines.js"></script>
+    <script src="js_assets/hawaii_bus_departures.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -74,7 +75,7 @@
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a stop..." id="stopgetter" class="searchbars" autocomplete="off" onkeydown="">
-            <select name="" id="hi_bus_departures" onchange="">
+            <select name="" id="hi_bus_departures" onchange="changeHIBusDepartures(value);">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="thebus">TheBus</option>
                 <option value="hele_on">Hele-On</option>
@@ -83,7 +84,7 @@
             </select>
             <p class="headerstop">Departures for: &nbsp; <span id="stopname_hi_bus">---</span></p>
             <ul id="list_of_departures_hi_bus" class="scroller_departures">
-                <li id="line_for_departure_hi_bus" class="lod_styling"><div id="lod_hi_bus">-</div> <span id="aor_hi_bus"></span> <span id="hod_hi_bus">(None)</span> <span id="depart_time_hi_bus">Enter a stop by their stop ID, then select a bus agency.</span></li>
+                <li id="line_for_departure_hi_bus" class="lod_styling"><div id="lod_hi_bus">-</div> <span id="aor_hi_bus"></span> <span id="hod_hi_bus">(None)</span> <span id="depart_time_hi_bus">Enter a stop by their stop ID, then select a bus agency. For some TheBus departures, add "_merge" at the end of the stop id.</span></li>
             </ul>
             <div id="alerts_stop_hi_bus" class="scroller_departures">
                 <h3>Alerts for this stop</h3>
