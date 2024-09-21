@@ -248,7 +248,7 @@ body::after {
     margin-left: 5px;
 }
 
-#bus_alerts_agency, #bus_alerts_routes {
+#alert_desc_agency, #alert_desc_routes {
     width: 100%;
     height: fit-content;
     background: rgba(255, 255, 255, 0.25);
