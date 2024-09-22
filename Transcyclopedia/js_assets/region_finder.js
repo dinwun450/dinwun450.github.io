@@ -35,7 +35,7 @@ function changeSwitch(c) {
             break;
         case "hawaii":
             document.querySelector(".optionsfortransit").innerHTML = `
-            <li><a href="#" id="bus"><i class="fa-solid fa-bus" style="font-size: 35px;"></i></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/hawaii/bus/hawaii_buses.html" id="bus"><i class="fa-solid fa-bus" style="font-size: 35px;"></i></a></li>
             <li><a href="#" id="train"><i class="fa-solid fa-train" style="font-size: 35px;"></i></a></li>
             `
             break;
