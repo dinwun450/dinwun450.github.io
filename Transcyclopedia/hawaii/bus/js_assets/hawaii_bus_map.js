@@ -137,7 +137,7 @@ function HIBusGeojsonCreation(onestop_id) {
     hoveredPolygonLine = null;
 
     var hibus_route_caller = new XMLHttpRequest();
-    hibus_route_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${onestop_id}&include_geometry=true`, true);
+    hibus_route_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${onestop_id}&limit=700&include_geometry=true`, true);
     hibus_route_caller.onreadystatechange = function() {
         if (hibus_route_caller.readyState === 4 && hibus_route_caller.status === 200) {
             var hibus_route_receiver = JSON.parse(hibus_route_caller.responseText);

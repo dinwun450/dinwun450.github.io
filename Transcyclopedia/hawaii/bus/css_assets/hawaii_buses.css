@@ -204,7 +204,6 @@ body::after {
 #depart_time_hi_bus {
     float: right;
     position: relative;
-    right: 3px;
 }
 
 #alerts_stop_hi_bus {

@@ -9,6 +9,9 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="css_assets/hawaii_buses.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_responsiveness.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_lightdark.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_scrollbars.css">
     <script src="js_assets/hawaii_bus_agencies.js"></script>
     <script src="js_assets/hawaii_bus_lines.js"></script>
     <script src="js_assets/hawaii_bus_departures.js"></script>
@@ -29,8 +32,8 @@
         <p class="copyright">&copy; 2024 Transcyclopedia. Created by Dino Wun.</p>
     </ul>
     <div class="main">
-        <div class="window" id="about_buses">
-            <div class="info">
+        <div class="window about_page about_page_with_dropdowns" id="about_buses">
+            <div class="info infowithdropdowns">
                 <p id="sectionheader">About Buses <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
                 <select name="" id="hi_bus_info" onchange="changeHawaiiBusAgency(value);">
                     <option value="prompt">Select Bus Agency</option>
