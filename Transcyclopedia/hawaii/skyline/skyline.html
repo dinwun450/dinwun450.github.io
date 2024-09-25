@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
+    <link rel="stylesheet" href="css_assets/skyline.css">
 </head>
 <body>
     <ul class="left_navbar">
@@ -48,23 +51,23 @@
         <div class="window" id="lines">
             <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <div class="list_of_skylines">
-                <ul id="a_skyline">
-                    <li id="route_entity_skyline"><span id="route_name_skyline">-</span>&nbsp;<span id="route_desc_skyline">Loading...</span></li>
+                <ul id="a_skyline" class="lines">
+                    <li id="route_entity_skyline"><span id="route_name_skyline" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_skyline" class="all_desc_routes">Loading...</span></li>
                 </ul>
             </div>
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a station..." id="stationgetter" class="searchbars" autocomplete="off" onkeydown="">
-            <p class="headerstop">Departures for: &nbsp; <span id="stationname_skyline">---</span></p>
-            <ul id="list_of_departures_skyline" class="scroller_departures">
-                <li id="line_for_departure_skyline" class="lod_styling"><div id="lod_skyline">-</div> <span id="aor_skyline"></span> <span id="hod_skyline">(None)</span> <span id="depart_time_skyline">>Enter a stop by their stop ID</span></li>
+            <p class="headerforstop">Departures for: &nbsp; <span id="stationname_skyline">---</span></p>
+            <ul id="list_of_departures_skyline" class="scroller_departures individual_departure">
+                <li id="line_for_departure_skyline" class="lod_styling"><div id="lod_skyline" class="styling_for_routes">-</div> <span id="aor_skyline"></span> <span id="hod_skyline" class="route_headsigns">(None)</span> <span id="depart_time_skyline" class="departure_times">Enter a station by their stop ID</span></li>
             </ul>
             <button id="clearall_skyline" class="all_clearalls" onclick="">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <div id="list_of_alerts_skyline">
+            <div id="list_of_alerts_skyline" class="alert_entity_single">
                 <p id="alert_desc_skyline">Loading...</p>
             </div>
         </div>
@@ -72,7 +75,7 @@
             <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <div id="map"></div>
             <ul id="range_of_routes">
-                <li id="rir"><span id="route_name_rad">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
+                <li id="rir" class="route_radius"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
             </ul>
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
