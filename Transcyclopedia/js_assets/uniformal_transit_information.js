@@ -5,7 +5,7 @@ function getWikipediaForAnAgency(agency_name) {
         if (wikipedia_agency_caller.readyState === 4 && wikipedia_agency_caller.status === 200) {
             var wikipedia_agency_receiver = JSON.parse(wikipedia_agency_caller.responseText);
             var wikipedia_agency_info = wikipedia_agency_receiver.query.pages[Object.keys(wikipedia_agency_receiver.query.pages)[0]].extract;
-            document.getElementById("desc").innerHTML = `${wikipedia_agency_info} <br> <a href="https://en.wikipedia.org/wiki/Yosemite_Area_Regional_Transportation_System">Wikipedia</a>`;
+            document.getElementById("desc").innerHTML = `${wikipedia_agency_info} <br> <a href="https://en.wikipedia.org/wiki/${agency_name}">Wikipedia</a>`;
         };
     };
     wikipedia_agency_caller.send();
