@@ -85,7 +85,7 @@ function getLinesFromAnAgency(agency_onestop_id, route_name_id, route_desc_id, r
 
             var all_routes = document.getElementById(all_routes_list).children;
             document.getElementById(all_routes_list).removeChild(all_routes[0]);
-            document.getElementById("noofroutes").innerHTML = `<b>${lines_agency_receiver.routes.length}</b>`;
+            document.getElementById("nooflines").innerHTML = `<b>${lines_agency_receiver.routes.length}</b>`;
         }
     };
     lines_agency_caller.send();
