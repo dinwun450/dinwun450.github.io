@@ -37,7 +37,7 @@ function getContactsForAnAgency(agency_onestop_id) {
 
 function getLinesFromAnAgency(agency_onestop_id, route_name_id, route_desc_id, routes_list_entity, all_routes_list, with_alerts) {
     var lines_agency_caller = new XMLHttpRequest();
-    lines_agency_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operated_by=${agency_onestop_id}&limit=700&include_alerts=true`);
+    lines_agency_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${agency_onestop_id}&limit=700&include_alerts=true`);
     lines_agency_caller.onreadystatechange = function() {
         if (lines_agency_caller.readyState === 4 && lines_agency_caller.status === 200) {
             var lines_agency_receiver = JSON.parse(lines_agency_caller.responseText);
