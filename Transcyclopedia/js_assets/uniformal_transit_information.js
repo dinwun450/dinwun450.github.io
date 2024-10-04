@@ -184,7 +184,7 @@ function getDeparturesForStopFromAnAgency(stop_onestop_id, depart_time_ids, lod_
     departures_caller_agency.send();
 };
 
-function uniformalClearAlls(list_of_departures_name, stopname_name) {
-    document.getElementById(list_of_departures_name).innerHTML = departure_entities;
+function uniformalClearAlls(list_of_departures_name, original_entities, stopname_name) {
+    document.getElementById(list_of_departures_name).innerHTML = original_entities;
     document.getElementById(stopname_name).innerHTML = "---";
 }
