@@ -122,12 +122,12 @@ function getDeparturesForStopFromAnAgency(stop_onestop_id, depart_time_ids, lod_
     departures_caller_agency.open("GET", `https://transit.land/api/v2/rest/stops/${stop_onestop_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
     departures_caller_agency.onreadystatechange = function() {
         if (departures_caller_agency.readyState === 4 && departures_caller_agency.status === 200) {
-            var departures_receiver_agency = JSON.parse(departures_caller_agency.responseText).departures;
+            var departures_receiver_agency = JSON.parse(departures_caller_agency.responseText).stops[0].departures;
             for (var i = 0; i < departures_receiver_agency.length; i++) {
                 var route_color = departures_receiver_agency[i].trip.route.route_color;
                 var route_text_color = departures_receiver_agency[i].trip.route.route_text_color;
                 var route_short_name = departures_receiver_agency[i].trip.route.route_short_name;
-                var route_headsign = departures_receiver_agency[i].trip.headsign;
+                var route_headsign = departures_receiver_agency[i].trip.trip_headsign;
                 var departure_time = departures_receiver_agency[i].arrival.estimated;
                 var scheduled_time = departures_receiver_agency[i].arrival.scheduled;
                 var delayed = departures_receiver_agency[i].arrival.delay / 60;

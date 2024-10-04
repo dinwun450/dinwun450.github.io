@@ -59,7 +59,17 @@
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a station..." id="stationgetter" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgency(
+                null, 
+                'list_of_departures_skyline', 
+                `<li id='line_for_departure_skyline' class='lod_styling'><div id='lod_skyline' class='styling_for_routes'>-</div> <span id='aor_skyline'></span> <span id='hod_skyline' class='route_headsigns'>Loading...</span> <span id='depart_time_skyline' class='departure_times'>Please wait...</span></li>`, 
+                'stationname_skyline', 
+                'o-87z9-dts', 
+                'stationgetter', 
+                'depart_time_skyline', 
+                'lod_skyline', 
+                'hod_skyline', 
+                'line_for_departure_skyline')">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_skyline">---</span></p>
             <ul id="list_of_departures_skyline" class="scroller_departures individual_departure">
                 <li id="line_for_departure_skyline" class="lod_styling"><div id="lod_skyline" class="styling_for_routes">-</div> <span id="aor_skyline"></span> <span id="hod_skyline" class="route_headsigns">(None)</span> <span id="depart_time_skyline" class="departure_times">Enter a station by their stop ID</span></li>
