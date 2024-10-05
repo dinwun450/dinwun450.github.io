@@ -217,7 +217,7 @@ function loadAlertsWithinAnAgency(onestop_id, alert_desc_id, list_of_alerts_id) 
     alerts_agency_caller.send();
 }
 
-function mapConfiguration(lon, lat) {
+function mapConfiguration(lon, lat, zoomin) {
     document.getElementById("map").style.width = "100%";
     document.getElementById("map").style.height = "500px";
 
@@ -231,7 +231,7 @@ function mapConfiguration(lon, lat) {
         container: 'map',
         style: 'mapbox://styles/mapbox/light-v11',
         center: [lon, lat],
-        zoom: 8
+        zoom: zoomin
     });
 
     map.addControl(new mapboxgl.NavigationControl());
