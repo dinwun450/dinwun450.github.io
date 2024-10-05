@@ -188,3 +188,31 @@ function uniformalClearAlls(list_of_departures_name, original_entities, stopname
     document.getElementById(list_of_departures_name).innerHTML = original_entities;
     document.getElementById(stopname_name).innerHTML = "---";
 }
+
+function loadAlertsWithinAnAgency(onestop_id, alert_desc_id, list_of_alerts_id) {
+    var alerts_agency_caller = new XMLHttpRequest();
+    alerts_agency_caller.open("GET", `https://transit.land/api/v2/rest/agencies?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&onestop_id=${onestop_id}&include_alerts=true`);
+    alerts_agency_caller.onreadystatechange = function() {
+        if (alerts_agency_caller.readyState === 4 && alerts_agency_caller.status === 200) {
+            var alerts_agency_receiver = JSON.parse(alerts_agency_caller.responseText);
+
+            if (alerts_agency_receiver.agencies[0].alerts.length === 0) {
+                document.getElementById(alert_desc_id).innerHTML = "No alerts at the moment.";
+            }
+            else {
+                for (var i = 0; i < alerts_agency_receiver.agencies[0].alerts.length; i++) {
+                    var desc_for_alert = alerts_agency_receiver.agencies[0].alerts[i].description_text[0].text;
+                    var header_for_alert = alerts_agency_receiver.agencies[0].alerts[i].header_text[0].text;
+                    document.getElementById(alert_desc_id).innerHTML = `<b>${header_for_alert}</b> <br> ${desc_for_alert}`;
+
+                    var alert_entity = document.getElementById(alert_desc_id).cloneNode(true);
+                    document.getElementById(list_of_alerts_id).appendChild(alert_entity);
+                }
+
+                var all_alerts = document.getElementById(list_of_alerts_id).children;
+                document.getElementById(list_of_alerts_id).removeChild(all_alerts[0]);
+            }
+        }
+    }
+    alerts_agency_caller.send();
+}
