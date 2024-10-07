@@ -287,6 +287,22 @@ function mapConfiguration(lon, lat, zoomin) {
 }
 
 var geojson_of_routes = [];
+function getUniqueFeatures(features, comparatorProperty) {
+    const unique_ids = new Set();
+    const unique_features = [];
+
+    for (const feature of features) {
+        const id = feature.properties[comparatorProperty];
+        
+        if (!unique_ids.has(id)) {
+            unique_ids.add(id);
+            unique_features.push(feature);
+        }
+    }
+
+    return unique_features;
+}
+
 function plotLinesFromAnAgency(onestop_id, ins_singular_route_type) {
     var plot_lines_caller = new XMLHttpRequest();
     plot_lines_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${onestop_id}&limit=700&include_geometry=true`);
@@ -363,7 +379,7 @@ function plotLinesFromAnAgency(onestop_id, ins_singular_route_type) {
                 map.setFilter('line_routes', ['has', 'route_id']);
 
                 document.getElementById("range_of_routes").innerHTML = `
-                    <li id="rir"><span id="route_name_rad">-</span>&nbsp;&nbsp;<span id="route_detail_rad">Loading...</span></li>
+                    <li id="rir" class="route_radius"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
                 `;
             });
 
