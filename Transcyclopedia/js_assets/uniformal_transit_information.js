@@ -353,7 +353,7 @@ function plotLinesFromAnAgency(onestop_id, ins_singular_route_type) {
                     },
                     'paint': {
                         'line-width': 4,
-                        'line-color': ['get', 'color']
+                        'line-color': ['get', 'route_color']
                     }
                 });
             }
