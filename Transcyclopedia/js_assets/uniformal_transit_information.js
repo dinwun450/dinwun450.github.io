@@ -379,7 +379,7 @@ function plotLinesFromAnAgency(onestop_id, ins_singular_route_type) {
                 map.setFilter('line_routes', ['has', 'route_id']);
 
                 document.getElementById("range_of_routes").innerHTML = `
-                    <li id="rir" class="route_radius"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
+                    <li id="rir" class="route_radius"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Loading...</span></li>
                 `;
             });
 
