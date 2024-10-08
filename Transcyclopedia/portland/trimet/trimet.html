@@ -60,19 +60,19 @@
             <div class="lines_wes lines_branches">
                 <h3>WES Commuter Rail</h3>
                 <ul id="trimet_lines_wes">
-                    <li id="route_entity_trimet_wes" class="inner_list_of_lines"><span id="route_name_trimet_wes" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_trimet_wes" class="all_desc_routes">Loading...</span></li>
+                    <li id="route_entity_trimet_wes" class="inner_list_of_lines"><span id="route_name_trimet_wes" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_trimet_wes" class="all_desc_routes">Loading...</span> <span id="no_of_alerts_wes"></span></li>
                 </ul>
             </div>
             <div class="lines_max lines_branches">
                 <h3>MAX Light Rail</h3>
                 <ul id="trimet_lines_max">
-                    <li id="route_entity_trimet_max" class="inner_list_of_lines"><span id="route_name_trimet_max" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_trimet_max" class="all_desc_routes">Loading...</span></li>
+                    <li id="route_entity_trimet_max" class="inner_list_of_lines"><span id="route_name_trimet_max" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_trimet_max" class="all_desc_routes">Loading...</span> <span id="no_of_alerts_max"></span></li>
                 </ul>
             </div>
             <div class="lines_bus lines_branches">
                 <h3>Bus</h3>
                 <ul id="trimet_lines_bus">
-                    <li id="route_entity_trimet_bus" class="inner_list_of_lines"><span id="route_name_trimet_bus" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_trimet_bus" class="all_desc_routes">Loading...</span></li>
+                    <li id="route_entity_trimet_bus" class="inner_list_of_lines"><span id="route_name_trimet_bus" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_trimet_bus" class="all_desc_routes">Loading...</span> <span id="no_of_alerts_bus"></span></li>
                 </ul>
             </div>
         </div>
@@ -184,7 +184,7 @@
         getWikipediaForAnAgency("TriMet");
 
         // Lines
-        getLinesForAnAgencyWithinARouteType("o-c20-trimet", 2, "trimet_routes_wes", "WES Commuter Rail", "route_name_trimet_wes", "route_desc_trimet_wes", "route_entity_trimet_wes", "trimet_lines_wes", true);
+        getLinesFromAnAgencyWithinARouteType("o-c20-trimet", 2, "trimet_routes_wes", "WES Commuter Rail", "route_name_trimet_wes", "route_desc_trimet_wes", "route_entity_trimet_wes", "trimet_lines_wes", true, "no_of_alerts_wes");
     </script>
 </body>
 </html>

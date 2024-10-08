@@ -91,7 +91,7 @@ function getLinesFromAnAgency(agency_onestop_id, route_name_id, route_desc_id, r
     lines_agency_caller.send();
 };
 
-function getLinesFromAnAgencyWithinARouteType(agency_onestop_id, route_type, route_category_num, route_category_num_name, route_name_id, route_desc_id, routes_list_entity, all_routes_list, with_alerts) {
+function getLinesFromAnAgencyWithinARouteType(agency_onestop_id, route_type, route_category_num, route_category_num_name, route_name_id, route_desc_id, routes_list_entity, all_routes_list, with_alerts, no_of_alerts_id) {
     var lines_agency_caller = new XMLHttpRequest();
     lines_agency_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${agency_onestop_id}&limit=700&route_type=${route_type}&include_alerts=true`);
     lines_agency_caller.onreadystatechange = function() {
@@ -128,10 +128,10 @@ function getLinesFromAnAgencyWithinARouteType(agency_onestop_id, route_type, rou
                 if (with_alerts) {
                     var all_alerts = lines_agency_receiver.routes[i].alerts.length;
                     if (all_alerts > 0) {
-                        document.getElementById("no_of_alerts").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${all_alerts})`;
+                        document.getElementById(no_of_alerts_id).innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${all_alerts})`;
                     }
                     else {
-                        document.getElementById("no_of_alerts").innerHTML = "";
+                        document.getElementById(no_of_alerts_id).innerHTML = "";
                     }
                 }
 
