@@ -9,6 +9,7 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
+    <link rel="stylesheet" href="css_assets/trimet.css">
 </head>
 <body>
     <ul class="left_navbar">
@@ -55,49 +56,49 @@
         </div>
         <div class="window" id="lines">
             <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <div class="lines_wes">
+            <div class="lines_wes lines_branches">
                 <h3>WES Commuter Rail</h3>
                 <ul id="trimet_lines_wes">
-                    <li id="route_entity_trimet_wes"><span id="route_name_trimet_wes">-</span>&nbsp;<span id="route_desc_trimet_wes">Loading...</span></li>
+                    <li id="route_entity_trimet_wes" class="inner_list_of_lines"><span id="route_name_trimet_wes" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_trimet_wes" class="all_desc_routes">Loading...</span></li>
                 </ul>
             </div>
-            <div class="lines_max">
+            <div class="lines_max lines_branches">
                 <h3>MAX Light Rail</h3>
                 <ul id="trimet_lines_max">
-                    <li id="route_entity_trimet_max"><span id="route_name_trimet_max">-</span>&nbsp;<span id="route_desc_trimet_max">Loading...</span></li>
+                    <li id="route_entity_trimet_max" class="inner_list_of_lines"><span id="route_name_trimet_max" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_trimet_max" class="all_desc_routes">Loading...</span></li>
                 </ul>
             </div>
-            <div class="lines_bus">
+            <div class="lines_bus lines_branches">
                 <h3>Bus</h3>
                 <ul id="trimet_lines_bus">
-                    <li id="route_entity_trimet_bus"><span id="route_name_trimet_bus">-</span>&nbsp;<span id="route_desc_trimet_bus">Loading...</span></li>
+                    <li id="route_entity_trimet_bus" class="inner_list_of_lines"><span id="route_name_trimet_bus" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_trimet_bus" class="all_desc_routes">Loading...</span></li>
                 </ul>
             </div>
         </div>
         <div class="window" id="departures_wes">
             <p id="sectionheader">Departures (WES Commuter Rail) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a station..." id="stationgetter_wes" class="searchbars" autocomplete="off" onkeydown="">
-            <p class="headerstop">Departures for: &nbsp; <span id="stationname_wes">---</span></p>
-            <ul id="list_of_departures_wes" class="scroller_departures">
-                <li id="line_for_departure_wes" class="lod_styling"><div id="lod_wes">-</div> <span id="aor_wes"></span> <span id="hod_wes">(None)</span> <span id="depart_time_wes">Enter a station by their station ID</span></li>
+            <p class="headerforstop">Departures for: &nbsp; <span id="stationname_wes">---</span></p>
+            <ul id="list_of_departures_wes" class="scroller_departures individual_departure">
+                <li id="line_for_departure_wes" class="lod_styling"><div id="lod_wes" class="styling_for_routes">-</div> <span id="aor_wes"></span> <span id="hod_wes" class="route_headsigns">(None)</span> <span id="depart_time_wes" class="departure_times">Enter a station by their station ID</span></li>
             </ul>
             <button id="clearall_wes" class="all_clearalls" onclick="">Clear</button>
         </div>
         <div class="window" id="departures_max">
             <p id="sectionheader">Departures (MAX Light Rail) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a station..." id="stationgetter_max" class="searchbars" autocomplete="off" onkeydown="">
-            <p class="headerstop">Departures for: &nbsp; <span id="stationname_max">---</span></p>
-            <ul id="list_of_departures_max" class="scroller_departures">
-                <li id="line_for_departure_max" class="lod_styling"><div id="lod_max">-</div> <span id="aor_max"></span> <span id="hod_max">(None)</span> <span id="depart_time_max">Enter a station by their station ID</span></li>
+            <p class="headerforstop">Departures for: &nbsp; <span id="stationname_max">---</span></p>
+            <ul id="list_of_departures_max" class="scroller_departures individual_departure">
+                <li id="line_for_departure_max" class="lod_styling"><div id="lod_max" class="styling_for_routes">-</div> <span id="aor_max"></span> <span id="hod_max" class="route_headsigns">(None)</span> <span id="depart_time_max" class="departure_times">Enter a station by their station ID</span></li>
             </ul>
             <button id="clearall_max" class="all_clearalls" onclick="">Clear</button>
         </div>
         <div class="window" id="departures_bus">
             <p id="sectionheader">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a stop..." id="stopgetter_bus" class="searchbars" autocomplete="off" onkeydown="">
-            <p class="headerstop">Departures for: &nbsp; <span id="stopname_bus">---</span></p>
-            <ul id="list_of_departures_bus" class="scroller_departures">
-                <li id="line_for_departure_bus" class="lod_styling"><div id="lod_bus">-</div> <span id="aor_bus"></span> <span id="hod_bus">(None)</span> <span id="depart_time_bus">Enter a stop by their stop ID</span></li>
+            <p class="headerforstop">Departures for: &nbsp; <span id="stopname_bus">---</span></p>
+            <ul id="list_of_departures_bus" class="scroller_departures individual_departure">
+                <li id="line_for_departure_bus" class="lod_styling"><div id="lod_bus" class="styling_for_routes">-</div> <span id="aor_bus"></span> <span id="hod_bus" class="route_headsigns">(None)</span> <span id="depart_time_bus" class="departure_times">Enter a stop by their stop ID</span></li>
             </ul>
             <button id="clearall_bus" class="all_clearalls" onclick="">Clear</button>
         </div>
@@ -106,13 +107,13 @@
             <div class="alert_entity_agency alert_section_agency">
                 <h3>TriMet Agency</h3>
                 <ul id="trimet_agency_alerts">
-                    <li id="alert_desc_agency"><p>Loading...</p></li>
+                    <li id="alert_agency_entity"><p>Loading...</p></li>
                 </ul>
             </div>
             <div class="alert_entity_routes alert_section_lines">
                 <h3>TriMet Lines</h3>
                 <ul id="trimet_lines_alerts">
-                    <li id="alert_desc_routes"><p>Loading...</p></li>
+                    <li id="alert_routes_entity"><p>Loading...</p></li>
                 </ul>
             </div>
         </div>
@@ -120,10 +121,28 @@
             <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <div id="map"></div>
             <ul id="range_of_routes">
-                <li id="rir"><span id="route_name_rad">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
+                <li id="rir" class="route_radius"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
             </ul>
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("window");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("defaulttab").click();
+    </script>
 </body>
 </html>

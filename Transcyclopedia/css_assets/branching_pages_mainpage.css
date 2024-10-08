@@ -322,6 +322,10 @@
     margin-bottom: 5px;
 }
 
+#route_detail_rad {
+    margin-left: 10px;
+}
+
 .mapboxgl-popup-content {
     color: black;
     width: fit-content;
