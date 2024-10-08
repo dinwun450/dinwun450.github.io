@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/trimet.css">
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -139,7 +140,7 @@
         }
         updateSize();
         window.addEventListener("resize", updateSize);
-        
+
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("window");
@@ -178,6 +179,12 @@
             document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
         }
         getCopyrightYear();
+
+        // Information
+        getWikipediaForAnAgency("TriMet");
+
+        // Lines
+        getLinesForAnAgencyWithinARouteType("o-c20-trimet", 2, "trimet_routes_wes", "WES Commuter Rail", "route_name_trimet_wes", "route_desc_trimet_wes", "route_entity_trimet_wes", "trimet_lines_wes", true);
     </script>
 </body>
 </html>

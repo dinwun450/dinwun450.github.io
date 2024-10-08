@@ -91,6 +91,62 @@ function getLinesFromAnAgency(agency_onestop_id, route_name_id, route_desc_id, r
     lines_agency_caller.send();
 };
 
+function getLinesFromAnAgencyWithinARouteType(agency_onestop_id, route_type, route_category_num, route_category_num_name, route_name_id, route_desc_id, routes_list_entity, all_routes_list, with_alerts) {
+    var lines_agency_caller = new XMLHttpRequest();
+    lines_agency_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${agency_onestop_id}&limit=700&route_type=${route_type}&include_alerts=true`);
+    lines_agency_caller.onreadystatechange = function() {
+        if (lines_agency_caller.readyState === 4 && lines_agency_caller.status === 200) {
+            var lines_agency_receiver = JSON.parse(lines_agency_caller.responseText);
+            for (var i = 0; i < lines_agency_receiver.routes.length; i++) {
+                var route_long_name = lines_agency_receiver.routes[i].route_long_name;
+                var route_color = lines_agency_receiver.routes[i].route_color;
+                var route_text_color = lines_agency_receiver.routes[i].route_text_color;
+                var route_short_name = lines_agency_receiver.routes[i].route_short_name;
+
+                if (route_short_name === "") {
+                    route_short_name = "&nbsp;&nbsp;&nbsp;";
+                }
+
+                if (route_long_name === "") {
+                    route_long_name = "";
+                }
+
+                if (route_color === "") {
+                    route_color = "000000";
+                }
+
+                if (route_text_color === "") {
+                    route_text_color = "FFFFFF";
+                }
+
+                document.getElementById(route_name_id).innerHTML = route_short_name;
+                document.getElementById(route_name_id).style.backgroundColor = `#${route_color}40`;
+                document.getElementById(route_name_id).style.color = `#${route_text_color}`;
+                document.getElementById(route_name_id).style.border = `1px solid #${route_color}`;
+                document.getElementById(route_desc_id).innerHTML = route_long_name;
+
+                if (with_alerts) {
+                    var all_alerts = lines_agency_receiver.routes[i].alerts.length;
+                    if (all_alerts > 0) {
+                        document.getElementById("no_of_alerts").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${all_alerts})`;
+                    }
+                    else {
+                        document.getElementById("no_of_alerts").innerHTML = "";
+                    }
+                }
+
+                var route_entity = document.getElementById(routes_list_entity).cloneNode(true);
+                document.getElementById(all_routes_list).appendChild(route_entity);
+            };
+
+            var all_routes = document.getElementById(all_routes_list).children;
+            document.getElementById(all_routes_list).removeChild(all_routes[0]);
+            document.getElementById(route_category_num).innerHTML = `${lines_agency_receiver.routes.length} (${route_category_num_name})`;
+        }
+    };
+    lines_agency_caller.send();
+};
+
 function getDeparturesFromAnAgency(e, list_of_departures_name, departure_entities, stopname_name, agency_onestop_id, inssearchbar_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures) {
     e = e || window.event;
     if (e.keyCode === 13) {
