@@ -162,7 +162,7 @@ function getDeparturesFromAnAgencyWithAMode(e, list_of_departures_name, departur
         document.getElementById(list_of_departures_name).innerHTML = departure_entities;
         document.getElementById(stopname_name).innerHTML = "---";
         getStopForDeparturesFromAnAgencyWithAMode(inssearchbar_id, stopname_name, agency_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, route_type, alerts, aor_id);
-    };, aor_id
+    };
 }
 
 function getStopForDeparturesFromAnAgency(searchbar_id, stopname_id, agency_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, alerts) {
