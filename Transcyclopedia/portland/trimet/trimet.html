@@ -78,7 +78,19 @@
         </div>
         <div class="window" id="departures_wes">
             <p id="sectionheader">Departures (WES Commuter Rail) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter_wes" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a station..." id="stationgetter_wes" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgencyWithAMode(
+                null, 
+                'list_of_departures_wes', 
+                `<li id='line_for_departure_wes' class='lod_styling'><div id='lod_wes' class='styling_for_routes'>-</div> <span id='aor_wes'></span> <span id='hod_wes' class='route_headsigns'>Loading...</span> <span id='depart_time_wes' class='departure_times'>Please wait...</span></li>`, 
+                'stationname_wes', 
+                'o-c20-trimet', 
+                'stationgetter_wes', 
+                'depart_time_wes', 
+                'lod_wes', 
+                'hod_wes', 
+                'line_for_departure_wes',
+                2,
+                true)">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_wes">---</span></p>
             <ul id="list_of_departures_wes" class="scroller_departures individual_departure">
                 <li id="line_for_departure_wes" class="lod_styling"><div id="lod_wes" class="styling_for_routes">-</div> <span id="aor_wes"></span> <span id="hod_wes" class="route_headsigns">(None)</span> <span id="depart_time_wes" class="departure_times">Enter a station by their station ID</span></li>
@@ -188,9 +200,6 @@
         getLinesFromAnAgencyWithinARouteType("o-c20-trimet", 2, "trimet_routes_wes", "WES Commuter Rail", "route_name_trimet_wes", "route_desc_trimet_wes", "route_entity_trimet_wes", "trimet_lines_wes", true, "no_of_alerts_wes");
         getLinesFromAnAgencyWithinARouteType("o-c20-trimet", 0, "trimet_routes_max", "MAX Light Rail", "route_name_trimet_max", "route_desc_trimet_max", "route_entity_trimet_max", "trimet_lines_max", true, "no_of_alerts_max");
         getLinesFromAnAgencyWithinARouteType("o-c20-trimet", 3, "trimet_routes_bus", "Bus", "route_name_trimet_bus", "route_desc_trimet_bus", "route_entity_trimet_bus", "trimet_lines_bus", true, "no_of_alerts_bus");
-
-        // Departures
-        
     </script>
 </body>
 </html>
