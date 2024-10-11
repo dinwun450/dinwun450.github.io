@@ -147,7 +147,7 @@ function getLinesFromAnAgencyWithinARouteType(agency_onestop_id, route_type, rou
     lines_agency_caller.send();
 };
 
-function getDeparturesFromAnAgency(e, list_of_departures_name, departure_entities, stopname_name, agency_onestop_id, inssearchbar_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, alerts) {
+function getDeparturesFromAnAgency(e, list_of_departures_name, departure_entities, stopname_name, agency_onestop_id, inssearchbar_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, alerts, aor_id) {
     e = e || window.event;
     if (e.keyCode === 13) {
         document.getElementById(list_of_departures_name).innerHTML = departure_entities;
@@ -156,16 +156,16 @@ function getDeparturesFromAnAgency(e, list_of_departures_name, departure_entitie
     };
 };
 
-function getDeparturesFromAnAgencyWithAMode(e, list_of_departures_name, departure_entities, stopname_name, agency_onestop_id, inssearchbar_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, route_type, alerts) {
+function getDeparturesFromAnAgencyWithAMode(e, list_of_departures_name, departure_entities, stopname_name, agency_onestop_id, inssearchbar_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, route_type, alerts, aor_id) {
     e = e || window.event;
     if (e.keyCode === 13) {
         document.getElementById(list_of_departures_name).innerHTML = departure_entities;
         document.getElementById(stopname_name).innerHTML = "---";
-        getStopForDeparturesFromAnAgencyWithAMode(inssearchbar_id, stopname_name, agency_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, route_type, alerts);
-    };
+        getStopForDeparturesFromAnAgencyWithAMode(inssearchbar_id, stopname_name, agency_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, route_type, alerts, aor_id);
+    };, aor_id
 }
 
-function getStopForDeparturesFromAnAgency(searchbar_id, stopname_id, agency_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name) {
+function getStopForDeparturesFromAnAgency(searchbar_id, stopname_id, agency_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, alerts) {
     var stopvalue_agency = document.getElementById(searchbar_id).value;
     var stopid_agency_caller = new XMLHttpRequest();
     stopid_agency_caller.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=${agency_onestop_id}&stop_id=${stopvalue_agency}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
@@ -182,7 +182,7 @@ function getStopForDeparturesFromAnAgency(searchbar_id, stopname_id, agency_ones
     stopid_agency_caller.send();
 };
 
-function getStopForDeparturesFromAnAgencyWithAMode(searchbar_id, stopname_id, agency_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, route_type, alerts) {
+function getStopForDeparturesFromAnAgencyWithAMode(searchbar_id, stopname_id, agency_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, route_type, alerts, aor_id) {
     var stopvalue_agency = document.getElementById(searchbar_id).value;
     var stopid_agency_caller = new XMLHttpRequest();
     stopid_agency_caller.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=${agency_onestop_id}&served_by_route_type=${route_type}&stop_id=${stopvalue_agency}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
@@ -193,13 +193,13 @@ function getStopForDeparturesFromAnAgencyWithAMode(searchbar_id, stopname_id, ag
             var stopid_agency = stopid_agency_receiver.stops[0].onestop_id;
 
             document.getElementById(stopname_id).innerHTML = stopname_agency;
-            getDeparturesForStopFromAnAgency(stopid_agency, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, alerts);
+            getDeparturesForStopFromAnAgency(stopid_agency, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, alerts, aor_id);
         };
     };
     stopid_agency_caller.send();
 }
 
-function getDeparturesForStopFromAnAgency(stop_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, alerts) {
+function getDeparturesForStopFromAnAgency(stop_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, alerts, aor_id) {
     var departures_caller_agency = new XMLHttpRequest();
     departures_caller_agency.open("GET", `https://transit.land/api/v2/rest/stops/${stop_onestop_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
     departures_caller_agency.onreadystatechange = function() {
@@ -257,10 +257,10 @@ function getDeparturesForStopFromAnAgency(stop_onestop_id, depart_time_ids, lod_
                 if (alerts === true) {
                     var all_alerts = departures_receiver_agency[i].trip.route.alerts.length;
                     if (all_alerts > 0) {
-                        document.getElementById("no_of_alerts").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${all_alerts})`;
+                        document.getElementById(aor_id).innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${all_alerts})`;
                     }
                     else {
-                        document.getElementById("no_of_alerts").innerHTML = "";
+                        document.getElementById(aor_id).innerHTML = "";
                     }
                 }
 
