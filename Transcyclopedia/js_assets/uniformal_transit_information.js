@@ -156,7 +156,7 @@ function getDeparturesFromAnAgency(e, list_of_departures_name, departure_entitie
     };
 };
 
-function getStopForDeparturesFromAnAgencyWithAMode(e, list_of_departures_name, departure_entities, stopname_name, agency_onestop_id, inssearchbar_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, route_type) {
+function getDeparturesFromAnAgencyWithAMode(e, list_of_departures_name, departure_entities, stopname_name, agency_onestop_id, inssearchbar_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, route_type) {
     e = e || window.event;
     if (e.keyCode === 13) {
         document.getElementById(list_of_departures_name).innerHTML = departure_entities;
