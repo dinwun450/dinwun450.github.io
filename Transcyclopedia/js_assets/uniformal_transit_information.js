@@ -201,7 +201,7 @@ function getStopForDeparturesFromAnAgencyWithAMode(searchbar_id, stopname_id, ag
 
 function getDeparturesForStopFromAnAgency(stop_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, alerts) {
     var departures_caller_agency = new XMLHttpRequest();
-    departures_caller_agency.open("GET", `https://transit.land/api/v2/rest/stops/${stop_onestop_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+    departures_caller_agency.open("GET", `https://transit.land/api/v2/rest/stops/${stop_onestop_id}/departures?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
     departures_caller_agency.onreadystatechange = function() {
         if (departures_caller_agency.readyState === 4 && departures_caller_agency.status === 200) {
             var departures_receiver_agency = JSON.parse(departures_caller_agency.responseText).stops[0].departures;

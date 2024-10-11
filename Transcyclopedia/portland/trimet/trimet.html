@@ -99,7 +99,19 @@
         </div>
         <div class="window" id="departures_max">
             <p id="sectionheader">Departures (MAX Light Rail) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter_max" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a station..." id="stationgetter_max" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgencyWithAMode(
+                null, 
+                'list_of_departures_max', 
+                `<li id='line_for_departure_max' class='lod_styling'><div id='lod_max' class='styling_for_routes'>-</div> <span id='aor_max'></span> <span id='hod_max' class='route_headsigns'>Loading...</span> <span id='depart_time_max' class='departure_times'>Please wait...</span></li>`, 
+                'stationname_max', 
+                'o-c20-trimet', 
+                'stationgetter_max', 
+                'depart_time_max', 
+                'lod_max', 
+                'hod_max', 
+                'line_for_departure_max',
+                0,
+                true)">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_max">---</span></p>
             <ul id="list_of_departures_max" class="scroller_departures individual_departure">
                 <li id="line_for_departure_max" class="lod_styling"><div id="lod_max" class="styling_for_routes">-</div> <span id="aor_max"></span> <span id="hod_max" class="route_headsigns">(None)</span> <span id="depart_time_max" class="departure_times">Enter a station by their station ID</span></li>
