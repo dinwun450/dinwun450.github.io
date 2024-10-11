@@ -15,6 +15,11 @@ body::after {
     transition: 0.5s;
 }
 
+.info #desc a {
+    outline: none;
+    color: #d34726;
+}
+
 .all_desc_routes {
     width: 65%;
     margin-left: 10px;

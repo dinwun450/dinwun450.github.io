@@ -156,6 +156,15 @@ function getDeparturesFromAnAgency(e, list_of_departures_name, departure_entitie
     };
 };
 
+function getStopForDeparturesFromAnAgencyWithAMode(e, list_of_departures_name, departure_entities, stopname_name, agency_onestop_id, inssearchbar_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, route_type) {
+    e = e || window.event;
+    if (e.keyCode === 13) {
+        document.getElementById(list_of_departures_name).innerHTML = departure_entities;
+        document.getElementById(stopname_name).innerHTML = "---";
+        getStopForDeparturesFromAnAgencyWithAMode(inssearchbar_id, stopname_name, agency_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, route_type);
+    };
+}
+
 function getStopForDeparturesFromAnAgency(searchbar_id, stopname_id, agency_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name) {
     var stopvalue_agency = document.getElementById(searchbar_id).value;
     var stopid_agency_caller = new XMLHttpRequest();
@@ -172,6 +181,23 @@ function getStopForDeparturesFromAnAgency(searchbar_id, stopname_id, agency_ones
     };
     stopid_agency_caller.send();
 };
+
+function getStopForDeparturesFromAnAgencyWithAMode(searchbar_id, stopname_id, agency_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, route_type) {
+    var stopvalue_agency = document.getElementById(searchbar_id).value;
+    var stopid_agency_caller = new XMLHttpRequest();
+    stopid_agency_caller.open("GET", `https://transit.land/api/v2/rest/stops?served_by_onestop_ids=${agency_onestop_id}&served_by_route_type=${route_type}&stop_id=${stopvalue_agency}&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL`);
+    stopid_agency_caller.onreadystatechange = function() {
+        if (stopid_agency_caller.readyState === 4 && stopid_agency_caller.status === 200) {
+            var stopid_agency_receiver = JSON.parse(stopid_agency_caller.responseText);
+            var stopname_agency = stopid_agency_receiver.stops[0].stop_name;
+            var stopid_agency = stopid_agency_receiver.stops[0].onestop_id;
+
+            document.getElementById(stopname_id).innerHTML = stopname_agency;
+            getDeparturesForStopFromAnAgency(stopid_agency, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name);
+        };
+    };
+    stopid_agency_caller.send();
+}
 
 function getDeparturesForStopFromAnAgency(stop_onestop_id, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name) {
     var departures_caller_agency = new XMLHttpRequest();
