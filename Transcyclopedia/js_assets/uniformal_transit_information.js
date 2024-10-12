@@ -248,6 +248,11 @@ function getDeparturesForStopFromAnAgency(stop_onestop_id, depart_time_ids, lod_
                     route_short_name = "&nbsp;&nbsp;&nbsp;";
                 }
 
+                if (route_headsign === "") {
+                    var route_long_name = departures_receiver_agency[i].trip.route.route_long_name;
+                    route_headsign = route_long_name;
+                }
+
                 document.getElementById(lod_ids).innerHTML = route_short_name;
                 document.getElementById(lod_ids).style.backgroundColor = `#${route_color}40`;
                 document.getElementById(lod_ids).style.color = `#${route_text_color}`;
