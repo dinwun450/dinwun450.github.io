@@ -335,6 +335,12 @@ function loadRouteAlertsWithinAnAgency(onestop_id, alert_desc_id, list_of_alerts
                         var header_for_alert = route_alerts_agent_receiver.routes[i].alerts[a].header_text[0].text;
 
                         document.getElementById(alert_desc_id).innerHTML = `<p><span id="route_affected" class="styling_for_routes"></span><b>${header_for_alert}</b> <br> ${desc_for_alert}<p>`;
+
+                        if (route_short_name_affected === "") {
+                            route_long_name = route_alerts_agent_receiver.routes[i].route_long_name;
+                            route_short_name_affected = route_long_name;
+                        }
+                        
                         document.getElementById("route_affected").innerHTML = route_short_name_affected;
                         document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
                         document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
