@@ -317,7 +317,7 @@ function loadAlertsWithinAnAgency(onestop_id, alert_desc_id, list_of_alerts_id) 
 var no_route_alerts = 0;
 function loadRouteAlertsWithinAnAgency(onestop_id, alert_desc_id, list_of_alerts_id) {
     var route_alerts_agent_caller = new XMLHttpRequest();
-    route_alerts_agent_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${onestop_id}limit=700&include_alerts=true`);
+    route_alerts_agent_caller.open("GET", `https://transit.land/api/v2/rest/routes?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&operator_onestop_id=${onestop_id}&limit=700&include_alerts=true`);
     route_alerts_agent_caller.onreadystatechange = function() {
         if (route_alerts_agent_caller.status === 200 && route_alerts_agent_caller.readyState === 4) {
             var route_alerts_agent_receiver = JSON.parse(route_alerts_agent_caller.responseText);
