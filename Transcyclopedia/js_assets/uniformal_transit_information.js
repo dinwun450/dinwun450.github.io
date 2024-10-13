@@ -651,6 +651,7 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
                         'line-color': [
                             'case',
                             ['boolean', ['feature-state', 'hover'], false],
+                            ['get', 'route_color'],
                             '#c0e7fc'
                         ],
                     }
@@ -694,6 +695,7 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
                         'line-color': [
                             'case',
                             ['boolean', ['feature-state', 'hover'], false],
+                            ['get', 'route_color'],
                             '#c0e7fc'
                         ],
                     }
@@ -739,6 +741,7 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
                             'line-color': [
                                 'case',
                                 ['boolean', ['feature-state', 'hover'], false],
+                                ['get', 'route_color'],
                                 '#c0e7fc'
                             ],
                         }
