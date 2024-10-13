@@ -825,7 +825,7 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
 
             if (ins_type_one === 3) {
                 map.on('mouseenter', 'first_line_routes', (e) => {
-                    var fs = map.queryRenderedFeatures({
+                    var fs = map.queryRenderedFeatures(e.point, {
                         layers: ['first_line_routes']
                     });
 
@@ -898,7 +898,7 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
 
             if (ins_type_two === 3) {
                 map.on('mouseenter', 'second_line_routes', (e) => {
-                    var fs2 = map.queryRenderedFeatures({
+                    var fs2 = map.queryRenderedFeatures(e.point, {
                         layers: ['second_line_routes']
                     });
 
@@ -971,8 +971,8 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
 
             if (ins_type_three !== null) {
                 if (ins_type_three === 3) {
-                    map.on('mouseenter', 'third_line_routes', (e) => {
-                        var fs3 = map.queryRenderedFeatures({
+                    map.on('mouseenter', 'third_line_routes', function(e) {
+                        var fs3 = map.queryRenderedFeatures(e.point, {
                             layers: ['third_line_routes']
                         });
 
