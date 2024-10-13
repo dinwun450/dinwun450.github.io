@@ -680,7 +680,7 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
                 },
                 'generateId': true
             });
-            if (ins_type_one === 3) {
+            if (ins_type_two === 3) {
                 map.addLayer({
                     'id': 'second_line_routes',
                     'type': 'line',
