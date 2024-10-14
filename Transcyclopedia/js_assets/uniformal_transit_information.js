@@ -882,6 +882,7 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
                             if (name_of_route === "") {
                                 name_of_route = fs[f].properties.route_long_name;
                             }
+                            routeId.push(name_of_route);
                         }
 
                         popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
@@ -955,6 +956,7 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
                             if (name_of_route === "") {
                                 name_of_route = fs2[f2].properties.route_long_name;
                             }
+                            routeId.push(name_of_route);
                         }
 
                         popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
@@ -1029,6 +1031,7 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
                                 if (name_of_route === "") {
                                     name_of_route = fs3[f3].properties.route_long_name;
                                 }
+                                routeId.push(name_of_route);
                             }
 
                             popup.setLngLat(e.lngLat.wrap()).setHTML(routeId).addTo(map);
