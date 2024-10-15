@@ -1,0 +1,22 @@
+.info desc a {
+    color: #5665a3;
+    outline: none;
+}
+
+.lines {
+    position: relative;
+    padding: 10px;
+    list-style-type: none;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+#route_desc_pttram, #route_detail_rad {
+    margin-left: 10px;
+}
+
+#alert_desc_pttramline {
+    padding: 10px;
+}
