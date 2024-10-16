@@ -9,10 +9,11 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
+    <link rel="stylesheet" href="css_assets/vegas_rtc.css">
 </head>
 <body>
     <ul class="left_navbar">
-        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia HI:<br> RTC</h1>
+        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia Las Vegas:<br> RTC</h1>
         <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
         <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_rtc')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About RTC</a></li>
         <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
@@ -23,68 +24,123 @@
         <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
         <p class="copyright">&copy; 2024 Transcyclopedia. Created by Dino Wun.</p>
     </ul>
-    <div class="window about_page" id="about_rtc">
-        <div class="info">
-            <p id="sectionheader">About RTC <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <p id="desc">Loading...</p>
+    <div class="main">
+        <div class="window about_page" id="about_rtc">
+            <div class="info">
+                <p id="sectionheader">About RTC <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+                <p id="desc">Loading...</p>
+            </div>
+            <div class="stats">
+                <div class="began_operation">
+                    <h2>Began Operation</h2>
+                    <p><b>December 5, 1992</b></p>
+                </div>
+                <div class="no_of_lines">
+                    <h2>Number of Lines:</h2>
+                    <p id="nooflines"><b>-</b></p>
+                </div>
+                <div class="contact">
+                    <h2>Contact</h2>
+                    <ul>
+                        <li><p id="email_agency"><b>-</b> (Email)</p></li>
+                        <li><p id="phone_agency"><b>-</b> (Phone)</p></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="stats">
-            <div class="began_operation">
-                <h2>Began Operation</h2>
-                <p><b>December 5, 1992</b></p>
-            </div>
-            <div class="no_of_lines">
-                <h2>Number of Lines:</h2>
-                <p id="nooflines"><b>-</b></p>
-            </div>
-            <div class="contact">
-                <h2>Contact</h2>
-                <ul>
-                    <li><p id="email_agency"><b>-</b> (Email)</p></li>
-                    <li><p id="phone_agency"><b>-</b> (Phone)</p></li>
+        <div class="window" id="lines">
+            <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="border_of_rtc_lines">
+                <ul id="list_of_rtc_lines" class="lines">
+                    <li id="route_entity_rtc"><span id="route_name_rtc" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_rtc" class="all_desc_routes">Loading...</span></li>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="window" id="lines">
-        <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-        <div class="border_of_rtc_lines">
-            <ul id="list_of_rtc_lines" class="lines">
-                <li id="route_entity_rtc"><span id="route_name_rtc" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_rtc" class="all_desc_routes">Loading...</span></li>
+        <div class="window" id="departures">
+            <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a stop..." id="stopgetter" class="searchbars" autocomplete="off" onkeydown="">
+            <p class="headerforstop">Departures for: &nbsp; <span id="stopname_rtc">---</span></p>
+            <ul id="list_of_departures_rtc" class="scroller_departures individual_departure">
+                <li id="line_for_departure_rtc" class="lod_styling"><div id="lod_rtc" class="styling_for_routes">-</div> <span id="aor_rtc"></span> <span id="hod_rtc" class="route_headsigns">(None)</span> <span id="depart_time_rtc" class="departure_times">Enter a stop by their stop ID</span></li>
             </ul>
+            <button id="clearall_rtc" class="all_clearalls" onclick="">Clear</button>
+        </div>
+        <div class="window" id="alerts">
+            <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="alert_entity_agency alert_section_agency">
+                <h3>RTC Agency</h3>
+                <ul id="rtc_agency_alerts">
+                    <li id="alert_agency_entity"><p>Loading...</p></li>
+                </ul>
+            </div>
+            <div class="alert_entity_routes alert_section_lines">
+                <h3>RTC Lines</h3>
+                <ul id="rtc_lines_alerts">
+                    <li id="alert_routes_entity"><p>Loading...</p></li>
+                </ul>
+            </div>
+        </div>
+        <div class="window" id="map_inter">
+            <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div id="map"></div>
+            <ul id="range_of_routes">
+                <li id="rir" class="route_radius"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
+            </ul>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
-    <div class="window" id="departures">
-        <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-        <input type="text" placeholder="Search for a stop..." id="stopgetter" class="searchbars" autocomplete="off" onkeydown="">
-        <p class="headerforstop">Departures for: &nbsp; <span id="stopname_rtc">---</span></p>
-        <ul id="list_of_departures_rtc" class="scroller_departures individual_departure">
-            <li id="line_for_departure_rtc" class="lod_styling"><div id="lod_rtc" class="styling_for_routes">-</div> <span id="aor_rtc"></span> <span id="hod_rtc" class="route_headsigns">(None)</span> <span id="depart_time_rtc" class="departure_times">Enter a stop by their stop ID</span></li>
-        </ul>
-        <button id="clearall_rtc" class="all_clearalls" onclick="">Clear</button>
-    </div>
-    <div class="window" id="alerts">
-        <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-        <div class="alert_entity_agency alert_section_agency">
-            <h3>RTC Agency</h3>
-            <ul id="rtc_agency_alerts">
-                <li id="alert_agency_entity"><p>Loading...</p></li>
-            </ul>
-        </div>
-        <div class="alert_entity_routes alert_section_lines">
-            <h3>RTC Lines</h3>
-            <ul id="rtc_lines_alerts">
-                <li id="alert_routes_entity"><p>Loading...</p></li>
-            </ul>
-        </div>
-    </div>
-    <div class="window" id="map_inter">
-        <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-        <div id="map"></div>
-        <ul id="range_of_routes">
-            <li id="rir" class="route_radius"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
-        </ul>
-        <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
-    </div>
+    <script>
+        // Utilities
+        var v = null;
+
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
+            }
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("window");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("defaulttab").click();
+
+        function openNav() {
+            document.querySelector(".left_navbar").style.display = "block";
+        }
+
+        function closeNav() {
+            document.querySelector(".left_navbar").style.display = "none";
+            console.log(document.querySelector(".left_navbar").getAttribute("style"));
+        }
+
+        function dark_or_light() {
+            var element = document.body;
+            var light_or_dark = element.classList.toggle("light_mode");
+            document.getElementById("light_dark_transition").innerHTML = light_or_dark ? `<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</a></span>` : `<i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</a></span>`;
+        }
+
+        function getCopyrightYear() {
+            var date = new Date();
+            var getYearNo = date.getFullYear();
+            document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
+        }
+        getCopyrightYear();
+    </script>
 </body>
 </html>
