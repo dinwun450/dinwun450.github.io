@@ -489,7 +489,7 @@ function plotLinesFromAnAgency(onestop_id, ins_singular_route_type) {
                 'generateId': true
             });
 
-            if (ins_singular_route_type === 0 || ins_singular_route_type === 1) {
+            if (ins_singular_route_type !== 3) {
                 map.addLayer({
                     'id': 'line_routes',
                     'type': 'line',
