@@ -43,7 +43,7 @@ function changeSwitch(c) {
             document.querySelector(".optionsfortransit").innerHTML = `
             <li><a href="https://dinwun450.github.io/Transcyclopedia/portland/trimet/trimet.html"><img src="img_assets/trimet_logo.svg.png" style="width: 90px; height: auto; position: relative; top: 5px;"></a></li>
             <li><a href="https://dinwun450.github.io/Transcyclopedia/portland/portlandstreetcar/portlandstreetcar.html"><i class="fa-solid fa-train-tram" style="font-size: 35px;"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-cable-car" style="font-size: 35px;"></i></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/portland/portlandaerialtram/portlandaerialtram.html"><i class="fa-solid fa-cable-car" style="font-size: 35px;"></i></a></li>
             `
             break;
         case "vegas":
