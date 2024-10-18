@@ -334,7 +334,7 @@ function loadRouteAlertsWithinAnAgency(onestop_id, alert_desc_id, list_of_alerts
                         var desc_for_alert = route_alerts_agent_receiver.routes[i].alerts[a].description_text[0].text;
                         var header_for_alert = route_alerts_agent_receiver.routes[i].alerts[a].header_text[0].text;
 
-                        document.getElementById(alert_desc_id).innerHTML = `<p><span id="route_affected" class="styling_for_routes"></span><b>${header_for_alert}</b> <br> ${desc_for_alert}<p>`;
+                        document.getElementById(alert_desc_id).innerHTML = `<p><span id="route_affected" class="styling_for_routes"></span> <br> <b>${header_for_alert}</b> <br> ${desc_for_alert}<p>`;
 
                         if (route_short_name_affected === "") {
                             route_long_name = route_alerts_agent_receiver.routes[i].route_long_name;
@@ -581,6 +581,7 @@ function plotLinesFromAnAgency(onestop_id, ins_singular_route_type) {
                         if (name_of_route === "") {
                             name_of_route = fs[f].properties.route_long_name;
                         }
+                        routeID_for_agency.push(name_of_route);
                     }
 
                     popup.setLngLat(e.lngLat.wrap()).setHTML(name_of_route).addTo(map);

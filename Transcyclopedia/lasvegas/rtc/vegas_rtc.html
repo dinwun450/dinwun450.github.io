@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/vegas_rtc.css">
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -52,18 +53,36 @@
             <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <div class="border_of_rtc_lines">
                 <ul id="list_of_rtc_lines" class="lines">
-                    <li id="route_entity_rtc"><span id="route_name_rtc" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_rtc" class="all_desc_routes">Loading...</span></li>
+                    <li id="route_entity_rtc"><span id="route_name_rtc" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_rtc" class="all_desc_routes">Loading...</span> <span id="no_of_alerts"></span></li>
                 </ul>
             </div>
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a stop..." id="stopgetter" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a stop..." id="stopgetter" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgencyWithAMode(
+                null,
+                'list_of_departures_rtc',
+                `<li id='line_for_departure_rtc' class='lod_styling'><div id='lod_rtc' class='styling_for_routes'>-</div> <span id='aor_rtc'></span> <span id='hod_rtc' class='route_headsigns'>Loading...</span> <span id='depart_time_rtc' class='departure_times'>Please wait...</span></li>`,
+                'stopname_rtc',
+                'o-9qqj-regionaltransportationcommissionofsouthernnevada',
+                'stopgetter',
+                'depart_time_rtc',
+                'lod_rtc',
+                'hod_rtc',
+                'line_for_departure_rtc',
+                3,
+                true,
+                'aor_rtc'
+            )">
             <p class="headerforstop">Departures for: &nbsp; <span id="stopname_rtc">---</span></p>
             <ul id="list_of_departures_rtc" class="scroller_departures individual_departure">
                 <li id="line_for_departure_rtc" class="lod_styling"><div id="lod_rtc" class="styling_for_routes">-</div> <span id="aor_rtc"></span> <span id="hod_rtc" class="route_headsigns">(None)</span> <span id="depart_time_rtc" class="departure_times">Enter a stop by their stop ID</span></li>
             </ul>
-            <button id="clearall_rtc" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_rtc" class="all_clearalls" onclick="
+                'list_of_departures_rtc',
+                `<li id='line_for_departure_rtc' class='lod_styling'><div id='lod_rtc' class='styling_for_routes'>-</div> <span id='aor_rtc'></span> <span id='hod_rtc' class='route_headsigns'>(None)</span> <span id='depart_time_rtc' class='departure_times'>Enter a stop by their stop ID</span></li>`,
+                'stopgetter'
+            ">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
@@ -90,6 +109,8 @@
         </div>
     </div>
     <script>
+        // Base Map
+        mapConfiguration(-115.1674218, 36.1477659, 9);
         // Utilities
         var v = null;
 
@@ -141,6 +162,20 @@
             document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
         }
         getCopyrightYear();
+
+        // Information
+        getWikipediaForAnAgency("RTC_Transit");
+        getContactsForAnAgency("o-9qqj-regionaltransportationcommissionofsouthernnevada");
+
+        // Lines
+        getLinesFromAnAgency("o-9qqj-regionaltransportationcommissionofsouthernnevada", "route_name_rtc", "route_desc_rtc", "route_entity_rtc", "list_of_rtc_lines", true);
+
+        // Alerts
+        loadAlertsWithinAnAgency("o-9qqj-regionaltransportationcommissionofsouthernnevada", "alert_agency_entity", "rtc_agency_alerts");
+        loadRouteAlertsWithinAnAgency("o-9qqj-regionaltransportationcommissionofsouthernnevada", "alert_routes_entity", "rtc_lines_alerts");
+
+        // Map Functionality
+        plotLinesFromAnAgency("o-9qqj-regionaltransportationcommissionofsouthernnevada", 3);
     </script>
 </body>
 </html>
