@@ -584,7 +584,7 @@ function plotLinesFromAnAgency(onestop_id, ins_singular_route_type) {
                         routeID_for_agency.push(name_of_route);
                     }
 
-                    popup.setLngLat(e.lngLat.wrap()).setHTML(name_of_route).addTo(map);
+                    popup.setLngLat(e.lngLat.wrap()).setHTML(routeID_for_agency).addTo(map);
                 }
             });
 
