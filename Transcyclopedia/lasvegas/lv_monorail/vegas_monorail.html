@@ -9,10 +9,15 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
+    <link rel="stylesheet" href="css_assets/vegas_monorail.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_scrollbars.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_responsiveness.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_lightdark.css">
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
-        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia HI:<br> Skyline</h1>
+        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia Las Vegas:<br> Las Vegas Monorail</h1>
         <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
         <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_lv_monorail')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About Las Vegas Monorail</a></li>
         <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
@@ -57,12 +62,27 @@
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a station..." id="stationgetter" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgency(
+                null,
+                'list_of_departures_lvmonorail',
+                `<li id='line_for_departure_lvmonorail' class='lod_styling'><div id='lod_lvmonorail' class='styling_for_routes'>-</div> <span id='hod_lvmonorail' class='route_headsigns'>Loading...</span> <span id='depart_time_lvmonorail' class='departure_times'>Please wait...</span></li>`,
+                'stationname_lvmonorail',
+                'o-lasvegasmonorail~nv~us',
+                'stationgetter',
+                'depart_time_lvmonorail',
+                'lod_lvmonorail',
+                'hod_lvmonorail',
+                'line_for_departure_lvmonorail'
+            )">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_lvmonorail">---</span></p>
             <ul id="list_of_departures_lvmonorail" class="scroller_departures individual_departure">
                 <li id="line_for_departure_lvmonorail" class="lod_styling"><div id="lod_lvmonorail" class="styling_for_routes">-</div> <span id="hod_lvmonorail" class="route_headsigns">(None)</span> <span id="depart_time_lvmonorail" class="departure_times">Enter a station by their stop ID</span></li>
             </ul>
-            <button id="clearall_lvmonorail" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_lvmonorail" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_lvmonorail',
+                `<li id='line_for_departure_lvmonorail' class='lod_styling'><div id='lod_lvmonorail' class='styling_for_routes'>-</div> <span id='hod_lvmonorail' class='route_headsigns'>(None)</span> <span id='depart_time_lvmonorail' class='departure_times'>Enter a station by their stop ID</span></li>`,
+                'stationname_lvmonorail'
+            )">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
@@ -79,5 +99,74 @@
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
+    <script>
+        // Base Map
+        mapConfiguration(-115.1647126, 36.1214364, 12.5)
+
+        // Utilities
+        var v = null;
+
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
+            }
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("window");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("defaulttab").click();
+
+        function openNav() {
+            document.querySelector(".left_navbar").style.display = "block";
+        }
+
+        function closeNav() {
+            document.querySelector(".left_navbar").style.display = "none";
+            console.log(document.querySelector(".left_navbar").getAttribute("style"));
+        }
+
+        function dark_or_light() {
+            var element = document.body;
+            var light_or_dark = element.classList.toggle("light_mode");
+            document.getElementById("light_dark_transition").innerHTML = light_or_dark ? `<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</a></span>` : `<i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</a></span>`;
+        }
+
+        function getCopyrightYear() {
+            var date = new Date();
+            var getYearNo = date.getFullYear();
+            document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
+        }
+        getCopyrightYear();
+
+        // Information
+        getWikipediaForAnAgency("Las_Vegas_Monorail");
+        getContactsForAnAgency("o-lasvegasmonorail~nv~us");
+
+        // Lines
+        getLinesFromAnAgency("o-lasvegasmonorail~nv~us", "route_name_lvmonorail", "route_desc_lvmonorail", "route_entity_lvmonorail", "a_monorail_line", false);
+
+        // Alerts
+        loadAlertsWithinAnAgency("o-lasvegasmonorail~nv~us", "alert_desc_lvmonorail", "list_of_alerts_lvmonorail");
+
+        // Map Functionality
+        plotLinesFromAnAgency("o-lasvegasmonorail~nv~us", 12);
+    </script>
 </body>
 </html>
