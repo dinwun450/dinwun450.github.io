@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcyclopedia Denver: RTD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
+</head>
+<body>
+    <ul class="left_navbar">
+        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia Denver:<br> RTD</h1>
+        <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
+        <li class="tablinks" id="defaulttab" onclick="openTab(event, 'about_rtd')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About RTD</a></li>
+        <li class="tablinks" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
+        <li class="tablinks" onclick="openTab(event, 'departures_cr')"><a href="#"><i class="fa-solid fa-train-tram"></i>&nbsp;&nbsp;Departures (Commuter Rail)</a></li>
+        <li class="tablinks" onclick="openTab(event, 'departures_lr')"><a href="#"><i class="fa-solid fa-train-tram"></i>&nbsp;&nbsp;Departures (Light Rail)</a></li>
+        <li class="tablinks" onclick="openTab(event, 'departures_bus')"><a href="#"><i class="fa-solid fa-bus"></i>&nbsp;&nbsp;Departures (Bus)</a></li>
+        <li class="tablinks" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li class="tablinks" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
+        <li><a href="#" onclick="dark_or_light()"><span id="light_dark_transition"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</span></a></li>
+        <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
+        <p class="copyright">&copy; 2024 Transcyclopedia. Created by Dino Wun.</p>
+    </ul>
+    <div class="main">
+        <div class="window about_page" id="about_rtd">
+            <div class="info">
+                <p id="sectionheader">About RTD <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+                <p id="desc">Loading...</p>
+            </div>
+            <div class="stats">
+                <div class="began_operation">
+                    <h2>Began Operation:</h2>
+                    <p><b>1969</b></p>
+                </div>
+                <div class="no_of_lines">
+                    <h2>Number of Lines</h2>
+                    <p>
+                        <b id="rtd_routes_cr">- (Commuter Rail)</b><br>
+                        <b id="rtd_routes_lr">- (Light Rail)</b><br>
+                        <b id="rtd_routes_bus">- (Bus)</b>
+                    </p>
+                </div>
+                <div class="contact">
+                    <h2>Contact</h2>
+                    <ul>
+                        <li><p id="email_agency"><b>-</b> (Email)</p></li>
+                        <li><p id="phone_agency"><b>-</b> (Phone)</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="window" id="lines">
+            <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="lines_cr lines_branches">
+                <h3>RTD Commuter Rail</h3>
+                <ul id="rtd_lines_cr">
+                    <li id="route_entity_rtd_cr" class="inner_list_of_lines"><span id="route_name_rtd_cr" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_rtd_cr" class="all_desc_routes">Loading...</span> <span id="no_of_alerts_rtd_cr"></span></li>
+                </ul>
+            </div>
+            <div class="lines_lr lines_branches">
+                <h3>RTD Light Rail</h3>
+                <ul id="rtd_lines_lr">
+                    <li id="route_entity_rtd_lr" class="inner_list_of_lines"><span id="route_name_rtd_lr" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_rtd_lr" class="all_desc_routes">Loading...</span> <span id="no_of_alerts_rtd_lr"></span></li>
+                </ul>
+            </div>
+            <div class="lines_bus lines_branches">
+                <h3>RTD Bus</h3>
+                <ul id="rtd_lines_bus">
+                    <li id="route_entity_rtd_bus" class="inner_list_of_lines"><span id="route_name_rtd_bus" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_rtd_bus" class="all_desc_routes">Loading...</span> <span id="no_of_alerts_rtd_bus"></span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="window" id="departures_cr">
+            <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a station..." id="stationgetter_rtd_cr" class="searchbars" autocomplete="off" onkeydown="">
+            <p class="headerforstop">Departures for: &nbsp; <span id="stationname_rtd_cr">---</span></p>
+            <ul id="list_of_departures_rtd_cr" class="scroller_departures individual_departure">
+                <li id="line_for_departure_rtd_cr" class="lod_styling"><div id="lod_rtd_cr" class="styling_for_routes">-</div> <span id="aor_rtd_cr"></span> <span id="hod_rtd_cr" class="route_headsigns">(None)</span> <span id="depart_time_rtd_cr" class="departure_times">Enter a station by their station ID</span></li>
+            </ul>
+            <button id="clearall_rtd_cr" class="all_clearalls" onclick="">Clear</button>
+        </div>
+        <div class="window" id="departures_lr">
+            <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a station..." id="stationgetter_rtd_lr" class="searchbars" autocomplete="off" onkeydown="">
+            <p class="headerforstop">Departures for: &nbsp; <span id="stationname_rtd_lr">---</span></p>
+            <ul id="list_of_departures_rtd_lr" class="scroller_departures individual_departure">
+                <li id="line_for_departure_rtd_lr" class="lod_styling"><div id="lod_rtd_lr" class="styling_for_routes">-</div> <span id="aor_rtd_lr"></span> <span id="hod_rtd_lr" class="route_headsigns">(None)</span> <span id="depart_time_rtd_lr" class="departure_times">Enter a station by their station ID</span></li>
+            </ul>
+            <button id="clearall_rtd_lr" class="all_clearalls" onclick="">Clear</button>
+        </div>
+        <div class="window" id="departures_bus">
+            <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a station..." id="stationgetter_rtd_bus" class="searchbars" autocomplete="off" onkeydown="">
+            <p class="headerforstop">Departures for: &nbsp; <span id="stationname_rtd_bus">---</span></p>
+            <ul id="list_of_departures_rtd_bus" class="scroller_departures individual_departure">
+                <li id="line_for_departure_rtd_bus" class="lod_styling"><div id="lod_rtd_bus" class="styling_for_routes">-</div> <span id="aor_rtd_bus"></span> <span id="hod_rtd_bus">(None)</span> <span id="depart_time_rtd_bus">Enter a station by their station ID</span></li>
+            </ul>
+            <button id="clearall_rtd_bus" class="all_clearalls" onclick="">Clear</button>
+        </div>
+        <div class="window" id="alerts">
+            <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="alert_entity_agency alert_section_agency">
+                <h3>RTD Agency</h3>
+                <ul id="rtd_agency_alerts">
+                    <li id="alert_agency_entity"><p>Loading...</p></li>
+                </ul>
+            </div>
+            <div class="alert_entity_routes alert_section_lines">
+                <h3>RTD Lines</h3>
+                <ul id="rtd_lines_alerts">
+                    <li id="alert_routes_entity"><p>Loading...</p></li>
+                </ul>
+            </div>
+        </div>
+        <div class="window" id="map_inter">
+            <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div id="map"></div>
+            <ul id="range_of_routes">
+                <li id="rir" class="route_radius"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
+            </ul>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
+        </div>
+    </div>
+</body>
+</html>
