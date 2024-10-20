@@ -49,7 +49,7 @@ function changeSwitch(c) {
         case "vegas":
             document.querySelector(".optionsfortransit").innerHTML = `
             <li><a href="https://dinwun450.github.io/Transcyclopedia/lasvegas/rtc/vegas_rtc.html"><img src="img_assets/rtc_logo.png" style="width: 50px; height: auto; position: relative; bottom: 12px;"></a></li>
-            <li><a href="#"><img src="img_assets/lv_monorail.png" style="width: 90px; height: auto; position: relative;"></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/lasvegas/lv_monorail/vegas_monorail.html"><img src="img_assets/lv_monorail.png" style="width: 90px; height: auto; position: relative;"></a></li>
             `
             break;
         case "denver":
