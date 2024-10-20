@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/vegas_monorail.css">
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -58,12 +59,27 @@
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a station..." id="stationgetter" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgency(
+                null,
+                'list_of_departures_lvmonorail',
+                `<li id='line_for_departure_lvmonorail' class='lod_styling'><div id='lod_lvmonorail' class='styling_for_routes'>-</div> <span id='hod_lvmonorail' class='route_headsigns'>Loading...</span> <span id='depart_time_lvmonorail' class='departure_times'>Please wait...</span></li>`,
+                'stationname_lvmonorail',
+                'o-lasvegasmonorail~nv~us',
+                'stationgetter',
+                'depart_time_lvmonorail',
+                'lod_lvmonorail',
+                'hod_lvmonorail',
+                'line_for_departure_lvmonorail'
+            )">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_lvmonorail">---</span></p>
             <ul id="list_of_departures_lvmonorail" class="scroller_departures individual_departure">
                 <li id="line_for_departure_lvmonorail" class="lod_styling"><div id="lod_lvmonorail" class="styling_for_routes">-</div> <span id="hod_lvmonorail" class="route_headsigns">(None)</span> <span id="depart_time_lvmonorail" class="departure_times">Enter a station by their stop ID</span></li>
             </ul>
-            <button id="clearall_lvmonorail" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_lvmonorail" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_lvmonorail',
+                `<li id='line_for_departure_lvmonorail' class='lod_styling'><div id='lod_lvmonorail' class='styling_for_routes'>-</div> <span id='hod_lvmonorail' class='route_headsigns'>(None)</span> <span id='depart_time_lvmonorail' class='departure_times'>Enter a station by their stop ID</span></li>`,
+                'stationname_lvmonorail'
+            )">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
@@ -81,6 +97,9 @@
         </div>
     </div>
     <script>
+        // Base Map
+        mapConfiguration(-115.1647126, 36.1214364, 12.5)
+
         // Utilities
         var v = null;
 
@@ -132,6 +151,19 @@
             document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
         }
         getCopyrightYear();
+
+        // Information
+        getWikipediaForAnAgency("Las_Vegas_Monorail");
+        getContactsForAnAgency("o-lasvegasmonorail~nv~us");
+
+        // Lines
+        getLinesFromAnAgency("o-lasvegasmonorail~nv~us", "route_name_lvmonorail", "route_desc_lvmonorail", "route_entity_lvmonorail", "a_monorail_line", false);
+
+        // Alerts
+        loadAlertsWithinAnAgency("o-lasvegasmonorail~nv~us", "alert_desc_lvmonorail", "list_of_alerts_lvmonorail");
+
+        // Map Functionality
+        plotLinesFromAnAgency("o-lasvegasmonorail~nv~us", 12);
     </script>
 </body>
 </html>
