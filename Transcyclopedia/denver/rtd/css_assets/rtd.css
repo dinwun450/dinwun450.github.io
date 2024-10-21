@@ -1,0 +1,26 @@
+body::before {
+    background-image: linear-gradient(#e31836, #dedede);
+}
+
+body::after {
+    background-image: linear-gradient(#dedede, #e31836);
+}
+
+.left_navbar li.active {
+    background-color: #e3183698;
+}
+
+.left_navbar li:hover:not(.active, .x) {
+    background-color: #e3183698;
+    transition: 0.5s;
+}
+
+.info #desc a {
+    outline: none;
+    color: #e31836;
+}
+
+.all_desc_routes {
+    width: 65%;
+    margin-left: 10px;
+}
