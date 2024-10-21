@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/rtd.css">
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -77,30 +78,84 @@
         </div>
         <div class="window" id="departures_cr">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter_rtd_cr" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a station..." id="stationgetter_rtd_cr" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgencyWithAMode(
+                null,
+                'list_of_departures_rtd_cr',
+                `<li id='line_for_departure_rtd_cr' class='lod_styling'><div id='lod_rtd_cr' class='styling_for_routes'>-</div> <span id='aor_rtd_cr'></span> <span id='hod_rtd_cr' class='route_headsigns'>Loading...</span> <span id='depart_time_rtd_cr' class='departure_times'>Please wait...</span></li>`,
+                'stationname_rtd_cr',
+                'o-9xj-regionaltransportationdistrict',
+                'stationgetter_rtd_cr',
+                'depart_time_rtd_cr',
+                'lod_rtd_cr',
+                'hod_rtd_cr',
+                'line_for_departure_rtd_cr',
+                2,
+                true,
+                'aor_rtd_cr'
+            )">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_rtd_cr">---</span></p>
             <ul id="list_of_departures_rtd_cr" class="scroller_departures individual_departure">
                 <li id="line_for_departure_rtd_cr" class="lod_styling"><div id="lod_rtd_cr" class="styling_for_routes">-</div> <span id="aor_rtd_cr"></span> <span id="hod_rtd_cr" class="route_headsigns">(None)</span> <span id="depart_time_rtd_cr" class="departure_times">Enter a station by their station ID</span></li>
             </ul>
-            <button id="clearall_rtd_cr" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_rtd_cr" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_rtd_cr',
+                `<li id='line_for_departure_rtd_cr' class='lod_styling'><div id='lod_rtd_cr' class='styling_for_routes'>-</div> <span id='aor_rtd_cr'></span> <span id='hod_rtd_cr' class='route_headsigns'>(None)</span> <span id='depart_time_rtd_cr' class='departure_times'>Enter a station by their station ID</span></li>`,
+                'stationname_rtd_cr',
+            )">Clear</button>
         </div>
         <div class="window" id="departures_lr">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter_rtd_lr" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a station..." id="stationgetter_rtd_lr" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgencyWithAMode(
+                null,
+                'list_of_departures_rtd_lr',
+                `<li id='line_for_departure_rtd_lr' class='lod_styling'><div id='lod_rtd_lr' class='styling_for_routes'>-</div> <span id='aor_rtd_lr'></span> <span id='hod_rtd_lr' class='route_headsigns'>Loading...</span> <span id='depart_time_rtd_lr' class='departure_times'>Please wait...</span></li>`,
+                'stationname_rtd_lr',
+                'o-9xj-regionaltransportationdistrict',
+                'stationgetter_rtd_lr',
+                'depart_time_rtd_lr',
+                'lod_rtd_lr',
+                'hod_rtd_lr',
+                'line_for_departure_rtd_lr',
+                0,
+                true,
+                'aor_rtd_lr'
+            )">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_rtd_lr">---</span></p>
             <ul id="list_of_departures_rtd_lr" class="scroller_departures individual_departure">
                 <li id="line_for_departure_rtd_lr" class="lod_styling"><div id="lod_rtd_lr" class="styling_for_routes">-</div> <span id="aor_rtd_lr"></span> <span id="hod_rtd_lr" class="route_headsigns">(None)</span> <span id="depart_time_rtd_lr" class="departure_times">Enter a station by their station ID</span></li>
             </ul>
-            <button id="clearall_rtd_lr" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_rtd_lr" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_rtd_lr',
+                `<li id='line_for_departure_rtd_lr' class='lod_styling'><div id='lod_rtd_lr' class='styling_for_routes'>-</div> <span id='aor_rtd_lr'></span> <span id='hod_rtd_lr' class='route_headsigns'>(None)</span> <span id='depart_time_rtd_lr' class='departure_times'>Enter a station by their station ID</span></li>`,
+                'stationname_rtd_lr',
+            )">Clear</button>
         </div>
         <div class="window" id="departures_bus">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter_rtd_bus" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a station..." id="stationgetter_rtd_bus" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgencyWithAMode(
+                null,
+                'list_of_departures_rtd_bus',
+                `<li id='line_for_departure_rtd_bus' class='lod_styling'><div id='lod_rtd_bus' class='styling_for_routes'>-</div> <span id='aor_rtd_bus'></span> <span id='hod_rtd_bus' class='route_headsigns'>Loading...</span> <span id='depart_time_rtd_bus' class='departure_times'>Please wait...</span></li>`,
+                'stationname_rtd_bus',
+                'o-9xj-regionaltransportationdistrict',
+                'stationgetter_rtd_bus',
+                'depart_time_rtd_bus',
+                'lod_rtd_bus',
+                'hod_rtd_bus',
+                'line_for_departure_rtd_bus',
+                3,
+                true,
+                'aor_rtd_bus'
+            )">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_rtd_bus">---</span></p>
             <ul id="list_of_departures_rtd_bus" class="scroller_departures individual_departure">
                 <li id="line_for_departure_rtd_bus" class="lod_styling"><div id="lod_rtd_bus" class="styling_for_routes">-</div> <span id="aor_rtd_bus"></span> <span id="hod_rtd_bus" class="route_headsigns">(None)</span> <span id="depart_time_rtd_bus" class="departure_times">Enter a stop by their stop ID</span></li>
             </ul>
-            <button id="clearall_rtd_bus" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_rtd_bus" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_rtd_bus',
+                `<li id='line_for_departure_rtd_bus' class='lod_styling'><div id='lod_rtd_bus' class='styling_for_routes'>-</div> <span id='aor_rtd_bus'></span> <span id='hod_rtd_bus' class='route_headsigns'>(None)</span> <span id='depart_time_rtd_bus' class='departure_times'>Enter a stop by their stop ID</span></li>`,
+                'stationname_rtd_bus',
+            )">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
@@ -127,6 +182,9 @@
         </div>
     </div>
     <script>
+        // Base Map
+        mapConfiguration(-105.0191538, 39.7662422, 8.3);
+
         // Utilities
         var v = null;
 
@@ -178,6 +236,22 @@
             document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
         }
         getCopyrightYear();
+
+        // Information
+        getWikipediaForAnAgency("Regional_Transportation_District");
+        getContactsForAnAgency("o-9xj-regionaltransportationdistrict");
+
+        // Lines
+        getLinesFromAnAgencyWithinARouteType("o-9xj-regionaltransportationdistrict", 2, "rtd_routes_cr", "Commuter Rail", "route_name_rtd_cr", "route_desc_rtd_cr", "route_entity_rtd_cr", "rtd_lines_cr", true, "no_of_alerts_rtd_cr");
+        getLinesFromAnAgencyWithinARouteType("o-9xj-regionaltransportationdistrict", 0, "rtd_routes_lr", "Light Rail", "route_name_rtd_lr", "route_desc_rtd_lr", "route_entity_rtd_lr", "rtd_lines_lr", true, "no_of_alerts_rtd_lr");
+        getLinesFromAnAgencyWithinARouteType("o-9xj-regionaltransportationdistrict", 3, "rtd_routes_bus", "Bus", "route_name_rtd_bus", "route_desc_rtd_bus", "route_entity_rtd_bus", "rtd_lines_bus", true, "no_of_alerts_rtd_bus");
+
+        // Alerts
+        loadAlertsWithinAnAgency("o-9xj-regionaltransportationdistrict", "alert_agency_entity", "rtd_agency_alerts");
+        loadRouteAlertsWithinAnAgency("o-9xj-regionaltransportationdistrict", "alert_routes_entity", "rtd_lines_alerts");
+
+        // Map Functionality
+        plotLinesWithMultipleModesFromAnAgency("o-9xj-regionaltransportationdistrict", 3, 0, 2);
     </script>
 </body>
 </html>
