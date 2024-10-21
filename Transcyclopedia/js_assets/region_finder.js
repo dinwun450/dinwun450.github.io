@@ -54,7 +54,7 @@ function changeSwitch(c) {
             break;
         case "denver":
             document.querySelector(".optionsfortransit").innerHTML = `
-            <li><a href="#"><img src="img_assets/rtd_logo.svg.png" style="width: 50px; height: auto; position: relative; bottom: 5px;"></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/denver/rtd/rtd.html"><img src="img_assets/rtd_logo.svg.png" style="width: 50px; height: auto; position: relative; bottom: 5px;"></a></li>
             `
             break;
         case "seattletacoma":
