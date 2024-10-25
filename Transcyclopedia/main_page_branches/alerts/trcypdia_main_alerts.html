@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcyclopedia Main Menu: Nearby Alerts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
+    <link rel="stylesheet" href="css_assets/trcypdia_main_alerts.css">
+</head>
+<body>
+    <ul class="left_navbar">
+        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia</h1>
+        <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html#"><i class="fa-solid fa-table-cells-large"></i>&nbsp;&nbsp;Overview</a></li>
+        <li><a href="https://dinwun450.github.io/Transcyclopedia/main_page_branches/map/trcypdia_main_map.html"><i class="fa-regular fa-map"></i>&nbsp;&nbsp;Map</a></li>
+        <li class="active"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li><a href="#"><i class="fa-regular fa-user"></i>&nbsp;&nbsp;Agency</a></li>
+        <li><a href="#"><i class="fa-solid fa-ellipsis"></i>&nbsp;&nbsp;Other</a></li>
+        <li><a href="#"><i class="fa-solid fa-circle-info"></i>&nbsp;&nbsp;About</a></li>
+        <li><a href="#" onclick="dark_or_light()"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light/Dark Mode</a></li>
+        <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
+        <p class="copyright">&copy; 2024 Transcyclopedia. Created by Dino Wun.</p>
+    </ul>
+    <div class="main">
+        <div class="window">
+            <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="alert_entity_agency alert_section_agency">
+                <h3>Agency</h3>
+                <ul id="all_agency_alerts">
+                    <li id="alert_agency_entity"><p>Loading...</p></li>
+                </ul>
+            </div>
+            <div class="alert_entity_routes alert_section_lines">
+                <h3>Routes</h3>
+                <ul id="all_route_alerts">
+                    <li id="alert_routes_entity"><p>Loading...</p></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
