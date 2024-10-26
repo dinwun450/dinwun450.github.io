@@ -14,3 +14,59 @@ body::after {
     background-color: #39bf5998;
     transition: 0.5s;
 }
+
+.light_mode {
+    background-color: #dedede;
+    color: black;
+    transition: 0.4s;
+}
+
+.light_mode .left_navbar li a {
+    color: black;
+    transition: 0.4s;
+}
+
+@media (max-width: 784px) {
+    #sectionheader i {
+        display: block;
+    }
+    
+    .left_navbar {
+        display: none;
+        width: 35%;
+        background-color: #666;
+        z-index: 3;
+    }
+
+    .light_mode .left_navbar {
+        background-color: #aaa;
+    }
+
+    .left_navbar li {
+        width: 97%;
+    }
+
+    .left_navbar li a.closebtn {
+        display: block;
+    }
+
+    .main {
+        width: 100%;
+    }
+
+    .left_navbar .x:hover {
+        background-color: #39bf5898;
+        transition: 0.5s;
+    }
+
+    .main h2 i {
+        display: block;
+    }
+}
+
+@media (max-width: 600px) { 
+    .left_navbar {
+        width: 100%;
+        z-index: 3;
+    }
+}
