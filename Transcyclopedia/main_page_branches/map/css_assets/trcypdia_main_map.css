@@ -90,6 +90,7 @@ body::after {
 
 .light_mode .left_navbar li a {
     color: black;
+    transition: 0.4s;
 }
 
 .logo {
@@ -115,16 +116,14 @@ body::after {
 }
 
 .main {
+    padding: 20px;
     float: right;
     width: 78%;
     height: 100%;
     position: absolute;
     right: 0;
     top: 0;
-    background: rgba( 255, 255, 255, 0.25 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    overflow-y: auto;
 }
 
 .main h2 {
@@ -175,4 +174,38 @@ body::after {
 .mapboxgl-popup-content {
     color: black;
     width: fit-content;
+}
+
+.main::-webkit-scrollbar {
+    width: 5px;
+    position: relative;
+    right: 20px;
+}
+
+.main::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+.main::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+}
+
+.light_mode .main::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    position: relative;
+    right: 2px;
+}
+
+.light_mode .main::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
 }

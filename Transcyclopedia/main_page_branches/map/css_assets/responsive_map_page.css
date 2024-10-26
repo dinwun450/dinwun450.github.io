@@ -27,7 +27,7 @@
         transition: 0.5s;
     }
 
-    .main h2 i {
+    #sectionheader i {
         display: block;
     }
 }

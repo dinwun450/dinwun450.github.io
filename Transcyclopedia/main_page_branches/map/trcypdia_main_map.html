@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transcyclopedia Main Menu: Map</title>
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/trcypdia_main_map.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css_assets/responsive_map_page.css">
@@ -21,12 +22,12 @@
         <li><a href="#"><i class="fa-regular fa-user"></i>&nbsp;&nbsp;Agency</a></li>
         <li><a href="#"><i class="fa-solid fa-ellipsis"></i>&nbsp;&nbsp;Other</a></li>
         <li><a href="#"><i class="fa-solid fa-circle-info"></i>&nbsp;&nbsp;About</a></li>
-        <li><a href="#" onclick="dark_or_light()"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light/Dark Mode</a></li>
+        <li><a href="#" onclick="dark_or_light()"><span id="light_dark_transition"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</span></a></li>
         <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
         <p class="copyright">&copy; 2023 Transcyclopedia. Created by Dino Wun.</p>
     </ul>
     <div class="main">
-        <h2>Map <i class="fa-solid fa-bars" style="float: right;" onclick="openNav()"></i></h2>
+        <p id="sectionheader">Map <i class="fa-solid fa-bars" style="float: right;" onclick="openNav()"></i></p>
         <div id="map"></div>
         <ul id="range_of_routes">
             <li class="route_radius"><span id="route_short">-</span>&nbsp;&nbsp;<span id="detailed_route">Drag the map to filter nearby routes</span></li>
@@ -58,7 +59,8 @@
 
         function dark_or_light() {
             var element = document.body;
-            element.classList.toggle("light_mode");
+            var light_or_dark = element.classList.toggle("light_mode");
+            document.getElementById("light_dark_transition").innerHTML = light_or_dark ? `<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</a></span>` : `<i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</a></span>`;
         }
     </script>
 </body>
