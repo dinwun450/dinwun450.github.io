@@ -1,4 +1,36 @@
+body::before {
+    background-image: linear-gradient( #0398fc, #dedede);
+}
+
+body::after {
+    background-image: linear-gradient( #dedede, #39bf59);
+}
+
+.left_navbar li.active {
+    background-color: #0398fc98;
+}
+
+.left_navbar li:hover:not(.active, .x) {
+    background-color: #39bf5998;
+    transition: 0.5s;
+}
+
+.light_mode {
+    background-color: #dedede;
+    color: black;
+    transition: 0.4s;
+}
+
+.light_mode .left_navbar li a {
+    color: black;
+    transition: 0.4s;
+}
+
 @media (max-width: 784px) {
+    #sectionheader i {
+        display: block;
+    }
+    
     .left_navbar {
         display: none;
         width: 35%;
@@ -27,7 +59,7 @@
         transition: 0.5s;
     }
 
-    #sectionheader i {
+    .main h2 i {
         display: block;
     }
 }
