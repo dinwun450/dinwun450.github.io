@@ -39,5 +39,134 @@
             </div>
         </div>
     </div>
+    <script>
+        // Utilities
+        var v = null;
+
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
+            }
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
+
+        function openNav() {
+            document.querySelector(".left_navbar").style.display = "block";
+        }
+
+        function closeNav() {
+            document.querySelector(".left_navbar").style.display = "none";
+            console.log(document.querySelector(".left_navbar").getAttribute("style"));
+        }
+
+        function dark_or_light() {
+            var element = document.body;
+            var light_or_dark = element.classList.toggle("light_mode");
+            document.getElementById("light_dark_transition").innerHTML = light_or_dark ? `<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</a></span>` : `<i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</a></span>`;
+        }
+
+        function getCopyrightYear() {
+            var date = new Date();
+            var getYearNo = date.getFullYear();
+            document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
+        }
+        getCopyrightYear();
+
+        // Alerts
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(loadAgencyAlerts);
+                navigator.geolocation.getCurrentPosition(loadRouteAlerts);
+            } else {
+                alert("Transcyclopedia wanted the location! Please enable it next time!");
+            }
+        }
+        getLocation();
+
+        function loadAgencyAlerts(position) {
+            var no_alert_agencies = [];
+            var transitland_agencies = new XMLHttpRequest();
+            transitland_agencies.open("GET", `https://transit.land/api/v2/rest/agencies/?lat=${position.coords.latitude}&lon=${position.coords.longitude}&radius=225&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            transitland_agencies.onreadystatechange = function() {
+                if (transitland_agencies.readyState === 4 && transitland_agencies.status === 200) {
+                    var transitland_agency_data = JSON.parse(transitland_agencies.responseText);
+
+                    for (var i = 0; i < transitland_agency_data.agencies.length; i++) {
+                        if (transitland_agency_data.agencies[i].alerts.length > 0) {
+                            for (var j = 0; j < transitland_agency_data.agencies[i].alerts.length; j++) {
+                                document.getElementById("alert_agency_entity").innerHTML = `<p><b>${transitland_agency_data.agencies[i].agency_name}: ${transitland_agency_data.agencies[i].alerts[j].header_text[0].text}</b> <br> ${transitland_agency_data.agencies[i].alerts[j].description_text[0].text}</p>`;
+                                var alert_agency_cloner = document.getElementById("alert_agency_entity").cloneNode(true);
+                                document.getElementById("all_agency_alerts").appendChild(alert_agency_cloner);
+                            }
+                        } else {
+                            no_alert_agencies.push(transitland_agency_data.agencies[i].name);
+                        }
+                    }
+
+                    if (no_alert_agencies.length === transitland_agency_data.agencies.length) {
+                        document.getElementById("alert_agency_entity").innerHTML = `<p>No alerts found for nearby agencies.</p>`;
+                    }
+                    else {
+                        var all_alert_agencies = document.getElementById("all_agency_alerts").children;
+                        document.getElementById("all_agency_alerts").removeChild(all_alert_agencies[0]);
+                    }
+                }
+            }
+            transitland_agencies.send();
+        }
+
+        function loadRouteAlerts(position) {
+            var no_alert_routes = [];
+            var transitland_routes = new XMLHttpRequest();
+            transitland_routes.open("GET", `https://transit.land/api/v2/rest/routes/?lat=${position.coords.latitude}&lon=${position.coords.longitude}&radius=450&api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&include_alerts=true`);
+            transitland_routes.onreadystatechange = function() {
+                if (transitland_routes.readyState === 4 && transitland_routes.status === 200) {
+                    var transitland_route_data = JSON.parse(transitland_routes.responseText);
+                    for (var i = 0; i < transitland_route_data.routes.length; i++) {
+                        var route_color_affected = transitland_route_data.routes[i].route_color;
+                        var route_text_color_affected = transitland_route_data.routes[i].route_text_color;
+                        var route_short_name_affected = transitland_route_data.routes[i].route_short_name;
+
+                        if (transitland_route_data.routes[i].alerts.length > 0) {
+                            for (var a = 0; a < transitland_route_data.routes[i].alerts.length; a++) {
+                                var desc_for_alert = transitland_route_data.routes[i].alerts[a].description_text[0].text;
+                                var header_for_alert = transitland_route_data.routes[i].alerts[a].header_text[0].text;
+
+                                document.getElementById("alert_routes_entity").innerHTML = `<p><span id="route_affected" class="styling_for_routes"></span> <br> <b>${header_for_alert}</b> <br> ${desc_for_alert}<p>`;
+
+                                if (route_short_name_affected === "") {
+                                    route_long_name = transitland_route_data.routes[i].route_long_name;
+                                    route_short_name_affected = route_long_name;
+                                }
+                                
+                                document.getElementById("route_affected").innerHTML = route_short_name_affected;
+                                document.getElementById("route_affected").style.backgroundColor = `#${route_color_affected}40`;
+                                document.getElementById("route_affected").style.color = `#${route_text_color_affected}`;
+                                document.getElementById("route_affected").style.border = `1px solid #${route_color_affected}`;
+
+                                var alert_entity = document.getElementById("alert_routes_entity").cloneNode(true);
+                                document.getElementById(list_of_alerts_id).appendChild(alert_entity);
+                            }
+                        }
+                        else {
+                            no_alert_routes.push(transitland_route_data.routes[i].route_short_name);
+                        }
+                    }
+
+                    if (no_alert_routes.length === transitland_route_data.routes.length) {
+                        document.getElementById("alert_routes_entity").innerHTML = `<p>No alerts found for nearby routes.</p>`;
+                    }
+                    else {
+                        var all_alert_routes = document.getElementById("all_route_alerts").children;
+                        document.getElementById("all_route_alerts").removeChild(all_alert_routes[0]);
+                    }
+                }
+            }
+            transitland_routes.send();
+        }
+    </script>
 </body>
 </html>
