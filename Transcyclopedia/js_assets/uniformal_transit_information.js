@@ -47,19 +47,19 @@ function getLinesFromAnAgency(agency_onestop_id, route_name_id, route_desc_id, r
                 var route_text_color = lines_agency_receiver.routes[i].route_text_color;
                 var route_short_name = lines_agency_receiver.routes[i].route_short_name;
 
-                if (route_short_name === "") {
+                if (route_short_name === null) {
                     route_short_name = "&nbsp;&nbsp;&nbsp;";
                 }
 
-                if (route_long_name === "") {
+                if (route_long_name === null) {
                     route_long_name = "";
                 }
 
-                if (route_color === "") {
+                if (route_color === null) {
                     route_color = "000000";
                 }
 
-                if (route_text_color === "") {
+                if (route_text_color === null) {
                     route_text_color = "FFFFFF";
                 }
 
@@ -103,19 +103,19 @@ function getLinesFromAnAgencyWithinARouteType(agency_onestop_id, route_type, rou
                 var route_text_color = lines_agency_receiver.routes[i].route_text_color;
                 var route_short_name = lines_agency_receiver.routes[i].route_short_name;
 
-                if (route_short_name === "") {
+                if (route_short_name === null) {
                     route_short_name = "&nbsp;&nbsp;&nbsp;";
                 }
 
-                if (route_long_name === "") {
+                if (route_long_name === null) {
                     route_long_name = "";
                 }
 
-                if (route_color === "") {
+                if (route_color === null) {
                     route_color = "000000";
                 }
 
-                if (route_text_color === "") {
+                if (route_text_color === null) {
                     route_text_color = "FFFFFF";
                 }
 
@@ -244,11 +244,11 @@ function getDeparturesForStopFromAnAgency(stop_onestop_id, depart_time_ids, lod_
                         break;
                 }
 
-                if (route_short_name === "") {
+                if (route_short_name === null) {
                     route_short_name = "&nbsp;&nbsp;&nbsp;";
                 }
 
-                if (route_headsign === "") {
+                if (route_headsign === null) {
                     var route_long_name = departures_receiver_agency[i].trip.route.route_long_name;
                     route_headsign = route_long_name;
                 }
@@ -336,7 +336,7 @@ function loadRouteAlertsWithinAnAgency(onestop_id, alert_desc_id, list_of_alerts
 
                         document.getElementById(alert_desc_id).innerHTML = `<p><span id="route_affected" class="styling_for_routes"></span> <br> <b>${header_for_alert}</b> <br> ${desc_for_alert}<p>`;
 
-                        if (route_short_name_affected === "") {
+                        if (route_short_name_affected === null) {
                             route_long_name = route_alerts_agent_receiver.routes[i].route_long_name;
                             route_short_name_affected = route_long_name;
                         }
@@ -544,7 +544,7 @@ function plotLinesFromAnAgency(onestop_id, ins_singular_route_type) {
                         var color_of_route = uniqueFeatures[f].properties.route_color;
                         var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
 
-                        if (name_of_route === "") {
+                        if (name_of_route === null) {
                             document.getElementById("route_name_rad").innerHTML = `&nbsp;&nbsp;&nbsp;`;
                         } else {
                             document.getElementById("route_name_rad").innerHTML = name_of_route;
@@ -578,7 +578,7 @@ function plotLinesFromAnAgency(onestop_id, ins_singular_route_type) {
                 if (fs.length > 0) {
                     for (var f=0; f<fs.length; f++) {
                         var name_of_route = fs[f].properties.route_short_name;
-                        if (name_of_route === "") {
+                        if (name_of_route === null) {
                             name_of_route = fs[f].properties.route_long_name;
                         }
                         routeID_for_agency.push(name_of_route);
@@ -794,7 +794,7 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
                         var color_of_route = uniqueFeatures[f].properties.route_color;
                         var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
 
-                        if (name_of_route === "") {
+                        if (name_of_route === null) {
                             document.getElementById("route_name_rad").innerHTML = `&nbsp;&nbsp;&nbsp;`;
                         } else {
                             document.getElementById("route_name_rad").innerHTML = name_of_route;
@@ -880,7 +880,7 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
                     if (fs.length > 0) {
                         for (var f=0; f<fs.length; f++) {
                             var name_of_route = fs[f].properties.route_short_name;
-                            if (name_of_route === "") {
+                            if (name_of_route === null) {
                                 name_of_route = fs[f].properties.route_long_name;
                             }
                             routeId.push(name_of_route);
@@ -954,7 +954,7 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
                     if (fs2.length > 0) {
                         for (var f2=0; f2<fs2.length; f2++) {
                             var name_of_route = fs2[f2].properties.route_short_name;
-                            if (name_of_route === "") {
+                            if (name_of_route === null) {
                                 name_of_route = fs2[f2].properties.route_long_name;
                             }
                             routeId.push(name_of_route);
@@ -1029,7 +1029,7 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
                         if (fs3.length > 0) {
                             for (var f3=0; f3<fs3.length; f3++) {
                                 var name_of_route = fs3[f3].properties.route_short_name;
-                                if (name_of_route === "") {
+                                if (name_of_route === null) {
                                     name_of_route = fs3[f3].properties.route_long_name;
                                 }
                                 routeId.push(name_of_route);
