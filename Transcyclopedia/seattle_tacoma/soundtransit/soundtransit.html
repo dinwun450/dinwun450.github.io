@@ -9,6 +9,7 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
+    <link rel="stylesheet" href="css_assets/soundtransit.css">
 </head>
 <body>
     <ul class="left_navbar">
@@ -76,7 +77,7 @@
         </div>
         <div class="window" id="departures_sounder">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter_sounder" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a station..." id="stationgetter_sounder" class="searchbars" autocomplete="off" onkeydown="">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_sounder">---</span></p>
             <ul id="list_of_departures_sounder" class="scroller_departures individual_departure">
                 <li id="line_for_departure_sounder" class="lod_styling"><div id="lod_sounder" class="styling_for_routes">-</div> <span id="aor_sounder"></span> <span id="hod_sounder" class="route_headsigns">(None)</span> <span id="depart_time_sounder" class="departure_times">Enter a station by their station ID</span></li>
@@ -85,7 +86,7 @@
         </div>
         <div class="window" id="departures_linklr">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter_linklr" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a station..." id="stationgetter_linklr" class="searchbars" autocomplete="off" onkeydown="">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_linklr">---</span></p>
             <ul id="list_of_departures_linklr" class="scroller_departures individual_departure">
                 <li id="line_for_departure_linklr" class="lod_styling"><div id="lod_linklr" class="styling_for_routes">-</div> <span id="aor_linklr"></span> <span id="hod_linklr" class="route_headsigns">(None)</span> <span id="depart_time_linklr" class="departure_times">Enter a station by their station ID</span></li>
@@ -94,7 +95,7 @@
         </div>
         <div class="window" id="departures_expbus">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a stop..." id="stopgetter_expbus" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a stop..." id="stopgetter_expbus" class="searchbars" autocomplete="off" onkeydown="">
             <p class="headerforstop">Departures for: &nbsp; <span id="stopname_expbus">---</span></p>
             <ul id="list_of_departures_expbus" class="scroller_departures individual_departure">
                 <li id="line_for_departure_expbus" class="lod_styling"><div id="lod_expbus" class="styling_for_routes">-</div> <span id="aor_expbus"></span> <span id="hod_expbus" class="route_headsigns">(None)</span> <span id="depart_time_expbus" class="departure_times">Enter a stop by their stop ID</span></li>
@@ -125,5 +126,58 @@
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
+    <script>
+        // Utilities
+        var v = null;
+
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
+            }
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
+        
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("window");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("defaulttab").click();
+
+        function openNav() {
+            document.querySelector(".left_navbar").style.display = "block";
+        }
+
+        function closeNav() {
+            document.querySelector(".left_navbar").style.display = "none";
+            console.log(document.querySelector(".left_navbar").getAttribute("style"));
+        }
+
+        function dark_or_light() {
+            var element = document.body;
+            var light_or_dark = element.classList.toggle("light_mode");
+            document.getElementById("light_dark_transition").innerHTML = light_or_dark ? `<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</a></span>` : `<i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</a></span>`;
+        }
+
+        function getCopyrightYear() {
+            var date = new Date();
+            var getYearNo = date.getFullYear();
+            document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
+        }
+        getCopyrightYear();
+    </script>
 </body>
 </html>
