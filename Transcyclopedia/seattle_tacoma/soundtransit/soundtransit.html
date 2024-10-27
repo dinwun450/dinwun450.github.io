@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/soundtransit.css">
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -40,18 +41,18 @@
                 <div class="no_of_lines">
                     <h2>Number of Lines</h2>
                     <p>
-                        <b id="soundtransit_routes_sounder">- (Sounder Commuter Rail)</b>
-                        <b id="soundtransit_routes_linklr">- (Link Light Rail)</b>
+                        <b id="soundtransit_routes_sounder">- (Sounder Commuter Rail)</b><br>
+                        <b id="soundtransit_routes_linklr">- (Link Light Rail)</b><br>
                         <b id="soundtransit_routes_expbus">- (Express Bus)</b>
                     </p>
                 </div>
-                <p class="contact">
+                <div class="contact">
                     <h2>Contact</h2>
                     <ul>
                         <li><p id="email_agency"><b>-</b> (Email)</p></li>
                         <li><p id="phone_agency"><b>-</b> (Phone)</p></li>
                     </ul>
-                </p>
+                </div>
             </div>
         </div>
         <div class="window" id="lines">
@@ -178,6 +179,10 @@
             document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
         }
         getCopyrightYear();
+
+        // Information
+        getWikipediaForAnAgency("Sound_Transit");
+        getContactsForAnAgency("o-c23-soundtransit");
     </script>
 </body>
 </html>
