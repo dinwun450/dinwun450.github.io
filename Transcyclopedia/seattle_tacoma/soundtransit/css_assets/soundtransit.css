@@ -21,6 +21,10 @@ body::after {
 }
 
 .all_desc_routes {
-    width: 65%;
+    width: fit-content;
     margin-left: 10px;
+}
+
+#hod_sounder, #hod_linklr {
+    left: 0;
 }
