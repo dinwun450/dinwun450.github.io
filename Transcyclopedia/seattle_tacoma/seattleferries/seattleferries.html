@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcyclopedia Seattle/Tacoma: Seattle and Tacoma Ferries</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
+</head>
+<body>
+    <ul class="left_navbar">
+        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia Seattle/Tacoma:<br> Seattle and Tacoma Ferries</h1>
+        <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_ferries')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About Ferries</a></li>
+        <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
+        <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-ferry"></i>&nbsp;&nbsp;Departures</a></li>
+        <li class="tablinks header4" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
+        <li><a href="#" onclick="dark_or_light()"><span id="light_dark_transition"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</span></a></li>
+        <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
+        <p class="copyright">&copy; 2024 Transcyclopedia. Created by Dino Wun.</p>
+    </ul>
+    <div class="main">
+        <div class="window" id="about_ferries">
+            <div class="info">
+                <p id="sectionheader">About Ferries <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+                <select name="" id="ferry_info" onchange="">
+                    <option value="prompt">Select Ferry Agency</option>
+                    <option value="wsf">Washington State Ferries</option>
+                    <option value="pierce">Pierce County Ferries</option>
+                    <option value="king">King County Water Taxi</option>
+                    <option value="kitsap">Kitsap Transit Fast Ferries</option>
+                    <option value="vicclip">The Victoria Clipper</option>
+                </select>
+                <p id="desc">Select a Ferry Agency.</p>
+            </div>
+            <div class="stats">
+                <div class="began_operation">
+                    <h2>Founded:</h2>
+                    <p><b id="foundingdate">-</b></p>
+                </div>
+                <div class="no_of_lines">
+                    <h2>Number of Lines:</h2>
+                    <p><b id="nooflines">-</b></p>
+                </div>
+                <div class="contact">
+                    <h2>Contact</h2>
+                    <ul>
+                        <li><p><b id="email_agency">-</b> (Email)</p></li>
+                        <li><p><b id="phone_agency">-</b> (Phone)</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="window" id="lines">
+            <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="ferry_lines" onchange="">
+                <option value="prompt">Select Ferry Agency</option>
+                <option value="wsf">Washington State Ferries</option>
+                <option value="pierce">Pierce County Ferries</option>
+                <option value="king">King County Water Taxi</option>
+                <option value="kitsap">Kitsap Transit Fast Ferries</option>
+                <option value="vicclip">The Victoria Clipper</option>
+            </select>
+            <div class="all_ferry_lines">
+                <ul id="list_of_ferry_lines">
+                    <ul id="ferry_route_entity"><span id="route_name_ferry" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_ferry" class="all_desc_routes">Loading...</span></ul>
+                </ul>
+            </div>
+        </div>
+        <div class="window" id="departures">
+            <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="ferry_departures" onchange="">
+                <option value="prompt">Select Ferry Agency</option>
+                <option value="wsf">Washington State Ferries</option>
+                <option value="pierce">Pierce County Ferries</option>
+                <option value="king">King County Water Taxi</option>
+                <option value="kitsap">Kitsap Transit Fast Ferries</option>
+                <option value="vicclip">The Victoria Clipper</option>
+            </select>
+            <p class="headerforstop">Departures for: <span id="terminalname">---</span></p>
+            <ul id="list_of_ferry_departures">
+                <li id="line_for_departure_ferry"><div id="lod_ferry" class="styling_for_routes">-</div> <span id="hod_ferry" class="route_headsigns">(None)</span> <span id="depart_time_ferry" class="departure_times">Enter a terminal by their terminal ID</span></li>
+            </ul>
+        </div>
+        <div class="window" id="alerts">
+            <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="ferry_alerts" onchange="">
+                <option value="prompt">Select Ferry Agency</option>
+                <option value="wsf">Washington State Ferries</option>
+                <option value="pierce">Pierce County Ferries</option>
+                <option value="king">King County Water Taxi</option>
+                <option value="kitsap">Kitsap Transit Fast Ferries</option>
+                <option value="vicclip">The Victoria Clipper</option>`
+            </select>
+            <div id="ferry_lines_alerts" class="alert_entity_single">
+                <p id="ferry_alert_entity">Select a ferry agency on the top.</p>
+            </div>
+        </div>
+        <div class="window" id="map_inter">
+            <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="ferry_map" onchange="">
+                <option value="prompt">Select Ferry Agency</option>
+                <option value="wsf">Washington State Ferries</option>
+                <option value="pierce">Pierce County Ferries</option>
+                <option value="king">King County Water Taxi</option>
+                <option value="kitsap">Kitsap Transit Fast Ferries</option>
+                <option value="vicclip">The Victoria Clipper</option>
+            </select>
+            <div id="map"></div>
+            <ul id="range_of_routes">
+                <li id="rir" class="route_radius flexer"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
+            </ul>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
+        </div>
+    </div>
+</body>
+</html>
