@@ -15,6 +15,10 @@ body::after {
     transition: 0.5s;
 }
 
+.info {
+    padding-right: 20px;
+}
+
 .info #desc a {
     color: #5665a3;
     outline: none;
