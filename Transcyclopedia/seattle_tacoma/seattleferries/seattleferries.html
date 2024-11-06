@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/seattleferries.css">
     <script src="js_assets/seattleferries_info.js"></script>
+    <script src="js_assets/seattleferries_lines.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -58,7 +59,7 @@
         </div>
         <div class="window" id="lines">
             <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="ferry_lines" class="dropdown_uniforms" onchange="">
+            <select name="" id="ferry_lines" class="dropdown_uniforms" onchange="changeSeattleFerryLines(value);">
                 <option value="prompt">Select Ferry Agency</option>
                 <option value="wsf">Washington State Ferries</option>
                 <option value="pierce">Pierce County Ferries</option>
@@ -68,7 +69,7 @@
             </select>
             <div class="all_ferry_lines">
                 <ul id="list_of_ferry_lines" class="lines">
-                    <ul id="ferry_route_entity"><span id="route_name_ferry" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_ferry" class="all_desc_routes">Loading...</span></ul>
+                    <li id="ferry_route_entity"><span id="route_name_ferry" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_ferry" class="all_desc_routes">Select a Ferry Agency.</span></li>
                 </ul>
             </div>
         </div>
