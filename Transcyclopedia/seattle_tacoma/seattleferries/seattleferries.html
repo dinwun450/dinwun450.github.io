@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css_assets/seattleferries.css">
     <script src="js_assets/seattleferries_info.js"></script>
     <script src="js_assets/seattleferries_lines.js"></script>
+    <script src="js_assets/seattleferries_departures.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -75,7 +76,8 @@
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="ferry_departures" class="dropdown_uniforms" onchange="">
+            <input type="text" placeholder="Search for a terminal..." class="searchbars" id="terminalgetter" autocomplete="off">
+            <select name="" id="ferry_departures" class="dropdown_uniforms" onchange="changeSeattleFerryDepartures(value);">
                 <option value="prompt">Select Ferry Agency</option>
                 <option value="wsf">Washington State Ferries</option>
                 <option value="pierce">Pierce County Ferries</option>
@@ -83,9 +85,9 @@
                 <option value="kitsap">Kitsap Transit Fast Ferries</option>
                 <option value="vicclip">The Victoria Clipper</option>
             </select>
-            <p class="headerforstop">Departures for: <span id="terminalname">---</span></p>
+            <p class="headerforstop">Departures for: &nbsp; <span id="terminalname">---</span></p>
             <ul id="list_of_ferry_departures" class="individual_departure">
-                <li id="line_for_departure_ferry" class="lod_styling"><div id="lod_ferry" class="styling_for_routes">-</div> <span id="hod_ferry" class="route_headsigns">(None)</span> <span id="depart_time_ferry" class="departure_times">Enter a terminal by their terminal ID</span></li>
+                <li id="line_for_departure_ferry" class="lod_styling"><div id="lod_ferry" class="styling_for_routes">-</div> <span id="hod_ferry" class="route_headsigns">(None)</span> <span id="depart_time_ferry" class="departure_times">Enter a terminal by their terminal ID, then select a ferry agency.</span></li>
             </ul>
         </div>
         <div class="window" id="alerts">
