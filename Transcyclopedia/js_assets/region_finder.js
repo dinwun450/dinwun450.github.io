@@ -60,7 +60,7 @@ function changeSwitch(c) {
         case "seattletacoma":
             document.querySelector(".optionsfortransit").innerHTML = `
             <li><a href="https://dinwun450.github.io/Transcyclopedia/seattle_tacoma/soundtransit/soundtransit.html"><img src="img_assets/sound_transit_logo.svg.png" style="width: 90px; height: auto; position: relative; top: 2px;"></a></li>
-            <li><a href="#" id="ferry"><i class="fa-solid fa-ferry" style="font-size: 35px;"></i></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/seattle_tacoma/seattleferries/seattleferries.html" id="ferry"><i class="fa-solid fa-ferry" style="font-size: 35px;"></i></a></li>
             <li><a href="#" id="bus"><i class="fa-solid fa-bus" style="font-size: 35px;"></i></a></li>
             `
             break;
