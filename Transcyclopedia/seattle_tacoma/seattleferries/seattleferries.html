@@ -13,6 +13,7 @@
     <script src="js_assets/seattleferries_info.js"></script>
     <script src="js_assets/seattleferries_lines.js"></script>
     <script src="js_assets/seattleferries_departures.js"></script>
+    <script src="js_assets/seattleferries_alerts.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -92,7 +93,7 @@
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="ferry_alerts" class="dropdown_uniforms" onchange="">
+            <select name="" id="ferry_alerts" class="dropdown_uniforms" onchange="changeSeattleFerryAlerts(value);">
                 <option value="prompt">Select Ferry Agency</option>
                 <option value="wsf">Washington State Ferries</option>
                 <option value="pierce">Pierce County Ferries</option>
