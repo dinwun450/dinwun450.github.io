@@ -10,6 +10,17 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/seattleferries.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_scrollbars.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_responsiveness.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_lightdark.css">
+    <style>
+        @media (max-width: 600px) {
+            #desc {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    </style>
     <script src="js_assets/seattleferries_info.js"></script>
     <script src="js_assets/seattleferries_lines.js"></script>
     <script src="js_assets/seattleferries_departures.js"></script>
@@ -20,6 +31,7 @@
 <body>
     <ul class="left_navbar">
         <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia Seattle/Tacoma:<br> Seattle and Tacoma Ferries</h1>
+        <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
         <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_ferries')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About Ferries</a></li>
         <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
         <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-ferry"></i>&nbsp;&nbsp;Departures</a></li>
@@ -31,7 +43,7 @@
     </ul>
     <div class="main">
         <div class="window about_page" id="about_ferries">
-            <div class="info">
+            <div class="info infowithdropdowns">
                 <p id="sectionheader">About Ferries <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
                 <select name="" id="ferry_info" class="dropdown_uniforms dropdown_for_info" onchange="changeSeattleFerryAgency(value);">
                     <option value="prompt">Select Ferry Agency</option>
