@@ -38,7 +38,7 @@ function changeSeattleFerryDepartures(f) {
 
 function getSeattleFerryDeparturesPOne(getOneStopID, insTerminalOnestopID) {
     var seattle_terminal_caller = new XMLHttpRequest();
-    seattle_terminal_caller.open("GET", `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${insTerminalOnestopID}&served_by_onestop_ids=${getOneStopID}&route_type=4`);
+    seattle_terminal_caller.open("GET", `https://transit.land/api/v2/rest/stops?api_key=x5unflDSbpKEWnThyfmteM8MHxIsg3eL&stop_id=${insTerminalOnestopID}&served_by_onestop_ids=${getOneStopID}&served_by_route_type=4`);
     seattle_terminal_caller.onreadystatechange = function() {
         if (seattle_terminal_caller.readyState === 4 && seattle_terminal_caller.status === 200) {
             var seattle_terminal_receiver = JSON.parse(seattle_terminal_caller.responseText);

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css_assets/seattlebuses.css">
     <script src="js_assets/seattlebuses_info.js"></script>
     <script src="js_assets/seattlebuses_lines.js"></script>
+    <script src="js_assets/seattlebuses_departures.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -79,7 +80,7 @@
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a stop..." class="searchbars" id="stopgetter" autocomplete="off">
-            <select name="" id="bus_departures" class="dropdown_uniforms" onchange="">
+            <select name="" id="bus_departures" class="dropdown_uniforms" onchange="changeSeattleBusDepartures(value);">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="king_county_metro">King County Metro</option>
                 <option value="pierce_transit">Pierce Transit</option>
