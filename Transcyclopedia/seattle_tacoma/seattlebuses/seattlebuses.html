@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/seattlebuses.css">
     <script src="js_assets/seattlebuses_info.js"></script>
+    <script src="js_assets/seattlebuses_lines.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -60,7 +61,7 @@
         </div>
         <div class="window" id="lines">
             <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="bus_lines" class="dropdown_uniforms" onchange="">
+            <select name="" id="bus_lines" class="dropdown_uniforms" onchange="changeSeattleBusLines(value);">
                 <option value="prompt">Select Bus Agency</option>
                 <option value="king_county_metro">King County Metro</option>
                 <option value="pierce_transit">Pierce Transit</option>
