@@ -1,11 +1,12 @@
 var onestop_id = "";
 
 function changeSeattleBusDepartures(d) {
+    var onestop_stop_id = document.getElementById("stopgetter").value;
     var onestop_id_departures = d;
 
     switch (onestop_id_departures) {
         case "king_county_metro":
-            onestop_id = "o-c2y3-kingcountymetro";
+            onestop_id = "o-c23-metrotransit";
             break;
         case "sound_transit":
             onestop_id = "o-c2y-soundtransit";
