@@ -32,6 +32,7 @@ function changeSeattleBusAlerts(s) {
             document.getElementById("bus_lines_alerts").innerHTML = `
                 <li id="alert_routes_entity"><p>Once you selected the bus agency and typed down the specific routes, it'll show here.</p></li>
             `;
+            break;
     }
 
     if (s === "prompt") {
