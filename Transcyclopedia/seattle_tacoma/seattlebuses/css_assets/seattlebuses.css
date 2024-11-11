@@ -50,3 +50,14 @@ body::after {
     width: fit-content;
     margin-left: 10px;
 }
+
+@media (max-width: 600px) {
+    #about_buses {
+        padding: 20px;
+    }
+
+    #about_buses #sectionheader {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
