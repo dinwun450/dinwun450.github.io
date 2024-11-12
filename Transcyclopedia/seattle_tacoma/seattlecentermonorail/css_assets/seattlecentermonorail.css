@@ -1,0 +1,34 @@
+body::before {
+    background-image: linear-gradient(#054b88, #dedede);
+}
+
+body::after {
+    background-image: linear-gradient(#dedede, #afd8e8);
+}
+
+.left_navbar li.active {
+    background-color: #054b8898;
+}
+
+.left_navbar li:hover:not(.active, .x) {
+    background-color: #afd8e898;
+    transition: 0.5s;
+}
+
+.info #desc a {
+    color: #054b88;
+    outline: none;
+}
+
+.lines {
+    padding: 10px;
+}
+
+.all_desc_routes {
+    width: 65%;
+    margin-left: 10px;
+}
+
+#alert_desc_seattlemonorail {
+    padding: 10px;
+}
