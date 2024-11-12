@@ -1,0 +1,34 @@
+body::before {
+    background-image: linear-gradient(#ec4025, #dedede);
+}
+
+body::after {
+    background-image: linear-gradient(#dedede, #ec4025);
+}
+
+.left_navbar li.active {
+    background-color: #ec402598;
+}
+
+.left_navbar li:hover:not(.active, .x) {
+    background-color: #ec402598;
+    transition: 0.5s;
+}
+
+.info #desc a {
+    color: #ec4025;
+    outline: none;
+}
+
+.lines {
+    padding: 10px;
+}
+
+.all_desc_routes {
+    width: 65%;
+    margin-left: 10px;
+}
+
+#alert_desc_seattlestrcar {
+    padding: 10px;
+}
