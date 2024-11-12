@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcyclopedia Seattle/Tacoma: Seattle Streetcar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+</head>
+<body>
+    <ul class="left_navbar">
+        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia Seattle/Tacoma:<br> Seattle Streetcar</h1>
+        <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
+        <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_seattlestreetcar')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About Seattle Streetcar</a></li>
+        <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
+        <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-train-tram"></i>&nbsp;&nbsp;Departures</a></li>
+        <li class="tablinks header4" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
+        <li><a href="#" onclick="dark_or_light()"><span id="light_dark_transition"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</span></a></li>
+        <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
+        <p class="copyright">&copy; 2024 Transcyclopedia. Created by Dino Wun.</p>
+    </ul>
+    <div class="main">
+        <div class="window about_page" id="about_seattlestreetcar">
+            <div class="info">
+                <p id="sectionheader">About Seattle Streetcar <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+                <p id="desc">Loading...</p>
+            </div>
+            <div class="stats">
+                <div class="began_operation">
+                    <h2>Began Operation:</h2>
+                    <p><b>December 12, 2007</b></p>
+                </div>
+                <div class="no_of_lines">
+                    <h2>Number of Lines:</h2>
+                    <p id="nooflines"><b>-</b></p>
+                </div>
+                <div class="contact">
+                    <h2>Contact</h2>
+                    <ul>
+                        <li><p id="email_agency"><b>-</b> (Email)</p></li>
+                        <li><p id="phone_agency"><b>-</b> (Phone)</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="window" id="lines">
+            <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div class="list_of_seattlestrcar_lines">
+                <ul id="each_seattlestrcar_line" class="lines">
+                    <li id="route_entity_seattlestrcar"><span id="route_name_seattlestrcar" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_seattlestrcar" class="all_desc_routes">Loading...</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="window" id="departures">
+            <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a station..." id="stationgetter_seattlestrcar" class="searchbars" autocomplete="off" onkeydown="">
+            <p class="headerforstop">Departures for: &nbsp; <span id="stationname_seattlestrcar">---</span></p>
+            <ul id="list_of_departures_seattlestrcar" class="scroller_departures individual_departure">
+                <li id="line_for_departure_seattlestrcar" class="lod_styling"><div id="lod_seattlestrcar" class="styling_for_routes">-</div><span id="hod_seattlestrcar" class="route_headsigns">(None)</span> <span id="depart_time_seattlestrcar" class="departure_times">Enter a station by their station ID</span></li>
+            </ul>
+            <button id="clearall_seattlestrcar" class="all_clearalls" onclick="">Clear</button>
+        </div>
+        <div class="window" id="alerts">
+            <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div id="list_of_alerts_seattlestrcar" class="alert_entity_single">
+                <p id="alert_desc_seattlestrcar">Loading...</p>
+            </div>
+        </div>
+        <div class="window" id="map_inter">
+            <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <div id="map"></div>
+            <ul id="range_of_routes">
+                <li id="rir" class="route_radius"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
+            </ul>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
+        </div>
+    </div>
+</body>
+</html>
