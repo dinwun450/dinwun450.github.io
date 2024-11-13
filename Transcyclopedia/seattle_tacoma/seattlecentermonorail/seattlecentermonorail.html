@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/seattlecentermonorail.css">
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -58,12 +59,27 @@
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter_seattlemonorail" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a station..." id="stationgetter_seattlemonorail" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgency(
+                null,
+                'list_of_departures_seattlemonorail',
+                `<li id='line_for_departure_seattlemonorail' class='lod_styling'><div id='lod_seattlemonorail' class='styling_for_routes'>-</div> <span id='hod_seattlemonorail' class='route_headsigns'>Loading...</span> <span id='depart_time_seattlemonorail' class='departure_times'>Please wait...</span></li>`,
+                'stationname_seattlemonorail',
+                'o-c23nbh-seattlecentermonorail',
+                'stationgetter_seattlemonorail',
+                'depart_time_seattlemonorail',
+                'lod_seattlemonorail',
+                'hod_seattlemonorail',
+                'line_for_departure_seattlemonorail'
+            );">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_seattlemonorail">---</span></p>
             <ul id="list_of_departures_seattlemonorail" class="scroller_departures individual_departure">
                 <li id="line_for_departure_seattlemonorail" class="lod_styling"><div id="lod_seattlemonorail" class="styling_for_routes">-</div> <span id="hod_seattlemonorail" class="route_headsigns">(None)</span> <span id="depart_time_seattlemonorail" class="departure_times">Enter a station by their station ID</span></li>
             </ul>
-            <button id="clearall_seattlemonorail" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_seattlemonorail" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_seattlemonorail',
+                `<li id='line_for_departure_seattlemonorail' class='lod_styling'><div id='lod_seattlemonorail' class='styling_for_routes'>-</div> <span id='hod_seattlemonorail' class='route_headsigns'>(None)</span> <span id='depart_time_seattlemonorail' class='departure_times'>Enter a station by their station ID</span></li>`,
+                'stationname_seattlemonorail'
+            );">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
@@ -81,6 +97,8 @@
         </div>
     </div>
     <script>
+        // Base Map
+        mapConfiguration(-122.34464 ,47.61611, 14);
         // Utilities
         var v = null;
 
@@ -132,6 +150,19 @@
             document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
         }
         getCopyrightYear();
+
+        // Information
+        getWikipediaForAnAgency("Seattle_Center_Monorail");
+        getContactsForAnAgency("o-c23nbh-seattlecentermonorail");
+
+        // Lines
+        getLinesFromAnAgency("o-c23nbh-seattlecentermonorail", "route_name_seattlemonorail", "route_desc_seattlemonorail", "route_entity_seattlemonorail", "each_seattlemonorail_line", false);
+
+        // Alerts
+        loadAlertsWithinAnAgency("o-c23nbh-seattlecentermonorail", "alert_desc_seattlemonorail", "list_of_alerts_seattlemonorail");
+
+        // Map Functionality
+        plotLinesFromAnAgency("o-c23nbh-seattlecentermonorail", 12)
     </script>
 </body>
 </html>

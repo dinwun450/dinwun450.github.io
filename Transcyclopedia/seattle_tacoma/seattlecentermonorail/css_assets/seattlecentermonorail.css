@@ -15,6 +15,10 @@ body::after {
     transition: 0.5s;
 }
 
+.info {
+    overflow-y: auto;
+}
+
 .info #desc a {
     color: #054b88;
     outline: none;
