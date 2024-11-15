@@ -137,7 +137,7 @@
 
                                 document.getElementById("alert_routes_entity").innerHTML = `<p><span id="route_affected" class="styling_for_routes"></span> <br> <b>${header_for_alert}</b> <br> ${desc_for_alert}<p>`;
 
-                                if (route_short_name_affected === "") {
+                                if (route_short_name_affected === null) {
                                     route_long_name = transitland_route_data.routes[i].route_long_name;
                                     route_short_name_affected = route_long_name;
                                 }

@@ -248,7 +248,7 @@ window.onload = function() {
                     var color_of_route = uniqueFeatures[f].properties.route_color;
                     var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
 
-                    if (name_of_route === "") {
+                    if (name_of_route === null) {
                         document.getElementById("route_short").innerHTML = `&nbsp;&nbsp;&nbsp;`;
                     } else {
                         document.getElementById("route_short").innerHTML = name_of_route;
@@ -279,7 +279,7 @@ window.onload = function() {
             if (fs.length > 0) {
                 for (var f = 0; f < fs.length; f++) {
                     var name_of_route = fs[f].properties.route_short_name;
-                    if (name_of_route === "") {
+                    if (name_of_route === null) {
                         name_of_route = "&nbsp;&nbsp;&nbsp;";
                     }
                     routeId.push(name_of_route);
