@@ -103,11 +103,11 @@ window.onload = function() {
                         var route_text_color = transit_outputs.routes[i].route_text_color;
                         var agency = transit_outputs.routes[i].agency.agency_name;
 
-                        if (route_short_name === "") {
+                        if (route_short_name === null) {
                             route_short_name = "&nbsp;&nbsp;&nbsp;";
                         }
 
-                        if (route_color === "") {
+                        if (route_color === null) {
                             route_color = "333333";
                         }
 
@@ -233,11 +233,11 @@ window.onload = function() {
                             var arrival_time = list_of_departures[n].arrival.estimated;
                             var scheduled_time = list_of_departures[n].arrival.scheduled;
 
-                            if (route_short_name === "") {
+                            if (route_short_name === null) {
                                 route_short_name = "&nbsp;&nbsp;&nbsp;";
                             }
     
-                            if (route_color === "") {
+                            if (route_color === null) {
                                 route_color = "333333";
                             }
 

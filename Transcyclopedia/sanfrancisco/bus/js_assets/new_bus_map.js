@@ -185,7 +185,7 @@ function SFBusGeoJsonCreation(insLink) {
                 if (fs.length > 0) {
                     for (var f = 0; f < fs.length; f++) {
                         var name_of_route = fs[f].properties.route_short_name;
-                        if (name_of_route === "") {
+                        if (name_of_route === null) {
                             name_of_route = fs[f].properties.route_long_name;
                         }
 

@@ -26,10 +26,10 @@ window.onload = function() {
                 var phone_no = bart_agency_receiver.agencies[0].agency_phone;
                 var email = bart_agency_receiver.agencies[0].agency_email;
 
-                if (email === "") {
+                if (email === null) {
                     email = "-";
                 }
-                if (phone_no === "") {
+                if (phone_no === null) {
                     phone_no = "-";
                 }
 

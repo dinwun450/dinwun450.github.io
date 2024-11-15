@@ -161,7 +161,7 @@ function getRouteAlerts(routeAlertLink) {
                 var route_color = route_alerts.routes[r].route_color;
                 var route_text_color = route_alerts.routes[r].route_text_color;
 
-                if (route_short_name === "") {
+                if (route_short_name === null) {
                     route_short_name = route_alerts.routes[r].route_long_name;
                 }
 
