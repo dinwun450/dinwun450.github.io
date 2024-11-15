@@ -23,10 +23,10 @@ function getMTSContacts() {
             var phone_no = mts_contacts_receiver.agencies[0].agency_phone;
             var email = mts_contacts_receiver.agencies[0].agency_email;
 
-            if (email === "") {
+            if (email === null) {
                 email = "-";
             }
-            if (phone_no === "") {
+            if (phone_no === null) {
                 phone_no = "-";
             }
 
@@ -52,7 +52,7 @@ function loadMTSTrolley() {
                 var route_long_name = route_trolley_receiver.routes[i].route_long_name;
                 var route_text_color = route_trolley_receiver.routes[i].route_text_color;
 
-                if (route_short_name === "") {
+                if (route_short_name === null) {
                     document.getElementById("route_name_trolley").innerHTML = `&nbsp;&nbsp;&nbsp;`;
                 } else {
                     document.getElementById("route_name_trolley").innerHTML = route_short_name;
@@ -97,7 +97,7 @@ function loadMTSBus() {
                 var route_long_name = route_bus_receiver.routes[i].route_long_name;
                 var route_text_color = route_bus_receiver.routes[i].route_text_color;
 
-                if (route_short_name === "") {
+                if (route_short_name === null) {
                     document.getElementById("route_name_bus").innerHTML = `&nbsp;&nbsp;&nbsp;`;
                 } else {
                     document.getElementById("route_name_bus").innerHTML = route_short_name;
@@ -139,7 +139,7 @@ function loadMTSCoronado() {
             var route_long_name = coronado_receiver.routes[0].route_long_name;
             var route_text_color = coronado_receiver.routes[0].route_text_color;
 
-            if (route_short_name === "") {
+            if (route_short_name === null) {
                 document.getElementById("route_name_coronado").innerHTML = `&nbsp;&nbsp;&nbsp;`;
             } else {
                 document.getElementById("route_name_coronado").innerHTML = route_short_name;
@@ -667,7 +667,7 @@ function plotMTSLines() {
                         var color_of_route = uniqueFeatures[f].properties.route_color;
                         var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
 
-                        if (name_of_route === "") {
+                        if (name_of_route === null) {
                             document.getElementById("route_name_rad").innerHTML = `&nbsp;&nbsp;&nbsp;`;
                         } else {
                             document.getElementById("route_name_rad").innerHTML = name_of_route;

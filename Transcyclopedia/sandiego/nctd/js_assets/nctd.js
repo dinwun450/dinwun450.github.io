@@ -21,10 +21,10 @@ function getNCTDContactInfo() {
             var phone_no = nctd_contact_receiver.agencies[0].agency_phone;
             var email = nctd_contact_receiver.agencies[0].agency_email;
 
-            if (email === "") {
+            if (email === null) {
                 email = "-";
             }
-            if (phone_no === "") {
+            if (phone_no === null) {
                 phone_no = "-";
             }
 
@@ -50,7 +50,7 @@ function loadNCTDCoaster() {
                 var route_color = route_coaster_receiver.routes[i].route_color;
                 var route_text_color = route_coaster_receiver.routes[i].route_text_color;
 
-                if (route_short_name === "") {
+                if (route_short_name === null) {
                     document.getElementById("route_name_coaster").innerHTML = `&nbsp;&nbsp;&nbsp;`;
                 }
 
@@ -95,7 +95,7 @@ function loadNCTDSprinter() {
                 var route_color = route_sprinter_receiver.routes[i].route_color;
                 var route_text_color = route_sprinter_receiver.routes[i].route_text_color;
 
-                if (route_short_name === "") {
+                if (route_short_name === null) {
                     document.getElementById("route_name_sprinter").innerHTML = `&nbsp;&nbsp;&nbsp;`;
                 }
 
@@ -141,7 +141,7 @@ function loadNCTDBreeze() {
                 var route_color = route_breeze_receiver.routes[i].route_color;
                 var route_text_color = route_breeze_receiver.routes[i].route_text_color;
 
-                if (route_short_name === "") {
+                if (route_short_name === null) {
                     document.getElementById("route_name_bus").innerHTML = `&nbsp;&nbsp;&nbsp;`;
                 }
                 else {

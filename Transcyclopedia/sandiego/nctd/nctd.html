@@ -522,7 +522,7 @@
                         document.getElementById("lod_bus").style.color = `#${route_text_color}`;
                         document.getElementById("lod_bus").style.border = `1px solid #${route_color}`;
 
-                        if (route_headsign === "") {
+                        if (route_headsign === null) {
                             document.getElementById("hod_bus").innerHTML = route_name;
                         } else {
                             document.getElementById("hod_bus").innerHTML = route_headsign;
@@ -705,7 +705,7 @@
                                 var desc_of_route = uniqueFeatures[f].properties.route_long_name;
                                 var type_of_route = uniqueFeatures[f].properties.route_type;
 
-                                if (name_of_route === "") {
+                                if (name_of_route === null) {
                                     document.getElementById("route_name_rad").innerHTML = "&nbsp;&nbsp;&nbsp;";
                                 }
                                 else {
