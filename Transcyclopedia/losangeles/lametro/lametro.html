@@ -331,7 +331,7 @@
                                     document.getElementById("aor_subway").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_subway.length})`;
                                 }
 
-                                if (route_short_name === "") {
+                                if (route_short_name === null) {
                                     document.getElementById("lod_subway").innerHTML = `<img src="${corr_image_of_route_sub}" style="width: 20px; height: 20px">`;
                                 }
 
@@ -446,7 +446,7 @@
                                         break;
                                 }
 
-                                if (route_short_name === "") {
+                                if (route_short_name === null) {
                                     document.getElementById("lod_lr").innerHTML = `<img src="${corr_image_of_route_lr}" style="width: 20px; height: 20px;">`;
                                 }
 
@@ -568,7 +568,7 @@
                                         break;
                                 }
 
-                                if (route_short_name === "") {
+                                if (route_short_name === null) {
                                     document.getElementById("lod_bus").innerHTML = `<img src="${corr_image_of_route_bus}" style="width: 20px; height: 20px;">`
                                 }
                                 else {
@@ -640,11 +640,11 @@
                         var geometry_of_route = map_receiver.routes[i].geometry;
                         var route_id = map_receiver.routes[i].route_id;
 
-                        if (route_color === "") {
+                        if (route_color === null) {
                             route_color = "000000";
                         }
 
-                        if (route_text_color === "") {
+                        if (route_text_color === null) {
                             route_text_color = "ffffff";
                         }
                         
@@ -778,12 +778,12 @@
                                 var corr_image_of_route_map = la_metro_img_icons_web[desc_of_route];
                                 var type_of_route = uniqueFeatures[f].properties.route_type;
 
-                                if (desc_of_route === "") {
+                                if (desc_of_route === null) {
                                     console.log("Nothing!")
                                     desc_of_route = "";
                                 }
 
-                                if (name_of_route === "") {
+                                if (name_of_route === null) {
                                     document.getElementById("route_name_rad").innerHTML = `<img src="${corr_image_of_route_map}" id="la_metro_bus_img" style="width: 20px; height: 20px;">`;
                                 }
                                 else {
@@ -854,7 +854,7 @@
                             for (var f = 0; f < fs_2.length; f++) {
                                 var name_of_route = fs_2[f].properties.route_short_name;
                                 
-                                if (name_of_route === "") {
+                                if (name_of_route === null) {
                                     name_of_route = fs_2[f].properties.route_long_name;
                                 }
                                 routeIdBus.push(name_of_route);
