@@ -112,7 +112,7 @@ function getLABusRoutes(getOneStopID) {
                 var route_text_color = base_route.route_text_color;
                 var route_color = base_route.route_color;
 
-                if (route_short_name === "") {
+                if (route_short_name === null) {
                     document.getElementById("route_bus").innerHTML = "&nbsp;&nbsp;&nbsp;";
                 }
                 else {

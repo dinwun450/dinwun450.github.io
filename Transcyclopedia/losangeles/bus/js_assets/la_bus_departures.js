@@ -165,7 +165,7 @@ function getLABusDeparturesPTwo(insOneBusstopID) {
                         break;
                 }
 
-                if (route_short_name === "") {
+                if (route_short_name === null) {
                     route_short_name = "&nbsp;&nbsp;&nbsp;";
                 }
 

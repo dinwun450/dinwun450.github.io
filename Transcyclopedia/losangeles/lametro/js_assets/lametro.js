@@ -18,10 +18,10 @@ function getLAMetroContactInfo() {
             var phone_no = la_metro_contact_receiver.agencies[0].agency_phone;
             var email = la_metro_contact_receiver.agencies[0].agency_email;
 
-            if (email === "") {
+            if (email === null) {
                 email = "-";
             }
-            if (phone_no === "") {
+            if (phone_no === null) {
                 phone_no = "-";
             }
 
@@ -62,7 +62,7 @@ function loadLAMetroLinesSubway() {
                 var route_text_color = route_info.routes[i].route_text_color;
                 var corr_image = la_metro_img_icons[route_long_name];
 
-                if (route_short_name === "") {
+                if (route_short_name === null) {
                     document.getElementById("route_name_sub").innerHTML = `<img src="${corr_image}" style="width: 20px; height: 20px">`;
                 }
 
@@ -109,7 +109,7 @@ function loadLAMetroLinesLR() {
                 var route_text_color = route_info.routes[i].route_text_color;
                 var corr_image = la_metro_img_icons[route_long_name];
 
-                if (route_short_name === "") {
+                if (route_short_name === null) {
                     document.getElementById("route_name_lr").innerHTML = `<img src="${corr_image}" id="la_metro_lr_img" style="width: 20px; height: 20px">`;
                 }
 
@@ -163,15 +163,15 @@ function loadLAMetroLinesBus() {
                     document.getElementById("no_of_alerts_bus").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${route_info.routes[i].alerts.length})`;
                 }
 
-                if (route_color === "") {
+                if (route_color === null) {
                     route_color = "000000";
                 }
 
-                if (route_text_color === "") {
+                if (route_text_color === null) {
                     route_text_color = "ffffff"
                 }
 
-                if (route_short_name === "") {
+                if (route_short_name === null) {
                     document.getElementById("route_name_bus").innerHTML = `<img src="${corr_image}" id="la_metro_bus_img" style="width: 20px; height: 20px;">`;
                 }
                 else {
@@ -254,7 +254,7 @@ function LAMetroAlertsRoutes() {
 
                         document.getElementById("alert_routes_entity").innerHTML = `<span id="route_affected"></span> <b>${header_for_route_alert}</b> <br> ${desc_for_route_alert}`;
 
-                        if (route_short_name_affected === "") {
+                        if (route_short_name_affected === null) {
                             document.getElementById("route_affected").innerHTML = `<img src="${corr_image_route_affected}" id="la_metro_lr_img" style="width: 20px; height: 20px">`;
                         }
                         else {
