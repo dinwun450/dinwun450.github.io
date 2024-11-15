@@ -104,7 +104,7 @@ function getBusContactInfo(addOneStopID) {
             var email = agency_receiver.agencies[0].agency_email;
 
             switch (phone_no) {
-                case "":
+                case null:
                     phone_no = "-";
                     document.getElementById("phone_agency").innerHTML = `<b>${phone_no}</b> (Phone)`;
                     break;
@@ -114,7 +114,7 @@ function getBusContactInfo(addOneStopID) {
             };
 
             switch (email) {
-                case "":
+                case null:
                     email = "-";
                     document.getElementById("email_agency").innerHTML = `<b>${email}</b> (Email)`;
                     break;
