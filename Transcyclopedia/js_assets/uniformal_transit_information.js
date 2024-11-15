@@ -20,11 +20,11 @@ function getContactsForAnAgency(agency_onestop_id) {
             var contact_agency_email = contact_agency_receiver.agencies[0].agency_email;
             var contact_agency_phone = contact_agency_receiver.agencies[0].agency_phone;
 
-            if (contact_agency_email == "") {
+            if (contact_agency_email == null) {
                 contact_agency_email = "-";
             }
 
-            if (contact_agency_phone == "") {
+            if (contact_agency_phone == null) {
                 contact_agency_phone = "-";
             }
 
