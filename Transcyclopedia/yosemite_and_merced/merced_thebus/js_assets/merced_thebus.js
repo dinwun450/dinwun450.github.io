@@ -23,10 +23,10 @@ function getContactForTheBus() {
             var contact_thebus_email = contact_thebus_receiver.agencies[0].agency_email;
             var contact_thebus_phone = contact_thebus_receiver.agencies[0].agency_phone;
 
-            if (contact_thebus_email === "") {
+            if (contact_thebus_email === null) {
                 contact_thebus_email = "-";
             }
-            if (contact_thebus_phone === "") {
+            if (contact_thebus_phone === null) {
                 contact_thebus_phone = "-";
             }
 
@@ -357,7 +357,7 @@ function plotTheBusLines() {
                         var color_of_route = uniqueFeatures[f].properties.route_color;
                         var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
 
-                        if (name_of_route === "") {
+                        if (name_of_route === null) {
                             document.getElementById("route_name_rad").innerHTML = `&nbsp;&nbsp;&nbsp;`;
                         } else {
                             document.getElementById("route_name_rad").innerHTML = name_of_route;

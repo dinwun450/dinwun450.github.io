@@ -23,11 +23,11 @@ function getContactForYARTS() {
             var contact_yarts_email = contact_yarts_receiver.agencies[0].agency_email;
             var contact_yarts_phone = contact_yarts_receiver.agencies[0].agency_phone;
 
-            if (contact_yarts_email == "") {
+            if (contact_yarts_email == null) {
                 contact_yarts_email = "-";
             }
 
-            if (contact_yarts_phone == "") {
+            if (contact_yarts_phone == null) {
                 contact_yarts_phone = "-";
             }
 
@@ -352,7 +352,7 @@ function plotYARTSLines() {
                         var color_of_route = uniqueFeatures[f].properties.route_color;
                         var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
 
-                        if (name_of_route === "") {
+                        if (name_of_route === null) {
                             document.getElementById("route_name_rad").innerHTML = `&nbsp;&nbsp;&nbsp;`;
                         } else {
                             document.getElementById("route_name_rad").innerHTML = name_of_route;
