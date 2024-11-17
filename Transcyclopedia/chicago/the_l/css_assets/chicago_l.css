@@ -15,10 +15,13 @@ body::after {
     transition: 0.5s;
 }
 
+<<<<<<< HEAD
 .info {
     overflow-y: auto;
 }
 
+=======
+>>>>>>> origin/chicago
 .info #desc a {
     color: #5665a3;
     outline: none;
