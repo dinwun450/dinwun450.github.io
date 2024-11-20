@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/chicago_l.css">
     <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
+    <script src="js_assets/l_icon_matching.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -58,20 +59,30 @@
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter_l" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a station..." id="stationgetter_l" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgencyWithTheL(
+                null,
+                'list_of_departures_l',
+                `<li id='line_for_departure_l' class='lod_styling'><div id='lod_l' class='styling_for_routes symbol_tagged'><img src='img_assets/newly_updated_ltrain_icon.svg' style='width: 23px; height: 23px;' class='filtered-inverted'></div> <span id='aor_l'></span> <span id='hod_l' class='route_headsigns'>Loading...</span> <span id='depart_time_l' class='departure_times'>Please wait...</span></li>`,
+                'stationname_l',
+                'o-dp3-chicagotransitauthority',
+                'stationgetter_l',
+                'depart_time_l',
+                'lod_l',
+                'hod_l',
+                'line_for_departure_l',
+                1,
+                true,
+                'aor_l'
+            );">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_l">---</span></p>
             <ul id="list_of_departures_l" class="scroller_departures individual_departure">
-                <li id="line_for_departure_l" class="lod_styling"><div id="lod_l" class="styling_for_routes symbol_tagged">-</div> <span id="aor_l"></span> <span id="hod_l" class="route_headsigns">(None)</span> <span id="depart_time_l" class="departure_times">Enter a station by their station ID</span></li>
+                <li id="line_for_departure_l" class="lod_styling"><div id="lod_l" class="styling_for_routes symbol_tagged"><img src="img_assets/newly_updated_ltrain_icon.svg" style="width: 23px; height: 23px;" class="filtered-inverted"></div> <span id="aor_l"></span> <span id="hod_l" class="route_headsigns">(None)</span> <span id="depart_time_l" class="departure_times">Enter a station by their station ID</span></li>
             </ul>
-            <div class="alerts_in_lstation">
-                <h3>Alerts for this Station</h3>
-                <ul>
-                    <li id="each_lstation_alert">
-                        <p>Once you typed down the station by their ID, the advisories will display here.</p>
-                    </li>
-                </ul>
-            </div>
-            <button id="clearall_l" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_l" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_l',
+                `<li id='line_for_departure_l' class='lod_styling'><div id='lod_l' class='styling_for_routes symbol_tagged'><img src='img_assets/newly_updated_ltrain_icon.svg' style='width: 23px; height: 23px;' class='filtered-inverted'></div> <span id='aor_l'></span> <span id='hod_l' class='route_headsigns'>(None)</span> <span id='depart_time_l' class='departure_times'>Enter a station by their station ID</span></li>`,
+                'stationname_l',
+            )">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
@@ -83,12 +94,15 @@
             <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <div id="map"></div>
             <ul id="range_of_routes">
-                <li id="rir" class="route_radius flexer"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
+                <li id="rir" class="route_radius flexer"><span id="route_name_rad" class="styling_for_routes symbol_tagged"><img src="img_assets/newly_updated_ltrain_icon.svg" style="width: 23px; height: 23px;" class="filtered-inverted"></span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
             </ul>
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
     <script>
+        // Base Map
+        mapConfiguration(-87.6697 ,41.8608, 10);
+
         // Utilities
         var v = null;
 
@@ -144,6 +158,15 @@
         // Information
         getWikipediaForAnAgency(`Chicago_"L"`);
         getContactsForAnAgency("o-dp3-chicagotransitauthority");
+
+        // Lines
+        getLinesFromAnAgencyWithinARouteTypeL("o-dp3-chicagotransitauthority", 1, "nooflines", "route_name_l", "route_desc_l", "route_entity_l", "each_l_line", true, "no_of_alerts_l");
+
+        // Alerts
+        loadRouteAlertsWithinTheL("o-dp3-chicagotransitauthority", "l_alert_entity", "l_lines_alerts");
+
+        // Map Functionality
+        plotLinesWithMultipleModesFromTheL("o-dp3-chicagotransitauthority");
     </script>
 </body>
 </html>

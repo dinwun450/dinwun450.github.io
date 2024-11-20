@@ -28,6 +28,18 @@ body::after {
     padding: 10px;
 }
 
+.symbol_tagged {
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+img.filtered-inverted {
+    filter: invert(1);
+}
+
 .all_desc_routes {
     width: fit-content;
     margin-left: 10px;
@@ -35,28 +47,6 @@ body::after {
 
 #hod_l {
     left: 0;
-}
-
-.alerts_in_lstation {
-    width: 100%;
-    margin-top: 0;
-    margin-bottom: 10px;
-    background: rgba( 255, 255, 255, 0.25 );
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    border-radius: 10px;
-    padding: 10px;
-    overflow-y: auto;
-}
-
-#each_lstation_alert {
-    width: 100%;
-    height: fit-content;
-    background: rgba(255, 255, 255, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 10px;
-    margin-top: 5px;
-    padding: 10px;
-    list-style-type: none;
 }
 
 #l_alert_entity {
