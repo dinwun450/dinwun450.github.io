@@ -15,7 +15,7 @@ function getStopForDeparturesFromAnAgencyMetra(searchbar_id, stopname_id, agency
         if (stopid_agency_caller.readyState === 4 && stopid_agency_caller.status === 200) {
             var stopid_agency_receiver = JSON.parse(stopid_agency_caller.responseText);
             var stopname_agency = stopid_agency_receiver.stops[0].stop_name;
-            var stopid_agency = stopid_agency_receiver.stops[0].stop_id;
+            var stopid_agency = stopid_agency_receiver.stops[0].rstop_id;
 
             document.getElementById(stopname_id).innerHTML = stopname_agency;
             getDeparturesForStopFromAnAgencyMetra(stopid_agency, depart_time_ids, lod_ids, hod_ids, list_item_of_departures, list_of_departures_name, alerts);
