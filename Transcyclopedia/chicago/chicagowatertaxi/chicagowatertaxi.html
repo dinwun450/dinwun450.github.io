@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/chicagowatertaxi.css">
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -58,12 +59,27 @@
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a terminal..." id="terminalgetter_watertaxi" class="searchbars" autocomplete="off" onkeydown="">
-            <p class="headerforstop">Departures for <span id="terminalname_watertaxi">---</span></p>
+            <input type="text" placeholder="Search for a terminal..." id="terminalgetter_watertaxi" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgency(
+                null,
+                'list_of_departures_watertaxi',
+                `<li id='line_for_departure_watertaxi' class='lod_styling'><div id='lod_watertaxi' class='styling_for_routes'>-</div> <span id='hod_watertaxi' class='route_headsigns'>Loading...</span> <span id='depart_time_watertaxi' class='departure_times'>Please wait...</span></li>`,
+                'terminalname_watertaxi',
+                'o-chicagowatertaxi~il~us',
+                'terminalgetter_watertaxi',
+                'depart_time_watertaxi',
+                'lod_watertaxi',
+                'hod_watertaxi',
+                'line_for_departure_watertaxi'
+            )">
+            <p class="headerforstop">Departures for: &nbsp; <span id="terminalname_watertaxi">---</span></p>
             <ul id="list_of_departures_watertaxi" class="scroller_departures individual_departure">
                 <li id="line_for_departure_watertaxi" class="lod_styling"><div id="lod_watertaxi" class="styling_for_routes">-</div> <span id="hod_watertaxi" class="route_headsigns">(None)</span> <span id="depart_time_watertaxi" class="departure_times">Enter a terminal by their terminal ID</span></li>
             </ul>
-            <button id="clearall_watertaxi" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_watertaxi" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_metra',
+                `<li id='line_for_departure_metra' class='lod_styling'><div id='lod_metra' class='styling_for_routes'>-</div> <span id='hod_metra' class='route_headsigns'>(None)</span> <span id='depart_time_metra' class='departure_times'>Enter a terminal by their terminal ID</span></li>`,
+                'terminalname_metra',
+            )">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
@@ -81,6 +97,9 @@
         </div>
     </div>
     <script>
+        // Base Map
+        mapConfiguration(-87.6307, 41.87302, 13);
+
         // Utilities
         var v = null;
 
@@ -132,6 +151,18 @@
             document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
         }
         getCopyrightYear();
+
+        // Information
+        getContactsForAnAgency("o-chicagowatertaxi~il~us");
+
+        // Lines
+        getLinesFromAnAgency("o-chicagowatertaxi~il~us", "route_name_watertaxi", "route_desc_watertaxi", "route_entity_watertaxi", "each_watertaxi_line");
+
+        // Alerts
+        loadAlertsWithinAnAgency("o-chicagowatertaxi~il~us", "watertaxi_alert_entity", "watertaxi_lines_alerts");
+
+        // Map
+        plotLinesFromAnAgency("o-chicagowatertaxi~il~us", 4)
     </script>
 </body>
 </html>
