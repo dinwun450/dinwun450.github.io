@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/metra.css">
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
+    <script src="js_assets/metra_departures.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -58,12 +60,27 @@
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter_metra" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a station..." id="stationgetter_metra" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgencyMetra(
+                null,
+                'list_of_departures_metra',
+                `<li id='line_for_departure_metra' class='lod_styling'><div id='lod_metra' class='styling_for_routes'>-</div> <span id='hod_metra' class='route_headsigns'>Loading...</span> <span id='depart_time_metra' class='departure_times'>Please wait...</span></li>`,
+                'stationname_metra',
+                'o-dp3-metra',
+                'stationgetter_metra',
+                'depart_time_metra',
+                'lod_metra',
+                'hod_metra',
+                'line_for_departure_metra',
+            );">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_metra">---</span></p>
             <ul id="list_of_departures_metra" class="scroller_departures individual_departure">
                 <li id="line_for_departure_metra" class="lod_styling"><div id="lod_metra" class="styling_for_routes">-</div> <span id="hod_metra" class="route_headsigns">(None)</span> <span id="depart_time_metra" class="departure_times">Enter a station by their station ID</span></li>
             </ul>
-            <button id="clearall_metra" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_metra" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_metra',
+                `<li id='line_for_departure_metra' class='lod_styling'><div id='lod_metra' class='styling_for_routes'>-</div> <span id='hod_metra' class='route_headsigns'>(None)</span> <span id='depart_time_metra' class='departure_times'>Enter a station by their station ID.</span></li>`,
+                'stationname_metra'
+            );">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
@@ -81,6 +98,9 @@
         </div>
     </div>
     <script>
+        // Base Map
+        mapConfiguration(-87.6697 ,41.8608, 10);
+
         // Utilities
         var v = null;
 
@@ -132,6 +152,19 @@
             document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
         }
         getCopyrightYear();
+
+        // Information
+        getWikipediaForAnAgency("Metra");
+        getContactsForAnAgency("o-dp3-metra");
+
+        // Lines
+        getLinesFromAnAgency("o-dp3-metra", "route_name_metra", "route_desc_metra", "route_entity_metra", "each_metra_line", false);
+
+        // Alerts
+        loadRouteAlertsWithinAnAgency("o-dp3-metra", "metra_alert_entity", "metra_alerts");
+
+        // Map
+        plotLinesFromAnAgency("o-dp3-metra", 2);
     </script>
 </body>
 </html>
