@@ -215,6 +215,10 @@ body::after {
     margin-bottom: 5px;
 }
 
+.flexer {
+    display: flex;
+}
+
 #route_name_trolley, #route_name_bus, #route_name_coronado,
 #lod_coronado, #lod_trolley, #lod_bus,
 #affectedroutes, #route_name_rad {
@@ -231,11 +235,24 @@ body::after {
     text-align: center;
 }
 
+#route_name_trolley, #lod_trolley, #route_name_rad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
 #route_desc_trolley, #route_desc_bus, #route_desc_coronado {
     width: 65%;
     text-align: right;
     margin-right: 10px;
     right: 50px;
+}
+
+#route_desc_trolley {
+    text-align: left;
+    margin-left: 10px;
 }
 
 #departures_trolley input, #departures_bus input, #departures_coronado input {
@@ -285,6 +302,10 @@ body::after {
 #hod_trolley, #hod_bus, #hod_coronado {
     position: relative;
     left: 5px;
+}
+
+#hod_trolley {
+    left: 0;
 }
 
 #depart_time_trolley, #depart_time_bus, #depart_time_coronado {

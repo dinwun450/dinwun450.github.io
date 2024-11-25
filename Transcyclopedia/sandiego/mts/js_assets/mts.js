@@ -1,4 +1,11 @@
-var geojson_of_mts_routes = []
+var geojson_of_mts_routes = [];
+var mts_trolley_icons = {
+    "Green": `<img src="img_assets/mts_green.svg" style="width: 18px; height: 20px;">`,
+    "Orange": `<img src="img_assets/mts_orange.svg" style="width: 20px; height: 20px;">`,
+    "Blue": `<img src="img_assets/mts_blue.svg" style="width: 36.4px; height: 20px;">`,
+    "Silver": `<img src="img_assets/mts_silver.svg" style="width: 19.25px; height: 20px;">`,
+    "Copper": `<img src="img_assets/mts_copper.svg" style="width: 27.5px; height: 20px;">`,
+};
 
 function loadMTSWikipedia() {
     var mts_info_caller = new XMLHttpRequest();
@@ -52,12 +59,7 @@ function loadMTSTrolley() {
                 var route_long_name = route_trolley_receiver.routes[i].route_long_name;
                 var route_text_color = route_trolley_receiver.routes[i].route_text_color;
 
-                if (route_short_name === null) {
-                    document.getElementById("route_name_trolley").innerHTML = `&nbsp;&nbsp;&nbsp;`;
-                } else {
-                    document.getElementById("route_name_trolley").innerHTML = route_short_name;
-                }
-
+                document.getElementById("route_name_trolley").innerHTML = `${mts_trolley_icons[route_short_name]}&nbsp;(${route_short_name})`;
                 document.getElementById("route_name_trolley").style.backgroundColor = `#${route_color}40`;
                 document.getElementById("route_name_trolley").style.color = `#${route_text_color}`;
                 document.getElementById("route_name_trolley").style.border = `1px solid #${route_color}`;
@@ -649,7 +651,7 @@ function plotMTSLines() {
                 map.setFilter('mts_coronado', ['has', 'route_id']);
 
                 document.getElementById("range_of_routes").innerHTML = `
-                    <li id="rir"><span id="route_name_rad">-</span>&nbsp;&nbsp;<span id="route_detail_rad">Loading...</span></li>
+                    <li id="rir" class="flexer"><span id="route_name_rad">-</span>&nbsp;&nbsp;<span id="route_detail_rad">Loading...</span></li>
                 `;
             });
 
@@ -666,11 +668,21 @@ function plotMTSLines() {
                         var desc_of_route = uniqueFeatures[f].properties.route_long_name;
                         var color_of_route = uniqueFeatures[f].properties.route_color;
                         var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
+                        var type_of_route = uniqueFeatures[f].properties.route_type;
 
-                        if (name_of_route === null) {
+                        if (name_of_route === undefined) {
                             document.getElementById("route_name_rad").innerHTML = `&nbsp;&nbsp;&nbsp;`;
-                        } else {
-                            document.getElementById("route_name_rad").innerHTML = name_of_route;
+                            document.getElementById("route_name_rad").style.paddingLeft = "5px";
+                            document.getElementById("route_name_rad").style.paddingRight = "5px";
+                        }
+
+                        if (type_of_route === 0) {
+                            document.getElementById("route_name_rad").innerHTML = `${mts_trolley_icons[name_of_route]}&nbsp;(${name_of_route})`;
+                        }
+                        else if (type_of_route === 3) {
+                            document.getElementById("route_name_rad").innerHTML = `${name_of_route}`;
+                            document.getElementById("route_name_rad").style.paddingLeft = "5px";
+                            document.getElementById("route_name_rad").style.paddingRight = "5px";
                         }
 
                         document.getElementById("route_name_rad").style.backgroundColor = `${color_of_route}40`;

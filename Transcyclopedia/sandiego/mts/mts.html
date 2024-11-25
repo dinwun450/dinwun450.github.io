@@ -57,7 +57,7 @@
             <div class="mts_trolleyline">
                 <h3>Trolley</h3>
                 <ul class="mts_trolley">
-                    <li id="route_item_trolley"><span id="route_name_trolley">-</span> &nbsp; <span id="route_desc_trolley">Loading...</span><span id="no_of_alerts_trolley"></span></li>
+                    <li id="route_item_trolley" class="flexer"><span id="route_name_trolley" class="symbol_tagged">-</span> &nbsp; <span id="route_desc_trolley">Loading...</span><span id="no_of_alerts_trolley"></span></li>
                 </ul>
             </div>
             <div class="mts_busline">
@@ -78,7 +78,7 @@
             <input type="text" placeholder="Search for a station..." onkeydown="keyDownTrolley();" id="stationgetter_trolley" class="searchbars" autocomplete="off">
             <p class="headerstation_trolley">Departures for &nbsp;<span id="stationname_trolley">---</span></p>
             <ul id="list_of_departures_trolley" class="scroller_departures">
-                <li id="line_for_departure_trolley"><div id="lod_trolley">-</div> <span id="aor_trolley"></span> <span id="hod_trolley">(None)</span> <span id="depart_time_trolley">Enter a station by their station ID</span></li>
+                <li id="line_for_departure_trolley"><div id="lod_trolley" class="symbol_tagged">-</div> <span id="aor_trolley"></span> <span id="hod_trolley">(None)</span> <span id="depart_time_trolley">Enter a station by their station ID</span></li>
             </ul>
             <button id="clearall_trolley" class="all_clearalls" onclick="clearAllTrolley();">Clear</button>
         </div>
@@ -119,12 +119,20 @@
             <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <div id="map"></div>
             <ul id="range_of_routes">
-                <li id="rir"><span id="route_name_rad">-</span>&nbsp;&nbsp;<span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
+                <li id="rir" class="flexer"><span id="route_name_rad">-</span>&nbsp;&nbsp;<span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
             </ul>
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
     <script>
+        var mts_trolley_icons = {
+            "Green": `<img src="img_assets/mts_green.svg" style="width: 18px; height: 20px;">`,
+            "Orange": `<img src="img_assets/mts_orange.svg" style="width: 20px; height: 20px;">`,
+            "Blue": `<img src="img_assets/mts_blue.svg" style="width: 36.4px; height: 20px;">`,
+            "Silver": `<img src="img_assets/mts_silver.svg" style="width: 19.25px; height: 20px;">`,
+            "Copper": `<img src="img_assets/mts_copper.svg" style="width: 27.5px; height: 20px;">`,
+        }
+
         var v = null;
         mapConfiguration();
 
@@ -236,7 +244,7 @@
                             document.getElementById("aor_trolley").innerHTML = `(<i class="fa-solid fa-triangle-exclamation"></i> ${alerts_trolley})`;
                         }
 
-                        document.getElementById("lod_trolley").innerHTML = route_short_name;
+                        document.getElementById("lod_trolley").innerHTML = `${mts_trolley_icons[route_short_name]}&nbsp;(${route_short_name})`;
                         document.getElementById("lod_trolley").style.backgroundColor = `#${route_color}40`;
                         document.getElementById("lod_trolley").style.color = `#${route_text_color}`;
                         document.getElementById("lod_trolley").style.border = `1px solid #${route_color}`;
@@ -255,7 +263,7 @@
 
         function clearAllTrolley() {
             document.getElementById("list_of_departures_trolley").innerHTML = `
-                <li id="line_for_departure_trolley"><div id="lod_trolley">-</div> <span id="aor_trolley"></span> <span id="hod_trolley">(None)</span> <span id="depart_time_trolley">Enter a station by their station ID</span></li>
+                <li id="line_for_departure_trolley"><div id="lod_trolley" class="symbol_tagged">-</div> <span id="aor_trolley"></span> <span id="hod_trolley">(None)</span> <span id="depart_time_trolley">Enter a station by their station ID</span></li>
             `;
             document.getElementById("stationname_trolley").innerHTML = "---";
         }
