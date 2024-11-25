@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transcyclopedia Chicago: The Chicago "L"</title>
+    <title>Transcyclopedia Chicago: Chicago Water Taxi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
-    <link rel="stylesheet" href="css_assets/chicago_l.css">
+    <link rel="stylesheet" href="css_assets/chicagowatertaxi.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_scrollbars.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_responsiveness.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_lightdark.css">
     <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
-    <script src="js_assets/l_icon_matching.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
-        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia Chicago:<br> The Chicago "L"</h1>
+        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia Chicago:<br> Chicago Water Taxi</h1>
         <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
-        <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_thel')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About The Chicago "L"</a></li>
+        <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_chicagowatertaxi')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About The Chicago Water Taxi</a></li>
         <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
-        <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-train-subway"></i>&nbsp;&nbsp;Departures</a></li>
+        <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-ferry"></i>&nbsp;&nbsp;Departures</a></li>
         <li class="tablinks header4" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
         <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
         <li><a href="#" onclick="dark_or_light()"><span id="light_dark_transition"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</span></a></li>
@@ -30,15 +29,15 @@
         <p class="copyright">&copy; 2024 Transcyclopedia. Created by Dino Wun.</p>
     </ul>
     <div class="main">
-        <div class="window about_page" id="about_thel">
+        <div class="window about_page" id="about_chicagowatertaxi">
             <div class="info">
-                <p id="sectionheader">About The Chicago "L" <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-                <p id="desc">Loading...</p>
+                <p id="sectionheader">About Chicago Water Taxi <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+                <p id="desc">See <a href="https://en.wikipedia.org/wiki/Transportation_in_Chicago#Passenger_ferry_service">Transportation in Chicago, passenger ferry service.</a></p>
             </div>
             <div class="stats">
                 <div class="began_operation">
                     <h2>Began Operation</h2>
-                    <p><b>June 6, 1892</b></p>
+                    <p><b>1962</b></p>
                 </div>
                 <div class="no_of_lines">
                     <h2>Number of Lines:</h2>
@@ -55,57 +54,54 @@
         </div>
         <div class="window" id="lines">
             <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <div class="list_of_l_lines">
-                <ul id="each_l_line" class="lines">
-                    <li id="route_entity_l" class="flexer"><span id="route_name_l" class="styling_for_routes symbol_tagged">-</span>&nbsp;<span id="route_desc_l" class="all_desc_routes">Loading...</span> <span id="no_of_alerts_l"></span></li>
+            <div class="list_of_watertaxi_lines">
+                <ul id="each_watertaxi_line" class="lines">
+                    <li id="route_entity_watertaxi"><span id="route_name_watertaxi" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_watertaxi" class="all_desc_routes">Loading...</span></li>
                 </ul>
             </div>
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter_l" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgencyWithTheL(
+            <input type="text" placeholder="Search for a terminal..." id="terminalgetter_watertaxi" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgency(
                 null,
-                'list_of_departures_l',
-                `<li id='line_for_departure_l' class='lod_styling'><div id='lod_l' class='styling_for_routes symbol_tagged'><img src='img_assets/newly_updated_ltrain_icon.svg' style='width: 23px; height: 23px;' class='filtered-inverted'></div> <span id='aor_l'></span> <span id='hod_l' class='route_headsigns'>Loading...</span> <span id='depart_time_l' class='departure_times'>Please wait...</span></li>`,
-                'stationname_l',
-                'o-dp3-chicagotransitauthority',
-                'stationgetter_l',
-                'depart_time_l',
-                'lod_l',
-                'hod_l',
-                'line_for_departure_l',
-                1,
-                true,
-                'aor_l'
-            );">
-            <p class="headerforstop">Departures for: &nbsp; <span id="stationname_l">---</span></p>
-            <ul id="list_of_departures_l" class="scroller_departures individual_departure">
-                <li id="line_for_departure_l" class="lod_styling"><div id="lod_l" class="styling_for_routes symbol_tagged"><img src="img_assets/newly_updated_ltrain_icon.svg" style="width: 23px; height: 23px;" class="filtered-inverted"></div> <span id="aor_l"></span> <span id="hod_l" class="route_headsigns">(None)</span> <span id="depart_time_l" class="departure_times">Enter a station by their station ID</span></li>
+                'list_of_departures_watertaxi',
+                `<li id='line_for_departure_watertaxi' class='lod_styling'><div id='lod_watertaxi' class='styling_for_routes'>-</div> <span id='hod_watertaxi' class='route_headsigns'>Loading...</span> <span id='depart_time_watertaxi' class='departure_times'>Please wait...</span></li>`,
+                'terminalname_watertaxi',
+                'o-chicagowatertaxi~il~us',
+                'terminalgetter_watertaxi',
+                'depart_time_watertaxi',
+                'lod_watertaxi',
+                'hod_watertaxi',
+                'line_for_departure_watertaxi'
+            )">
+            <p class="headerforstop">Departures for: &nbsp; <span id="terminalname_watertaxi">---</span></p>
+            <ul id="list_of_departures_watertaxi" class="scroller_departures individual_departure">
+                <li id="line_for_departure_watertaxi" class="lod_styling"><div id="lod_watertaxi" class="styling_for_routes">-</div> <span id="hod_watertaxi" class="route_headsigns">(None)</span> <span id="depart_time_watertaxi" class="departure_times">Enter a terminal by their terminal ID</span></li>
             </ul>
-            <button id="clearall_l" class="all_clearalls" onclick="uniformalClearAlls(
-                'list_of_departures_l',
-                `<li id='line_for_departure_l' class='lod_styling'><div id='lod_l' class='styling_for_routes symbol_tagged'><img src='img_assets/newly_updated_ltrain_icon.svg' style='width: 23px; height: 23px;' class='filtered-inverted'></div> <span id='aor_l'></span> <span id='hod_l' class='route_headsigns'>(None)</span> <span id='depart_time_l' class='departure_times'>Enter a station by their station ID</span></li>`,
-                'stationname_l',
+            <button id="clearall_watertaxi" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_metra',
+                `<li id='line_for_departure_metra' class='lod_styling'><div id='lod_metra' class='styling_for_routes'>-</div> <span id='hod_metra' class='route_headsigns'>(None)</span> <span id='depart_time_metra' class='departure_times'>Enter a terminal by their terminal ID</span></li>`,
+                'terminalname_metra',
             )">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <div id="l_lines_alerts" class="alert_entity_single">
-                <p id="l_alert_entity">Loading...</p>
+            <div id="watertaxi_lines_alerts" class="alert_entity_single">
+                <p id="watertaxi_alert_entity">Loading...</p>
             </div>
         </div>
         <div class="window" id="map_inter">
             <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <div id="map"></div>
             <ul id="range_of_routes">
-                <li id="rir" class="route_radius flexer"><span id="route_name_rad" class="styling_for_routes symbol_tagged"><img src="img_assets/newly_updated_ltrain_icon.svg" style="width: 23px; height: 23px;" class="filtered-inverted"></span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
+                <li id="rir" class="route_radius flexer"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Drag the map to filter nearby routes.</span></li>
             </ul>
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
     <script>
         // Base Map
-        mapConfiguration(-87.6697 ,41.8608, 10);
+        mapConfiguration(-87.6307, 41.87302, 13);
 
         // Utilities
         var v = null;
@@ -160,17 +156,16 @@
         getCopyrightYear();
 
         // Information
-        getWikipediaForAnAgency(`Chicago_"L"`);
-        getContactsForAnAgency("o-dp3-chicagotransitauthority");
+        getContactsForAnAgency("o-chicagowatertaxi~il~us");
 
         // Lines
-        getLinesFromAnAgencyWithinARouteTypeL("o-dp3-chicagotransitauthority", 1, "nooflines", "route_name_l", "route_desc_l", "route_entity_l", "each_l_line", true, "no_of_alerts_l");
+        getLinesFromAnAgency("o-chicagowatertaxi~il~us", "route_name_watertaxi", "route_desc_watertaxi", "route_entity_watertaxi", "each_watertaxi_line");
 
         // Alerts
-        loadRouteAlertsWithinTheL("o-dp3-chicagotransitauthority", "l_alert_entity", "l_lines_alerts");
+        loadAlertsWithinAnAgency("o-chicagowatertaxi~il~us", "watertaxi_alert_entity", "watertaxi_lines_alerts");
 
-        // Map Functionality
-        plotLinesWithMultipleModesFromTheL("o-dp3-chicagotransitauthority");
+        // Map
+        plotLinesFromAnAgency("o-chicagowatertaxi~il~us", 4)
     </script>
 </body>
 </html>

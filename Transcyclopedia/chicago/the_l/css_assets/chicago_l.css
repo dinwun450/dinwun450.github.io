@@ -1,0 +1,54 @@
+body::before {
+    background-image: linear-gradient(#333333, #dedede);
+}
+
+body::after {
+    background-image: linear-gradient(#dedede, #333333);
+}
+
+.left_navbar li.active {
+    background-color: #33333398;
+}
+
+.left_navbar li:hover:not(.active, .x) {
+    background-color: #33333398;
+    transition: 0.5s;
+}
+
+.info {
+    overflow-y: auto;
+}
+
+.info #desc a {
+    color: #5665a3;
+    outline: none;
+}
+
+.lines {
+    padding: 10px;
+}
+
+.symbol_tagged {
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+img.filtered-inverted {
+    filter: invert(1);
+}
+
+.all_desc_routes {
+    width: fit-content;
+    margin-left: 10px;
+}
+
+#hod_l {
+    left: 0;
+}
+
+#l_alert_entity {
+    padding: 10px;
+}

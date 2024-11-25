@@ -68,10 +68,10 @@ function changeSwitch(c) {
             break;
         case "chicago":
             document.querySelector(".optionsfortransit").innerHTML = `
-            <li><a href="#"><img src="img_assets/chicago_l.png" style="width: 70px; height: auto; position: relative; bottom: 25px;"></a></li>
-            <li><a href="#"><img src="img_assets/metra_logo.svg.png" style="width: 70px; height: auto; position: relative; top: 3px;"></a></li>
-            <li><a href="#" id="ferry"><i class="fa-solid fa-ferry" style="font-size: 35px;"></i></a></li>
-            <li><a href="#" id="bus"><i class="fa-solid fa-bus" style="font-size: 35px;"></i></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/chicago/the_l/chicago_l.html"><img src="img_assets/chicago_l.png" style="width: 70px; height: auto; position: relative; bottom: 25px;"></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/chicago/metra/metra.html"><img src="img_assets/metra_logo.svg.png" style="width: 70px; height: auto; position: relative; top: 3px;"></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/chicago/chicagowatertaxi/chicagowatertaxi.html" id="ferry"><i class="fa-solid fa-ferry" style="font-size: 35px;"></i></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/chicago/chicagobuses/chicagobuses.html" id="bus"><i class="fa-solid fa-bus" style="font-size: 35px;"></i></a></li>
             `
             break;
         case "ny":
