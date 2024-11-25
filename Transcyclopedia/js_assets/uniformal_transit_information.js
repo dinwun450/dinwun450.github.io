@@ -544,7 +544,7 @@ function plotLinesFromAnAgency(onestop_id, ins_singular_route_type) {
                         var color_of_route = uniqueFeatures[f].properties.route_color;
                         var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
 
-                        if (name_of_route === null) {
+                        if (name_of_route === undefined) {
                             document.getElementById("route_name_rad").innerHTML = `&nbsp;&nbsp;&nbsp;`;
                         } else {
                             document.getElementById("route_name_rad").innerHTML = name_of_route;
@@ -794,7 +794,7 @@ function plotLinesWithMultipleModesFromAnAgency(onestop_id, ins_type_one, ins_ty
                         var color_of_route = uniqueFeatures[f].properties.route_color;
                         var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
 
-                        if (name_of_route === null) {
+                        if (name_of_route === undefined) {
                             document.getElementById("route_name_rad").innerHTML = `&nbsp;&nbsp;&nbsp;`;
                         } else {
                             document.getElementById("route_name_rad").innerHTML = name_of_route;
