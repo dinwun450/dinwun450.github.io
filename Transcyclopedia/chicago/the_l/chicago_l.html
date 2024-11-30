@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_lightdark.css">
     <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
     <script src="js_assets/l_icon_matching.js"></script>
+    <script src="js_assets/l_statuses_and_alerts.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -23,6 +24,7 @@
         <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_thel')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About The Chicago "L"</a></li>
         <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
         <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-train-subway"></i>&nbsp;&nbsp;Departures</a></li>
+        <li class="tablinks header3" onclick="openTab(event, 'statuses')"><a href="#"><i class="fa-solid fa-signal"></i>&nbsp;&nbsp;"L" Status</a></li>
         <li class="tablinks header4" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
         <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
         <li><a href="#" onclick="dark_or_light()"><span id="light_dark_transition"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</span></a></li>
@@ -87,6 +89,23 @@
                 `<li id='line_for_departure_l' class='lod_styling'><div id='lod_l' class='styling_for_routes symbol_tagged'><img src='img_assets/newly_updated_ltrain_icon.svg' style='width: 23px; height: 23px;' class='filtered-inverted'></div> <span id='aor_l'></span> <span id='hod_l' class='route_headsigns'>(None)</span> <span id='depart_time_l' class='departure_times'>Enter a station by their station ID</span></li>`,
                 'stationname_l',
             )">Clear</button>
+        </div>
+        <div class="window" id="statuses">
+            <p id="sectionheader">"L" Status <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <table id="table_of_l_statuses">
+                <thead>
+                    <tr>
+                        <th>Route</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="body_of_l_line_statuses">
+                    <tr id="each_l_line_status">
+                        <td id="route_name_status" class="flexer"><div id="route_status_of_l" class="styling_for_routes symbol_tagged"><img src="img_assets/newly_updated_ltrain_icon.svg" style="width: 23px; height: 23px;" class="filtered-inverted"></div> <div id="route_status_desc" class="all_desc_routes">Loading...</div></td>
+                        <td id="route_status">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>

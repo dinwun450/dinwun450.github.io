@@ -52,3 +52,28 @@ img.filtered-inverted {
 #l_alert_entity {
     padding: 10px;
 }
+
+#table_of_l_statuses {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin-top: 10px;
+}
+
+#table_of_l_statuses th {
+    background: #33333340;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+#table_of_l_statuses td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
