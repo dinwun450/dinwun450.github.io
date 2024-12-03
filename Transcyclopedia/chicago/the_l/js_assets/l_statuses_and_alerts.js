@@ -1,10 +1,11 @@
 function getLStatus() {
     var l_status_caller = new XMLHttpRequest();
-    const url = 'https://corsproxy.io/?' + encodeURIComponent('https://www.transitchicago.com/api/1.0/routes.aspx?type=rail&outputType=JSON');
+    const url = `https://api.allorigins.win/get?url=${encodeURIComponent('https://www.transitchicago.com/api/1.0/routes.aspx?type=rail&outputType=JSON')}`;
     l_status_caller.open("GET", url, true);
     l_status_caller.onreadystatechange = function() {
         if (l_status_caller.readyState === 4 && l_status_caller.status === 200) {
-            var l_status_data = JSON.parse(l_status_caller.responseText).CTARoutes.RouteInfo;
+            var l_status_data_p1 = JSON.parse(l_status_caller.responseText);
+            var l_status_data = JSON.parse(l_status_data_p1.contents).CTARoutes.RouteInfo;
             for (var i = 0; i < l_status_data.length; i++) {
                 var l_status = l_status_data[i].RouteStatus;
                 var l_status_color = l_status_data[i].RouteStatusColor;
