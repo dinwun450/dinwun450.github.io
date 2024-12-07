@@ -1,0 +1,42 @@
+body::before {
+    background-image: linear-gradient(#0039a6, #dedede);
+}
+
+body::after {
+    background-image: linear-gradient(#dedede, #0039a6);
+}
+
+.left_navbar li.active {
+    background-color: #0039a698;
+}
+
+.left_navbar li:hover:not(.active, .x) {
+    background-color: #0039a698;
+    transition: 0.5s;
+}
+
+.info {
+    overflow-y: auto;
+}
+
+.info #desc a {
+    color: #0039a6;
+    outline: none;
+}
+
+.lines {
+    padding: 10px;
+}
+
+.all_desc_routes {
+    width: fit-content;
+    margin-left: 10px;
+}
+
+#hod_nycsubway {
+    left: 0;
+}
+
+#nycsubway_alert_entity {
+    padding: 10px;
+}
