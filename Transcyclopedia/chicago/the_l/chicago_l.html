@@ -109,8 +109,10 @@
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <div id="l_lines_alerts" class="alert_entity_single">
-                <p id="l_alert_entity">Loading...</p>
+            <div id="all_l_alerts">
+                <div id="l_lines_alerts" class="alert_entity_single">
+                    <p id="l_alert_entity">Loading...</p>
+                </div>
             </div>
         </div>
         <div class="window" id="map_inter">
@@ -184,9 +186,6 @@
 
         // Lines
         getLinesFromAnAgencyWithinARouteTypeL("o-dp3-chicagotransitauthority", 1, "nooflines", "route_name_l", "route_desc_l", "route_entity_l", "each_l_line", true, "no_of_alerts_l");
-
-        // Alerts
-        loadRouteAlertsWithinTheL("o-dp3-chicagotransitauthority", "l_alert_entity", "l_lines_alerts");
 
         // Map Functionality
         plotLinesWithMultipleModesFromTheL("o-dp3-chicagotransitauthority");
