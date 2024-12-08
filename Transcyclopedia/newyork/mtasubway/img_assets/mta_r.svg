@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="250px"
+   height="250px"
+   viewBox="0 0 125 125"
+   version="1.1"
+   id="svg5440"
+   sodipodi:docname="mta_r.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata5446">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs5444" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     id="namedview5442"
+     showgrid="false"
+     inkscape:zoom="2.6700352"
+     inkscape:cx="85.513705"
+     inkscape:cy="105.78242"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5440" />
+  <title
+     id="title5434">NYCS Bullet, Standard Set - R Local</title>
+  <path
+     style="fill:#000000;stroke-width:2"
+     d="M 125 25 A 100 100 0 0 0 25 125 A 100 100 0 0 0 125 225 A 100 100 0 0 0 225 125 A 100 100 0 0 0 125 25 z M 91.400391 73.800781 L 133.40039 73.800781 C 143.93439 73.800781 152.26639 76.634781 158.40039 82.300781 C 164.53439 87.966781 167.59961 95.334391 167.59961 104.40039 C 167.59961 114.00039 164.79922 121.59922 159.19922 127.19922 C 156.53322 129.86522 152.8 132.19922 148 134.19922 L 170.40039 174.59961 L 147.59961 174.59961 L 128.19922 137.80078 L 111.19922 137.80078 L 111.19922 174.59961 L 91.400391 174.59961 L 91.400391 73.800781 z M 111.19922 91.400391 L 111.19922 120.40039 L 131 120.40039 C 135.8 120.40039 139.66561 119.06639 142.59961 116.40039 C 145.53361 113.73439 147 110.20078 147 105.80078 C 147 96.200781 140.73322 91.400391 128.19922 91.400391 L 111.19922 91.400391 z "
+     transform="scale(0.5)"
+     id="circle5436" />
+</svg>

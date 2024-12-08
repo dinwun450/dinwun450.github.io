@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="250px"
+   height="250px"
+   viewBox="0 0 125 125"
+   version="1.1"
+   id="svg3152"
+   sodipodi:docname="mta_j.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata3158">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3156" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     id="namedview3154"
+     showgrid="false"
+     inkscape:zoom="0.944"
+     inkscape:cx="126.58898"
+     inkscape:cy="125"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3152" />
+  <title
+     id="title3146">NYCS Bullet, Standard Set - J Local</title>
+  <path
+     style="fill:#ffffff;stroke-width:2"
+     d="M 125 25 A 100 100 0 0 0 25 125 A 100 100 0 0 0 125 225 A 100 100 0 0 0 225 125 A 100 100 0 0 0 125 25 z M 134.40039 74 L 154 74 L 154 142.19922 C 154 152.86522 152.06522 160.93439 148.19922 166.40039 C 142.73322 173.73439 133.334 177.40039 120 177.40039 C 109.6 177.40039 101.73439 174.20078 96.400391 167.80078 C 91.600391 162.20078 89.199219 154.46561 89.199219 144.59961 L 89.199219 138.40039 L 108.80078 138.40039 L 108.80078 144.40039 C 108.80078 150.13439 109.7 154.10078 111.5 156.30078 C 113.3 158.50078 116.60039 159.59961 121.40039 159.59961 C 126.46639 159.59961 129.89922 158.4 131.69922 156 C 133.49922 153.6 134.40039 149.266 134.40039 143 L 134.40039 74 z "
+     transform="scale(0.5)"
+     id="circle3148" />
+</svg>
