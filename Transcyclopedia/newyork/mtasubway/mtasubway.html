@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/mtasubway.css">
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
+    <script src="js_assets/mtasubway_icon_matching.js"></script>
+    <script src="js_assets/mtasubway_alerts.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -58,17 +61,66 @@
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." id="stationgetter_nycsubway" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a station..." id="stationgetter_nycsubway" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromMTASubway(
+                null,
+                'list_of_departures_nycsubway',
+                `<li id='line_for_departure_nycsubway' class='lod_styling'><div id='lod_nycsubway' class='styling_for_routes symbol_tagged'>-</div> <span id='aor_nyc_subway'></span> <span id='hod_nycsubway' class='route_headsigns'>Loading...</span><span id='depart_time_nycsubway' class='departure_times'>Please wait...</span></li>`,
+                'stationname_nycsubway',
+                'o-dr5r-nyct',
+                'stationgetter_nycsubway',
+                'depart_time_nycsubway',
+                'lod_nycsubway',
+                'hod_nycsubway',
+                'line_for_departure_nycsubway',
+                1,
+                true,
+                'aor_nyc_subway'
+            );">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_nycsubway">---</span></p>
             <ul id="list_of_departures_nycsubway" class="scroller_departures individual_departure">
                 <li id="line_for_departure_nycsubway" class="lod_styling"><div id="lod_nycsubway" class="styling_for_routes symbol_tagged">-</div> <span id="aor_nyc_subway"></span> <span id="hod_nycsubway" class="route_headsigns">(None)</span><span id="depart_time_nycsubway" class="departure_times">Enter a station by their station ID</span></li>
             </ul>
-            <button id="clearall_nycsubway" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_nycsubway" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_nycsubway',
+                `<li id='line_for_departure_nycsubway' class='lod_styling'><div id='lod_nycsubway' class='styling_for_routes symbol_tagged'>-</div> <span id='aor_nyc_subway'></span> <span id='hod_nycsubway' class='route_headsigns'>(None)</span><span id='depart_time_nycsubway' class='departure_times'>Enter a station by their station ID</span></li>`,
+                'stationname_nycsubway'
+            );">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <div id="nycsubway_lines_alerts" class="alert_entity_single">
-                <p id="nycsubway_alert_entity">Loading...</p>
+            <select name="" id="mtasubway_alerts" class="dropdown_uniforms" onchange="changeMTASubwayRoutes(value);">
+                <option value="prompt">Select MTA Subway Route</option>
+                <option value="1">1: Broadway - 7 Avenue Local</option>
+                <option value="2">2: 7 Avenue Express</option>
+                <option value="3">3: 7 Avenue Express</option>
+                <option value="4">4: Lexington Avenue Express</option>
+                <option value="5">5: Lexington Avenue Express</option>
+                <option value="6">6: Lexington Avenue Local</option>
+                <option value="6X">6X: Lexington Avenue Express</option>
+                <option value="7">7: Flushing Local</option>
+                <option value="7X">7X: Flushing Express</option>
+                <option value="A">A: 8 Avenue Express</option>
+                <option value="B">B: 6 Avenue Express</option>
+                <option value="C">C: 8 Avenue Local</option>
+                <option value="D">D: 6 Avenue Express</option>
+                <option value="E">E: 8 Avenue Local</option>
+                <option value="F">F: 6 Avenue Local</option>
+                <option value="FX">FX: 6 Avenue Express</option>
+                <option value="G">G: Brooklyn-Queens Crosstown</option>
+                <option value="J">J: Nassau Street Local</option>
+                <option value="L">L: 14 Street-Canarsie Local</option>
+                <option value="M">M: Queens Blvd Local/6 Av Local</option>
+                <option value="N">N: Broadway Local</option>
+                <option value="Q">Q: Broadway Express</option>
+                <option value="R">R: Broadway Local</option>
+                <option value="GS">GS: Rockaway Park Shuttle</option>
+                <option value="FS">FS: Franklin Avenue Shuttle</option>
+                <option value="H">S: 42 St Shuttle</option>
+                <option value="W">W: Broadway Local</option>
+                <option value="Z">Z: Nassau Street Express</option>
+            </select>
+            <div id="nycsubway_lines_alerts">
+                <div id="nycsubway_alert_entity" class="alert_entity_single">Select a NYC Subway Line to see alerts.</div>
             </div>
         </div>
         <div class="window" id="map_inter">
@@ -81,6 +133,8 @@
         </div>
     </div>
     <script>
+        // Map Configuration
+        mapConfiguration(-74.0105, 40.7327, 9);
         // Utilities
         var v = null;
 
@@ -132,6 +186,16 @@
             document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
         }
         getCopyrightYear();
+
+        // Information
+        getWikipediaForAnAgency("New_York_City_Subway");
+        getContactsForAnAgency("o-dr5r-nyct");
+
+        // Lines
+        getLinesFromMTASubway("o-dr5r-nyct", 1, "nooflines", "route_name_nycsubway", "route_desc_nycsubway", "route_entity_nycsubway", "each_nycsubway_line", true, "no_of_alerts_nycsubway");
+
+        // Map Functionality
+        plotLinesFromMTASubway("o-dr5r-nyct");
     </script>
 </body>
 </html>
