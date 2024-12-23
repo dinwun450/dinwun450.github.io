@@ -65,3 +65,7 @@ body::after {
 .filtered-inverted {
     filter: invert(1);
 }
+
+#nycsubway_alert_entity ul {
+    margin-left: 20px;
+}

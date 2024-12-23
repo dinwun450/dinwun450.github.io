@@ -199,8 +199,8 @@ function getMTASubwayAlertsWithALine(insRouteOnestopID) {
                     var mtasubway_alert_header = string_and_image_concatenator(mtasubway_alerts_output[i].header_text[0].text);
                     var description_text = mtasubway_alerts_output[i].description_text;
                     if (description_text.length !== 0) {
-                        console.log(description_text[0].text);
-                        description_text = description_text[0].text;
+                        console.log(description_text[1].text);
+                        description_text = description_text[1].text;
                     }
                     document.getElementById("nycsubway_alert_entity").innerHTML = `<b>${mtasubway_alert_header}</b> <br> ${description_text}`;
 
