@@ -54,7 +54,7 @@ body::after {
 
 #nycsubway_alert_entity img {
     position: relative;
-    top: 2px;
+    top: 5px;
 }
 
 #spacer_of_lines {

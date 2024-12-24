@@ -49,16 +49,7 @@ function string_and_image_concatenator(string_text) {
                 const result = word.split(/\]\[/);
                 var list_in = "";
                 for (var c=0; c<result.length; c++) {
-                    is_nqrw = result[c].replace(/[^a-zA-Z0-9 ]/g, "");
-                    console.log(is_nqrw === "N" || is_nqrw === "Q" || is_nqrw === "R" || is_nqrw === "W");
-
-                    if (is_nqrw === "N" || is_nqrw === "Q" || is_nqrw === "R" || is_nqrw === "W") {
-                        new_one = "<img src='" + list_of_mta_subway_lines_to_match_per_alerts["[" + result[c].replace(/[^a-zA-Z0-9 ]/g, "") + "]"] + "' style='width: 20px; height: 20px;' class='filtered-inverted'>";
-                        console.log("NQRW found.");
-                    }
-                    else {
-                        new_one = "<img src='" + list_of_mta_subway_lines_to_match_per_alerts["[" + result[c].replace(/[^a-zA-Z0-9 ]/g, "") + "]"] + "' style='width: 20px; height: 20px;'>";
-                    }
+                    new_one = "<img src='" + list_of_mta_subway_lines_to_match_per_alerts["[" + result[c].replace(/[^a-zA-Z0-9 ]/g, "") + "]"] + "' style='width: 20px; height: 20px;'>";
                     // new_one = "<img src='" + list_of_mta_subway_lines_to_match["[" + result[c].replace(/[^a-zA-Z0-9 ]/g, "") + "]"] + "' style='width: 20px; height: 20px;'>";
                     list_in += new_one;
                 }
@@ -200,7 +191,9 @@ function getMTASubwayAlertsWithALine(insRouteOnestopID) {
                     var description_text = mtasubway_alerts_output[i].description_text;
                     if (description_text.length !== 0) {
                         console.log(description_text[1].text);
-                        description_text = description_text[1].text;
+                        description_text = description_text[1].text.replace(/\[([A-Z0-9]+)\]/g, function(match, p1) {
+                            return `<img src="${list_of_mta_subway_lines_to_match_per_alerts["[" + p1 + "]"]}" width="20px" height="20px">`;
+                        }).replaceAll("[accessibility icon]", `<i class="fa-solid fa-wheelchair"></i>`).replaceAll("[shuttle bus icon]", "<i class='fas fa-bus bus'></i>");
                     }
                     document.getElementById("nycsubway_alert_entity").innerHTML = `<b>${mtasubway_alert_header}</b> <br> ${description_text}`;
 
