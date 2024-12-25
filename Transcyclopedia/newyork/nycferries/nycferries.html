@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
+    <link rel="stylesheet" href="css_assets/nycferries.css">
 </head>
 <body>
     <ul class="left_navbar">
@@ -14,7 +17,7 @@
         <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
         <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_nycferries')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About NYC Ferries</a></li>
         <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
-        <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-train-subway"></i>&nbsp;&nbsp;Departures</a></li>
+        <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-ferry"></i>&nbsp;&nbsp;Departures</a></li>
         <li class="tablinks header4" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
         <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
         <li><a href="#" onclick="dark_or_light()"><span id="light_dark_transition"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</span></a></li>
@@ -23,81 +26,136 @@
     </ul>
     <div class="main">
         <div class="window about_page" id="about_nycferries">
-            <p id="sectionheader">About NYC Ferries <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="nyc_ferry_info" class="dropdown_uniforms dropdown_for_info" onchange="">
+            <div class="info infowithdropdowns">
+                <p id="sectionheader">About NYC Ferries <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+                <select name="" id="nyc_ferry_info" class="dropdown_uniforms dropdown_for_info" onchange="">
+                    <option value="prompt">Select NYC Ferry Agency</option>
+                    <option value="nycferry">NYC Ferry</option>
+                    <option value="statenislandferry">Staten Island Ferry</option>
+                </select>
+                <p id="desc">Select a NYC Ferry Agency.</p>
+            </div>
+            <div class="stats">
+                <div class="began_operation">
+                    <h2>Founded:</h2>
+                    <p><b id="foundingdate">-</b></p>
+                </div>
+                <div class="no_of_lines">
+                    <h2>Number of Lines:</h2>
+                    <p><b id="nooflines">-</b></p>
+                </div>
+                <div class="contact">
+                    <h2>Contact</h2>
+                    <ul>
+                        <li><p><b id="email_agency">-</b> (Email)</p></li>
+                        <li><p><b id="phone_agency">-</b> (Phone)</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="window" id="lines">
+            <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="nyc_ferry_lines" class="dropdown_uniforms" onchange="">
                 <option value="prompt">Select NYC Ferry Agency</option>
                 <option value="nycferry">NYC Ferry</option>
                 <option value="statenislandferry">Staten Island Ferry</option>
             </select>
-            <p id="desc">Select a NYC Ferry Agency.</p>
-        </div>
-        <div class="stats">
-            <div class="began_operation">
-                <h2>Founded:</h2>
-                <p><b id="foundingdate">-</b></p>
-            </div>
-            <div class="no_of_lines">
-                <h2>Number of Lines:</h2>
-                <p><b id="nooflines">-</b></p>
-            </div>
-            <div class="contact">
-                <h2>Contact</h2>
-                <ul>
-                    <li><p><b id="email_agency">-</b> (Email)</p></li>
-                    <li><p><b id="phone_agency">-</b> (Phone)</p></li>
+            <div class="all_nyc_ferry_lines">
+                <ul id="list_of_nyc_ferry_lines" class="lines">
+                    <li id="nycferry_route_entity"><span id="route_name_nycferry" class="styling_for_routes"><i class="fa-solid fa-ferry"></i></span>&nbsp;<span id="route_desc_nycferry" class="all_desc_routes">Select a NYC ferry Agency.</span></li>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="window" id="lines">
-        <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-        <select name="" id="nyc_ferry_lines" class="dropdown_uniforms" onchange="">
-            <option value="prompt">Select NYC Ferry Agency</option>
-            <option value="nycferry">NYC Ferry</option>
-            <option value="statenislandferry">Staten Island Ferry</option>
-        </select>
-        <div class="all_nyc_ferry_lines">
-            <ul id="list_of_nyc_ferry_lines" class="lines">
-                <li id="nycferry_route_entity"><span id="route_name_nycferry" class="styling_for_routes"><i class="fa-solid fa-ferry"></i></span>&nbsp;<span id="route_desc_nycferry" class="all_desc_routes">Select a NYC ferry Agency.</span></li>
+        <div class="window" id="departures">
+            <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a terminal..." class="searchbars" id="terminalgetter_nycferry" autocomplete="off">
+            <select name="" id="nyc_ferry_departures" class="dropdown_uniforms" onchange="">
+                <option value="prompt">Select NYC Ferry Agency</option>
+                <option value="nycferry">NYC Ferry</option>
+                <option value="statenislandferry">Staten Island Ferry</option>
+            </select>
+            <p class="headerforstop">Departures for &nbsp; <span id="terminalname_nycferry">---</span></p>
+            <ul id="list_of_nycferry_departures" class="individual_departure">
+                <li id="line_for_departure_nycferry" class="lod_styling"><div id="lod_nycferry" class="styling_for_routes"><i class="fa-solid fa-ferry"></i></div> <span id="hod_nycferry" class="route_headsigns">(None)</span> <span id="depart_time_nycferry" class="departure_times">Enter a terminal by their terminal ID, then select a NYC ferry agency</span></li>
             </ul>
         </div>
-    </div>
-    <div class="window" id="departures">
-        <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-        <input type="text" placeholder="Search for a terminal..." class="searchbars" id="terminalgetter_nycferry" autocomplete="off">
-        <select name="" id="nyc_ferry_departures" class="dropdown_uniforms" onchange="">
-            <option value="prompt">Select NYC Ferry Agency</option>
-            <option value="nycferry">NYC Ferry</option>
-            <option value="statenislandferry">Staten Island Ferry</option>
-        </select>
-        <p id="headerforstop">Departures for &nbsp; <span id="terminalname_nycferry">---</span></p>
-        <ul id="list_of_nycferry_departures" class="individual_departure">
-            <li id="line_for_departure_nycferry" class="lod_styling"><div id="lod_nycferry" class="styling_for_routes"><i class="fa-solid fa-ferry"></i></div> <span id="hod_nycferry" class="route_headsigns">(None)</span> <span id="depart_time_nycferry" class="departure_times">Enter a terminal by their terminal ID, then select a NYC ferry agency</span></li>
-        </ul>
-    </div>
-    <div class="window" id="alerts">
-        <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-        <select name="" id="nyc_ferry_alerts" class="dropdown_uniforms" onchange="">
-            <option value="prompt">Select NYC Ferry Agency</option>
-            <option value="nycferry">NYC Ferry</option>
-            <option value="statenislandferry">Staten Island Ferry</option>
-        </select>
-        <div id="nycferry_lines_alerts" class="alert_entity_single">
-            <p id="nycferry_alert_entity">Select a NYC ferry agency on the top.</p>
+        <div class="window" id="alerts">
+            <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="nyc_ferry_alerts" class="dropdown_uniforms" onchange="">
+                <option value="prompt">Select NYC Ferry Agency</option>
+                <option value="nycferry">NYC Ferry</option>
+                <option value="statenislandferry">Staten Island Ferry</option>
+            </select>
+            <div id="nycferry_lines_alerts" class="alert_entity_single">
+                <p id="nycferry_alert_entity">Select a NYC ferry agency on the top.</p>
+            </div>
+        </div>
+        <div class="window" id="map_inter">
+            <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="nyc_ferry_map" class="dropdown_uniforms" onchange="">
+                <option value="prompt">Select NYC Ferry Agency</option>
+                <option value="nycferry">NYC Ferry</option>
+                <option value="statenislandferry">Staten Island Ferry</option>
+            </select>
+            <div id="map"></div>
+            <ul id="range_of_routes">
+                <li id="rir" class="route_radius flexer"><span id="route_name_rad" class="styling_for_routes"><i class="fa-solid fa-ferry"></i></span> <span id="route_detail_rad">Select a ferry agency above, then drag the map to filter nearby routes.</span></li>
+            </ul>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
-    <div class="window" id="map_inter">
-        <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-        <select name="" id="nyc_ferry_map" class="dropdown_uniforms" onchange="">
-            <option value="prompt">Select NYC Ferry Agency</option>
-            <option value="nycferry">NYC Ferry</option>
-            <option value="statenislandferry">Staten Island Ferry</option>
-        </select>
-        <div id="map"></div>
-        <ul id="range_of_routes">
-            <li id="rir" class="route_radius flexer"><span id="route_name_rad" class="styling_for_routes"><i class="fa-solid fa-ferry"></i></span> <span id="route_detail_rad">Select a ferry agency above, then drag the map to filter nearby routes.</span></li>
-        </ul>
-        <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
-    </div>
+    <script>
+        // Utilities
+        var v = null;
+
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
+            }
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("window");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("defaulttab").click();
+
+        function openNav() {
+            document.querySelector(".left_navbar").style.display = "block";
+        }
+
+        function closeNav() {
+            document.querySelector(".left_navbar").style.display = "none";
+            console.log(document.querySelector(".left_navbar").getAttribute("style"));
+        }
+
+        function dark_or_light() {
+            var element = document.body;
+            var light_or_dark = element.classList.toggle("light_mode");
+            document.getElementById("light_dark_transition").innerHTML = light_or_dark ? `<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</a></span>` : `<i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</a></span>`;
+        }
+
+        function getCopyrightYear() {
+            var date = new Date();
+            var getYearNo = date.getFullYear();
+            document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
+        }
+        getCopyrightYear();
+    </script>
 </body>
 </html>
