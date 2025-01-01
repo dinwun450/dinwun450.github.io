@@ -17,6 +17,7 @@ body::after {
 
 .info {
     padding-right: 20px;
+    overflow: auto;
 }
 
 .info #desc a {

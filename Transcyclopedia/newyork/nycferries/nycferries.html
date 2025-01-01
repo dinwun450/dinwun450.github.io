@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/nycferries.css">
+    <script src="js_assets/nycferries_info.js"></script>
+    <script src="js_assets/nycferries_lines.js"></script>
+    <script src="js_assets/nycferries_departures.js"></script>
+    <script src="js_assets/nycferries_alerts.js"></script>
+    <script src="js_assets/nycferries_map.js"></script>
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -28,10 +34,11 @@
         <div class="window about_page" id="about_nycferries">
             <div class="info infowithdropdowns">
                 <p id="sectionheader">About NYC Ferries <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-                <select name="" id="nyc_ferry_info" class="dropdown_uniforms dropdown_for_info" onchange="">
+                <select name="" id="nyc_ferry_info" class="dropdown_uniforms dropdown_for_info" onchange="changeNYCFerryAgency(value);">
                     <option value="prompt">Select NYC Ferry Agency</option>
                     <option value="nycferry">NYC Ferry</option>
                     <option value="statenislandferry">Staten Island Ferry</option>
+                    <option value="nywaterway">NY Waterway</option>
                 </select>
                 <p id="desc">Select a NYC Ferry Agency.</p>
             </div>
@@ -55,10 +62,11 @@
         </div>
         <div class="window" id="lines">
             <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="nyc_ferry_lines" class="dropdown_uniforms" onchange="">
+            <select name="" id="nyc_ferry_lines" class="dropdown_uniforms" onchange="changeNYCFerryLines(value);">
                 <option value="prompt">Select NYC Ferry Agency</option>
                 <option value="nycferry">NYC Ferry</option>
                 <option value="statenislandferry">Staten Island Ferry</option>
+                <option value="nywaterway">NY Waterway</option>
             </select>
             <div class="all_nyc_ferry_lines">
                 <ul id="list_of_nyc_ferry_lines" class="lines">
@@ -69,10 +77,11 @@
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a terminal..." class="searchbars" id="terminalgetter_nycferry" autocomplete="off">
-            <select name="" id="nyc_ferry_departures" class="dropdown_uniforms" onchange="">
+            <select name="" id="nyc_ferry_departures" class="dropdown_uniforms" onchange="changeNYCFerryDepartures(value);">
                 <option value="prompt">Select NYC Ferry Agency</option>
                 <option value="nycferry">NYC Ferry</option>
                 <option value="statenislandferry">Staten Island Ferry</option>
+                <option value="nywaterway">NY Waterway</option>
             </select>
             <p class="headerforstop">Departures for &nbsp; <span id="terminalname_nycferry">---</span></p>
             <ul id="list_of_nycferry_departures" class="individual_departure">
@@ -81,10 +90,11 @@
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="nyc_ferry_alerts" class="dropdown_uniforms" onchange="">
+            <select name="" id="nyc_ferry_alerts" class="dropdown_uniforms" onchange="changeNYCFerryAlerts(value);">
                 <option value="prompt">Select NYC Ferry Agency</option>
                 <option value="nycferry">NYC Ferry</option>
                 <option value="statenislandferry">Staten Island Ferry</option>
+                <option value="nywaterway">NY Waterway</option>
             </select>
             <div id="nycferry_lines_alerts" class="alert_entity_single">
                 <p id="nycferry_alert_entity">Select a NYC ferry agency on the top.</p>
@@ -92,10 +102,11 @@
         </div>
         <div class="window" id="map_inter">
             <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="nyc_ferry_map" class="dropdown_uniforms" onchange="">
+            <select name="" id="nyc_ferry_map" class="dropdown_uniforms" onchange="changeNYCFerryMap(value);">
                 <option value="prompt">Select NYC Ferry Agency</option>
                 <option value="nycferry">NYC Ferry</option>
                 <option value="statenislandferry">Staten Island Ferry</option>
+                <option value="nywaterway">NY Waterway</option>
             </select>
             <div id="map"></div>
             <ul id="range_of_routes">
@@ -105,6 +116,8 @@
         </div>
     </div>
     <script>
+        // Map Configuration
+        mapConfiguration(-74.016, 40.6184, 9);
         // Utilities
         var v = null;
 
@@ -156,6 +169,78 @@
             document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
         }
         getCopyrightYear();
+
+        // Map Functionality
+        function getUniqueFeatures(features, comparatorProperty) {
+            const uniqueIds = new Set();
+            const uniqueFeatures = [];
+            for (const feature of features) {
+                const id = feature.properties[comparatorProperty];
+                if (!uniqueIds.has(id)) {
+                    uniqueIds.add(id);
+                    uniqueFeatures.push(feature);
+                }
+            }
+            return uniqueFeatures;
+        }
+
+        function moveMap() {
+            if (map.getLayer("nycferries_route_layer")) {
+                map.removeLayer("nycferries_route_layer");
+            }
+            
+            map.on('movestart', () => {
+                if (map.getLayer("nycferries_route_layer")) {
+                    map.setFilter("nycferries_route_layer", ['has', 'route_id']);
+                    document.getElementById("range_of_routes").innerHTML = `<li id="rir" class="route_radius flexer"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Loading...</span></li>`;
+                }
+            });
+
+            map.on('moveend', () => {
+                if (map.getLayer("nycferries_route_layer")) {
+                    const features = map.queryRenderedFeatures({layers: ['nycferries_route_layer']});
+
+                    if (features) {
+                        const uniqueFeatures = getUniqueFeatures(features, 'route_id');
+                        for (var f = 0; f < uniqueFeatures.length; f++) {
+                            var name_of_route = uniqueFeatures[f].properties.route_short_name;
+                            var color_of_route = uniqueFeatures[f].properties.route_color;
+                            var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
+                            var desc_of_route = uniqueFeatures[f].properties.route_long_name;
+
+                            if (desc_of_route === undefined) {
+                                desc_of_route = "";
+                            }
+                            if (color_of_route === '#null') {
+                                color_of_route = '#000000';
+                            }
+                            if (text_color_of_route === '#null') {
+                                text_color_of_route = '#ffffff';
+                            }
+
+                            if (name_of_route === undefined) {
+                                name_of_route = `<i class="fa-solid fa-ferry"></i>`;
+                            } else {
+                                name_of_route = `<i class="fa-solid fa-ferry"></i>&nbsp;${name_of_route}`;
+                            }
+                            
+                            document.getElementById("route_name_rad").innerHTML = name_of_route;
+                            document.getElementById("route_name_rad").style.backgroundColor = `${color_of_route}40`;
+                            document.getElementById("route_name_rad").style.color = text_color_of_route;
+                            document.getElementById("route_name_rad").style.border = `1px solid ${color_of_route}`;
+                            document.getElementById("route_detail_rad").innerHTML = desc_of_route;
+
+                            var route_to_clone = document.getElementById("rir").cloneNode(true);
+                            document.getElementById("range_of_routes").appendChild(route_to_clone);
+                        }
+
+                        var all_routes_nearby = document.getElementById("range_of_routes").children;
+                        document.getElementById("range_of_routes").removeChild(all_routes_nearby[0]);
+                    }
+                }
+            });
+        }
+        moveMap();
     </script>
 </body>
 </html>
