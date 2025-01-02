@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/mtabuses.css">
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -52,18 +53,36 @@
             <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <div class="list_of_mtabus_lines">
                 <ul id="each_mtabus_line" class="lines">
-                    <li id="route_entity_mtabuses"><span id="route_name_mtabuses" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_mtabuses" class="all_desc_routes">Loading...</span> <span id="no_of_alerts_mtabuses"></span></li>
+                    <li id="route_entity_mtabuses"><span id="route_name_mtabuses" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_mtabuses" class="all_desc_routes">Loading...</span> <span id="no_of_alerts"></span></li>
                 </ul>
             </div>
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a stop..." id="stopgetter_mtabuses" class="searchbars" autocomplete="off" onkeydown="">
+            <input type="text" placeholder="Search for a stop..." id="stopgetter_mtabuses" class="searchbars" autocomplete="off" onkeydown="getDeparturesFromAnAgencyWithAMode(
+                null,
+                'list_of_departures_mtabuses',
+                `<li id='line_for_departure_mtabuses' class='lod_styling'><div id='lod_mtabuses' class='styling_for_routes'>-</div> <span id='aor_mtabuses'></span> <span id='hod_mtabuses' class='route_headsigns'>Loading...</span><span id='depart_time_mtabuses' class='departure_times'>Please wait...</span></li>`,
+                'stopname_mtabuses',
+                'o-dr5r-nyct',
+                'stopgetter_mtabuses',
+                'depart_time_mtabuses',
+                'lod_mtabuses',
+                'hod_mtabuses',
+                'line_for_departure_mtabuses',
+                3,
+                true,
+                'aor_mtabuses'
+            )">
             <p class="headerforstop">Departures for: &nbsp; <span id="stopname_mtabuses">---</span></p>
             <ul id="list_of_departures_mtabuses" class="scroller_departures individual_departure">
                 <li id="line_for_departure_mtabuses" class="lod_styling"><div id="lod_mtabuses" class="styling_for_routes">-</div> <span id="aor_mtabuses"></span> <span id="hod_mtabuses" class="route_headsigns">(None)</span><span id="depart_time_mtabuses" class="departure_times">Enter a stop by their stop ID</span></li>
             </ul>
-            <button id="clearall_mtabuses" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_mtabuses" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_mtabuses',
+                `<li id='line_for_departure_mtabuses' class='lod_styling'><div id='lod_mtabuses' class='styling_for_routes'>-</div> <span id='aor_mtabuses'></span> <span id='hod_mtabuses' class='route_headsigns'>(None)</span><span id='depart_time_mtabuses' class='departure_times'>Enter a stop by their stop ID</span></li>`,
+                'stopname_mtabuses'
+            )">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
@@ -81,6 +100,9 @@
         </div>
     </div>
     <script>
+        // Map Configuration
+        mapConfiguration(-74.0105, 40.7327, 9);
+
         // Utilities
         var v = null;
 
@@ -132,6 +154,16 @@
             document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
         }
         getCopyrightYear();
+
+        // Information
+        getWikipediaForAnAgency("MTA_Regional_Bus_Operations");
+        getContactsForAnAgency("o-dr5r-nyct");
+
+        // Lines
+        getLinesFromAnAgency("o-dr5r-nyct", "route_name_mtabuses", "route_desc_mtabuses", "route_entity_mtabuses", "each_mtabus_line", true);
+
+        // Map Functionality
+        plotLinesFromAnAgency("o-dr5r-nyct", 3);
     </script>
 </body>
 </html>
