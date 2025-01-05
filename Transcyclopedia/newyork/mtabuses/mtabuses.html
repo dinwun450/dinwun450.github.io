@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/mtabuses.css">
     <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
+    <script src="js_assets/mtabuses_alerts.js"></script>
+    <script src="js_assets/mtabuses_map.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -38,7 +40,7 @@
                 </div>
                 <div class="no_of_lines">
                     <h2>Number of Lines:</h2>
-                    <p id="nooflines"><b>-</b></p>
+                    <p ><b id="nooflines">-</b></p>
                 </div>
                 <div class="contact">
                     <h2>Contact:</h2>
@@ -86,9 +88,11 @@
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a bus route..." id="routegetter_mtabuses" class="searchbars" autocomplete="off" onkeydown="keyDownMTABusesAlerts();">
             <div id="mtabuses_lines_alerts">
-                <div id="mtabuses_alert_entity" class="alert_entity_single">Loading...</div>
+                <div id="mtabuses_alert_entity" class="alert_entity_single">Enter a bus route name to see alerts.</div>
             </div>
+            <button id="clearall_mtabuses_alerts" class="all_clearalls" style="margin-top: 20px;" onclick="clearAllMTAAlerts()">Clear</button>
         </div>
         <div class="window" id="map_inter">
             <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
@@ -160,10 +164,10 @@
         getContactsForAnAgency("o-dr5r-nyct");
 
         // Lines
-        getLinesFromAnAgency("o-dr5r-nyct", "route_name_mtabuses", "route_desc_mtabuses", "route_entity_mtabuses", "each_mtabus_line", true);
+        getLinesFromAnAgencyWithinARouteType("o-dr5r-nyct", 3, "nooflines", "Only Bus", "route_name_mtabuses", "route_desc_mtabuses", "route_entity_mtabuses", "each_mtabus_line", true, "no_of_alerts");
 
         // Map Functionality
-        plotLinesFromAnAgency("o-dr5r-nyct", 3);
+        plotLinesFromAnAgencyInNYC("o-dr5r-nyct", 3);
     </script>
 </body>
 </html>
