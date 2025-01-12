@@ -178,6 +178,10 @@ function loadLAMetroLinesBus() {
                     document.getElementById("route_name_bus").innerHTML = route_short_name;
                 }
 
+                if (route_long_name === null) {
+                    route_long_name = "";
+                }
+
                 document.getElementById("route_name_bus").style.color = `#${route_text_color}`;
                 document.getElementById("route_name_bus").style.backgroundColor = `#${route_color}40`;
                 document.getElementById("route_name_bus").style.border = `1px solid #${route_color}`;
