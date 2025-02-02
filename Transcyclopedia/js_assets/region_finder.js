@@ -79,7 +79,7 @@ function changeSwitch(c) {
             <li><a href="https://dinwun450.github.io/Transcyclopedia/newyork/mtasubway/mtasubway.html"><img src="img_assets/nymta.png" style="width: 50px; height: auto; position: relative; bottom: 10px;"></a></li>
             <li><a href="https://dinwun450.github.io/Transcyclopedia/newyork/nycferries/nycferries.html" id="ferry"><i class="fa-solid fa-ferry" style="font-size: 35px;"></i></a></li>
             <li><a href="https://dinwun450.github.io/Transcyclopedia/newyork/mtabuses/mtabuses.html" id="bus"><i class="fa-solid fa-bus" style="font-size: 35px;"></i></a></li>
-            <li><a href="#" id="train"><i class="fa-solid fa-train" style="font-size: 35px;"></i></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/newyork/nyctrains/nyctrains.html" id="train"><i class="fa-solid fa-train" style="font-size: 35px;"></i></a></li>
             `
             break;
         case "miami":
