@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="250px"
+   height="250px"
+   viewBox="0 0 125 125"
+   version="1.1"
+   id="svg835"
+   sodipodi:docname="mta_5x.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata841">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs839" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     id="namedview837"
+     showgrid="false"
+     inkscape:zoom="3.704"
+     inkscape:cx="125.40497"
+     inkscape:cy="125"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg835" />
+  <title
+     id="title829">NYCS Bullet, Standard Set - 5 Express</title>
+  <path
+     style="fill:#ffffff;stroke-width:2"
+     d="M 125 5 L 5 125 L 125 245 L 245 125 L 125 5 z M 99.800781 74 L 156.59961 74 L 154.59961 92.400391 L 116 92.400391 L 113.19922 111.59961 C 118.26522 107.33361 124.00039 105.19922 130.40039 105.19922 C 140.66639 105.19922 148.73361 108.66561 154.59961 115.59961 C 159.79961 121.86561 162.40039 130 162.40039 140 C 162.40039 151.334 158.83322 160.30039 151.69922 166.90039 C 144.56522 173.50039 135.53361 176.80078 124.59961 176.80078 C 114.59961 176.80078 106.46522 174.33439 100.19922 169.40039 C 93.399219 164.06639 89.733219 156.40039 89.199219 146.40039 L 110.80078 144.80078 C 110.93478 149.20078 112.26678 152.86678 114.80078 155.80078 C 117.33478 158.73478 120.66678 160.19922 124.80078 160.19922 C 130.26678 160.19922 134.39922 158.134 137.19922 154 C 139.59922 150.4 140.80078 145.79922 140.80078 140.19922 C 140.80078 127.93322 135.33439 121.80078 124.40039 121.80078 C 117.86639 121.80078 113.26561 125.00039 110.59961 131.40039 L 92.599609 130 L 99.800781 74 z "
+     transform="scale(0.5)"
+     id="path831" />
+</svg>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="250px"
+   height="250px"
+   viewBox="0 0 125 125"
+   version="1.1"
+   id="svg16579"
+   sodipodi:docname="mta_sf.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata16585">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs16583" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     id="namedview16581"
+     showgrid="false"
+     inkscape:zoom="1.888"
+     inkscape:cx="179.85453"
+     inkscape:cy="119.7863"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg16579" />
+  <title
+     id="title16573">NYCS Bullet, Standard Set - Franklin Avenue Shuttle</title>
+  <path
+     style="fill:#ffffff;stroke-width:2"
+     d="M 125 25 A 100 100 0 0 0 25 125 A 100 100 0 0 0 125 225 A 100 100 0 0 0 225 125 A 100 100 0 0 0 125 25 z M 105 71.400391 C 123 71.400391 137.14039 78.26 147.40039 92 L 131 104.40039 C 125.8 94.540391 117.06078 89.599609 104.80078 89.599609 C 99.460781 89.599609 95.099219 90.56 91.699219 92.5 C 88.299219 94.44 86.599609 96.999219 86.599609 100.19922 C 86.599609 104.19922 89.06 107.19922 94 109.19922 C 95.2 109.73922 99.399609 110.80039 106.59961 112.40039 L 118.80078 115.19922 C 127.86078 117.33922 134.6 120.13961 139 123.59961 C 145 128.25961 148 135.00078 148 143.80078 C 148 155.14078 143.26078 163.73961 133.80078 169.59961 C 125.80078 174.53961 115.86 177 104 177 C 95.34 177 87.059219 175.14039 79.199219 171.40039 C 71.339219 167.66039 64.999219 162.34039 60.199219 155.40039 L 76.800781 143.40039 C 83.740781 153.54039 93.740781 158.59961 106.80078 158.59961 C 112.26078 158.59961 116.85961 157.74 120.59961 156 C 125.13961 153.74 127.40039 150.54039 127.40039 146.40039 C 127.40039 142.94039 125.74039 140.26039 122.40039 138.40039 C 119.86039 137.06039 114.86039 135.54078 107.40039 133.80078 L 96.199219 131.19922 C 86.599219 128.93922 79.599219 126.05961 75.199219 122.59961 C 69.059219 117.93961 66 111.4 66 103 C 66 92.86 70.199609 84.86 78.599609 79 C 85.939609 73.94 94.74 71.400391 105 71.400391 z M 158.30078 73.800781 L 191.5 73.800781 L 191.5 83 L 168.09961 83 L 168.09961 94.400391 L 188.59961 94.400391 L 188.59961 103.19922 L 168.09961 103.19922 L 168.19922 124.19922 L 158.30078 124.19922 L 158.30078 73.800781 z "
+     transform="scale(0.5)"
+     id="circle16575" />
+</svg>

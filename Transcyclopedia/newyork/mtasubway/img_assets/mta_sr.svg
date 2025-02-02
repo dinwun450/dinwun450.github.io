@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="250px"
+   height="250px"
+   viewBox="0 0 125 125"
+   version="1.1"
+   id="svg17137"
+   sodipodi:docname="mta_sr.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata17143">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs17141" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     id="namedview17139"
+     showgrid="false"
+     inkscape:zoom="2.6700352"
+     inkscape:cx="144.0418"
+     inkscape:cy="128.432"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg17137" />
+  <title
+     id="title17131">NYCS Bullet, Standard Set - Rockaway Park Shuttle</title>
+  <path
+     style="fill:#ffffff;stroke-width:2"
+     d="M 125 25 A 100 100 0 0 0 25 125 A 100 100 0 0 0 125 225 A 100 100 0 0 0 225 125 A 100 100 0 0 0 125 25 z M 102 71.400391 C 120 71.400391 134.14039 78.26 144.40039 92 L 128 104.40039 C 122.8 94.540391 114.06078 89.599609 101.80078 89.599609 C 96.460781 89.599609 92.099219 90.56 88.699219 92.5 C 85.299219 94.44 83.599609 96.999219 83.599609 100.19922 C 83.599609 104.19922 86.06 107.19922 91 109.19922 C 92.2 109.73922 96.399609 110.80039 103.59961 112.40039 L 115.80078 115.19922 C 124.86078 117.33922 131.6 120.13961 136 123.59961 C 142 128.25961 145 135.00078 145 143.80078 C 145 155.14078 140.26078 163.73961 130.80078 169.59961 C 122.80078 174.53961 112.86 177 101 177 C 92.34 177 84.059219 175.14039 76.199219 171.40039 C 68.339219 167.66039 61.999219 162.34039 57.199219 155.40039 L 73.800781 143.40039 C 80.740781 153.54039 90.740781 158.59961 103.80078 158.59961 C 109.26078 158.59961 113.85961 157.74 117.59961 156 C 122.13961 153.74 124.40039 150.54039 124.40039 146.40039 C 124.40039 142.94039 122.74039 140.26039 119.40039 138.40039 C 116.86039 137.06039 111.86039 135.54078 104.40039 133.80078 L 93.199219 131.19922 C 83.599219 128.93922 76.599219 126.05961 72.199219 122.59961 C 66.059219 117.93961 63 111.4 63 103 C 63 92.86 67.199609 84.86 75.599609 79 C 82.939609 73.94 91.74 71.400391 102 71.400391 z M 155.30078 73.800781 L 176.30078 73.800781 C 181.56078 73.800781 185.74078 75.219062 188.80078 78.039062 C 191.86078 80.879063 193.40039 84.560078 193.40039 89.080078 C 193.40039 93.880078 191.99922 97.680469 189.19922 100.48047 C 187.85922 101.84047 185.99961 103 183.59961 104 L 194.80078 124.19922 L 183.40039 124.19922 L 173.69922 105.80078 L 165.19922 105.80078 L 165.19922 124.19922 L 155.30078 124.19922 L 155.30078 73.800781 z M 165.19922 82.599609 L 165.19922 97.099609 L 175.09961 97.099609 C 177.49961 97.099609 179.44039 96.439609 180.90039 95.099609 C 182.36039 93.759609 183.09961 92.000781 183.09961 89.800781 C 183.09961 85.000781 179.95922 82.599609 173.69922 82.599609 L 165.19922 82.599609 z "
+     transform="scale(0.5)"
+     id="circle17133" />
+</svg>
