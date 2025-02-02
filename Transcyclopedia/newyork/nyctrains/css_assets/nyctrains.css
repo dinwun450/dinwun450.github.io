@@ -46,8 +46,16 @@ body::after {
     border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
+#hod_train {
+    left: 0;
+}
+
 #nyctrain_alert_entity {
     padding: 10px;
+}
+
+#nyctrain_alert_entity ul {
+    margin-left: 20px;
 }
 
 .all_desc_routes {

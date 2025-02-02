@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
     <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
     <link rel="stylesheet" href="css_assets/nyctrains.css">
+    <script src="js_assets/nyctrains_info.js"></script>
+    <script src="js_assets/nyctrains_lines.js"></script>
+    <script src="js_assets/nyctrains_departures.js"></script>
+    <script src="js_assets/nyctrains_alerts.js"></script>
+    <script src="js_assets/nyctrains_map.js"></script>
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -28,7 +34,7 @@
         <div class="window" id="about_trains">
             <div class="info infowithdropdowns">
                 <p id="sectionheader">About Trains <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-                <select name="" id="train_info" class="dropdown_uniforms dropdown_for_info" onchange="">
+                <select name="" id="train_info" class="dropdown_uniforms dropdown_for_info" onchange="changeNYCTrainsInfo(value);">
                     <option value="prompt">Select Train Agency</option>
                     <option value="mtasir">MTA's Staten Island Railway</option>
                     <option value="mtallrr">MTA's Long Island Railroad</option>
@@ -36,7 +42,7 @@
                     <option value="path">Port Authority Trans-Hudson Corporation</option>
                     <option value="njtransitrail">NJ Transit Rail</option>
                 </select>
-                <p id="desc">Select a Bus Agency.</p>
+                <p id="desc">Select a Train Agency.</p>
             </div>
             <div class="stats">
                 <div class="began_operation">
@@ -58,7 +64,7 @@
         </div>
         <div class="window" id="lines">
             <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="train_lines" class="dropdown_uniforms" onchange="">
+            <select name="" id="train_lines" class="dropdown_uniforms" onchange="changeNYCTrainLines(value);">
                 <option value="prompt">Select Train Agency</option>
                 <option value="mtasir">MTA's Staten Island Railway</option>
                 <option value="mtallrr">MTA's Long Island Railroad</option>
@@ -68,14 +74,14 @@
             </select>
             <div class="all_train_lines">
                 <ul id="list_of_train_lines" class="lines">
-                    <li id="train_route_entity"><span id="route_name_train" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_train" class="all_desc_routes">Select a Train Agency.</span></li>
+                    <li id="train_route_entity" class="flexer"><span id="route_name_train" class="styling_for_routes symbol_tagged">-</span>&nbsp;<span id="route_desc_train" class="all_desc_routes">Select a Train Agency.</span></li>
                 </ul>
             </div>
         </div>
         <div class="window" id="departures">
             <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
             <input type="text" placeholder="Search for a station..." class="searchbars" id="stationgetter" autocomplete="off">
-            <select name="" id="train_departures" class="dropdown_uniforms" onchange="">
+            <select name="" id="train_departures" class="dropdown_uniforms" onchange="changeNYCTrainDepartures(value);">
                 <option value="prompt">Select Train Agency</option>
                 <option value="mtasir">MTA's Staten Island Railway</option>
                 <option value="mtallrr">MTA's Long Island Railroad</option>
@@ -84,13 +90,13 @@
                 <option value="njtransitrail">NJ Transit Rail</option>
             </select>
             <p class="headerforstop">Departures for &nbsp; <span id="stationname">---</span></p>
-            <ul id="list_of_train_departures" class="individual_departure">
-                <li id="line_for_departure_train" class="lod_styling"><div id="lod_train" class="styling_for_routes">-</div> <span id="hod_train" class="route_headsigns">(None)</span> <span id="depart_time_train" class="departure_times">Enter a station by their station ID, then select a train agency.</span></li>
+            <ul id="list_of_train_departures" class="scroller_departures individual_departure">
+                <li id="line_for_departure_train" class="lod_styling"><div id="lod_train" class="styling_for_routes symbol_tagged">-</div> <span id="hod_train" class="route_headsigns">(None)</span> <span id="depart_time_train" class="departure_times">Enter a station by their station ID, then select a train agency.</span></li>
             </ul>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="train_alerts" class="dropdown_uniforms" onchange="">
+            <select name="" id="train_alerts" class="dropdown_uniforms" onchange="changeNYCTrainsAlerts(value);">
                 <option value="prompt">Select Train Agency</option>
                 <option value="mtasir">MTA's Staten Island Railway</option>
                 <option value="mtallrr">MTA's Long Island Railroad</option>
@@ -104,7 +110,7 @@
         </div>
         <div class="window" id="map_inter">
             <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <select name="" id="train_map" class="dropdown_uniforms" onchange="">
+            <select name="" id="train_map" class="dropdown_uniforms" onchange="changeNYCTrainMap(value);">
                 <option value="prompt">Select Train Agency</option>
                 <option value="mtasir">MTA's Staten Island Railway</option>
                 <option value="mtallrr">MTA's Long Island Railroad</option>
@@ -120,6 +126,9 @@
         </div>
     </div>
     <script>
+        // Map Configuration
+        mapConfiguration(-73.5346632, 40.9456743, 8);
+
         // Utilities
         var v = null;
 
@@ -171,6 +180,61 @@
             document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
         }
         getCopyrightYear();
+
+        // Map Functionality
+        function moveMap() {
+            map.on('movestart', () => {
+                if (map.getLayer("nyctrains_routes")) {
+                    console.log("Map moving!");
+                    map.setFilter("nyctrains_routes", ["has", "route_id"]);
+                    document.getElementById("range_of_routes").innerHTML = `
+                        <li id="rir" class="route_radius flexer"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Loading...</span></li>
+                    `;
+                }
+            });
+
+            map.on('moveend', () => {
+                console.log("Map moved!");
+                if (map.getLayer("nyctrains_routes")) {
+                    var features = map.queryRenderedFeatures({ layers: ['nyctrains_routes'] });
+                    console.log(features.length);
+                    
+                    if (features) {
+                        const uniqueFeatures = getUniqueFeatures(features, 'route_id');
+
+                        for (var f = 0; f < uniqueFeatures.length; f++) {
+                            var name_of_route = uniqueFeatures[f].properties.route_short_name;
+                            var color_of_route = uniqueFeatures[f].properties.route_color;
+                            var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
+                            var desc_of_route = uniqueFeatures[f].properties.route_long_name;
+
+                            // if (determineIcon === true) {
+                            //     document.getElementById("route_name_rad").innerHTML = iconImage;
+                            // }
+                            // else 
+                            if (name_of_route === undefined) {
+                                document.getElementById("route_name_rad").innerHTML = "&nbsp;&nbsp;&nbsp;";
+                            }
+                            else {
+                                document.getElementById("route_name_rad").innerHTML = `${name_of_route}`;
+                            }
+
+                            document.getElementById("route_name_rad").style.backgroundColor =  `${color_of_route}40`;
+                            document.getElementById("route_name_rad").style.color = `#${text_color_of_route}`;
+                            document.getElementById("route_name_rad").style.border = `1px solid ${color_of_route}`;
+                            document.getElementById("route_detail_rad").innerHTML = desc_of_route;
+
+                            var route_to_clone = document.getElementById("rir").cloneNode(true);
+                            document.getElementById("range_of_routes").appendChild(route_to_clone);
+                        }
+
+                        var all_routes = document.getElementById("range_of_routes").children;
+                        document.getElementById("range_of_routes").removeChild(all_routes[0]);
+                    }
+                }
+            });
+        }
+        moveMap();
     </script>
 </body>
 </html>
