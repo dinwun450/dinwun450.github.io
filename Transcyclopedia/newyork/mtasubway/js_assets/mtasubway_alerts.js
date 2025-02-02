@@ -187,7 +187,7 @@ function getMTASubwayAlertsWithALine(insRouteOnestopID) {
 
             if (mtasubway_alerts_output.length !== 0) {
                 for (var i=0; i<mtasubway_alerts_output.length; i++) {
-                    var mtasubway_alert_header = string_and_image_concatenator(mtasubway_alerts_output[i].header_text[0].text);
+                    var mtasubway_alert_header = mtasubway_alerts_output[i].header_text[0].text //string_and_image_concatenator(mtasubway_alerts_output[i].header_text[0].text);
                     var description_text = mtasubway_alerts_output[i].description_text;
                     if (description_text.length !== 0) {
                         console.log(description_text[1].text);
