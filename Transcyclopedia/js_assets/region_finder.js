@@ -85,7 +85,7 @@ function changeSwitch(c) {
         case "miami":
             document.querySelector(".optionsfortransit").innerHTML = `
             <li><a href="https://dinwun450.github.io/Transcyclopedia/miami/miamidadetransit/miamidadetransit.html"><img src="img_assets/miami_dade.png" style="width: 70px; height: auto; position: relative; bottom: 5px;"></a></li>
-            <li><a href="#" id="train"><i class="fa-solid fa-train" style="font-size: 35px;"></i></a></li>
+            <li><a href="https://dinwun450.github.io/Transcyclopedia/miami/miamitrains/miamitrains.html" id="train"><i class="fa-solid fa-train" style="font-size: 35px;"></i></a></li>
             `
             break;
         case "orland":
