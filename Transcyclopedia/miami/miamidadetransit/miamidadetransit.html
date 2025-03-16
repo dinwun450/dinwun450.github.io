@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
+    <link rel="stylesheet" href="css_assets/miamidadetransit.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_scrollbars.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_responsiveness.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_lightdark.css">
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
 </head>
 <body>
     <ul class="left_navbar">
@@ -14,8 +21,8 @@
         <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
         <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_miamidade')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About Miami-Dade Transit</a></li>
         <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
-        <li class="tablinks header2" onclick="openTab(event, 'departures_subway')"><a href="#"><i class="fa-solid fa-train"></i>&nbsp;&nbsp;Departures (Metrorail)</a></li>
-        <li class="tablinks header3" onclick="openTab(event, 'departures_lightrail')"><a href="#"><i class="fa-solid fa-train-tram"></i>&nbsp;&nbsp;Departures (Metromover)</a></li>
+        <li class="tablinks header2" onclick="openTab(event, 'departures_metrorail')"><a href="#"><i class="fa-solid fa-train"></i>&nbsp;&nbsp;Departures (Metrorail)</a></li>
+        <li class="tablinks header3" onclick="openTab(event, 'departures_metromover')"><a href="#"><i class="fa-solid fa-train-tram"></i>&nbsp;&nbsp;Departures (Metromover)</a></li>
         <li class="tablinks header4" onclick="openTab(event, 'departures_bus')"><a href="#"><i class="fa-solid fa-bus"></i>&nbsp;&nbsp;Departures (Bus)</a></li>
         <li class="tablinks header5" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
         <li class="tablinks header6" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
@@ -24,7 +31,7 @@
         <p class="copyright">&copy; 2025 Transcyclopedia. Created by Dino Wun.</p>
     </ul>
     <div class="main">
-        <div class="window" id="aboutmiamidade">
+        <div class="window about_page" id="about_miamidade">
             <div class="info">
                 <p id="sectionheader">About Miami-Dade Transit <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
                 <p id="desc">Loading...</p>
@@ -49,51 +56,102 @@
         </div>
         <div class="window" id="lines">
             <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <div class="miamidade_metromoverlines">
+            <div class="miamidade_metromoverlines lines_branches">
                 <h3>MetroMover</h3>
-                <ul class="miamidade_metromover lines_branches">
+                <ul id="miamidade_metromover">
                     <li id="route_item_metromover" class="inner_list_of_lines"><span id="route_name_metromover" class="styling_for_routes">-</span> &nbsp; <span id="route_desc_metromover" class="all_desc_routes">Loading...</span> <span id="no_of_alerts_metromover"></span></li>
                 </ul>
             </div>
             <div class="miamidade_metroraillines lines_branches">
                 <h3>MetroRail</h3>
-                <ul class="miamidade_metrorail">
+                <ul id="miamidade_metrorail">
                     <li id="route_item_metrorail" class="inner_list_of_lines"><span id="route_name_metrorail" class="styling_for_routes">-</span> &nbsp; <span id="route_desc_metrorail" class="all_desc_routes">Loading...</span> <span id="no_of_alerts_metrorail"></span></li>
                 </ul>
             </div>
             <div class="miamidade_buslines lines_branches">
                 <h3>Bus</h3>
-                <ul class="miamidade_bus">
+                <ul id="miamidade_bus">
                     <li id="route_item_bus" class="inner_list_of_lines"><span id="route_name_bus" class="styling_for_routes">-</span> &nbsp; <span id="route_desc_bus" class="all_desc_routes">Loading...</span> <span id="no_of_alerts_bus"></span></li>
                 </ul>
             </div>
         </div>
-        <div class="window" id="departures_metromover">
-            <p id="sectionheader">Departures (Metromover) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." onkeydown="" class="searchbars" id="stationgetter_metromover" autocomplete="off">
-            <p class="headerforstop">Departures for: &nbsp; <span id="stationname_metromover">---</span></p>
-            <ul id="list_of_departures_metromover" class="scroller_departures individual_departure">
-                <li id="line_for_departure_metromover" class="lod_styling"><div id="lod_metromover" class="styling_for_routes">-</div> <span id="aor_metromover"></span> <span id="hod_metromover" class="route_headsigns">(None)</span> <span id="depart_time_metromover" class="departure_times">Enter a station by their station ID</span></li>
-            </ul>
-            <button id="clearall_metromover" class="all_clearalls" onclick="">Clear</button>
-        </div>
         <div class="window" id="departures_metrorail">
             <p id="sectionheader">Departures (MetroRail) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a station..." onkeydown="" class="searchbars" id="stationgetter_metrorail" autocomplete="off">
+            <input type="text" placeholder="Search for a station..." class="searchbars" id="stationgetter_metrorail" autocomplete="off" onkeydown="getDeparturesFromAnAgencyWithAMode(
+                null,
+                'list_of_departures_metrorail',
+                `<li id='line_for_departure_metrorail' class='lod_styling'><div id='lod_metrorail' class='styling_for_routes'>-</div> <span id='aor_metrorail'></span> <span id='hod_metrorail' class='route_headsigns'>Loading...</span> <span id='depart_time_metrorail' class='departure_times'>Please wait...</span></li>`,
+                'stationname_metrorail',
+                'o-dhw-miamidadetransit',
+                'stationgetter_metrorail',
+                'depart_time_metrorail',
+                'lod_metrorail',
+                'hod_metrorail',
+                'line_for_departure_metrorail',
+                2,
+                false
+            )">
             <p class="headerforstop">Departures for: &nbsp; <span id="stationname_metrorail">---</span></p>
             <ul id="list_of_departures_metrorail" class="scroller_departures individual_departure">
                 <li id="line_for_departure_metrorail" class="lod_styling"><div id="lod_metrorail" class="styling_for_routes">-</div> <span id="aor_metrorail"></span> <span id="hod_metrorail" class="route_headsigns">(None)</span> <span id="depart_time_metrorail" class="departure_times">Enter a station by their station ID</span></li>
             </ul>
-            <button id="clearall_metrorail" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_metrorail" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_metrorail',
+                `<li id='line_for_departure_metrorail' class='lod_styling'><div id='lod_metrorail' class='styling_for_routes'>-</div> <span id='aor_metrorail'></span> <span id='hod_metrorail' class='route_headsigns'>(None)</span> <span id='depart_time_metrorail' class='departure_times'>Enter a station by their station ID</span></li>`,
+                'stationname_metrorail',
+            )">Clear</button>
+        </div>
+        <div class="window" id="departures_metromover">
+            <p id="sectionheader">Departures (Metromover) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a station..." class="searchbars" id="stationgetter_metromover" autocomplete="off" onkeydown="getDeparturesFromAnAgencyWithAMode(
+                null,
+                'list_of_departures_metromover',
+                `<li id='line_for_departure_metromover' class='lod_styling'><div id='lod_metromover' class='styling_for_routes'>-</div> <span id='aor_metromover'></span> <span id='hod_metromover' class='route_headsigns'>Loading...</span> <span id='depart_time_metromover' class='departure_times'>Please wait...</span></li>`,
+                'stationname_metromover',
+                'o-dhw-miamidadetransit',
+                'stationgetter_metromover',
+                'depart_time_metromover',
+                'lod_metromover',
+                'hod_metromover',
+                'line_for_departure_metromover',
+                0,
+                false
+            )">
+            <p class="headerforstop">Departures for: &nbsp; <span id="stationname_metromover">---</span></p>
+            <ul id="list_of_departures_metromover" class="scroller_departures individual_departure">
+                <li id="line_for_departure_metromover" class="lod_styling"><div id="lod_metromover" class="styling_for_routes">-</div> <span id="aor_metromover"></span> <span id="hod_metromover" class="route_headsigns">(None)</span> <span id="depart_time_metromover" class="departure_times">Enter a station by their station ID</span></li>
+            </ul>
+            <button id="clearall_metromover" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_metromover',
+                `<li id='line_for_departure_metromover' class='lod_styling'><div id='lod_metromover' class='styling_for_routes'>-</div> <span id='aor_metromover'></span> <span id='hod_metromover' class='route_headsigns'>(None)</span> <span id='depart_time_metromover' class='departure_times'>Enter a station by their station ID</span></li>`,
+                'stationname_metromover',
+            )">Clear</button>
         </div>
         <div class="window" id="departures_bus">
             <p id="sectionheader">Departures (Bus) <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
-            <input type="text" placeholder="Search for a route..." onkeydown="" class="searchbars" id="routegetter_bus" autocomplete="off">
+            <input type="text" placeholder="Search for a route..." class="searchbars" id="routegetter_bus" autocomplete="off" onkeydown="getDeparturesFromAnAgencyWithAMode(
+                null,
+                'list_of_departures_bus',
+                `<li id='line_for_departure_bus' class='lod_styling'><div id='lod_bus' class='styling_for_routes'>-</div> <span id='aor_bus'></span> <span id='hod_bus' class='route_headsigns'>Loading...</span> <span id='depart_time_bus' class='departure_times'>Please wait...</span></li>`,
+                'routename_bus',
+                'o-dhw-miamidadetransit',
+                'routegetter_bus',
+                'depart_time_bus',
+                'lod_bus',
+                'hod_bus',
+                'line_for_departure_bus',
+                3,
+                false
+            )">
             <p class="headerforstop">Departures for: &nbsp; <span id="routename_bus">---</span></p>
             <ul id="list_of_departures_bus" class="scroller_departures individual_departure">
-                <li id="line_for_departure_bus" class="lod_styling"><div id="lod_bus" class="styling_for_routes">-</div> <span id="aor_bus"></span> <span id="hod_bus" class="route_headsigns">(None)</span> <span id="depart_time_bus" class="departure_times">Enter a route by their route ID</span></li>
+                <li id="line_for_departure_bus" class="lod_styling"><div id="lod_bus" class="styling_for_routes">-</div> <span id="aor_bus"></span> <span id="hod_bus" class="route_headsigns">(None)</span> <span id="depart_time_bus" class="departure_times">Enter a stop by their stop ID</span></li>
             </ul>
-            <button id="clearall_bus" class="all_clearalls" onclick="">Clear</button>
+            <button id="clearall_bus" class="all_clearalls" onclick="uniformalClearAlls(
+                'list_of_departures_bus',
+                `<li id='line_for_departure_bus' class='lod_styling'><div id='lod_bus' class='styling_for_routes'>-</div> <span id='aor_bus'></span> <span id='hod_bus' class='route_headsigns'>(None)</span> <span id='depart_time_bus' class='departure_times'>Enter a stop by their stop ID</span></li>`,
+                'routename_bus',
+            )">Clear</button>
         </div>
         <div class="window" id="alerts">
             <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
@@ -119,5 +177,77 @@
             <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
         </div>
     </div>
+    <script>
+        // Base Map
+        mapConfiguration(-80.19663, 25.77491, 12);
+
+        // Utilities
+        var v = null;
+
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
+            }
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
+        
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("window");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("defaulttab").click();
+
+        function openNav() {
+            document.querySelector(".left_navbar").style.display = "block";
+        }
+
+        function closeNav() {
+            document.querySelector(".left_navbar").style.display = "none";
+            console.log(document.querySelector(".left_navbar").getAttribute("style"));
+        }
+
+        function dark_or_light() {
+            var element = document.body;
+            var light_or_dark = element.classList.toggle("light_mode");
+            document.getElementById("light_dark_transition").innerHTML = light_or_dark ? `<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</a></span>` : `<i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</a></span>`;
+        }
+
+        function getCopyrightYear() {
+            var date = new Date();
+            var getYearNo = date.getFullYear();
+            document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
+        }
+        getCopyrightYear();
+
+        // Information
+        getWikipediaForAnAgency("Miami-Dade_Transit");
+        getContactsForAnAgency("o-dhw-miamidadetransit");
+
+        // Lines
+        getLinesFromAnAgencyWithinARouteType("o-dhw-miamidadetransit", 0, "metromover_routes", "MetroMover", "route_name_metromover", "route_desc_metromover", "route_item_metromover", "miamidade_metromover", true, "no_of_alerts_metromover");
+        getLinesFromAnAgencyWithinARouteType("o-dhw-miamidadetransit", 2, "metrorail_routes", "MetroRail", "route_name_metrorail", "route_desc_metrorail", "route_item_metrorail", "miamidade_metrorail", true, "no_of_alerts_metrorail");
+        getLinesFromAnAgencyWithinARouteType("o-dhw-miamidadetransit", 3, "bus_routes", "Bus", "route_name_bus", "route_desc_bus", "route_item_bus", "miamidade_bus", true, "no_of_alerts_bus");
+
+        // Alerts
+        loadAlertsWithinAnAgency("o-dhw-miamidadetransit", "alert_agency_entity", "miamidade_agency_alerts");
+        loadRouteAlertsWithinAnAgency("o-dhw-miamidadetransit", "alert_routes_entity", "miamidade_lines_alerts");
+
+        // Map Functionality
+        plotLinesWithMultipleModesFromAnAgency("o-dhw-miamidadetransit", 3, 0, 2);
+    </script>
 </body>
 </html>

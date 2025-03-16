@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcyclopedia Miami: Miami Trains</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_navbar.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_mainpage.css">
+    <link rel="stylesheet" href="css_assets/miamitrains.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_scrollbars.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_responsiveness.css">
+    <link rel="stylesheet" href="https://dinwun450.github.io/Transcyclopedia/css_assets/branching_pages_lightdark.css">
+    <script src="js_assets/miamitrains_info.js"></script>
+    <script src="js_assets/miamitrains_lines.js"></script>
+    <script src="js_assets/miamitrains_departures.js"></script>
+    <script src="js_assets/miamitrains_alerts.js"></script>
+    <script src="js_assets/miamitrains_map.js"></script>
+    <script src="https://dinwun450.github.io/Transcyclopedia/js_assets/uniformal_transit_information.js"></script>
+</head>
+<body>
+    <ul class="left_navbar">
+        <h1 class="logo">Transcycl<span class="globe"><i class="fa-solid fa-earth-americas"></i></span>pedia Miami:<br> Miami Trains</h1>
+        <li><a href="https://dinwun450.github.io/Transcyclopedia/trcypdia_main.html"><i class="fa-solid fa-chevron-left"></i>&nbsp;&nbsp;Return to Menu</a></li>
+        <li class="tablinks header0" id="defaulttab" onclick="openTab(event, 'about_trains')"><a href="#"><i class="fa-solid fa-info"></i>&nbsp;&nbsp;About Trains</a></li>
+        <li class="tablinks header1" onclick="openTab(event, 'lines')"><a href="#"><i class="fa-solid fa-lines-leaning"></i>&nbsp;&nbsp;Lines</a></li>
+        <li class="tablinks header2" onclick="openTab(event, 'departures')"><a href="#"><i class="fa-solid fa-train"></i>&nbsp;&nbsp;Departures</a></li>
+        <li class="tablinks header4" onclick="openTab(event, 'alerts')"><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Alerts</a></li>
+        <li class="tablinks header5" onclick="openTab(event, 'map_inter')"><a href="#"><i class="fa-solid fa-map"></i>&nbsp;&nbsp;Interactive Map</a></li>
+        <li><a href="#" onclick="dark_or_light()"><span id="light_dark_transition"><i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</span></a></li>
+        <li class="x"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;&nbsp;&nbsp;Close</a></li>
+        <p class="copyright">&copy; 2025 Transcyclopedia. Created by Dino Wun.</p>
+    </ul>
+    <div class="main">
+        <div class="window about_page" id="about_trains">
+            <div class="info infowithdropdowns">
+                <p id="sectionheader">About Trains <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+                <select name="" id="train_info" class="dropdown_uniforms dropdown_for_info" onchange="changeMiamiTrainsAgency(value);">
+                    <option value="prompt">Select Train Agency</option>
+                    <option value="trirail">Tri-Rail</option>
+                    <option value="brightline">Brightline</option>
+                </select>
+                <p id="desc">Select a Train Agency.</p>
+            </div>
+            <div class="stats">
+                <div class="began_operation">
+                    <h2>Founded:</h2>
+                    <p><b id="foundingdate">-</b></p>
+                </div>
+                <div class="no_of_lines">
+                    <h2>Number of Lines:</h2>
+                    <p><b id="nooflines">-</b></p>
+                </div>
+                <div class="contact">
+                    <h2>Contact</h2>
+                    <ul>
+                        <li><p><b id="email_agency">-</b> (Email)</p></li>
+                        <li><p><b id="phone_agency">-</b> (Phone)</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="window" id="lines">
+            <p id="sectionheader">Lines <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="train_lines" class="dropdown_uniforms" onchange="changeMiamiTrainLines(value);">
+                <option value="prompt">Select Train Agency</option>
+                <option value="trirail">Tri-Rail</option>
+                <option value="brightline">Brightline</option>
+            </select>
+            <div class="all_train_lines">
+                <ul id="list_of_train_lines" class="lines">
+                    <li id="train_route_entity"><span id="route_name_train" class="styling_for_routes">-</span>&nbsp;<span id="route_desc_train" class="all_desc_routes">Select a Train Agency.</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="window" id="departures">
+            <p id="sectionheader">Departures <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <input type="text" placeholder="Search for a station..." class="searchbars" id="stationgetter" autocomplete="off">
+            <select name="" id="train_departures" class="dropdown_uniforms" onchange="changeMiamiTrainDepartures(value);">
+                <option value="prompt">Select Train Agency</option>
+                <option value="trirail">Tri-Rail</option>
+                <option value="brightline">Brightline</option>
+            </select>
+            <p class="headerforstop">Departures for &nbsp; <span id="stationname">---</span></p>
+            <ul id="list_of_train_departures" class="individual_departure">
+                <li id="line_for_departure_train" class="lod_styling"><div id="lod_train" class="styling_for_routes">-</div> <span id="hod_train" class="route_headsigns">(None)</span> <span id="depart_time_train" class="departure_times">Enter a station by their station ID, then select a train agency.</span></li>
+            </ul>
+        </div>
+        <div class="window" id="alerts">
+            <p id="sectionheader">Alerts <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="train_alerts" class="dropdown_uniforms" onchange="changeMiamiTrainAlerts(value);">
+                <option value="prompt">Select Train Agency</option>
+                <option value="trirail">Tri-Rail</option>
+                <option value="brightline">Brightline</option>
+            </select>
+            <div class="alert_entity_agency alert_section_agency">
+                <h3>Train Agency</h3>
+                <ul id="train_agency_alerts">
+                    <li id="alert_agency_entity"><p>Select a Train agency.</p></li>
+                </ul>
+            </div>
+            <div class="alert_entity_routes alert_section_lines">
+                <h3>Train Routes</h3>
+                <ul id="train_lines_alerts">
+                    <li id="alert_routes_entity"><p>Once you selected the train agency and typed down the specific routes, it'll show here.</p></li>
+                </ul>
+            </div>
+        </div>
+        <div class="window" id="map_inter">
+            <p id="sectionheader">Interactive Map <i class="fa-solid fa-bars" style="float: right; padding-top: 5px;" onclick="openNav()"></i></p>
+            <select name="" id="train_map" class="dropdown_uniforms" onchange="changeMiamiTrainMap(value);">
+                <option value="prompt">Select Train Agency</option>
+                <option value="trirail">Tri-Rail</option>
+                <option value="brightline">Brightline</option>
+            </select>
+            <div id="map"></div>
+            <ul id="range_of_routes">
+                <li id="rir" class="route_radius flexer"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Select a train agency above, then drag the map to filter nearby routes.</span></li>
+            </ul>
+            <p>*The map might come out of size, resizing the window or rotating your mobile device can help.</p>
+        </div>
+    </div>
+    <script>
+        // Map Configuration
+        mapConfiguration(-80.2052, 25.7878, 10);
+
+        // Utilities
+        var v = null;
+
+        function updateSize() {
+            v = window.innerWidth;
+
+            if (document.querySelector(".left_navbar").getAttribute("style") === "display: none;" && v > 988) {
+                document.querySelector(".left_navbar").style.display = "block";
+            }
+        }
+        updateSize();
+        window.addEventListener("resize", updateSize);
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("window");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("defaulttab").click();
+
+        function openNav() {
+            document.querySelector(".left_navbar").style.display = "block";
+        }
+
+        function closeNav() {
+            document.querySelector(".left_navbar").style.display = "none";
+            console.log(document.querySelector(".left_navbar").getAttribute("style"));
+        }
+
+        function dark_or_light() {
+            var element = document.body;
+            var light_or_dark = element.classList.toggle("light_mode");
+            document.getElementById("light_dark_transition").innerHTML = light_or_dark ? `<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</a></span>` : `<i class="fa-regular fa-sun"></i>&nbsp;&nbsp;Light Mode</a></span>`;
+        }
+
+        function getCopyrightYear() {
+            var date = new Date();
+            var getYearNo = date.getFullYear();
+            document.querySelector(".copyright").innerHTML = `&copy; ${getYearNo} Transcyclopedia. Created by Dino Wun.`;
+        }
+        getCopyrightYear();
+
+        // Map Functionality
+        function getUniqueFeatures(features, comparatorProperty) {
+            const uniqueIds = new Set();
+            const uniqueFeatures = [];
+            for (const feature of features) {
+                const id = feature.properties[comparatorProperty];
+                if (!uniqueIds.has(id)) {
+                    uniqueIds.add(id);
+                    uniqueFeatures.push(feature);
+                }
+            }
+            return uniqueFeatures;
+        }
+
+        function moveMap() {
+            if (map.getLayer("miamitrains_routes")) {
+                map.removeLayer("miamitrains_routes");
+            }
+
+            map.on('movestart', () => {
+                if (map.getLayer("miamitrains_routes")) {
+                    map.setFilter("miamitrains_routes", ["has", "route_id"]);
+                    document.getElementById("range_of_routes").innerHTML = `
+                        <li id="rir" class="route_radius flexer"><span id="route_name_rad" class="styling_for_routes">-</span> <span id="route_detail_rad">Loading...</span></li>
+                    `;
+                }
+            });
+
+            map.on('moveend', () => {
+                if (map.getLayer("miamitrains_routes")) {
+                    const features = map.queryRenderedFeatures({ layers: ["miamitrains_routes"] });
+
+                    if (features) {
+                        const uniqueFeatures = getUniqueFeatures(features, "route_id");
+                        for (var f = 0; f < uniqueFeatures.length; f++) {
+                            var name_of_route = uniqueFeatures[f].properties.route_short_name;
+                            var color_of_route = uniqueFeatures[f].properties.route_color;
+                            var text_color_of_route = uniqueFeatures[f].properties.route_text_color;
+                            var desc_of_route = uniqueFeatures[f].properties.route_long_name;
+
+                            if (name_of_route === undefined) {
+                                name_of_route = "&nbsp;&nbsp;&nbsp;";
+                            }
+                            if (desc_of_route === undefined) {
+                                desc_of_route = "";
+                            }
+                            if (color_of_route === "#null") {
+                                color_of_route = "#000000";
+                            }
+                            if (text_color_of_route === "#null") {
+                                text_color_of_route = "#FFFFFF";
+                            } 
+
+                            document.getElementById("route_name_rad").innerHTML = name_of_route;
+                            document.getElementById("route_name_rad").style.backgroundColor = `${color_of_route}40`;
+                            document.getElementById("route_name_rad").style.color = text_color_of_route;
+                            document.getElementById("route_name_rad").style.border = `1px solid ${color_of_route}`;
+                            document.getElementById("route_detail_rad").innerHTML = desc_of_route;
+
+                            var route_to_clone = document.getElementById("rir").cloneNode(true);
+                            document.getElementById("range_of_routes").appendChild(route_to_clone);
+                        }
+                    }
+
+                    var all_routes_nearby = document.getElementById("range_of_routes").children;
+                    document.getElementById("range_of_routes").removeChild(all_routes_nearby[0]);
+                }
+            });
+        }
+        moveMap();
+    </script>
+    <style>
+        @media (max-width: 600px) {
+            #desc {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    </style>
+</body>
+</html>
